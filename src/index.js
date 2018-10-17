@@ -1,10 +1,11 @@
 import {get} from './utils';
 
-let host='http://127.0.0.1';
-let port='8080';
+let hostBase='https://backend.wifibytes.com/';
 
-get(host+':'+port+'/datos_empresa').then(function(response) {
+
+get(hostBase+'/datos_empresa').then(function(response) {
     console.log("Success!", response);
+    document.getElementById("result").innerHTML = response;
   }).catch(function(error) {
     console.log("Failed!", error);
 })
