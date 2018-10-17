@@ -1,6 +1,6 @@
 import {get} from './utils';
 
-let hostBase='https://backend.wifibytes.com/';
+let hostBase='http://127.0.0.1:8000';
 
 
 get(hostBase+'/datos_empresa').then(function(response) {
