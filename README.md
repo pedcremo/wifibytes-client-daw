@@ -1,10 +1,27 @@
-#INTRODUCTION
+# INTRODUCTION
 
-This silly project is only an excuse to explain the basic scaffolding of a SPA web application.
+Client web side app of wifibytes-server. Wifibytes is a communications provider company. It is a kind of web store with information about the company that let you contract mobile lines, internet connections and buy some gadgets.
+
 The project is programmed in raw ES6 (ES2015) and transpiled, packaged, uglified and served using as a supporting tools; webpack, babel, webpack-dev-server, jsdoc ...
-Could be used as a base to develop any other javascript project during the course
+It's purpose is to become a client of wifibytes-server https://github.com/pedcremo/wifibytes-server-django
 
-#Key points 
+# Prerequisites
+
+Before starting to program a running server should be set up in order to consume endpoints information from there.
+You can do it locally. Clone https://github.com/pedcremo/wifibytes-server-django and follow instructions
+
+An online test server exists but only for some authorized developers https://backend.wifibytes.com
+To read available REST api on server point to https://backend.wifibytes.com/admin  login using an admin user and come back to https://backend.wifibytes.com , the API rest list documentation will be readable arrived to this stage.
+
+# Steps to build and start the app
+
+* npm install (only once first time we clone)
+* npm start (Every time we want to start a programming session)
+* Open http://localhost:8080 
+
+# Key points 
+
+* Bootstrap 4 . Pupils must create their own CSS style  
 * Unit battery testing with jest
 * Hot live reloading with webpack hmr
 * PAckaged with webpack
