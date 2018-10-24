@@ -79,8 +79,7 @@ var Router = {
             if(current !== self.getFragment()) {
                 current = self.getFragment();
                 self.check(current);
-                console.log("LIIIIIIISTEN");        
-
+                console.log("LIIIIIIISTEN");      
             }
         }
         clearInterval(this.interval);
@@ -102,8 +101,8 @@ var Router = {
 }
 
 // configuration
-//Router.config({ mode: 'history'});
-Router.config({ mode: ''});
+Router.config({ mode: 'history'});
+//Router.config({ mode: ''});
 
 // returning the user to the initial state
 Router.navigate();
