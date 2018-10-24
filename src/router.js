@@ -75,9 +75,12 @@ var Router = {
         var self = this;
         var current = self.getFragment();
         var fn = function() {
+            //console.log(current)+" "+self.getFragment();        
             if(current !== self.getFragment()) {
                 current = self.getFragment();
                 self.check(current);
+                console.log("LIIIIIIISTEN");        
+
             }
         }
         clearInterval(this.interval);
@@ -90,6 +93,7 @@ var Router = {
         path = path ? path : '';
         if(this.mode === 'history') {
             history.pushState(null, null, this.root + this.clearSlashes(path));
+            console.log("navigate->"+path);
         } else {
             window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + path;
         }
