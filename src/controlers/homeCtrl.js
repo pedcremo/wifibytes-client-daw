@@ -1,5 +1,6 @@
 import {get} from '../utils';
 import {Settings} from '../settings';
+import {template} from '../templates/home';
 
 class HomeControler {
 
@@ -9,7 +10,9 @@ class HomeControler {
   
     /** render  */
     static render() {
-      
+     
+        try{document.getElementById('main').innerHTML =template;}catch(e){console.log("error")};
+
         let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {
             //console.log("Success!", response);
             let datosEmpresa=JSON.parse(response);
