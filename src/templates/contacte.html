@@ -1,9 +1,34 @@
 let template= function(datosEmpresa) {
 return `
 
-<div >${datosEmpresa.name}</div>
-<div >${datosEmpresa.adreca}</div>
-<div >${datostelefon.name}</div>
+		<div class="col-md-6">
+            	<h1>Contacte ${datosEmpresa.name}</h1>
+			<form name="contacto" ng-submit="contactar()" ng-class="{'contacto-access' : accessEnabled}" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
+				<input type="text" aria-label="Nombre" name="nombre" ng-model="nombre" placeholder="Nom i Cognoms" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
+				<p ng-show="submitted &amp;&amp; contacto.nombre.$invalid" class="ng-binding ng-hide">Introduix el nom</p>
+				<input type="text" aria-label="Telefono" name="telefono" ng-model="telefono" placeholder="Telèfon" class="ng-pristine ng-untouched ng-valid">
+				<input type="email" aria-label="Email" name="email" ng-model="email" placeholder="Email" required="" class="ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required">
+				<p ng-show="submitted &amp;&amp; contacto.email.$invalid" class="ng-binding ng-hide">El email no és vàlit</p>
+				<textarea name="mensaje" aria-label="Mensaje" ng-model="mensaje" required="" rows="9" class="ng-pristine ng-untouched ng-invalid ng-invalid-required"></textarea>
+				<p ng-show="submitted &amp;&amp; contacto.mensaje.$invalid" class="ng-binding ng-hide">Introduix un missatge</p>
+				<button ng-click="submitted=true" class="orange ng-binding">Enviar Missatge</button>
+			</form>
+		</div>
+		<div class="col-md-6">
+	   	<!--<div id="map_div" style="height:400px; width: 100%;"></div>-->
+
+			<div class="mapouter">
+				<div class="gmap_canvas">
+					<iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Wifibytes%2C%20Bocairente%2C%20Espa%C3%B1a&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+					</iframe>
+				</div>
+				<style>.mapouter{overflow:hidden;height:500px;width:100%;}.gmap_canvas {background:none!important;height:500px;width:100%;}</style>
+			</div>
+
+			<p> ${datosEmpresa.address}, ${datosEmpresa.city}, -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country} </p>
+
+		</div>
+	
 
 `;
 }

@@ -101,8 +101,8 @@ var Router = {
 }
 
 // configuration
-Router.config({ mode: 'history'});
-//Router.config({ mode: ''});
+//Router.config({ mode: 'history'});
+Router.config({ mode: ''});
 
 // returning the user to the initial state
 Router.navigate();

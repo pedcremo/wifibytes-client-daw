@@ -7,16 +7,14 @@ class ContacteControler {
     constructor() {
         
     }
-  
+ 
     /** render  */
     static render() {
-        /**/
- 
+        document.querySelector("div.jumbotron").style.display="none";
         let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {           
             let datosEmpresa=JSON.parse(response);
-            try{document.getElementById('main').innerHTML =template;}catch(e){console.log("error")};
-            template(datosEmpresa);
-
+            try{document.getElementById('main').innerHTML =template(datosEmpresa);}catch(e){console.log("error")};
+    
           }).catch(function(error) {
             console.log("Failed!", error);
           });

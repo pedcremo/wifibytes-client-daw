@@ -10,7 +10,7 @@ class HomeControler {
   
     /** render  */
     static render() {
-     
+        document.querySelector("div.jumbotron").style.display="block";
         try{document.getElementById('main').innerHTML =template;}catch(e){console.log("error")};
        
     }
