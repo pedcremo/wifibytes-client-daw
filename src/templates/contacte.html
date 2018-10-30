@@ -1,17 +1,22 @@
 let template= function(datosEmpresa) {
 return `
-
-		<div class="col-md-6">
+<div class="row">
+		<div class="col-md-6 form-group">
             	<h1>Contacte ${datosEmpresa.name}</h1>
-			<form name="contacto" ng-submit="contactar()" ng-class="{'contacto-access' : accessEnabled}" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
-				<input type="text" aria-label="Nombre" name="nombre" ng-model="nombre" placeholder="Nom i Cognoms" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
-				<p ng-show="submitted &amp;&amp; contacto.nombre.$invalid" class="ng-binding ng-hide">Introduix el nom</p>
-				<input type="text" aria-label="Telefono" name="telefono" ng-model="telefono" placeholder="Telèfon" class="ng-pristine ng-untouched ng-valid">
-				<input type="email" aria-label="Email" name="email" ng-model="email" placeholder="Email" required="" class="ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required">
-				<p ng-show="submitted &amp;&amp; contacto.email.$invalid" class="ng-binding ng-hide">El email no és vàlit</p>
-				<textarea name="mensaje" aria-label="Mensaje" ng-model="mensaje" required="" rows="9" class="ng-pristine ng-untouched ng-invalid ng-invalid-required"></textarea>
-				<p ng-show="submitted &amp;&amp; contacto.mensaje.$invalid" class="ng-binding ng-hide">Introduix un missatge</p>
-				<button ng-click="submitted=true" class="orange ng-binding">Enviar Missatge</button>
+			<form name="contacto">
+				<div class="form-group">
+					<input type="text" aria-label="Nombre" name="nombre" placeholder="Nom i Cognoms" required="" class="form-control">
+				</div>	
+				<div class="form-group">
+					<input type="text" aria-label="Telefono" name="telefono" placeholder="Telèfon" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="email" aria-label="Email" name="email" placeholder="Email" required="" class="form-control">
+				</div>
+				<div class="form-group">
+					<textarea name="mensaje" aria-label="Mensaje" required="" rows="9" class="form-control">Escriu comentari</textarea>
+				</div>
+				<button type="button" class="btn btn-primary">Enviar Missatge</button>
 			</form>
 		</div>
 		<div class="col-md-6">
@@ -29,7 +34,7 @@ return `
 
 		</div>
 	
-
+	</div>
 `;
 }
 
