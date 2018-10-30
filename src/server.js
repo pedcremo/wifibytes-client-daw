@@ -18,6 +18,8 @@ const server = new WebpackDevServer(compiler, {
   publicPath: '/',
   stats: {
     colors: true,
-  },
+  },  
 });
-server.listen(8080, 'localhost', function() {});
+server.listen(8080, 'localhost', function() { 
+  console.log("LLLLLLLLLLLLLLLLLLL");
+});
