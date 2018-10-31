@@ -1,6 +1,6 @@
 import {get} from '../utils';
 import {Settings} from '../settings';
-import {template} from '../templates/contacte.html';
+import {template} from '../templates/contacte.js';
 
 class ContacteControler {
 

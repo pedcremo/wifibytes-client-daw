@@ -8,7 +8,7 @@
     "poststart": "node ./tools/startMessage.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "doc": "jsdoc -c jsdoc.json README src/*",
+    "doc": "jsdoc -c jsdoc.json README.md src/*",
     "test": "jest --env=jsdom"
   },
   "author": "",

@@ -1,5 +1,7 @@
 import {Router} from './router.js'; //Knows what to do for every single URL 
 import HomeControler from './controlers/homeCtrl';
+import NavbarControler from './controlers/navbarCtrl';
+import FooterControler from './controlers/footerCtrl';
 import ContacteControler from './controlers/contacteCtrl';
 import {Settings} from './settings';
 import {get} from './utils';
@@ -21,10 +23,13 @@ Router
 let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {   
     let datosEmpresa=JSON.parse(response);
     console.log(datosEmpresa);
-    document.querySelector('a.navbar-brand').innerHTML ='<img width="90px" height="64px" src="'+datosEmpresa.logo+'" />';
-    document.querySelector('footer div.footer-copyright a').innerHTML = datosEmpresa.name;            
+    NavbarControler.render();
+    FooterControler.render();    
 }).catch(function(error) {
     console.log("Failed!", error);
 });
-HomeControler.render();
+
+document.addEventListener("DOMContentLoaded", function(event) {    
+    HomeControler.render();    
+});
 

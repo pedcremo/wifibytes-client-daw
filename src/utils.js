@@ -1,8 +1,10 @@
 let CACHE_TEMPLATES = new Map();
 
-// From Jake Archibald's Promises and Back:
-// http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
 
+/** Get is our ajax caller implemented as a promise
+ * From Jake Archibald's Promises and Back:
+ * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
+*/
 function get(url) {
     // Return a new promise.
     return new Promise(function(resolve, reject) {
