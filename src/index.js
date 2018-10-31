@@ -21,8 +21,8 @@ Router
 let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {   
     let datosEmpresa=JSON.parse(response);
     console.log(datosEmpresa);
-    document.querySelector('a.navbar-brand').innerHTML ='<img width="64px" height="64px" src="'+datosEmpresa.logo+'" />'+ datosEmpresa.name;
-    document.querySelector('footer p').innerHTML = datosEmpresa.name;            
+    document.querySelector('a.navbar-brand').innerHTML ='<img width="90px" height="64px" src="'+datosEmpresa.logo+'" />';
+    document.querySelector('footer div.footer-copyright a').innerHTML = datosEmpresa.name;            
 }).catch(function(error) {
     console.log("Failed!", error);
 });

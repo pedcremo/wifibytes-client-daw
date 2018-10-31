@@ -10,6 +10,7 @@ class ContacteControler {
  
     /** render  */
     static render() {
+        //Hide jumbotron section 
         document.querySelector("div.jumbotron").style.display="none";
         let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {           
             let datosEmpresa=JSON.parse(response);

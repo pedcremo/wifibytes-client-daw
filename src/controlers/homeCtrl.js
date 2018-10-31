@@ -10,9 +10,17 @@ class HomeControler {
   
     /** render  */
     static render() {
-        document.querySelector("div.jumbotron").style.display="block";
-        try{document.getElementById('main').innerHTML =template;}catch(e){console.log("error")};
-       
+        console.log("ESTEM EN RENDER DE HOME CONTROLLER");
+        get(Settings.baseURL+'/tarifa').then(function(response) {  
+            debugger;         
+            let tarifaList=JSON.parse(response);
+            try{document.getElementById('main').innerHTML =template(tarifaList);}catch(e){console.log("Error: Can't render template home")};
+    
+        }).catch(function(error) {
+            console.log("Failed!", error);
+        });
+        //SHOW jumbotron in case it is hidden
+        try{document.querySelector("div.jumbotron").style.display="block";} catch(e){console.log("Error: Jumbotron not DOM loaded yet")};      
     }
 }
 export default HomeControler;

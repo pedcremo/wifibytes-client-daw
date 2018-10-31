@@ -9,10 +9,12 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 const config = require('../webpack.config.js');
 const path = require('path');
+const colors = require('colors');
 
 const compiler = webpack(config);
 const server = new WebpackDevServer(compiler, {
   contentBase: 'www',
+  open: true,
   hot: true,
   filename: 'main.js',
   publicPath: '/',
@@ -21,5 +23,7 @@ const server = new WebpackDevServer(compiler, {
   },  
 });
 server.listen(8080, 'localhost', function() { 
-  console.log("LLLLLLLLLLLLLLLLLLL");
+  console.log("POINT YOUR BROWSER TO http://localhost:8080 IF THIS DOESN'T HAPPEN AUTOMATICALLY".yellow);
+  console.log("ENJOY IT. SALUT I RES PUBLICA!".red);
+  
 });
