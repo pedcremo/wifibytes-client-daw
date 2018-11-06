@@ -1,6 +1,6 @@
 let template= function(datosEmpresa) {
 return `
-<div class="row mt-25">
+<div class="row mt-25 p-5">
 		<div class="col-md-6 form-group">
             	<h1>Contacte ${datosEmpresa.name}</h1>
 			<form name="contacto">

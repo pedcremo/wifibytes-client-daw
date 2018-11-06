@@ -34,5 +34,8 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
+  },
+  "dependencies": {
+    "vegas": "^2.4.4"
   }
 }
