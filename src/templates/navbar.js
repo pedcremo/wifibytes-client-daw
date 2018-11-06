@@ -8,13 +8,34 @@ return `
 
 <div class="collapse navbar-collapse " id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto ">
+  
+    
     <li class="nav-item active">
-      <a class="nav-link text-dark" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link text-dark" href="#">:: Home <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-dark" href="#contacte">Contacte</a>
+      <a class="nav-link text-dark" href="#catalog">:: Catalog</a>
     </li>
-    <li class="nav-item dropdown text-dark">
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="#rates">:: Rates</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="#company">:: Our company</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="#contacte">:: Contact</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Sign in <i class="fas fa-sign-in-alt"> </i></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link text-dark" href="http://${datosEmpresa.twitter}"><i class="fab fa-2x fa-twitter"></i></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link text-dark" href="http://${datosEmpresa.facebook}"><i class="fab fa-2x fa-facebook"></i></a>
+    </li>
+    <!-- <li class="nav-item dropdown text-dark">
       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Dropdown
       </a>
@@ -32,7 +53,7 @@ return `
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
+  </form>  -->
 </div>
 `
 };

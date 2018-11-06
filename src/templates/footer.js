@@ -25,7 +25,7 @@
 
                 <ul class="list-unstyled">
                   <li>
-                    <a href="#!">Link 1</a>
+                    <a href="#!">Link 1 <i class="fas fa-stroopwafel"></i></a>
                   </li>
                   <li>
                     <a href="#!">Link 2</a>
@@ -72,8 +72,9 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center bg-dark py-3 text-white">© 2018 Copyright:
-      <a href="#">${datosEmpresa.name}</a>
+    <div class="footer-copyright text-center bg-dark py-3 text-white">
+    © 2018 Copyright: ${datosEmpresa.name} | ${datosEmpresa.address}, ${datosEmpresa.city} -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country}
+  
     </div>
     <!-- Copyright --> `
 };

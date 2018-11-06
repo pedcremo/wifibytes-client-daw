@@ -1,6 +1,7 @@
 import {get} from '../utils';
 import {Settings} from '../settings';
 import {template} from '../templates/contacte.js';
+import JumbotronControler from './jumbotronCtrl';
 
 class ContacteControler {
 
@@ -11,7 +12,8 @@ class ContacteControler {
     /** render  */
     static render() {
         //Hide jumbotron section 
-        document.querySelector("div.jumbotron").style.display="none";
+        JumbotronControler.hide();
+
         let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {           
             let datosEmpresa=JSON.parse(response);
             try{document.getElementById('main').innerHTML =template(datosEmpresa);}catch(e){console.log("error")};

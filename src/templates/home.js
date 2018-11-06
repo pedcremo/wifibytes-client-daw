@@ -2,15 +2,21 @@
  let template= function(tarifaList) {
   const widthColumn = 12/tarifaList.results.length;  
   const highlitedContracts  = tarifaList.results.map((itemFiltered) => {
-      return `<div class="col-md-${widthColumn}"><h2>${itemFiltered.nombretarifa}</h2><p>${itemFiltered.precio}</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p></div>`   
+      return `<div class="col-md-${widthColumn}">      
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${itemFiltered.nombretarifa}</h5>
+                  <p class="card-text">${itemFiltered.precio}</p>
+                  <a href="#" class="btn btn-primary">View details</a>
+                </div>
+              </div>
+            </div>`   
   });
 
  return `
   <div class="row mt-5">
    ${highlitedContracts.join("")}
-</div>
-
+  </div>
   `;
  };
   export {template};
