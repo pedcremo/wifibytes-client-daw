@@ -39,3 +39,11 @@ NICE TO READ: https://dev.to/bjhaid_93/beginners-guide-to-fetching-data-with-aja
 To solve some jest testing problems I've been forced to install
 
 npm install babel-core@7.0.0-bridge.0 --save-dev
+
+#First delivery
+1pt Facebook and twitter icons pointing in header or footer
+3pts carousel in home 
+3pts tests
+1,5pts documentes jsdoc3 code
+1,5pts footer and header templated and full implementes
+1,5pts improvements

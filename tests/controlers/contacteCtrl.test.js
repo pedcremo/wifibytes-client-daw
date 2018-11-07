@@ -1,4 +1,14 @@
-const index=require('../src/index.js');
+//const contacteCtrl=require('../src/controlers/contacteCtrl.js');
+import {get} from '../../src/utils';
+import {Settings} from '../../src/settings';
+import {template} from '../../src/templates/contacte.js';
+import VegasCarouselControler from '../../src/controlers/vegasCarouselCtrl';
+import ContacteControler from '../../src/controlers/contacteCtrl';
+
+jest.mock('get');
+jest.mock('Settings');
+jest.mock('template');
+jest.mock('VegasCarouselControler');
 const $ = require('jquery');
 
 beforeEach(()=> {
@@ -19,26 +29,16 @@ beforeEach(()=> {
         <!-- Inject here template footer-->
         </footer>
      </body>   
-        `;    
-        
-
-function fakeDOMLoaded() {
-  const fakeEvent = document.createEvent('Event');
-
-  fakeEvent.initEvent('DOMContentLoaded', true, true);
-  window.document.dispatchEvent(fakeEvent);
-}
-
-fakeDOMLoaded();
-  
+        `;            
 });
 
-test('First test select index load footer', () => {
-  console.log("$('footer').children.length=>"+$('footer').children.length);
+test('Contacte render called', () => {
+  contacteCtrl.render(); 
+  //console.log("$('footer').children.length=>"+$('footer').children.length);
   expect($('footer').children.length).toBeGreaterThan(1);    
 });
 
-test('Second test navbar filled', () => {
+/*test('Second test navbar filled', () => {
   console.log("$('nav').children.length=>"+$('nav').children.length);
   expect($('footer').children.length).toBeGreaterThan(1);    
 });
@@ -46,4 +46,4 @@ test('Second test navbar filled', () => {
 test('Third main section filled', () => {
   console.log("$('#main').children.length=>"+$('main').children.length);
   expect($('main').children.length).toBeGreaterThan(1);    
-});
+});*/

@@ -5,8 +5,7 @@ import VegasCarouselControler from './vegasCarouselCtrl';
 
 class CookiesControler {
 
-    constructor() {
-        
+    constructor() {        
     }
   
     /** render  */

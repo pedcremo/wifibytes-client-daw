@@ -10,7 +10,7 @@ class ContacteControler {
     }
  
     /** render  */
-    static render() {
+    static render() {         
         //Hide vegas 
         VegasCarouselControler.hide();
 
