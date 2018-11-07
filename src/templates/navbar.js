@@ -1,36 +1,32 @@
 let template = function(datosEmpresa) {
   
 return `
-<a class="navbar-brand " href="#"><img width="90px" height="64px" src="${datosEmpresa.logo}" /></a>
+<a class="navbar-brand font-weight-bold" href="#"><img width="149px" height="49px" src="${datosEmpresa.logo}" /></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon text-dark"></span>
 </button>
 
-<div class="collapse navbar-collapse " id="navbarSupportedContent">
+<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto ">
   
-    
-    <li class="nav-item active">
-      <a class="nav-link text-dark" href="#">:: Home <span class="sr-only">(current)</span></a>
+    <li class="nav-item">
+      <a class="nav-link text-dark pt-3" href="#/catalog"><span class="text-success">::</span> Catalog</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-dark" href="#catalog">:: Catalog</a>
+      <a class="nav-link text-dark pt-3" href="#/rates"><span class="text-success">::</span> Rates</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-dark" href="#rates">:: Rates</a>
+      <a class="nav-link text-dark pt-3" href="#/company"><span class="text-success">::</span> Our company</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-dark" href="#company">:: Our company</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark" href="#contacte">:: Contact</a>
+      <a class="nav-link text-dark pt-3" href="#/contacte"><span class="text-success">::</span> Contact</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-link disabled" href="#">Sign in <i class="fas fa-sign-in-alt"> </i></a>
+      <a class="nav-link disabled pt-3" href="#">Sign in <i class="fas fa-sign-in-alt"> </i></a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link text-dark" href="http://${datosEmpresa.twitter}"><i class="fab fa-2x fa-twitter"></i></a>
+      <a class="nav-link text-dark text-align-right" href="http://${datosEmpresa.twitter}"><i class="fab fa-2x fa-twitter"></i></a>
     </li>
     <li class="nav-item active">
       <a class="nav-link text-dark" href="http://${datosEmpresa.facebook}"><i class="fab fa-2x fa-facebook"></i></a>

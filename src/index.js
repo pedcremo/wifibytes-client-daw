@@ -3,6 +3,8 @@ import HomeControler from './controlers/homeCtrl';
 import NavbarControler from './controlers/navbarCtrl';
 import FooterControler from './controlers/footerCtrl';
 import ContacteControler from './controlers/contacteCtrl';
+import CookiesControler from './controlers/cookiesCtrl';
+import LegalControler from './controlers/legalCtrl';
 import {Settings} from './settings';
 import {get} from './utils';
 
@@ -11,6 +13,14 @@ Router
   console.log("Contacte");
   ContacteControler.render();
 }).listen()
+.add(/cookies/, function() {
+    console.log("Cookies");
+    CookiesControler.render();
+})
+.add(/legal/, function() {
+    console.log("Legal Advice");
+    LegalControler.render();
+})
 .add(/products\/(.*)\/edit\/(.*)/, function() {
     console.log('products', arguments);
 })

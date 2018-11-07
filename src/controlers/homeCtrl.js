@@ -1,7 +1,7 @@
 import {get} from '../utils';
 import {Settings} from '../settings';
 import {template} from '../templates/home';
-import JumbotronControler from './jumbotronCtrl';
+import VegasCarouselControler from './vegasCarouselCtrl';
 
 class HomeControler {
 
@@ -21,7 +21,7 @@ class HomeControler {
             console.log("Failed!", error);
         });
         //SHOW jumbotron in case it is hidden
-        try{JumbotronControler.render()} catch(e){console.log(e+" Error: Jumbotron not DOM loaded yet")};      
+        try{ VegasCarouselControler.render()} catch(e){console.log(e+" Error: Jumbotron not DOM loaded yet")};      
     }
 }
 export default HomeControler;
