@@ -1,3 +1,5 @@
+import {Settings} from './settings';
+
 let CACHE_TEMPLATES = new Map();
 
 
@@ -13,7 +15,7 @@ function get(url) {
       }else{
         // Do the usual XHR stuff
         var req = new XMLHttpRequest();
-        req.open('GET', url);
+        req.open('GET', Settings.baseURL+url);
     
         req.onload = function() {
           // This is called even on 404 etc

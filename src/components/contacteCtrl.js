@@ -1,6 +1,18 @@
-let template= function(datosEmpresa) {
-return `
-<div class="row mt-25 p-5">
+
+class ContacteControler {
+
+    constructor(contactJSON,selectRule) {        
+        try{           
+            document.querySelector(selectRule).innerHTML=this.render(contactJSON);
+        }catch(e){
+            console.log(e+" error")
+        };        
+    }
+ 
+    /** render  */
+    render(datosEmpresa) {         
+        return `
+        <div class="row mt-25 p-5">
 		<div class="col-md-6 form-group">
             	<h1>Contacte ${datosEmpresa.name}</h1>
 			<form name="contacto">
@@ -35,7 +47,7 @@ return `
 		</div>
 	
 	</div>
-`;
+`
+    }
 }
-
-export {template};
+export default ContacteControler;

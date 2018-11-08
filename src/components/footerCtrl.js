@@ -1,5 +1,17 @@
- let template = function(datosEmpresa) {
- return `
+
+class FooterControler {
+
+    constructor(datosEmpresaJSON,selectRule) { 
+        try{
+            document.querySelector(selectRule).innerHTML=this.render(datosEmpresaJSON);     
+        }catch(e){
+            console.log(e+" error")
+        };        
+    }
+  
+    /** render  */
+    render(datosEmpresa) {       
+        return `
           <!-- Footer Links -->
           <div class="container-fluid text-center text-md-left " >
 
@@ -75,6 +87,7 @@
   
     </div>
     <!-- Copyright --> `
+    }
 };
 
-export {template};
+export default FooterControler;

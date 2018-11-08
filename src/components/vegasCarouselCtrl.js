@@ -17,8 +17,10 @@ class VegasCarouselControler {
     }
     /** render  */
     static render() {
+
         //Fill vegas background with jumbotron texts from datos_empresa endpoint 
-        let datos_empresa = get(Settings.baseURL+'/datos_empresa').then(function(response) {           
+        
+        let datos_empresa = get('/datos_empresa').then(function(response) {           
             let datosEmpresa=JSON.parse(response);
             let slidesBack= datosEmpresa.textos.filter((itemText) => {
                 return itemText.key.match(/jumbotron/i);

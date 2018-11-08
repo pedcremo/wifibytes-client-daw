@@ -1,7 +1,7 @@
 //const contacteCtrl=require('../src/controlers/contacteCtrl.js');
 import {get} from '../../src/utils';
 import {Settings} from '../../src/settings';
-import {template} from '../../src/templates/contacte.js';
+import {template} from '../../src/templates/contacteOLD.js';
 import VegasCarouselControler from '../../src/controlers/vegasCarouselCtrl';
 import ContacteControler from '../../src/controlers/contacteCtrl';
 
