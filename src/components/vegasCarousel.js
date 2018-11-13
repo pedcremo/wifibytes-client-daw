@@ -2,7 +2,7 @@ import {get} from '../utils';
 import {Settings} from '../settings';
 //import {template} from '../templates/jumbotronTODELETE.js';
 
-class VegasCarouselControler {
+class VegasCarousel {
 
     constructor() {
         
@@ -49,4 +49,4 @@ class VegasCarouselControler {
           });
     }
 }
-export default VegasCarouselControler;
+export default VegasCarousel;

@@ -1,10 +1,14 @@
-class NavbarControler {
+class Navbar {
 
     constructor(datosEmpresaJSON,selectRule) { 
+        let selectedTarget;
         try{
-            document.querySelector(selectRule).innerHTML=this.render(datosEmpresaJSON);     
+            selectedTarget=document.querySelector(selectRule);
+			if (selectedTarget) selectedTarget.innerHTML=this.render(datosEmpresaJSON);
+            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
         }catch(e){
-            console.log(e+" error")
+            if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
+			throw e;
         };        
     }
   
@@ -65,4 +69,4 @@ class NavbarControler {
     }
 };
 
-export default NavbarControler;
+export default Navbar;

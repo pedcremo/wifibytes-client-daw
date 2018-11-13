@@ -1,10 +1,14 @@
-class HomeControler {
+class Home {
 
     constructor(tarifaListJSON,selectRule) { 
+        let selectedTarget; 
         try{
-            document.querySelector(selectRule).innerHTML=this.render(tarifaListJSON);     
+            selectedTarget=document.querySelector(selectRule);
+            if (selectedTarget) selectedTarget.innerHTML=this.render(tarifaListJSON);
+            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");     
         }catch(e){
-            console.log(e+" error")
+            if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
+			throw e;
         };        
     }
   
@@ -60,4 +64,4 @@ class HomeControler {
         `;
     }
 }
-export default HomeControler;
+export default Home;

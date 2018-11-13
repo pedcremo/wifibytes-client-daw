@@ -21,11 +21,13 @@ function get(url) {
           // This is called even on 404 etc
           // so check the status
           if (req.status == 200) {
+            console.log(" GET 200");
             // Resolve the promise with the response text
             CACHE_TEMPLATES.set(url,req.response);
             resolve(req.response);
           }
           else {
+            console.log(" GET 400");
             // Otherwise reject with the status text
             // which will hopefully be a meaningful error
             reject(Error(req.statusText));

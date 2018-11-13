@@ -1,12 +1,16 @@
 
-class FooterControler {
+class Footer {
 
     constructor(datosEmpresaJSON,selectRule) { 
-        try{
-            document.querySelector(selectRule).innerHTML=this.render(datosEmpresaJSON);     
-        }catch(e){
-            console.log(e+" error")
-        };        
+      let selectedTarget;  
+      try{
+        selectedTarget=document.querySelector(selectRule);
+        if (selectedTarget) selectedTarget.innerHTML=this.render(datosEmpresaJSON);
+			  else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
+      }catch(e){
+        if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
+		  	throw e;
+      };        
     }
   
     /** render  */
@@ -90,4 +94,4 @@ class FooterControler {
     }
 };
 
-export default FooterControler;
+export default Footer;

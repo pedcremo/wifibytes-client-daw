@@ -34,16 +34,16 @@ fakeDOMLoaded();
 });
 
 test('First test select index load footer', () => {
-  console.log("$('footer').children.length=>"+$('footer').children.length);
+  //console.log("$('footer').children.length=>"+$('footer').children.length);
   expect($('footer').children.length).toBeGreaterThan(1);    
 });
 
 test('Second test navbar filled', () => {
-  console.log("$('nav').children.length=>"+$('nav').children.length);
+  //console.log("$('nav').children.length=>"+$('nav').children.length);
   expect($('footer').children.length).toBeGreaterThan(1);    
 });
 
 test('Third main section filled', () => {
-  console.log("$('#main').children.length=>"+$('main').children.length);
+  //console.log("$('#main').children.length=>"+$('main').children.length);
   expect($('main').children.length).toBeGreaterThan(1);    
 });

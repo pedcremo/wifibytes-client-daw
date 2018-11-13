@@ -1,15 +1,19 @@
-class LegalControler {
+class Legal {
 
     constructor(datosEmpresaJSON,selectRule) {         
+        let selectedTarget;
         try{       
             let legalTexts= datosEmpresaJSON.textos.filter((itemText) => {
                 return itemText.key.match(/legal/i);
               }).map((item,index) => {
                   return item.content;
             });    
-            document.querySelector(selectRule).innerHTML=this.render(legalTexts);
+            selectedTarget=document.querySelector(selectRule);
+			if (selectedTarget) selectedTarget.innerHTML=this.render(legalTexts);
+            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
         }catch(e){
-            console.log(e+" error")
+            if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
+			throw e;
         };        
     }
   
@@ -21,4 +25,4 @@ class LegalControler {
     }
 };
 
-export default LegalControler; 
+export default Legal; 
