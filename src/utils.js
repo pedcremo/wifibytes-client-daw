@@ -47,4 +47,13 @@ function get(url) {
   }
   
 
-  export {get};
+function getCookie(nameCookie) {   
+  try{ 
+      var re = new RegExp(nameCookie+"[\\s]*=[\\s]*([\\w]*);","i");
+      return document.cookie.match(re)[1]
+  }catch(e){
+      return "";
+  }
+}
+
+export {get};

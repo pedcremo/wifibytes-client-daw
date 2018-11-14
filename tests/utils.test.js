@@ -35,7 +35,7 @@ it('Should retrieve a server error when calling get', function(done) {
     window.XMLHttpRequest = jest.fn(() => mockXHR);
     const reqPromise =get('posts');
     mockXHR.onload();
-    reqPromise.then((posts) => {
+    reqPromise.catch((posts) => {
         console.log(posts);
         posts=JSON.parse(posts);
         done();

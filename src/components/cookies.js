@@ -10,8 +10,7 @@ class Cookies {
                   return item.content;
             });    
             if (selectedTarget) selectedTarget.innerHTML=this.render(cookiesTexts);
-            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
-            //document.querySelector(selectRule).innerHTML=this.render(cookiesTexts);
+            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");            
         }catch(e){
             if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
             throw e;

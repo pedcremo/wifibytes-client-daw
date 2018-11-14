@@ -1,8 +1,5 @@
-//const Contacte=require('../../src/components/contacte.js');
 import Contacte from '../../src/components/contacte';
 import datosEmpresaJSON from '../json_endpoints/datos_empresa.json';
-//var datosEmpresaJSON = require('../json_endpoints/datos_empresa.json')
-//import datosEmpresaJSON from ('../json_endpoints/datos_empresa.json')
 
 const $ = require('jquery');
 

@@ -40,7 +40,7 @@ test('First test select index load footer', () => {
 
 test('Second test navbar filled', () => {
   //console.log("$('nav').children.length=>"+$('nav').children.length);
-  expect($('footer').children.length).toBeGreaterThan(1);    
+  expect($('nav').children.length).toBeGreaterThan(1);    
 });
 
 test('Third main section filled', () => {
