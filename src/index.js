@@ -12,16 +12,14 @@ import {get} from './utils';
 Router
 .add(/contacte/, function() {
   console.log("Contacte");
-  VegasCarousel.hide();
   get('/datos_empresa').then(function(response) {           
     new Contacte(JSON.parse(response),"#main");  
   }).catch(function(error) {
     console.log("Failed!", error);
   });
-}).listen()
+})
 .add(/cookies/, function() {
   console.log("Cookies");
-  VegasCarousel.hide();
   get('/datos_empresa').then(function(response) {         
     new Cookies(JSON.parse(response),"#main"); 
   }).catch(function(error) {
@@ -30,7 +28,6 @@ Router
 })
 .add(/legal/, function() {
   console.log("Legal Advice");
-  VegasCarousel.hide();
   get('/datos_empresa').then(function(response) {         
     new Legal(JSON.parse(response),"#main"); 
   }).catch(function(error) {
@@ -47,10 +44,12 @@ Router
         ...JSON.parse(results[0]),
         ...JSON.parse(results[2])
       }; 
+    
       let datosEmpresaHome={
         ...JSON.parse(results[1]),
         ...JSON.parse(results[2])
       }; 
+      console.log("datosEmpresaHome->" + JSON.stringify(datosEmpresaHome))
       new Navbar(JSON.parse(results[1]),'nav');
       new Home(tarifaDatosEmpresa,"#main"); 
       new Footer(datosEmpresaHome,'footer');
@@ -61,7 +60,12 @@ Router
       // One or more promises was rejected
       console.log("Failed!", error);
     });
-});
+})
+.listen(function(){ //Everytime we change route
+    VegasCarousel.hide();
+    console.log("HIDE CAROUSEL");
+})
+;
 
 document.addEventListener("DOMContentLoaded", function(event) {    
      Router.navigate("#home");

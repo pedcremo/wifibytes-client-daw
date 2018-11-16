@@ -1,0 +1,252 @@
+{
+    "0": {
+        "pk": 1,
+        "titulo": "Wifibytes",
+        "subtitulo": "Altra forma de fer comunicació.",
+        "caja_izquierda_titulo": "Per què Wifibytes?",
+        "caja_izquierda_texto": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>\r\n<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+        "caja_derecha_titulo": "Perquè Wifibytes?",
+        "caja_derecha_texto": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>\r\n<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+        "activo": true,
+        "idioma": 2,
+        "lang": "va"
+    },
+    "1": {
+        "pk": 2,
+        "titulo": "Wifibytes",
+        "subtitulo": "Otra forma de hacer comunicación",
+        "caja_izquierda_titulo": "¿Por qué Wifibytes?",
+        "caja_izquierda_texto": "<p style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\" dir=\"ltr\"><span style=\"font-size: 11pt; font-family: Arial; background-color: transparent; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;\">&iquest;Quieres darte de baja? &iquest;Cambiar &nbsp;de tarifa? &iquest; Activar el roaming? &iquest;Desactivar el buzon de voz? Sin problema. Entra en tu cuenta y hazlo con un solo click.Sin preguntas o llamadas a telefonos asistidos.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\" dir=\"ltr\"><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Simple y facil. Todo el soporte y atenci&oacute;n v&iacute;a internet con un sistema de tickets.</span></p>",
+        "caja_derecha_titulo": "¿Por qué Wifibytes?",
+        "caja_derecha_texto": "<p><span style=\"font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;\">&iquest;Quieres darte de baja? &iquest;Cambiar &nbsp;de tarifa? &iquest; Activar el roaming? &iquest;Desactivar el buzon de voz? Sin problema. Entra en tu cuenta y hazlo con un solo click.Sin preguntas o llamadas a telefonos </span></p>",
+        "activo": true,
+        "idioma": 1,
+        "lang": "es"
+    },
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "codtarifa": 1,
+            "nombretarifa": "Fibra óptica",
+            "slug": "fibra-optica",
+            "pretitulo": "La mejor calidad/precio",
+            "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+            "precio": 34.95,
+            "activo": true,
+            "destacado": true,
+            "color": {
+                "id": 7,
+                "titulo": "fucsia",
+                "hexadecimal": "#FB3563"
+            },
+            "subtarifas": [
+                {
+                    "subtarifa_id": 10,
+                    "subtarifa_datos_internet": 1,
+                    "subtarifa_cent_minuto": 1,
+                    "subtarifa_est_llamada": 1,
+                    "subtarifa_precio_sms": 1,
+                    "subtarifa_minutos_gratis": 1,
+                    "subtarifa_minutos_ilimitados": false,
+                    "subtarifa_velocidad_conexion_subida": 1,
+                    "subtarifa_velocidad_conexion_bajada": 1,
+                    "subtarifa_num_canales": 1,
+                    "subtarifa_siglas_omv": "TLIBRE",
+                    "subtarifa_omv": {
+                        "codigo": 1,
+                        "nombre": "Orange",
+                        "descripcion": "Orange",
+                        "activo": true
+                    },
+                    "tipo_tarifa": 2,
+                    "subtarifa_tarifa": {
+                        "codtarifa": 1,
+                        "nombretarifa": "Fibra óptica",
+                        "slug": "fibra-optica",
+                        "pretitulo": "La mejor calidad/precio",
+                        "pretitulo_va": "La millor qualitat/preu",
+                        "logo": "media/Logo/icon-egg_FRpw391.png",
+                        "precio": 34.95,
+                        "activo": true,
+                        "destacado": true,
+                        "created_at": 0,
+                        "updated_at": 1541533497,
+                        "color": 7
+                    }
+                },
+                {
+                    "subtarifa_id": 2,
+                    "subtarifa_datos_internet": 1,
+                    "subtarifa_cent_minuto": 1,
+                    "subtarifa_est_llamada": 1,
+                    "subtarifa_precio_sms": 1,
+                    "subtarifa_minutos_gratis": 1,
+                    "subtarifa_minutos_ilimitados": false,
+                    "subtarifa_velocidad_conexion_subida": 100,
+                    "subtarifa_velocidad_conexion_bajada": 200,
+                    "subtarifa_num_canales": 1,
+                    "subtarifa_siglas_omv": "TLIBRE",
+                    "subtarifa_omv": {
+                        "codigo": 1,
+                        "nombre": "Orange",
+                        "descripcion": "Orange",
+                        "activo": true
+                    },
+                    "tipo_tarifa": 3,
+                    "subtarifa_tarifa": {
+                        "codtarifa": 1,
+                        "nombretarifa": "Fibra óptica",
+                        "slug": "fibra-optica",
+                        "pretitulo": "La mejor calidad/precio",
+                        "pretitulo_va": "La millor qualitat/preu",
+                        "logo": "media/Logo/icon-egg_FRpw391.png",
+                        "precio": 34.95,
+                        "activo": true,
+                        "destacado": true,
+                        "created_at": 0,
+                        "updated_at": 1541533497,
+                        "color": 7
+                    }
+                },
+                {
+                    "subtarifa_id": 1,
+                    "subtarifa_datos_internet": 1,
+                    "subtarifa_cent_minuto": 1,
+                    "subtarifa_est_llamada": 1,
+                    "subtarifa_precio_sms": 1,
+                    "subtarifa_minutos_gratis": 1,
+                    "subtarifa_minutos_ilimitados": false,
+                    "subtarifa_velocidad_conexion_subida": 1,
+                    "subtarifa_velocidad_conexion_bajada": 1,
+                    "subtarifa_num_canales": 90,
+                    "subtarifa_siglas_omv": "TLIBRE",
+                    "subtarifa_omv": {
+                        "codigo": 1,
+                        "nombre": "Orange",
+                        "descripcion": "Orange",
+                        "activo": true
+                    },
+                    "tipo_tarifa": 5,
+                    "subtarifa_tarifa": {
+                        "codtarifa": 1,
+                        "nombretarifa": "Fibra óptica",
+                        "slug": "fibra-optica",
+                        "pretitulo": "La mejor calidad/precio",
+                        "pretitulo_va": "La millor qualitat/preu",
+                        "logo": "media/Logo/icon-egg_FRpw391.png",
+                        "precio": 34.95,
+                        "activo": true,
+                        "destacado": true,
+                        "created_at": 0,
+                        "updated_at": 1541533497,
+                        "color": 7
+                    }
+                }
+            ]
+        },
+        {
+            "codtarifa": 3,
+            "nombretarifa": "Movil",
+            "slug": "movil",
+            "pretitulo": "Tarifa más solicitada",
+            "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+            "precio": 12.95,
+            "activo": true,
+            "destacado": true,
+            "color": {
+                "id": 1,
+                "titulo": "azul",
+                "hexadecimal": "#90d1e5"
+            },
+            "subtarifas": [
+                {
+                    "subtarifa_id": 4,
+                    "subtarifa_datos_internet": 1.4,
+                    "subtarifa_cent_minuto": 1,
+                    "subtarifa_est_llamada": 1,
+                    "subtarifa_precio_sms": 1,
+                    "subtarifa_minutos_gratis": 1000,
+                    "subtarifa_minutos_ilimitados": false,
+                    "subtarifa_velocidad_conexion_subida": 5,
+                    "subtarifa_velocidad_conexion_bajada": 9,
+                    "subtarifa_num_canales": 1,
+                    "subtarifa_siglas_omv": "MOUNLIMITED",
+                    "subtarifa_omv": {
+                        "codigo": 1,
+                        "nombre": "Orange",
+                        "descripcion": "Orange",
+                        "activo": true
+                    },
+                    "tipo_tarifa": 1,
+                    "subtarifa_tarifa": {
+                        "codtarifa": 3,
+                        "nombretarifa": "Movil",
+                        "slug": "movil",
+                        "pretitulo": "Tarifa más solicitada",
+                        "pretitulo_va": "Tarifa més sol·licitada",
+                        "logo": "media/Logo/icon-chicken.png",
+                        "precio": 12.95,
+                        "activo": true,
+                        "destacado": true,
+                        "created_at": 0,
+                        "updated_at": 1541534402,
+                        "color": 1
+                    }
+                }
+            ]
+        },
+        {
+            "codtarifa": 4,
+            "nombretarifa": "Wifi diseminado",
+            "slug": "wifi-diseminado",
+            "pretitulo": "Fuera del casco urbano",
+            "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+            "precio": 19,
+            "activo": true,
+            "destacado": true,
+            "color": {
+                "id": 2,
+                "titulo": "rojo",
+                "hexadecimal": "#F9013B"
+            },
+            "subtarifas": [
+                {
+                    "subtarifa_id": 5,
+                    "subtarifa_datos_internet": 1,
+                    "subtarifa_cent_minuto": 1,
+                    "subtarifa_est_llamada": 1,
+                    "subtarifa_precio_sms": 1,
+                    "subtarifa_minutos_gratis": 1,
+                    "subtarifa_minutos_ilimitados": false,
+                    "subtarifa_velocidad_conexion_subida": 9,
+                    "subtarifa_velocidad_conexion_bajada": 3,
+                    "subtarifa_num_canales": 1,
+                    "subtarifa_siglas_omv": "TLIBRE",
+                    "subtarifa_omv": {
+                        "codigo": 1,
+                        "nombre": "Orange",
+                        "descripcion": "Orange",
+                        "activo": true
+                    },
+                    "tipo_tarifa": 4,
+                    "subtarifa_tarifa": {
+                        "codtarifa": 4,
+                        "nombretarifa": "Wifi diseminado",
+                        "slug": "wifi-diseminado",
+                        "pretitulo": "Fuera del casco urbano",
+                        "pretitulo_va": "Fora del casc urbà",
+                        "logo": "media/Logo/chick_8qOw42B.png",
+                        "precio": 19,
+                        "activo": true,
+                        "destacado": true,
+                        "created_at": 0,
+                        "updated_at": 1541534705,
+                        "color": 2
+                    }
+                }
+            ]
+        }
+    ]
+}

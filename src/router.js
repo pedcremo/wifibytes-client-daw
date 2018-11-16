@@ -71,7 +71,7 @@ var Router = {
         return this;
     },
     //Polling to get aquainted of any route change
-    listen: function() {
+    listen: function(callback) {
         var self = this;
         var current = self.getFragment();
         var fn = function() {
@@ -79,7 +79,7 @@ var Router = {
             if(current !== self.getFragment()) {
                 current = self.getFragment();
                 self.check(current);
-                console.log("LIIIIIIISTEN");      
+                callback();    
             }
         }
         clearInterval(this.interval);
@@ -89,8 +89,8 @@ var Router = {
 
     //Go to pointed path route
     navigate: function(path) {
-        path = path ? path : '';
-        if(this.mode === 'history') {
+        path = path ? path : "";
+        if(this.mode === "history") {
             history.pushState(null, null, this.root + this.clearSlashes(path));
             console.log("navigate->"+path);
         } else {

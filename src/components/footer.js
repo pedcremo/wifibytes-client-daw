@@ -2,16 +2,17 @@
 class Footer {
 
     constructor(datosEmpresaJSON,selectRule) { 
-      let selectedTarget;  
-      try{
-        selectedTarget=document.querySelector(selectRule);
-        if (selectedTarget) selectedTarget.innerHTML=this.render(datosEmpresaJSON);
-			  else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
-      }catch(e){
+        let selectedTarget;  
+        try{
+            selectedTarget=document.querySelector(selectRule);
+            if (selectedTarget) selectedTarget.innerHTML=this.render(datosEmpresaJSON);
+            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
+        }catch(e){
+        
         if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
-		  	throw e;
-      };        
-    }
+            throw e;
+        };        
+    };
   
     /** render  */
     render(datosEmpresa) {       
@@ -90,7 +91,7 @@ class Footer {
     © 2018 Copyright: ${datosEmpresa.name} | ${datosEmpresa.address}, ${datosEmpresa.city} -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country}
   
     </div>
-    <!-- Copyright --> `
+    <!-- Copyright --> `;
     }
 };
 

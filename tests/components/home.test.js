@@ -1,5 +1,5 @@
 import Home from '../../src/components/home';
-import tarifaJSON from '../json_endpoints/tarifa.json';
+import tarifaJSON from '../json_endpoints/tarifaDatosEmpresa.json';
 
 const $ = require('jquery');
 

@@ -1,5 +1,5 @@
 import Footer from '../../src/components/footer';
-import datosEmpresaJSON from '../json_endpoints/datos_empresa.json';
+import datosEmpresaJSON from '../json_endpoints/datosEmpresaHome.json';
 
 const $ = require('jquery');
 
