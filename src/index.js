@@ -41,28 +41,26 @@ Router
     console.log('products', arguments);
 })
 .add(function() {
-    console.log('default');
-    //HomeControler.render();
-    get('/tarifa/?destacado=true').then(function(response) {              
-      let tarifaList=JSON.parse(response);                
-      new Home(tarifaList,"#main");   
-      //SHOW jumbotron in case it is hidden
-      try{ 
-        VegasCarousel.render()
-      } catch(e){
-        console.log(e+" Error: Jumbotron not DOM loaded yet")
-      };      
-    }).catch(function(error) {
+    Promise.all([get('/tarifa/?destacado=true'), get('/datos_empresa'),get('/home')]).then(function(results) {
+      // three promises resolved
+      let tarifaDatosEmpresa={
+        ...JSON.parse(results[0]),
+        ...JSON.parse(results[2])
+      }; 
+      let datosEmpresaHome={
+        ...JSON.parse(results[1]),
+        ...JSON.parse(results[2])
+      }; 
+      new Navbar(JSON.parse(results[1]),'nav');
+      new Home(tarifaDatosEmpresa,"#main"); 
+      new Footer(datosEmpresaHome,'footer');
+      VegasCarousel.render();
+      //console.log(results);
+    })
+    .catch(function(error) {
+      // One or more promises was rejected
       console.log("Failed!", error);
     });
-});
-
-//Fill header and footer
-let datos_empresa = get('/datos_empresa').then(function(response) {   
-    new Navbar(JSON.parse(response),'nav');
-    new Footer(JSON.parse(response),'footer');    
-}).catch(function(error) {
-    console.log("Failed!", error);
 });
 
 document.addEventListener("DOMContentLoaded", function(event) {    

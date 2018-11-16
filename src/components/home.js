@@ -1,10 +1,10 @@
 class Home {
 
-    constructor(tarifaListJSON,selectRule) { 
+    constructor(homeJSON,selectRule) { 
         let selectedTarget; 
         try{
             selectedTarget=document.querySelector(selectRule);
-            if (selectedTarget) selectedTarget.innerHTML=this.render(tarifaListJSON);
+            if (selectedTarget) selectedTarget.innerHTML=this.render(homeJSON);
             else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");     
         }catch(e){
             if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
@@ -13,9 +13,9 @@ class Home {
     }
   
     /** render  */
-    render(tarifaList) {
-        const widthColumn = 12/tarifaList.results.length;  
-        const highlitedContracts  = tarifaList.results.map((itemFiltered) => {
+    render(homeList) {
+        const widthColumn = 12/homeList.results.length;  
+        const highlitedContracts  = homeList.results.map((itemFiltered) => {
                 const subtarifas = itemFiltered.subtarifas.map((itemSubtarifa) => {
                     //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV      
                     switch (itemSubtarifa.tipo_tarifa) {
@@ -53,7 +53,7 @@ class Home {
 
         return `
         
-        <h1 class="text-center text-white pt-5">Your integral communications problem solving company</h1>
+        <h1 class="text-center text-white pt-5">${homeList["0"].subtitulo}</h1>
         
         <div class="card-deck mt-5 mb-5">
         ${highlitedContracts.join("")}

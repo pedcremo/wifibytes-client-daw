@@ -25,9 +25,9 @@ class Footer {
             <!-- Grid column -->
             <div class="col-md-6 mt-md-0 mt-3" >
               <!-- Content -->
-              <h5 class="text-uppercase">What is Wifibytes?</h5>
-              It is an internet service provider  It is an internet service provider  It is an internet service provider  It is an internet service provider 
-            </div>
+              <h5 class="text-uppercase">${datosEmpresa[0].caja_izquierda_titulo}</h5>
+              ${datosEmpresa[0].caja_izquierda_texto}
+              </div>
 
             <!-- Grid column -->
             <hr class="clearfix w-100 d-md-none pb-3">
