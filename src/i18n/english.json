@@ -35,7 +35,12 @@
     "contact-send":"Send message",
 
     "catalog-our-articles":"Our products",
-    "catalog-change-family":"Change products family"
+    "catalog-change-family":"Change products family",
+    "catalog-pantalla": "Screen",
+    "catalog-procesador": "CPU",
+    "catalog-ram": "RAM",
+    "catalog-marca": "Brand",
+    "catalog-camara": "Camera"
 
     
 }

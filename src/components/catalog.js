@@ -29,7 +29,7 @@ class Catalog extends Component {
                 return `<option>${item[selector]}</option>`;
             });
             setFilters.push( `<div class="form-group">
-                <label for="${key}">${key}:</label>
+                <label for="${key}">${this.T("catalog-"+key)}:</label>
                 <select class="form-control" id="${key}">
                     ${values.join("")}
                 </select>

@@ -21,7 +21,7 @@ function setUserLanguage(lang=""){
         if (getCookie("language")!==lang) {            
             setCookie("language",lang,365);
             CACHE_TEMPLATES.clear(); //flush cache entries
-            location.reload();//Reload current document
+            //location.reload();//Reload current document
         }
     }
     switch (lang){

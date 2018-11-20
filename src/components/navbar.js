@@ -1,5 +1,6 @@
 import {setUserLanguage,getCookie} from "../utils";
 import Component from "./component";
+import {Router} from '../router.js';
 
 class Navbar extends Component{
 
@@ -13,6 +14,9 @@ class Navbar extends Component{
 
     handleLangPicker(event) {
         setUserLanguage(event.target.value);
+        let oldRoute= Router.getFragment();
+        location.reload();        
+        Router.navigate("/"+oldRoute);
     }
         
     /** render  */

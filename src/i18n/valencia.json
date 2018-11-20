@@ -35,5 +35,11 @@
     "contact-send":"Enviar missatge",
 
     "catalog-our-articles":"Els nostres productes",
-    "catalog-change-family":"Canvia de familia de productes"
+    "catalog-change-family":"Canvia de familia de productes",
+
+    "catalog-pantalla": "Pantalla",
+    "catalog-procesador": "UCP",
+    "catalog-ram": "RAM",
+    "catalog-marca": "Marca",
+    "catalog-camara": "Càmera"
 }

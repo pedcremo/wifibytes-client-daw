@@ -35,5 +35,11 @@
     "contact-send":"Enviar mensaje",
 
     "catalog-our-articles":"Nuestros productos",
-    "catalog-change-family":"Cambia de familia de productos"
+    "catalog-change-family":"Cambia de familia de productos",
+
+    "catalog-pantalla": "Pantalla",
+    "catalog-procesador": "UCP",
+    "catalog-ram": "RAM",
+    "catalog-marca": "Marca",
+    "catalog-camara": "Camara"
 }
