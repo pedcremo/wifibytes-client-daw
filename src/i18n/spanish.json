@@ -1,0 +1,39 @@
+{
+    "menu-catalog" : "Catalogo",
+    "menu-rates": "Tarifas",
+    "menu-company": "La empresa",
+    "menu-contact": "Contacto",
+    "menu-sign-in": "Entrar",
+
+    "footer-menu": "menú",
+    "footer-catalog": "Catálogo",
+    "footer-rates": "Tarifas",
+    "footer-company": "La empresa",
+    "footer-contact": "Contacto",
+    "footer-legal-advice": "Aviso legal",
+    "footer-hints": "Consejos",
+    "footer-cookies": "cookies",
+    "view-details": "Detalles",
+    "to-contract": "Contratar",
+
+    "home-mobile": "Móvil",
+    "home-min-month": "min/mes",
+    "home-gb-month":"GB/mes",
+    "home-land-phone": "Llamadas gratis en telefono fijo",
+    "home-fiber-optics": "Fibra óptica",
+    "home-mb-upload": "MB/Subida",
+    "home-mb-download": "MB/Bajada",
+    "home-wireless": "Wifi",
+    "home-tv":"TV",
+    "home-free-channels":"canales gratis",
+
+    "contact-title": "Contacta con ",
+    "contact-name-surnames":"Escribe tu nombre",
+    "contact-phone":"teléfono",
+    "contact-email":"email",
+    "contact-opinion":"Escribe tu opinión o cualquier cosa que desees hacer llegar para poder ayudarte",
+    "contact-send":"Enviar mensaje",
+
+    "catalog-our-articles":"Nuestros productos",
+    "catalog-change-family":"Cambia de familia de productos"
+}

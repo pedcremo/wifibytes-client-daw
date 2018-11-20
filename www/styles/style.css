@@ -32,3 +32,8 @@ nav {
     font-weight:normal;
     font-size:22px;
 }
+
+.glow {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}

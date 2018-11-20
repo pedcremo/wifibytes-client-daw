@@ -1,0 +1,39 @@
+{
+    "menu-catalog" : "Catàleg",
+    "menu-rates": "Tarifes",
+    "menu-company": "L'empresa",
+    "menu-contact": "Contacte",
+    "menu-sign-in": "Entrar-hi",
+
+    "footer-menu": "menú",
+    "footer-catalog": "Catàleg",
+    "footer-rates": "Tarifes",
+    "footer-company": "L'empresa",
+    "footer-contact": "Contacte",
+    "footer-legal-advice": "Advertiment legal",
+    "footer-hints": "Consells",
+    "footer-cookies": "cookies",
+    "view-details": "Detalls",
+    "to-contract": "Contractar",
+
+    "home-mobile": "Mòbil",
+    "home-min-month": "min/mes",
+    "home-gb-month":"GB/mes",
+    "home-land-phone": "Cridades debades en telèfon fixe",
+    "home-fiber-optics": "Fibra òptica",
+    "home-mb-upload": "MB/Pujada",
+    "home-mb-download": "MB/Baixada",
+    "home-wireless": "Wifi",
+    "home-tv":"TV",
+    "home-free-channels":"canals debades",
+
+    "contact-title": "Contacta amb ",
+    "contact-name-surnames":"Escriu el teu nom",
+    "contact-phone":"telèfon",
+    "contact-email":"email",
+    "contact-opinion":"Escriu la teva opinió o qualsevol cosa que ens desitges fer arribar per poder ajudar-te",
+    "contact-send":"Enviar missatge",
+
+    "catalog-our-articles":"Els nostres productes",
+    "catalog-change-family":"Canvia de familia de productes"
+}

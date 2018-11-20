@@ -1,26 +1,23 @@
-class Cookies {
+import Component from "./component";
 
-    constructor(datosEmpresaJSON,selectRule) {        
-        let selectedTarget;
-        try{       
-            selectedTarget=document.querySelector(selectRule);
-            let cookiesTexts= datosEmpresaJSON.textos.filter((itemText) => {
-                return itemText.key.match(/cookies/i);
-              }).map((item,index) => {
-                  return item.content;
-            });    
-            if (selectedTarget) selectedTarget.innerHTML=this.render(cookiesTexts);
-            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");            
-        }catch(e){
-            if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
-            throw e;
-        };        
+class Cookies extends Component {
+
+    constructor(datosEmpresaJSON,selectRule) {   
+        super(datosEmpresaJSON,selectRule);
+        let cookiesTexts = this.inputJSON.textos.filter((itemText) => {
+            return itemText.key.match(/cookies/i) && itemText.lang==this.getUserLang();
+          }).map((item) => {
+              return item.content;
+        });       
+        this.selectedTarget.innerHTML=this.render(cookiesTexts);
     }
    
     /** render  */
     render(cookiesTexts) {
         return `
-            ${cookiesTexts.join("")}
+            <div class="p-5">
+                ${cookiesTexts.join("")}
+            </div>
         `;          
     }
 };

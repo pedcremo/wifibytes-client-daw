@@ -1,17 +1,20 @@
-class Navbar {
+import {setUserLanguage,getCookie} from "../utils";
+import Component from "./component";
 
-    constructor(datosEmpresaJSON,selectRule) { 
-        let selectedTarget;
-        try{
-            selectedTarget=document.querySelector(selectRule);
-			if (selectedTarget) selectedTarget.innerHTML=this.render(datosEmpresaJSON);
-            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
-        }catch(e){
-            if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
-			throw e;
-        };        
+class Navbar extends Component{
+
+    constructor(datosEmpresaJSON,selectRule) {
+        super(datosEmpresaJSON,selectRule);
+        this.selectedTarget.innerHTML=this.render(this.inputJSON);
+        this.handleLangPicker =this.handleLangPicker.bind(this); 
+        var a = document.getElementById("langPicker");
+            a.addEventListener("change", this.handleLangPicker.bind(this), false);
     }
-  
+
+    handleLangPicker(event) {
+        setUserLanguage(event.target.value);
+    }
+        
     /** render  */
     render(datosEmpresa) {   
         return `
@@ -21,29 +24,41 @@ class Navbar {
             </button>
 
             <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto ">
-            
-                <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/catalog"><span class="text-success">::</span> Catalog</a>
+            <ul class="navbar-nav ml-auto ">
+               
+                <li class="nav-item pt-3 text-success">
+                    <i class="fas fa-phone"> </i> ${datosEmpresa.phone} &nbsp;
+                </li>
+                <li class="nav-item active">
+                <a class="nav-link text-dark pt-3" href="#/catalog"><span class="text-success">::</span> ${this.T("menu-catalog")}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/rates"><span class="text-success">::</span> Rates</a>
+                <a class="nav-link text-dark pt-3" href="#/rates"><span class="text-success">::</span> ${this.T("menu-rates")}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/company"><span class="text-success">::</span> Our company</a>
+                <a class="nav-link text-dark pt-3" href="#/company"><span class="text-success">::</span> ${this.T("menu-company")}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/contacte"><span class="text-success">::</span> Contact</a>
+                <a class="nav-link text-dark pt-3" href="#/contacte"><span class="text-success">::</span> ${this.T("menu-contact")}</a>
                 </li>
                 
                 <li class="nav-item">
-                <a class="nav-link disabled pt-3" href="#">Sign in <i class="fas fa-sign-in-alt"> </i></a>
+                <a class="nav-link disabled pt-3" href="#">${this.T("menu-sign-in")} <i class="fas fa-sign-in-alt"> </i></a>
                 </li>
-                <li class="nav-item active">
+                
+                <li class="nav-item">
                 <a class="nav-link text-dark text-align-right" href="http://${datosEmpresa.twitter}"><i class="fab fa-2x fa-twitter"></i></a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                 <a class="nav-link text-dark" href="http://${datosEmpresa.facebook}"><i class="fab fa-2x fa-facebook"></i></a>
+                </li>
+                
+                <li class="nav-item pt-3">
+                    <select id="langPicker" class="selectpicker" data-width="fit" >
+                        <option value='english' ${getCookie("language")=="english"?"selected":""}>English</option>
+                        <option value='spanish' ${getCookie("language")=="spanish"?"selected":""}>Español</option>
+                        <option value='valencia' ${getCookie("language")=="valencia"?"selected":""}>Valencià</option>
+                    </select>
                 </li>
                 <!-- <li class="nav-item dropdown text-dark">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,8 +80,8 @@ class Navbar {
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>  -->
             </div>
-            `
+            `;
     }
-};
+}
 
 export default Navbar;

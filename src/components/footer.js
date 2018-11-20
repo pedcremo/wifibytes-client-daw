@@ -1,18 +1,12 @@
+//import {this.T} from "../utils";
+import Component from "./component";
 
-class Footer {
+class Footer extends Component{
 
     constructor(datosEmpresaJSON,selectRule) { 
-        let selectedTarget;  
-        try{
-            selectedTarget=document.querySelector(selectRule);
-            if (selectedTarget) selectedTarget.innerHTML=this.render(datosEmpresaJSON);
-            else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
-        }catch(e){
-        
-        if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
-            throw e;
-        };        
-    };
+        super(datosEmpresaJSON,selectRule);
+        this.selectedTarget.innerHTML=this.render(this.inputJSON);     
+    }
   
     /** render  */
     render(datosEmpresa) {       
@@ -36,20 +30,20 @@ class Footer {
             <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">
                 <!-- Links -->
-                <h5 class="text-uppercase">Menu</h5>
+                <h5 class="text-uppercase">${this.T("footer-menu")}</h5>
 
                 <ul class="list-unstyled">
                   <li>
-                    <a href="#!">Catalog</a>
+                    <a href="#!">${this.T("footer-catalog")}</a>
                   </li>
                   <li>
-                    <a href="#!">Rates</a>
+                    <a href="#!">${this.T("footer-rates")}</a>
                   </li>
                   <li>
-                    <a href="#!">Our company</a>
+                    <a href="#!">${this.T("footer-company")}</a>
                   </li>
                   <li>
-                    <a href="#contacte">Contact</a>
+                    <a href="#contacte">${this.T("footer-contact")}</a>
                   </li>
                 </ul>
 
@@ -60,14 +54,14 @@ class Footer {
           <div class="col-md-3 mb-md-0 mb-3">
 
             <!-- Links -->
-            <h5 class="text-uppercase">Hints</h5>
+            <h5 class="text-uppercase">${this.T("footer-hints")}</h5>
 
             <ul class="list-unstyled">
               <li>
-                <a href="#legal">Legal advice</a>
+                <a href="#legal">${this.T("footer-legal-advice")}</a>
               </li>
               <li>
-                <a href="#cookies">Cookies</a>
+                <a href="#cookies">${this.T("footer-cookies")}</a>
               </li>
               <li>
                 <a href="http://${datosEmpresa.twitter}"><i class="fab  fa-twitter"></i></a>
@@ -88,11 +82,11 @@ class Footer {
 
     <!-- Copyright -->
     <div class="footer-copyright text-center bg-dark py-3 text-white">
-    © 2018 Copyright: ${datosEmpresa.name} | ${datosEmpresa.address}, ${datosEmpresa.city} -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country}
+    © 2018 Copyright: ${datosEmpresa.name} | <i class="fas fa-phone"></i> ${datosEmpresa.phone} |${datosEmpresa.address}, ${datosEmpresa.city} -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country}
   
     </div>
     <!-- Copyright --> `;
     }
-};
+}
 
 export default Footer;

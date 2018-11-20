@@ -1,39 +1,33 @@
+import Component from "./component";
 
-class Contacte  {
+class Contacte extends Component {
 
-    constructor(contactJSON,selectRule) {   
-		let selectedTarget;     
-        try{ 
-			selectedTarget=document.querySelector(selectRule);
-			if (selectedTarget) selectedTarget.innerHTML=this.render(contactJSON);
-			else throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
-        }catch(e){
-			if (selectedTarget) selectedTarget.innerHTML="Problems rendering "+this.constructor.name+" -> "+e;
-			throw e;
-        };        
+    constructor(contactJSON,selectRule) { 
+        super(contactJSON,selectRule);
+        this.selectedTarget.innerHTML=this.render(this.inputJSON); 
     }
  
     /** render  */
     render(datosEmpresa) {  
-		 
+	 
 			return `
 				<div class="row mt-25 p-5">
 				<div class="col-md-6 form-group">
-						<h1>Contacte ${datosEmpresa.name}</h1>
+						<h1>${this.T("contact-title")} ${datosEmpresa.name}</h1>
 					<form name="contacto">
 						<div class="form-group">
-							<input type="text" aria-label="Nombre" name="nombre" placeholder="Nom i Cognoms" required="" class="form-control">
+							<input type="text" aria-label="Nombre" name="nombre" placeholder="${this.T("contact-name-surnames")}" required="" class="form-control">
 						</div>	
 						<div class="form-group">
-							<input type="text" aria-label="Telefono" name="telefono" placeholder="Telèfon" class="form-control">
+							<input type="text" aria-label="Telefono" name="telefono" placeholder="${this.T("contact-phone")}" class="form-control">
 						</div>
 						<div class="form-group">
-							<input type="email" aria-label="Email" name="email" placeholder="Email" required="" class="form-control">
+							<input type="email" aria-label="Email" name="email" placeholder="${this.T("contact-email")}" required="" class="form-control">
 						</div>
 						<div class="form-group">
-							<textarea name="mensaje" aria-label="Mensaje" required="" rows="9" class="form-control">Escriu comentari</textarea>
+							<textarea name="mensaje" aria-label="Mensaje" required="" rows="9" class="form-control">${this.T("contact-opinion")}</textarea>
 						</div>
-						<button type="button" class="btn btn-primary">Enviar Missatge</button>
+						<button type="button" class="btn btn-primary">${this.T("contact-send")}</button>
 					</form>
 				</div>
 				<div class="col-md-6">

@@ -1,0 +1,41 @@
+{
+    "menu-catalog" : "Catalog",
+    "menu-rates": "Rates",
+    "menu-company": "Our company",
+    "menu-contact": "Contact",
+    "menu-sign-in": "Sign in",
+
+    "footer-menu": "menu",
+    "footer-catalog": "Catalog",
+    "footer-rates": "Rates",
+    "footer-company": "Company",
+    "footer-contact": "Contact",
+    "footer-legal-advice": "Legal advice",
+    "footer-hints": "hints",
+    "footer-cookies": "cookies",
+    "view-details": "View details",
+    "to-contract": "To contract",
+
+    "home-mobile": "Mobile",
+    "home-min-month": "min/month",
+    "home-gb-month":"GB/month",
+    "home-land-phone": "Land phone free calls",
+    "home-fiber-optics": "Fiber optics",
+    "home-mb-upload": "MB/Upload",
+    "home-mb-download": "MB/Download",
+    "home-wireless": "Wireless",
+    "home-tv":"tv",
+    "home-free-channels":"free channels",
+
+    "contact-title": "Contact with ",
+    "contact-name-surnames":"Write your full name",
+    "contact-phone":"your phone",
+    "contact-email":"email",
+    "contact-opinion":"Write down your opinion or any you want to let us know in order to help you",
+    "contact-send":"Send message",
+
+    "catalog-our-articles":"Our products",
+    "catalog-change-family":"Change products family"
+
+    
+}
