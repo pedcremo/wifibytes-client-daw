@@ -39,7 +39,7 @@ class Home extends Component {
                 <div class="card rounded border text-center border-dark text-center " style="background-color: rgba(255, 255, 255, 0.8)">
                 <div class="card-header  bg-dark text-light font-weight-bold"><h3><img width="32px" height="32px" src="${ itemFiltered["logo"] }"/>&nbsp;${itemFiltered.nombretarifa.toUpperCase()}</h5></div>
                 <div class="card-body p-0">
-                <h5 class="card-title text-white  bg-success p-2 mr-0">${textTarifa}<br/> ${itemFiltered.precio.toLocaleString() + " €/mes"}</h5>
+                <h5 class="card-title text-white  bg-success p-2 mr-0">${textTarifa}<br/> <span class="display-4">${itemFiltered.precio.toLocaleString() + " €/mes"}</span></h5>
                     ${subtarifas.join("")}                
                 </div>
                 <div class="card-footer bg-light"><a href="#" class="btn btn-primary">${this.T("view-details")}</a> <a href="#" class="btn btn-secondary">${this.T("to-contract")}</a></div>
