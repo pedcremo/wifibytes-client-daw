@@ -34,13 +34,13 @@ class Footer extends Component{
 
                 <ul class="list-unstyled">
                   <li>
-                    <a href="#!">${this.T("footer-catalog")}</a>
+                    <a href="#catalog">${this.T("footer-catalog")}</a>
                   </li>
                   <li>
-                    <a href="#!">${this.T("footer-rates")}</a>
+                    <a href="#rates">${this.T("footer-rates")}</a>
                   </li>
                   <li>
-                    <a href="#!">${this.T("footer-company")}</a>
+                    <a href="#company">${this.T("footer-company")}</a>
                   </li>
                   <li>
                     <a href="#contacte">${this.T("footer-contact")}</a>
