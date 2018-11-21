@@ -1,7 +1,8 @@
-import Footer from '../../src/components/footer';
-import datosEmpresaJSON from '../json_endpoints/datosEmpresaHome.json';
+import Footer from "../../src/components/footer";
+import datosEmpresaJSON from "../json_endpoints/datos_empresa.json";
+import homeJSON from "../json_endpoints/home.json";
 
-const $ = require('jquery');
+const $ = require("jquery");
 
 beforeEach(()=> {
     // Set up our document body
@@ -24,20 +25,20 @@ beforeEach(()=> {
         `;            
 });
 
-it('We can check if Footer component called the class constructor', () => {
-  const footerIns = new Footer(datosEmpresaJSON,"#main"); 
-  expect(footerIns.constructor.name).toBe('Footer');
+it("We can check if Footer component called the class constructor", () => {
+  const footerIns = new Footer([datosEmpresaJSON,homeJSON],"#main"); 
+  expect(footerIns.constructor.name).toBe("Footer");
 });
 
-it('Footer render must be called and it works properly', () => {
-  let footerIns=new Footer(datosEmpresaJSON,"#main"); 
-  expect($('#main').children.length).toBeGreaterThan(1);    
+it("Footer render must be called and it works properly", () => {
+  let footerIns=new Footer([datosEmpresaJSON,homeJSON],"#main"); 
+  expect($("#main").children.length).toBeGreaterThan(1);    
 });
 
-it('Component must fail due to target html tag to render in doesnt exist', () => { 
-  expect(function(){new Footer(datosEmpresaJSON,"#mmain")}).toThrowError(/Error/i);    
+it("Component must fail due to target html tag to render in doesnt exist", () => { 
+  expect(function(){new Footer([datosEmpresaJSON,homeJSON],"#mmain");}).toThrowError(/Error/i);    
 });
 
-it('Component must fail due to JSON input doesnt contains expected information', () => { 
-  expect(function(){new Footer(undefined,"#main")}).toThrowError(/undefined/);    
+it("Component must fail due to JSON input doesnt contains expected information", () => { 
+  expect(function(){new Footer(undefined,"#main");}).toThrowError(/undefined/);    
 });  

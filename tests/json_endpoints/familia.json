@@ -1,0 +1,43 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "codfamilia": "1",
+            "slug": "smartphones",
+            "nombre": "Smartphones",
+            "color": {
+                "id": 6,
+                "titulo": "amarillo",
+                "hexadecimal": "#C7BB15"
+            },
+            "icono": "https://backend.wifibytes.com/media/familia/icon-smartphone.png",
+            "pretitulo": "Lo último en",
+            "titulo": "Smartphones",
+            "precio_cabecera": 175.0,
+            "imagen_cabecera": "https://backend.wifibytes.com/media/familia/a4.5_03.png",
+            "thumbnail": "https://backend.wifibytes.com/media/familia/2cf5ddda54fb11e7abaa0abe46823b47.PNG",
+            "texto_cabecera": "<p>Los mejores terminales del mercado desde</p>",
+            "subtexto_cabecera": "<p>No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.</p>"
+        },
+        {
+            "codfamilia": "TAR1",
+            "slug": "tarjeta",
+            "nombre": "Tarjeta",
+            "color": {
+                "id": 1,
+                "titulo": "azul",
+                "hexadecimal": "#90d1e5"
+            },
+            "icono": "https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg",
+            "pretitulo": "Tipos tarjetas Sim",
+            "titulo": "Tarjeta",
+            "precio_cabecera": 0.0,
+            "imagen_cabecera": "https://backend.wifibytes.com/media/familia/tajetas_tamanos_KAqM0VC.jpg",
+            "thumbnail": "https://backend.wifibytes.com/media/familia/6beecf8a25bf11e7ad910abe46823b47.PNG",
+            "texto_cabecera": "<p>Tarjetas</p>",
+            "subtexto_cabecera": "<p>Tarjetas</p>"
+        }
+    ]
+}

@@ -13,10 +13,7 @@ class Navbar extends Component{
     }
 
     handleLangPicker(event) {
-        setUserLanguage(event.target.value);
-        let oldRoute= Router.getFragment();
-        location.reload();        
-        Router.navigate("/"+oldRoute);
+        setUserLanguage(event.target.value);             
     }
         
     /** render  */

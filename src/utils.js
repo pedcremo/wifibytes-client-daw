@@ -1,13 +1,21 @@
 import {Settings} from "./settings";
-
 import english from "./i18n/english.json";
 import spanish from "./i18n/spanish.json";
 import valencia from "./i18n/valencia.json";
 
-
+/**  
+ * Map to cache JSON already got from server.
+ * TODO: Try to improve it. It is very basic at the moment
+ * We catch every new json get from server and only expires when we close web tab or
+ * we change user language
+*/
 let CACHE_TEMPLATES = new Map();
 let userLanguage = english;
 
+/**  We set a language for user and store the same as a cookie afterwards we reload the page to apply changes 
+* If there is no lang we set english as the default language for user  
+* @param {string} lang - Choosen language.
+*/
 function setUserLanguage(lang=""){
     if (!lang) {
         let language=getCookie("language");
@@ -21,7 +29,7 @@ function setUserLanguage(lang=""){
         if (getCookie("language")!==lang) {            
             setCookie("language",lang,365);
             CACHE_TEMPLATES.clear(); //flush cache entries
-            //location.reload();//Reload current document
+            location.reload();//Reload current document
         }
     }
     switch (lang){
@@ -54,7 +62,6 @@ function get(url,filterFunction=null) {
           // This is called even on 404 etc
           // so check the status
           if (req.status == 200) {
-            console.log(" GET 200");
             // Resolve the promise with the response text
             CACHE_TEMPLATES.set(url,JSON.parse(req.response));
             if (filterFunction) {
@@ -64,7 +71,6 @@ function get(url,filterFunction=null) {
             }
           }
           else {
-            console.log(" GET 400");
             // Otherwise reject with the status text
             // which will hopefully be a meaningful error
             reject(Error(req.statusText));
@@ -83,7 +89,10 @@ function get(url,filterFunction=null) {
     });
 }
 
-/** When we get a json array we only keep the ones that match user language */
+/** When we get a json array we only keep the ones that match user language 
+ * TODO: At the moment we only check that a 'lang' property from a gotten JSON
+ * matchs current user language. Quite HARDWIRED.  
+*/
 function filterPruneArrayByLang(jsonArray){ 
     let lang =getUserLang();
     if (typeof jsonArray === "string" ) {
@@ -95,13 +104,13 @@ function filterPruneArrayByLang(jsonArray){
    return aux;
 }
 
-/** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's quite hardwired code to 
- * allow adding new languages.
+/** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's 
+ * quite hardwired code to allow adding new languages. A really pain in the neck 
  */
 function getUserLang(){
     switch (getCookie("language")) {
         case "english":
-            return "en"; //HAck to avoid crashing. We should improve some server i18n capabilities
+            return "en"; 
         case "valencia":
             return "va";
         case "spanish":
@@ -111,6 +120,10 @@ function getUserLang(){
     }
 
 }
+/**
+ * Get cookie by name 
+ * @param {string} cname 
+ */
 function getCookie(cname) {   
   try{ 
       var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w]*)","i");
@@ -119,6 +132,12 @@ function getCookie(cname) {
       return "";
   }
 }
+/**
+ * Create new cookie
+ * @param {string} cname  Cookie name
+ * @param {string} cvalue  Cookie value
+ * @param {number} exdays Cookie expiration in days  
+ */
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -126,6 +145,10 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+/**
+ * Get key from userLanguage imported language selected taking into account user choosen lang
+ * @param {string} key 
+ */
 function translate(key) {
     return userLanguage[key];
 }

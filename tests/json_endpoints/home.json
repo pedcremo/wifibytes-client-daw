@@ -1,0 +1,38 @@
+[
+    {
+        "pk": 1,
+        "titulo": "Wifibytes",
+        "subtitulo": "Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera ",
+        "caja_izquierda_titulo": "Per què Wifibytes?",
+        "caja_izquierda_texto": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>\r\n<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+        "caja_derecha_titulo": "Perquè Wifibytes?",
+        "caja_derecha_texto": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>\r\n<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+        "activo": true,
+        "idioma": 2,
+        "lang": "va"
+    },
+    {
+        "pk": 3,
+        "titulo": "Wifibytes",
+        "subtitulo": "Free set up. Fiber broadband coverage in Bocairent, Banyeres, Agullent, Enguera and La costera soon ",
+        "caja_izquierda_titulo": "Why Wifibytes?",
+        "caja_izquierda_texto": "<p style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\" dir=\"ltr\"><span style=\"font-size: 11pt; font-family: Arial; background-color: transparent; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;\">Do you want to cancel subscription? Change contracted rate? Activate roaming? Deactivate voice mail box? No PROBLEM Sign it and do it yourself with a single click. No questions o call center bot services.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\" dir=\"ltr\"><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Simple and easy</span></p>",
+        "caja_derecha_titulo": "¿Por qué Wifibytes?",
+        "caja_derecha_texto": "<p><span style=\"font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;\">&iquest;Quieres darte de baja? &iquest;Cambiar &nbsp;de tarifa? &iquest; Activar el roaming? &iquest;Desactivar el buzon de voz? Sin problema. Entra en tu cuenta y hazlo con un solo click.Sin preguntas o llamadas a telefonos </span></p>",
+        "activo": true,
+        "idioma": 3,
+        "lang": "en"
+    },
+    {
+        "pk": 2,
+        "titulo": "Wifibytes",
+        "subtitulo": "Alta gratis. Cobertura de fibra óptica en Bocairent, Banyeres, Agullent, Enguera y La costera pronto",
+        "caja_izquierda_titulo": "¿Por qué Wifibytes?",
+        "caja_izquierda_texto": "<p style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\" dir=\"ltr\"><span style=\"font-size: 11pt; font-family: Arial; background-color: transparent; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;\">&iquest;Quieres darte de baja? &iquest;Cambiar &nbsp;de tarifa? &iquest; Activar el roaming? &iquest;Desactivar el buzon de voz? Sin problema. Entra en tu cuenta y hazlo con un solo click.Sin preguntas o llamadas a telefonos asistidos.</span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\" dir=\"ltr\"><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Simple y facil. Todo el soporte y atenci&oacute;n v&iacute;a internet con un sistema de tickets.</span></p>",
+        "caja_derecha_titulo": "¿Por qué Wifibytes?",
+        "caja_derecha_texto": "<p><span style=\"font-family: Arial; font-size: 14.6667px; white-space: pre-wrap;\">&iquest;Quieres darte de baja? &iquest;Cambiar &nbsp;de tarifa? &iquest; Activar el roaming? &iquest;Desactivar el buzon de voz? Sin problema. Entra en tu cuenta y hazlo con un solo click.Sin preguntas o llamadas a telefonos </span></p>",
+        "activo": true,
+        "idioma": 1,
+        "lang": "es"
+    }
+]

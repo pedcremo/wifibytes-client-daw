@@ -1,0 +1,192 @@
+{
+    "pantalla": [
+        {
+            "id": 1,
+            "num_pantalla": 3.5
+        },
+        {
+            "id": 2,
+            "num_pantalla": 4.0
+        },
+        {
+            "id": 3,
+            "num_pantalla": 4.2
+        },
+        {
+            "id": 4,
+            "num_pantalla": 4.5
+        },
+        {
+            "id": 5,
+            "num_pantalla": 5.0
+        },
+        {
+            "id": 6,
+            "num_pantalla": 5.2
+        },
+        {
+            "id": 7,
+            "num_pantalla": 10.1
+        },
+        {
+            "id": 8,
+            "num_pantalla": 6.0
+        },
+        {
+            "id": 9,
+            "num_pantalla": 5.5
+        }
+    ],
+    "procesador": [
+        {
+            "id": 1,
+            "num_procesador": "Core 2.5GHz"
+        },
+        {
+            "id": 2,
+            "num_procesador": "Quad-Core 1.3GHz"
+        },
+        {
+            "id": 3,
+            "num_procesador": "Quad-Core 2.5GHz"
+        },
+        {
+            "id": 4,
+            "num_procesador": "Octa-Core 1.5GHz"
+        },
+        {
+            "id": 5,
+            "num_procesador": "Quad-Core 1.2GHz"
+        },
+        {
+            "id": 6,
+            "num_procesador": "Accesorio"
+        },
+        {
+            "id": 7,
+            "num_procesador": "Octa Core,2.2 Ghz"
+        },
+        {
+            "id": 8,
+            "num_procesador": "Quad-Core 1 GHz"
+        },
+        {
+            "id": 9,
+            "num_procesador": "Octa-Core 2GHz"
+        },
+        {
+            "id": 10,
+            "num_procesador": "Deca-Core 2.1GHz"
+        }
+    ],
+    "ram": [
+        {
+            "id": 1,
+            "num_ram": "512mb"
+        },
+        {
+            "id": 2,
+            "num_ram": "1Gb"
+        },
+        {
+            "id": 3,
+            "num_ram": "2Gb"
+        },
+        {
+            "id": 4,
+            "num_ram": "4Gb"
+        },
+        {
+            "id": 5,
+            "num_ram": "8Gb"
+        },
+        {
+            "id": 6,
+            "num_ram": "Accesorio"
+        },
+        {
+            "id": 7,
+            "num_ram": "3 Gb"
+        }
+    ],
+    "marca": [
+        {
+            "id": 1,
+            "Marca": "Nokia"
+        },
+        {
+            "id": 2,
+            "Marca": "Apple"
+        },
+        {
+            "id": 3,
+            "Marca": "Sony"
+        },
+        {
+            "id": 4,
+            "Marca": "LG"
+        },
+        {
+            "id": 5,
+            "Marca": "Huawei"
+        },
+        {
+            "id": 6,
+            "Marca": "Samsung"
+        },
+        {
+            "id": 7,
+            "Marca": "bq"
+        },
+        {
+            "id": 8,
+            "Marca": "Hannspree"
+        },
+        {
+            "id": 9,
+            "Marca": "Universal"
+        },
+        {
+            "id": 10,
+            "Marca": "Xiaomi"
+        },
+        {
+            "id": 11,
+            "Marca": "Wiko"
+        }
+    ],
+    "camara": [
+        {
+            "id": 1,
+            "num_camara": 8.0
+        },
+        {
+            "id": 2,
+            "num_camara": 10.2
+        },
+        {
+            "id": 3,
+            "num_camara": 12.5
+        },
+        {
+            "id": 4,
+            "num_camara": 13.0
+        },
+        {
+            "id": 5,
+            "num_camara": 0.0
+        },
+        {
+            "id": 6,
+            "num_camara": 12.0
+        },
+        {
+            "id": 7,
+            "num_camara": 16.0
+        },
+        {
+            "id": 8,
+            "num_camara": 5.0
+        }
+    ]
+}

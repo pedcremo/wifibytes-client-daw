@@ -1,4 +1,3 @@
-//import {this.T} from "../utils";
 import Component from "./component";
 
 class Footer extends Component{
@@ -8,8 +7,11 @@ class Footer extends Component{
         this.selectedTarget.innerHTML=this.render(this.inputJSON);     
     }
   
-    /** render  */
-    render(datosEmpresa) {       
+    /** render: Array with two JSONs first element datosEmpresa endpoint and second home endpoint  */
+    render(datosEmpresaHome) {       
+        
+        const datosEmpresa = datosEmpresaHome[0];
+        const home = datosEmpresaHome[1][0];
         return `
           <!-- Footer Links -->
           <div class="container-fluid text-center text-md-left " >
@@ -20,8 +22,8 @@ class Footer extends Component{
             <!-- Grid column -->
             <div class="col-md-6 mt-md-0 mt-3" >
               <!-- Content -->
-              <h5 class="text-uppercase">${datosEmpresa[0].caja_izquierda_titulo}</h5>
-              ${datosEmpresa[0].caja_izquierda_texto}
+              <h5 class="text-uppercase">${home.caja_izquierda_titulo}</h5>
+              ${home.caja_izquierda_texto}
               </div>
 
             <!-- Grid column -->

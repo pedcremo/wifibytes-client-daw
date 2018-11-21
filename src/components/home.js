@@ -7,10 +7,10 @@ class Home extends Component {
         this.selectedTarget.innerHTML = this.render(this.inputJSON);       
     }
 
-    /** render  */
-    render(homeList) {
-        
-        const highlitedContracts = homeList.results.map((itemFiltered) => {
+    /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
+    render(tarifaAndHomeJSON) {
+        const homeSubtitle = tarifaAndHomeJSON[1][0].subtitulo;
+        const highlitedRates = tarifaAndHomeJSON[0].results.map((itemFiltered) => {
             const subtarifas = itemFiltered.subtarifas.map((itemSubtarifa) => {
                 //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV      
                 switch (itemSubtarifa.tipo_tarifa) {
@@ -48,17 +48,16 @@ class Home extends Component {
         });
 
         return `
-        <div class="p-5">
-        <h2 class="glow text-center pb-5">${homeList["0"].subtitulo}</h2>
-        
-        <div class="card-deck mt-2 mb-5">
-        ${highlitedContracts.join("")}
-        </div>
-        <div class="row home-banner text-center text-white p-4"  style="background-color: rgba(0,0,0,0.6)">
-        <!-- TEXT CAROUSEL -->
-       </div> 
-       </div>
-       
+            <div class="p-5">
+                <h1 class="glow text-center pb-5">${homeSubtitle}</h1>
+            
+                <div class="card-deck mt-2 mb-5">
+                    ${highlitedRates.join("")}
+                </div>
+                <div class="row home-banner text-center text-white p-4"  style="background-color: rgba(0,0,0,0.6)">
+                    <!-- TEXT CAROUSEL -->
+                </div> 
+            </div>       
         `;
     }
 }
