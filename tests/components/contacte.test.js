@@ -31,7 +31,7 @@ it('We can check if Contact component called the class constructor', () => {
 
 it('Contacte render must be called and it works properly', () => {
   let contactIns=new Contacte(datosEmpresaJSON,"#main"); 
-  expect($('#main').children.length).toBeGreaterThan(1);    
+  expect($("#main").children.length).toBeGreaterThan(1);    
 });
 
 it('Component must fail due to target html tag to render in doesnt exist', () => { 

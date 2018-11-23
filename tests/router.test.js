@@ -11,4 +11,9 @@ it('Router routes add and delete works', () => {
     expect(Router.routes.length).toBe(1);
     Router.flush();
     expect(Router.routes.length).toBe(0);
+    Router.add(/products\/\/edit\/(.*)/,function(){});
+    Router.navigate("/products/edit/2").listen(function(){
+        console.log("Router->"+Router.getFragment());
+    });
+
 });

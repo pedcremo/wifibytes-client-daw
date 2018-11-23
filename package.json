@@ -9,7 +9,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "doc": "jsdoc -c jsdoc.json README.md src/*",
-    "test": "jest --env=jsdom"
+    "test": "jest --verbose --env=jsdom"
   },
   "author": "",
   "license": "ISC",

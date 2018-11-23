@@ -9,7 +9,7 @@ import Rates from "./components/rates";
 import Company from "./components/company";
 import Catalog from "./components/catalog";
 import VegasCarousel from "./components/vegasCarousel";
-import {get, setUserLanguage,filterPruneArrayByLang} from "./utils";
+import {get, setUserLanguage,filterPruneArrayByLang,changeBreadcrumb} from "./utils";
 let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
 Router
@@ -60,7 +60,9 @@ Router
     console.log('products', arguments);
 })
 .add(function() {
-    Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",filterPruneArrayByLang)]).then(function(results) {
+    //Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",filterPruneArrayByLang)]).then(function(results) {
+    Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",[filterPruneArrayByLang,"lang"])]).then(function(results) {
+     
       // three promises resolved 
       try {new Navbar(results[1],"nav");}catch(e){console.log(e);}
       try {new Home([results[0],results[2]],"#main"); }catch(e){console.log(e);}
@@ -74,6 +76,7 @@ Router
 })
 .listen(function(){ //Everytime we change route
     if (vc) vc.hide(); //Hide carousel 
+    changeBreadcrumb(Router.getFragment());
 })
 ;
 

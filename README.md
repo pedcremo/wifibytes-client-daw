@@ -47,3 +47,19 @@ npm install babel-core@7.0.0-bridge.0 --save-dev
 1,5pts documentes jsdoc3 code
 1,5pts footer and header templated and full implementes
 1,5pts improvements
+
+#Second Delivery
+2,5pts unit testing new features
+1pt documentation
+1,5pts rates component
+2,5pts catalog component
+2pts i18n
+1pt components inheritance. Create a parent
+
+#Practical first term test
+
+* 2pts checkURL method in Component class able to test if a URL is well formed. In case is bad formed try to fix it
+* 2pts setUserLanguage behaviour change. Now we want a defaultLanguage property on Settings file. First time an user gets into our page we check browser locales, In case match (spanish,valencià/català,english ) we set user language accordingly, in case no single match we get defaultLanguage entry from settings as a default language for user
+* 2pts improve get filter mechanism in order to suport pass of parameters to know how to filter by
+* 2pts rates boxes color subtitle and fontawesome icons. Color information is on server side
+* 2pts create subcomponent for creating rates boxes in home component and rates component

@@ -134,7 +134,7 @@
             "color": {
                 "id": 1,
                 "titulo": "azul",
-                "hexadecimal": "#90d1e5"
+                "hexadecimal": "#FB3563"
             },
             "subtarifas": [
                 {
@@ -185,7 +185,7 @@
             "color": {
                 "id": 2,
                 "titulo": "rojo",
-                "hexadecimal": "#F9013B"
+                "hexadecimal": "#FB3563"
             },
             "subtarifas": [
                 {

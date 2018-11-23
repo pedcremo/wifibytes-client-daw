@@ -1,4 +1,5 @@
 import Component from "./component";
+import RateBoxSubComponent from "./rateBoxSubcomponent";
 
 class Rates extends Component {
 
@@ -35,15 +36,14 @@ class Rates extends Component {
                         <img src="${item.icono}" />
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"> ${item.titulo}</h5>
+                        <h5 class="card-title font-weight-bold text-uppercase"> ${item.titulo}</h5>
                         <p class="card-text">${item.texto}</p>
                     </div>
                 </div>
                 `;
         });
 
-        console.log(boxArray);
-        const activeRates = ratesJSON[0].results.map((itemFiltered) => {
+       /* const activeRates = ratesJSON[0].results.map((itemFiltered) => {
             const subtarifas = itemFiltered.subtarifas.map((itemSubtarifa) => {
                 //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV      
                 switch (itemSubtarifa.tipo_tarifa) {
@@ -64,7 +64,7 @@ class Rates extends Component {
                         //break;
                 }
             }); //INNER MAP
-
+            
             return `      
                     
                 <div class="card rounded border text-center border-dark text-center " style="background-color: rgba(255, 255, 255, 0.8)">
@@ -76,15 +76,15 @@ class Rates extends Component {
                 <div class="card-footer bg-light"><a href="#" class="btn btn-primary">View details</a> <a href="#" class="btn btn-secondary">Contract</a></div>
                 </div>
             `;
-        });
+        });*/
 
         return `
         <div class="p-5">
-        <h2 class="glow text-center pt-1">${tarifesDescription[0].pretitulo}</h2>
+        <h1 class="glow text-center pt-1">${tarifesDescription[0].pretitulo}</h1>
         <h1 class="glow text-center pt-1">${tarifesDescription[0].titulo}</h1>
         
         <div class="card-columns mt-5 mb-5">
-            ${activeRates.join("")}
+            ${new RateBoxSubComponent(ratesJSON[0]).render()}
             ${boxArray.join("")}
         </div>
         </div>

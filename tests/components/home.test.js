@@ -43,3 +43,15 @@ it("Component must fail due to target html tag to render in doesnt exist", () =>
 it("Component must fail due to JSON input doesnt contains expected information", () => { 
   expect(function(){new Home(undefined,"#main");}).toThrowError(/undefined/);    
 });  
+
+/*describe("2 PTS -> PASS Color rates boxes and internal font awesome icons according to color in backend rate information",()=>{
+  test("Step1 ->  By defaut Filter by lang property", () => { 
+    const homeIns=new Home([tarifaJSON,homeJSON],"#main")
+    expect($('.card-title').length).toBe(3);
+    $( ".card-title" ).each(function( index ) {
+      console.log( index + "->"+ $(this).css("backgroundColor") );
+      expect($(this).css("backgroundColor")).toBe("EEE");
+    });
+  });
+
+});*/

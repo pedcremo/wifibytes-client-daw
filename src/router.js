@@ -74,6 +74,7 @@ var Router = {
     listen: function(callback) {
         var self = this;
         var current = self.getFragment();
+        
         var fn = function() {       
             if(current !== self.getFragment()) {
                 current = self.getFragment();
@@ -92,7 +93,10 @@ var Router = {
         if(this.mode === "history") {
             history.pushState(null, null, this.root + this.clearSlashes(path));    
         } else {
+            //console.log("NAvigate PATH="+window.location.href.replace(/#(.*)$/, "") + "#" + path);
+            
             window.location.href = window.location.href.replace(/#(.*)$/, "") + "#" + path;
+            //console.log("Router->"+this.getFragment());
         }
         return this;
     }

@@ -2,13 +2,15 @@ import {translate,getCookie,getUserLang} from "../utils";
 
 class Component  {
 
-    constructor(inputJSON,selectRule) {   
+    constructor(inputJSON,selectRule="") {   
 		let selectedTarget;     
         try{ 
-			selectedTarget=document.querySelector(selectRule);
+            if (selectRule) {
+			    selectedTarget=document.querySelector(selectRule);
             
-            if (!selectedTarget) throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
-            else this.selectedTarget=selectedTarget;
+                if (!selectedTarget) throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
+                else this.selectedTarget=selectedTarget;
+            }
 
             if (!inputJSON) throw("Error. InputJSON undefined for component "+this.constructor.name);
             else {
@@ -23,19 +25,7 @@ class Component  {
 			throw e;
         }        
     }
-    /** Check element is not undefined in any of their subparts */
-    /*_(element) {
-        console.log("CASTELLA");
-        try{
-            console.log("CASTELLA2");
-            debugger;
-            if (element) return element;
-
-        }catch(e) {
-            console.log("JJJJJJJJ");
-            return "Undefined Element";
-        }
-    }*/
+    /** Get current user language */
     getUserLang(){
         return getUserLang();
     }
@@ -44,6 +34,20 @@ class Component  {
         let trans=translate(selectedKey);
         if (trans) return trans;
         else return selectedKey;    
+    }
+    // TO REMOVE
+    checkURL(hrefText) {
+        let reURL= /(http:\/\/|https:\/\/)/;
+        if (hrefText.match(reURL)) {
+            return hrefText;
+        }else{
+            return "http://"+hrefText;
+        }
+    }
+
+    randomAnimation(){
+        const animations = ["bounce",   "flash" ,"pulse"    ,"rubberBand","shake"   ,"headShake"    ,"swing",   "tada","wobble",    "jello" ,"bounceIn",    "bounceInDown","bounceInLeft"   ,"bounceInRight"    ,"bounceInUp","fadeIn"  ,"fadeInDown"   ,"fadeInDownBig"    ,"fadeInLeft","fadeInLeftBig"   ,"fadeInRight", "fadeInRightBig",   "fadeInUp","fadeInUpBig","rotateIn",    "rotateInDownLeft", "rotateInDownRight" ,"rotateInUpLeft","rotateInUpRight","jackInTheBox","rollIn"    ,"zoomIn"   ,"zoomInDown","zoomInLeft", "zoomInRight"   ,"zoomInUp" ,"slideInDown"  ,"slideInLeft"  ,"slideInRight" ,"slideInUp"]
+        return "animated "+animations[Math.floor(Math.random() * (animations.length +1))]
     }
 
 }
