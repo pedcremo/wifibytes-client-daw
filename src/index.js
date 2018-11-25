@@ -9,6 +9,7 @@ import Rates from "./components/rates";
 import Company from "./components/company";
 import Catalog from "./components/catalog";
 import VegasCarousel from "./components/vegasCarousel";
+import RateDetail from "./components/rateDetail";
 import {get, setUserLanguage,filterPruneArrayByLang,changeBreadcrumb} from "./utils";
 let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
@@ -41,6 +42,14 @@ Router
     }).catch(function(error) {
       console.log("Failed!", error);
     });   
+  })
+.add(/rate\/(.*)/, function() {
+    
+    Promise.all([get("/tarifa/"+arguments[0]), get("/tarifa_descriptor")]).then(function(results) {
+      new RateDetail(results,"#main"); 
+    }).catch(function(error) {
+      console.log("Failed!", error);
+    });
   })
 .add(/company/, function() {
     get("/datos_empresa").then(function(response) {         

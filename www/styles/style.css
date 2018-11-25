@@ -23,12 +23,12 @@ font-weight: normal;
 src: local('Duepuntozero Black'), url('duepuntozero_black.woff') format('woff');
 }
 body {
-    font-family:'Duepuntozero';
+    font-family:'Duepuntozero'; 
     font-weight:normal;
     font-size:18px;
 }
 nav {
-    font-family:'Duepuntozero bold';
+    /* font-family:'Duepuntozero bold'; */
     font-weight:normal;
     font-size:22px;
 }

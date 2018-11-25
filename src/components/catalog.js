@@ -15,9 +15,9 @@ class Catalog extends Component {
         let filtres = familiesFiltrosArticulos[1];
         let articles = familiesFiltrosArticulos[2];
         let currentFamily= families.results[0];
-        let setFamilies = families.results.map((itemFamily) => {
+        let setFamilies = families.results.map((itemFamily,index) => {
             return `
-                <div class="col"> <a id="change-family"><img width="32px" height="32px" src="${itemFamily.icono}" /> ${itemFamily.nombre}</a></div>
+                <li class="nav-item"> <a id="change-family" class="nav-link ${index==0?"active":""}" data-togle="pill" href="#pills-home"><img width="32px" height="32px" src="${itemFamily.icono}" /> ${itemFamily.nombre}</a></li>
             `;
         });
         let setFilters=[];
@@ -65,17 +65,12 @@ class Catalog extends Component {
                     <div class="col">
                         <h1 class="text-center">${this.T("catalog-our-articles")}</h1>
                         <h2 class="text-center">${this.T("catalog-change-family")}</h2><br>
-                            
-                                        
-                
-                        
                     </div>
                 </div>   
-                <div class="row">
-                   
-                        ${setFamilies.join("")}
-                   
-                </div>
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                 ${setFamilies.join("")}
+                </ul>
+               
                 <div class="row">
                    
                         ${setFilters.join("")}
