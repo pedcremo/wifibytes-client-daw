@@ -1,8 +1,17 @@
-//import {get} from "../utils";
 import Component from "./component";
 
+/** Class to draw a carousel in body tag using vegas jquery plugin. 
+ * We get images from endpoint datos_empresa textos section
+ * specifically textos with key that match jumbotron
+ * In each text item we have key, content, image and lang fields
+ * We filter by lang too
+*/
 class VegasCarousel extends Component {
-
+    /**
+     * Create VegasCarousel
+     * @param {JSON} datosEmpresaJSON with textos data
+     * @param {string} selectRule CSS rule Where to draw the carousel 
+     */    
     constructor(datosEmpresaJSON,selectRule) {
         super(datosEmpresaJSON, selectRule);
         this.render();
@@ -11,7 +20,8 @@ class VegasCarousel extends Component {
     /** Hide-kill vegas carousel */
     hide() {
         try{
-            $("body").vegas("destroy");
+           //$("body").vegas("destroy");
+           $(this.selectedTarget).vegas("destroy");
         }catch(e){
            // throw e;
         }        
@@ -26,7 +36,8 @@ class VegasCarousel extends Component {
           });
         let that=this;
 
-        $("body").vegas({
+        //$("body").vegas({
+       $(this.selectedTarget).vegas({
             delay: 15000,
             timer: false,                              
             transition: "fade",
@@ -39,14 +50,25 @@ class VegasCarousel extends Component {
         });
 
         $(document).on("click", "div#previous", function() {
+            $("body").vegas("pause");
+            //$(this.selectedTarget).vegas("pause");
             $("body").vegas("previous");
+            //$(this.selectedTarget).vegas("previous");
         });
 
         $(document).on("click", "div#next", function() {   
+            //$(this.selectedTarget).vegas("pause");
+            $("body").vegas("pause");
+            //$(this.selectedTarget).vegas("next");
             $("body").vegas("next");
         });
     }
-    
+    /**
+     * Create carousel text banner and navigation controls
+     * When we navigate manually once, animation is stopped and only
+     * is allowed to navigate using next and previous control 
+     * @param {string} content 
+     */
     getTemplate(content) {
         return `
         <div id="previous" class="col-sm-1">
