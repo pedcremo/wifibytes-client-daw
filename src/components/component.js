@@ -1,4 +1,4 @@
-import {translate,getCookie,getUserLang} from "../utils";
+import {translate,getUserLang} from "../utils";
 
 class Component  {
 
@@ -6,7 +6,7 @@ class Component  {
 		let selectedTarget;     
         try{ 
             if (selectRule) {
-			    selectedTarget=document.querySelector(selectRule);
+	            selectedTarget=document.querySelector(selectRule);
             
                 if (!selectedTarget) throw("Error. Selected output target for component "+this.constructor.name+" doesn't exist");
                 else this.selectedTarget=selectedTarget;
@@ -35,7 +35,7 @@ class Component  {
         if (trans) return trans;
         else return selectedKey;    
     }
-    // TO REMOVE
+    /** Check if is a valid URL otherwise fix it */
     checkURL(hrefText) {
         let reURL= /(http:\/\/|https:\/\/)/;
         if (hrefText.match(reURL)) {
@@ -44,10 +44,12 @@ class Component  {
             return "http://"+hrefText;
         }
     }
-
+    /** Animate.css library to add animation to any component of the web
+     * in this case we pick a random animation 
+     */
     randomAnimation(){
         const animations = ["bounce",   "flash" ,"pulse"    ,"rubberBand","shake"   ,"headShake"    ,"swing",   "tada","wobble",    "jello" ,"bounceIn",    "bounceInDown","bounceInLeft"   ,"bounceInRight"    ,"bounceInUp","fadeIn"  ,"fadeInDown"   ,"fadeInDownBig"    ,"fadeInLeft","fadeInLeftBig"   ,"fadeInRight", "fadeInRightBig",   "fadeInUp","fadeInUpBig","rotateIn",    "rotateInDownLeft", "rotateInDownRight" ,"rotateInUpLeft","rotateInUpRight","jackInTheBox","rollIn"    ,"zoomIn"   ,"zoomInDown","zoomInLeft", "zoomInRight"   ,"zoomInUp" ,"slideInDown"  ,"slideInLeft"  ,"slideInRight" ,"slideInUp"]
-        return "animated "+animations[Math.floor(Math.random() * (animations.length +1))]
+        return "animated "+animations[Math.floor(Math.random() * (animations.length +1))];
     }
 
 }

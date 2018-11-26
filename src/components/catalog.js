@@ -4,8 +4,9 @@ class Catalog extends Component {
 
     constructor(datosEmpresaJSON,selectRule) {   
         super(datosEmpresaJSON,selectRule);
-        this.selectedTarget.innerHTML=this.render(this.inputJSON);
-        
+        this.selectedTarget.innerHTML=this.render(this.inputJSON);   
+        var a = document.getElementById("langPicker");
+        a.addEventListener("change", this.handleLangPicker.bind(this), false);     
     }
    
     /** render  */
@@ -17,7 +18,7 @@ class Catalog extends Component {
         let currentFamily= families.results[0];
         let setFamilies = families.results.map((itemFamily,index) => {
             return `
-                <li class="nav-item"> <a id="change-family" class="nav-link ${index==0?"active":""}" data-togle="pill" href="#pills-home"><img width="32px" height="32px" src="${itemFamily.icono}" /> ${itemFamily.nombre}</a></li>
+                <li class="nav-item"> <a id="change-family" class="nav-link ${index==0?"active":""}" data-toggle="pill" href="#catalog/${itemFamily.codfamilia}"><img width="32px" height="32px" src="${itemFamily.icono}" /> ${itemFamily.nombre}</a></li>
             `;
         });
         let setFilters=[];

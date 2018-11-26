@@ -66,10 +66,10 @@ class Footer extends Component{
                 <a href="#cookies">${this.T("footer-cookies")}</a>
               </li>
               <li>
-                <a href="http://${datosEmpresa.twitter}"><i class="fab  fa-twitter"></i></a>
+                <a href="${this.checkURL(datosEmpresa.twitter)}"><i class="fab  fa-twitter"></i></a>
               </li>
               <li>
-                <a href="http://${datosEmpresa.facebook}"><i class="fab fa-facebook"></i></a>
+                <a href="${this.checkURL(datosEmpresa.facebook)}"><i class="fab fa-facebook"></i></a>
               </li>
             </ul>
 

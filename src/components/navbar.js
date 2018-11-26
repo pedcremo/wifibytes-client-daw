@@ -1,6 +1,6 @@
 import {setUserLanguage,getCookie} from "../utils";
 import Component from "./component";
-import {Router} from '../router.js';
+//import {Router} from '../router.js';
 
 class Navbar extends Component{
 
@@ -48,10 +48,10 @@ class Navbar extends Component{
                 </li>
                 
                 <li class="nav-item">
-                <a class="nav-link text-dark text-align-right" href="http://${datosEmpresa.twitter}"><i class="fab fa-2x fa-twitter"></i></a>
+                <a class="nav-link text-dark text-align-right" href="${this.checkURL(datosEmpresa.twitter)}"><i class="fab fa-2x fa-twitter"></i></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" href="http://${datosEmpresa.facebook}"><i class="fab fa-2x fa-facebook"></i></a>
+                <a class="nav-link text-dark" href="${this.checkURL(datosEmpresa.facebook)}"><i class="fab fa-2x fa-facebook"></i></a>
                 </li>
                 
                 <li class="nav-item pt-3">
