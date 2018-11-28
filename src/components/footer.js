@@ -1,17 +1,25 @@
 import Component from "./component";
-
+/**
+ * Draw footer web app
+ */
 class Footer extends Component{
-
+    /**
+     * @constructor
+     * @param {json} datosEmpresaJSON 
+     * @param {string} selectRule 
+     */
     constructor(datosEmpresaJSON,selectRule) { 
         super(datosEmpresaJSON,selectRule);
+        this.state={
+            datosEmpresa:this.inputJSON[0],
+            home:this.inputJSON[1][0] //Prefiltered by get 
+        };
         this.selectedTarget.innerHTML=this.render(this.inputJSON);     
     }
   
-    /** render: Array with two JSONs first element datosEmpresa endpoint and second home endpoint  */
-    render(datosEmpresaHome) {       
+    /** render */
+    render() {       
         
-        const datosEmpresa = datosEmpresaHome[0];
-        const home = datosEmpresaHome[1][0];
         return `
           <!-- Footer Links -->
           <div class="container-fluid text-center text-md-left " >
@@ -22,8 +30,8 @@ class Footer extends Component{
             <!-- Grid column -->
             <div class="col-md-6 mt-md-0 mt-3" >
               <!-- Content -->
-              <h5 class="text-uppercase">${home.caja_izquierda_titulo}</h5>
-              ${home.caja_izquierda_texto}
+              <h5 class="text-uppercase">${this.state.home.caja_izquierda_titulo}</h5>
+              ${this.state.home.caja_izquierda_texto}
               </div>
 
             <!-- Grid column -->
@@ -66,10 +74,10 @@ class Footer extends Component{
                 <a href="#cookies">${this.T("footer-cookies")}</a>
               </li>
               <li>
-                <a href="${this.checkURL(datosEmpresa.twitter)}"><i class="fab  fa-twitter"></i></a>
+                <a href="${this.checkURL(this.state.datosEmpresa.twitter)}"><i class="fab  fa-twitter"></i></a>
               </li>
               <li>
-                <a href="${this.checkURL(datosEmpresa.facebook)}"><i class="fab fa-facebook"></i></a>
+                <a href="${this.checkURL(this.state.datosEmpresa.facebook)}"><i class="fab fa-facebook"></i></a>
               </li>
             </ul>
 
@@ -84,7 +92,7 @@ class Footer extends Component{
 
     <!-- Copyright -->
     <div class="footer-copyright text-center bg-dark py-3 text-white">
-    © 2018 Copyright: ${datosEmpresa.name} | <i class="fas fa-phone"></i> ${datosEmpresa.phone} |${datosEmpresa.address}, ${datosEmpresa.city} -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country}
+    © 2018 Copyright: ${this.state.datosEmpresa.name} | <i class="fas fa-phone"></i> ${this.state.datosEmpresa.phone} |${this.state.datosEmpresa.address}, ${this.state.datosEmpresa.city} -${this.state.datosEmpresa.zipcode}- (${this.state.datosEmpresa.province}) ${this.state.datosEmpresa.country}
   
     </div>
     <!-- Copyright --> `;

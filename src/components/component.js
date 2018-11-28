@@ -1,7 +1,17 @@
+/** @module ComponentsApp */
+
 import {translate,getUserLang} from "../utils";
-
+/**
+ * @class
+ * Parent of all components. Mantain several functions common to all them
+ * setState, getUserLang, Translator
+ */
 class Component  {
-
+    /**
+     * @constructor
+     * @param {json} inputJSON 
+     * @param {string} selectRule 
+     */
     constructor(inputJSON,selectRule="") {   
 		let selectedTarget;     
         try{ 

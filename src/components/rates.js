@@ -1,8 +1,14 @@
 import Component from "./component";
 import RateBoxSubComponent from "./rateBoxSubcomponent";
-
+/**
+ * Draw active rates
+ */
 class Rates extends Component {
-
+    /**
+     * @constructor
+     * @param {json} activeRatesJSON 
+     * @param {string} selectRule 
+     */
     constructor(activeRatesJSON, selectRule) {
         super(activeRatesJSON, selectRule);
         

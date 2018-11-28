@@ -4,6 +4,7 @@
  * For more information on the options passed to WebpackDevServer,
  * see the webpack-dev-server API docs:
  * https://github.com/webpack/docs/wiki/webpack-dev-server#api
+ * @ignore
  */
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');

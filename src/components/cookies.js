@@ -1,7 +1,16 @@
+/** @module ComponentsApp */
+
 import Component from "./component";
-
+/**
+ * @class
+ * Draw cookies text information
+ */
 class Cookies extends Component {
-
+    /**
+     * @constructor
+     * @param {json} datosEmpresaJSON 
+     * @param {string} selectRule 
+     */
     constructor(datosEmpresaJSON,selectRule) {   
         super(datosEmpresaJSON,selectRule);
         let cookiesTexts = this.inputJSON.textos.filter((itemText) => {
@@ -9,17 +18,20 @@ class Cookies extends Component {
           }).map((item) => {
               return item.content;
         });       
+        this.state={
+            cookiesTexts:cookiesTexts
+        };
         this.selectedTarget.innerHTML=this.render(cookiesTexts);
     }
    
     /** render  */
-    render(cookiesTexts) {
+    render() {
         return `
             <div class="p-5">
-                ${cookiesTexts.join("")}
+                ${this.state.cookiesTexts.join("")}
             </div>
         `;          
     }
-};
+}
 
 export default Cookies; 

@@ -88,7 +88,9 @@ Router
     changeBreadcrumb(Router.getFragment());
 })
 ;
-
+/**
+ * This is the entry point to our app. It defines all web app routes and draw navbar,home and footer initially
+ */
 document.addEventListener("DOMContentLoaded", function() {    
     setUserLanguage(); //We set the language if it not stored in a cookie otherwise we load from cookie
     Router.navigate("home");

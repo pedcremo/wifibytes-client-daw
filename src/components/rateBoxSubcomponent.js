@@ -1,7 +1,12 @@
 import Component from "./component";
-
+/**
+ * Draw rates boxes from an input json with rates information
+ */
 class RateBoxSubComponent extends Component{
-
+    /**
+     * @constructor
+     * @param {json} ratesJSON 
+     */
     constructor(ratesJSON) {   
         super(ratesJSON);
         this.ratesJSON=ratesJSON;  

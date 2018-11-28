@@ -1,19 +1,31 @@
+/** @module ComponentsApp */
+
 import Component from "./component";
-
+/**
+ * @class
+ * Draw contacte information. A form and a google map for location
+ */
 class Contacte extends Component {
-
+    /**
+     * @constructor
+     * @param {json} contactJSON 
+     * @param {string} selectRule 
+     */
     constructor(contactJSON,selectRule) { 
         super(contactJSON,selectRule);
+        this.state={
+            datosEmpresa:this.inputJSON
+        };
         this.selectedTarget.innerHTML=this.render(this.inputJSON); 
     }
  
     /** render  */
-    render(datosEmpresa) {  
+    render() {  
 	 
 			return `
 				<div class="row mt-25 p-5">
 				<div class="col-md-6 form-group">
-						<h1>${this.T("contact-title")} ${datosEmpresa.name}</h1>
+						<h1>${this.T("contact-title")} ${this.state.datosEmpresa.name}</h1>
 					<form name="contacto">
 						<div class="form-group">
 							<input type="text" aria-label="Nombre" name="nombre" placeholder="${this.T("contact-name-surnames")}" required="" class="form-control">
@@ -41,14 +53,12 @@ class Contacte extends Component {
 						<style>.mapouter{overflow:hidden;height:500px;width:100%;}.gmap_canvas {background:none!important;height:500px;width:100%;}</style>
 					</div>
 
-					<p> ${datosEmpresa.address}, ${datosEmpresa.city}, -${datosEmpresa.zipcode}- (${datosEmpresa.province}) ${datosEmpresa.country} </p>
+					<p> ${this.state.datosEmpresa.address}, ${this.state.datosEmpresa.city}, -${this.state.datosEmpresa.zipcode}- (${this.state.datosEmpresa.province}) ${this.state.datosEmpresa.country} </p>
 
 				</div>
 			
 			</div>
-		`
-		
-	   
+		`;
     }
 }
 export default Contacte;

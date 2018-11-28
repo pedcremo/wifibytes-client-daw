@@ -1,10 +1,18 @@
+/** @module ComponentsApp */
+
 import Component from "./component";
-
+/**
+ * @class
+ * Draw company information
+ */
 class Company extends Component {
-
+    /**
+     * @constructor
+     * @param {json} datosEmpresaJSON 
+     * @param {string} selectRule 
+     */
     constructor(datosEmpresaJSON,selectRule) { 
         super(datosEmpresaJSON,selectRule);
-        //debugger;
         let companyTexts= this.inputJSON.textos.filter((itemText) => {
             return itemText.key.match(/sobre/i) && itemText.lang==this.getUserLang();
           }).map((item) => {

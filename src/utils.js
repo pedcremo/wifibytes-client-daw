@@ -1,3 +1,5 @@
+/** @module Utils */
+
 import {Settings} from "./settings";
 import english from "./i18n/english.json";
 import spanish from "./i18n/spanish.json";

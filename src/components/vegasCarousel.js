@@ -8,7 +8,7 @@ import Component from "./component";
 */
 class VegasCarousel extends Component {
     /**
-     * Create VegasCarousel
+     * @constructor
      * @param {JSON} datosEmpresaJSON with textos data
      * @param {string} selectRule CSS rule Where to draw the carousel 
      */    

@@ -1,7 +1,13 @@
 import Component from "./component";
-
+/**
+ * Draw legal texts
+ */
 class Legal extends Component{
-
+    /**
+     * @constructor
+     * @param {json} datosEmpresaJSON 
+     * @param {string} selectRule 
+     */
     constructor(datosEmpresaJSON,selectRule) {   
         super(datosEmpresaJSON,selectRule);
         let legalTexts= this.inputJSON.textos.filter((itemText) => {
@@ -9,17 +15,20 @@ class Legal extends Component{
           }).map((item) => {
               return item.content;
         });  
+        this.state={
+            legalTexts:legalTexts
+        };
         this.selectedTarget.innerHTML=this.render(legalTexts);   
     }
   
     /** render  */
-    render(legalTexts) {
+    render() {
         return `
             <div class="p-5">
-                ${legalTexts.join("")}
+                ${this.state.legalTexts.join("")}
             </div>
         `;      
     }
-};
+}
 
 export default Legal; 

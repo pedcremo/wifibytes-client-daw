@@ -1,6 +1,8 @@
+/** @module ComponentsApp */
 import Component from "./component";
 
 /**
+ * @class
  * Draw article catalog that could be filtered by article family
  */
 class Catalog extends Component {

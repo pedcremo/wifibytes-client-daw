@@ -1,5 +1,4 @@
-# INTRODUCTION
-
+# Introduction
 Client web side app of wifibytes-server. Wifibytes is a communications service provider company. It is a kind of online web store with information about the company that let you contract mobile lines, internet broadband connections and buy some gadgets.
 
 The project is programmed in raw ES6 (ES2015) and transpiled, packaged, uglified and served using as a supporting tools; webpack, babel, webpack-dev-server, jsdoc ...
@@ -40,7 +39,7 @@ To solve some jest testing problems I've been forced to install
 
 npm install babel-core@7.0.0-bridge.0 --save-dev
 
-#First term evaluation artifacts
+# First term evaluation artifacts
 ## First delivery points
 * 1pt Facebook and twitter icons pointing in header or footer
 * 3pts carousel in home 
