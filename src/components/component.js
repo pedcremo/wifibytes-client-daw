@@ -51,7 +51,16 @@ class Component  {
         const animations = ["bounce",   "flash" ,"pulse"    ,"rubberBand","shake"   ,"headShake"    ,"swing",   "tada","wobble",    "jello" ,"bounceIn",    "bounceInDown","bounceInLeft"   ,"bounceInRight"    ,"bounceInUp","fadeIn"  ,"fadeInDown"   ,"fadeInDownBig"    ,"fadeInLeft","fadeInLeftBig"   ,"fadeInRight", "fadeInRightBig",   "fadeInUp","fadeInUpBig","rotateIn",    "rotateInDownLeft", "rotateInDownRight" ,"rotateInUpLeft","rotateInUpRight","jackInTheBox","rollIn"    ,"zoomIn"   ,"zoomInDown","zoomInLeft", "zoomInRight"   ,"zoomInUp" ,"slideInDown"  ,"slideInLeft"  ,"slideInRight" ,"slideInUp"]
         return "animated "+animations[Math.floor(Math.random() * (animations.length +1))];
     }
-
+    /**
+     * Set component state and render if we have a valid selectedTarget
+     * @param {Object} objectProps 
+     */
+    setState(objectProps) {
+        for (let [key, value] of Object.entries(objectProps)) {
+            this.state[key]=value;       
+        }
+        if (this.selectedTarget) this.selectedTarget.innerHTML = this.render();
+    }
 }
 
 export default Component;

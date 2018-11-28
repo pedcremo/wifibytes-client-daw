@@ -2,7 +2,7 @@ import Component from "./component";
 
 class RateBoxSubComponent extends Component{
 
-    constructor(ratesJSON,selectRule="") {   
+    constructor(ratesJSON) {   
         super(ratesJSON);
         this.ratesJSON=ratesJSON;  
     }
@@ -10,7 +10,7 @@ class RateBoxSubComponent extends Component{
     /** render  */
     render() {
         
-        const highlitedRates = this.ratesJSON.results.map((itemFiltered,index) => {
+        const highlitedRates = this.ratesJSON.map((itemFiltered) => {
             const subtarifas = itemFiltered.subtarifas.map((itemSubtarifa) => {
                 //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV
                      

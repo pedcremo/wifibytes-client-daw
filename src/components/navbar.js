@@ -1,25 +1,39 @@
 import {setUserLanguage,getCookie} from "../utils";
 import Component from "./component";
-//import {Router} from '../router.js';
+/**
+ * Draw top menu navbar 
+ */
 
 class Navbar extends Component{
-
+    /**
+     * Constructor
+     * @param {json} datosEmpresaJSON 
+     * @param {string} selectRule 
+     */
     constructor(datosEmpresaJSON,selectRule) {
         super(datosEmpresaJSON,selectRule);
+        this.state={
+            datosEmpresa:this.inputJSON
+        };
         this.selectedTarget.innerHTML=this.render(this.inputJSON);
         this.handleLangPicker =this.handleLangPicker.bind(this); 
         var a = document.getElementById("langPicker");
-            a.addEventListener("change", this.handleLangPicker.bind(this), false);
+            a.addEventListener("change", this.handleLangPicker.bind(this), false);       
+        
     }
-
+    /**
+     * Triggered when user changes language selector
+     * @param {element} event 
+     */
     handleLangPicker(event) {
         setUserLanguage(event.target.value);             
     }
         
     /** render  */
-    render(datosEmpresa) {   
+    render() {   
+        
         return `
-            <a class="navbar-brand font-weight-bold" href="#"><img width="149px" height="49px" src="${datosEmpresa.logo}" /></a>
+            <a class="navbar-brand font-weight-bold" href="#"><img width="149px" height="49px" src="${this.state.datosEmpresa.logo}" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon text-dark"></span>
             </button>
@@ -28,7 +42,7 @@ class Navbar extends Component{
             <ul class="navbar-nav ml-auto ">
                
                 <li class="nav-item pt-3 text-success">
-                    <i class="fas fa-phone"> </i> ${datosEmpresa.phone} &nbsp;
+                    <i class="fas fa-phone"> </i> ${this.state.datosEmpresa.phone} &nbsp;
                 </li>
                 <li class="nav-item active">
                 <a class="nav-link text-dark pt-3" href="#/catalog"><span class="text-success">::</span> ${this.T("menu-catalog")}</a>
@@ -48,10 +62,10 @@ class Navbar extends Component{
                 </li>
                 
                 <li class="nav-item">
-                <a class="nav-link text-dark text-align-right" href="${this.checkURL(datosEmpresa.twitter)}"><i class="fab fa-2x fa-twitter"></i></a>
+                <a class="nav-link text-dark text-align-right" href="${this.checkURL(this.state.datosEmpresa.twitter)}"><i class="fab fa-2x fa-twitter"></i></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-dark" href="${this.checkURL(datosEmpresa.facebook)}"><i class="fab fa-2x fa-facebook"></i></a>
+                <a class="nav-link text-dark" href="${this.checkURL(this.state.datosEmpresa.facebook)}"><i class="fab fa-2x fa-facebook"></i></a>
                 </li>
                 
                 <li class="nav-item pt-3">

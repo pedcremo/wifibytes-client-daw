@@ -1,28 +1,34 @@
 import Component from "./component";
 
+/**
+ * Draw article catalog that could be filtered by article family
+ */
 class Catalog extends Component {
-
+    /**
+     * @constructor
+     * @param {json} datosEmpresaJSON 
+     * @param {string} selectRule 
+     */
     constructor(datosEmpresaJSON,selectRule) {   
         super(datosEmpresaJSON,selectRule);
-        this.selectedTarget.innerHTML=this.render(this.inputJSON);   
-        var a = document.getElementById("langPicker");
-        a.addEventListener("change", this.handleLangPicker.bind(this), false);     
+        this.state={
+            families:this.inputJSON[0],
+            filtres:this.inputJSON[1],
+            articles:this.inputJSON[2]
+        };
+        this.selectedTarget.innerHTML=this.render(this.inputJSON); 
     }
-   
+
     /** render  */
-    render(familiesFiltrosArticulos) {
-        
-        let families = familiesFiltrosArticulos[0];
-        let filtres = familiesFiltrosArticulos[1];
-        let articles = familiesFiltrosArticulos[2];
-        let currentFamily= families.results[0];
-        let setFamilies = families.results.map((itemFamily,index) => {
+    render() {
+        let currentFamily= this.state.families.results[0];
+        let setFamilies = this.state.families.results.map((itemFamily,index) => {
             return `
                 <li class="nav-item"> <a id="change-family" class="nav-link ${index==0?"active":""}" data-toggle="pill" href="#catalog/${itemFamily.codfamilia}"><img width="32px" height="32px" src="${itemFamily.icono}" /> ${itemFamily.nombre}</a></li>
             `;
         });
         let setFilters=[];
-        for (let [key, value] of Object.entries(filtres)) {
+        for (let [key, value] of Object.entries(this.state.filtres)) {
             let values =value.map((item) => {
                 let selector;
                 if (key=="marca") selector="Marca";
@@ -37,7 +43,7 @@ class Catalog extends Component {
                
             </div>`);
         }
-        let setArticles = articles.results.map((itemArticle)=> {
+        let setArticles = this.state.articles.results.map((itemArticle)=> {
             return `
                 <div class="card text-center" style="background-color: rgba(255, 255, 255, 0.8)">
                 <img class="card-img-top" src="${itemArticle.imagen}" />

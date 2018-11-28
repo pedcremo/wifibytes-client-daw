@@ -18,7 +18,7 @@ class Home extends Component {
             
                 <div class="card-deck mt-2 mb-5">
 
-                    ${new RateBoxSubComponent(tarifaAndHomeJSON[0]).render()}
+                    ${new RateBoxSubComponent(tarifaAndHomeJSON[0].results).render()}
                 </div>
                 <div class="row home-banner text-center text-white p-4"  style="background-color: rgba(0,0,0,0.6)">
                     <!-- TEXT CAROUSEL -->
