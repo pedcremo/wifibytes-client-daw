@@ -11,6 +11,9 @@ import Catalog from "./components/catalog";
 import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
 import {get, setUserLanguage,filterPruneArrayByLang,changeBreadcrumb} from "./utils";
+import React from 'react'; 
+import ReactDOM from 'react-dom';
+
 let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
 Router
@@ -22,11 +25,13 @@ Router
   });
 })
 .add(/cookies/, function() {
-  get('/datos_empresa').then(function(response) {         
+  
+  ReactDOM.render(<Cookies />, document.getElementById("main"));
+  /*get('/datos_empresa').then(function(response) {          
     new Cookies(response,"#main"); 
   }).catch(function(error) {
     console.log("Failed!", error);
-  });   
+  });*/   
 })
 .add(/legal/, function() {
   get("/datos_empresa").then(function(response) {         
@@ -88,9 +93,7 @@ Router
     changeBreadcrumb(Router.getFragment());
 })
 ;
-/**
- * This is the entry point to our app. It defines all web app routes and draw navbar,home and footer initially
- */
+
 document.addEventListener("DOMContentLoaded", function() {    
     setUserLanguage(); //We set the language if it not stored in a cookie otherwise we load from cookie
     Router.navigate("home");

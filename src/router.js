@@ -4,6 +4,7 @@ http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-h
 Singleton Router
 */
 
+
 var Router = {
     routes: [],
     mode: null,

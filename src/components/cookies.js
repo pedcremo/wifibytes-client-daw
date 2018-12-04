@@ -1,36 +1,44 @@
-/** @module ComponentsApp */
 
-import Component from "./component";
+/** @module ComponentsApp */
+import React from 'react';
+import {get} from "../utils";
+
+//import Component from "./component";
 /**
  * @class
  * Draw cookies text information
  */
-class Cookies extends Component {
-    /**
-     * @constructor
-     * @param {json} datosEmpresaJSON 
-     * @param {string} selectRule 
-     */
-    constructor(datosEmpresaJSON,selectRule) {   
-        super(datosEmpresaJSON,selectRule);
-        let cookiesTexts = this.inputJSON.textos.filter((itemText) => {
-            return itemText.key.match(/cookies/i) && itemText.lang==this.getUserLang();
-          }).map((item) => {
-              return item.content;
-        });       
+class Cookies extends React.Component {
+    constructor(props){
+        super(props);
         this.state={
-            cookiesTexts:cookiesTexts
-        };
-        this.selectedTarget.innerHTML=this.render(cookiesTexts);
+            cookiesTexts:[]
+        }
     }
-   
+    componentDidMount(){
+        get('/datos_empresa').then(function(response) {          
+            debugger;
+            let cookiesTexts = response.textos.filter((itemText) => {
+               // return itemText.key.match(/cookies/i) && itemText.lang==this.getUserLang();
+               return itemText.key.match(/cookies/i);
+              }).map((item) => {
+                  return item.content;
+            });
+               
+            this.setState({
+                cookiesTexts: cookiesTexts
+            });
+        }).catch(function(error) {
+            console.log("Failed!", error);
+        });
+    }
     /** render  */
     render() {
-        return `
-            <div class="p-5">
-                ${this.state.cookiesTexts.join("")}
+        return (
+            <div className="p-5">
+                {this.state.cookiesTexts.join("")}
             </div>
-        `;          
+        );          
     }
 }
 
