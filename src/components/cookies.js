@@ -1,7 +1,7 @@
 
 /** @module ComponentsApp */
 import React from 'react';
-import {get} from "../utils";
+import {Utils} from "../utils";
 
 //import Component from "./component";
 /**
@@ -12,21 +12,23 @@ class Cookies extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            cookiesTexts:[]
+            cookiesTexts:[],
+            isLoading:true
         }
     }
     componentDidMount(){
-        get('/datos_empresa').then(function(response) {          
+        let that=this;
+        Utils.get('/datos_empresa').then(function(response) {          
             debugger;
             let cookiesTexts = response.textos.filter((itemText) => {
-               // return itemText.key.match(/cookies/i) && itemText.lang==this.getUserLang();
-               return itemText.key.match(/cookies/i);
+                return itemText.key.match(/cookies/i) && itemText.lang==Utils.getUserLang();
               }).map((item) => {
                   return item.content;
             });
                
-            this.setState({
-                cookiesTexts: cookiesTexts
+            that.setState({
+                cookiesTexts: cookiesTexts,
+                isLoading:false
             });
         }).catch(function(error) {
             console.log("Failed!", error);
@@ -35,8 +37,7 @@ class Cookies extends React.Component {
     /** render  */
     render() {
         return (
-            <div className="p-5">
-                {this.state.cookiesTexts.join("")}
+            <div className="p-5" dangerouslySetInnerHTML={{__html: this.state.cookiesTexts.join("")}}>
             </div>
         );          
     }

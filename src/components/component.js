@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 
-import {translate,getUserLang} from "../utils";
+import {Utils} from "../utils";
 /**
  * @class
  * Parent of all components. Mantain several functions common to all them
@@ -37,11 +37,11 @@ class Component  {
     }
     /** Get current user language */
     getUserLang(){
-        return getUserLang();
+        return Utils.getUserLang();
     }
     /** Translator function used by all components */
     T(selectedKey) {
-        let trans=translate(selectedKey);
+        let trans=Utils.translate(selectedKey);
         if (trans) return trans;
         else return selectedKey;    
     }

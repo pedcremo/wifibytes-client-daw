@@ -10,7 +10,7 @@ import Company from "./components/company";
 import Catalog from "./components/catalog";
 import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
-import {get, setUserLanguage,filterPruneArrayByLang,changeBreadcrumb} from "./utils";
+import {Utils} from "./utils";
 import React from 'react'; 
 import ReactDOM from 'react-dom';
 
@@ -18,7 +18,7 @@ let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
 Router
 .add(/contacte/, function() {
-  get("/datos_empresa").then(function(response) {           
+  Utils.get("/datos_empresa").then(function(response) {           
     new Contacte(response,"#main");  
   }).catch(function(error) {
     console.log("Failed!", error);
@@ -34,14 +34,14 @@ Router
   });*/   
 })
 .add(/legal/, function() {
-  get("/datos_empresa").then(function(response) {         
+    Utils.get("/datos_empresa").then(function(response) {         
     new Legal(response,"#main"); 
   }).catch(function(error) {
     console.log("Failed!", error);
   });   
 })
 .add(/rates/, function() {
-    Promise.all([get("/tarifa/?activo=true"), get("/tarifa_descriptor"),get("/datos_empresa")]).then(function(results) {       
+    Promise.all([ Utils.get("/tarifa/?activo=true"),  Utils.get("/tarifa_descriptor"), Utils.get("/datos_empresa")]).then(function(results) {       
       new Rates(results,"#main"); 
       try {vc = new VegasCarousel(results[2],"body");}catch(e){console.log(e);}
     }).catch(function(error) {
@@ -50,21 +50,21 @@ Router
   })
 .add(/rate\/(.*)/, function() {
     
-    Promise.all([get("/tarifa/"+arguments[0]), get("/tarifa_descriptor")]).then(function(results) {
+    Promise.all([ Utils.get("/tarifa/"+arguments[0]),  Utils.get("/tarifa_descriptor")]).then(function(results) {
       new RateDetail(results,"#main"); 
     }).catch(function(error) {
       console.log("Failed!", error);
     });
   })
 .add(/company/, function() {
-    get("/datos_empresa").then(function(response) {         
+    Utils.get("/datos_empresa").then(function(response) {         
       new Company(response,"#main"); 
     }).catch(function(error) {
       console.log("Failed!", error);
     });   
 })
 .add(/catalog/, function() {
-    Promise.all([get("/familia"), get("/filtros"),get("/articulo")]).then(function(results) {
+    Promise.all([ Utils.get("/familia"),  Utils.get("/filtros"), Utils.get("/articulo")]).then(function(results) {
         new Catalog(results,"#main"); 
     }).catch(function(error) {
         console.log("Failed!", error);
@@ -75,7 +75,7 @@ Router
 })
 .add(function() {
     //Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",filterPruneArrayByLang)]).then(function(results) {
-    Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",[filterPruneArrayByLang,"lang"])]).then(function(results) {
+    Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
      
       // three promises resolved 
       try {new Navbar(results[1],"nav");}catch(e){console.log(e);}
@@ -90,12 +90,12 @@ Router
 })
 .listen(function(){ //Everytime we change route
     if (vc) vc.hide(); //Hide carousel 
-    changeBreadcrumb(Router.getFragment());
+    //changeBreadcrumb(Router.getFragment());
 })
 ;
 
 document.addEventListener("DOMContentLoaded", function() {    
-    setUserLanguage(); //We set the language if it not stored in a cookie otherwise we load from cookie
+    Utils.setUserLanguage(); //We set the language if it not stored in a cookie otherwise we load from cookie
     Router.navigate("home");
 });
 
