@@ -1,4 +1,4 @@
-import {setUserLanguage,getCookie} from "../utils";
+import {Utils} from "../utils";
 import Component from "./component";
 /**
  * Draw top menu navbar 
@@ -26,7 +26,7 @@ class Navbar extends Component{
      * @param {element} event 
      */
     handleLangPicker(event) {
-        setUserLanguage(event.target.value);             
+        Utils.setUserLanguage(event.target.value);             
     }
         
     /** render  */
@@ -70,9 +70,9 @@ class Navbar extends Component{
                 
                 <li class="nav-item pt-3">
                     <select id="langPicker" class="selectpicker" data-width="fit" >
-                        <option value='english' ${getCookie("language")=="english"?"selected":""}>English</option>
-                        <option value='spanish' ${getCookie("language")=="spanish"?"selected":""}>Español</option>
-                        <option value='valencia' ${getCookie("language")=="valencia"?"selected":""}>Valencià</option>
+                        <option value='english' ${Utils.getCookie("language")=="english"?"selected":""}>English</option>
+                        <option value='spanish' ${Utils.getCookie("language")=="spanish"?"selected":""}>Español</option>
+                        <option value='valencia' ${Utils.getCookie("language")=="valencia"?"selected":""}>Valencià</option>
                     </select>
                 </li>
                 <!-- <li class="nav-item dropdown text-dark">

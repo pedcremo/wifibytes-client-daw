@@ -1,33 +1,41 @@
-import Component from "./component";
+import React from 'react';
+import {Utils} from "../utils";
+
 /**
  * Draw legal texts
  */
-class Legal extends Component{
-    /**
-     * @constructor
-     * @param {json} datosEmpresaJSON 
-     * @param {string} selectRule 
-     */
-    constructor(datosEmpresaJSON,selectRule) {   
-        super(datosEmpresaJSON,selectRule);
-        let legalTexts= this.inputJSON.textos.filter((itemText) => {
-            return itemText.key.match(/legal/i) && itemText.lang==this.getUserLang();
-          }).map((item) => {
-              return item.content;
-        });  
+class Legal extends React.Component{
+
+    constructor(props){
+        super(props);
         this.state={
-            legalTexts:legalTexts
+            legalTexts:[],
+            isLoading:true
         };
-        this.selectedTarget.innerHTML=this.render(legalTexts);   
     }
-  
+    componentDidMount(){
+        let that=this;
+        Utils.get("/datos_empresa").then(function(response) {          
+            let cookiesTexts = response.textos.filter((itemText) => {
+                return itemText.key.match(/legal/i) && itemText.lang==Utils.getUserLang();
+              }).map((item) => {
+                  return item.content;
+            });
+               
+            that.setState({
+                legalTexts: cookiesTexts,
+                isLoading:false
+            });
+        }).catch(function(error) {
+            console.log("Failed!", error);
+        });
+    }
     /** render  */
     render() {
-        return `
-            <div class="p-5">
-                ${this.state.legalTexts.join("")}
+        return (
+            <div class="p-5" dangerouslySetInnerHTML={{__html: this.state.legalTexts.join("")}}>
             </div>
-        `;      
+        );      
     }
 }
 

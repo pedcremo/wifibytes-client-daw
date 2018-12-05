@@ -16,5 +16,14 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],  
+  module: {
+    rules: [
+      {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel-loader']},
+      {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']},
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+      { test: /\.(eot|ttf|otf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: "file-loader" }
+    ]
+  }
 };
