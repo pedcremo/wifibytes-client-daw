@@ -30,7 +30,9 @@
     "webpack-cli": "^3.1.1",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-dev-server": "^3.1.9",
-    "webpack-hot-middleware": "^2.24.2"
+    "webpack-hot-middleware": "^2.24.2",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1"
   },
   "jest": {
     "transform": {
@@ -38,6 +40,8 @@
     }
   },
   "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "vegas": "^2.4.4"
   }
 }

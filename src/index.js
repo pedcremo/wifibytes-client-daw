@@ -1,3 +1,5 @@
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
 import {Router} from "./router.js"; //Knows what to do for every single URL 
 import Home from "./components/home";
 import Navbar from "./components/navbar";
@@ -69,19 +71,10 @@ Router
     console.log('products', arguments);
 })
 .add(function() {
-    //Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",filterPruneArrayByLang)]).then(function(results) {
-    Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",[filterPruneArrayByLang,"lang"])]).then(function(results) {
-     
-      // three promises resolved 
-      try {new Navbar(results[1],"nav");}catch(e){console.log(e);}
-      try {new Home([results[0],results[2]],"#main"); }catch(e){console.log(e);}
-      try {new Footer([results[1],results[2]],"footer");}catch(e){console.log(e);}
-      try {vc = new VegasCarousel(results[1],"body");}catch(e){console.log(e);}
-    })
-    .catch(function(error) {
-      // One or more promises was rejected
-      console.log("Failed!", error);
-    });
+    document.getElementById('main').innerHTML = "hola nYYYYY"
+    ReactDOM.render( <h1> Hello, world! </h1>,
+      document.getElementById('main')
+    );
 })
 .listen(function(){ //Everytime we change route
     if (vc) vc.hide(); //Hide carousel 
