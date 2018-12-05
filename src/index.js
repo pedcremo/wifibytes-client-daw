@@ -25,20 +25,10 @@ Router
   });
 })
 .add(/cookies/, function() {
-  
-  ReactDOM.render(<Cookies />, document.getElementById("main"));
-  /*get('/datos_empresa').then(function(response) {          
-    new Cookies(response,"#main"); 
-  }).catch(function(error) {
-    console.log("Failed!", error);
-  });*/   
+    ReactDOM.render(<Cookies />, document.getElementById("main"));
 })
 .add(/legal/, function() {
-    Utils.get("/datos_empresa").then(function(response) {         
-    new Legal(response,"#main"); 
-  }).catch(function(error) {
-    console.log("Failed!", error);
-  });   
+    ReactDOM.render(<Legal />, document.getElementById("main")); 
 })
 .add(/rates/, function() {
     Promise.all([ Utils.get("/tarifa/?activo=true"),  Utils.get("/tarifa_descriptor"), Utils.get("/datos_empresa")]).then(function(results) {       
