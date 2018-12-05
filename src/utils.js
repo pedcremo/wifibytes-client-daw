@@ -171,9 +171,9 @@ let Utils={
      * Get key from userLanguage imported language selected taking into account user choosen lang
      * @param {string} key 
      */
-    T:function(key) {
-        if (userLanguage[key]) return userLanguage[key]
-        else return key;        
+    translate:function(key) {
+        
+        return userLanguage[key];
     }
 }; //END Utils object
 let that = Utils;
