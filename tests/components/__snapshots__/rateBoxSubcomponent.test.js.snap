@@ -1,0 +1,324 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBoxSubComponent correctly 1`] = `
+<div
+  className="card-deck mt-2 mb-5"
+>
+  <div
+    className="card rounded border text-center border-dark text-center animated rotateInDownLeft"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png"
+          width="32px"
+        />
+         
+        WIFI DISEMINADO
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#e09f31",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          19
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-wifi"
+          style={
+            Object {
+              "color": "#e09f31",
+            }
+          }
+        />
+        <br />
+          
+        Wireless
+         
+        9
+         
+        MB/Upload
+        <br />
+         
+        3
+         
+        MB/Download
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/4"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated fadeIn"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png"
+          width="32px"
+        />
+         
+        FIBRA ÓPTICA
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#FB3563",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          34.95
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-phone"
+          style={
+            Object {
+              "color": "#FB3563",
+            }
+          }
+        />
+        <br />
+         
+        Land phone free calls
+      </p>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-globe"
+          style={
+            Object {
+              "color": "#FB3563",
+            }
+          }
+        />
+        <br />
+         
+        Fiber optics
+         
+        200
+         
+        MB/Upload
+        <br />
+         
+        200
+         
+        MB/Download
+      </p>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-tv"
+          style={
+            Object {
+              "color": "#FB3563",
+            }
+          }
+        />
+        <br />
+         
+        90
+         
+        free channels
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/1"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated zoomInDown"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/icon-chicken.png"
+          width="32px"
+        />
+         
+        MOVIL ILIMITADAS + 3GB
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#00A648",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          11.95
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-mobile-alt"
+          style={
+            Object {
+              "color": "#00A648",
+            }
+          }
+        />
+        <br />
+         
+        Mobile
+         
+        1000
+         
+        min/month
+        <br />
+        3
+         
+        GB/month
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/3"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+</div>
+`;
