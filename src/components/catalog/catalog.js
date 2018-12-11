@@ -12,9 +12,6 @@ import {Utils} from "../../utils";
 class Catalog extends React.Component {
     constructor(props) {
         super(props);
-        /*this.state={
-            families:[]
-        };*/
         this.state = {
             filters: [],
             articles: [],
