@@ -69,7 +69,7 @@ Router
      
       // three promises resolved 
       try {new Navbar(results[1],"nav");}catch(e){console.log(e);}
-      try {new Home([results[0],results[2]],"#main"); }catch(e){console.log(e);}
+      ReactDOM.render(<Home />, document.getElementById("main"));
       try {new Footer([results[1],results[2]],"footer");}catch(e){console.log(e);}
       try {vc = new VegasCarousel(results[1],"body");}catch(e){console.log(e);}
     })

@@ -1,7 +1,12 @@
 import Home from "../../src/components/home";
-import tarifaJSON from "../json_endpoints/tarifa.json";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import {Utils} from '../../src/utils';
 import homeJSON from "../json_endpoints/home.json";
-
+import tarifaJSON from "../json_endpoints/tarifa.json";
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+Enzyme.configure({ adapter: new Adapter() });
 
 const $ = require("jquery");
 
@@ -23,15 +28,22 @@ beforeEach(()=> {
         <!-- Inject here template footer-->
         </footer>
      </body>   
-        `;            
+      `;            
 });
+jest.mock('../../src/utils');
 
 it("We can check if Home component called the class constructor", () => {
-  const homeIns=new Home([tarifaJSON,homeJSON],"#main"); 
-  expect(homeIns.constructor.name).toBe("Home");
+  const resp1 = homeJSON;
+  const resp2 = tarifaJSON;
+  Utils.get.mockResolvedValueOnce(resp1);
+  Utils.get.mockResolvedValueOnce(resp2);
+  const home = Enzyme.shallow(<Home />);
+  console.log(Utils.get());
+  /* const homeIns=new Home([tarifaJSON,homeJSON],"#main"); 
+  expect(homeIns.constructor.name).toBe("Home"); */
 });
 
-it("Home render must be called and it works properly", () => {
+/* it("Home render must be called and it works properly", () => {
   new Home([tarifaJSON,homeJSON],"#main"); 
   expect($("#main").children.length).toBeGreaterThan(1);    
 });
@@ -42,16 +54,4 @@ it("Component must fail due to target html tag to render in doesnt exist", () =>
 
 it("Component must fail due to JSON input doesnt contains expected information", () => { 
   expect(function(){new Home(undefined,"#main");}).toThrowError(/undefined/);    
-});  
-
-/*describe("2 PTS -> PASS Color rates boxes and internal font awesome icons according to color in backend rate information",()=>{
-  test("Step1 ->  By defaut Filter by lang property", () => { 
-    const homeIns=new Home([tarifaJSON,homeJSON],"#main")
-    expect($('.card-title').length).toBe(3);
-    $( ".card-title" ).each(function( index ) {
-      console.log( index + "->"+ $(this).css("backgroundColor") );
-      expect($(this).css("backgroundColor")).toBe("EEE");
-    });
-  });
-
-});*/
+});   */

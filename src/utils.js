@@ -171,9 +171,15 @@ let Utils={
      * Get key from userLanguage imported language selected taking into account user choosen lang
      * @param {string} key 
      */
-    T:function(key) {
+    translate:function(key) {
         if (userLanguage[key]) return userLanguage[key]
         else return key;        
+    },
+    /**CSS Animation used in the app
+     */
+    randomAnimation() {
+        const animations = ["bounce", "flash", "pulse", "rubberBand", "shake", "headShake", "swing", "tada", "wobble", "jello", "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "jackInTheBox", "rollIn", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp", "slideInDown", "slideInLeft", "slideInRight", "slideInUp"]
+        return "animated " + animations[Math.floor(Math.random() * (animations.length + 1))];
     }
 }; //END Utils object
 let that = Utils;
