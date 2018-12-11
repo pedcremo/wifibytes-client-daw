@@ -8,7 +8,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() });
 
-const $ = require("jquery");
+jest.mock('../../src/utils');
 
 beforeEach(()=> {
     // Set up our document body
@@ -28,30 +28,23 @@ beforeEach(()=> {
         <!-- Inject here template footer-->
         </footer>
      </body>   
-      `;            
+      `;
+      
+      const resp1 = homeJSON;
+      const resp2 = tarifaJSON;
+      Utils.get.mockResolvedValue(resp1);
+      Utils.get.mockResolvedValueOnce(resp1);
+      Utils.get.mockResolvedValueOnce(resp2);            
 });
-jest.mock('../../src/utils');
 
 it("We can check if Home component called the class constructor", () => {
-  const resp1 = homeJSON;
-  const resp2 = tarifaJSON;
-  Utils.get.mockResolvedValueOnce(resp1);
-  Utils.get.mockResolvedValueOnce(resp2);
+  
   const home = Enzyme.shallow(<Home />);
-  console.log(Utils.get());
-  /* const homeIns=new Home([tarifaJSON,homeJSON],"#main"); 
-  expect(homeIns.constructor.name).toBe("Home"); */
+  expect(home).toMatchSnapshot();
+
 });
 
-/* it("Home render must be called and it works properly", () => {
-  new Home([tarifaJSON,homeJSON],"#main"); 
-  expect($("#main").children.length).toBeGreaterThan(1);    
+it("Home render must be called and it works properly", () => {
+  const home = Enzyme.shallow(<Home />);
+  expect(home.find('div')).toHaveLength(1);
 });
-
-it("Component must fail due to target html tag to render in doesnt exist", () => { 
-  expect(function(){new Home([tarifaJSON,homeJSON],"#mmain");}).toThrowError(/Error/i);    
-});
-
-it("Component must fail due to JSON input doesnt contains expected information", () => { 
-  expect(function(){new Home(undefined,"#main");}).toThrowError(/undefined/);    
-});   */
