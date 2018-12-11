@@ -36,7 +36,7 @@ class RateDetail extends React.Component {
                             <div className="row text-white text-center">
                                 <div className="col-md-12 no-padding p-5">
                                     <h2 className="pretitulo" >{this.state.tarifaJSON[0].pretitulo }</h2>
-                                    <h1 className="display-4" >{this.state.tarifaJSON[0].nombretarifa } <span className="text-dark">{this.state.tarifaJSON[0].precio }{Utils.translate('home-euros-month') }</span></h1>
+                                    <h1 className="display-4" >{this.state.tarifaJSON[0].nombretarifa } <span className="text-dark" >{this.state.tarifaJSON[0].precio }{Utils.translate('home-euros-month') }</span></h1>
                                 </div>
                             </div>
                         </div>
