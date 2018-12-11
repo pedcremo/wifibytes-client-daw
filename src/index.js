@@ -7,7 +7,7 @@ import Cookies from "./components/cookies";
 import Legal from "./components/legal";
 import Rates from "./components/rates";
 import Company from "./components/company";
-import Catalog from "./components/catalog";
+import Catalog from "./components/catalog/catalog";
 import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
 import {Utils} from "./utils";
@@ -54,11 +54,12 @@ Router
     });   
 })
 .add(/catalog/, function() {
-    Promise.all([ Utils.get("/familia"),  Utils.get("/filtros"), Utils.get("/articulo")]).then(function(results) {
+   /* Promise.all([ Utils.get("/familia"),  Utils.get("/filtros"), Utils.get("/articulo")]).then(function(results) {
         new Catalog(results,"#main"); 
     }).catch(function(error) {
         console.log("Failed!", error);
-    });   
+    }); */  
+    ReactDOM.render(<Catalog />, document.getElementById("main")); 
 })
 .add(/products\/(.*)\/edit\/(.*)/, function() {
     console.log('products', arguments);
