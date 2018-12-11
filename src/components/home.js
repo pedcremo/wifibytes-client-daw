@@ -30,7 +30,6 @@ class Home extends React.Component {
     }
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
-        const isLoading = this.state.isLoading;  
         return (
             <div>
                 <div>
