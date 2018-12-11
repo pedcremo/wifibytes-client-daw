@@ -1,5 +1,7 @@
 import Contacte from '../../src/components/contacte';
 import datosEmpresaJSON from '../json_endpoints/datos_empresa.json';
+import React from 'react'; 
+import ReactDOM from 'react-dom';
 
 const $ = require('jquery');
 
@@ -25,19 +27,19 @@ beforeEach(()=> {
 });
 
 it('We can check if Contact component called the class constructor', () => {
-  const contactIns = new Contacte(datosEmpresaJSON,"#main"); 
+  const contactIns = ReactDOM.render(<Contacte />, document.getElementById("main")); 
   expect(contactIns.constructor.name).toBe('Contacte');
 });
 
 it('Contacte render must be called and it works properly', () => {
-  let contactIns=new Contacte(datosEmpresaJSON,"#main"); 
+  let contactIns= ReactDOM.render(<Contacte />, document.getElementById("main")); 
   expect($("#main").children.length).toBeGreaterThan(1);    
 });
 
 it('Component must fail due to target html tag to render in doesnt exist', () => { 
-  expect(function(){new Contacte(datosEmpresaJSON,"#mmain")}).toThrowError(/Error/i);    
+  expect(function(){ReactDOM.render(<Contacte />, document.getElementById("main"))}).toThrowError(/Error/i);    
 });
 
 it('Component must fail due to JSON input doesnt contains expected information', () => { 
-  expect(function(){new Contacte(undefined,"#main")}).toThrowError(/undefined/);    
+  expect(function(){ReactDOM.render(<Contacte />, document.getElementById("main"))}).toThrowError(/undefined/);    
 });  
