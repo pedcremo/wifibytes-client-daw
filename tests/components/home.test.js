@@ -1,9 +1,20 @@
 import Home from "../../src/components/home";
-import tarifaJSON from "../json_endpoints/tarifa.json";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import {Utils} from '../../src/utils';
 import homeJSON from "../json_endpoints/home.json";
+import tarifaJSON from "../json_endpoints/tarifa.json";
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+Enzyme.configure({ adapter: new Adapter() });
 
+jest.mock('../../src/utils');
+const resp1 = homeJSON;
+const resp2 = tarifaJSON;
 
-const $ = require("jquery");
+Utils.get.mockResolvedValueOnce(resp1);
+Utils.get.mockResolvedValueOnce(resp2);            
+Utils.get.mockResolvedValue(resp1);
 
 beforeEach(()=> {
     // Set up our document body
@@ -23,35 +34,21 @@ beforeEach(()=> {
         <!-- Inject here template footer-->
         </footer>
      </body>   
-        `;            
+      `;
+      
+     
 });
 
 it("We can check if Home component called the class constructor", () => {
-  const homeIns=new Home([tarifaJSON,homeJSON],"#main"); 
-  expect(homeIns.constructor.name).toBe("Home");
+  /*Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
+     console.log(results);
+  });*/
+  const home = Enzyme.shallow(<Home />);
+  expect(home).toMatchSnapshot();
+
 });
 
 it("Home render must be called and it works properly", () => {
-  new Home([tarifaJSON,homeJSON],"#main"); 
-  expect($("#main").children.length).toBeGreaterThan(1);    
+  const home = Enzyme.shallow(<Home />);
+  expect(home.find('div')).toHaveLength(1);
 });
-
-it("Component must fail due to target html tag to render in doesnt exist", () => { 
-  expect(function(){new Home([tarifaJSON,homeJSON],"#mmain");}).toThrowError(/Error/i);    
-});
-
-it("Component must fail due to JSON input doesnt contains expected information", () => { 
-  expect(function(){new Home(undefined,"#main");}).toThrowError(/undefined/);    
-});  
-
-/*describe("2 PTS -> PASS Color rates boxes and internal font awesome icons according to color in backend rate information",()=>{
-  test("Step1 ->  By defaut Filter by lang property", () => { 
-    const homeIns=new Home([tarifaJSON,homeJSON],"#main")
-    expect($('.card-title').length).toBe(3);
-    $( ".card-title" ).each(function( index ) {
-      console.log( index + "->"+ $(this).css("backgroundColor") );
-      expect($(this).css("backgroundColor")).toBe("EEE");
-    });
-  });
-
-});*/
