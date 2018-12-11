@@ -125,13 +125,7 @@ let Utils={
             return item[langPropName] == lang; 
         });
         return aux;
-    },
-    /**CSS Animation used in the app
-     */
-    randomAnimation() {
-        const animations = ["bounce", "flash", "pulse", "rubberBand", "shake", "headShake", "swing", "tada", "wobble", "jello", "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "jackInTheBox", "rollIn", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp", "slideInDown", "slideInLeft", "slideInRight", "slideInUp"]
-        return "animated " + animations[Math.floor(Math.random() * (animations.length + 1))];
-    },
+    },   
     /** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's 
      * quite hardwired code to allow adding new languages. A really pain in the neck 
      */

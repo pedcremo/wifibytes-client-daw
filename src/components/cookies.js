@@ -40,7 +40,7 @@ class Cookies extends React.Component {
             {isLoading ? (
                 <h1>Loading...</h1>
             ) : (
-                <div className="p-5" dangerouslySetInnerHTML={{__html: this.state.cookiesTexts.join("")}}>
+                <div className="p-5" dangerouslySetInnerHTML={{__html: this.state.cookiesTexts.join("")}}>                  
                 </div>
             )}
             </div>

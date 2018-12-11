@@ -12,6 +12,7 @@ const $ = require('jquery');
 describe('<RateBoxSubComponent/>', () => {
 
     it('RateBoxSubComponent component renders the RateBoxSubComponent correctly', () => {
+        
         const rendered = renderer.create(<RateBoxSubComponent rates={tarifaJSON} />);
         expect(rendered.toJSON()).toMatchSnapshot();
     });
