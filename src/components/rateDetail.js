@@ -14,6 +14,7 @@ class RateDetail extends React.Component {
     componentDidMount() {
         let that=this;
         Promise.all([ Utils.get("/tarifa/"+this.state.idRate),  Utils.get("/tarifa_descriptor")]).then(function(results) {
+            console.log(results)
             that.setState({
                 tarifaJSON: results,
                 isLoading:false
