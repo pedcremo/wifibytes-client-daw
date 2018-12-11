@@ -174,6 +174,17 @@ let Utils={
     translate:function(key) {
         
         return userLanguage[key];
+    },
+
+    checkURL: function(hrefText) {
+        if(hrefText){
+            let reURL= /(http:\/\/|https:\/\/)/;
+            if (hrefText.match(reURL)) {
+                return hrefText;
+            }else{
+                return "http://"+hrefText;
+            }
+        }
     }
 }; //END Utils object
 let that = Utils;
