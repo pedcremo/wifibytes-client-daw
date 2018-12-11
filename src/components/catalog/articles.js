@@ -7,7 +7,6 @@ class Articles extends React.Component{
  
     /** render  */
     render() {
-        console.log(this.props);
         return (
             <div className="card-columns m-5">
                 {this.props.articles.map(itemArticle => (
