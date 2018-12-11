@@ -39,12 +39,8 @@ Router
     });   
   })
 .add(/rate\/(.*)/, function() {
-    
-    Promise.all([ Utils.get("/tarifa/"+arguments[0]),  Utils.get("/tarifa_descriptor")]).then(function(results) {
-      new RateDetail(results,"#main"); 
-    }).catch(function(error) {
-      console.log("Failed!", error);
-    });
+    console.log("rate details")
+    ReactDOM.render(<RateDetail idRate={arguments[0]}/>, document.getElementById("main"));
   })
 .add(/company/, function() {
     Utils.get("/datos_empresa").then(function(response) {         

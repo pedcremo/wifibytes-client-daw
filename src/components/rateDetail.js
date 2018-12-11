@@ -1,30 +1,49 @@
-import Component from "./component";
+/** @module ComponentsApp */
+import React from 'react';
+import {Utils} from "../utils";
 
-class RateDetail extends Component {
-
-    constructor(tarifaJSON,selectRule) { 
-        super(tarifaJSON,selectRule);
-        this.selectedTarget.innerHTML=this.render(this.inputJSON); 
+class RateDetail extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            idRate: props.idRate,
+            tarifaJSON:[],
+            isLoading:true
+        }
     }
+    componentDidMount() {
+        let that=this;
+        Promise.all([ Utils.get("/tarifa/"+this.state.idRate),  Utils.get("/tarifa_descriptor")]).then(function(results) {
+            that.setState({
+                tarifaJSON: results,
+                isLoading:false
+            });
+        }).catch(function(error) {
+          console.log("Failed!", error);
+        });
+    }
+
  
     /** render  */
-    render(tarifaAndTarifaDescriptorJSON) {  
-        let tarifa =  tarifaAndTarifaDescriptorJSON[0];
-        let tarifaDescriptor =tarifaAndTarifaDescriptorJSON[1];
-        return `
-            <section id="tarifa" >            
-                <div class="header-tarifa" style="background-color:${tarifa.color.hexadecimal}">
-                    <div class="row text-white text-center">
-                        <div class="col-md-12 no-padding p-5">
-                            <h2>${tarifa.pretitulo }</h2>
-                            <h1 class="display-4">${tarifa.nombretarifa } <span class="text-dark">${tarifa.precio}${this.T('home-euros-month')}</span></h1>
+    render() {
+        const isLoading = this.state.isLoading;
+        return (<div>
+                {isLoading ? (
+                    <h1>Loading...</h1>
+                ) : (
+                    <section id="tarifa" >            
+                        <div className="header-tarifa" style={{background: this.state.tarifaJSON[0].color.hexadecimal}}>
+                            <div className="row text-white text-center">
+                                <div className="col-md-12 no-padding p-5">
+                                    <h2 className="pretitulo" >{this.state.tarifaJSON[0].pretitulo }</h2>
+                                    <h1 className="display-4" >{this.state.tarifaJSON[0].nombretarifa } <span className="text-dark">{this.state.tarifaJSON[0].precio }{Utils.translate('home-euros-month') }</span></h1>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-		`
-		
-	   
+                    </section>
+                )}
+                </div>);
     }
 }
 export default RateDetail;
+
