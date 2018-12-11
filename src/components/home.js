@@ -1,49 +1,65 @@
-import Component from "./component";
-import RateBoxSubComponent from "./rateBoxSubcomponent";
-/**
- * Draw active rates home texts and jumbotron images and banners on background
- */
-class Home extends Component {
+/** @module ComponentsApp */
+import React from 'react';
+import {Utils} from "../utils";
+import RateBoxSubComponent from './rateBoxSubcomponent';
+
+class Home extends React.Component {
     /**
      * @constructor
      * @param {json} homeJSON 
      * @param {string} selectRule 
      */
-    constructor(homeJSON, selectRule) {        
-        super(homeJSON,selectRule);   
+    constructor(props) {        
+        super(props);   
         this.state={
-            homeJSON:this.inputJSON[1][0], //Prefiltered by get util method
-            rates:this.inputJSON[0].results
+            homeJSON:[], //Prefiltered by get util method
+            ratesJSON:[],
+            isLoading:true
         };
-        this.selectedTarget.innerHTML = this.render(this.inputJSON);       
     }
 
+    componentDidMount(){
+        let that=this;
+        Promise.all([ Utils.get("/tarifa/?destacado=true"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
+            that.setState({
+                homeJSON: results[1][0],
+                ratesJSON: results[0],
+                isLoading:false
+            });
+        });
+    }
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
-                
-        return `
-            <div class="p-5">
-                <h1 class="glow text-center pb-5">${this.state.homeJSON.subtitulo}</h1>
-            
-                <div class="card-deck mt-2 mb-5">
-
-                    ${new RateBoxSubComponent(this.state.rates).render()}
+        const isLoading = this.state.isLoading;  
+        return (
+            <div>
+                {isLoading ? (
+                    <h1>Loading...</h1>
+                ) : (
+                <div>
+                    <div className="p-5">
+                        <h1 className="glow text-center pb-5">{this.state.homeJSON.subtitulo}</h1>
+                    
+                            <RateBoxSubComponent rates={this.state.ratesJSON.results} />
+                            
+                        <div className="row home-banner text-center text-white p-4"  styles="background-color: rgba(0,0,0,0.6)">
+                        </div> 
+                    </div>       
+                    <div className="row p-5 bg-white">
+                        <div className="col-md-6 mt-md-0 mt-3" >
+                            <h1 className="text-uppercase">{this.state.homeJSON.caja_izquierda_titulo}</h1>
+                            <div dangerouslySetInnerHTML={{__html: this.state.homeJSON.caja_izquierda_texto}}></div>
+                        </div>
+                        <div className="col-md-6 mt-md-0 mt-3" >
+                            <h1 className="text-uppercase">{this.state.homeJSON.caja_derecha_titulo}</h1>
+                            <div dangerouslySetInnerHTML={{__html: this.state.homeJSON.caja_derecha_texto}}></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row home-banner text-center text-white p-4"  style="background-color: rgba(0,0,0,0.6)">
-                    <!-- TEXT CAROUSEL -->
-                </div> 
-            </div>       
-            <div class="row p-5 bg-white">
-                <div class="col-md-6 mt-md-0 mt-3" >
-                 <h1 class="text-uppercase">${this.state.homeJSON.caja_izquierda_titulo}</h1>
-                    ${this.state.homeJSON.caja_izquierda_texto}
-                </div>
-                <div class="col-md-6 mt-md-0 mt-3" >
-                 <h1 class="text-uppercase">${this.state.homeJSON.caja_derecha_titulo}</h1>
-                    ${this.state.homeJSON.caja_derecha_texto}
-                </div>
+            )}
             </div>
-        `;
+        );
     }
 }
+
 export default Home;
