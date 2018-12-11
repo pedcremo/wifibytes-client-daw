@@ -100,3 +100,6 @@ class RateBoxSubComponent extends React.Component {
 };
 
 export default RateBoxSubComponent; 
+
+/* 
+ */
