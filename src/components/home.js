@@ -33,12 +33,9 @@ class Home extends React.Component {
         const isLoading = this.state.isLoading;  
         return (
             <div>
-                {isLoading ? (
-                    <h1>Loading...</h1>
-                ) : (
                 <div>
                     <div className="p-5">
-                        <h1 className="glow text-center pb-5">{this.state.homeJSON.subtitulo}</h1>
+                        <h1 id="title" className="glow text-center pb-5">{this.state.homeJSON.subtitulo}</h1>
                     
                             <RateBoxSubComponent rates={this.state.ratesJSON.results} />
                             
@@ -48,7 +45,7 @@ class Home extends React.Component {
                     <div className="row p-5 bg-white">
                         <div className="col-md-6 mt-md-0 mt-3" >
                             <h1 className="text-uppercase">{this.state.homeJSON.caja_izquierda_titulo}</h1>
-                            <div dangerouslySetInnerHTML={{__html: this.state.homeJSON.caja_izquierda_texto}}></div>
+                            <div id="left_box" dangerouslySetInnerHTML={{__html: this.state.homeJSON.caja_izquierda_texto}}></div>
                         </div>
                         <div className="col-md-6 mt-md-0 mt-3" >
                             <h1 className="text-uppercase">{this.state.homeJSON.caja_derecha_titulo}</h1>
@@ -56,7 +53,6 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-            )}
             </div>
         );
     }
