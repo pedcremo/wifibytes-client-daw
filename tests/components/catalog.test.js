@@ -1,7 +1,13 @@
 import Catalog from '../../src/components/catalog/catalog';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Enzyme from 'enzyme'
+import filtros from "../json_endpoints/filtros.json";
+import articulo from "../json_endpoints/articulo.json";
+import {Utils} from '../../src/utils';
+import Adapter from 'enzyme-adapter-react-16'
+Enzyme.configure({ adapter: new Adapter() });
 
+jest.mock('../../src/utils');
 const $ = require('jquery');
 
 beforeEach(() => {
@@ -11,12 +17,18 @@ beforeEach(() => {
         </div>`;
 });
 
+const json1 = filtros;
+const json2 = articulo;
+Utils.get.mockResolvedValueOnce(json1);
+Utils.get.mockResolvedValueOnce(json2);
+Utils.get.mockResolvedValue(json1);
+
 it('We can check if Catalog component called the class constructor', () => {
-    const catalogs = ReactDOM.render(<Catalog />, document.getElementById("main"));
-    expect(catalogs.constructor.name).toBe('Catalog');
+    const catalog = Enzyme.shallow(<Catalog />);
+    expect(catalog).toMatchSnapshot();
 });
 
 it('Catalog render must be called and it works properly', () => {
-    const catalogs = ReactDOM.render(<Catalog />, document.getElementById("main"));
-    expect($('#main').children.length).toBeGreaterThan(1);
+    const catalog = Enzyme.shallow(<Catalog />);
+    expect(catalog.find('.catalog')).toHaveLength(1);
 });

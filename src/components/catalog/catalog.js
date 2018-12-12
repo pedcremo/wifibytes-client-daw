@@ -34,10 +34,10 @@ class Catalog extends React.Component {
     /** render  */
     render() {
         return (
-            <span>
-            <Families />
-            <Filters filters={this.state.filters} />
-            <Articles articles={this.state.articles} />
+            <span className="catalog">
+                <Families />
+                <Filters filters={this.state.filters} />
+                <Articles articles={this.state.articles} />
             </span>
         );
 

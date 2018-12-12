@@ -44,18 +44,18 @@ class Families extends React.Component {
         }).catch(function (error) {
             console.log("Failed!", error);
         });
-
+        
     }
     /** render */
     render() {
         const isLoading = this.state.isLoading;
         return (
             <div>
-                <div className="pt-4 pb-4 pr-0 pl-0 m-0 text-white" style={{ background: this.state.color }}>
+                <div className="families pt-4 pb-4 pr-0 pl-0 m-0 text-white" style={{ background: this.state.color }}>
                     <img className="float-left" src={this.state.currentFamily.imagen_cabecera} />
                     <h3>{this.state.currentFamily.pretitulo}</h3>
                     <h1 className="display-1">{this.state.currentFamily.titulo}</h1><br /><br />
-                    <h3>{this.state.text}</h3>
+                    <h3 className="families-text">{this.state.text}</h3>
                     <h1 className="display-3">{this.state.currentFamily.precio_cabecera} € IVA Inc.</h1>
                     <h3>{this.state.subtexto}</h3>
                 </div>
@@ -65,7 +65,8 @@ class Families extends React.Component {
                         <h2 className="text-center">{Utils.translate("catalog-change-family")}</h2>
                     </div>
                 </div>
-                <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul className="nav-families nav nav-pills mb-3" id="pills-tab" role="tablist">
+                
                     {this.state.families.map((itemFamily, index) => {
                         return (
                             isLoading ? (

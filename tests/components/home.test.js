@@ -9,6 +9,12 @@ import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() });
 
 jest.mock('../../src/utils');
+const resp1 = homeJSON;
+const resp2 = tarifaJSON;
+
+Utils.get.mockResolvedValueOnce(resp1);
+Utils.get.mockResolvedValueOnce(resp2);            
+Utils.get.mockResolvedValue(resp1);
 
 beforeEach(()=> {
     // Set up our document body
@@ -30,15 +36,13 @@ beforeEach(()=> {
      </body>   
       `;
       
-      const resp1 = homeJSON;
-      const resp2 = tarifaJSON;
-      Utils.get.mockResolvedValue(resp1);
-      Utils.get.mockResolvedValueOnce(resp1);
-      Utils.get.mockResolvedValueOnce(resp2);            
+     
 });
 
 it("We can check if Home component called the class constructor", () => {
-  
+  /*Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
+     console.log(results);
+  });*/
   const home = Enzyme.shallow(<Home />);
   expect(home).toMatchSnapshot();
 
