@@ -1,0 +1,508 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Articles component renders the Articles correctly 1`] = `
+<div
+  className="card-columns m-5"
+>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/redmi_4_pro_02.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Xiaomi Redmi 4 Pro
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          215
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/redmi_note_4_01.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Redmi Note 4  32 GB
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          285
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/bq-aquaris-x.jpg"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Inmortaliza cada detalle.
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          370
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/redmi_note_4_01_liD5ghs.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Redmi Note 4 64GB
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          315
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/aq_x_01_7WEBh0y.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        BQ Aquaris X
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          300
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/WIKOUpulse-03.jpg"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Wiko Upulse
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          230
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/a4.5_03_p7L5Qhx.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        BQ A 4.5
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          175
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/wiko_lenny-3-max_space-grey_compo-2.jpg"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Lenny 3 Max
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          175
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/sim.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        SIM
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          0
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+  <div
+    className="card text-center"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <img
+      className="card-img-top"
+      src="https://backend.wifibytes.com/media/pagina_tarifas/imageedit_9_9595992896.png"
+    />
+    <div
+      className="card-body"
+    >
+      <p
+        className="card-text"
+      >
+        Wiko Jerry
+      </p>
+      <p
+        className="card-text"
+      >
+        <span
+          className="display-4"
+        >
+          125
+          €
+        </span>
+         IVA Incl.
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#"
+      >
+        View details
+      </a>
+       
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        Buy
+      </a>
+    </div>
+  </div>
+</div>
+`;
