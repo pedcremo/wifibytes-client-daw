@@ -13,17 +13,17 @@ describe('<RateBoxSubComponent/>', () => {
 
     it('RateBoxSubComponent component renders the RateBoxSubComponent correctly', () => {
         
-        const rendered = renderer.create(<RateBoxSubComponent rates={tarifaJSON} />);
+        const rendered = renderer.create(<RateBoxSubComponent rates={tarifaJSON.results} />);
         expect(rendered.toJSON()).toMatchSnapshot();
     });
 
     it('Check if there is just one component when rendering is done', () => {
-        const component = shallow(<RateBoxSubComponent rates={tarifaJSON} />);
+        const component = shallow(<RateBoxSubComponent rates={tarifaJSON.results} />);
         expect(component).toHaveLength(1);
     });
 
     it("Check if there are 1 or more divs with a class border-dark ", () => {
-      let rateBox = shallow(<RateBoxSubComponent rates={tarifaJSON} />);
+      let rateBox = shallow(<RateBoxSubComponent rates={tarifaJSON.results} />);
       expect(rateBox.find("div.border-dark").length).toBeGreaterThan(0);
     });
 });
