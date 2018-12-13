@@ -43,7 +43,7 @@ class Footer extends React.Component{
               <div className="col-md-6 mt-md-0 mt-3" >
                 {/* Content */}
                 <h5 className="text-uppercase">{this.state.home.caja_izquierda_titulo}</h5>
-                  <label dangerouslySetInnerHTML={{__html: this.state.home.caja_izquierda_texto}}></label>
+                  <label className="left_box" dangerouslySetInnerHTML={{__html: this.state.home.caja_izquierda_texto}}></label>
               </div>
               {/* Grid column */}
 
@@ -103,7 +103,7 @@ class Footer extends React.Component{
 
           {/* Copyright */}
           <div className="footer-copyright text-center bg-dark py-3 text-white">
-            © 2018 Copyright: {this.state.datosEmpresa.name} | <i className="fas fa-phone"></i> {this.state.datosEmpresa.phone} |{this.state.datosEmpresa.address}, {this.state.datosEmpresa.city} -{this.state.datosEmpresa.zipcode}- ({this.state.datosEmpresa.province}) {this.state.datosEmpresa.country}
+            © 2018 Copyright: <label id="companyName">{this.state.datosEmpresa.name}</label> | <i className="fas fa-phone"></i> {this.state.datosEmpresa.phone} |{this.state.datosEmpresa.address}, {this.state.datosEmpresa.city} -{this.state.datosEmpresa.zipcode}- ({this.state.datosEmpresa.province}) {this.state.datosEmpresa.country}
           </div>
           {/* Copyright */}
         </div>
