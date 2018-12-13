@@ -12,7 +12,6 @@ jest.mock('../../src/utils');
 const resp = tarifaJSON;
 
 Utils.get.mockResolvedValueOnce(resp);
-const rate = Enzyme.shallow(<RateDetail idRate="4" />);
 
 it('Check if render in rateDetail it works properly', () => {
     const component = shallow(<RateDetail idRate="4"/>);
