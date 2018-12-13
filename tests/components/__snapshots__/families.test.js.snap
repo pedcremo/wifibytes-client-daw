@@ -1,0 +1,989 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`We can check if Families component called the class constructor 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Families />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="families pt-4 pb-4 pr-0 pl-0 m-0 text-white"
+          style={
+            Object {
+              "background": "#C7BB15",
+            }
+          }
+        >
+          <img
+            className="float-left"
+            src="https://backend.wifibytes.com/media/familia/a4.5_03.png"
+          />
+          <h3>
+            Lo último en
+          </h3>
+          <h1
+            className="display-1"
+          >
+            Smartphones
+          </h1>
+          <br />
+          <br />
+          <h3
+            className="families-text"
+          >
+            Los mejores terminales del mercado desde
+          </h3>
+          <h1
+            className="display-3"
+          >
+            175
+             € IVA Inc.
+          </h1>
+          <h3>
+            No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.
+          </h3>
+        </div>,
+        <div
+          className="grid row"
+        >
+          <div
+            className="col"
+          >
+            <h1
+              className="text-center"
+            />
+            <h2
+              className="text-center"
+            />
+          </div>
+        </div>,
+        <ul
+          className="nav-families nav nav-pills mb-3"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link {index==0?\\"active\\":\\"\\"}"
+              data-toggle="pill"
+              href="#catalog/1"
+              id="change-family"
+            >
+              <img
+                height="32px"
+                src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                width="32px"
+              />
+              Smartphones
+            </a>
+          </li>
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link {index==0?\\"active\\":\\"\\"}"
+              data-toggle="pill"
+              href="#catalog/TAR1"
+              id="change-family"
+            >
+              <img
+                height="32px"
+                src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                width="32px"
+              />
+              Tarjeta
+            </a>
+          </li>
+        </ul>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <img
+              className="float-left"
+              src="https://backend.wifibytes.com/media/familia/a4.5_03.png"
+            />,
+            <h3>
+              Lo último en
+            </h3>,
+            <h1
+              className="display-1"
+            >
+              Smartphones
+            </h1>,
+            <br />,
+            <br />,
+            <h3
+              className="families-text"
+            >
+              Los mejores terminales del mercado desde
+            </h3>,
+            <h1
+              className="display-3"
+            >
+              175
+               € IVA Inc.
+            </h1>,
+            <h3>
+              No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.
+            </h3>,
+          ],
+          "className": "families pt-4 pb-4 pr-0 pl-0 m-0 text-white",
+          "style": Object {
+            "background": "#C7BB15",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "float-left",
+              "src": "https://backend.wifibytes.com/media/familia/a4.5_03.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Lo último en",
+            },
+            "ref": null,
+            "rendered": "Lo último en",
+            "type": "h3",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Smartphones",
+              "className": "display-1",
+            },
+            "ref": null,
+            "rendered": "Smartphones",
+            "type": "h1",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": "br",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": "br",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Los mejores terminales del mercado desde",
+              "className": "families-text",
+            },
+            "ref": null,
+            "rendered": "Los mejores terminales del mercado desde",
+            "type": "h3",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                175,
+                " € IVA Inc.",
+              ],
+              "className": "display-3",
+            },
+            "ref": null,
+            "rendered": Array [
+              175,
+              " € IVA Inc.",
+            ],
+            "type": "h1",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.",
+            },
+            "ref": null,
+            "rendered": "No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.",
+            "type": "h3",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="col"
+          >
+            <h1
+              className="text-center"
+            />
+            <h2
+              className="text-center"
+            />
+          </div>,
+          "className": "grid row",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h1
+                className="text-center"
+              />,
+              <h2
+                className="text-center"
+              />,
+            ],
+            "className": "col",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": undefined,
+                "className": "text-center",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": undefined,
+                "className": "text-center",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "h2",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link {index==0?\\"active\\":\\"\\"}"
+                data-toggle="pill"
+                href="#catalog/1"
+                id="change-family"
+              >
+                <img
+                  height="32px"
+                  src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                  width="32px"
+                />
+                Smartphones
+              </a>
+            </li>,
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link {index==0?\\"active\\":\\"\\"}"
+                data-toggle="pill"
+                href="#catalog/TAR1"
+                id="change-family"
+              >
+                <img
+                  height="32px"
+                  src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                  width="32px"
+                />
+                Tarjeta
+              </a>
+            </li>,
+          ],
+          "className": "nav-families nav nav-pills mb-3",
+          "id": "pills-tab",
+          "role": "tablist",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                className="nav-link {index==0?\\"active\\":\\"\\"}"
+                data-toggle="pill"
+                href="#catalog/1"
+                id="change-family"
+              >
+                <img
+                  height="32px"
+                  src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                  width="32px"
+                />
+                Smartphones
+              </a>,
+              "className": "nav-item",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <img
+                    height="32px"
+                    src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                    width="32px"
+                  />,
+                  "Smartphones",
+                ],
+                "className": "nav-link {index==0?\\"active\\":\\"\\"}",
+                "data-toggle": "pill",
+                "href": "#catalog/1",
+                "id": "change-family",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "height": "32px",
+                    "src": "https://backend.wifibytes.com/media/familia/icon-smartphone.png",
+                    "width": "32px",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                "Smartphones",
+              ],
+              "type": "a",
+            },
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "TAR1",
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                className="nav-link {index==0?\\"active\\":\\"\\"}"
+                data-toggle="pill"
+                href="#catalog/TAR1"
+                id="change-family"
+              >
+                <img
+                  height="32px"
+                  src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                  width="32px"
+                />
+                Tarjeta
+              </a>,
+              "className": "nav-item",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <img
+                    height="32px"
+                    src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                    width="32px"
+                  />,
+                  "Tarjeta",
+                ],
+                "className": "nav-link {index==0?\\"active\\":\\"\\"}",
+                "data-toggle": "pill",
+                "href": "#catalog/TAR1",
+                "id": "change-family",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "height": "32px",
+                    "src": "https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg",
+                    "width": "32px",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                "Tarjeta",
+              ],
+              "type": "a",
+            },
+            "type": "li",
+          },
+        ],
+        "type": "ul",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="families pt-4 pb-4 pr-0 pl-0 m-0 text-white"
+            style={
+              Object {
+                "background": "#C7BB15",
+              }
+            }
+          >
+            <img
+              className="float-left"
+              src="https://backend.wifibytes.com/media/familia/a4.5_03.png"
+            />
+            <h3>
+              Lo último en
+            </h3>
+            <h1
+              className="display-1"
+            >
+              Smartphones
+            </h1>
+            <br />
+            <br />
+            <h3
+              className="families-text"
+            >
+              Los mejores terminales del mercado desde
+            </h3>
+            <h1
+              className="display-3"
+            >
+              175
+               € IVA Inc.
+            </h1>
+            <h3>
+              No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.
+            </h3>
+          </div>,
+          <div
+            className="grid row"
+          >
+            <div
+              className="col"
+            >
+              <h1
+                className="text-center"
+              />
+              <h2
+                className="text-center"
+              />
+            </div>
+          </div>,
+          <ul
+            className="nav-families nav nav-pills mb-3"
+            id="pills-tab"
+            role="tablist"
+          >
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link {index==0?\\"active\\":\\"\\"}"
+                data-toggle="pill"
+                href="#catalog/1"
+                id="change-family"
+              >
+                <img
+                  height="32px"
+                  src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                  width="32px"
+                />
+                Smartphones
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link {index==0?\\"active\\":\\"\\"}"
+                data-toggle="pill"
+                href="#catalog/TAR1"
+                id="change-family"
+              >
+                <img
+                  height="32px"
+                  src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                  width="32px"
+                />
+                Tarjeta
+              </a>
+            </li>
+          </ul>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <img
+                className="float-left"
+                src="https://backend.wifibytes.com/media/familia/a4.5_03.png"
+              />,
+              <h3>
+                Lo último en
+              </h3>,
+              <h1
+                className="display-1"
+              >
+                Smartphones
+              </h1>,
+              <br />,
+              <br />,
+              <h3
+                className="families-text"
+              >
+                Los mejores terminales del mercado desde
+              </h3>,
+              <h1
+                className="display-3"
+              >
+                175
+                 € IVA Inc.
+              </h1>,
+              <h3>
+                No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.
+              </h3>,
+            ],
+            "className": "families pt-4 pb-4 pr-0 pl-0 m-0 text-white",
+            "style": Object {
+              "background": "#C7BB15",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "float-left",
+                "src": "https://backend.wifibytes.com/media/familia/a4.5_03.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Lo último en",
+              },
+              "ref": null,
+              "rendered": "Lo último en",
+              "type": "h3",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Smartphones",
+                "className": "display-1",
+              },
+              "ref": null,
+              "rendered": "Smartphones",
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": "br",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": "br",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Los mejores terminales del mercado desde",
+                "className": "families-text",
+              },
+              "ref": null,
+              "rendered": "Los mejores terminales del mercado desde",
+              "type": "h3",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  175,
+                  " € IVA Inc.",
+                ],
+                "className": "display-3",
+              },
+              "ref": null,
+              "rendered": Array [
+                175,
+                " € IVA Inc.",
+              ],
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.",
+              },
+              "ref": null,
+              "rendered": "No olvides que todos nuestros terminales son libres y que no tienes permanencia al contratar nuestras tarifas.",
+              "type": "h3",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col"
+            >
+              <h1
+                className="text-center"
+              />
+              <h2
+                className="text-center"
+              />
+            </div>,
+            "className": "grid row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h1
+                  className="text-center"
+                />,
+                <h2
+                  className="text-center"
+                />,
+              ],
+              "className": "col",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                  "className": "text-center",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "h1",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                  "className": "text-center",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "h2",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link {index==0?\\"active\\":\\"\\"}"
+                  data-toggle="pill"
+                  href="#catalog/1"
+                  id="change-family"
+                >
+                  <img
+                    height="32px"
+                    src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                    width="32px"
+                  />
+                  Smartphones
+                </a>
+              </li>,
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link {index==0?\\"active\\":\\"\\"}"
+                  data-toggle="pill"
+                  href="#catalog/TAR1"
+                  id="change-family"
+                >
+                  <img
+                    height="32px"
+                    src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                    width="32px"
+                  />
+                  Tarjeta
+                </a>
+              </li>,
+            ],
+            "className": "nav-families nav nav-pills mb-3",
+            "id": "pills-tab",
+            "role": "tablist",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="nav-link {index==0?\\"active\\":\\"\\"}"
+                  data-toggle="pill"
+                  href="#catalog/1"
+                  id="change-family"
+                >
+                  <img
+                    height="32px"
+                    src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                    width="32px"
+                  />
+                  Smartphones
+                </a>,
+                "className": "nav-item",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <img
+                      height="32px"
+                      src="https://backend.wifibytes.com/media/familia/icon-smartphone.png"
+                      width="32px"
+                    />,
+                    "Smartphones",
+                  ],
+                  "className": "nav-link {index==0?\\"active\\":\\"\\"}",
+                  "data-toggle": "pill",
+                  "href": "#catalog/1",
+                  "id": "change-family",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "height": "32px",
+                      "src": "https://backend.wifibytes.com/media/familia/icon-smartphone.png",
+                      "width": "32px",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "Smartphones",
+                ],
+                "type": "a",
+              },
+              "type": "li",
+            },
+            Object {
+              "instance": null,
+              "key": "TAR1",
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="nav-link {index==0?\\"active\\":\\"\\"}"
+                  data-toggle="pill"
+                  href="#catalog/TAR1"
+                  id="change-family"
+                >
+                  <img
+                    height="32px"
+                    src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                    width="32px"
+                  />
+                  Tarjeta
+                </a>,
+                "className": "nav-item",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <img
+                      height="32px"
+                      src="https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg"
+                      width="32px"
+                    />,
+                    "Tarjeta",
+                  ],
+                  "className": "nav-link {index==0?\\"active\\":\\"\\"}",
+                  "data-toggle": "pill",
+                  "href": "#catalog/TAR1",
+                  "id": "change-family",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "height": "32px",
+                      "src": "https://backend.wifibytes.com/media/familia/tajetas_tamanos.jpg",
+                      "width": "32px",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "Tarjeta",
+                ],
+                "type": "a",
+              },
+              "type": "li",
+            },
+          ],
+          "type": "ul",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

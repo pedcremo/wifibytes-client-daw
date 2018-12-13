@@ -1,6 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBoxSubComponent correctly 1`] = `
+<<<<<<< HEAD
 ReactWrapper {
   Symbol(enzyme.__unrendered__): <RateBoxSubComponent
     rates={
@@ -227,6 +228,394 @@ ReactWrapper {
           ],
         },
       ]
+=======
+<div
+  className="card-deck mt-2 mb-5"
+>
+  <div
+    className="card rounded border text-center border-dark text-center animated fadeInRightBig"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png"
+          width="32px"
+        />
+         
+        MOVIL ILIMITADAS + 10GB
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#00A648",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          22.95
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Min. voz ilimitados. Establecimiento incluido
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-mobile-alt"
+          style={
+            Object {
+              "color": "#00A648",
+            }
+          }
+        />
+        <br />
+         
+        Mobile
+         
+        10000
+         
+        min/month
+        <br />
+        2
+         
+        GB/month
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/6"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated rotateInDownLeft"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png"
+          width="32px"
+        />
+         
+        MOVIL ILIMITADAS + 20GB + 200UE
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#00A648",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          25.75
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-mobile-alt"
+          style={
+            Object {
+              "color": "#00A648",
+            }
+          }
+        />
+        <br />
+         
+        Mobile
+         
+        200
+         
+        min/month
+        <br />
+        1.5
+         
+        GB/month
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/9"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated fadeInLeftBig"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png"
+          width="32px"
+        />
+         
+        MOVIL ILIMITADAS + 10GB +100 UE
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#00A648",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          17.75
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-mobile-alt"
+          style={
+            Object {
+              "color": "#00A648",
+            }
+          }
+        />
+        <br />
+         
+        Mobile
+         
+        100
+         
+        min/month
+        <br />
+        1.3
+         
+        GB/month
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/5"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated rotateInUpRight"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png"
+          width="32px"
+        />
+         
+        WIFI DISEMINADO
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+          Object {
+            "backgroundColor": "#e09f31",
+          }
+        }
+      >
+        <span
+          className="display-4"
+        >
+          19
+           
+          €/month
+           
+        </span>
+        <br />
+        VAT included
+      </h5>
+      <h5
+        className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"
+      >
+        <br />
+        Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent
+      </h5>
+      <p
+        className="card-text p-2 border-bottom border-secondary"
+      >
+        <i
+          className="fas fa-2x fa-wifi"
+          style={
+            Object {
+              "color": "#e09f31",
+            }
+          }
+        />
+        <br />
+          
+        Wireless
+         
+        9
+         
+        MB/Upload
+        <br />
+         
+        3
+         
+        MB/Download
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/4"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated headShake"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+>>>>>>> f16ab47030f7da4c3275c99dd72661bec77c6d04
     }
   />,
   Symbol(enzyme.__renderer__): Object {
