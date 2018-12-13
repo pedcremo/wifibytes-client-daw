@@ -5,7 +5,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
   className="card-deck mt-2 mb-5"
 >
   <div
-    className="card rounded border text-center border-dark text-center animated fadeInRightBig"
+    className="card rounded border text-center border-dark text-center animated zoomInDown"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -99,7 +99,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated rotateInDownLeft"
+    className="card rounded border text-center border-dark text-center animated jello"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -193,7 +193,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated fadeInLeftBig"
+    className="card rounded border text-center border-dark text-center animated swing"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -287,7 +287,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated rotateInUpRight"
+    className="card rounded border text-center border-dark text-center animated fadeInRightBig"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -382,7 +382,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated headShake"
+    className="card rounded border text-center border-dark text-center animated fadeInLeftBig"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -509,7 +509,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated zoomInLeft"
+    className="card rounded border text-center border-dark text-center animated fadeInLeft"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
