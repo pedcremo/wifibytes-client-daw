@@ -3,7 +3,7 @@ Based on
 http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url
 Singleton Router
 */
-
+/*
 
 var Router = {
     routes: [],
@@ -110,4 +110,24 @@ Router.config({ mode: ""});
 // returning the user to the initial state
 Router.navigate();
 
-export {Router};
+export {Router};*/
+
+//Dependencies
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+//components
+import Home from "./components/home";
+import Legal from "./components/legal";
+//import Page404 from './Components/Page404'
+
+
+
+const AppRoutes = () =>
+   (
+       <Switch>
+            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/legal" render={() => <Legal />} />
+       </Switch>);
+
+
+export default AppRoutes;
