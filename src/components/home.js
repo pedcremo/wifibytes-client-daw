@@ -21,7 +21,6 @@ class Home extends React.Component {
     componentDidMount(){
         let that=this;
         Promise.all([ Utils.get("/tarifa/?destacado=true"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
-            console.log(results);
             that.setState({
                 homeJSON: results[1][0],
                 ratesJSON: results[0],
@@ -31,7 +30,6 @@ class Home extends React.Component {
     }
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
-        console.log(this.state);
         const isLoading = this.state.isLoading;  
         return (
             <div>
