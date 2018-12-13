@@ -65,7 +65,7 @@ Router
       ReactDOM.render(<Navbar />, document.querySelector("nav"));
       ReactDOM.render(<Home />, document.getElementById("main"));
       try {ReactDOM.render(<Footer />,document.querySelector('.page-footer'))}catch(e){console.log(e);}
-      try{ReactDOM.render(<VegasCarousel />, document.querySelector(".home-banner"));}catch(e){console.log(e);}
+      //try{ReactDOM.render(<VegasCarousel />, document.querySelector(".home-banner"));}catch(e){console.log(e);}
 
     })
     .catch(function(error) {

@@ -102,8 +102,9 @@ class VegasCarousel extends React.Component {
 
        });
       const isLoading = this.state.isLoading;
+
       return(
-          <div className="row home-banner text-center text-white p-4">
+          <div className="row home-banner text-center text-white p-4"  styles="background-color: rgba(0,0,0,0.6)">
             <div key="previous" className="col-sm-1" onClick={this.before}>
               <i className="fas fa-3x fa-angle-left"></i>
             </div>
