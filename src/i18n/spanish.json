@@ -49,5 +49,13 @@
     "login-acces-dni": "DNI Cliente",
     "login-acces-dni-form": "Introduzca su dni aqui",
     "login-acces-password": "Contraseña",
-    "login-acces-password-form": "Introduzca aqui su contraseña"
+    "login-acces-password-form": "Introduzca aqui su contraseña",
+    
+    "register-name":"Nombre",
+    "register-surname":"Apellidos",
+    "register-email":"Correu electronic",
+    "register-passs":"Contraseña",
+    "register-repeatPassw":"Repetix contraseña",
+    "register-legal":"He leido i acepto la política de privacidad",
+    "register-newslater":"Marco esta casilla para a NO recibir nuevas ofertas"
 }
