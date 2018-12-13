@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {Utils} from "../utils";
+import {Utils} from "../../utils";
 
 /**
  * @class

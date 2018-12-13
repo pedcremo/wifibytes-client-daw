@@ -43,5 +43,11 @@
     "catalog-procesador": "UCP",
     "catalog-ram": "RAM",
     "catalog-marca": "Marca",
-    "catalog-camara": "Camara"
+    "catalog-camara": "Camara",
+
+    "login-title": "Acceso Cliente",
+    "login-acces-dni": "DNI Cliente",
+    "login-acces-dni-form": "Introduzca su dni aqui",
+    "login-acces-password": "Contraseña",
+    "login-acces-password-form": "Introduzca aqui su contraseña"
 }

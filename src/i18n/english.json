@@ -41,7 +41,11 @@
     "catalog-procesador": "CPU",
     "catalog-ram": "RAM",
     "catalog-marca": "Brand",
-    "catalog-camara": "Camera"
+    "catalog-camara": "Camera",
 
-    
+    "login-title": "Access Client",
+    "login-acces-dni": "DNI Client",
+    "login-acces-dni-form": "Enter your ID here",
+    "login-acces-password": "Password",
+    "login-acces-password-form": "Enter your password here"
 }

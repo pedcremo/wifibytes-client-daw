@@ -47,9 +47,6 @@ Router
 .add(/register/, function() {
   ReactDOM.render(<Register/>, document.getElementById("main"));
 })
-.add(/forgotpassword/, function() {
-  ReactDOM.render(<ForgotPassword/>, document.getElementById("main"));
-})
 .add(/company/, function() {
     Utils.get("/datos_empresa").then(function(response) {         
       new Company(response,"#main"); 

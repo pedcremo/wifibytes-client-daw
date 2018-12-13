@@ -47,3 +47,22 @@ nav {
     width: 100%;
     display: flex;
 }
+.loginForm{
+    margin: auto;
+    text-align: center;
+    width: 215px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    height: 600px;
+}
+.login-acces{
+    margin-top: 50px;
+    text-align: left;
+}
+.loginInput{
+    width: 250px;
+}
+.login{
+    display: block;
+    background-image: url("image/fondo-login.jpg");
+}
