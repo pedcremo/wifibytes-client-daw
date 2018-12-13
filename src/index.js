@@ -10,6 +10,9 @@ import Company from "./components/company";
 import Catalog from "./components/catalog/catalog";
 import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
+import LogIn from "./components/login/login";
+import Register from "./components/login/register";
+import ForgotPassword from "./components/login/forgotPasword";
 import {Utils} from "./utils";
 import React from 'react'; 
 import ReactDOM from 'react-dom';
@@ -38,6 +41,15 @@ Router
     console.log("rate details")
     ReactDOM.render(<RateDetail idRate={arguments[0]}/>, document.getElementById("main"));
   })
+.add(/singin/, function() {
+    ReactDOM.render(<LogIn/>, document.getElementById("main"));
+})
+.add(/register/, function() {
+  ReactDOM.render(<Register/>, document.getElementById("main"));
+})
+.add(/forgotpassword/, function() {
+  ReactDOM.render(<ForgotPassword/>, document.getElementById("main"));
+})
 .add(/company/, function() {
     Utils.get("/datos_empresa").then(function(response) {         
       new Company(response,"#main"); 
