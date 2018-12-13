@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {Utils} from "../utils";
+import {Utils} from "../../utils";
 
 /**
  * @class
@@ -21,9 +21,36 @@ class Register extends React.Component  {
     /** render  */
     render() {  
 		return (
-			<div>
+			<section>
+                <form>
+                    {/* NOM */}
+                    <input placeholder=""></input>
 
-			</div>
+                    {/* COGNOMS */}
+                    <input placeholder=""></input>
+
+
+                    {/* CORREU */}
+                    <input placeholder=""></input>
+
+
+                    {/* PASSW */}
+                    <input placeholder=""></input>
+
+
+                    {/* PASSW */}
+                    <input placeholder=""></input>
+
+                    
+                    {/* CHECK POLITICA PRIV */}
+                    <input></input>
+
+
+                    {/* CHECK NO REBRE OFERTES */}
+                    <input></input>
+
+                </form>
+			</section>
 		);
     }
 }
