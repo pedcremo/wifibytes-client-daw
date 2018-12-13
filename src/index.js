@@ -35,17 +35,8 @@ Router
     });
   })
 .add(/rate\/(.*)/, function() {
-<<<<<<< HEAD
-
-    Promise.all([ Utils.get("/tarifa/"+arguments[0]),  Utils.get("/tarifa_descriptor")]).then(function(results) {
-      new RateDetail(results,"#main");
-    }).catch(function(error) {
-      console.log("Failed!", error);
-    });
-=======
     console.log("rate details")
     ReactDOM.render(<RateDetail idRate={arguments[0]}/>, document.getElementById("main"));
->>>>>>> b5eb51c4c3426aaed19189280efd2b473c0ff337
   })
 .add(/company/, function() {
     Utils.get("/datos_empresa").then(function(response) {
