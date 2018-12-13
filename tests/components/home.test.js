@@ -1,57 +1,29 @@
 import Home from "../../src/components/home";
-import tarifaJSON from "../json_endpoints/tarifa.json";
+import React from 'react';
+import {Utils} from '../../src/utils';
 import homeJSON from "../json_endpoints/home.json";
+import tarifaJSON from "../json_endpoints/tarifa.json";
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+Enzyme.configure({ adapter: new Adapter() });
 
+jest.mock('../../src/utils');
+const resp1 = tarifaJSON;
+const resp2 = homeJSON;
+Utils.get.mockResolvedValueOnce(resp1);
+Utils.get.mockResolvedValueOnce(resp2);
+Utils.get.mockResolvedValue(resp1);
+const home = Enzyme.shallow(<Home />);
 
-const $ = require("jquery");
+describe('<home />', () => {
 
-beforeEach(()=> {
-    // Set up our document body
-  document.body.innerHTML =
-  `<body>
-        <nav class="navbar navbar-expand-lg bg-white navbar-light border-bottom border-dark">
-          <!-- Inject here template navbar-->
-        </nav>
-        
-        <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div id="main" class="container-fluid pb-25 mb-25">          
-            
-        </div>        
-        
-        <!-- Footer -->
-        <footer class="page-footer font-small bg-light pt-4 mt-5">
-        <!-- Inject here template footer-->
-        </footer>
-     </body>   
-        `;            
-});
-
-it("We can check if Home component called the class constructor", () => {
-  const homeIns=new Home([tarifaJSON,homeJSON],"#main"); 
-  expect(homeIns.constructor.name).toBe("Home");
-});
-
-it("Home render must be called and it works properly", () => {
-  new Home([tarifaJSON,homeJSON],"#main"); 
-  expect($("#main").children.length).toBeGreaterThan(1);    
-});
-
-it("Component must fail due to target html tag to render in doesnt exist", () => { 
-  expect(function(){new Home([tarifaJSON,homeJSON],"#mmain");}).toThrowError(/Error/i);    
-});
-
-it("Component must fail due to JSON input doesnt contains expected information", () => { 
-  expect(function(){new Home(undefined,"#main");}).toThrowError(/undefined/);    
-});  
-
-/*describe("2 PTS -> PASS Color rates boxes and internal font awesome icons according to color in backend rate information",()=>{
-  test("Step1 ->  By defaut Filter by lang property", () => { 
-    const homeIns=new Home([tarifaJSON,homeJSON],"#main")
-    expect($('.card-title').length).toBe(3);
-    $( ".card-title" ).each(function( index ) {
-      console.log( index + "->"+ $(this).css("backgroundColor") );
-      expect($(this).css("backgroundColor")).toBe("EEE");
-    });
+  it("We can check if Home component called the class constructor", () => { 
+    expect(home).toMatchSnapshot();
+  });
+  it("We can check that data has been printed correctly", () => { 
+    expect(home.find('#title').exists()).toBe(true);
+    expect(home.find('#title').getElement().props.children).toBe("Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera ");
+    expect(home.find('#left_box').getElement().props.dangerouslySetInnerHTML.__html).toMatch(/<p>Vols donar-te de baixa/);
   });
 
-});*/
+});

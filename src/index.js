@@ -7,7 +7,7 @@ import Cookies from "./components/cookies";
 import Legal from "./components/legal";
 import Rates from "./components/rates";
 import Company from "./components/company";
-import Catalog from "./components/catalog";
+import Catalog from "./components/catalog/catalog";
 import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
 import {Utils} from "./utils";
@@ -54,11 +54,12 @@ Router
     });   
 })
 .add(/catalog/, function() {
-    Promise.all([ Utils.get("/familia"),  Utils.get("/filtros"), Utils.get("/articulo")]).then(function(results) {
+   /* Promise.all([ Utils.get("/familia"),  Utils.get("/filtros"), Utils.get("/articulo")]).then(function(results) {
         new Catalog(results,"#main"); 
     }).catch(function(error) {
         console.log("Failed!", error);
-    });   
+    }); */  
+    ReactDOM.render(<Catalog />, document.getElementById("main")); 
 })
 .add(/products\/(.*)\/edit\/(.*)/, function() {
     console.log('products', arguments);
@@ -69,7 +70,7 @@ Router
      
       // three promises resolved 
       try {new Navbar(results[1],"nav");}catch(e){console.log(e);}
-      try {new Home([results[0],results[2]],"#main"); }catch(e){console.log(e);}
+      ReactDOM.render(<Home />, document.getElementById("main"));
       try {ReactDOM.render(<Footer />,document.querySelector('.page-footer'))}catch(e){console.log(e);}
       try {vc = new VegasCarousel(results[1],"body");}catch(e){console.log(e);}
     })

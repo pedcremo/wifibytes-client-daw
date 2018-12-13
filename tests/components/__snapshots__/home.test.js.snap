@@ -1,0 +1,3639 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<home /> We can check if Home component called the class constructor 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div>
+        <div
+          className="p-5"
+        >
+          <h1
+            className="glow text-center pb-5"
+            id="title"
+          >
+            Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera 
+          </h1>
+          <RateBoxSubComponent
+            rates={
+              Array [
+                Object {
+                  "activo": true,
+                  "codtarifa": 6,
+                  "color": Object {
+                    "hexadecimal": "#00A648",
+                    "id": 4,
+                    "titulo": "verde",
+                  },
+                  "destacado": false,
+                  "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                  "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                  "precio": 22.95,
+                  "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                  "slug": "movil-ilimitadas-10gb",
+                  "subtarifas": Array [
+                    Object {
+                      "subtarifa_cent_minuto": 0,
+                      "subtarifa_datos_internet": 2,
+                      "subtarifa_est_llamada": null,
+                      "subtarifa_id": 12,
+                      "subtarifa_minutos_gratis": 10000,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": null,
+                      "subtarifa_omv": null,
+                      "subtarifa_precio_sms": 0.1,
+                      "subtarifa_siglas_omv": "",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 6,
+                        "color": 4,
+                        "created_at": 1497604571,
+                        "destacado": false,
+                        "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                        "precio": 22.95,
+                        "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                        "pretitulo_va": "Il·limitada",
+                        "slug": "movil-ilimitadas-10gb",
+                        "updated_at": 1543003412,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": null,
+                      "subtarifa_velocidad_conexion_subida": null,
+                      "tipo_tarifa": 1,
+                    },
+                  ],
+                },
+                Object {
+                  "activo": true,
+                  "codtarifa": 9,
+                  "color": Object {
+                    "hexadecimal": "#00A648",
+                    "id": 4,
+                    "titulo": "verde",
+                  },
+                  "destacado": false,
+                  "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                  "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                  "precio": 25.75,
+                  "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                  "slug": "movil-ilimitadas-20gb-200ue",
+                  "subtarifas": Array [
+                    Object {
+                      "subtarifa_cent_minuto": null,
+                      "subtarifa_datos_internet": 1.5,
+                      "subtarifa_est_llamada": null,
+                      "subtarifa_id": 20,
+                      "subtarifa_minutos_gratis": 200,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": null,
+                      "subtarifa_omv": null,
+                      "subtarifa_precio_sms": null,
+                      "subtarifa_siglas_omv": "",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 9,
+                        "color": 4,
+                        "created_at": 1497606464,
+                        "destacado": false,
+                        "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                        "precio": 25.75,
+                        "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                        "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                        "slug": "movil-ilimitadas-20gb-200ue",
+                        "updated_at": 1543003578,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": null,
+                      "subtarifa_velocidad_conexion_subida": null,
+                      "tipo_tarifa": 1,
+                    },
+                  ],
+                },
+                Object {
+                  "activo": true,
+                  "codtarifa": 5,
+                  "color": Object {
+                    "hexadecimal": "#00A648",
+                    "id": 4,
+                    "titulo": "verde",
+                  },
+                  "destacado": false,
+                  "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                  "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                  "precio": 17.75,
+                  "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                  "slug": "movil-ilimitadas-10gb-100-ue",
+                  "subtarifas": Array [
+                    Object {
+                      "subtarifa_cent_minuto": 0,
+                      "subtarifa_datos_internet": 1.3,
+                      "subtarifa_est_llamada": 0,
+                      "subtarifa_id": 11,
+                      "subtarifa_minutos_gratis": 100,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": null,
+                      "subtarifa_omv": null,
+                      "subtarifa_precio_sms": 0.1,
+                      "subtarifa_siglas_omv": "",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 5,
+                        "color": 4,
+                        "created_at": 1497601906,
+                        "destacado": false,
+                        "logo": "media/Logo/logo-icon-wifibytes.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                        "precio": 17.75,
+                        "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                        "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                        "slug": "movil-ilimitadas-10gb-100-ue",
+                        "updated_at": 1543003592,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": null,
+                      "subtarifa_velocidad_conexion_subida": null,
+                      "tipo_tarifa": 1,
+                    },
+                  ],
+                },
+                Object {
+                  "activo": true,
+                  "codtarifa": 4,
+                  "color": Object {
+                    "hexadecimal": "#e09f31",
+                    "id": 3,
+                    "titulo": "naranja",
+                  },
+                  "destacado": true,
+                  "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                  "nombretarifa": "Wifi diseminado",
+                  "precio": 19,
+                  "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                  "slug": "wifi-diseminado",
+                  "subtarifas": Array [
+                    Object {
+                      "subtarifa_cent_minuto": 1,
+                      "subtarifa_datos_internet": 1,
+                      "subtarifa_est_llamada": 1,
+                      "subtarifa_id": 5,
+                      "subtarifa_minutos_gratis": 1,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": 1,
+                      "subtarifa_omv": Object {
+                        "activo": true,
+                        "codigo": 1,
+                        "descripcion": "Orange",
+                        "nombre": "Orange",
+                      },
+                      "subtarifa_precio_sms": 1,
+                      "subtarifa_siglas_omv": "TLIBRE",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 4,
+                        "color": 3,
+                        "created_at": 0,
+                        "destacado": true,
+                        "logo": "media/Logo/chick_8qOw42B.png",
+                        "nombretarifa": "Wifi diseminado",
+                        "precio": 19,
+                        "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                        "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                        "slug": "wifi-diseminado",
+                        "updated_at": 1543004138,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": 3,
+                      "subtarifa_velocidad_conexion_subida": 9,
+                      "tipo_tarifa": 4,
+                    },
+                  ],
+                },
+                Object {
+                  "activo": true,
+                  "codtarifa": 1,
+                  "color": Object {
+                    "hexadecimal": "#FB3563",
+                    "id": 7,
+                    "titulo": "fucsia",
+                  },
+                  "destacado": true,
+                  "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                  "nombretarifa": "Fibra óptica",
+                  "precio": 34.95,
+                  "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                  "slug": "fibra-optica",
+                  "subtarifas": Array [
+                    Object {
+                      "subtarifa_cent_minuto": 1,
+                      "subtarifa_datos_internet": 1,
+                      "subtarifa_est_llamada": 1,
+                      "subtarifa_id": 10,
+                      "subtarifa_minutos_gratis": 1,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": 1,
+                      "subtarifa_omv": Object {
+                        "activo": true,
+                        "codigo": 1,
+                        "descripcion": "Orange",
+                        "nombre": "Orange",
+                      },
+                      "subtarifa_precio_sms": 1,
+                      "subtarifa_siglas_omv": "TLIBRE",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 1,
+                        "color": 7,
+                        "created_at": 0,
+                        "destacado": true,
+                        "logo": "media/Logo/icon-egg_FRpw391.png",
+                        "nombretarifa": "Fibra óptica",
+                        "precio": 34.95,
+                        "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                        "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                        "slug": "fibra-optica",
+                        "updated_at": 1543004465,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": 1,
+                      "subtarifa_velocidad_conexion_subida": 1,
+                      "tipo_tarifa": 2,
+                    },
+                    Object {
+                      "subtarifa_cent_minuto": 1,
+                      "subtarifa_datos_internet": 1,
+                      "subtarifa_est_llamada": 1,
+                      "subtarifa_id": 2,
+                      "subtarifa_minutos_gratis": 1,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": 1,
+                      "subtarifa_omv": Object {
+                        "activo": true,
+                        "codigo": 1,
+                        "descripcion": "Orange",
+                        "nombre": "Orange",
+                      },
+                      "subtarifa_precio_sms": 1,
+                      "subtarifa_siglas_omv": "TLIBRE",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 1,
+                        "color": 7,
+                        "created_at": 0,
+                        "destacado": true,
+                        "logo": "media/Logo/icon-egg_FRpw391.png",
+                        "nombretarifa": "Fibra óptica",
+                        "precio": 34.95,
+                        "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                        "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                        "slug": "fibra-optica",
+                        "updated_at": 1543004465,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": 200,
+                      "subtarifa_velocidad_conexion_subida": 200,
+                      "tipo_tarifa": 3,
+                    },
+                    Object {
+                      "subtarifa_cent_minuto": 1,
+                      "subtarifa_datos_internet": 1,
+                      "subtarifa_est_llamada": 1,
+                      "subtarifa_id": 1,
+                      "subtarifa_minutos_gratis": 1,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": 90,
+                      "subtarifa_omv": Object {
+                        "activo": true,
+                        "codigo": 1,
+                        "descripcion": "Orange",
+                        "nombre": "Orange",
+                      },
+                      "subtarifa_precio_sms": 1,
+                      "subtarifa_siglas_omv": "TLIBRE",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 1,
+                        "color": 7,
+                        "created_at": 0,
+                        "destacado": true,
+                        "logo": "media/Logo/icon-egg_FRpw391.png",
+                        "nombretarifa": "Fibra óptica",
+                        "precio": 34.95,
+                        "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                        "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                        "slug": "fibra-optica",
+                        "updated_at": 1543004465,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": 1,
+                      "subtarifa_velocidad_conexion_subida": 1,
+                      "tipo_tarifa": 5,
+                    },
+                  ],
+                },
+                Object {
+                  "activo": true,
+                  "codtarifa": 3,
+                  "color": Object {
+                    "hexadecimal": "#00A648",
+                    "id": 13,
+                    "titulo": "verde-wifi",
+                  },
+                  "destacado": true,
+                  "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                  "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                  "precio": 11.95,
+                  "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                  "slug": "movil-ilimitadas-3gb",
+                  "subtarifas": Array [
+                    Object {
+                      "subtarifa_cent_minuto": 1,
+                      "subtarifa_datos_internet": 3,
+                      "subtarifa_est_llamada": 1,
+                      "subtarifa_id": 4,
+                      "subtarifa_minutos_gratis": 1000,
+                      "subtarifa_minutos_ilimitados": false,
+                      "subtarifa_num_canales": 1,
+                      "subtarifa_omv": Object {
+                        "activo": true,
+                        "codigo": 1,
+                        "descripcion": "Orange",
+                        "nombre": "Orange",
+                      },
+                      "subtarifa_precio_sms": 1,
+                      "subtarifa_siglas_omv": "MOUNLIMITED",
+                      "subtarifa_tarifa": Object {
+                        "activo": true,
+                        "codtarifa": 3,
+                        "color": 13,
+                        "created_at": 0,
+                        "destacado": true,
+                        "logo": "media/Logo/icon-chicken.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                        "precio": 11.95,
+                        "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                        "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                        "slug": "movil-ilimitadas-3gb",
+                        "updated_at": 1543002761,
+                      },
+                      "subtarifa_velocidad_conexion_bajada": 9,
+                      "subtarifa_velocidad_conexion_subida": 5,
+                      "tipo_tarifa": 1,
+                    },
+                  ],
+                },
+              ]
+            }
+          />
+          <div
+            className="row home-banner text-center text-white p-4"
+            styles="background-color: rgba(0,0,0,0.6)"
+          />
+        </div>
+        <div
+          className="row p-5 bg-white"
+        >
+          <div
+            className="col-md-6 mt-md-0 mt-3"
+          >
+            <h1
+              className="text-uppercase"
+            >
+              Per què Wifibytes?
+            </h1>
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                }
+              }
+              id="left_box"
+            />
+          </div>
+          <div
+            className="col-md-6 mt-md-0 mt-3"
+          >
+            <h1
+              className="text-uppercase"
+            >
+              Perquè Wifibytes?
+            </h1>
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="p-5"
+          >
+            <h1
+              className="glow text-center pb-5"
+              id="title"
+            >
+              Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera 
+            </h1>
+            <RateBoxSubComponent
+              rates={
+                Array [
+                  Object {
+                    "activo": true,
+                    "codtarifa": 6,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                    "precio": 22.95,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                    "slug": "movil-ilimitadas-10gb",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 0,
+                        "subtarifa_datos_internet": 2,
+                        "subtarifa_est_llamada": null,
+                        "subtarifa_id": 12,
+                        "subtarifa_minutos_gratis": 10000,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": 0.1,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 6,
+                          "color": 4,
+                          "created_at": 1497604571,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                          "precio": 22.95,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                          "pretitulo_va": "Il·limitada",
+                          "slug": "movil-ilimitadas-10gb",
+                          "updated_at": 1543003412,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 9,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                    "precio": 25.75,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                    "slug": "movil-ilimitadas-20gb-200ue",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": null,
+                        "subtarifa_datos_internet": 1.5,
+                        "subtarifa_est_llamada": null,
+                        "subtarifa_id": 20,
+                        "subtarifa_minutos_gratis": 200,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": null,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 9,
+                          "color": 4,
+                          "created_at": 1497606464,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                          "precio": 25.75,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                          "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                          "slug": "movil-ilimitadas-20gb-200ue",
+                          "updated_at": 1543003578,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 5,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                    "precio": 17.75,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                    "slug": "movil-ilimitadas-10gb-100-ue",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 0,
+                        "subtarifa_datos_internet": 1.3,
+                        "subtarifa_est_llamada": 0,
+                        "subtarifa_id": 11,
+                        "subtarifa_minutos_gratis": 100,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": 0.1,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 5,
+                          "color": 4,
+                          "created_at": 1497601906,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                          "precio": 17.75,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                          "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                          "slug": "movil-ilimitadas-10gb-100-ue",
+                          "updated_at": 1543003592,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 4,
+                    "color": Object {
+                      "hexadecimal": "#e09f31",
+                      "id": 3,
+                      "titulo": "naranja",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                    "nombretarifa": "Wifi diseminado",
+                    "precio": 19,
+                    "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                    "slug": "wifi-diseminado",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 5,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 4,
+                          "color": 3,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/chick_8qOw42B.png",
+                          "nombretarifa": "Wifi diseminado",
+                          "precio": 19,
+                          "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                          "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                          "slug": "wifi-diseminado",
+                          "updated_at": 1543004138,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 3,
+                        "subtarifa_velocidad_conexion_subida": 9,
+                        "tipo_tarifa": 4,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 1,
+                    "color": Object {
+                      "hexadecimal": "#FB3563",
+                      "id": 7,
+                      "titulo": "fucsia",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                    "nombretarifa": "Fibra óptica",
+                    "precio": 34.95,
+                    "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                    "slug": "fibra-optica",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 10,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 1,
+                        "subtarifa_velocidad_conexion_subida": 1,
+                        "tipo_tarifa": 2,
+                      },
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 2,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 200,
+                        "subtarifa_velocidad_conexion_subida": 200,
+                        "tipo_tarifa": 3,
+                      },
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 1,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 90,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 1,
+                        "subtarifa_velocidad_conexion_subida": 1,
+                        "tipo_tarifa": 5,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 3,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 13,
+                      "titulo": "verde-wifi",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                    "precio": 11.95,
+                    "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                    "slug": "movil-ilimitadas-3gb",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 3,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 4,
+                        "subtarifa_minutos_gratis": 1000,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "MOUNLIMITED",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 3,
+                          "color": 13,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-chicken.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                          "precio": 11.95,
+                          "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                          "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                          "slug": "movil-ilimitadas-3gb",
+                          "updated_at": 1543002761,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 9,
+                        "subtarifa_velocidad_conexion_subida": 5,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+            <div
+              className="row home-banner text-center text-white p-4"
+              styles="background-color: rgba(0,0,0,0.6)"
+            />
+          </div>,
+          <div
+            className="row p-5 bg-white"
+          >
+            <div
+              className="col-md-6 mt-md-0 mt-3"
+            >
+              <h1
+                className="text-uppercase"
+              >
+                Per què Wifibytes?
+              </h1>
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                  }
+                }
+                id="left_box"
+              />
+            </div>
+            <div
+              className="col-md-6 mt-md-0 mt-3"
+            >
+              <h1
+                className="text-uppercase"
+              >
+                Perquè Wifibytes?
+              </h1>
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                  }
+                }
+              />
+            </div>
+          </div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h1
+                className="glow text-center pb-5"
+                id="title"
+              >
+                Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera 
+              </h1>,
+              <RateBoxSubComponent
+                rates={
+                  Array [
+                    Object {
+                      "activo": true,
+                      "codtarifa": 6,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                      "precio": 22.95,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                      "slug": "movil-ilimitadas-10gb",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 0,
+                          "subtarifa_datos_internet": 2,
+                          "subtarifa_est_llamada": null,
+                          "subtarifa_id": 12,
+                          "subtarifa_minutos_gratis": 10000,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": 0.1,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 6,
+                            "color": 4,
+                            "created_at": 1497604571,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                            "precio": 22.95,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                            "pretitulo_va": "Il·limitada",
+                            "slug": "movil-ilimitadas-10gb",
+                            "updated_at": 1543003412,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 9,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                      "precio": 25.75,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                      "slug": "movil-ilimitadas-20gb-200ue",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": null,
+                          "subtarifa_datos_internet": 1.5,
+                          "subtarifa_est_llamada": null,
+                          "subtarifa_id": 20,
+                          "subtarifa_minutos_gratis": 200,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": null,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 9,
+                            "color": 4,
+                            "created_at": 1497606464,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                            "precio": 25.75,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                            "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                            "slug": "movil-ilimitadas-20gb-200ue",
+                            "updated_at": 1543003578,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 5,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                      "precio": 17.75,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                      "slug": "movil-ilimitadas-10gb-100-ue",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 0,
+                          "subtarifa_datos_internet": 1.3,
+                          "subtarifa_est_llamada": 0,
+                          "subtarifa_id": 11,
+                          "subtarifa_minutos_gratis": 100,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": 0.1,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 5,
+                            "color": 4,
+                            "created_at": 1497601906,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                            "precio": 17.75,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                            "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                            "slug": "movil-ilimitadas-10gb-100-ue",
+                            "updated_at": 1543003592,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 4,
+                      "color": Object {
+                        "hexadecimal": "#e09f31",
+                        "id": 3,
+                        "titulo": "naranja",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                      "nombretarifa": "Wifi diseminado",
+                      "precio": 19,
+                      "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                      "slug": "wifi-diseminado",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 5,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 4,
+                            "color": 3,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/chick_8qOw42B.png",
+                            "nombretarifa": "Wifi diseminado",
+                            "precio": 19,
+                            "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                            "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                            "slug": "wifi-diseminado",
+                            "updated_at": 1543004138,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 3,
+                          "subtarifa_velocidad_conexion_subida": 9,
+                          "tipo_tarifa": 4,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 1,
+                      "color": Object {
+                        "hexadecimal": "#FB3563",
+                        "id": 7,
+                        "titulo": "fucsia",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                      "nombretarifa": "Fibra óptica",
+                      "precio": 34.95,
+                      "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                      "slug": "fibra-optica",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 10,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 1,
+                          "subtarifa_velocidad_conexion_subida": 1,
+                          "tipo_tarifa": 2,
+                        },
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 2,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 200,
+                          "subtarifa_velocidad_conexion_subida": 200,
+                          "tipo_tarifa": 3,
+                        },
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 1,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 90,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 1,
+                          "subtarifa_velocidad_conexion_subida": 1,
+                          "tipo_tarifa": 5,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 3,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 13,
+                        "titulo": "verde-wifi",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                      "precio": 11.95,
+                      "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                      "slug": "movil-ilimitadas-3gb",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 3,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 4,
+                          "subtarifa_minutos_gratis": 1000,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "MOUNLIMITED",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 3,
+                            "color": 13,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-chicken.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                            "precio": 11.95,
+                            "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                            "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                            "slug": "movil-ilimitadas-3gb",
+                            "updated_at": 1543002761,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 9,
+                          "subtarifa_velocidad_conexion_subida": 5,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                  ]
+                }
+              />,
+              <div
+                className="row home-banner text-center text-white p-4"
+                styles="background-color: rgba(0,0,0,0.6)"
+              />,
+            ],
+            "className": "p-5",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera ",
+                "className": "glow text-center pb-5",
+                "id": "title",
+              },
+              "ref": null,
+              "rendered": "Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera ",
+              "type": "h1",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "rates": Array [
+                  Object {
+                    "activo": true,
+                    "codtarifa": 6,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                    "precio": 22.95,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                    "slug": "movil-ilimitadas-10gb",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 0,
+                        "subtarifa_datos_internet": 2,
+                        "subtarifa_est_llamada": null,
+                        "subtarifa_id": 12,
+                        "subtarifa_minutos_gratis": 10000,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": 0.1,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 6,
+                          "color": 4,
+                          "created_at": 1497604571,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                          "precio": 22.95,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                          "pretitulo_va": "Il·limitada",
+                          "slug": "movil-ilimitadas-10gb",
+                          "updated_at": 1543003412,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 9,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                    "precio": 25.75,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                    "slug": "movil-ilimitadas-20gb-200ue",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": null,
+                        "subtarifa_datos_internet": 1.5,
+                        "subtarifa_est_llamada": null,
+                        "subtarifa_id": 20,
+                        "subtarifa_minutos_gratis": 200,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": null,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 9,
+                          "color": 4,
+                          "created_at": 1497606464,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                          "precio": 25.75,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                          "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                          "slug": "movil-ilimitadas-20gb-200ue",
+                          "updated_at": 1543003578,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 5,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                    "precio": 17.75,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                    "slug": "movil-ilimitadas-10gb-100-ue",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 0,
+                        "subtarifa_datos_internet": 1.3,
+                        "subtarifa_est_llamada": 0,
+                        "subtarifa_id": 11,
+                        "subtarifa_minutos_gratis": 100,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": 0.1,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 5,
+                          "color": 4,
+                          "created_at": 1497601906,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                          "precio": 17.75,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                          "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                          "slug": "movil-ilimitadas-10gb-100-ue",
+                          "updated_at": 1543003592,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 4,
+                    "color": Object {
+                      "hexadecimal": "#e09f31",
+                      "id": 3,
+                      "titulo": "naranja",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                    "nombretarifa": "Wifi diseminado",
+                    "precio": 19,
+                    "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                    "slug": "wifi-diseminado",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 5,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 4,
+                          "color": 3,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/chick_8qOw42B.png",
+                          "nombretarifa": "Wifi diseminado",
+                          "precio": 19,
+                          "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                          "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                          "slug": "wifi-diseminado",
+                          "updated_at": 1543004138,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 3,
+                        "subtarifa_velocidad_conexion_subida": 9,
+                        "tipo_tarifa": 4,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 1,
+                    "color": Object {
+                      "hexadecimal": "#FB3563",
+                      "id": 7,
+                      "titulo": "fucsia",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                    "nombretarifa": "Fibra óptica",
+                    "precio": 34.95,
+                    "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                    "slug": "fibra-optica",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 10,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 1,
+                        "subtarifa_velocidad_conexion_subida": 1,
+                        "tipo_tarifa": 2,
+                      },
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 2,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 200,
+                        "subtarifa_velocidad_conexion_subida": 200,
+                        "tipo_tarifa": 3,
+                      },
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 1,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 90,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 1,
+                        "subtarifa_velocidad_conexion_subida": 1,
+                        "tipo_tarifa": 5,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 3,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 13,
+                      "titulo": "verde-wifi",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                    "precio": 11.95,
+                    "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                    "slug": "movil-ilimitadas-3gb",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 3,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 4,
+                        "subtarifa_minutos_gratis": 1000,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "MOUNLIMITED",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 3,
+                          "color": 13,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-chicken.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                          "precio": 11.95,
+                          "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                          "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                          "slug": "movil-ilimitadas-3gb",
+                          "updated_at": 1543002761,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 9,
+                        "subtarifa_velocidad_conexion_subida": 5,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "row home-banner text-center text-white p-4",
+                "styles": "background-color: rgba(0,0,0,0.6)",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="col-md-6 mt-md-0 mt-3"
+              >
+                <h1
+                  className="text-uppercase"
+                >
+                  Per què Wifibytes?
+                </h1>
+                <div
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                    }
+                  }
+                  id="left_box"
+                />
+              </div>,
+              <div
+                className="col-md-6 mt-md-0 mt-3"
+              >
+                <h1
+                  className="text-uppercase"
+                >
+                  Perquè Wifibytes?
+                </h1>
+                <div
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                    }
+                  }
+                />
+              </div>,
+            ],
+            "className": "row p-5 bg-white",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h1
+                    className="text-uppercase"
+                  >
+                    Per què Wifibytes?
+                  </h1>,
+                  <div
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                      }
+                    }
+                    id="left_box"
+                  />,
+                ],
+                "className": "col-md-6 mt-md-0 mt-3",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Per què Wifibytes?",
+                    "className": "text-uppercase",
+                  },
+                  "ref": null,
+                  "rendered": "Per què Wifibytes?",
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "dangerouslySetInnerHTML": Object {
+                      "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                    },
+                    "id": "left_box",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h1
+                    className="text-uppercase"
+                  >
+                    Perquè Wifibytes?
+                  </h1>,
+                  <div
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                      }
+                    }
+                  />,
+                ],
+                "className": "col-md-6 mt-md-0 mt-3",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Perquè Wifibytes?",
+                    "className": "text-uppercase",
+                  },
+                  "ref": null,
+                  "rendered": "Perquè Wifibytes?",
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "dangerouslySetInnerHTML": Object {
+                      "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div>
+          <div
+            className="p-5"
+          >
+            <h1
+              className="glow text-center pb-5"
+              id="title"
+            >
+              Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera 
+            </h1>
+            <RateBoxSubComponent
+              rates={
+                Array [
+                  Object {
+                    "activo": true,
+                    "codtarifa": 6,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                    "precio": 22.95,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                    "slug": "movil-ilimitadas-10gb",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 0,
+                        "subtarifa_datos_internet": 2,
+                        "subtarifa_est_llamada": null,
+                        "subtarifa_id": 12,
+                        "subtarifa_minutos_gratis": 10000,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": 0.1,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 6,
+                          "color": 4,
+                          "created_at": 1497604571,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                          "precio": 22.95,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                          "pretitulo_va": "Il·limitada",
+                          "slug": "movil-ilimitadas-10gb",
+                          "updated_at": 1543003412,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 9,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                    "precio": 25.75,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                    "slug": "movil-ilimitadas-20gb-200ue",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": null,
+                        "subtarifa_datos_internet": 1.5,
+                        "subtarifa_est_llamada": null,
+                        "subtarifa_id": 20,
+                        "subtarifa_minutos_gratis": 200,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": null,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 9,
+                          "color": 4,
+                          "created_at": 1497606464,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                          "precio": 25.75,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                          "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                          "slug": "movil-ilimitadas-20gb-200ue",
+                          "updated_at": 1543003578,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 5,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 4,
+                      "titulo": "verde",
+                    },
+                    "destacado": false,
+                    "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                    "precio": 17.75,
+                    "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                    "slug": "movil-ilimitadas-10gb-100-ue",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 0,
+                        "subtarifa_datos_internet": 1.3,
+                        "subtarifa_est_llamada": 0,
+                        "subtarifa_id": 11,
+                        "subtarifa_minutos_gratis": 100,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": null,
+                        "subtarifa_omv": null,
+                        "subtarifa_precio_sms": 0.1,
+                        "subtarifa_siglas_omv": "",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 5,
+                          "color": 4,
+                          "created_at": 1497601906,
+                          "destacado": false,
+                          "logo": "media/Logo/logo-icon-wifibytes.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                          "precio": 17.75,
+                          "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                          "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                          "slug": "movil-ilimitadas-10gb-100-ue",
+                          "updated_at": 1543003592,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": null,
+                        "subtarifa_velocidad_conexion_subida": null,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 4,
+                    "color": Object {
+                      "hexadecimal": "#e09f31",
+                      "id": 3,
+                      "titulo": "naranja",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                    "nombretarifa": "Wifi diseminado",
+                    "precio": 19,
+                    "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                    "slug": "wifi-diseminado",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 5,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 4,
+                          "color": 3,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/chick_8qOw42B.png",
+                          "nombretarifa": "Wifi diseminado",
+                          "precio": 19,
+                          "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                          "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                          "slug": "wifi-diseminado",
+                          "updated_at": 1543004138,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 3,
+                        "subtarifa_velocidad_conexion_subida": 9,
+                        "tipo_tarifa": 4,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 1,
+                    "color": Object {
+                      "hexadecimal": "#FB3563",
+                      "id": 7,
+                      "titulo": "fucsia",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                    "nombretarifa": "Fibra óptica",
+                    "precio": 34.95,
+                    "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                    "slug": "fibra-optica",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 10,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 1,
+                        "subtarifa_velocidad_conexion_subida": 1,
+                        "tipo_tarifa": 2,
+                      },
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 2,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 200,
+                        "subtarifa_velocidad_conexion_subida": 200,
+                        "tipo_tarifa": 3,
+                      },
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 1,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 1,
+                        "subtarifa_minutos_gratis": 1,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 90,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "TLIBRE",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 1,
+                          "color": 7,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-egg_FRpw391.png",
+                          "nombretarifa": "Fibra óptica",
+                          "precio": 34.95,
+                          "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                          "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                          "slug": "fibra-optica",
+                          "updated_at": 1543004465,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 1,
+                        "subtarifa_velocidad_conexion_subida": 1,
+                        "tipo_tarifa": 5,
+                      },
+                    ],
+                  },
+                  Object {
+                    "activo": true,
+                    "codtarifa": 3,
+                    "color": Object {
+                      "hexadecimal": "#00A648",
+                      "id": 13,
+                      "titulo": "verde-wifi",
+                    },
+                    "destacado": true,
+                    "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                    "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                    "precio": 11.95,
+                    "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                    "slug": "movil-ilimitadas-3gb",
+                    "subtarifas": Array [
+                      Object {
+                        "subtarifa_cent_minuto": 1,
+                        "subtarifa_datos_internet": 3,
+                        "subtarifa_est_llamada": 1,
+                        "subtarifa_id": 4,
+                        "subtarifa_minutos_gratis": 1000,
+                        "subtarifa_minutos_ilimitados": false,
+                        "subtarifa_num_canales": 1,
+                        "subtarifa_omv": Object {
+                          "activo": true,
+                          "codigo": 1,
+                          "descripcion": "Orange",
+                          "nombre": "Orange",
+                        },
+                        "subtarifa_precio_sms": 1,
+                        "subtarifa_siglas_omv": "MOUNLIMITED",
+                        "subtarifa_tarifa": Object {
+                          "activo": true,
+                          "codtarifa": 3,
+                          "color": 13,
+                          "created_at": 0,
+                          "destacado": true,
+                          "logo": "media/Logo/icon-chicken.png",
+                          "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                          "precio": 11.95,
+                          "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                          "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                          "slug": "movil-ilimitadas-3gb",
+                          "updated_at": 1543002761,
+                        },
+                        "subtarifa_velocidad_conexion_bajada": 9,
+                        "subtarifa_velocidad_conexion_subida": 5,
+                        "tipo_tarifa": 1,
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+            <div
+              className="row home-banner text-center text-white p-4"
+              styles="background-color: rgba(0,0,0,0.6)"
+            />
+          </div>
+          <div
+            className="row p-5 bg-white"
+          >
+            <div
+              className="col-md-6 mt-md-0 mt-3"
+            >
+              <h1
+                className="text-uppercase"
+              >
+                Per què Wifibytes?
+              </h1>
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                  }
+                }
+                id="left_box"
+              />
+            </div>
+            <div
+              className="col-md-6 mt-md-0 mt-3"
+            >
+              <h1
+                className="text-uppercase"
+              >
+                Perquè Wifibytes?
+              </h1>
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="p-5"
+            >
+              <h1
+                className="glow text-center pb-5"
+                id="title"
+              >
+                Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera 
+              </h1>
+              <RateBoxSubComponent
+                rates={
+                  Array [
+                    Object {
+                      "activo": true,
+                      "codtarifa": 6,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                      "precio": 22.95,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                      "slug": "movil-ilimitadas-10gb",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 0,
+                          "subtarifa_datos_internet": 2,
+                          "subtarifa_est_llamada": null,
+                          "subtarifa_id": 12,
+                          "subtarifa_minutos_gratis": 10000,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": 0.1,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 6,
+                            "color": 4,
+                            "created_at": 1497604571,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                            "precio": 22.95,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                            "pretitulo_va": "Il·limitada",
+                            "slug": "movil-ilimitadas-10gb",
+                            "updated_at": 1543003412,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 9,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                      "precio": 25.75,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                      "slug": "movil-ilimitadas-20gb-200ue",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": null,
+                          "subtarifa_datos_internet": 1.5,
+                          "subtarifa_est_llamada": null,
+                          "subtarifa_id": 20,
+                          "subtarifa_minutos_gratis": 200,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": null,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 9,
+                            "color": 4,
+                            "created_at": 1497606464,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                            "precio": 25.75,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                            "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                            "slug": "movil-ilimitadas-20gb-200ue",
+                            "updated_at": 1543003578,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 5,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                      "precio": 17.75,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                      "slug": "movil-ilimitadas-10gb-100-ue",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 0,
+                          "subtarifa_datos_internet": 1.3,
+                          "subtarifa_est_llamada": 0,
+                          "subtarifa_id": 11,
+                          "subtarifa_minutos_gratis": 100,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": 0.1,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 5,
+                            "color": 4,
+                            "created_at": 1497601906,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                            "precio": 17.75,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                            "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                            "slug": "movil-ilimitadas-10gb-100-ue",
+                            "updated_at": 1543003592,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 4,
+                      "color": Object {
+                        "hexadecimal": "#e09f31",
+                        "id": 3,
+                        "titulo": "naranja",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                      "nombretarifa": "Wifi diseminado",
+                      "precio": 19,
+                      "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                      "slug": "wifi-diseminado",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 5,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 4,
+                            "color": 3,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/chick_8qOw42B.png",
+                            "nombretarifa": "Wifi diseminado",
+                            "precio": 19,
+                            "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                            "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                            "slug": "wifi-diseminado",
+                            "updated_at": 1543004138,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 3,
+                          "subtarifa_velocidad_conexion_subida": 9,
+                          "tipo_tarifa": 4,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 1,
+                      "color": Object {
+                        "hexadecimal": "#FB3563",
+                        "id": 7,
+                        "titulo": "fucsia",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                      "nombretarifa": "Fibra óptica",
+                      "precio": 34.95,
+                      "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                      "slug": "fibra-optica",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 10,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 1,
+                          "subtarifa_velocidad_conexion_subida": 1,
+                          "tipo_tarifa": 2,
+                        },
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 2,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 200,
+                          "subtarifa_velocidad_conexion_subida": 200,
+                          "tipo_tarifa": 3,
+                        },
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 1,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 90,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 1,
+                          "subtarifa_velocidad_conexion_subida": 1,
+                          "tipo_tarifa": 5,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 3,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 13,
+                        "titulo": "verde-wifi",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                      "precio": 11.95,
+                      "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                      "slug": "movil-ilimitadas-3gb",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 3,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 4,
+                          "subtarifa_minutos_gratis": 1000,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "MOUNLIMITED",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 3,
+                            "color": 13,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-chicken.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                            "precio": 11.95,
+                            "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                            "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                            "slug": "movil-ilimitadas-3gb",
+                            "updated_at": 1543002761,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 9,
+                          "subtarifa_velocidad_conexion_subida": 5,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                  ]
+                }
+              />
+              <div
+                className="row home-banner text-center text-white p-4"
+                styles="background-color: rgba(0,0,0,0.6)"
+              />
+            </div>,
+            <div
+              className="row p-5 bg-white"
+            >
+              <div
+                className="col-md-6 mt-md-0 mt-3"
+              >
+                <h1
+                  className="text-uppercase"
+                >
+                  Per què Wifibytes?
+                </h1>
+                <div
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                    }
+                  }
+                  id="left_box"
+                />
+              </div>
+              <div
+                className="col-md-6 mt-md-0 mt-3"
+              >
+                <h1
+                  className="text-uppercase"
+                >
+                  Perquè Wifibytes?
+                </h1>
+                <div
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                    }
+                  }
+                />
+              </div>
+            </div>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h1
+                  className="glow text-center pb-5"
+                  id="title"
+                >
+                  Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera 
+                </h1>,
+                <RateBoxSubComponent
+                  rates={
+                    Array [
+                      Object {
+                        "activo": true,
+                        "codtarifa": 6,
+                        "color": Object {
+                          "hexadecimal": "#00A648",
+                          "id": 4,
+                          "titulo": "verde",
+                        },
+                        "destacado": false,
+                        "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                        "precio": 22.95,
+                        "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                        "slug": "movil-ilimitadas-10gb",
+                        "subtarifas": Array [
+                          Object {
+                            "subtarifa_cent_minuto": 0,
+                            "subtarifa_datos_internet": 2,
+                            "subtarifa_est_llamada": null,
+                            "subtarifa_id": 12,
+                            "subtarifa_minutos_gratis": 10000,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": null,
+                            "subtarifa_omv": null,
+                            "subtarifa_precio_sms": 0.1,
+                            "subtarifa_siglas_omv": "",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 6,
+                              "color": 4,
+                              "created_at": 1497604571,
+                              "destacado": false,
+                              "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                              "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                              "precio": 22.95,
+                              "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                              "pretitulo_va": "Il·limitada",
+                              "slug": "movil-ilimitadas-10gb",
+                              "updated_at": 1543003412,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": null,
+                            "subtarifa_velocidad_conexion_subida": null,
+                            "tipo_tarifa": 1,
+                          },
+                        ],
+                      },
+                      Object {
+                        "activo": true,
+                        "codtarifa": 9,
+                        "color": Object {
+                          "hexadecimal": "#00A648",
+                          "id": 4,
+                          "titulo": "verde",
+                        },
+                        "destacado": false,
+                        "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                        "precio": 25.75,
+                        "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                        "slug": "movil-ilimitadas-20gb-200ue",
+                        "subtarifas": Array [
+                          Object {
+                            "subtarifa_cent_minuto": null,
+                            "subtarifa_datos_internet": 1.5,
+                            "subtarifa_est_llamada": null,
+                            "subtarifa_id": 20,
+                            "subtarifa_minutos_gratis": 200,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": null,
+                            "subtarifa_omv": null,
+                            "subtarifa_precio_sms": null,
+                            "subtarifa_siglas_omv": "",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 9,
+                              "color": 4,
+                              "created_at": 1497606464,
+                              "destacado": false,
+                              "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                              "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                              "precio": 25.75,
+                              "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                              "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                              "slug": "movil-ilimitadas-20gb-200ue",
+                              "updated_at": 1543003578,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": null,
+                            "subtarifa_velocidad_conexion_subida": null,
+                            "tipo_tarifa": 1,
+                          },
+                        ],
+                      },
+                      Object {
+                        "activo": true,
+                        "codtarifa": 5,
+                        "color": Object {
+                          "hexadecimal": "#00A648",
+                          "id": 4,
+                          "titulo": "verde",
+                        },
+                        "destacado": false,
+                        "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                        "precio": 17.75,
+                        "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                        "slug": "movil-ilimitadas-10gb-100-ue",
+                        "subtarifas": Array [
+                          Object {
+                            "subtarifa_cent_minuto": 0,
+                            "subtarifa_datos_internet": 1.3,
+                            "subtarifa_est_llamada": 0,
+                            "subtarifa_id": 11,
+                            "subtarifa_minutos_gratis": 100,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": null,
+                            "subtarifa_omv": null,
+                            "subtarifa_precio_sms": 0.1,
+                            "subtarifa_siglas_omv": "",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 5,
+                              "color": 4,
+                              "created_at": 1497601906,
+                              "destacado": false,
+                              "logo": "media/Logo/logo-icon-wifibytes.png",
+                              "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                              "precio": 17.75,
+                              "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                              "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                              "slug": "movil-ilimitadas-10gb-100-ue",
+                              "updated_at": 1543003592,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": null,
+                            "subtarifa_velocidad_conexion_subida": null,
+                            "tipo_tarifa": 1,
+                          },
+                        ],
+                      },
+                      Object {
+                        "activo": true,
+                        "codtarifa": 4,
+                        "color": Object {
+                          "hexadecimal": "#e09f31",
+                          "id": 3,
+                          "titulo": "naranja",
+                        },
+                        "destacado": true,
+                        "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                        "nombretarifa": "Wifi diseminado",
+                        "precio": 19,
+                        "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                        "slug": "wifi-diseminado",
+                        "subtarifas": Array [
+                          Object {
+                            "subtarifa_cent_minuto": 1,
+                            "subtarifa_datos_internet": 1,
+                            "subtarifa_est_llamada": 1,
+                            "subtarifa_id": 5,
+                            "subtarifa_minutos_gratis": 1,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": 1,
+                            "subtarifa_omv": Object {
+                              "activo": true,
+                              "codigo": 1,
+                              "descripcion": "Orange",
+                              "nombre": "Orange",
+                            },
+                            "subtarifa_precio_sms": 1,
+                            "subtarifa_siglas_omv": "TLIBRE",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 4,
+                              "color": 3,
+                              "created_at": 0,
+                              "destacado": true,
+                              "logo": "media/Logo/chick_8qOw42B.png",
+                              "nombretarifa": "Wifi diseminado",
+                              "precio": 19,
+                              "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                              "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                              "slug": "wifi-diseminado",
+                              "updated_at": 1543004138,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": 3,
+                            "subtarifa_velocidad_conexion_subida": 9,
+                            "tipo_tarifa": 4,
+                          },
+                        ],
+                      },
+                      Object {
+                        "activo": true,
+                        "codtarifa": 1,
+                        "color": Object {
+                          "hexadecimal": "#FB3563",
+                          "id": 7,
+                          "titulo": "fucsia",
+                        },
+                        "destacado": true,
+                        "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                        "nombretarifa": "Fibra óptica",
+                        "precio": 34.95,
+                        "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                        "slug": "fibra-optica",
+                        "subtarifas": Array [
+                          Object {
+                            "subtarifa_cent_minuto": 1,
+                            "subtarifa_datos_internet": 1,
+                            "subtarifa_est_llamada": 1,
+                            "subtarifa_id": 10,
+                            "subtarifa_minutos_gratis": 1,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": 1,
+                            "subtarifa_omv": Object {
+                              "activo": true,
+                              "codigo": 1,
+                              "descripcion": "Orange",
+                              "nombre": "Orange",
+                            },
+                            "subtarifa_precio_sms": 1,
+                            "subtarifa_siglas_omv": "TLIBRE",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 1,
+                              "color": 7,
+                              "created_at": 0,
+                              "destacado": true,
+                              "logo": "media/Logo/icon-egg_FRpw391.png",
+                              "nombretarifa": "Fibra óptica",
+                              "precio": 34.95,
+                              "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                              "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                              "slug": "fibra-optica",
+                              "updated_at": 1543004465,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": 1,
+                            "subtarifa_velocidad_conexion_subida": 1,
+                            "tipo_tarifa": 2,
+                          },
+                          Object {
+                            "subtarifa_cent_minuto": 1,
+                            "subtarifa_datos_internet": 1,
+                            "subtarifa_est_llamada": 1,
+                            "subtarifa_id": 2,
+                            "subtarifa_minutos_gratis": 1,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": 1,
+                            "subtarifa_omv": Object {
+                              "activo": true,
+                              "codigo": 1,
+                              "descripcion": "Orange",
+                              "nombre": "Orange",
+                            },
+                            "subtarifa_precio_sms": 1,
+                            "subtarifa_siglas_omv": "TLIBRE",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 1,
+                              "color": 7,
+                              "created_at": 0,
+                              "destacado": true,
+                              "logo": "media/Logo/icon-egg_FRpw391.png",
+                              "nombretarifa": "Fibra óptica",
+                              "precio": 34.95,
+                              "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                              "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                              "slug": "fibra-optica",
+                              "updated_at": 1543004465,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": 200,
+                            "subtarifa_velocidad_conexion_subida": 200,
+                            "tipo_tarifa": 3,
+                          },
+                          Object {
+                            "subtarifa_cent_minuto": 1,
+                            "subtarifa_datos_internet": 1,
+                            "subtarifa_est_llamada": 1,
+                            "subtarifa_id": 1,
+                            "subtarifa_minutos_gratis": 1,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": 90,
+                            "subtarifa_omv": Object {
+                              "activo": true,
+                              "codigo": 1,
+                              "descripcion": "Orange",
+                              "nombre": "Orange",
+                            },
+                            "subtarifa_precio_sms": 1,
+                            "subtarifa_siglas_omv": "TLIBRE",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 1,
+                              "color": 7,
+                              "created_at": 0,
+                              "destacado": true,
+                              "logo": "media/Logo/icon-egg_FRpw391.png",
+                              "nombretarifa": "Fibra óptica",
+                              "precio": 34.95,
+                              "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                              "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                              "slug": "fibra-optica",
+                              "updated_at": 1543004465,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": 1,
+                            "subtarifa_velocidad_conexion_subida": 1,
+                            "tipo_tarifa": 5,
+                          },
+                        ],
+                      },
+                      Object {
+                        "activo": true,
+                        "codtarifa": 3,
+                        "color": Object {
+                          "hexadecimal": "#00A648",
+                          "id": 13,
+                          "titulo": "verde-wifi",
+                        },
+                        "destacado": true,
+                        "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                        "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                        "precio": 11.95,
+                        "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                        "slug": "movil-ilimitadas-3gb",
+                        "subtarifas": Array [
+                          Object {
+                            "subtarifa_cent_minuto": 1,
+                            "subtarifa_datos_internet": 3,
+                            "subtarifa_est_llamada": 1,
+                            "subtarifa_id": 4,
+                            "subtarifa_minutos_gratis": 1000,
+                            "subtarifa_minutos_ilimitados": false,
+                            "subtarifa_num_canales": 1,
+                            "subtarifa_omv": Object {
+                              "activo": true,
+                              "codigo": 1,
+                              "descripcion": "Orange",
+                              "nombre": "Orange",
+                            },
+                            "subtarifa_precio_sms": 1,
+                            "subtarifa_siglas_omv": "MOUNLIMITED",
+                            "subtarifa_tarifa": Object {
+                              "activo": true,
+                              "codtarifa": 3,
+                              "color": 13,
+                              "created_at": 0,
+                              "destacado": true,
+                              "logo": "media/Logo/icon-chicken.png",
+                              "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                              "precio": 11.95,
+                              "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                              "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                              "slug": "movil-ilimitadas-3gb",
+                              "updated_at": 1543002761,
+                            },
+                            "subtarifa_velocidad_conexion_bajada": 9,
+                            "subtarifa_velocidad_conexion_subida": 5,
+                            "tipo_tarifa": 1,
+                          },
+                        ],
+                      },
+                    ]
+                  }
+                />,
+                <div
+                  className="row home-banner text-center text-white p-4"
+                  styles="background-color: rgba(0,0,0,0.6)"
+                />,
+              ],
+              "className": "p-5",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera ",
+                  "className": "glow text-center pb-5",
+                  "id": "title",
+                },
+                "ref": null,
+                "rendered": "Alta gratis. Fibra òptica en  Bocairent, Banyeres, Agullent, Enguera i prompte en La costera ",
+                "type": "h1",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "rates": Array [
+                    Object {
+                      "activo": true,
+                      "codtarifa": 6,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                      "precio": 22.95,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                      "slug": "movil-ilimitadas-10gb",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 0,
+                          "subtarifa_datos_internet": 2,
+                          "subtarifa_est_llamada": null,
+                          "subtarifa_id": 12,
+                          "subtarifa_minutos_gratis": 10000,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": 0.1,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 6,
+                            "color": 4,
+                            "created_at": 1497604571,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes_j5lTxpH.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 10GB",
+                            "precio": 22.95,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido",
+                            "pretitulo_va": "Il·limitada",
+                            "slug": "movil-ilimitadas-10gb",
+                            "updated_at": 1543003412,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 9,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                      "precio": 25.75,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                      "slug": "movil-ilimitadas-20gb-200ue",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": null,
+                          "subtarifa_datos_internet": 1.5,
+                          "subtarifa_est_llamada": null,
+                          "subtarifa_id": 20,
+                          "subtarifa_minutos_gratis": 200,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": null,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 9,
+                            "color": 4,
+                            "created_at": 1497606464,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes_kXkt3Ct.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 20GB + 200UE",
+                            "precio": 25.75,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 200 minutos llamadas internacionales Union Europea",
+                            "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 200 minuts cridades internacionals Unió Europea",
+                            "slug": "movil-ilimitadas-20gb-200ue",
+                            "updated_at": 1543003578,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 5,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 4,
+                        "titulo": "verde",
+                      },
+                      "destacado": false,
+                      "logo": "https://backend.wifibytes.com/media/Logo/logo-icon-wifibytes.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                      "precio": 17.75,
+                      "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                      "slug": "movil-ilimitadas-10gb-100-ue",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 0,
+                          "subtarifa_datos_internet": 1.3,
+                          "subtarifa_est_llamada": 0,
+                          "subtarifa_id": 11,
+                          "subtarifa_minutos_gratis": 100,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": null,
+                          "subtarifa_omv": null,
+                          "subtarifa_precio_sms": 0.1,
+                          "subtarifa_siglas_omv": "",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 5,
+                            "color": 4,
+                            "created_at": 1497601906,
+                            "destacado": false,
+                            "logo": "media/Logo/logo-icon-wifibytes.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 10GB +100 UE",
+                            "precio": 17.75,
+                            "pretitulo": "Min. voz ilimitados. Establecimiento incluido. 100 minutos llamadas internacionales Union Europea",
+                            "pretitulo_va": "Min. veu il·limitats. Establiment inclós. 100 minuts cridades internacionals Unió Europea",
+                            "slug": "movil-ilimitadas-10gb-100-ue",
+                            "updated_at": 1543003592,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": null,
+                          "subtarifa_velocidad_conexion_subida": null,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 4,
+                      "color": Object {
+                        "hexadecimal": "#e09f31",
+                        "id": 3,
+                        "titulo": "naranja",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/chick_8qOw42B.png",
+                      "nombretarifa": "Wifi diseminado",
+                      "precio": 19,
+                      "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                      "slug": "wifi-diseminado",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 5,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 4,
+                            "color": 3,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/chick_8qOw42B.png",
+                            "nombretarifa": "Wifi diseminado",
+                            "precio": 19,
+                            "pretitulo": "Fuera del casco urbano.Terminos municipales de Ontinyent, Bocairent,Bañeres, Enguera y Agullent",
+                            "pretitulo_va": "Fora del casc urbà.Termes municipals d'Ontinyent, Bocairent,Banyeres, Enguera i Agullent",
+                            "slug": "wifi-diseminado",
+                            "updated_at": 1543004138,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 3,
+                          "subtarifa_velocidad_conexion_subida": 9,
+                          "tipo_tarifa": 4,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 1,
+                      "color": Object {
+                        "hexadecimal": "#FB3563",
+                        "id": 7,
+                        "titulo": "fucsia",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/icon-egg_FRpw391.png",
+                      "nombretarifa": "Fibra óptica",
+                      "precio": 34.95,
+                      "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                      "slug": "fibra-optica",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 10,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 1,
+                          "subtarifa_velocidad_conexion_subida": 1,
+                          "tipo_tarifa": 2,
+                        },
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 2,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 200,
+                          "subtarifa_velocidad_conexion_subida": 200,
+                          "tipo_tarifa": 3,
+                        },
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 1,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 1,
+                          "subtarifa_minutos_gratis": 1,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 90,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "TLIBRE",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 1,
+                            "color": 7,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-egg_FRpw391.png",
+                            "nombretarifa": "Fibra óptica",
+                            "precio": 34.95,
+                            "pretitulo": "Disponible en Bocairent,Bañeres, Enguera y Agullent. Alta 72,40€ IVA incluido. Permanencia 18 meses",
+                            "pretitulo_va": " Disponible en Bocairent,Banyeres, Enguera i Agullent.Alta 72,40€ IVA inclós. Permanència 18 mesos",
+                            "slug": "fibra-optica",
+                            "updated_at": 1543004465,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 1,
+                          "subtarifa_velocidad_conexion_subida": 1,
+                          "tipo_tarifa": 5,
+                        },
+                      ],
+                    },
+                    Object {
+                      "activo": true,
+                      "codtarifa": 3,
+                      "color": Object {
+                        "hexadecimal": "#00A648",
+                        "id": 13,
+                        "titulo": "verde-wifi",
+                      },
+                      "destacado": true,
+                      "logo": "https://backend.wifibytes.com/media/Logo/icon-chicken.png",
+                      "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                      "precio": 11.95,
+                      "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                      "slug": "movil-ilimitadas-3gb",
+                      "subtarifas": Array [
+                        Object {
+                          "subtarifa_cent_minuto": 1,
+                          "subtarifa_datos_internet": 3,
+                          "subtarifa_est_llamada": 1,
+                          "subtarifa_id": 4,
+                          "subtarifa_minutos_gratis": 1000,
+                          "subtarifa_minutos_ilimitados": false,
+                          "subtarifa_num_canales": 1,
+                          "subtarifa_omv": Object {
+                            "activo": true,
+                            "codigo": 1,
+                            "descripcion": "Orange",
+                            "nombre": "Orange",
+                          },
+                          "subtarifa_precio_sms": 1,
+                          "subtarifa_siglas_omv": "MOUNLIMITED",
+                          "subtarifa_tarifa": Object {
+                            "activo": true,
+                            "codtarifa": 3,
+                            "color": 13,
+                            "created_at": 0,
+                            "destacado": true,
+                            "logo": "media/Logo/icon-chicken.png",
+                            "nombretarifa": "MOVIL ILIMITADAS + 3GB",
+                            "precio": 11.95,
+                            "pretitulo": "Tarifa más solicitada. Cobertura MOVISTART|ORANGE en toda España",
+                            "pretitulo_va": "Tarifa més sol·licitada. Cobertura MOVISTAR/ORANGE en tot l'estat Espanyol",
+                            "slug": "movil-ilimitadas-3gb",
+                            "updated_at": 1543002761,
+                          },
+                          "subtarifa_velocidad_conexion_bajada": 9,
+                          "subtarifa_velocidad_conexion_subida": 5,
+                          "tipo_tarifa": 1,
+                        },
+                      ],
+                    },
+                  ],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "row home-banner text-center text-white p-4",
+                  "styles": "background-color: rgba(0,0,0,0.6)",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="col-md-6 mt-md-0 mt-3"
+                >
+                  <h1
+                    className="text-uppercase"
+                  >
+                    Per què Wifibytes?
+                  </h1>
+                  <div
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                      }
+                    }
+                    id="left_box"
+                  />
+                </div>,
+                <div
+                  className="col-md-6 mt-md-0 mt-3"
+                >
+                  <h1
+                    className="text-uppercase"
+                  >
+                    Perquè Wifibytes?
+                  </h1>
+                  <div
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                      }
+                    }
+                  />
+                </div>,
+              ],
+              "className": "row p-5 bg-white",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h1
+                      className="text-uppercase"
+                    >
+                      Per què Wifibytes?
+                    </h1>,
+                    <div
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                        }
+                      }
+                      id="left_box"
+                    />,
+                  ],
+                  "className": "col-md-6 mt-md-0 mt-3",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Per què Wifibytes?",
+                      "className": "text-uppercase",
+                    },
+                    "ref": null,
+                    "rendered": "Per què Wifibytes?",
+                    "type": "h1",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "dangerouslySetInnerHTML": Object {
+                        "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                      },
+                      "id": "left_box",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h1
+                      className="text-uppercase"
+                    >
+                      Perquè Wifibytes?
+                    </h1>,
+                    <div
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                        }
+                      }
+                    />,
+                  ],
+                  "className": "col-md-6 mt-md-0 mt-3",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Perquè Wifibytes?",
+                      "className": "text-uppercase",
+                    },
+                    "ref": null,
+                    "rendered": "Perquè Wifibytes?",
+                    "type": "h1",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "dangerouslySetInnerHTML": Object {
+                        "__html": "<p>Vols donar-te de baixa? Canviar de tarifa? Activar el roaming? &iquest;Desactivar la b&uacute;stia de oz? Sense problema. Entra en el teu compte i fes-ho amb un simple click.Sense preguntes, sense trucades a tel&egrave;fons assistits.</p>
+<p>Simple i f&agrave;cil. Tot el suport i atenci&oacute; via internet amb un sistema de tiquets.</p>",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
