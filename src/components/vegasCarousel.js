@@ -26,6 +26,7 @@ class VegasCarousel extends React.Component {
     componentDidMount(){
       let that = this;
       Utils.get("/datos_empresa").then(function(response){
+        console.log(response);
         let slidesBack = response.textos.filter((itemText) => {
           return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
         }).map((item) =>{
@@ -101,7 +102,6 @@ class VegasCarousel extends React.Component {
 
        });
       const isLoading = this.state.isLoading;
-      console.log(this.state.index);
       return(
           <div className="row home-banner text-center text-white p-4">
             <div key="previous" className="col-sm-1" onClick={this.before}>
