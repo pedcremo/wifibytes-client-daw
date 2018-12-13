@@ -17,7 +17,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "class": "p-5",
+      "className": "p-5",
       "dangerouslySetInnerHTML": Object {
         "__html": "<p style=\\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\\" dir=\\"ltr\\"><strong><span style=\\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\\">DADES GENERALS</span></strong></p>
 <p style=\\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\\" dir=\\"ltr\\"><span style=\\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\\">D'acord amb l'article 10 de la Llei 34/2002, de 11 de juliol, de Serveis de la Societat de la Informaci&oacute; i de Comer&ccedil; Electr&ograve;nic posem a la seva disposici&oacute; les seg&uuml;ents dades:</span></p>
@@ -62,7 +62,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "class": "p-5",
+        "className": "p-5",
         "dangerouslySetInnerHTML": Object {
           "__html": "<p style=\\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\\" dir=\\"ltr\\"><strong><span style=\\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-style: normal; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\\">DADES GENERALS</span></strong></p>
 <p style=\\"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;\\" dir=\\"ltr\\"><span style=\\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\\">D'acord amb l'article 10 de la Llei 34/2002, de 11 de juliol, de Serveis de la Societat de la Informaci&oacute; i de Comer&ccedil; Electr&ograve;nic posem a la seva disposici&oacute; les seg&uuml;ents dades:</span></p>

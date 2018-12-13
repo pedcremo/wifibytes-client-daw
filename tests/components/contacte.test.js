@@ -9,6 +9,8 @@ configure({ adapter: new Adapter() });
 import { shallow, mount, render } from "enzyme";
 
 const $ = require('jquery');
+jest.mock('../../src/utils');
+Utils.get.mockResolvedValue(datosEmpresaJSON); 
 
 it('Contacte render must be called and it works properly -CONTACT-', () => {
   const contactIns = shallow(<Contacte />);
@@ -16,7 +18,7 @@ it('Contacte render must be called and it works properly -CONTACT-', () => {
 });
 
 it('Contacte render must be called and it works properly -CONTACT-', () => {
-  const contactIns = shallow(<Contacte state={datosEmpresaJSON}/>);
+  const contactIns = shallow(<Contacte />);
   expect(contactIns).toMatchSnapshot();
 });
 
