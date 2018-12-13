@@ -14,7 +14,6 @@ class RateDetail extends React.Component {
     componentDidMount() {
         let that=this;
         Promise.all([ Utils.get("/tarifa/"+this.state.idRate),  Utils.get("/tarifa_descriptor")]).then(function(results) {
-            console.log(results)
             that.setState({
                 tarifaJSON: results,
                 isLoading:false
@@ -41,6 +40,44 @@ class RateDetail extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <table className="tableRateDetails">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <img src={this.state.tarifaJSON[1][1].caja_1_icono} />
+                                    </td>
+                                    <td>
+                                        <img src={this.state.tarifaJSON[1][1].caja_2_icono} />
+                                    </td>
+                                    <td>
+                                        <img src={this.state.tarifaJSON[1][1].caja_3_icono} />
+                                    </td>
+                                    <td>
+                                        <img src={this.state.tarifaJSON[1][1].caja_4_icono} />
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_1_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_1_texto}}></p>
+                                    </td>
+                                    <td>
+                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_2_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_2_texto}}></p>  
+                                    </td>
+                                    <td>
+                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_3_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_3_texto}}></p>
+                                    </td>
+                                    <td>
+                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_4_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_4_texto}}></p>  
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
                 )}
                 </div>);

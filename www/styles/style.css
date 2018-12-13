@@ -37,3 +37,9 @@ nav {
     color: white;
     text-shadow: 2px 2px 4px #000000;
 }
+
+.tableRateDetails{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
