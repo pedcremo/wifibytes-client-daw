@@ -33,7 +33,7 @@ class Legal extends React.Component{
     /** render  */
     render() {
         return (
-            <div class="p-5" dangerouslySetInnerHTML={{__html: this.state.legalTexts.join("")}}>
+            <div className="p-5" dangerouslySetInnerHTML={{__html: this.state.legalTexts.join("")}}>
             </div>
         );      
     }
