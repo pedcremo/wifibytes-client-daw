@@ -29,7 +29,7 @@ class Contacte extends React.Component  {
 			that.setState({
                 contactTexts: contactTexts,
                 isLoading:false
-            });
+			});
         }).catch(function(error) {
             console.log("Error", error);
         });
@@ -37,6 +37,7 @@ class Contacte extends React.Component  {
  
     /** render  */
     render() {  
+		console.log(this.state);
 		return (
 			<div class="row mt-25 p-5">
 				<div class="col-md-6 form-group">
