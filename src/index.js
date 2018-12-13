@@ -60,8 +60,8 @@ Router
 
       ReactDOM.render(<Navbar />, document.querySelector("nav"));
       ReactDOM.render(<Home />, document.getElementById("main"));
-      try {ReactDOM.render(<Footer />,document.querySelector('.page-footer'))}catch(e){console.log(e);}
-      //try{ReactDOM.render(<VegasCarousel />, document.querySelector(".home-banner"));}catch(e){console.log(e);}
+    ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
+     
 
     })
     .catch(function(error) {
@@ -70,12 +70,7 @@ Router
     });
 })
 .listen(function(){ //Everytime we change route
-<<<<<<< HEAD
     if (vc) vc.hide(); //Hide carousel    
-=======
-    if (vc) vc.hide(); //Hide carousel
-    //changeBreadcrumb(Router.getFragment());
->>>>>>> 80e3788e044e908c07386370a7230cd733275d92
 })
 ;
 

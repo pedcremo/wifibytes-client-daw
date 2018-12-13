@@ -24,7 +24,7 @@ class Cookies extends React.Component {
               }).map((item) => {
                   return item.content;
             });
-             debugger;  
+             
             that.setState({
                 cookiesTexts: cookiesTexts,
                 isLoading:false

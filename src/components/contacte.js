@@ -17,8 +17,7 @@ class Contacte extends React.Component  {
 		this.state={
             contactTexts:[],
             isLoading:true
-        }
-        //this.selectedTarget.innerHTML=this.render(this.inputJSON); 
+        }       
 	}
 	
 	componentDidMount(){
