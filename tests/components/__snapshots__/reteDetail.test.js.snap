@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Check if there is just one component when rendering is done 1`] = `
+exports[`Check if render in rateDetail it works properly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RateDetail
-    idRate="1"
+    idRate="4"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],

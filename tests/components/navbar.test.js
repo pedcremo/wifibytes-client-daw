@@ -1,43 +1,47 @@
+import React from 'react';
+import {Utils} from '../../src/utils';
 import Navbar from '../../src/components/navbar';
 import datosEmpresaJSON from '../json_endpoints/datos_empresa.json';
+import ReactDOM from 'react-dom';
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+Enzyme.configure({ adapter: new Adapter() });
 
 const $ = require('jquery');
 
-beforeEach(()=> {
-    // Set up our document body
+jest.mock('../../src/utils');
+const resp1 = datosEmpresaJSON;
+
+Utils.get.mockResolvedValueOnce(resp1);
+Utils.get.mockResolvedValue(resp1);
+const nav = Enzyme.shallow(<Navbar />);
+
+beforeEach(() => {
+  // Set up our document body
   document.body.innerHTML =
-  `<body>
-        <nav class="navbar navbar-expand-lg bg-white navbar-light border-bottom border-dark">
-          <!-- Inject here template navbar-->
-        </nav>
-        
-        <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div id="main" class="container-fluid pb-25 mb-25">          
-            
-        </div>        
-        
-        <!-- Footer -->
-        <footer class="page-footer font-small bg-light pt-4 mt-5">
-        <!-- Inject here template footer-->
-        </footer>
-     </body>   
-        `;            
+      `<select id="langPicker" className="selectpicker" data-width="fit" value={this.state.value} onChange={this.handleLangPicker}>
+          <option value='english'>English</option>
+          <option value='spanish' >Español</option>
+          <option value='valencia' >Valencià</option>
+      </select>`;
 });
 
-it('We can check if Navbar component called the class constructor', () => {
-  const navbarIns = new Navbar(datosEmpresaJSON,"nav"); 
-  expect(navbarIns.constructor.name).toBe('Navbar');
+it('Renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Navbar />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
 
-it('Navbar render must be called and it works properly', () => {
-  let navbarIns=new Navbar(datosEmpresaJSON,"nav"); 
-  expect($('nav').children.length).toBeGreaterThan(1);    
+it("We can check if Navbar component called the class constructor", () => {
+  const wrapper = Enzyme.shallow(<Navbar />);
+  expect(wrapper).toMatchSnapshot();
 });
 
-it('Component must fail due to target html tag to render in doesnt exist', () => { 
-  expect(function(){new Navbar(datosEmpresaJSON,"#mmain")}).toThrowError(/Error/i);    
+it('We check if data has been printed', () => {
+  expect(nav.find('a[href="#/catalog"]').getElement().props.children).toHaveLength(3);
 });
 
-it('Component must fail due to JSON input doesnt contains expected information', () => { 
-  expect(function(){new Navbar(undefined,"#main")}).toThrowError(/undefined/);    
-});  
+it('We can check if the handleLangPicker change', () => {
+  nav.find('select').simulate('change', {target: {value:"english"}});
+  expect(nav.render().find('select [selected]').val()).toEqual('english');
+});

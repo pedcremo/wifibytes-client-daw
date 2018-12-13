@@ -19,7 +19,6 @@ class RateDetail extends React.Component {
                 isLoading:false
             });
         }).catch(function(error) {
-          console.log("Failed!", error);
         });
     }
 
