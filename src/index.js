@@ -12,7 +12,6 @@ import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
 import LogIn from "./components/login/login";
 import Register from "./components/login/register";
-import ForgotPassword from "./components/login/forgotPasword";
 import {Utils} from "./utils";
 import React from 'react'; 
 import ReactDOM from 'react-dom';
