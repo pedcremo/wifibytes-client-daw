@@ -17,13 +17,14 @@ class Cookies extends React.Component {
     }
     componentDidMount(){
         let that=this;
+        
         Utils.get('/datos_empresa').then(function(response) {          
             let cookiesTexts = response.textos.filter((itemText) => {
                 return itemText.key.match(/cookies/i) && itemText.lang==Utils.getUserLang();
               }).map((item) => {
                   return item.content;
             });
-               
+             debugger;  
             that.setState({
                 cookiesTexts: cookiesTexts,
                 isLoading:false

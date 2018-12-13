@@ -46,11 +46,7 @@ Router
     });   
 })
 .add(/catalog/, function() {
-   /* Promise.all([ Utils.get("/familia"),  Utils.get("/filtros"), Utils.get("/articulo")]).then(function(results) {
-        new Catalog(results,"#main"); 
-    }).catch(function(error) {
-        console.log("Failed!", error);
-    }); */  
+    
     ReactDOM.render(<Catalog />, document.getElementById("main")); 
 })
 .add(/products\/(.*)\/edit\/(.*)/, function() {
@@ -72,8 +68,7 @@ Router
     });
 })
 .listen(function(){ //Everytime we change route
-    if (vc) vc.hide(); //Hide carousel 
-    //changeBreadcrumb(Router.getFragment());
+    if (vc) vc.hide(); //Hide carousel    
 })
 ;
 
