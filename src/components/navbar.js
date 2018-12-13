@@ -1,101 +1,110 @@
+import React from 'react';
 import {Utils} from "../utils";
-import Component from "./component";
 /**
  * Draw top menu navbar 
  */
 
-class Navbar extends Component{
+class Navbar extends React.Component{
     /**
      * Constructor
-     * @param {json} datosEmpresaJSON 
-     * @param {string} selectRule 
      */
-    constructor(datosEmpresaJSON,selectRule) {
-        super(datosEmpresaJSON,selectRule);
+    constructor(props){
+        super(props);
         this.state={
-            datosEmpresa:this.inputJSON
-        };
-        this.selectedTarget.innerHTML=this.render(this.inputJSON);
-        this.handleLangPicker =this.handleLangPicker.bind(this); 
-        var a = document.getElementById("langPicker");
-            a.addEventListener("change", this.handleLangPicker.bind(this), false);       
-        
+            datosEmpresa:[],
+            isLoading:true,
+            value: Utils.getCookie("language")
+        }
+        this.handleLangPicker = this.handleLangPicker.bind(this);
     }
+
+    componentDidMount(){
+        let that=this;
+        Utils.get('/datos_empresa').then((response) => {   
+            that.setState({
+                datosEmpresa: response,
+                isLoading:false
+            });
+        });
+    }
+    
     /**
      * Triggered when user changes language selector
      * @param {element} event 
      */
     handleLangPicker(event) {
-        Utils.setUserLanguage(event.target.value);             
+        this.setState({value: event.target.value});
+        Utils.setUserLanguage(event.target.value);       
+        var a = document.getElementById("langPicker");
+        a.addEventListener("change", this.handleLangPicker.bind(this), false);  
     }
         
     /** render  */
-    render() {   
-        
-        return `
-            <a class="navbar-brand font-weight-bold" href="#"><img width="149px" height="49px" src="${this.state.datosEmpresa.logo}" /></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon text-dark"></span>
-            </button>
-
-            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto ">
-               
-                <li class="nav-item pt-3 text-success">
-                    <i class="fas fa-phone"> </i> ${this.state.datosEmpresa.phone} &nbsp;
-                </li>
-                <li class="nav-item active">
-                <a class="nav-link text-dark pt-3" href="#/catalog"><span class="text-success">::</span> ${this.T("menu-catalog")}</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/rates"><span class="text-success">::</span> ${this.T("menu-rates")}</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/company"><span class="text-success">::</span> ${this.T("menu-company")}</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link text-dark pt-3" href="#/contacte"><span class="text-success">::</span> ${this.T("menu-contact")}</a>
-                </li>
-                
-                <li class="nav-item">
-                <a class="nav-link disabled pt-3" href="#">${this.T("menu-sign-in")} <i class="fas fa-sign-in-alt"> </i></a>
-                </li>
-                
-                <li class="nav-item">
-                <a class="nav-link text-dark text-align-right" href="${this.checkURL(this.state.datosEmpresa.twitter)}"><i class="fab fa-2x fa-twitter"></i></a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link text-dark" href="${this.checkURL(this.state.datosEmpresa.facebook)}"><i class="fab fa-2x fa-facebook"></i></a>
-                </li>
-                
-                <li class="nav-item pt-3">
-                    <select id="langPicker" class="selectpicker" data-width="fit" >
-                        <option value='english' ${Utils.getCookie("language")=="english"?"selected":""}>English</option>
-                        <option value='spanish' ${Utils.getCookie("language")=="spanish"?"selected":""}>Español</option>
-                        <option value='valencia' ${Utils.getCookie("language")=="valencia"?"selected":""}>Valencià</option>
-                    </select>
-                </li>
-                <!-- <li class="nav-item dropdown text-dark">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-dark" href="#">Action</a>
-                    <a class="dropdown-item text-dark" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-dark" href="#">Something else here</a>
+    render() {
+        return (<div className="navRender">
+                <a className="navbar-brand font-weight-bold" href={"#"}><img width="149px" height="49px" src={this.state.datosEmpresa.logo} /></a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon text-dark"></span>
+                </button>
+                    <div className="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                        <ul className="navbar-nav ml-auto ">
+                        
+                            <li className="nav-item pt-3 text-success">
+                                <i className="fas fa-phone"> </i> {this.state.datosEmpresa.phone} &nbsp;
+                            </li>
+                            <li className="nav-item active">
+                            <a className="nav-link text-dark pt-3" href={"#/catalog"}><span className="text-success">::</span> {Utils.translate("menu-catalog")}</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link text-dark pt-3" href={"#/rates"}><span className="text-success">::</span> {Utils.translate("menu-rates")}</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link text-dark pt-3" href={"#/company"}><span className="text-success">::</span> {Utils.translate("menu-company")}</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link text-dark pt-3" href={"#/contacte"}><span className="text-success">::</span> {Utils.translate("menu-contact")}</a>
+                            </li>
+                            
+                            <li className="nav-item">
+                            <a className="nav-link disabled pt-3" href={"#"}>{Utils.translate("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
+                            </li>
+                            
+                            <li className="nav-item">
+                            <a className="nav-link text-dark text-align-right" href={Utils.checkURL(this.state.datosEmpresa.twitter)}><i className="fab fa-2x fa-twitter"></i></a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link text-dark" href={Utils.checkURL(this.state.datosEmpresa.facebook)}><i className="fab fa-2x fa-facebook"></i></a>
+                            </li>
+                            
+                            <li className="nav-item pt-3">
+                                <select id="langPicker" className="selectpicker" data-width="fit" value={this.state.value} onChange={this.handleLangPicker}>
+                                    <option value='english'>English</option>
+                                    <option value='spanish' >Español</option>
+                                    <option value='valencia' >Valencià</option>
+                                </select>
+                            </li> 
+                            {/* <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-dark" href="#">Action</a>
+                                    <a class="dropdown-item text-dark" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-dark" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li> */}
+                    </ul>
+                    {/* <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>   */}
                 </div>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>  -->
             </div>
-            `;
+        );
     }
 }
 

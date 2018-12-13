@@ -179,6 +179,18 @@ let Utils={
     randomAnimation() {
         const animations = ["bounce", "flash", "pulse", "rubberBand", "shake", "headShake", "swing", "tada", "wobble", "jello", "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "jackInTheBox", "rollIn", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp", "slideInDown", "slideInLeft", "slideInRight", "slideInUp"]
         return "animated " + animations[Math.floor(Math.random() * (animations.length + 1))];
+    },
+
+    /** Check if is a valid URL otherwise fix it */
+    checkURL:function(hrefText) {
+        if(hrefText) {
+            let reURL= /(http:\/\/|https:\/\/)/;
+            if (hrefText.match(reURL)) {
+                return hrefText;
+            }else{
+                return "http://"+hrefText;
+            }
+        }    
     }
 }; //END Utils object
 let that = Utils;
