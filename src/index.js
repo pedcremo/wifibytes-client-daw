@@ -27,8 +27,8 @@ Router
     ReactDOM.render(<Legal />, document.getElementById("main")); 
 })
 .add(/rates/, function() {
+    ReactDOM.render(<Rates />, document.getElementById("main"));
     Promise.all([ Utils.get("/tarifa/?activo=true"),  Utils.get("/tarifa_descriptor"), Utils.get("/datos_empresa")]).then(function(results) {       
-      new Rates(results,"#main"); 
       try {vc = new VegasCarousel(results[2],"body");}catch(e){console.log(e);}
     }).catch(function(error) {
       console.log("Failed!", error);
