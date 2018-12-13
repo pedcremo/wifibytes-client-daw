@@ -69,7 +69,7 @@ Router
     Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
      
       // three promises resolved 
-      try {new Navbar(results[1],"nav");}catch(e){console.log(e);}
+      ReactDOM.render(<Navbar />, document.querySelector("nav"));
       ReactDOM.render(<Home />, document.getElementById("main"));
       try {ReactDOM.render(<Footer />,document.querySelector('.page-footer'))}catch(e){console.log(e);}
       try {vc = new VegasCarousel(results[1],"body");}catch(e){console.log(e);}
