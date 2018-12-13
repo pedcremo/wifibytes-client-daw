@@ -5,6 +5,7 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
   className="card-deck mt-2 mb-5"
 >
   <div
+<<<<<<< HEAD
     className="card rounded border text-center border-dark text-center animated fadeInRight"
     style={
       Object {
@@ -288,6 +289,9 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
   </div>
   <div
     className="card rounded border text-center border-dark text-center animated rotateInDownLeft"
+=======
+    className="card rounded border text-center border-dark text-center animated pulse"
+>>>>>>> moises
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -382,7 +386,11 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
+<<<<<<< HEAD
     className="card rounded border text-center border-dark text-center animated bounceInDown"
+=======
+    className="card rounded border text-center border-dark text-center animated slideInUp"
+>>>>>>> moises
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -509,7 +517,11 @@ exports[`<RateBoxSubComponent/> RateBoxSubComponent component renders the RateBo
     </div>
   </div>
   <div
+<<<<<<< HEAD
     className="card rounded border text-center border-dark text-center animated fadeInDownBig"
+=======
+    className="card rounded border text-center border-dark text-center animated bounceInUp"
+>>>>>>> moises
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
