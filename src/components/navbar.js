@@ -66,7 +66,7 @@ class Navbar extends React.Component{
                             </li>
                             
                             <li className="nav-item">
-                            <a className="nav-link disabled pt-3" href={"#"}>{Utils.translate("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
+                            <a className="nav-link disabled pt-3" href={"#/singin"}>{Utils.translate("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
                             </li>
                             
                             <li className="nav-item">

@@ -129,7 +129,7 @@ let Utils={
     /** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's 
      * quite hardwired code to allow adding new languages. A really pain in the neck 
      */
-    getUserLang: function(){
+    getUserLang: function(){       
         switch (this.getCookie("language")) {
             case "english":
                 return "en"; 
