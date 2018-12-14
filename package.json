@@ -50,6 +50,8 @@
         }
     },
     "dependencies": {
+        "react-redux": "^6.0.0",
+        "redux-thunk": "^2.3.0",
         "vegas": "^2.4.4"
     }
 }

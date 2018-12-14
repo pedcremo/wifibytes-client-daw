@@ -14,6 +14,33 @@ import {Utils} from "./utils";
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+////////////Redux && Thunk imports
+
+//import thunk from 'redux-thunk'
+//import { createStore, applyMiddleware } from 'redux'
+import rootReducer from "./reducers";
+import { createStore } from 'redux'
+
+////////////Redux && Thunk code
+const store = createStore(rootReducer);
+
+export default store;
+/* 
+  const middleware = [ thunk ]
+
+  const store = createStore(
+    reducer,
+    applyMiddleware(...middleware)
+  )
+  
+  render(
+    <Provider store={store}>
+      <wifibytesApp />
+    </Provider>,
+    document.getElementById('root')
+  ) */
+
+
 let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
 Router
