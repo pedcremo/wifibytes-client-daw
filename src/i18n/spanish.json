@@ -58,9 +58,9 @@
     
     "register-name":"Nombre",
     "register-surname":"Apellidos",
-    "register-email":"Correu electronic",
+    "register-email":"Correo electronico",
     "register-passs":"Contraseña",
-    "register-repeatPassw":"Repetix contraseña",
+    "register-repeatPassw":"Repite contraseña",
     "register-legal":"He leido i acepto la política de privacidad",
     "register-newslater":"Marco esta casilla para a NO recibir nuevas ofertas"
 }

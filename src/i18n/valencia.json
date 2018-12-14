@@ -54,5 +54,13 @@
     "login-recover-password": "Introdueixca el seu e-mail",
     "login-button-register": "REGISTRARSE",
     "login-text-recover": "He olvidat la meva contraseña",
-    "login-button-recover":"RECUPERAR"
+    "login-button-recover":"RECUPERAR",
+
+    "register-name":"Nom",
+    "register-surname":"Cognoms",
+    "register-email":"Correu electronic",
+    "register-passs":"Contrasenya",
+    "register-repeatPassw":"Repetix contrasenya",
+    "register-legal":"He llegit i acepte la política de privacitat",
+    "register-newslater":"Marque esta casella per a NO recibir noves ofertes"
 }
