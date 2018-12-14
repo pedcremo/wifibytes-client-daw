@@ -22,6 +22,9 @@ font-style: normal;
 font-weight: normal;
 src: local('Duepuntozero Black'), url('duepuntozero_black.woff') format('woff');
 }
+html{
+    overflow-x: hidden;
+}
 body {
     font-family:'Duepuntozero'; 
     font-weight:normal;
@@ -47,6 +50,7 @@ nav {
     width: 100%;
     display: flex;
 }
+/*************** LOGIN ******************/
 .loginForm{
     margin: auto;
     text-align: center;
@@ -63,6 +67,36 @@ nav {
     width: 250px;
 }
 .login{
-    display: block;
     background-image: url("image/fondo-login.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.login-button{
+    margin-top: 10px;
+    color: white;
+    background: green;
+}
+.login-recuperar{
+    color: #23527c;
+    clear: left;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-recov-pass{
+    visibility: hidden;
+    -ms-transform: skewx(1000px); /* IE 9 */
+    -webkit-transform: skewx(1000px); /* Safari */
+    transform: translatex(1000px);
+}
+
+.login-recuperar-input{
+    transition: transform 1s;
+    -ms-transform: skewx(0); /* IE 9 */
+    -webkit-transform: skewx(0); /* Safari */
+    transform: translatex(0);
 }

@@ -45,7 +45,9 @@
 
     "login-title": "Access Client",
     "login-acces-dni": "DNI Client",
-    "login-acces-dni-form": "Enter your ID here",
+    "login-acces-dni-form": "Enter your ID here: 'xxxxxxL'",
     "login-acces-password": "Password",
-    "login-acces-password-form": "Enter your password here"
+    "login-acces-password-form": "Enter your password here",
+    "login-button-acces": "SEND",
+    "login-recover-password": "Introduzca su e-mail"
 }

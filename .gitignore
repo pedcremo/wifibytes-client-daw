@@ -3,3 +3,4 @@ node_modules/
 coverage/
 doc/
 package-lock.json
+./tests/components/__snapshots__
