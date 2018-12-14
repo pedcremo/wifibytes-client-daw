@@ -52,6 +52,9 @@
     "login-acces-password-form": "Introduzca aqui su contraseña",
     "login-button-acces": "ENVIAR",
     "login-recover-password": "Introduzca su e-mail",
+    "login-button-register": "REGISTRARSE",
+    "login-text-recover": "He olvidado mi contraseña",
+    "login-button-recover":"RECUPERAR",
     
     "register-name":"Nombre",
     "register-surname":"Apellidos",
