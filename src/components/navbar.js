@@ -52,11 +52,6 @@ class Navbar extends React.Component{
                     </button>
                         <div className="collapse navbar-collapse text-center" id="navbarSupportedContent">
                             <ul className="navbar-nav ml-auto ">
-                                <li className="nav-item">
-                                    <Link to="/legal" className="nav-link text-dark pt-3">
-                                        LEGAL
-                                    </Link>
-                                </li>
                                 <li className="nav-item pt-3 text-success">
                                     <i className="fas fa-phone"> </i> {this.state.datosEmpresa.phone} &nbsp;
                                 </li>
