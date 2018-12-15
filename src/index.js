@@ -16,23 +16,18 @@ import ReactDOM from 'react-dom';
 
 ////////////Redux && Thunk imports
 
-//import thunk from 'redux-thunk'
-//import { createStore, applyMiddleware } from 'redux'
-import rootReducer from "./reducers";
-import { createStore } from 'redux'
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from "./reducers/rootReducer";
+import { Provider } from "react-redux";
 
 ////////////Redux && Thunk code
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+);
 
-export default store;
 /* 
-  const middleware = [ thunk ]
-
-  const store = createStore(
-    reducer,
-    applyMiddleware(...middleware)
-  )
-  
   render(
     <Provider store={store}>
       <wifibytesApp />
@@ -51,7 +46,7 @@ Router
     ReactDOM.render(<Cookies />, document.getElementById("main"));
 })
 .add(/legal/, function() {
-    ReactDOM.render(<Legal />, document.getElementById("main"));
+    ReactDOM.render( <Provider store={store}><Legal /></Provider>, document.getElementById("main"));
 })
 .add(/rates/, function() {
     ReactDOM.render(<Rates />, document.getElementById("main"));

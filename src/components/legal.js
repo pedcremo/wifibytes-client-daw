@@ -1,20 +1,22 @@
 import React from 'react';
 import {Utils} from "../utils";
+import { connect } from "react-redux";
+import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 
 /**
  * Draw legal texts
  */
 class Legal extends React.Component{
 
-    constructor(props){
+/*     constructor(props){
         super(props);
         this.state={
             legalTexts:[],
             isLoading:true
         };
-    }
+    } */
     componentDidMount(){
-        let that=this;
+        /* let that=this;
         Utils.get("/datos_empresa").then(function(response) {          
             let cookiesTexts = response.textos.filter((itemText) => {
                 return itemText.key.match(/legal/i) && itemText.lang==Utils.getUserLang();
@@ -28,15 +30,42 @@ class Legal extends React.Component{
             });
         }).catch(function(error) {
             console.log("Failed!", error);
-        });
+        }); */
+        this.props.dispatch(getDatosEmpresa());
     }
     /** render  */
     render() {
-        return (
-            <div className="p-5" dangerouslySetInnerHTML={{__html: this.state.legalTexts.join("")}}>
-            </div>
-        );      
+        const { error, loading, datosEmpresa } = this.props;
+        console.log(this.props);
+        if (error) {
+            return (<div>Error! {error.message}</div>);
+        }
+    
+        if (loading) {
+            return (<div>Loading...</div>);
+        }
+
+        if(datosEmpresa){
+            let cookiesTexts = datosEmpresa.textos.filter((itemText) => {
+                return itemText.key.match(/legal/i) && itemText.lang==Utils.getUserLang();
+              }).map((item) => {
+                  return item.content;
+            });
+            return (
+                <div className="p-5" dangerouslySetInnerHTML={{__html: cookiesTexts.join("")}}>
+                </div>
+            );
+        }
+              
     }
 }
 
-export default Legal; 
+const mapStateToProps = state => ({
+    datosEmpresa: state.datosEmpresa.items,
+    loading: state.datosEmpresa.loading,
+    error: state.datosEmpresa.error
+});
+
+export default connect(mapStateToProps)(Legal);
+
+//export default Legal; 
