@@ -57,7 +57,7 @@ Router
   })
 .add(/rate\/(.*)/, function() {
     console.log("rate details")
-    ReactDOM.render(<RateDetail idRate={arguments[0]}/>, document.getElementById("main"));
+    ReactDOM.render(<Provider store={store}><RateDetail idRate={arguments[0]}/></Provider>, document.getElementById("main"));
   })
 .add(/company/, function() {
     Utils.get("/datos_empresa").then(function(response) {

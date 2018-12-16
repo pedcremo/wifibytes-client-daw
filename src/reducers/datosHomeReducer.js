@@ -15,7 +15,7 @@ import {
       case GET_DATOS_HOME_BEGIN:
         // Mark the state as "loading" so we can show a spinner or something
         // Also, reset any errors. We're starting fresh.
-        console.warn("GET_DATOS_HOME_BEGIN")
+        //console.warn("GET_DATOS_HOME_BEGIN")
         return {
           ...state,
           loading: true,
@@ -25,7 +25,7 @@ import {
       case GET_DATOS_HOME_SUCCESS:
         // All done: set loading "false".
         // Also, replace the items with the ones from the server
-        console.warn("GET_DATOS_HOME_SUCCESS")
+        //console.warn("GET_DATOS_HOME_SUCCESS")
         return {
           ...state,
           loading: false,
@@ -38,7 +38,7 @@ import {
         // Since it failed, we don't have items to display anymore, so set it empty.
         // This is up to you and your app though: maybe you want to keep the items
         // around! Do whatever seems right.
-        console.warn("GET_DATOS_HOME_FAILURE", typeof (action.payload.error), action.payload.error)
+        //console.warn("GET_DATOS_HOME_FAILURE", typeof (action.payload.error), action.payload.error)
         return {
           ...state,
           loading: false,
@@ -47,7 +47,7 @@ import {
         };
   
       default:
-      console.warn("GET_DATOS_HOME_DEFAULT")
+      //console.warn("GET_DATOS_HOME_DEFAULT")
         // ALWAYS have a default case in a reducer
         return state;
     }
