@@ -17,7 +17,7 @@ class Catalog extends React.Component {
     /** render  */
     render() {
         const { error, loading, datosArticulos } = this.props;
-        console.log(datosArticulos);
+        
         if (error) {
             return (<div>Error! {error.message}</div>);
         }
@@ -25,14 +25,19 @@ class Catalog extends React.Component {
         if (loading) {
             return (<div>Loading...</div>);
         }
-        return (
-            <span className="catalog">
-                <Families />
-                <Filters filters={datosArticulos[0]} />
-                <Articles articles={datosArticulos[1]} />
-            </span>
-        );
-
+        if(datosArticulos){
+            if (datosArticulos.length > 0) {
+                return (
+                    <span className="catalog">
+                        <Families />
+                        <Filters filters={datosArticulos[0]} />
+                        <Articles articles={datosArticulos[1].results} />
+                    </span>
+                );
+            } else {
+                return("");
+            }
+        }
     }
 }
 
