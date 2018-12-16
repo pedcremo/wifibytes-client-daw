@@ -46,7 +46,7 @@ class Legal extends React.Component{
         }
 
         if(datosEmpresa){
-            let cookiesTexts = datosEmpresa.textos.filter((itemText) => {
+            /* let cookiesTexts = datosEmpresa.textos.filter((itemText) => {
                 return itemText.key.match(/legal/i) && itemText.lang==Utils.getUserLang();
               }).map((item) => {
                   return item.content;
@@ -54,6 +54,17 @@ class Legal extends React.Component{
             return (
                 <div className="p-5" dangerouslySetInnerHTML={{__html: cookiesTexts.join("")}}>
                 </div>
+            ); */
+            let legalTexts;
+            if (Object.keys(datosEmpresa).length > 0) {
+                legalTexts = datosEmpresa.textos.filter((itemText) => {
+                    return itemText.key.match(/legal/i) && itemText.lang == Utils.getUserLang();
+                }).map((item) => {
+                    return item.content;
+                });
+            }
+            return (
+                <div className="p-5" dangerouslySetInnerHTML={{__html: legalTexts}}></div>
             );
         }
               
