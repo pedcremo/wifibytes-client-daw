@@ -11,6 +11,7 @@ const initialState = {
 };
 
 export default function datosEmpresaReducer(state = initialState, action) {
+  //console.log("REDUCEREMPRESA",action);
   switch(action.type) {
     case GET_DATOS_EMPRESA_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something

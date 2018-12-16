@@ -81,7 +81,8 @@ Router
       
       ReactDOM.render(<Provider store={store}><Navbar /></Provider>, document.querySelector("nav"));
       ReactDOM.render(<Home />, document.getElementById("main"));
-    ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
+      ReactDOM.render( <Provider store={store}><Footer /></Provider>, document.querySelector('.page-footer'));
+   // ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
      
 
     })
