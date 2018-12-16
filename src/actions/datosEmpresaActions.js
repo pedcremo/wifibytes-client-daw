@@ -3,7 +3,7 @@ import {Utils} from "../utils";
 export function getDatosEmpresa() {
     return dispatch => {
       dispatch(getDatosEmpresaBegin());
-      return Utils.get("/datos_empresa")
+      Utils.get("/datos_empresa")
         .then(function(response) {
           dispatch(getDatosEmpresaSuccess(response));
           return response;
