@@ -77,10 +77,8 @@ Router
     //Promise.all([get("/tarifa/?destacado=true"), get("/datos_empresa"),get("/home",filterPruneArrayByLang)]).then(function(results) {
     Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
 
-
-
       ReactDOM.render(<Navbar />, document.querySelector("nav"));
-      ReactDOM.render(<Home />, document.getElementById("main"));
+      ReactDOM.render(<Provider store={store}><Home /></Provider>, document.getElementById("main"));
       ReactDOM.render( <Provider store={store}><Footer /></Provider>, document.querySelector('.page-footer'));
    // ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
      
