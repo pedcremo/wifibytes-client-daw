@@ -46,13 +46,10 @@ class Navbar extends React.Component{
     /** render  */
     render() {
         const { error, loading, datosEmpresa, value } = this.props;
-        console.log(value);
-        if (error) 
-            return (<div>Error! </div>);
-        
+        if (error)
+            return (<div>Error! </div>);      
         if (loading) 
             return (<div>Loading...</div>);
-
         if(datosEmpresa){
             return (<div className="navRender">
                 <a className="navbar-brand font-weight-bold" href={"#"}><img width="149px" height="49px" src={datosEmpresa.logo} /></a>
