@@ -1,6 +1,7 @@
 import {Utils} from "../utils";
 
 export function getDatosEmpresa() {
+  console.warn("getDatosEmpresa")
     return dispatch => {
       dispatch(getDatosEmpresaBegin());
       Utils.get("/datos_empresa")

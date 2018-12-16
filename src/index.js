@@ -16,16 +16,14 @@ import ReactDOM from 'react-dom';
 
 ////////////Redux && Thunk imports
 
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from "./reducers/rootReducer";
 import { Provider } from "react-redux";
+import { store } from "./store";
 
 ////////////Redux && Thunk code
-const store = createStore(
+/* const store = createStore(
   rootReducer,
   applyMiddleware(thunk)
-);
+); */
 
 /* 
   render(
@@ -43,7 +41,8 @@ Router
     ReactDOM.render(<Contacte />, document.getElementById("main"));
 })
 .add(/cookies/, function() {
-    ReactDOM.render(<Cookies />, document.getElementById("main"));
+    ReactDOM.render( <Provider store={store}><Cookies /></Provider>, document.getElementById("main"));
+    /* ReactDOM.render(<Cookies />, document.getElementById("main")); */
 })
 .add(/legal/, function() {
     ReactDOM.render( <Provider store={store}><Legal /></Provider>, document.getElementById("main"));
