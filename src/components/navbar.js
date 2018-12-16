@@ -21,8 +21,8 @@ class Navbar extends React.Component{
     }*/
 
     componentDidMount(){
-        this.handleLangPicker = this.handleLangPicker.bind(this);
         this.props.dispatch(getDatosEmpresa());
+        this.handleLangPicker = this.handleLangPicker.bind(this);
         /*let that=this;
         Utils.get('/datos_empresa').then((response) => {   
             that.setState({
@@ -37,7 +37,6 @@ class Navbar extends React.Component{
      * @param {element} event 
      */
     handleLangPicker(event) {
-        this.props({value: event.target.value});
         Utils.setUserLanguage(event.target.value);       
         var a = document.getElementById("langPicker");
         a.addEventListener("change", this.handleLangPicker.bind(this), false);  
@@ -47,6 +46,7 @@ class Navbar extends React.Component{
     /** render  */
     render() {
         const { error, loading, datosEmpresa, value } = this.props;
+        console.log(value);
         if (error) 
             return (<div>Error! </div>);
         
