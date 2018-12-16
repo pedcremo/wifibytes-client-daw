@@ -233,7 +233,7 @@ ReactWrapper {
   className="card-deck mt-2 mb-5"
 >
   <div
-    className="card rounded border text-center border-dark text-center animated fadeInRightBig"
+    className="card rounded border text-center border-dark text-center animated zoomInDown"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -327,7 +327,7 @@ ReactWrapper {
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated rotateInDownLeft"
+    className="card rounded border text-center border-dark text-center animated jello"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -421,7 +421,7 @@ ReactWrapper {
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated fadeInLeftBig"
+    className="card rounded border text-center border-dark text-center animated swing"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -515,7 +515,7 @@ ReactWrapper {
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated rotateInUpRight"
+    className="card rounded border text-center border-dark text-center animated fadeInRightBig"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -610,7 +610,7 @@ ReactWrapper {
     </div>
   </div>
   <div
-    className="card rounded border text-center border-dark text-center animated headShake"
+    className="card rounded border text-center border-dark text-center animated fadeInLeftBig"
     style={
       Object {
         "backgroundColor": "rgba(255, 255, 255, 0.8)",
@@ -18715,6 +18715,7 @@ ReactWrapper {
                 "backgroundColor": "rgba(255, 255, 255, 0.8)",
               }
             }
+<<<<<<< HEAD
           >
             <div
               className="card-header  bg-dark text-light font-weight-bold"
@@ -38572,6 +38573,65 @@ ReactWrapper {
       "nodeType": "class",
       "props": Object {
         "rates": Array [
+=======
+          }
+        />
+        <br />
+         
+        90
+         
+        free channels
+      </p>
+    </div>
+    <div
+      className="card-footer bg-light"
+    >
+      <a
+        className="btn btn-primary"
+        href="#rate/1"
+      >
+        <h4>
+          View details
+        </h4>
+      </a>
+      <a
+        className="btn btn-secondary"
+        href="#"
+      >
+        <h4>
+          To contract
+        </h4>
+      </a>
+    </div>
+  </div>
+  <div
+    className="card rounded border text-center border-dark text-center animated fadeInLeft"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+      }
+    }
+  >
+    <div
+      className="card-header  bg-dark text-light font-weight-bold"
+    >
+      <h3>
+        <img
+          height="32px"
+          src="https://backend.wifibytes.com/media/Logo/icon-chicken.png"
+          width="32px"
+        />
+         
+        MOVIL ILIMITADAS + 3GB
+      </h3>
+    </div>
+    <div
+      className="card-body p-0"
+    >
+      <h5
+        className="card-title text-white p-2 mr-0"
+        style={
+>>>>>>> a9939405efb06aa5a984241d3f9914d71433abf2
           Object {
             "activo": true,
             "codtarifa": 4,

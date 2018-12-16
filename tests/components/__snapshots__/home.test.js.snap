@@ -395,7 +395,9 @@ ShallowWrapper {
           <div
             className="row home-banner text-center text-white p-4"
             styles="background-color: rgba(0,0,0,0.6)"
-          />
+          >
+            <VegasCarousel />
+          </div>
         </div>
         <div
           className="row p-5 bg-white"
@@ -822,7 +824,9 @@ ShallowWrapper {
             <div
               className="row home-banner text-center text-white p-4"
               styles="background-color: rgba(0,0,0,0.6)"
-            />
+            >
+              <VegasCarousel />
+            </div>
           </div>,
           <div
             className="row p-5 bg-white"
@@ -1247,7 +1251,9 @@ ShallowWrapper {
               <div
                 className="row home-banner text-center text-white p-4"
                 styles="background-color: rgba(0,0,0,0.6)"
-              />,
+              >
+                <VegasCarousel />
+              </div>,
             ],
             "className": "p-5",
           },
@@ -1642,11 +1648,20 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
+                "children": <VegasCarousel />,
                 "className": "row home-banner text-center text-white p-4",
                 "styles": "background-color: rgba(0,0,0,0.6)",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": "div",
             },
           ],
@@ -2198,7 +2213,9 @@ ShallowWrapper {
             <div
               className="row home-banner text-center text-white p-4"
               styles="background-color: rgba(0,0,0,0.6)"
-            />
+            >
+              <VegasCarousel />
+            </div>
           </div>
           <div
             className="row p-5 bg-white"
@@ -2625,7 +2642,9 @@ ShallowWrapper {
               <div
                 className="row home-banner text-center text-white p-4"
                 styles="background-color: rgba(0,0,0,0.6)"
-              />
+              >
+                <VegasCarousel />
+              </div>
             </div>,
             <div
               className="row p-5 bg-white"
@@ -3050,7 +3069,9 @@ ShallowWrapper {
                 <div
                   className="row home-banner text-center text-white p-4"
                   styles="background-color: rgba(0,0,0,0.6)"
-                />,
+                >
+                  <VegasCarousel />
+                </div>,
               ],
               "className": "p-5",
             },
@@ -3445,11 +3466,20 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
+                  "children": <VegasCarousel />,
                   "className": "row home-banner text-center text-white p-4",
                   "styles": "background-color: rgba(0,0,0,0.6)",
                 },
                 "ref": null,
-                "rendered": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
                 "type": "div",
               },
             ],

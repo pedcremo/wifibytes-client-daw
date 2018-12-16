@@ -1,0 +1,40 @@
+[
+    {
+        "id": 2,
+        "caja_1_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-01_SCwpDEm.png",
+        "caja_2_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-02_0JPB38B.png",
+        "caja_3_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-03_sHr6vC1.png",
+        "caja_4_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-04_6STGRm4.png",
+        "pretitulo": "Connexions i tarifes mòbils",
+        "titulo": "Pensades per a tu ",
+        "caja_1_titulo": "Cobertura internacional",
+        "caja_1_texto": "<p>Disposem de cobertura m&ograve;bil a nivel nacional i internacional.&nbsp;</p>",
+        "caja_2_titulo": "Sense permanència",
+        "caja_2_texto": "<p>Les nostres l&iacute;nies no tenen cap tipus de perman&egrave;ncia ni penalitzaci&oacute; per donar-te de baixa.</p>",
+        "caja_3_titulo": "Fàcil control del consum",
+        "caja_3_texto": "<p>Amb el nostre panell d'administraci&oacute; podr&agrave;s gestionar tots els aspectes de la teva l&iacute;nia.</p>",
+        "caja_4_titulo": "Sense sobrecost",
+        "caja_4_texto": "<p>Quan consumeixis el teu l&iacute;mit de dades mensuals baixarem la velocitat a 64Kbits i mai et cobrarem m&eacute;s.</p>",
+        "activo": true,
+        "idioma": 2
+    },
+    {
+        "id": 1,
+        "caja_1_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-01.png",
+        "caja_2_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-02.png",
+        "caja_3_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-03.png",
+        "caja_4_icono": "https://backend.wifibytes.com/media/pagina_tarifas/icon-tarifas-04.png",
+        "pretitulo": "Tarifas",
+        "titulo": "Pensadas para ti",
+        "caja_1_titulo": "Cobertura Internacional",
+        "caja_1_texto": "<p>Disponemos de cobertura m&oacute;vil a nivel nacional e internacional.</p>\r\n<p>&nbsp;</p>",
+        "caja_2_titulo": "Sin permanencia",
+        "caja_2_texto": "<p>Nuestras l&iacute;neas no tienen ning&uacute;n tipo de permanencia ni penalizaci&oacute;n por darte de baja.</p>",
+        "caja_3_titulo": "Fácil control del consumo",
+        "caja_3_texto": "<p>Con nuestro panel de administraci&oacute;n podr&aacute;s gestionar todos los aspectos de tu l&iacute;nea.</p>",
+        "caja_4_titulo": "Sin sobrecoste",
+        "caja_4_texto": "<p>Cuando consumas tu l&iacute;mite de datos mensuales bajaremos la velocidad a 64Kbits y nunca te cobraremos m&aacute;s.</p>",
+        "activo": true,
+        "idioma": 1
+    }
+]
