@@ -38,7 +38,7 @@ let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
 Router
 .add(/contacte/, function() {
-    ReactDOM.render(<Contacte />, document.getElementById("main"));
+    ReactDOM.render(<Provider store={store}><Contacte /></Provider>, document.getElementById("main"));
 })
 .add(/cookies/, function() {
     ReactDOM.render( <Provider store={store}><Cookies /></Provider>, document.getElementById("main"));
@@ -60,11 +60,7 @@ Router
     ReactDOM.render(<Provider store={store}><RateDetail idRate={arguments[0]}/></Provider>, document.getElementById("main"));
   })
 .add(/company/, function() {
-    Utils.get("/datos_empresa").then(function(response) {
-      new Company(response,"#main");
-    }).catch(function(error) {
-      console.log("Failed!", error);
-    });
+  ReactDOM.render( <Provider store={store}><Company /></Provider>, document.getElementById("main"));
 })
 .add(/catalog/, function() {
     
