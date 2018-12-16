@@ -8,35 +8,12 @@ import { getDatosEmpresa } from "../actions/datosEmpresaActions";
  */
 class Legal extends React.Component{
 
-/*     constructor(props){
-        super(props);
-        this.state={
-            legalTexts:[],
-            isLoading:true
-        };
-    } */
     componentDidMount(){
-        /* let that=this;
-        Utils.get("/datos_empresa").then(function(response) {          
-            let cookiesTexts = response.textos.filter((itemText) => {
-                return itemText.key.match(/legal/i) && itemText.lang==Utils.getUserLang();
-              }).map((item) => {
-                  return item.content;
-            });
-               
-            that.setState({
-                legalTexts: cookiesTexts,
-                isLoading:false
-            });
-        }).catch(function(error) {
-            console.log("Failed!", error);
-        }); */
         this.props.dispatch(getDatosEmpresa());
     }
     /** render  */
     render() {
         const { error, loading, datosEmpresa } = this.props;
-        console.log(this.props);
         if (error) {
             return (<div>Error! {error.message}</div>);
         }
@@ -46,15 +23,7 @@ class Legal extends React.Component{
         }
 
         if(datosEmpresa){
-            /* let cookiesTexts = datosEmpresa.textos.filter((itemText) => {
-                return itemText.key.match(/legal/i) && itemText.lang==Utils.getUserLang();
-              }).map((item) => {
-                  return item.content;
-            });
-            return (
-                <div className="p-5" dangerouslySetInnerHTML={{__html: cookiesTexts.join("")}}>
-                </div>
-            ); */
+
             let legalTexts;
             if (Object.keys(datosEmpresa).length > 0) {
                 legalTexts = datosEmpresa.textos.filter((itemText) => {

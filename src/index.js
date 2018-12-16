@@ -68,7 +68,7 @@ Router
 })
 .add(/catalog/, function() {
     
-    ReactDOM.render(<Catalog />, document.getElementById("main")); 
+    ReactDOM.render(<Provider store={store}><Catalog /></Provider>, document.getElementById("main")); 
 })
 .add(/products\/(.*)\/edit\/(.*)/, function() {
     console.log('products', arguments);

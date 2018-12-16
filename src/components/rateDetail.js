@@ -8,7 +8,7 @@ class RateDetail extends React.Component {
     
     constructor(props){
         super(props);
-        console.error(props)
+        //console.error(props)
     }
 
     componentDidMount() {
