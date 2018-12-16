@@ -60,11 +60,7 @@ Router
     ReactDOM.render(<Provider store={store}><RateDetail idRate={arguments[0]}/></Provider>, document.getElementById("main"));
   })
 .add(/company/, function() {
-    Utils.get("/datos_empresa").then(function(response) {
-      new Company(response,"#main");
-    }).catch(function(error) {
-      console.log("Failed!", error);
-    });
+  ReactDOM.render( <Provider store={store}><Company /></Provider>, document.getElementById("main"));
 })
 .add(/catalog/, function() {
     
