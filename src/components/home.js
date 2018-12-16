@@ -44,9 +44,9 @@ class Home extends React.Component {
 
                             <RateBoxSubComponent rates={this.state.ratesJSON.results} />
 
-                        <div className="row home-banner text-center text-white p-4"  styles="background-color: rgba(0,0,0,0.6)">
+                        
                             <VegasCarousel />
-                        </div>
+                        
                     </div>
                     <div className="row p-5 bg-white">
                         <div className="col-md-6 mt-md-0 mt-3" >
