@@ -1,5 +1,7 @@
 import React from 'react';
 import {Utils} from "../utils";
+import { connect } from "react-redux";
+import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 /**
  * Draw top menu navbar 
  */
@@ -8,7 +10,7 @@ class Navbar extends React.Component{
     /**
      * Constructor
      */
-    constructor(props){
+    /*constructor(props){
         super(props);
         this.state={
             datosEmpresa:[],
@@ -16,16 +18,18 @@ class Navbar extends React.Component{
             value: Utils.getCookie("language")
         }
         this.handleLangPicker = this.handleLangPicker.bind(this);
-    }
+    }*/
 
     componentDidMount(){
-        let that=this;
+        this.handleLangPicker = this.handleLangPicker.bind(this);
+        this.props.dispatch(getDatosEmpresa());
+        /*let that=this;
         Utils.get('/datos_empresa').then((response) => {   
             that.setState({
                 datosEmpresa: response,
                 isLoading:false
             });
-        });
+        });*/
     }
     
     /**
@@ -33,16 +37,25 @@ class Navbar extends React.Component{
      * @param {element} event 
      */
     handleLangPicker(event) {
-        this.setState({value: event.target.value});
+        this.props({value: event.target.value});
         Utils.setUserLanguage(event.target.value);       
         var a = document.getElementById("langPicker");
         a.addEventListener("change", this.handleLangPicker.bind(this), false);  
     }
+    
         
     /** render  */
     render() {
-        return (<div className="navRender">
-                <a className="navbar-brand font-weight-bold" href={"#"}><img width="149px" height="49px" src={this.state.datosEmpresa.logo} /></a>
+        const { error, loading, datosEmpresa, value } = this.props;
+        if (error) 
+            return (<div>Error! </div>);
+        
+        if (loading) 
+            return (<div>Loading...</div>);
+
+        if(datosEmpresa){
+            return (<div className="navRender">
+                <a className="navbar-brand font-weight-bold" href={"#"}><img width="149px" height="49px" src={datosEmpresa.logo} /></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon text-dark"></span>
                 </button>
@@ -50,7 +63,7 @@ class Navbar extends React.Component{
                         <ul className="navbar-nav ml-auto ">
                         
                             <li className="nav-item pt-3 text-success">
-                                <i className="fas fa-phone"> </i> {this.state.datosEmpresa.phone} &nbsp;
+                                <i className="fas fa-phone"> </i> {datosEmpresa.phone} &nbsp;
                             </li>
                             <li className="nav-item active">
                             <a className="nav-link text-dark pt-3" href={"#/catalog"}><span className="text-success">::</span> {Utils.translate("menu-catalog")}</a>
@@ -70,14 +83,14 @@ class Navbar extends React.Component{
                             </li>
                             
                             <li className="nav-item">
-                            <a className="nav-link text-dark text-align-right" href={Utils.checkURL(this.state.datosEmpresa.twitter)}><i className="fab fa-2x fa-twitter"></i></a>
+                            <a className="nav-link text-dark text-align-right" href={Utils.checkURL(datosEmpresa.twitter)}><i className="fab fa-2x fa-twitter"></i></a>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link text-dark" href={Utils.checkURL(this.state.datosEmpresa.facebook)}><i className="fab fa-2x fa-facebook"></i></a>
+                            <a className="nav-link text-dark" href={Utils.checkURL(datosEmpresa.facebook)}><i className="fab fa-2x fa-facebook"></i></a>
                             </li>
                             
                             <li className="nav-item pt-3">
-                                <select id="langPicker" className="selectpicker" data-width="fit" value={this.state.value} onChange={this.handleLangPicker}>
+                                <select id="langPicker" className="selectpicker" data-width="fit" value={value} onChange={this.handleLangPicker}>
                                     <option value='english'>English</option>
                                     <option value='spanish' >Español</option>
                                     <option value='valencia' >Valencià</option>
@@ -105,7 +118,17 @@ class Navbar extends React.Component{
                 </div>
             </div>
         );
+
+        }
+        
     }
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+    datosEmpresa: state.datosEmpresa.items,
+    loading: state.datosEmpresa.loading,
+    error: state.datosEmpresa.error,
+    value: Utils.getCookie("language")
+});
+
+export default connect(mapStateToProps)(Navbar);

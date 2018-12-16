@@ -78,8 +78,8 @@ Router
     Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
 
 
-
-      ReactDOM.render(<Navbar />, document.querySelector("nav"));
+      
+      ReactDOM.render(<Provider store={store}><Navbar /></Provider>, document.querySelector("nav"));
       ReactDOM.render(<Home />, document.getElementById("main"));
     ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
      
