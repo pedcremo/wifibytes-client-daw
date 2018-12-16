@@ -50,6 +50,7 @@
         }
     },
     "dependencies": {
+        "react-google-recaptcha": "^1.0.5",
         "vegas": "^2.4.4"
     }
 }

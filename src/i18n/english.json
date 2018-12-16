@@ -54,11 +54,13 @@
     "login-text-recover": "I forgot my password",
     "login-button-recover":"RECOVER",
 
+    "register-title": "New Client",
     "register-name":"Name",
     "register-surname":"Surname",
     "register-email":"Email",
     "register-passs":"Password",
     "register-repeatPassw":"Repeat password",
     "register-legal":"I have read and accept the privacy policy",
-    "register-newslater":"Check this box to NOT receive new offers"
+    "register-newslater":"Check this box to NOT receive new offers",
+    "register-button": "SEND"
 }

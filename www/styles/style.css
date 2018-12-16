@@ -109,3 +109,32 @@ nav {
     -webkit-transform: skewx(0); /* Safari */
     transform: translatex(0);
 }
+/*************** REGISTER ******************/
+#register {
+    display: grid;
+    justify-content: center;
+    color: white;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+#register h1 {
+    text-align: center;
+}
+
+.register--checkbox {
+    margin-top: 15px;
+}
+
+.register--containers {
+    display: flex;
+    margin-top: 15px;
+}
+
+.register--content {
+    margin-left: 5px;
+}
+
+#captcha {
+    margin-top: 15px;
+}

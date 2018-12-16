@@ -56,11 +56,13 @@
     "login-text-recover": "He olvidat la meva contraseña",
     "login-button-recover":"RECUPERAR",
 
+    "register-title": "Nou Client",
     "register-name":"Nom",
     "register-surname":"Cognoms",
     "register-email":"Correu electronic",
     "register-passs":"Contrasenya",
     "register-repeatPassw":"Repetix contrasenya",
     "register-legal":"He llegit i acepte la política de privacitat",
-    "register-newslater":"Marque esta casella per a NO recibir noves ofertes"
+    "register-newslater":"Marque esta casella per a NO recibir noves ofertes",
+    "register-button": "ENVIAR"
 }
