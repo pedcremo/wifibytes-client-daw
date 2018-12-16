@@ -11,11 +11,12 @@ const initialState = {
 };
 
 export default function datosEmpresaReducer(state = initialState, action) {
+  //console.log("REDUCEREMPRESA",action);
   switch(action.type) {
     case GET_DATOS_EMPRESA_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
-      console.warn("GET_DATOS_EMPRESA_BEGIN")
+      //console.warn("GET_DATOS_EMPRESA_BEGIN")
       return {
         ...state,
         loading: true,
@@ -25,7 +26,7 @@ export default function datosEmpresaReducer(state = initialState, action) {
     case GET_DATOS_EMPRESA_SUCCESS:
       // All done: set loading "false".
       // Also, replace the items with the ones from the server
-      console.warn("GET_DATOS_EMPRESA_SUCCESSx")
+      //console.warn("GET_DATOS_EMPRESA_SUCCESSx")
       return {
         ...state,
         loading: false,
@@ -38,7 +39,7 @@ export default function datosEmpresaReducer(state = initialState, action) {
       // Since it failed, we don't have items to display anymore, so set it empty.
       // This is up to you and your app though: maybe you want to keep the items
       // around! Do whatever seems right.
-      console.warn("1GET_DATOS_EMPRESA_FAIL5", typeof (action.payload.error), action.payload.error)
+      //console.warn("1GET_DATOS_EMPRESA_FAIL5", typeof (action.payload.error), action.payload.error)
       return {
         ...state,
         loading: false,
@@ -47,7 +48,7 @@ export default function datosEmpresaReducer(state = initialState, action) {
       };
 
     default:
-    console.warn("1GET_DATOS_EMPRESA_DEF")
+    //console.warn("1GET_DATOS_EMPRESA_DEF")
       // ALWAYS have a default case in a reducer
       return state;
   }

@@ -1,49 +1,51 @@
-//import Component from "./component";
-import React from 'react';
-import {Utils} from "../utils";
-/**
- * Draw footer web app
- */
-class Footer extends React.Component{
-    /**
-     * @constructor
-     * @param {json} datosEmpresaJSON 
-     * @param {string} selectRule 
-     */
-    constructor(props) { 
-        super(props);
-        this.state = {
-            datosEmpresa:{},
-            home:{}//Prefiltered by get 
-        };
-        //this.selectedTarget.innerHTML=this.render(this.inputJSON);     
-    }
 
-    componentDidMount(){
-      let that = this;
-      Promise.all([Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
-        that.setState({
-          datosEmpresa: results[0],
-          home: results[1][0]
-        });
-      });
-    }
-  
-    /** render */
-    render() {   
+/** @module ComponentsApp */
+import React from 'react';
+import { Utils } from "../utils";
+import { connect } from "react-redux";
+import { getDatosEmpresa } from "../actions/datosEmpresaActions2";
+import { getDatosHome } from "../actions/datosHomeActions";
+
+/**
+ * @class
+ * Draw cookies text information
+ */
+class Footer extends React.Component {
+
+  componentDidMount() {
+    this.props.dispatch(getDatosEmpresa());
+    this.props.dispatch(getDatosHome());
+  }
+
+  /** render  */
+  render() {
+    /* const isLoading = this.state.isLoading; */
+    const { error, loading, datosEmpresa, datosHome } = this.props;
+
+    if (error)
+      return (<div>Error! </div>);
+
+    if (loading)
+      return (<div>Loading...</div>);
+
+    if (datosEmpresa && datosHome) {
+
       return (
         <div>
-          {/* Footer Links */}
           <div className="container-fluid text-center text-md-left " >
-          
-            {/* Grid Grow */}
+
             <div className="row">
 
               {/* Grid column */}
               <div className="col-md-6 mt-md-0 mt-3" >
-                {/* Content */}
-                <h5 className="text-uppercase">{this.state.home.caja_izquierda_titulo}</h5>
-                  <label className="left_box" dangerouslySetInnerHTML={{__html: this.state.home.caja_izquierda_texto}}></label>
+                {
+                  datosHome.filter((itemText) => {
+                    return itemText.pk == 1;//results[1][0] : results[1]->positionPromise results[1][0]->lng valencia
+                  }).map((item, index) => {
+                    return <span key={index}> <h5 className="text-uppercase" key={index}>{item.caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{ __html: item.caja_izquierda_texto }}></label></span>
+                  })
+                }
+
               </div>
               {/* Grid column */}
 
@@ -85,16 +87,16 @@ class Footer extends React.Component{
                     <a href="#cookies">{Utils.translate("footer-cookies")}</a>
                   </li>
                   <li>
-                    <a href={Utils.checkURL(this.state.datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
+                    <a href={Utils.checkURL(datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
                   </li>
                   <li>
-                    <a href={Utils.checkURL(this.state.datosEmpresa.facebook)}><i className="fab fa-facebook"></i></a>
+                    <a href={Utils.checkURL(datosEmpresa.facebook)}><i className="fab fa-facebook"></i></a>
                   </li>
                 </ul>
 
               </div>
               {/* Grid Columns */}
-              
+
             </div>
             {/* Grid Grow */}
 
@@ -103,13 +105,22 @@ class Footer extends React.Component{
 
           {/* Copyright */}
           <div className="footer-copyright text-center bg-dark py-3 text-white">
-            © 2018 Copyright: <label id="companyName">{this.state.datosEmpresa.name}</label> | <i className="fas fa-phone"></i> {this.state.datosEmpresa.phone} |{this.state.datosEmpresa.address}, {this.state.datosEmpresa.city} -{this.state.datosEmpresa.zipcode}- ({this.state.datosEmpresa.province}) {this.state.datosEmpresa.country}
+            © 2018 Copyright: <label id="companyName">{datosEmpresa.name}</label> | <i className="fas fa-phone"></i> {datosEmpresa.phone} |{datosEmpresa.address}, {datosEmpresa.city} -{datosEmpresa.zipcode}- ({datosEmpresa.province}) {datosEmpresa.country}
           </div>
           {/* Copyright */}
         </div>
-          
-      ); 
+      );
     }
+
+  }
 }
 
-export default Footer;
+const mapStateToProps = state => ({
+  datosEmpresa: state.datosEmpresa.items,
+  datosHome: state.datosHome.items,
+  loading: state.datosEmpresa.loading,
+  error: state.datosEmpresa.error
+});
+
+export default connect(mapStateToProps)(Footer);
+

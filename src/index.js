@@ -57,7 +57,7 @@ Router
   })
 .add(/rate\/(.*)/, function() {
     console.log("rate details")
-    ReactDOM.render(<RateDetail idRate={arguments[0]}/>, document.getElementById("main"));
+    ReactDOM.render(<Provider store={store}><RateDetail idRate={arguments[0]}/></Provider>, document.getElementById("main"));
   })
 .add(/company/, function() {
     Utils.get("/datos_empresa").then(function(response) {
@@ -78,10 +78,11 @@ Router
     Promise.all([ Utils.get("/tarifa/?destacado=true"),  Utils.get("/datos_empresa"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
 
 
-
-      ReactDOM.render(<Navbar />, document.querySelector("nav"));
+      
+      ReactDOM.render(<Provider store={store}><Navbar /></Provider>, document.querySelector("nav"));
       ReactDOM.render(<Home />, document.getElementById("main"));
-    ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
+      ReactDOM.render( <Provider store={store}><Footer /></Provider>, document.querySelector('.page-footer'));
+   // ReactDOM.render(<Footer />,document.querySelector('.page-footer'));
      
 
     })
