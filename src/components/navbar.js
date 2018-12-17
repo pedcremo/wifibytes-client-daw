@@ -60,9 +60,14 @@ class Navbar extends React.Component{
                                 <li className="nav-item pt-3 text-success">
                                     <i className="fas fa-phone"> </i> {this.state.datosEmpresa.phone} &nbsp;
                                 </li>
-                                <li className="nav-item active">
-                                <a className="nav-link text-dark pt-3" href={"#/catalog"}><span className="text-success">::</span> {Utils.translate("menu-catalog")}</a>
+                                <li className="nav-item">
+                                    <Link to="/catalog" className="nav-link text-dark pt-3">
+                                    <span className="text-success">::</span> {Utils.translate("menu-catalog")}
+                                    </Link>
                                 </li>
+                                {/* <li className="nav-item active">
+                                <a className="nav-link text-dark pt-3" href={"#/catalog"}><span className="text-success">::</span> {Utils.translate("menu-catalog")}</a>
+                                </li> */}
                                 <li className="nav-item">
                                 <a className="nav-link text-dark pt-3" href={"#/rates"}><span className="text-success">::</span> {Utils.translate("menu-rates")}</a>
                                 </li>

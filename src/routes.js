@@ -118,6 +118,7 @@ import {Route, Switch} from 'react-router-dom';
 //components
 import Home from "./components/home";
 import Legal from "./components/legal";
+import Catalog from "./components/catalog/catalog";
 import Company from "./components/company";
 //import Page404 from './Components/Page404'
 
@@ -128,6 +129,7 @@ const AppRoutes = () =>
        <Switch>
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/legal" render={() => <Legal />} />
+            <Route exact path="/catalog" render={() => <Catalog />} />
             <Route exact path="/company" render={() => <Company />} />
        </Switch>);
 
