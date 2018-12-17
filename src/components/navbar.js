@@ -61,20 +61,20 @@ class Navbar extends React.Component{
                                 </Link>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link text-dark pt-3" href={"#/rates"}><span className="text-success">::</span> {Utils.translate("menu-rates")}</a>
+                                <Link to="/rates" className="nav-link text-dark pt-3">
+                                    <span className="text-success">::</span> {Utils.translate("menu-rates")}
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/company" className="nav-link text-dark pt-3">
-                                <span className="text-success">::</span> {Utils.translate("menu-company")}
+                                    <span className="text-success">::</span> {Utils.translate("menu-company")}
                                 </Link>
                             </li>
-                            {/* <li className="nav-item">
-                            <a className="nav-link text-dark pt-3" href={"#/company"}><span className="text-success">::</span> {Utils.translate("menu-company")}</a>
-                            </li> */}
                             <li className="nav-item">
-                            <a className="nav-link text-dark pt-3" href={"#/contacte"}><span className="text-success">::</span> {Utils.translate("menu-contact")}</a>
+                                <Link to="/contacte" className="nav-link text-dark pt-3">
+                                    <span className="text-success">::</span> {Utils.translate("menu-contact")}
+                                </Link>
                             </li>
-                            
                             <li className="nav-item">
                             <a className="nav-link disabled pt-3" href={"#"}>{Utils.translate("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
                             </li>
