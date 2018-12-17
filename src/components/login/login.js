@@ -34,6 +34,9 @@ class Login extends React.Component  {
             }
           
     }
+    login(){
+        console.log(Utils.pos());
+    }
  
     /** render  */
     render() {  
@@ -43,10 +46,10 @@ class Login extends React.Component  {
                     <h1>{Utils.translate("login-title")}</h1>
                     <div className="login-acces">
                         <h4>{Utils.translate("login-acces-dni")}</h4>
-                        <input type="text" size="10" maxlength="9" className="loginInput" placeholder={Utils.translate("login-acces-dni-form")}></input>
+                        <input type="text" size="10" maxLength="9" className="loginInput" placeholder={Utils.translate("login-acces-dni-form")}></input>
                         <h4>{Utils.translate("login-acces-password")}</h4>
-                        <input type="password" className="loginInput" placeholder={Utils.translate("login-acces-password-form")}></input>
-                        <button className="login-button btn">{Utils.translate("login-button-acces")}</button>
+                        <input type="password" className="loginInput" pattern="^[0-9]{8}[a-zA-Z]{1}$" placeholder={Utils.translate("login-acces-password-form")}></input>
+                        <button onClick={this.login} className="login-button btn">{Utils.translate("login-button-acces")}</button>
                         <a className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                         <p className="login-recuperar" onClick={this.showrecoverPass}>{Utils.translate("login-text-recover")}</p>
                         <div id="login-recover" className="login-recov-pass">

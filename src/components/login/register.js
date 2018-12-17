@@ -74,7 +74,7 @@ class Register extends React.Component  {
                         />
                     </div>
 
-                    <button class="login-button btn" onClick={console.log('button')}>{Utils.translate("register-button")}</button>
+                    <button className="login-button btn" onClick={console.log('button')}>{Utils.translate("register-button")}</button>
 
                 </form>
 			</section>
