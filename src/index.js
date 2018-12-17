@@ -11,13 +11,11 @@ import Catalog from "./components/catalog/catalog";
 import VegasCarousel from "./components/vegasCarousel";
 import RateDetail from "./components/rateDetail";
 import {Utils} from "./utils";
-import React from 'react'; 
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 document.addEventListener("DOMContentLoaded", function() {      
-    //ReactDOM.render(<Navbar />, document.querySelector('nav'));  
     ReactDOM.render(<App />, document.getElementById('root'));  
-    //ReactDOM.render(<Footer />,document.querySelector('.page-footer'))
  });
 // let vc; //VegasCarousel instance when we change route we destroy the caraousel
 
@@ -86,4 +84,3 @@ document.addEventListener("DOMContentLoaded", function() {
 //     Utils.setUserLanguage(); //We set the language if it not stored in a cookie otherwise we load from cookie
 //     Router.navigate("home");
 // });
-

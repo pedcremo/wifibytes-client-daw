@@ -2,15 +2,15 @@
 import React from 'react';
 import {Utils} from "../utils";
 import RateBoxSubComponent from './rateBoxSubcomponent';
-
+import VegasCarousel from './vegasCarousel';
 class Home extends React.Component {
     /**
      * @constructor
-     * @param {json} homeJSON 
-     * @param {string} selectRule 
+     * @param {json} homeJSON
+     * @param {string} selectRule
      */
-    constructor(props) {        
-        super(props);   
+    constructor(props) {
+        super(props);
         this.state={
             homeJSON:[], //Prefiltered by get util method
             ratesJSON:[],
@@ -21,7 +21,6 @@ class Home extends React.Component {
     componentDidMount(){
         let that=this;
         Promise.all([ Utils.get("/tarifa/?destacado=true"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
-            console.log(results);
             that.setState({
                 homeJSON: results[1][0],
                 ratesJSON: results[0],
@@ -32,7 +31,7 @@ class Home extends React.Component {
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
         console.log(this.state);
-        const isLoading = this.state.isLoading;  
+        const isLoading = this.state.isLoading;
         return (
             <div>
                 {isLoading ? (
@@ -41,12 +40,13 @@ class Home extends React.Component {
                 <div>
                     <div className="p-5">
                         <h1 id="title" className="glow text-center pb-5">{this.state.homeJSON.subtitulo}</h1>
-                    
+
                             <RateBoxSubComponent rates={this.state.ratesJSON.results} />
-                            
-                        <div className="row home-banner text-center text-white p-4"  styles="background-color: rgba(0,0,0,0.6)">
-                        </div> 
-                    </div>       
+
+                        
+                            <VegasCarousel />
+                        
+                    </div>
                     <div className="row p-5 bg-white">
                         <div className="col-md-6 mt-md-0 mt-3" >
                             <h1 className="text-uppercase">{this.state.homeJSON.caja_izquierda_titulo}</h1>
