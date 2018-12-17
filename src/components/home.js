@@ -21,7 +21,6 @@ class Home extends React.Component {
     componentDidMount(){
         let that=this;
         Promise.all([ Utils.get("/tarifa/?destacado=true"), Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])]).then(function(results) {
-            console.log(results);
             that.setState({
                 homeJSON: results[1][0],
                 ratesJSON: results[0],
