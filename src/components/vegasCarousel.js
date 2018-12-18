@@ -39,49 +39,54 @@ class VegasCarousel extends React.Component {
       }).catch(function(error){
         console.log("Failded!", error);
       });
-  }
+    }
+    
+    componentWillUnmount(){
+        $("body").vegas("destroy");
+    }
 
-  before (){
-    $("body").vegas("pause");
-    $("body").vegas("previous");
-    let index = this.state.index -1;
-    // this.setState({
-    //   index : this.state.index - 1
-    // });
-    if(index < 0){
-      this.setState({
-        index : this.state.slidesBack.length - 1
-      });
-    }else{
-      this.setState({
-        index : index
-      });
+    before (){
+        $("body").vegas("pause");
+        $("body").vegas("previous");
+        let index = this.state.index -1;
+        // this.setState({
+        //   index : this.state.index - 1
+        // });
+        if(index < 0){
+        this.setState({
+            index : this.state.slidesBack.length - 1
+        });
+        }else{
+        this.setState({
+            index : index
+        });
+        }
     }
-  }
-  next(){
-    $("body").vegas("pause");
-    $("body").vegas("next");
-    let index = this.state.index + 1;
-    if(index >= this.state.slidesBack.length){
-      this.setState({
-        index : 0
-      });
-    }else{
-      this.setState({
-        index : index
-      });
+    
+    next(){
+        $("body").vegas("pause");
+        $("body").vegas("next");
+        let index = this.state.index + 1;
+        if(index >= this.state.slidesBack.length){
+        this.setState({
+            index : 0
+        });
+        }else{
+        this.setState({
+            index : index
+        });
+        }
     }
-  }
 
 
     /** Hide-kill vegas carousel */
-    hide() {
+    /*hide() {
         try{
-           $(this.selectedTarget).vegas("destroy");
+           $("body").vegas("destroy");
         }catch(e){
            // throw e;
         }
-    }
+    }*/
 
     render(){
 
