@@ -37,6 +37,10 @@ class VegasCarousel extends React.Component {
       });
   }
 
+  componentWillUnmount(){
+    $("body").vegas("destroy");
+  }
+
   before (){
     $("body").vegas("pause");
     $("body").vegas("previous");
@@ -67,17 +71,7 @@ class VegasCarousel extends React.Component {
         index : index
       });
     }
-  }
-
-
-    /** Hide-kill vegas carousel */
-    hide() {
-        try{
-           $(this.selectedTarget).vegas("destroy");
-        }catch(e){
-           // throw e;
-        }
-    }
+  } 
 
     render(){
 
