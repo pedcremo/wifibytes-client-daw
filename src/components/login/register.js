@@ -20,6 +20,10 @@ class Register extends React.Component  {
 
     }
 
+    submit () {
+        console.log('aqui');
+    }
+
     /** render  */
     render() {          
 		return (
@@ -74,17 +78,11 @@ class Register extends React.Component  {
                         />
                     </div>
 
-                    <button class="login-button btn" onClick={console.log('button')}>{Utils.translate("register-button")}</button>
+                    <p className="login-button btn" onClick={this.submit}>{Utils.translate("register-button")}</p>
 
                 </form>
 			</section>
 		);
-    }
-
-    submit (text) {
-        console.log(text);
-        console.log('aqui');
-        alert(text);
     }
 }
 export default Register;
