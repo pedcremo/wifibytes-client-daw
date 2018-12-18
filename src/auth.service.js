@@ -50,6 +50,19 @@ let AuthService = {
     },
     logout:function(){
         Utils.deleteCookie("tokenAuth")
+    },
+    recoverPass:function(diccionario){
+        return new Promise(function(resolve, reject) {
+            if(!diccionario.email) reject(Error("No email"));
+            
+            Utils.post("/clientenoreg/",diccionario)
+            .then(function(res){
+                resolve(res)
+            })
+            .catch((err)=>{
+                reject(Error(err))
+            })
+        });
     }
 }
 let that = AuthService;
