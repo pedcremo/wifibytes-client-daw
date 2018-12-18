@@ -55,16 +55,16 @@ class Footer extends React.Component {
 
                   <ul className="list-unstyled">
                     <li>
-                      <a href="#catalog">{Utils.translate("footer-catalog")}</a>
+                      <Link to="/catalog">{Utils.translate("footer-catalog")}</Link>
                     </li>
                     <li>
-                      <a href="#rates">{Utils.translate("footer-rates")}</a>
+                      <Link to="/rates">{Utils.translate("footer-rates")}</Link>
                     </li>
                     <li>
-                      <a href="#company">{Utils.translate("footer-company")}</a>
+                      <Link to="/company">{Utils.translate("footer-company")}</Link>
                     </li>
                     <li>
-                      <a href="#contacte">{Utils.translate("footer-contact")}</a>
+                      <Link to="/contacte">{Utils.translate("footer-contact")}</Link>
                     </li>
                   </ul>
 
