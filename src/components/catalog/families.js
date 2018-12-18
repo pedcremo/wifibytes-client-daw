@@ -2,7 +2,7 @@
 /** @module ComponentsApp */
 import React from 'react';
 import { Utils } from "../../utils";
-
+import { connect } from "react-redux";
 /**
  * @class
  * Draw families on catalog
@@ -43,5 +43,10 @@ class Families extends React.Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    datosFamilies: state.datosFamilies.items,
+    loading: state.datosEmpresa.loading,
+    error: state.datosEmpresa.error
+});
 
-export default Families; 
+export default connect(mapStateToProps)(Families);

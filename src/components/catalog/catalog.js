@@ -17,7 +17,7 @@ class Catalog extends React.Component {
     /** render  */
     render() {
         const { error, loading, datosArticulos } = this.props;
-        console.log(datosArticulos);
+        
         if (error) {
             return (<div>Error! {error.message}</div>);
         }
