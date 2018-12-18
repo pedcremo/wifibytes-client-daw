@@ -16,9 +16,11 @@ class Login extends React.Component  {
     constructor() { 
         super();
         this.loginSubmit = this.loginSubmit.bind(this);
+        this.recoverPass = this.recoverPass.bind(this);
         this.state = {
             username:"",
             password:"",
+            email:"",
             error:null
         }
 	}
@@ -45,6 +47,22 @@ class Login extends React.Component  {
                 recover.classList.toggle("login-recov-pass")
                 recover.classList.add("login-recuperar-input");
             }
+    }
+    /**
+     * Recover password, it does a connection with backend and ofert they your 
+     * email in diccionario(on the data is sended) and the backend do everything else.
+     */
+    recoverPass(){
+        let diccionario = {
+            email: this.state.email
+        }
+        console.log(diccionario.email);
+        Utils.post("/clientenoreg/",diccionario)
+        .catch((err)=>{
+            this.setState({
+                error: "ERROR"
+            })
+        })
     }
     loginSubmit(){
         let loginSubmit = {
@@ -79,8 +97,8 @@ class Login extends React.Component  {
                         <a className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                         <p className="login-recuperar" onClick={this.showrecoverPass}>{Utils.translate("login-text-recover")}</p>
                         <div id="login-recover" className="login-recov-pass">
-                            <input className="loginInput" placeholder={Utils.translate("login-recover-password")}></input>
-                            <button className="login-button btn">{Utils.translate("login-button-recover")}</button>
+                            <input className="loginInput" onChange={(e)=>this.updateInput(e,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
+                            <button value={this.state.email} onClick={this.recoverPass} className="login-button btn">{Utils.translate("login-button-recover")}</button>
                         </div>
                     </div>
                 </div>
