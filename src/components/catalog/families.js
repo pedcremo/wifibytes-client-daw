@@ -7,7 +7,7 @@ import { Utils } from "../../utils";
  * Draw families on catalog
  */
 class Families extends React.Component {
-
+    /** render */
     render() {
         for (const prop in this.props.familia) {
             if (Array.isArray(this.props.familia[prop])) {
