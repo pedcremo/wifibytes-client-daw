@@ -13,6 +13,7 @@ class Filters extends React.Component{
     }
     /** render  */
     render() {
+        console.log("FILTERS",this.props.filters);
         let setFilters=[];
         for (let [key, value] of Object.entries(this.props.filters)) {
             let values =value.map((item) => {
