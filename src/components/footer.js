@@ -1,6 +1,8 @@
 //import Component from "./component";
 import React from 'react';
 import {Utils} from "../utils";
+import { Link } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 /**
  * Draw footer web app
  */
@@ -32,6 +34,7 @@ class Footer extends React.Component{
     /** render */
     render() {   
       return (
+        <HashRouter>
         <div>
           {/* Footer Links */}
           <div className="container-fluid text-center text-md-left " >
@@ -79,10 +82,14 @@ class Footer extends React.Component{
 
                 <ul className="list-unstyled">
                   <li>
-                    <a href="#legal">{Utils.translate("footer-legal-advice")}</a>
+                    <Link to="/legal">
+                      {Utils.translate("footer-legal-advice")}
+                    </Link>
                   </li>
                   <li>
-                    <a href="#cookies">{Utils.translate("footer-cookies")}</a>
+                    <Link to="/cookies">
+                      {Utils.translate("footer-cookies")}
+                    </Link>
                   </li>
                   <li>
                     <a href={Utils.checkURL(this.state.datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
@@ -107,7 +114,7 @@ class Footer extends React.Component{
           </div>
           {/* Copyright */}
         </div>
-          
+        </HashRouter> 
       ); 
     }
 }

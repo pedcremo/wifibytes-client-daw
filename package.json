@@ -50,6 +50,7 @@
         }
     },
     "dependencies": {
+        "react-router-dom": "^4.3.1",
         "vegas": "^2.4.4"
     }
 }
