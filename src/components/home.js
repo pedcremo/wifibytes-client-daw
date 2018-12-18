@@ -5,16 +5,18 @@ import RateBoxSubComponent from './rateBoxSubcomponent';
 import VegasCarousel from './vegasCarousel';
 import { getDatosTarifas } from "../actions/datosTarifasActions";
 import { getDatosHome } from "../actions/datosHomeActions";
+import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 
 class Home extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(getDatosTarifas());
         this.props.dispatch(getDatosHome());
+        this.props.dispatch(getDatosEmpresa());
     }
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
-        const { error, loading, datosHome, datosTarifa } = this.props;
+        const { error, loading, datosHome, datosTarifa, datosEmpresa } = this.props;
         if (error) return (<div>Error Home! </div>);
 
         if (loading) return (<div>Loading Home ...</div>);
@@ -35,7 +37,7 @@ class Home extends React.Component {
                                     </span>
                                 })
                             }
-                            <VegasCarousel />
+                            <VegasCarousel vegas={datosEmpresa}/>
                         </div>
                         <div className="row p-5 bg-white">
                             <div className="col-md-6 mt-md-0 mt-3" >
@@ -75,6 +77,7 @@ class Home extends React.Component {
 const mapStateToProps = state => ({
     datosHome: state.datosHome.items,
     datosTarifa: state.datosTarifa.items,
+    datosEmpresa: state.datosEmpresa.items,
     loading: state.datosEmpresa.loading,
     error: state.datosEmpresa.error
 });

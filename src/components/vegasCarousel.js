@@ -24,20 +24,16 @@ class VegasCarousel extends React.Component {
     }
 
     componentDidMount(){
-      let that = this;
-      Utils.get("/datos_empresa").then(function(response){
-        //console.log(response);
-        let slidesBack = response.textos.filter((itemText) => {
-          return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
-        }).map((item) =>{
-          return {src : item.image,content:item.content};
-        });
-        that.setState({
-          slidesBack : slidesBack,
-          isLoading : false
-        });
-      }).catch(function(error){
-        //console.log("Failded!", error);
+      let slides = this.props.vegas;
+      console.log(slides);
+      let slidesBack = slides.textos.filter((itemText) => {
+        return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
+      }).map((item) =>{
+        return {src : item.image,content:item.content};
+      });
+      this.setState({
+        slidesBack : slidesBack,
+        isLoading : false
       });
   }
 
@@ -101,7 +97,6 @@ class VegasCarousel extends React.Component {
            }
 
        });
-      const isLoading = this.state.isLoading;
 
       return(
         <div className="row home-banner text-center text-white p-4"  style={{backgroundColor: "rgba(0,0,0,0.6)"}}>

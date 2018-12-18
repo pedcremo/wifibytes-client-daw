@@ -29,9 +29,9 @@ class Catalog extends React.Component {
             if (datosArticulos.length > 0) {
                 return (
                     <span className="catalog">
-                        <Families />
-                        <Filters filters={datosArticulos[0]} />
-                        <Articles articles={datosArticulos[1].results} />
+                        <Families familia={datosArticulos[0]} />
+                        <Filters filters={datosArticulos[1]} />
+                        <Articles articles={datosArticulos[2].results} />
                     </span>
                 );
             } else {

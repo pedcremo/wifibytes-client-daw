@@ -7,7 +7,7 @@ export const GET_DATOS_ARTICULOS_FAILURE = 'GET_DATOS_ARTICULOS_FAILURE';
 export function getDatosArticulos() {
     return dispatch => {
       dispatch(getDatosArticulosBegin());
-      return Promise.all([Utils.get("/filtros"), Utils.get("/articulo")])
+      return Promise.all([Utils.get("/familia"), Utils.get("/filtros"), Utils.get("/articulo")])
             .then(response => dispatch(getDatosArticulosSuccess(response)))
             .catch(error => dispatch(getDatosArticulosFailure(error)));
     };

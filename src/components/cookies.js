@@ -3,7 +3,7 @@
 import React from 'react';
 import {Utils} from "../utils";
 import { connect } from "react-redux";
-import { getDatosEmpresa } from "../actions/datosEmpresaActions2";
+import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 
 /**
  * @class

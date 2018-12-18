@@ -34,7 +34,6 @@ class Company extends React.Component {
                     return item.content;
                 });
             }
-            console.log(companyTexts);
             return (
                 <div>
                     <div className="p-5" dangerouslySetInnerHTML={{__html: companyTexts}}>                  
