@@ -23,7 +23,7 @@ class VegasCarousel extends React.Component {
         this.next = this.next.bind(this);
     }
 
-    componentDidMount(){
+  componentDidMount(){
       let slides = this.props.vegas;
       console.log(slides);
       let slidesBack = slides.textos.filter((itemText) => {
@@ -38,7 +38,11 @@ class VegasCarousel extends React.Component {
   }
 
   componentWillUnmount(){
-    $("body").vegas("destroy");
+    try{
+      $("body").vegas("destroy");
+    }catch(e){
+      
+    }
   }
 
   before (){

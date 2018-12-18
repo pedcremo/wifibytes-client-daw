@@ -40,7 +40,8 @@ class Navbar extends React.Component{
             return (
             <HashRouter>
                 <div className="navRender">
-                    <a className="navbar-brand font-weight-bold" href={"#"}><img width="149px" height="49px" src={datosEmpresa.logo} /></a>
+                    
+                    <Link to="/" className="navbar-brand font-weight-bold"><img width="149px" height="49px" src={datosEmpresa.logo} /></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon text-dark"></span>
                     </button>

@@ -20,11 +20,12 @@ class Home extends React.Component {
         if (error) return (<div>Error Home! </div>);
 
         if (loading) return (<div>Loading Home ...</div>);
-
-        if (datosHome.length > 0 && datosTarifa.length > 0 && datosEmpresa.length > 0) {
+       
+        if (datosHome.length > 0 && datosTarifa.results.length > 0 && datosEmpresa) {
             return (
                 <div>
                     <div>
+
                         <div className="p-5">
                             {
                                 datosHome.filter((itemText) => {
@@ -36,8 +37,9 @@ class Home extends React.Component {
                                     </span>
                                 })
                             }
-                            {/* <VegasCarousel vegas={datosEmpresa}/> */}
+                            <VegasCarousel vegas={datosEmpresa} />
                         </div>
+
                         <div className="row p-5 bg-white">
                             <div className="col-md-6 mt-md-0 mt-3" >
                                 {
@@ -69,19 +71,24 @@ class Home extends React.Component {
                 </div>
             );
         } else {
-            return("");
+            return(
+            <span>LOADING!</span>
+            );
         } 
 
     }
 }
 
-const mapStateToProps = state => ({
-    datosHome: state.datosHome.items,
-    datosTarifa: state.datosTarifa.items,
-    datosEmpresa: state.datosEmpresa.items,
-    loading: state.datosEmpresa.loading,
-    error: state.datosEmpresa.error
-});
+const mapStateToProps = state => {
+    
+    return {
+        datosHome: state.datosHome.items,
+        datosTarifa: state.datosTarifa.items,
+        datosEmpresa: state.datosEmpresa.items,
+        loading: state.datosEmpresa.loading,
+        error: state.datosEmpresa.error
+    }
+};
 
 //export default Home;
 export default connect(mapStateToProps)(Home);

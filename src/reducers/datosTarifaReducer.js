@@ -25,7 +25,7 @@ import {
       case GET_DATOS_TARIFA_SUCCESS:
         // All done: set loading "false".
         // Also, replace the items with the ones from the server
-        //console.warn("GET_DATOS_TARIFA_SUCCESS")
+        //console.warn("GET_DATOS_TARIFA_SUCCESS")        
         return {
           ...state,
           loading: false,
