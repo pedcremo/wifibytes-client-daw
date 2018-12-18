@@ -65,7 +65,25 @@ let Utils={
                 userLanguage=english;    
         }
     },
-
+    /**
+     * Post ajax call
+     */
+    post: function(url,data = {}){
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", Settings.baseURL+url);
+            xhr.setRequestHeader('Content-Type','application/json');
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject(xhr.statusText);
+                }
+            };
+            xhr.onerror = () => reject(xhr.statusText);
+            xhr.send(JSON.stringify(data));
+        })
+    },
     /** Get is our ajax caller implemented as a promise
      * From Jake Archibald's Promises and Back:
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
@@ -147,7 +165,7 @@ let Utils={
      */
     getCookie:function(cname) {   
         try{ 
-            var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w]*)","i");
+            var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w.]*)","i");
             return document.cookie.match(re)[1];
         }catch(e){
             return "";
@@ -165,7 +183,9 @@ let Utils={
         var expires = "expires="+ d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     },
-
+    deleteCookie:function(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    },
     /**
      * Get key from userLanguage imported language selected taking into account user choosen lang
      * @param {string} key 

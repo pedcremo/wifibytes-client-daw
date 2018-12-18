@@ -60,6 +60,13 @@ nav {
     margin-left: 10px;
 }
 /*************** LOGIN ******************/
+.switchLogin{
+padding-top: 30px;
+margin-right: 100px;
+display: flex;
+justify-content: center;
+}
+
 .loginForm{
     margin: auto;
     text-align: center;
