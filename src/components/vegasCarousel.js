@@ -23,70 +23,59 @@ class VegasCarousel extends React.Component {
         this.next = this.next.bind(this);
     }
 
-    componentDidMount(){
-      let that = this;
-      Utils.get("/datos_empresa").then(function(response){
-        console.log(response);
-        let slidesBack = response.textos.filter((itemText) => {
-          return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
-        }).map((item) =>{
-          return {src : item.image,content:item.content};
-        });
-        that.setState({
-          slidesBack : slidesBack,
-          isLoading : false
-        });
-      }).catch(function(error){
-        console.log("Failded!", error);
+  componentDidMount(){
+      let slides = this.props.vegas;
+      console.log(slides);
+      let slidesBack = slides.textos.filter((itemText) => {
+        return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
+      }).map((item) =>{
+        return {src : item.image,content:item.content};
+      });
+      this.setState({
+        slidesBack : slidesBack,
+        isLoading : false
+      });
+  }
+
+  componentWillUnmount(){
+    try{
+      $("body").vegas("destroy");
+    }catch(e){
+      
+    }
+  }
+
+  before (){
+    $("body").vegas("pause");
+    $("body").vegas("previous");
+    let index = this.state.index -1;
+    // this.setState({
+    //   index : this.state.index - 1
+    // });
+    if(index < 0){
+      this.setState({
+        index : this.state.slidesBack.length - 1
+      });
+    }else{
+      this.setState({
+        index : index
       });
     }
-    
-    componentWillUnmount(){
-        $("body").vegas("destroy");
+  }
+  next(){
+    $("body").vegas("pause");
+    $("body").vegas("next");
+    let index = this.state.index + 1;
+    if(index >= this.state.slidesBack.length){
+      this.setState({
+        index : 0
+      });
+    }else{
+      this.setState({
+        index : index
+      });
     }
-
-    before (){
-        $("body").vegas("pause");
-        $("body").vegas("previous");
-        let index = this.state.index -1;
-        // this.setState({
-        //   index : this.state.index - 1
-        // });
-        if(index < 0){
-        this.setState({
-            index : this.state.slidesBack.length - 1
-        });
-        }else{
-        this.setState({
-            index : index
-        });
-        }
-    }
-    
-    next(){
-        $("body").vegas("pause");
-        $("body").vegas("next");
-        let index = this.state.index + 1;
-        if(index >= this.state.slidesBack.length){
-        this.setState({
-            index : 0
-        });
-        }else{
-        this.setState({
-            index : index
-        });
-        }
-    }
-
-
-    /** Hide-kill vegas carousel */
-    /*hide() {
-        try{
-           $("body").vegas("destroy");
-        }catch(e){
-           // throw e;
-        }
-    }*/
+  } 
 
     render(){
 
@@ -106,7 +95,6 @@ class VegasCarousel extends React.Component {
            }
 
        });
-      const isLoading = this.state.isLoading;
 
       return(
         <div className="row home-banner text-center text-white p-4"  style={{backgroundColor: "rgba(0,0,0,0.6)"}}>
