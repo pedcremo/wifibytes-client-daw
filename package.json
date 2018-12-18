@@ -51,6 +51,10 @@
     },
     "dependencies": {
         "react-router-dom": "^4.3.1",
+        "cross-fetch": "^3.0.0",
+        "react-redux": "^6.0.0",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0",
         "vegas": "^2.4.4"
     }
 }
