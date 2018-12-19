@@ -18,7 +18,7 @@ class RateBoxSubComponent extends React.Component {
 
     /** render  */
     render() {
-        console.log("RATE",this.props.rates);
+        //console.log("RATE",this.props.rates);
         const highlitedRates = this.props.rates.map((itemFiltered, index) => {
             //console.log(itemFiltered)
             const subtarifas = (itemFiltered.subtarifas.map((itemSubtarifa, i) => {
@@ -95,7 +95,7 @@ class RateBoxSubComponent extends React.Component {
         
         
         return (
-            <div className="card-deck mt-2 mb-5">
+            <div className="grid-container--fit">
                 {highlitedRates}
             </div>
         );

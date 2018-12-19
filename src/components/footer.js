@@ -30,24 +30,14 @@ class Footer extends React.Component {
     if (loading)
       return (<div>Loading...</div>);
 
-    if (datosEmpresa && datosHome) {
-
+    if (datosHome.length > 0 && datosEmpresa) {
       return (
         <HashRouter>
           <div>
             <div className="container-fluid text-center text-md-left " >
-
               <div className="row">
-
                 <div className="col-md-6 mt-md-0 mt-3" >
-                  {
-                    datosHome.filter((itemText) => {
-                      return itemText.pk == 1;//results[1][0] : results[1]->positionPromise results[1][0]->lng valencia
-                    }).map((item, index) => {
-                      return <span key={index}> <h5 className="text-uppercase" key={index}>{item.caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{ __html: item.caja_izquierda_texto }}></label></span>
-                    })
-                  }
-
+                  <h5 className="text-uppercase" >{datosHome[0].caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{ __html: datosHome[0].caja_izquierda_texto }}></label>
                 </div>
 
                 <hr className="clearfix w-100 d-md-none pb-3"></hr>
@@ -103,6 +93,10 @@ class Footer extends React.Component {
             </div>
           </div>
         </HashRouter>
+      );
+    } else {
+      return (
+        <span>LOADING!</span>
       );
     }
 
