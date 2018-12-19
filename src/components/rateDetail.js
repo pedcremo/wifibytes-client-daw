@@ -3,6 +3,7 @@ import React from 'react';
 import {Utils} from "../utils";
 import { connect } from "react-redux";
 import { getCurrentRateDetails } from "../actions/currentRateDetailsActions";
+import {PropTypes} from 'prop-types'
 
 class RateDetail extends React.Component {
     
@@ -37,7 +38,7 @@ class RateDetail extends React.Component {
                             <div className="row text-white text-center">
                                 <div className="col-md-12 no-padding p-5">
                                     <h2 className="pretitulo" >{details[0].pretitulo }</h2>
-                                    <h1 className="display-4" >{details[0].nombretarifa } <span className="text-dark" >{details[0].precio }{Utils.translate('home-euros-month') }</span></h1>
+                                    <h1 className="display-4" >{details[0].nombretarifa } <span className="text-dark" >{details[0].precio }{this.context.t('home-euros-month') }</span></h1>
                                 </div>
                             </div>
                         </div>
@@ -87,6 +88,11 @@ class RateDetail extends React.Component {
 
     }
 }
+
+RateDetail.contextTypes = {
+    t: PropTypes.func.isRequired
+}
+
 /* export default RateDetail; */
 const mapStateToProps = state => ({
     details: state.currentRateDetails.items,

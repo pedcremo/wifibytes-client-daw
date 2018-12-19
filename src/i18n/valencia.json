@@ -43,5 +43,26 @@
     "catalog-procesador": "UCP",
     "catalog-ram": "RAM",
     "catalog-marca": "Marca",
-    "catalog-camara": "Càmera"
+    "catalog-camara": "Càmera",
+
+    "login-title": "Accés Client",
+    "login-acces-dni": "DNI Client",
+    "login-acces-dni-form": "Introduixca el seu dni açi: 'xxxxxxL'",
+    "login-acces-password": "Contraseña",
+    "login-acces-password-form": "Introduixca la seua contraseña açi",
+    "login-button-acces": "ENVIAR",
+    "login-recover-password": "Introdueixca el seu e-mail",
+    "login-button-register": "REGISTRARSE",
+    "login-text-recover": "He olvidat la meva contraseña",
+    "login-button-recover":"RECUPERAR",
+
+    "register-title": "Nou Client",
+    "register-name":"Nom",
+    "register-surname":"Cognoms",
+    "register-email":"Correu electronic",
+    "register-passs":"Contrasenya",
+    "register-repeatPassw":"Repetix contrasenya",
+    "register-legal":"He llegit i acepte la política de privacitat",
+    "register-newslater":"Marque esta casella per a NO recibir noves ofertes",
+    "register-button": "ENVIAR"
 }

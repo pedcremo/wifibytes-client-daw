@@ -9,6 +9,7 @@ import Company from "./components/company";
 import Cookies from "./components/cookies";
 import Rates from "./components/rates";
 import Contacte from "./components/contacte";
+import SingIn from './components/login/signIn'
 
 const AppRoutes = () =>
    (
@@ -20,6 +21,8 @@ const AppRoutes = () =>
             <Route exact path="/contacte" render={() => <Contacte />} />
             <Route exact path="/cookies" render={() => <Cookies />} />
             <Route exact path="/rates" render={() => <Rates />} />
+            <Route exact path="/login" render={() => <SingIn />} />
+            <Route exact path="/register" render={() => <SingIn />} />
        </Switch>
     );
 
