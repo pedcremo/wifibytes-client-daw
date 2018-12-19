@@ -19,8 +19,8 @@ class Register extends React.Component  {
         this.registerSubmit = this.registerSubmit.bind(this);
         this.state = {
             nombre : "", apellido : "", email : "",
-            cifnif : "", password : "", captcha: null,
-            legal: "", news: "", errorPassword: "", errorPassword2: "", 
+            cifnif : "", password : "", captcha: false,
+            legal: false, newslater: false, errorPassword: "", errorPassword2: "", 
             errorCaptcha: ""
         }
     }
@@ -28,15 +28,17 @@ class Register extends React.Component  {
         
     }
     registerSubmit () {
-        if(this.state.password == this.state.password2 && this.state.captcha == true){
-            let registerForm = {
+        if(this.state.password == this.state.password2 && this.state.captcha == true && this.state.legal == true){
+            let diccionario = {
                 nombre : this.state.nombre,
                 apellido : this.state.apellido,
                 email : this.state.email,
                 cifnif : this.state.cifnif,
-                password : this.state.password 
+                password : this.state.password,
+                // newslater : this.state.newslater
             } 
-            AuthService.register(registerForm).then((res)=>{
+            console.log(diccionario);
+            AuthService.register(diccionario).then((res)=>{
                 console.log(res)
             })
         } else {
@@ -49,6 +51,11 @@ class Register extends React.Component  {
     }
     updateInput(evt,target){
         this.setState({ [target] : evt.target.value });
+    }
+    lang() {
+        let lang = Utils.getUserLang();
+        if (lang=="va") lang="es"
+        return lang
     }
     render() {
 		return (
@@ -94,29 +101,31 @@ class Register extends React.Component  {
                     <div className="register--checkbox">
                         <div>
                             {/* CHECK POLITICA PRIV */}
-                            <input required type="checkbox" value={this.state.legal} onChange={(e)=>this.updateInput(e,'legal')}></input>
+                            <input required type="checkbox" value={this.state.legal} onClick={()=>{ if(this.state.legal) {this.setState({legal:false}) }else{ this.setState({legal:true}) } }}></input>
                             <a href="/#legal"> {Utils.translate("register-legal")} </a>    
                         </div>
                         <div>
                             {/* CHECK NO REBRE OFERTES */}
-                            <input type="checkbox" value={this.state.news} onChange={(e)=>this.updateInput(e,'news')}></input>
+                            <input type="checkbox" value={this.state.newslater} onClick={()=>{ if(this.state.newslater) {this.setState({newslater:false}) }else{ this.setState({newslater:true}) } }}></input>
                             <a> {Utils.translate("register-newslater")}</a>
                         </div>
                     </div>
-                    <div id="captcha">
-                        <Reaptcha
-                        ref={this.recaptchaRef}
-                        sitekey="6LesI4IUAAAAAHHx9B6OuMjqpVl9bIyLOT3n4y3C"
-                        onVerify={() => {
-                            this.state.captcha = true;
-                        }}
-                        />
-                        <span className="errors">{this.state.errorCaptcha}</span>
-                    </div>
-
                     <button className="login-button btn" onClick={(e)=>this.registerSubmit(e)}>{Utils.translate("register-button")}</button>
-
                 </form>
+                <div id="captcha">
+                    <Reaptcha
+                    ref={this.recaptchaRef}
+                    sitekey="6LesI4IUAAAAAHHx9B6OuMjqpVl9bIyLOT3n4y3C"
+                    onVerify={() => {
+                        this.state.captcha = true;
+                    }}
+                    onExpire={() => {
+                        this.state.captcha = false;
+                    }}
+                    hl={this.lang()}
+                    />
+                    <span className="errors">{this.state.errorCaptcha}</span>
+                </div>
 			</section>
 		);
     }

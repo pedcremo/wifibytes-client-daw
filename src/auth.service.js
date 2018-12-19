@@ -32,15 +32,15 @@ let AuthService = {
             });
         });
     },
-    register:function(data){
+    register:function(diccionario){
         return new Promise(function(resolve, reject) {
-            if(!data.nombre) reject(Error("No nombre"));
-            if(!data.apellido) reject(Error("No apellido"));
-            if(!data.email) reject(Error("No email"));
-            if(!data.cifnif) reject(Error("No cifnif"));
-            if(!data.password) reject(Error("No password"));
+            if(!diccionario.nombre) reject(Error("No nombre"));
+            if(!diccionario.apellido) reject(Error("No apellido"));
+            if(!diccionario.email) reject(Error("No email"));
+            if(!diccionario.cifnif) reject(Error("No cifnif"));
+            if(!diccionario.password) reject(Error("No password"));
     
-            Utils.post("/cliente/",register).then(function(res){
+            Utils.post("/cliente/",diccionario).then(function(res){
                 res = JSON.parse(res);
                 resolve(res);
             }).catch((err)=>{
