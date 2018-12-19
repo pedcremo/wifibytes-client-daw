@@ -25,7 +25,7 @@ class VegasCarousel extends React.Component {
 
   componentDidMount(){
       let slides = this.props.vegas;
-      console.log(slides);
+      //console.log(slides);
       let slidesBack = slides.textos.filter((itemText) => {
         return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
       }).map((item) =>{
