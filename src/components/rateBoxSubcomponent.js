@@ -16,6 +16,7 @@ class RateBoxSubComponent extends React.Component {
 
     /** render  */
     render() {
+        //console.log("RATE",this.props.rates);
         const highlitedRates = this.props.rates.map((itemFiltered, index) => {
             //console.log(itemFiltered)
             const subtarifas = (itemFiltered.subtarifas.map((itemSubtarifa, i) => {
