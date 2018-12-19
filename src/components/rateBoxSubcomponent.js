@@ -93,7 +93,7 @@ class RateBoxSubComponent extends React.Component {
         
         
         return (
-            <div className="card-deck mt-2 mb-5">
+            <div className="grid-container--fit">
                 {highlitedRates}
             </div>
         );
