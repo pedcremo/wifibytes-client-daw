@@ -1,42 +1,43 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {Utils} from "../utils";
+import { connect } from "react-redux";
+import { getCurrentRateDetails } from "../actions/currentRateDetailsActions";
 
 class RateDetail extends React.Component {
+    
     constructor(props){
         super(props);
-        this.state={
-            idRate: props.idRate,
-            tarifaJSON:[],
-            isLoading:true
-        }
+        //console.error(props)
     }
+
     componentDidMount() {
-        let that=this;
-        Promise.all([ Utils.get("/tarifa/"+this.state.idRate),  Utils.get("/tarifa_descriptor")]).then(function(results) {
-            console.log(results)
-            that.setState({
-                tarifaJSON: results,
-                isLoading:false
-            });
-        }).catch(function(error) {
-        });
+        this.props.dispatch(getCurrentRateDetails(this.props.idRate));
     }
 
  
     /** render  */
     render() {
-        const isLoading = this.state.isLoading;
-        return (<div>
-                {isLoading ? (
-                    <h1>Loading...</h1>
-                ) : (
+        /* const isLoading = this.state.isLoading; */
+        const { error, loading, details } = this.props;
+        
+        if (error) 
+            return (<div>Error! </div>);
+        
+        if (loading){ 
+            return (<div>Loading...</div>);
+        }
+
+        if (details) {
+            if (details.length > 0) {
+                console.log("yess", details)
+                return (
                     <section id="tarifa" >            
-                        <div className="header-tarifa" style={{background: this.state.tarifaJSON[0].color.hexadecimal}}>
+                        <div className="header-tarifa" style={{background: details[0].color.hexadecimal}}>
                             <div className="row text-white text-center">
                                 <div className="col-md-12 no-padding p-5">
-                                    <h2 className="pretitulo" >{this.state.tarifaJSON[0].pretitulo }</h2>
-                                    <h1 className="display-4" >{this.state.tarifaJSON[0].nombretarifa } <span className="text-dark" >{this.state.tarifaJSON[0].precio }{Utils.translate('home-euros-month') }</span></h1>
+                                    <h2 className="pretitulo" >{details[0].pretitulo }</h2>
+                                    <h1 className="display-4" >{details[0].nombretarifa } <span className="text-dark" >{details[0].precio }{Utils.translate('home-euros-month') }</span></h1>
                                 </div>
                             </div>
                         </div>
@@ -44,44 +45,53 @@ class RateDetail extends React.Component {
                             <thead>
                                 <tr>
                                     <td>
-                                        <img src={this.state.tarifaJSON[1][1].caja_1_icono} />
+                                        <img src={details[1][1].caja_1_icono} />
                                     </td>
                                     <td>
-                                        <img src={this.state.tarifaJSON[1][1].caja_2_icono} />
+                                        <img src={details[1][1].caja_2_icono} />
                                     </td>
                                     <td>
-                                        <img src={this.state.tarifaJSON[1][1].caja_3_icono} />
+                                        <img src={details[1][1].caja_3_icono} />
                                     </td>
                                     <td>
-                                        <img src={this.state.tarifaJSON[1][1].caja_4_icono} />
+                                        <img src={details[1][1].caja_4_icono} />
                                     </td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_1_titulo}}></h3>
-                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_1_texto}}></p>
+                                        <h3 dangerouslySetInnerHTML={{__html: details[1][1].caja_1_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: details[1][1].caja_1_texto}}></p>
                                     </td>
                                     <td>
-                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_2_titulo}}></h3>
-                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_2_texto}}></p>  
+                                        <h3 dangerouslySetInnerHTML={{__html: details[1][1].caja_2_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: details[1][1].caja_2_texto}}></p>  
                                     </td>
                                     <td>
-                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_3_titulo}}></h3>
-                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_3_texto}}></p>
+                                        <h3 dangerouslySetInnerHTML={{__html: details[1][1].caja_3_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: details[1][1].caja_3_texto}}></p>
                                     </td>
                                     <td>
-                                        <h3 dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_4_titulo}}></h3>
-                                        <p dangerouslySetInnerHTML={{__html: this.state.tarifaJSON[1][1].caja_4_texto}}></p>  
+                                        <h3 dangerouslySetInnerHTML={{__html: details[1][1].caja_4_titulo}}></h3>
+                                        <p dangerouslySetInnerHTML={{__html: details[1][1].caja_4_texto}}></p>  
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </section>
-                )}
-                </div>);
+                )
+            }else
+                return("")
+        }
+
     }
 }
-export default RateDetail;
+/* export default RateDetail; */
+const mapStateToProps = state => ({
+    details: state.currentRateDetails.items,
+    loading: state.currentRateDetails.loading,
+    error: state.currentRateDetails.error
+});
 
+export default connect(mapStateToProps)(RateDetail);

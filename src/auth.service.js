@@ -4,7 +4,7 @@ let AuthService = {
     isAuth:function(){
         return new Promise(function(resolve, reject) {
             let token = Utils.getCookie("tokenAuth");
-            if(!token) reject(Error("No token"));
+            if(token == "") reject(Error("No token"));
             Utils.post("/api-token-verify/",{'token':token}).then(function(res){
                 res = JSON.parse(res);
                 if(!Utils.getCookie("tokenAuth") || Utils.getCookie("tokenAuth") != res.token){
@@ -18,8 +18,8 @@ let AuthService = {
     },
     login:function(data){
         return new Promise(function(resolve, reject) {
-            if(!data.username) reject(Error("No username"));
-            if(!data.password) reject(Error("No password"));
+            if(!data.username) reject("No username");
+            if(!data.password) reject("No password");
 
             Utils.post("/api-token-auth/",data).then(function(res){
                 res = JSON.parse(res);
@@ -28,17 +28,17 @@ let AuthService = {
                 }
                 resolve(res);
             }).catch((err)=>{
-                reject(Error(err));
+                reject(err);
             });
         });
     },
     register:function(data){
         return new Promise(function(resolve, reject) {
-            if(!data.nombre) reject(Error("No nombre"));
-            if(!data.apellido) reject(Error("No apellido"));
-            if(!data.email) reject(Error("No email"));
-            if(!data.cifnif) reject(Error("No cifnif"));
-            if(!data.password) reject(Error("No password"));
+            if(!data.nombre) reject("No nombre");
+            if(!data.apellido) reject("No apellido");
+            if(!data.email) reject("No email");
+            if(!data.cifnif) reject("No cifnif");
+            if(!data.password) reject("No password");
 
             Utils.post("/cliente/",data).then(function(res){
                 res = JSON.parse(res);
@@ -47,8 +47,7 @@ let AuthService = {
                 }
                 resolve(res);
             }).catch((err)=>{
-                resolve(err);
-                reject(Error(err));
+                reject(err);
             });
         })
     },
@@ -64,7 +63,7 @@ let AuthService = {
                 resolve(res)
             })
             .catch((err)=>{
-                reject(Error(err))
+                reject(err)
             })
         });
     }

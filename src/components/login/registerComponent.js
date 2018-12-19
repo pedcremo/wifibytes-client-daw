@@ -28,33 +28,22 @@ class Register extends React.Component  {
     componentDidMount(){
         
     }
+    
     registerSubmit () {
-        if (!this.state.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)) {
-            this.setState({errorEmail: Utils.translate("register-error-email")})
-        } else {
-            if(this.state.password == this.state.password2 && this.state.captcha == true && this.state.legal == true){
-                let diccionario = {
-                    nombre : this.state.nombre,
-                    apellido : this.state.apellido,
-                    email : this.state.email,
-                    cifnif : this.state.cifnif,
-                    password : this.state.password,
-                    newsletter : this.state.newsletter
-                };
-                AuthService.register(diccionario).then((res)=>{
-                    if (!res.nombre) {
-                        this.setState({error:res})
-                    }else {
-                        Router.navigate("home");
-                    }
-                })
-            } else {
-                if (this.state.password != this.state.password2) {
-                    this.setState({ errorPassword: Utils.translate("register-error-pass")});
-                    this.setState({ errorPassword2: Utils.translate("register-error-pass")});
-                }
-                if (this.state.captcha != true) this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
-            }
+        if(this.validateData()){
+            let diccionario = {
+                nombre : this.state.nombre,
+                apellido : this.state.apellido,
+                email : this.state.email,
+                cifnif : this.state.cifnif,
+                password : this.state.password,
+                newsletter : this.state.newsletter
+            };
+            AuthService.register(diccionario).then((res)=>{
+                console.log(res.token ? "Succes" : "Error")
+            }).catch((err)=>{
+                this.setState({error:err})
+            })
         }
     }
     updateInput(evt,target){
@@ -64,6 +53,23 @@ class Register extends React.Component  {
         let lang = Utils.getUserLang();
         if (lang=="va") lang="es"
         return lang
+    }
+    validateData(){
+        let res = false;
+        if (!this.state.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)) {
+            this.setState({errorEmail: Utils.translate("register-error-email")})
+            res = true;
+        }
+        if (this.state.password != this.state.password2) {
+            this.setState({ errorPassword: Utils.translate("register-error-pass")});
+            this.setState({ errorPassword2: Utils.translate("register-error-pass")});
+            res = true;
+        }
+        if (this.state.captcha != true){
+            this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
+            res = true;
+        } 
+        return res;
     }
     render() {
 		return (

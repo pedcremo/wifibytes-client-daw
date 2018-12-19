@@ -192,7 +192,7 @@ let Utils={
      */
     translate:function(key) {
         if (userLanguage[key]) return userLanguage[key]
-        else return key;        
+        else return key;
     },
     /**CSS Animation used in the app
      */
@@ -210,6 +210,9 @@ let Utils={
                 return "http://"+hrefText;
             }
         }   
+    },
+    deleteCookie:function(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 }; //END Utils object
 let that = Utils;

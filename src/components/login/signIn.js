@@ -1,8 +1,8 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {AuthService} from "../../utils";
-import LogIn from "./login";
-import Register from "./register";
+import LogIn from "./loginComponent";
+import Register from "./registerComponent";
 /**
  * @class
  * Draw Login. A form to login
@@ -17,8 +17,12 @@ class SignIn extends React.Component  {
             type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"  
         }
     }
+    componentWillReceiveProps(){
+        this.setState({
+            type : window.location.href.split('/')[4]
+        })
+    }
     componentDidMount(){
-
     }
     changeType(res){
         this.setState({
