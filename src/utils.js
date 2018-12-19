@@ -208,6 +208,9 @@ let Utils={
                 return "http://"+hrefText;
             }
         }   
+    },
+    deleteCookie:function(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 }; //END Utils object
 let that = Utils;
