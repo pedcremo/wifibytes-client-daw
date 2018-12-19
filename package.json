@@ -43,14 +43,14 @@
         "webpack-hot-middleware": "^2.24.2"
     },
     "jest": {
-      "setupTestFrameworkScriptFile": "jest-enzyme",
-      "testEnvironment": "enzyme",
-      "transform": {
-        "^.+\\.jsx?$": "babel-jest"
-      },
-      "snapshotSerializers": [
-        "enzyme-to-json/serializer"
-      ]
+        "setupTestFrameworkScriptFile": "jest-enzyme",
+        "testEnvironment": "enzyme",
+        "transform": {
+            "^.+\\.jsx?$": "babel-jest"
+        },
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
     },
     "dependencies": {
         "react-router-dom": "^4.3.1",
