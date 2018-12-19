@@ -6,6 +6,8 @@ import { getDatosEmpresa } from "../actions/datosEmpresaActions2";
 import { getDatosHome } from "../actions/datosHomeActions";
 import { Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
+import {PropTypes} from 'prop-types'
+
 /**
  * @class
  * Draw cookies text information
@@ -51,36 +53,36 @@ class Footer extends React.Component {
                 <hr className="clearfix w-100 d-md-none pb-3"></hr>
 
                 <div className="col-md-3 mb-md-0 mb-3">
-                  <h5 className="text-uppercase">{Utils.translate("footer-menu")}</h5>
+                  <h5 className="text-uppercase">{this.context.t("footer-menu")}</h5>
 
                   <ul className="list-unstyled">
                     <li>
-                      <a href="#catalog">{Utils.translate("footer-catalog")}</a>
+                      <a href="#catalog">{this.context.t("footer-catalog")}</a>
                     </li>
                     <li>
-                      <a href="#rates">{Utils.translate("footer-rates")}</a>
+                      <a href="#rates">{this.context.t("footer-rates")}</a>
                     </li>
                     <li>
-                      <a href="#company">{Utils.translate("footer-company")}</a>
+                      <a href="#company">{this.context.t("footer-company")}</a>
                     </li>
                     <li>
-                      <a href="#contacte">{Utils.translate("footer-contact")}</a>
+                      <a href="#contacte">{this.context.t("footer-contact")}</a>
                     </li>
                   </ul>
 
                 </div>
 
                 <div className="col-md-3 mb-md-0 mb-3">
-                  <h5 className="text-uppercase">{Utils.translate("footer-hints")}</h5>
+                  <h5 className="text-uppercase">{this.context.t("footer-hints")}</h5>
 
                   <ul className="list-unstyled">
                     <li>
                       <Link to="/legal">
-                        {Utils.translate("footer-legal-advice")}
+                        {this.context.t("footer-legal-advice")}
                       </Link>
                     </li>
                       <Link to="/cookies">
-                        {Utils.translate("footer-cookies")}
+                        {this.context.t("footer-cookies")}
                       </Link>
                     <li>
                       <a href={Utils.checkURL(datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
@@ -105,6 +107,10 @@ class Footer extends React.Component {
     }
 
   }
+}
+
+Footer.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

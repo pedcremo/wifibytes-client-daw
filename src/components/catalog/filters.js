@@ -1,5 +1,6 @@
 import React from 'react';
 import {Utils} from "../../utils";
+import {PropTypes} from 'prop-types'
 
 /**
  * Draw legal texts
@@ -22,7 +23,7 @@ class Filters extends React.Component{
                 return <option key={item.id}>{item[selector]}</option>;
             });
             setFilters.push( <div className="form-group" key={key}>
-                <label htmlFor="{key}">{Utils.translate("catalog-"+key)}:</label>
+                <label htmlFor="{key}">{this.context.t("catalog-"+key)}:</label>
                 <select className="form-control" id="{key}" onChange={this.handleChange}>
                     {values}
                 </select>
@@ -39,9 +40,12 @@ class Filters extends React.Component{
 
     handleChange(e) {
         this.setState({ selectedFilter: e.target.value });
-        console.log(this.state);
     }
     
+}
+
+Filters.contextTypes = {
+    t: PropTypes.func.isRequired
 }
 
 export default Filters; 
