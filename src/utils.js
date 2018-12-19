@@ -152,7 +152,7 @@ let Utils={
             case "english":
                 return "en"; 
             case "valencia":
-                return "va";
+                return "ca";
             case "spanish":
                 return "es";
             default:
