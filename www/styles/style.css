@@ -187,3 +187,8 @@ nav {
 #captcha {
     margin-top: 15px;
 }
+
+.errors {
+    color: red;
+    size: 12px;
+}

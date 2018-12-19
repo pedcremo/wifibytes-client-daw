@@ -62,5 +62,8 @@
     "register-repeatPassw":"Repeat password",
     "register-legal":"I have read and accept the privacy policy",
     "register-newslater":"Check this box to NOT receive new offers",
-    "register-button": "SEND"
+    "register-button": "SEND",
+    "register-cifnif": "CIF/NIF",
+    "register-error-pass": "The passwords must to match",
+    "register-error-captcha": "Verify you are not a robot"
 }

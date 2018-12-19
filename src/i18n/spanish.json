@@ -64,6 +64,9 @@
     "register-repeatPassw":"Repite contraseña",
     "register-legal":"He leido i acepto la política de privacidad",
     "register-newslater":"Marco esta casilla para a NO recibir nuevas ofertas",
-    "register-button": "ENVIAR"
+    "register-button": "ENVIAR",
+    "register-cifnif": "CIF/NIF",
+    "register-error-pass": "Las contrasenyas deben coincidir",
+    "register-error-captcha": "Verifica que no eres un robot"
 
 }
