@@ -28,10 +28,12 @@ class SignIn extends React.Component  {
     render() {
         return(
             <div className="login">
-                  <div className="tab">
-                      <button className="tablinks" onClick={()=>this.changeType("login")}>Login</button>
-                      <button className="tablinks" onClick={()=>this.changeType("register")}>Register</button>
-                  </div>
+                <div className="center">
+                    <div className="tab">
+                        <button className="tablinks" onClick={()=>this.changeType("login")}>Login</button>
+                        <button className="tablinks" onClick={()=>this.changeType("register")}>Register</button>
+                    </div>
+                </div>
                 {this.state.type === "register"?
                     <Register />:
                     <LogIn />

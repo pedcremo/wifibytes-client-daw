@@ -71,18 +71,22 @@ nav {
   margin-right: 100px;
   display: flex;
   justify-content: center;
-  margin-left: 45%;
+}
+.center{
+    margin: auto;
+    text-align: center;
+    width: 215px;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-  background-color: inherit;
-  border: none;
-
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+    background-color: inherit;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
 }
 
 /* Change background color of buttons on hover */
@@ -102,7 +106,6 @@ nav {
   border: 1px solid #ccc;
   border-top: none;
 }
-
 .loginForm{
     margin: auto;
     text-align: center;
