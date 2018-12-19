@@ -1,8 +1,7 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../utils";
-import LogIn from "./login";
-import Register from "./register";
+import LogIn from "./loginComponent";
+import Register from "./registerComponent";
 /**
  * @class
  * Draw Login. A form to login
@@ -14,7 +13,7 @@ class SignIn extends React.Component  {
     constructor(props) {
         super(props);
         this.state = {
-            type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"  
+            type : window.location.href.split('/')[4]
         }
     }
     componentDidMount(){
@@ -28,12 +27,10 @@ class SignIn extends React.Component  {
     render() {
         return(
             <div className="login">
-                <div className="center">
-                    <div className="tab">
-                        <button className="tablinks" onClick={()=>this.changeType("login")}>Login</button>
-                        <button className="tablinks" onClick={()=>this.changeType("register")}>Register</button>
-                    </div>
-                </div>
+                  <div className="tab">
+                      <button className="tablinks" onClick={()=>this.changeType("login")}>Login</button>
+                      <button className="tablinks" onClick={()=>this.changeType("register")}>Register</button>
+                  </div>
                 {this.state.type === "register"?
                     <Register />:
                     <LogIn />
