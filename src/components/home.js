@@ -22,6 +22,7 @@ class Home extends React.Component {
 
         if (loading) return (<div>Loading Home ...</div>);
         if (datosHome.length > 0 && datosTarifa.results.length > 0 && datosEmpresa) {
+            console.log(datosTarifa)
             return (
                 <div>
                     <div>
