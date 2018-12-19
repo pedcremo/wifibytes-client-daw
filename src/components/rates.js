@@ -1,15 +1,17 @@
 import React from 'react';
 import {Utils} from "../utils";
-
+import { connect } from "react-redux";
 import RateBoxSubComponent from "./rateBoxSubcomponent";
+import VegasCarousel from './vegasCarousel';
+import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 /**
  * Draw active rates
  */
 class Rates extends React.Component {
     /**
      * @constructor
-     * @param {json} activeRatesJSON 
-     * @param {string} selectRule 
+     * @param {json} activeRatesJSON
+     * @param {string} selectRule
      */
     constructor(props) {
         super(props);
@@ -25,6 +27,7 @@ class Rates extends React.Component {
     }
 
     componentDidMount(){
+        this.props.dispatch(getDatosEmpresa());
         let that = this;
         Promise.all([ Utils.get("/tarifa/?activo=true"),  Utils.get("/tarifa_descriptor")]).then(function(results) {
             that.setState({
@@ -47,13 +50,13 @@ class Rates extends React.Component {
                     if (subItem.tipo_tarifa==tipo_tarifa) return subItem;
                 });
                 if (subs.length>0) return item;
-            });     
+            });
             this.setState({
                 rates:filteredRates,
                 ratesDescription:this.state.originalRatesDescription
-            }); 
+            });
         }else {
-            this.setState({  
+            this.setState({
                 rates:this.state.originalRates,
                 ratesDescription:this.state.originalRatesDescription
             });
@@ -62,11 +65,12 @@ class Rates extends React.Component {
         // $("#"+event.target.id ).addClass("active");
     }
     render() {
+            const { datosEmpresa } = this.props;
         let boxTextsArray = [];
-        for (let [key, value] of Object.entries(this.state.ratesDescription)) {            
+        for (let [key, value] of Object.entries(this.state.ratesDescription)) {
             if (key.startsWith("caja")) {
                 let groups=key.match(/caja_([\d]*)_([\w]*)/)
-                if (!boxTextsArray[groups[1]]) boxTextsArray[groups[1]]={};                
+                if (!boxTextsArray[groups[1]]) boxTextsArray[groups[1]]={};
                 boxTextsArray[groups[1]][groups[2]]=value;
             }
         }
@@ -93,14 +97,14 @@ class Rates extends React.Component {
                     <div className="p-5">
                     <h1 className="glow text-center pt-1">{this.state.ratesDescription.pretitulo}</h1>
                     <h1 className="glow text-center pt-1">{this.state.ratesDescription.titulo}</h1>
-                    
+
                     <nav className="nav nav-pills nav-justified">
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-All" value="0" className="nav-item  nav-link">TOTES</button>
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-fibra" value="3" className="nav-item nav-link"><i className="fas fa-filter"></i>Fibra óptica</button>
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-movil" value="1" className="nav-item nav-link"><i className="fas fa-filter"></i>Móvil</button>
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-wifi" value="4" className="nav-item nav-link"><i className="fas fa-filter"></i>Wifi diseminado</button>
-                    </nav> 
-
+                    </nav>
+                      <VegasCarousel vegas={datosEmpresa} />
                     <div>
                         <RateBoxSubComponent rates={this.state.rates}></RateBoxSubComponent>
                     </div>
@@ -113,4 +117,11 @@ class Rates extends React.Component {
         );
     }
 }
-export default Rates;
+
+const mapStateToProps = state => {
+
+    return {
+        datosEmpresa: state.datosEmpresa.items,
+    }
+};
+export default connect(mapStateToProps)(Rates);
