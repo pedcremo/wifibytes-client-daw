@@ -1,6 +1,7 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {Utils} from "../../utils";
+import {Settings} from "../../settings";
 import {AuthService} from "../../auth.service";
 import Reaptcha from 'reaptcha';
 
@@ -20,33 +21,43 @@ class Register extends React.Component  {
         this.state = {
             nombre : "", apellido : "", email : "",
             cifnif : "", password : "", captcha: false,
-            legal: false, newslater: false, errorPassword: "", errorPassword2: "", 
-            errorCaptcha: ""
+            legal: false, newsletter: false, errorPassword: "", errorPassword2: "", 
+            errorCaptcha: "", errorEmail: "", error: ""
         }
     }
     componentDidMount(){
         
     }
     registerSubmit () {
-        if(this.state.password == this.state.password2 && this.state.captcha == true && this.state.legal == true){
-            let diccionario = {
-                nombre : this.state.nombre,
-                apellido : this.state.apellido,
-                email : this.state.email,
-                cifnif : this.state.cifnif,
-                password : this.state.password,
-                // newslater : this.state.newslater
-            } 
-            console.log(diccionario);
-            AuthService.register(diccionario).then((res)=>{
-                console.log(res)
-            })
+        if (!this.state.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)) {
+            this.setState({errorEmail: Utils.translate("register-error-email")})
         } else {
-            if (this.state.password != this.state.password2) {
-                this.setState({ errorPassword: Utils.translate("register-error-pass")});
-                this.setState({ errorPassword2: Utils.translate("register-error-pass")});
+            if(this.state.password == this.state.password2 && this.state.captcha == true && this.state.legal == true){
+                let diccionario = {
+                    nombre : this.state.nombre,
+                    apellido : this.state.apellido,
+                    email : this.state.email,
+                    cifnif : this.state.cifnif,
+                    password : this.state.password,
+                    newsletter : this.state.newsletter
+                };
+
+                console.log(diccionario);
+                AuthService.register(diccionario).then((res)=>{
+                    console.log(res)
+                    if (!res.nombre) {
+                        this.setState({error:res})
+                    }else {
+                    Router.navigate("home");
+                    }
+                })
+            } else {
+                if (this.state.password != this.state.password2) {
+                    this.setState({ errorPassword: Utils.translate("register-error-pass")});
+                    this.setState({ errorPassword2: Utils.translate("register-error-pass")});
+                }
+                if (this.state.captcha != true) this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
             }
-            if (this.state.captcha != true) this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
         }
     }
     updateInput(evt,target){
@@ -62,6 +73,7 @@ class Register extends React.Component  {
 			<section id="register">
                 <h1>{Utils.translate("register-title")}</h1>
                 <form>
+                    <h3 className="errors">{this.state.error}</h3>
                     <div className="register--containers">
                         <div className="register--content">
                             {/* NOM */}
@@ -76,12 +88,13 @@ class Register extends React.Component  {
                         <div className="register--content">
                             {/* CORREU */}
                             <h4>{Utils.translate("register-email")}</h4>
-                            <input required value={this.state.email} onChange={(e)=>this.updateInput(e,'email')} placeholder={Utils.translate("register-email")}></input>
+                            <input required value={this.state.email} onChange={(e)=>this.updateInput(e,'email')} placeholder={Utils.translate("register-email")} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$"></input>
+                            <br/><span className="errors">{this.state.errorEmail}</span>
                         </div>
                         <div className="register--content">
                             {/* CIF/NIF */}
                             <h4>{Utils.translate("register-cifnif")}</h4>
-                            <input required value={this.state.cifnif} onChange={(e)=>this.updateInput(e,'cifnif')} placeholder="CIF/NIE"></input>
+                            <input required value={this.state.cifnif} onChange={(e)=>this.updateInput(e,'cifnif')} placeholder={Utils.translate("register-cifnif")} size="10" maxLength="9" pattern="^[0-9]{8}[a-zA-Z]{1}$"></input>
                         </div>
                     </div>
                     <div className="register--containers">
@@ -106,8 +119,8 @@ class Register extends React.Component  {
                         </div>
                         <div>
                             {/* CHECK NO REBRE OFERTES */}
-                            <input type="checkbox" value={this.state.newslater} onClick={()=>{ if(this.state.newslater) {this.setState({newslater:false}) }else{ this.setState({newslater:true}) } }}></input>
-                            <a> {Utils.translate("register-newslater")}</a>
+                            <input type="checkbox" value={this.state.newsletter} onClick={()=>{ if(this.state.newsletter) {this.setState({newslater:false}) }else{ this.setState({newslater:true}) } }}></input>
+                            <a> {Utils.translate("register-newsletter")}</a>
                         </div>
                     </div>
                     <button className="login-button btn" onClick={(e)=>this.registerSubmit(e)}>{Utils.translate("register-button")}</button>
@@ -115,7 +128,7 @@ class Register extends React.Component  {
                 <div id="captcha">
                     <Reaptcha
                     ref={this.recaptchaRef}
-                    sitekey="6LesI4IUAAAAAHHx9B6OuMjqpVl9bIyLOT3n4y3C"
+                    sitekey={Settings.captchaSiteKey}
                     onVerify={() => {
                         this.state.captcha = true;
                     }}
