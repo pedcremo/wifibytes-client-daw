@@ -41,14 +41,11 @@ class Register extends React.Component  {
                     password : this.state.password,
                     newsletter : this.state.newsletter
                 };
-
-                console.log(diccionario);
                 AuthService.register(diccionario).then((res)=>{
-                    console.log(res)
                     if (!res.nombre) {
                         this.setState({error:res})
                     }else {
-                    Router.navigate("home");
+                        Router.navigate("home");
                     }
                 })
             } else {
