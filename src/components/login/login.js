@@ -3,6 +3,7 @@ import {Router} from "../../router.js"; //Knows what to do for every single URL
 import React from 'react';
 import {Utils} from "../../utils";
 import {AuthService} from "../../auth.service";
+import Reaptcha from 'reaptcha';
 
 
 /**
@@ -21,6 +22,8 @@ class Login extends React.Component  {
             username:"",
             password:"",
             email:"",
+            errorCaptcha: "",
+            captcha: false,
             error:null
         }
 	}
@@ -53,16 +56,20 @@ class Login extends React.Component  {
      * email in diccionario(on the data is sended) and the backend do everything else.
      */
     recoverPass(){
-        if(this.state.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)){
-            let diccionario = {
-                email: this.state.email
+        if (this.state.captcha === true){
+            if(this.state.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)){
+                let diccionario = {
+                    email: this.state.email
+                }
+                AuthService.recoverPass(diccionario).then((res)=>{
+                    alert(JSON.parse(res).message+", compruebe su correo, tenga en cuenta que esto puede tardar unos minutos.")
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
             }
-            AuthService.recoverPass(diccionario).then((res)=>{
-                console.log(res)
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
+        }else{
+            this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
         }
     }
     loginSubmit(){
@@ -96,10 +103,26 @@ class Login extends React.Component  {
                             <a className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                         </form>
                         <p className="login-recuperar" onClick={this.showrecoverPass}>{Utils.translate("login-text-recover")}</p>
-                        <form id="login-recover" className="login-recov-pass">
-                            <input className="loginInput" required onChange={(e)=>this.updateInput(e,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
-                            <button value={this.state.email} onClick={this.recoverPass} className="login-button btn">{Utils.translate("login-button-recover")}</button>
-                        </form>
+                        <div id="login-recover" className="login-recov-pass">
+                            <form>
+                                <input className="loginInput" required onChange={(e)=>this.updateInput(e,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
+                                <button value={this.state.email} onClick={this.recoverPass} className="login-button btn">{Utils.translate("login-button-recover")}</button>
+                            </form>
+                            <div id="captcha">
+                                <Reaptcha
+                                ref={this.recaptchaRef}
+                                sitekey="6LesI4IUAAAAAHHx9B6OuMjqpVl9bIyLOT3n4y3C"
+                                onVerify={() => {
+                                    this.state.captcha = true;
+                                }}
+                                onExpire={() => {
+                                    this.state.captcha = false;
+                                }}
+                                hl={Utils.getUserLang()}
+                                />
+                                <span className="errors">{this.state.errorCaptcha}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
