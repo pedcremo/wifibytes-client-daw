@@ -7,11 +7,7 @@ import {Utils} from "../utils";
  * We filter by lang too
 */
 class VegasCarousel extends React.Component {
-    /**
-     * @constructor
-     * @param {JSON} datosEmpresaJSON with textos data
-     * @param {string} selectRule CSS rule Where to draw the carousel
-     */
+    
     constructor(props) {
         super(props);
         this.state= {
@@ -25,7 +21,7 @@ class VegasCarousel extends React.Component {
 
   componentDidMount(){
       let slides = this.props.vegas;
-      //console.log(slides);
+    
       let slidesBack = slides.textos.filter((itemText) => {
         return itemText.key.match(/jumbotron/i) && itemText.lang == Utils.getUserLang();
       }).map((item) =>{
@@ -41,7 +37,7 @@ class VegasCarousel extends React.Component {
     try{
       $("body").vegas("destroy");
     }catch(e){
-      
+      console.log(e);
     }
   }
 
@@ -49,9 +45,6 @@ class VegasCarousel extends React.Component {
     $("body").vegas("pause");
     $("body").vegas("previous");
     let index = this.state.index -1;
-    // this.setState({
-    //   index : this.state.index - 1
-    // });
     if(index < 0){
       this.setState({
         index : this.state.slidesBack.length - 1
@@ -78,36 +71,36 @@ class VegasCarousel extends React.Component {
   } 
 
     render(){
-
+        
       if(this.state.slidesBack.length > 0){
-      let data = this.state.slidesBack;
-      let that = this;
-      $('body').vegas({
-           delay: 15000,
-           timer: false,
-           transition: "fade",
-           transitionDuration: 3000,
-           slides: data,
-           walk: function (index, slideSettings) {
-                  that.setState({
-                    index: index
-                  });
-           }
+        let data = this.state.slidesBack;
+        let that = this;
+        $('body').vegas({
+            delay: 15000,
+            timer: false,
+            transition: "fade",
+            transitionDuration: 3000,
+            slides: data,
+            walk: function (index, slideSettings) {
+                    that.setState({
+                        index: index
+                    });
+            }
 
-       });
+        });
 
-      return(
-        <div className="row home-banner text-center text-white p-4"  style={{backgroundColor: "rgba(0,0,0,0.6)"}}>
-            <div key="previous" className="col-sm-1" onClick={this.before}>
-              <i className="fas fa-3x fa-angle-left"></i>
+        return(
+            <div className="row home-banner text-center text-white p-4"  style={{backgroundColor: "rgba(0,0,0,0.6)"}}>
+                <div key="previous" className="col-sm-1" onClick={this.before}>
+                <i className="fas fa-3x fa-angle-left"></i>
+                </div>
+                <div className="col-sm-10" dangerouslySetInnerHTML={{__html: this.state.slidesBack[this.state.index].content}}>
+                </div>
+                <div key="next" className="col-sm-1" onClick={this.next}>
+                <i className="fas fa-3x fa-angle-right"></i>
+                </div>
             </div>
-            <div className="col-sm-10" dangerouslySetInnerHTML={{__html: this.state.slidesBack[this.state.index].content}}>
-            </div>
-            <div key="next" className="col-sm-1" onClick={this.next}>
-               <i className="fas fa-3x fa-angle-right"></i>
-            </div>
-        </div>
-      )
+        )
     }else{
       return null;
     }
