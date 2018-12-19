@@ -47,7 +47,10 @@
         "testEnvironment": "enzyme",
         "transform": {
             "^.+\\.jsx?$": "babel-jest"
-        }
+        },
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
     },
     "dependencies": {
         "react-router-dom": "^4.3.1",
