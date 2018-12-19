@@ -111,7 +111,7 @@ class Login extends React.Component  {
                             <div id="captcha">
                                 <Reaptcha
                                 ref={this.recaptchaRef}
-                                sitekey="6LesI4IUAAAAAHHx9B6OuMjqpVl9bIyLOT3n4y3C"
+                                sitekey={Settings.captchaSiteKey}
                                 onVerify={() => {
                                     this.state.captcha = true;
                                 }}

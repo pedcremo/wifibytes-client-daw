@@ -60,11 +60,6 @@ class Register extends React.Component  {
     updateInput(evt,target){
         this.setState({ [target] : evt.target.value });
     }
-    lang() {
-        let lang = Utils.getUserLang();
-        if (lang=="va") lang="es"
-        return lang
-    }
     render() {
 		return (
 			<section id="register">
@@ -132,7 +127,7 @@ class Register extends React.Component  {
                     onExpire={() => {
                         this.state.captcha = false;
                     }}
-                    hl={this.lang()}
+                    hl={Utils.getUserLang()}
                     />
                     <span className="errors">{this.state.errorCaptcha}</span>
                 </div>
