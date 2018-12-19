@@ -57,6 +57,10 @@ nav {
 }
 /*************** LOGIN ******************/
 
+.left{
+    margin-left: 10px;
+}
+
 /* Style the tab */
 .tab {
     border: 1px solid #ccc;
