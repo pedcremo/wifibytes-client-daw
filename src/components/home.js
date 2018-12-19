@@ -1,5 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
+import {Utils} from "../utils";
 import { connect } from "react-redux";
 import RateBoxSubComponent from './rateBoxSubcomponent';
 import VegasCarousel from './vegasCarousel';
@@ -16,20 +17,19 @@ class Home extends React.Component {
     }
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
-        const { error, loading, datosHome, datosTarifa, datosEmpresa } = this.props;
+        const { error, loading, datosHome, datosTarifa, datosEmpresa, value } = this.props;
         if (error) return (<div>Error Home! </div>);
 
         if (loading) return (<div>Loading Home ...</div>);
-       
         if (datosHome.length > 0 && datosTarifa.results.length > 0 && datosEmpresa) {
             return (
                 <div>
                     <div>
 
                         <div className="p-5">
-                            {
+                            {   
                                 datosHome.filter((itemText) => {
-                                    return itemText.pk == 1;
+                                    return itemText.lang == value;
                                 }).map((item, index) => {
                                     return <span key={index}>
                                         <h1 id="title" className="glow text-center pb-5" key={item.pk}>{item.subtitulo}</h1>
@@ -44,7 +44,7 @@ class Home extends React.Component {
                             <div className="col-md-6 mt-md-0 mt-3" >
                                 {
                                     datosHome.filter((itemText) => {
-                                        return itemText.pk == 1;
+                                        return itemText.lang == value;
                                     }).map((item, index) => {
                                         return <span key={index}>
                                             <h1 className="text-uppercase" key={item.pk}>{item.caja_izquierda_titulo}</h1>
@@ -57,7 +57,7 @@ class Home extends React.Component {
                             <div className="col-md-6 mt-md-0 mt-3" >
                                 {
                                     datosHome.filter((itemText) => {
-                                        return itemText.pk == 1;
+                                        return itemText.lang == value;
                                     }).map((item, index) => {
                                         return <span key={index}>
                                             <h1 className="text-uppercase" key={item.pk}>{item.caja_derecha_titulo}</h1>
@@ -86,7 +86,8 @@ const mapStateToProps = state => {
         datosTarifa: state.datosTarifa.items,
         datosEmpresa: state.datosEmpresa.items,
         loading: state.datosEmpresa.loading,
-        error: state.datosEmpresa.error
+        error: state.datosEmpresa.error,
+        value: Utils.getUserLang()
     }
 };
 

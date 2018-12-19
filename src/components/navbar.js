@@ -24,8 +24,8 @@ class Navbar extends React.Component{
      */
     handleLangPicker(event) {
         Utils.setUserLanguage(event.target.value);       
-        var a = document.getElementById("langPicker");
-        a.addEventListener("change", this.handleLangPicker.bind(this), false);  
+        //var a = document.getElementById("langPicker");
+        //a.addEventListener("change", this.handleLangPicker.bind(this), false);  
     }
     
         

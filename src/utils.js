@@ -172,7 +172,7 @@ let Utils={
      */
     translate:function(key) {
         if (userLanguage[key]) return userLanguage[key]
-        else return key;        
+        else return key;
     },
     /**CSS Animation used in the app
      */
