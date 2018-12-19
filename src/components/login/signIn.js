@@ -11,25 +11,27 @@ class SignIn extends React.Component  {
     /**
      * @constructor
      */
-    constructor(props) { 
+    constructor(props) {
         super(props);
         this.state = {
             type : window.location.href.split('/')[4]
         }
     }
     componentDidMount(){
-        
+
     }
     changeType(res){
         this.setState({
             type : res
         })
     }
-    render() {  
+    render() {
         return(
-            <div>
-                <button onClick={()=>this.changeType("login")}>Login</button>
-                <button onClick={()=>this.changeType("register")}>Register</button>
+            <div className="login">
+                  <div className="tab">
+                      <button className="tablinks" onClick={()=>this.changeType("login")}>Login</button>
+                      <button className="tablinks" onClick={()=>this.changeType("register")}>Register</button>
+                  </div>
                 {this.state.type === "register"?
                     <Register />:
                     <LogIn />

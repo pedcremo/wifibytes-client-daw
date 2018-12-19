@@ -32,7 +32,7 @@ html{
 }
 
 body {
-    font-family:'Duepuntozero'; 
+    font-family:'Duepuntozero';
     font-weight:normal;
     font-size:18px;
 }
@@ -60,6 +60,49 @@ nav {
     margin-left: 10px;
 }
 /*************** LOGIN ******************/
+
+/* Style the tab */
+.tab {
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin-top: 30px;
+  width: 200px;
+  height: 80px;
+  margin-right: 100px;
+  display: flex;
+  justify-content: center;
+  margin-left: 45%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  border: none;
+
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
 .loginForm{
     margin: auto;
     text-align: center;
@@ -83,6 +126,9 @@ nav {
     position: relative;
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .login-button{
     margin-top: 10px;
