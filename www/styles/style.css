@@ -47,3 +47,8 @@ nav {
     width: 100%;
     display: flex;
 }
+
+.zoom-rates:hover {
+    transition: 0.4s;
+    transform: scale(1.07);
+}
