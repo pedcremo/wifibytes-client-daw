@@ -21,8 +21,7 @@ const footer = Enzyme.shallow(<Provider store={store}><Footer /></Provider>);
 
 describe('<Footer />', () => {
   test('dispatches event to show footer data', () => {
-    expect(footer).toMatchSnapshot(); 
-    console.log(footer.props().value.storeState.homeJSON);
+    expect(footer).toMatchSnapshot();
     expect(footer.props().value.storeState.datosEmpresaJSON.name).toMatch(/Wifibytes S.L/);
     expect(footer.props().value.storeState.homeJSON[0].titulo).toMatch(/Wifibytes/);
     expect(footer.props().value.storeState.homeJSON[1].caja_izquierda_texto).toMatch(/Do you want to cancel subscription?/);
