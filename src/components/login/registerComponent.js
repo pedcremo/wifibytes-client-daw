@@ -138,7 +138,7 @@ class Register extends React.Component  {
                     onExpire={() => {
                         this.state.captcha = false;
                     }}
-                    hl={this.lang()}
+                    hl={Utils.getUserLang()}
                     />
                     <span className="errors">{this.state.errorCaptcha}</span>
                 </div>
