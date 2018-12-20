@@ -28,6 +28,10 @@
     src: local('Duepuntozero Black'), url('duepuntozero_black.woff') format('woff');
 }
 
+html{
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Duepuntozero';
     font-weight: normal;
@@ -192,4 +196,8 @@ nav {
       color: red;
       size: 12px;
   }
-  
+
+.zoom-rates:hover {
+    transition: 0.4s;
+    transform: scale(1.07);
+}

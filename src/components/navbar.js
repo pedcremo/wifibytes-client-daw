@@ -76,9 +76,10 @@ class Navbar extends React.Component{
                                         <span className="text-success">::</span> {this.context.t("menu-contact")}
                                     </Link>
                                 </li>
-                                
                                 <li className="nav-item">
-                                <a className="nav-link disabled pt-3" href={"#/singin"}>{this.context.t("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
+                                    <Link to="/login" className="nav-link disabled pt-3">
+                                        {this.context.t("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i>
+                                    </Link>
                                 </li>
                                 
                                 <li className="nav-item">

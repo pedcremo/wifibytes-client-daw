@@ -97,7 +97,7 @@ class VegasCarousel extends React.Component {
                 <div key="previous" className="col-sm-1" onClick={this.before}>
                   <i className="fas fa-3x fa-angle-left"></i>
                 </div>
-                <div className="col-sm-10" dangerouslySetInnerHTML={{__html: this.state.slidesBack[this.state.index].content}}>
+                <div className="col-sm-10 h4" dangerouslySetInnerHTML={{__html: this.state.slidesBack[this.state.index].content}}>
                 </div>
                 <div key="next" className="col-sm-1" onClick={this.next}>
                    <i className="fas fa-3x fa-angle-right"></i>

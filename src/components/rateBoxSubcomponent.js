@@ -65,7 +65,7 @@ class RateBoxSubComponent extends React.Component {
             
             return (      
                     
-                <div key={index} className={`card rounded border text-center border-dark text-center ${Utils.randomAnimation()}`} style={{backgroundColor:"rgba(255, 255, 255, 0.8)"}}>
+                <div key={index} className={`card rounded border text-center border-dark text-center zoom-rates ${Utils.randomAnimation()} `} style={{backgroundColor:"rgba(255, 255, 255, 0.8)"}}>
                     <div className="card-header  bg-dark text-light font-weight-bold">
                         <h3>
                             <img width="32px" height="32px" src={itemFiltered["logo"]}/>&nbsp;{itemFiltered.nombretarifa.toUpperCase()}
@@ -81,12 +81,12 @@ class RateBoxSubComponent extends React.Component {
                         </h5>     
                         {subtarifas}                
                     </div>
-                    <div className="card-footer bg-light">
+                    <div className="card-footer bg-light d-flex justify-content-around">
                         <a href={'#rate/' + itemFiltered.codtarifa} className="btn btn-primary">
-                            <h4>{this.context.t("view-details")}</h4>
-                        </a> 
+                            <h4 className="mb-0">{this.context.t("view-details")}</h4>
+                        </a>
                         <a href="#" className="btn btn-secondary">
-                            <h4>{this.context.t("to-contract")}</h4>
+                            <h4 className="mb-0">{this.context.t("to-contract")}</h4>
                         </a>
                     </div>
                 </div>
