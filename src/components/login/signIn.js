@@ -13,14 +13,10 @@ class SignIn extends React.Component  {
      */
     constructor(props) {
         super(props);
+        this.changeType = this.changeType.bind(this)
         this.state = {
             type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"  
         }
-    }
-    componentWillReceiveProps(){
-        this.setState({
-            type : window.location.href.split('/')[4]
-        })
     }
     componentDidMount(){
     }
@@ -40,7 +36,7 @@ class SignIn extends React.Component  {
                 </div>
                 {this.state.type === "register"?
                     <Register />:
-                    <LogIn />
+                    <LogIn changeType={this.changeType}/>
                 }
             </div>
         )

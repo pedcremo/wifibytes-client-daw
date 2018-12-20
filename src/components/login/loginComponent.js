@@ -98,7 +98,7 @@ class Login extends React.Component  {
                                 <input type="password" required className="loginInput" value={this.state.password} onChange={(e)=>this.updateInput(e,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
                             
                             <button className="login-button btn" onClick={this.loginSubmit}>{Utils.translate("login-button-acces")}</button>
-                            <a className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
+                            <a onClick={(e)=>  this.props.changeType ? this.props.changeType("register"):'' } className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                         
                         </form>
                         
