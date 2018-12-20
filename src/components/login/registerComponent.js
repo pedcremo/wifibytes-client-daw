@@ -30,7 +30,7 @@ class Register extends React.Component  {
     }
     
     registerSubmit () {
-        if(this.validateData()){
+        if(!this.validateData()){
             let diccionario = {
                 nombre : this.state.nombre,
                 apellido : this.state.apellido,
@@ -138,7 +138,7 @@ class Register extends React.Component  {
                     onExpire={() => {
                         this.state.captcha = false;
                     }}
-                    hl={Utils.getUserLang()}
+                    hl={this.lang()}
                     />
                     <span className="errors">{this.state.errorCaptcha}</span>
                 </div>

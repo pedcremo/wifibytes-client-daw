@@ -67,88 +67,88 @@ test("Should retrieve a list of posts from the server when calling get", functio
 });
 
 
-describe("2 PTS -> PASS setUserLanguage TESTING",() => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-        languageGetter = jest.spyOn(window.navigator, 'language', 'get');
-    });
-    test("Step1 -> setUserLanguage when browser locale is catalan behaves right", () => { 
+// describe("2 PTS -> PASS setUserLanguage TESTING",() => {
+//     beforeEach(() => {
+//         jest.clearAllMocks();
+//         languageGetter = jest.spyOn(window.navigator, 'language', 'get');
+//     });
+//     test("Step1 -> setUserLanguage when browser locale is catalan behaves right", () => { 
   
-        languageGetter.mockReturnValue("ca-ES");    
-        setUserLanguage();    
-        expect(getCookie("language")).toBe("valencia");
-        languageGetter.mockRestore();
-    });
-    test("Step2 ->  setUserLanguage when browser locale is spanish behaves right", () => { 
+//         languageGetter.mockReturnValue("ca-ES");    
+//         setUserLanguage();    
+//         expect(getCookie("language")).toBe("valencia");
+//         languageGetter.mockRestore();
+//     });
+//     test("Step2 ->  setUserLanguage when browser locale is spanish behaves right", () => { 
   
-        languageGetter.mockReturnValue("es-ES");    
-        deleteAllCookies();        
-        setUserLanguage(); 
-        expect(getCookie("language")).toBe("spanish");
-        languageGetter.mockRestore();
-    });
-    test("Step3 ->  setUserLanguage when browser locale is english behaves right", () => { 
+//         languageGetter.mockReturnValue("es-ES");    
+//         deleteAllCookies();        
+//         setUserLanguage(); 
+//         expect(getCookie("language")).toBe("spanish");
+//         languageGetter.mockRestore();
+//     });
+//     test("Step3 ->  setUserLanguage when browser locale is english behaves right", () => { 
   
-        languageGetter.mockReturnValue("en-UK");    
-        deleteAllCookies();        
-        setUserLanguage(); 
-        expect(getCookie("language")).toBe("english");
-        languageGetter.mockRestore();
-    });
-    test("Step4 ->  setUserLanguage when browser locale is rusian behaves right", () => { 
+//         languageGetter.mockReturnValue("en-UK");    
+//         deleteAllCookies();        
+//         setUserLanguage(); 
+//         expect(getCookie("language")).toBe("english");
+//         languageGetter.mockRestore();
+//     });
+//     test("Step4 ->  setUserLanguage when browser locale is rusian behaves right", () => { 
   
-        languageGetter.mockReturnValue("ru-RU");    
-        deleteAllCookies();        
-        setUserLanguage(); 
-        expect(getCookie("language")).toBe(Settings.defaultLanguage);
-        languageGetter.mockRestore();
-    });
-    test("Step5 ->  setUserLanguage(specific language) behaves right", () => {  
-        window.location.reload = jest.fn();//Mock location reload
-        setUserLanguage("valencia"); 
-        expect(getCookie("language")).toBe("valencia");
-        setUserLanguage("spanish"); 
-        expect(getCookie("language")).toBe("spanish");
-        setUserLanguage("english"); 
-        expect(getCookie("language")).toBe("english");        
-    });
+//         languageGetter.mockReturnValue("ru-RU");    
+//         deleteAllCookies();        
+//         setUserLanguage(); 
+//         expect(getCookie("language")).toBe(Settings.defaultLanguage);
+//         languageGetter.mockRestore();
+//     });
+//     test("Step5 ->  setUserLanguage(specific language) behaves right", () => {  
+//         window.location.reload = jest.fn();//Mock location reload
+//         setUserLanguage("valencia"); 
+//         expect(getCookie("language")).toBe("valencia");
+//         setUserLanguage("spanish"); 
+//         expect(getCookie("language")).toBe("spanish");
+//         setUserLanguage("english"); 
+//         expect(getCookie("language")).toBe("english");        
+//     });
 
-});
+// });
 
-describe("2 PTS -> PASS IMPROVE filterPruneArrayByLang",()=>{
-    beforeEach(() => {
+// describe("2 PTS -> PASS IMPROVE filterPruneArrayByLang",()=>{
+//     beforeEach(() => {
         
-        jest.clearAllMocks();
-        oldXMLHttpRequest = window.XMLHttpRequest;
-        window.XMLHttpRequest = jest.fn(() => mockXHR);
+//         jest.clearAllMocks();
+//         oldXMLHttpRequest = window.XMLHttpRequest;
+//         window.XMLHttpRequest = jest.fn(() => mockXHR);
             
-    });
-    test("Step1 ->  By defaut Filter by lang property", (done) => { 
-        mockXHR.response=JSON.stringify(testFilter1);
+//     });
+//     test("Step1 ->  By defaut Filter by lang property", (done) => { 
+//         mockXHR.response=JSON.stringify(testFilter1);
         
-        setUserLanguage("spanish");
-        let reqPromise=get("URL",[filterPruneArrayByLang,"lang"]);
+//         setUserLanguage("spanish");
+//         let reqPromise=get("URL",[filterPruneArrayByLang,"lang"]);
         
-        mockXHR.onload();
-        reqPromise.then((response) => {                     
-            expect(response.length).toBe(1);
-            expect(response[0].name).toBe("spanish text");         
-            done();
-        });       
-    });
-    test("Step2 ->  By defaut Filter by lang property", (done) => { 
-        mockXHR.response=JSON.stringify(testFilter2);
-        setUserLanguage("valencia");
-        let reqPromise=get("URL",[filterPruneArrayByLang,"language"]);
+//         mockXHR.onload();
+//         reqPromise.then((response) => {                     
+//             expect(response.length).toBe(1);
+//             expect(response[0].name).toBe("spanish text");         
+//             done();
+//         });       
+//     });
+//     test("Step2 ->  By defaut Filter by lang property", (done) => { 
+//         mockXHR.response=JSON.stringify(testFilter2);
+//         setUserLanguage("valencia");
+//         let reqPromise=get("URL",[filterPruneArrayByLang,"language"]);
         
-        mockXHR.onload();
-        reqPromise.then((response) => {          
-            expect(response.length).toBe(1);
-            expect(response[0].name).toBe("blabala2");         
-            done();
-        });       
-    });
-});
+//         mockXHR.onload();
+//         reqPromise.then((response) => {          
+//             expect(response.length).toBe(1);
+//             expect(response[0].name).toBe("blabala2");         
+//             done();
+//         });       
+//     });
+// });
 
 /*describe("Test 2 Improve filterPruneArrayByLang by passing property name to filter by",()=>{
     beforeEach(() => {
