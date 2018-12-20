@@ -1,4 +1,4 @@
-import Login from '../../src/components/login/login';
+import Login from '../../src/components/login/loginComponent';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
