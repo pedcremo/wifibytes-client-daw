@@ -43,5 +43,30 @@
     "catalog-procesador": "UCP",
     "catalog-ram": "RAM",
     "catalog-marca": "Marca",
-    "catalog-camara": "Camara"
+    "catalog-camara": "Camara",
+
+    "login-title": "Acceso Cliente",
+    "login-acces-dni": "DNI Cliente",
+    "login-acces-dni-form": "Introduzca su dni aqui: 'xxxxxxL'",
+    "login-acces-password": "Contraseña",
+    "login-acces-password-form": "Introduzca aqui su contraseña",
+    "login-button-acces": "ENVIAR",
+    "login-recover-password": "Introduzca su e-mail",
+    "login-button-register": "REGISTRARSE",
+    "login-text-recover": "He olvidado mi contraseña",
+    "login-button-recover":"RECUPERAR",
+
+    "register-title": "Nuevo Cliente",
+    "register-name":"Nombre",
+    "register-surname":"Apellidos",
+    "register-email":"Correo electronico",
+    "register-passs":"Contraseña",
+    "register-repeatPassw":"Repite contraseña",
+    "register-legal":"He leido i acepto la política de privacidad",
+    "register-newsletter":"Marco esta casilla para a NO recibir nuevas ofertas",
+    "register-button": "ENVIAR",
+    "register-cifnif": "CIF/NIF",
+    "register-error-pass": "Las contrasenyas deben coincidir",
+    "register-error-captcha": "Verifica que no eres un robot",
+    "register-error-email": "El correo no es valido"
 }

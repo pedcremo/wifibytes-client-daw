@@ -1,6 +1,8 @@
 import React from 'react';
 /* import Component from "./component"; */
 import {Utils} from "../utils";
+import {PropTypes} from 'prop-types'
+
 /**
  * Draw rates boxes from an input json with rates information
  */
@@ -16,7 +18,7 @@ class RateBoxSubComponent extends React.Component {
 
     /** render  */
     render() {
-        console.log("RATE",this.props.rates);
+        //console.log("RATE",this.props.rates);
         const highlitedRates = this.props.rates.map((itemFiltered, index) => {
             //console.log(itemFiltered)
             const subtarifas = (itemFiltered.subtarifas.map((itemSubtarifa, i) => {
@@ -26,34 +28,34 @@ class RateBoxSubComponent extends React.Component {
                     case 1: //Movil
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-mobile-alt" style={{color:itemFiltered.color.hexadecimal}}></i>
-                                    <br/> {Utils.translate("home-mobile")} {itemSubtarifa.subtarifa_minutos_gratis} {Utils.translate("home-min-month")}
-                                    <br/>{itemSubtarifa.subtarifa_datos_internet} {Utils.translate("home-gb-month")} 
+                                    <br/> {this.context.t("home-mobile")} {itemSubtarifa.subtarifa_minutos_gratis} {this.context.t("home-min-month")}
+                                    <br/>{itemSubtarifa.subtarifa_datos_internet} {this.context.t("home-gb-month")} 
                                 </p>;                        
                         //break;
                     case 2: //Fijo
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-phone" style={{color:itemFiltered.color.hexadecimal}}></i>
-                                    <br/> {Utils.translate("home-land-phone")} 
+                                    <br/> {this.context.t("home-land-phone")} 
                                 </p>;
                         //break;
                     case 3: //Fibra
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-globe" style={{color:itemFiltered.color.hexadecimal}}></i>
-                                    <br/> {Utils.translate("home-fiber-optics")} {itemSubtarifa.subtarifa_velocidad_conexion_subida} {Utils.translate("home-mb-upload")}
-                                    <br/> {itemSubtarifa.subtarifa_velocidad_conexion_bajada} {Utils.translate("home-mb-download")}
+                                    <br/> {this.context.t("home-fiber-optics")} {itemSubtarifa.subtarifa_velocidad_conexion_subida} {this.context.t("home-mb-upload")}
+                                    <br/> {itemSubtarifa.subtarifa_velocidad_conexion_bajada} {this.context.t("home-mb-download")}
                                 </p>;
                         //break;
                     case 4: //Wifi
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-wifi" style={{color:itemFiltered.color.hexadecimal}}></i>
-                                    <br/>  {Utils.translate("home-wireless")} {itemSubtarifa.subtarifa_velocidad_conexion_subida} {Utils.translate("home-mb-upload")}
-                                    <br/> {itemSubtarifa.subtarifa_velocidad_conexion_bajada} {Utils.translate("home-mb-download")}
+                                    <br/>  {this.context.t("home-wireless")} {itemSubtarifa.subtarifa_velocidad_conexion_subida} {this.context.t("home-mb-upload")}
+                                    <br/> {itemSubtarifa.subtarifa_velocidad_conexion_bajada} {this.context.t("home-mb-download")}
                                 </p>;
                         //break;
                     default:  //TV
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-tv" style={{color:itemFiltered.color.hexadecimal}}></i>
-                                    <br/> {itemSubtarifa.subtarifa_num_canales} {Utils.translate("home-free-channels")}
+                                    <br/> {itemSubtarifa.subtarifa_num_canales} {this.context.t("home-free-channels")}
                                 </p>;
                         //break;
                 }
@@ -71,8 +73,8 @@ class RateBoxSubComponent extends React.Component {
                     </div>
                     <div className="card-body p-0">
                         <h5 className="card-title text-white p-2 mr-0" style={{backgroundColor:itemFiltered.color.hexadecimal}}> 
-                            <span className="display-4">{itemFiltered.precio.toLocaleString()} {Utils.translate("home-euros-month")} </span> 
-                            <br/>{Utils.translate("home-vat-included")}
+                            <span className="display-4">{itemFiltered.precio.toLocaleString()} {this.context.t("home-euros-month")} </span> 
+                            <br/>{this.context.t("home-vat-included")}
                         </h5>
                         <h5 className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"><br/>
                             {textTarifa}
@@ -93,12 +95,16 @@ class RateBoxSubComponent extends React.Component {
         
         
         return (
-            <div className="card-deck mt-2 mb-5">
+            <div className="grid-container--fit">
                 {highlitedRates}
             </div>
         );
     }
 };
+
+RateBoxSubComponent.contextTypes = {
+    t: PropTypes.func.isRequired
+}
 
 export default RateBoxSubComponent; 
 

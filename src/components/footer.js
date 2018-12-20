@@ -6,6 +6,8 @@ import { getDatosEmpresa } from "../actions/datosEmpresaActions2";
 import { getDatosHome } from "../actions/datosHomeActions";
 import { Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
+import {PropTypes} from 'prop-types'
+
 /**
  * @class
  * Draw cookies text information
@@ -28,30 +30,20 @@ class Footer extends React.Component {
     if (loading)
       return (<div>Loading...</div>);
 
-    if (datosEmpresa && datosHome) {
-
+    if (datosHome.length > 0 && datosEmpresa) {
       return (
         <HashRouter>
           <div>
             <div className="container-fluid text-center text-md-left " >
-
               <div className="row">
-
                 <div className="col-md-6 mt-md-0 mt-3" >
-                  {
-                    datosHome.filter((itemText) => {
-                      return itemText.pk == 1;//results[1][0] : results[1]->positionPromise results[1][0]->lng valencia
-                    }).map((item, index) => {
-                      return <span key={index}> <h5 className="text-uppercase" key={index}>{item.caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{ __html: item.caja_izquierda_texto }}></label></span>
-                    })
-                  }
-
+                  <h5 className="text-uppercase" >{datosHome[0].caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{ __html: datosHome[0].caja_izquierda_texto }}></label>
                 </div>
 
                 <hr className="clearfix w-100 d-md-none pb-3"></hr>
 
                 <div className="col-md-3 mb-md-0 mb-3">
-                  <h5 className="text-uppercase">{Utils.translate("footer-menu")}</h5>
+                  <h5 className="text-uppercase">{this.context.t("footer-menu")}</h5>
 
                   <ul className="list-unstyled">
                     <li>
@@ -71,16 +63,16 @@ class Footer extends React.Component {
                 </div>
 
                 <div className="col-md-3 mb-md-0 mb-3">
-                  <h5 className="text-uppercase">{Utils.translate("footer-hints")}</h5>
+                  <h5 className="text-uppercase">{this.context.t("footer-hints")}</h5>
 
                   <ul className="list-unstyled">
                     <li>
                       <Link to="/legal">
-                        {Utils.translate("footer-legal-advice")}
+                        {this.context.t("footer-legal-advice")}
                       </Link>
                     </li>
                       <Link to="/cookies">
-                        {Utils.translate("footer-cookies")}
+                        {this.context.t("footer-cookies")}
                       </Link>
                     <li>
                       <a href={Utils.checkURL(datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
@@ -102,9 +94,17 @@ class Footer extends React.Component {
           </div>
         </HashRouter>
       );
+    } else {
+      return (
+        <span>LOADING!</span>
+      );
     }
 
   }
+}
+
+Footer.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

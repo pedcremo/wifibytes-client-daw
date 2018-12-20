@@ -65,7 +65,25 @@ let Utils={
                 userLanguage=english;    
         }
     },
-
+    /**
+     * Post ajax call
+     */
+    post: function(url,data = {}){
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", Settings.baseURL+url);
+            xhr.setRequestHeader('Content-Type','application/json');
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject(xhr.statusText);
+                }
+            };
+            xhr.onerror = () => reject(xhr.statusText);
+            xhr.send(JSON.stringify(data));
+        })
+    },
     /** Get is our ajax caller implemented as a promise
      * From Jake Archibald's Promises and Back:
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
@@ -172,7 +190,7 @@ let Utils={
      */
     translate:function(key) {
         if (userLanguage[key]) return userLanguage[key]
-        else return key;        
+        else return key;
     },
     /**CSS Animation used in the app
      */
@@ -190,6 +208,9 @@ let Utils={
                 return "http://"+hrefText;
             }
         }   
+    },
+    deleteCookie:function(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 }; //END Utils object
 let that = Utils;

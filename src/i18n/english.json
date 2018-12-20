@@ -41,7 +41,30 @@
     "catalog-procesador": "CPU",
     "catalog-ram": "RAM",
     "catalog-marca": "Brand",
-    "catalog-camara": "Camera"
+    "catalog-camara": "Camera",
 
-    
+    "login-title": "Access Client",
+    "login-acces-dni": "DNI Client",
+    "login-acces-dni-form": "Enter your ID here: 'xxxxxxL'",
+    "login-acces-password": "Password",
+    "login-acces-password-form": "Enter your password here",
+    "login-button-acces": "SEND",
+    "login-recover-password": "Enter your e-mail",
+    "login-button-register": "REGISTER",
+    "login-text-recover": "I forgot my password",
+    "login-button-recover":"RECOVER",
+
+    "register-title": "New Client",
+    "register-name":"Name",
+    "register-surname":"Surname",
+    "register-email":"Email",
+    "register-passs":"Password",
+    "register-repeatPassw":"Repeat password",
+    "register-legal":"I have read and accept the privacy policy",
+    "register-newsletter":"Check this box to NOT receive new offers",
+    "register-button": "SEND",
+    "register-cifnif": "CIF/NIF",
+    "register-error-pass": "The passwords must to match",
+    "register-error-captcha": "Verify you are not a robot",
+    "register-error-email": "The email is not valid"
 }
