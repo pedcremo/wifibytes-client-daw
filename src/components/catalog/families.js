@@ -2,6 +2,8 @@
 /** @module ComponentsApp */
 import React from 'react';
 import { Utils } from "../../utils";
+import {PropTypes} from 'prop-types'
+
 /**
  * @class
  * Draw families on catalog
@@ -31,8 +33,8 @@ class Families extends React.Component {
                 {currentFamily}
                 <div className="grid row">
                     <div className="col">
-                        <h1 className="text-center">{Utils.translate("catalog-our-articles")}</h1>
-                        <h2 className="text-center">{Utils.translate("catalog-change-family")}</h2>
+                        <h1 className="text-center">{this.context.t("catalog-our-articles")}</h1>
+                        <h2 className="text-center">{this.context.t("catalog-change-family")}</h2>
                     </div>
                 </div>
                 <ul className="nav-families nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -41,6 +43,10 @@ class Families extends React.Component {
             </span>
         );
     }
+}
+
+Families.contextTypes = {
+    t: PropTypes.func.isRequired
 }
 
 export default Families; 

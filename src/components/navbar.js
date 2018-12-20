@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 import { Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
+import {setLanguage} from "redux-i18n"
+import {PropTypes} from 'prop-types'
+
 /**
  * Draw top menu navbar 
  */
@@ -23,6 +26,8 @@ class Navbar extends React.Component{
      * @param {element} event 
      */
     handleLangPicker(event) {
+        console.log(event.target.value);
+        this.props.dispatch(setLanguage(event.target.value))
         Utils.setUserLanguage(event.target.value);       
         //var a = document.getElementById("langPicker");
         //a.addEventListener("change", this.handleLangPicker.bind(this), false);  
@@ -53,27 +58,27 @@ class Navbar extends React.Component{
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/catalog" className="nav-link text-dark pt-3">
-                                        <span className="text-success">::</span> {Utils.translate("menu-catalog")}
+                                        <span className="text-success">::</span> {this.context.t('menu-catalog')}
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/rates" className="nav-link text-dark pt-3">
-                                        <span className="text-success">::</span> {Utils.translate("menu-rates")}
+                                        <span className="text-success">::</span> {this.context.t("menu-rates")}
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/company" className="nav-link text-dark pt-3">
-                                        <span className="text-success">::</span> {Utils.translate("menu-company")}
+                                        <span className="text-success">::</span> {this.context.t("menu-company")}
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/contacte" className="nav-link text-dark pt-3">
-                                        <span className="text-success">::</span> {Utils.translate("menu-contact")}
+                                        <span className="text-success">::</span> {this.context.t("menu-contact")}
                                     </Link>
                                 </li>
                                 
                                 <li className="nav-item">
-                                <a className="nav-link disabled pt-3" href={"#/login"}>{Utils.translate("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
+                                <a className="nav-link disabled pt-3" href={"#/singin"}>{this.context.t("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
                                 </li>
                                 
                                 <li className="nav-item">
@@ -85,9 +90,9 @@ class Navbar extends React.Component{
                                 
                                 <li className="nav-item pt-3">
                                     <select id="langPicker" className="selectpicker" data-width="fit" value={value} onChange={this.handleLangPicker}>
-                                        <option value='english'>English</option>
-                                        <option value='spanish' >Español</option>
-                                        <option value='valencia' >Valencià</option>
+                                        <option value='en'>English</option>
+                                        <option value='es' >Español</option>
+                                        <option value='ca' >Valencià</option>
                                     </select>
                                 </li> 
 
@@ -109,5 +114,9 @@ const mapStateToProps = state => ({
     error: state.datosEmpresa.error,
     value: Utils.getCookie("language")
 });
+
+Navbar.contextTypes = {
+    t: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps)(Navbar);

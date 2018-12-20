@@ -8,7 +8,7 @@ import { getDatosHome } from "../actions/datosHomeActions";
 import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 
 class Home extends React.Component {
-
+    
     componentDidMount() {
         this.props.dispatch(getDatosTarifas());
         this.props.dispatch(getDatosHome());

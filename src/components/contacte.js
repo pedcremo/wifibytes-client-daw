@@ -3,6 +3,7 @@ import React from 'react';
 import {Utils} from "../utils";
 import { connect } from "react-redux";
 import { getDatosEmpresa } from "../actions/datosEmpresaActions";
+import {PropTypes} from 'prop-types'
 
 /**
  * @class
@@ -24,17 +25,6 @@ class Contacte extends React.Component  {
 	
 	componentDidMount(){
 		this.props.dispatch(getDatosEmpresa());
-        /*let that=this;
-        Utils.get("/datos_empresa").then(function(response) {          
-		let contactTexts = response;
-
-			that.setState({
-                contactTexts: contactTexts,
-                isLoading:false
-			});
-        }).catch(function(error) {
-            console.log("Error", error);
-        });*/
     }
  
     /** render  */
@@ -48,21 +38,21 @@ class Contacte extends React.Component  {
 			return (
 				<div className="row mt-25 p-5">
 					<div className="col-md-6 form-group">
-							<h1>{Utils.translate("contact-title")} {contactTexts.name}</h1>
+							<h1>{this.context.t("contact-title")} {contactTexts.name}</h1>
 						<form name="contacto">
 							<div className="form-group">
-								<input type="text" aria-label="Nombre" name="nombre" placeholder={Utils.translate("contact-name-surnames")} required="" className="form-control"/>
+								<input type="text" aria-label="Nombre" name="nombre" placeholder={this.context.t("contact-name-surnames")} required="" className="form-control"/>
 							</div>	
 							<div className="form-group">
-								<input type="text" aria-label="Telefono" name="telefono" placeholder={Utils.translate("contact-phone")} className="form-control"/>
+								<input type="text" aria-label="Telefono" name="telefono" placeholder={this.context.t("contact-phone")} className="form-control"/>
 							</div>
 							<div className="form-group">
-								<input type="email" aria-label="Email" name="email" placeholder={Utils.translate("contact-email")} required="" className="form-control"/>
+								<input type="email" aria-label="Email" name="email" placeholder={this.context.t("contact-email")} required="" className="form-control"/>
 							</div>
 							<div className="form-group">
-								<textarea name="mensaje" aria-label="Mensaje" defaultValue={Utils.translate("contact-opinion")} required="" rows="9" className="form-control"></textarea>
+								<textarea name="mensaje" aria-label="Mensaje" defaultValue={this.context.t("contact-opinion")} required="" rows="9" className="form-control"></textarea>
 							</div>
-							<button type="button" className="btn btn-primary">{Utils.translate("contact-send")}</button>
+							<button type="button" className="btn btn-primary">{this.context.t("contact-send")}</button>
 						</form>
 					</div>
 					<div className="col-md-6">
@@ -83,6 +73,11 @@ class Contacte extends React.Component  {
 		
     }
 }
+
+Contacte.contextTypes = {
+    t: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
     contactTexts: state.datosEmpresa.items,
     loading: state.datosEmpresa.loading,
