@@ -37,7 +37,7 @@ describe('<Navbar />', () => {
   });
 
   test('We can check if the handleLangPicker change', () => {
-    nav.find('select').simulate('change', {target: {value:"english"}});
+    nav.find(Navbar).last().simulate('change', {target: {value:"english"}});
     expect(mockOnChange.mock.calls.length).toEqual(1);
   });
 });
