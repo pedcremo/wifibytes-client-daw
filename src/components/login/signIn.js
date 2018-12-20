@@ -36,8 +36,8 @@ class SignIn extends React.Component  {
             <div className="login">
                 <div className="center">
                     <div className="tab">
-                        <button className="tablinks" id="login" onClick={()=>this.changeType("login")}>Login</button>
-                        <button className="tablinks" id="register" onClick={()=>this.changeType("register")}>Register</button>
+                        <button className="tablinks" id="loginButton" onClick={()=>this.changeType("login")}>Login</button>
+                        <button className="tablinks" id="registerButton" onClick={()=>this.changeType("register")}>Register</button>
                     </div>
                 </div>
                 {this.state.type === "register"?
