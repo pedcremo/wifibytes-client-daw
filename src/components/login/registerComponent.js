@@ -49,7 +49,6 @@ class Register extends React.Component  {
     updateInput(evt,target){
         this.setState({ [target] : evt.target.value });
     }
-<<<<<<< HEAD:src/components/login/registerComponent.js
     lang() {
         let lang = Utils.getUserLang();
         if (lang=="va") lang="es"
@@ -72,8 +71,6 @@ class Register extends React.Component  {
         } 
         return res;
     }
-=======
->>>>>>> 039921b8533ccdb8ec1ffeb903ac87141fc4933e:src/components/login/register.js
     render() {
 		return (
 			<section id="register">
