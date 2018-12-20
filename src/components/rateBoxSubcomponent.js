@@ -83,10 +83,10 @@ class RateBoxSubComponent extends React.Component {
                     </div>
                     <div className="card-footer bg-light d-flex justify-content-around">
                         <a href={'#rate/' + itemFiltered.codtarifa} className="btn btn-primary">
-                            <h4 className="mb-0">{Utils.translate("view-details")}</h4>
+                            <h4 className="mb-0">{this.context.t("view-details")}</h4>
                         </a>
                         <a href="#" className="btn btn-secondary">
-                            <h4 className="mb-0">{Utils.translate("to-contract")}</h4>
+                            <h4 className="mb-0">{this.context.t("to-contract")}</h4>
                         </a>
                     </div>
                 </div>
