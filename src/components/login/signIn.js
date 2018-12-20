@@ -14,12 +14,10 @@ class SignIn extends React.Component  {
     constructor(props) {
         super(props);
         this.state = {
-            type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"  
+            type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"
         }
     }
-    componentDidMount(){
 
-    }
     changeType(res){
         this.setState({
             type : res
@@ -30,8 +28,8 @@ class SignIn extends React.Component  {
             <div className="login">
                 <div className="center">
                     <div className="tab">
-                        <button className="tablinks" onClick={()=>this.changeType("login")}>Login</button>
-                        <button className="tablinks" onClick={()=>this.changeType("register")}>Register</button>
+                        <button className="tablinks" id="login" onClick={()=>this.changeType("login")}>Login</button>
+                        <button className="tablinks" id="register" onClick={()=>this.changeType("register")}>Register</button>
                     </div>
                 </div>
                 {this.state.type === "register"?

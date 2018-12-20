@@ -4,6 +4,7 @@ import React from 'react';
 import {Utils} from "../../utils";
 import {AuthService} from "../../auth.service";
 import Reaptcha from 'reaptcha';
+import { Settings } from "../../settings";
 
 
 /**
@@ -14,7 +15,7 @@ class Login extends React.Component  {
     /**
      * @constructor
      */
-    constructor() { 
+    constructor() {
         super();
         this.loginSubmit = this.loginSubmit.bind(this);
         this.recoverPass = this.recoverPass.bind(this);
@@ -27,7 +28,7 @@ class Login extends React.Component  {
             error:null
         }
 	}
-	
+
 	componentDidMount(){
         AuthService.isAuth().then((res)=>{
             console.log("Already loged")
@@ -40,7 +41,7 @@ class Login extends React.Component  {
     showrecoverPass(){
         let recover = document.getElementById("login-recover");
         /**
-         * It check if hidden class is in recovery div and if it is in it, it will remove it 
+         * It check if hidden class is in recovery div and if it is in it, it will remove it
          * and add class with animation and see visible it and vice versa
          * */
             if (recover.classList.contains("login-recuperar-input")){
@@ -52,7 +53,7 @@ class Login extends React.Component  {
             }
     }
     /**
-     * Recover password, it does a connection with backend and ofert they your 
+     * Recover password, it does a connection with backend and ofert they your
      * email in diccionario(on the data is sended) and the backend do everything else.
      */
     recoverPass(){
@@ -88,7 +89,7 @@ class Login extends React.Component  {
         this.setState({ [target] : evt.target.value });
     }
     /** render  */
-    render() {  
+    render() {
 		return (
             <div>
                 <div className="loginForm">
@@ -99,7 +100,7 @@ class Login extends React.Component  {
                             <input type="text" required size="10" maxLength="9" className="loginInput" pattern="^[0-9]{8}[a-zA-Z]{1}$" value={this.state.username} onChange={(e)=>this.updateInput(e,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
                             <h4>{Utils.translate("login-acces-password")}</h4>
                             <input type="password" required className="loginInput" value={this.state.password} onChange={(e)=>this.updateInput(e,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
-                            <button className="login-button btn" onClick={this.loginSubmit}>{Utils.translate("login-button-acces")}</button>
+                            <button className="login-button btn" id="loginButton" onClick={this.loginSubmit}>{Utils.translate("login-button-acces")}</button>
                             <a className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                         </form>
                         <p className="login-recuperar" onClick={this.showrecoverPass}>{Utils.translate("login-text-recover")}</p>

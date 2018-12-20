@@ -123,7 +123,7 @@ ShallowWrapper {
             >
               <a
                 className="nav-link disabled pt-3"
-                href="#"
+                href="#/login"
               >
                  
                 <i
@@ -330,7 +330,7 @@ ShallowWrapper {
             >
               <a
                 className="nav-link disabled pt-3"
-                href="#"
+                href="#/login"
               >
                  
                 <i
@@ -475,7 +475,7 @@ ShallowWrapper {
               >
                 <a
                   className="nav-link disabled pt-3"
-                  href="#"
+                  href="#/login"
                 >
                    
                   <i
@@ -810,7 +810,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <a
                   className="nav-link disabled pt-3"
-                  href="#"
+                  href="#/login"
                 >
                    
                   <i
@@ -837,7 +837,7 @@ ShallowWrapper {
                     </i>,
                   ],
                   "className": "nav-link disabled pt-3",
-                  "href": "#",
+                  "href": "#/login",
                 },
                 "ref": null,
                 "rendered": Array [
@@ -1165,7 +1165,7 @@ ShallowWrapper {
               >
                 <a
                   className="nav-link disabled pt-3"
-                  href="#"
+                  href="#/login"
                 >
                    
                   <i
@@ -1372,7 +1372,7 @@ ShallowWrapper {
               >
                 <a
                   className="nav-link disabled pt-3"
-                  href="#"
+                  href="#/login"
                 >
                    
                   <i
@@ -1517,7 +1517,7 @@ ShallowWrapper {
                 >
                   <a
                     className="nav-link disabled pt-3"
-                    href="#"
+                    href="#/login"
                   >
                      
                     <i
@@ -1852,7 +1852,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": <a
                     className="nav-link disabled pt-3"
-                    href="#"
+                    href="#/login"
                   >
                      
                     <i
@@ -1879,7 +1879,7 @@ ShallowWrapper {
                       </i>,
                     ],
                     "className": "nav-link disabled pt-3",
-                    "href": "#",
+                    "href": "#/login",
                   },
                   "ref": null,
                   "rendered": Array [
