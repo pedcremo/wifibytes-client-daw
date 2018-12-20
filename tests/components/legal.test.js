@@ -17,10 +17,6 @@ Utils.getUserLang.mockReturnValue("va");
 const store = mockStore(initialState);
 
 const legal = Enzyme.shallow(<Provider store={store}><Legal /></Provider>);
-/* it("We can check if Cookies component called the class constructor", () => {
-  expect(legal).toMatchSnapshot(); 
-  expect(legal.html()).toMatch(/i acceptat les presents condicions i el que les estengui la normativa legal aplicable en aquesta/);
-}); */
 
 describe('<Legal />', () => {
   test('dispatches event to show legal data', () => {
