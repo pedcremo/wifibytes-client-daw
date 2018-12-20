@@ -55,7 +55,11 @@
     "login-button-register": "REGISTRARSE",
     "login-text-recover": "He olvidado mi contraseña",
     "login-button-recover":"RECUPERAR",
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> singIn
     "register-title": "Nuevo Cliente",
     "register-name":"Nombre",
     "register-surname":"Apellidos",
@@ -69,4 +73,9 @@
     "register-error-pass": "Las contrasenyas deben coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido"
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> singIn

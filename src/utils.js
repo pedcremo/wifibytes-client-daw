@@ -152,7 +152,7 @@ let Utils={
             case "english":
                 return "en"; 
             case "valencia":
-                return "va";
+                return "ca";
             case "spanish":
                 return "es";
             default:
@@ -165,7 +165,7 @@ let Utils={
      */
     getCookie:function(cname) {   
         try{ 
-            var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w]*)","i");
+            var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w.]*)","i");
             return document.cookie.match(re)[1];
         }catch(e){
             return "";
@@ -183,7 +183,9 @@ let Utils={
         var expires = "expires="+ d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     },
-
+    deleteCookie:function(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    },
     /**
      * Get key from userLanguage imported language selected taking into account user choosen lang
      * @param {string} key 

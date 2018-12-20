@@ -67,4 +67,8 @@
     "register-error-pass": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> singIn
