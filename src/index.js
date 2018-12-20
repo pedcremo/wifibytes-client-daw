@@ -21,7 +21,7 @@ import App from './App';
 document.addEventListener("DOMContentLoaded", function() {      
     ReactDOM.render(
         <Provider store={store}>
-            <I18n translations={translations} initialLang={Utils.getCookie("language")}>
+            <I18n translations={translations} initialLang={Utils.getCookie("language")} fallbackLang="es">
                 <App />
             </I18n>
         </Provider>

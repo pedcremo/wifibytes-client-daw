@@ -20,7 +20,7 @@ class Home extends React.Component {
         if (error) return (<div>Error Home! </div>);
 
         if (loading) return (<div>Loading Home ...</div>);
-        if (datosHome.length > 0 && datosTarifa.results.length > 0 && datosEmpresa) {
+        if (datosHome.length > 0 && datosTarifa.results.length != undefined && datosTarifa.results.length > 0 && datosEmpresa) {
             return (
                 <div>
                     <div>
@@ -54,7 +54,7 @@ class Home extends React.Component {
             return(
             <span>LOADING!</span>
             );
-        } 
+        }
 
     }
 }

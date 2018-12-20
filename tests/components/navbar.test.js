@@ -5,16 +5,21 @@ import datosEmpresaJSON from '../json_endpoints/datos_empresa.json';
 import ReactDOM from 'react-dom';
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
+import configureStore from 'redux-mock-store';
+import { Provider } from "react-redux";
+
 Enzyme.configure({ adapter: new Adapter() });
 
-const $ = require('jquery');
-
 jest.mock('../../src/utils');
-const resp1 = datosEmpresaJSON;
+const mockStore = configureStore();
+const initialState = datosEmpresaJSON;
+Utils.getUserLang.mockReturnValue("va");
 
-Utils.get.mockResolvedValueOnce(resp1);
-Utils.get.mockResolvedValue(resp1);
-const nav = Enzyme.shallow(<Navbar />);
+const store = mockStore(initialState);
+const mockOnChange = jest.fn();
+
+
+const nav = Enzyme.shallow(<Provider store={store}><Navbar onChange={mockOnChange} /></Provider>);
 
 beforeEach(() => {
   // Set up our document body
@@ -25,23 +30,14 @@ beforeEach(() => {
           <option value='valencia' >Valencià</option>
       </select>`;
 });
+describe('<Navbar />', () => {
+  test('dispatches event to show navbar data', () => {
+    expect(nav).toMatchSnapshot(); 
+    expect(nav.props().value.storeState.textos).toHaveLength(13);
+  });
 
-it('Renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Navbar />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
-
-it("We can check if Navbar component called the class constructor", () => {
-  const wrapper = Enzyme.shallow(<Navbar />);
-  expect(wrapper).toMatchSnapshot();
-});
-
-it('We check if data has been printed', () => {
-  expect(nav.find('a[href="#/catalog"]').getElement().props.children).toHaveLength(3);
-});
-
-it('We can check if the handleLangPicker change', () => {
-  nav.find('select').simulate('change', {target: {value:"english"}});
-  expect(nav.render().find('select [selected]').val()).toEqual('english');
+  test('We can check if the handleLangPicker change', () => {
+    nav.find('select').simulate('change', {target: {value:"english"}});
+    expect(mockOnChange.mock.calls.length).toEqual(1);
+  });
 });
