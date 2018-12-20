@@ -8,6 +8,15 @@ import {translations} from "./i18n/translations"
 
 import App from './App';
 
+/**
+ * This is the entry point to our app. It defines a provider with the store and where is going to be displayed the app.
+ * 
+ * <Provider /> is the higher-order component provided by React Redux that lets you bind Redux to React.
+ * 
+ * Store holds the whole state tree of your application. The only way to change the state inside it is to dispatch an action on it.
+ * 
+ * <App /> is a component which holds the webpage structure.
+*/
 
 document.addEventListener("DOMContentLoaded", function() {      
     ReactDOM.render(

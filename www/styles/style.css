@@ -54,7 +54,6 @@ nav {
 .navRender {
     width: 100%;
     display: flex;
-<<<<<<< HEAD
 }
 /*************** LOGIN ******************/
 
@@ -189,7 +188,8 @@ nav {
       color: red;
       size: 12px;
   }
-  
-=======
+
+.zoom-rates:hover {
+    transition: 0.4s;
+    transform: scale(1.07);
 }
->>>>>>> 9b1556370fbb79284be6827953b2cc5e9811a471

@@ -47,16 +47,16 @@ class Footer extends React.Component {
 
                   <ul className="list-unstyled">
                     <li>
-                      <a href="#catalog">{this.context.t("footer-catalog")}</a>
+                      <Link to="/catalog">{this.context.t("footer-catalog")}</Link>
                     </li>
                     <li>
-                      <a href="#rates">{this.context.t("footer-rates")}</a>
+                      <Link to="/rates">{this.context.t("footer-rates")}</Link>
                     </li>
                     <li>
-                      <a href="#company">{this.context.t("footer-company")}</a>
+                      <Link to="/company">{this.context.t("footer-company")}</Link>
                     </li>
                     <li>
-                      <a href="#contacte">{this.context.t("footer-contact")}</a>
+                      <Link to="/contacte">{this.context.t("footer-contact")}</Link>
                     </li>
                   </ul>
 
