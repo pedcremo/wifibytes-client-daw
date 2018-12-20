@@ -73,7 +73,9 @@ class Navbar extends React.Component{
                                 </li>
                                 
                                 <li className="nav-item">
-                                <a className="nav-link disabled pt-3" href={"#/login"}>{Utils.translate("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i></a>
+                                    <Link to="/login" className="nav-link disabled pt-3">
+                                        <span className="text-success">::</span> {Utils.translate("menu-sign-in")}<i className="fas fa-sign-in-alt"> </i>
+                                    </Link>
                                 </li>
                                 
                                 <li className="nav-item">
