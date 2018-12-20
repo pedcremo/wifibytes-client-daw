@@ -59,6 +59,7 @@
         "reaptcha": "^1.4.0",
         "redux": "^4.0.1",
         "redux-i18n": "^1.5.14",
+        "redux-mock-store": "^1.5.3",
         "redux-testkit": "^1.0.6",
         "redux-thunk": "^2.3.0",
         "vegas": "^2.4.4"
