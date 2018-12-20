@@ -36,10 +36,6 @@ html{
     right: 0;
 }
 
-html{
-    overflow-x: hidden;
-}
-
 body {
     font-family: 'Duepuntozero';
     font-weight: normal;

@@ -30,7 +30,7 @@ class Register extends React.Component  {
     }
     
     registerSubmit () {
-        if(this.validateData()){
+        if(!this.validateData()){
             let diccionario = {
                 nombre : this.state.nombre,
                 apellido : this.state.apellido,

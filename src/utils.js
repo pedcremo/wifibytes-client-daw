@@ -5,7 +5,7 @@ import english from "./i18n/english.json";
 import spanish from "./i18n/spanish.json";
 import valencia from "./i18n/valencia.json";
 
-/**  
+/**
  * Map to cache JSON already got from server.
  * TODO: Try to improve it. It is very basic at the moment
  * We catch every new json get from server and only expires when we close web tab or
@@ -16,9 +16,9 @@ let userLanguage = english;
 
 
 let Utils={
-   
-    /**  We set a language for user and store the same as a cookie afterwards we reload the page to apply changes 
-    * If there is no lang we set english as the default language for user  
+
+    /**  We set a language for user and store the same as a cookie afterwards we reload the page to apply changes
+    * If there is no lang we set english as the default language for user
     * @param {string} lang - Choosen language.
     */
     setUserLanguage:function (lang=""){
@@ -26,9 +26,9 @@ let Utils={
             let language=this.getCookie("language");
             if (!language || language=="") {
                 var userLang = navigator.language;//Get navigator locales
-                
+
                 userLang=userLang.substring(0, 2).toUpperCase();
-                
+
                 switch (userLang) {
                     case "EN":
                         lang="english";
@@ -48,21 +48,21 @@ let Utils={
                 lang=this.getCookie("language");
             }
         }else {
-            if (this.getCookie("language")!==lang) {            
+            if (this.getCookie("language")!==lang) {
                 this.setCookie("language",lang,365);
                 CACHE_TEMPLATES.clear(); //flush cache entries
                 location.reload();//Reload current document
             }
         }
         switch (lang){
-            case "spanish": 
-                userLanguage=spanish; 
+            case "spanish":
+                userLanguage=spanish;
                 break;
-            case "valencia": 
-                userLanguage=valencia; 
+            case "valencia":
+                userLanguage=valencia;
                 break;
             default:
-                userLanguage=english;    
+                userLanguage=english;
         }
     },
     /**
@@ -97,7 +97,7 @@ let Utils={
                 // Do the usual XHR stuff
                 var req = new XMLHttpRequest();
                 req.open("GET", Settings.baseURL+url);
-            
+
                 req.onload = function() {
                 // This is called even on 404 etc
                 // so check the status
@@ -117,54 +117,54 @@ let Utils={
                     reject(Error(req.statusText));
                 }
                 };
-            
+
                 // Handle network errors
                 req.onerror = function() {
                 reject(Error("Network Error"));
                 };
-            
+
                 // Make the request
                 req.send();
-            }        
+            }
         });
     },
 
-    /** When we get a json array we only keep the ones that match user language 
+    /** When we get a json array we only keep the ones that match user language
      * TODO: At the moment we only check that a 'lang' property from a gotten JSON
-     * matchs current user language. Quite HARDWIRED.  
+     * matchs current user language. Quite HARDWIRED.
     */
-    filterPruneArrayByLang: function(jsonArray,langPropName){ 
-        
+    filterPruneArrayByLang: function(jsonArray,langPropName){
+
         let lang =that.getUserLang();
         if (typeof jsonArray === "string" ) {
             jsonArray=JSON.parse(jsonArray);
         }
         let aux= jsonArray.filter((item) => {
-            return item[langPropName] == lang; 
+            return item[langPropName] == lang;
         });
         return aux;
-    },   
-    /** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's 
-     * quite hardwired code to allow adding new languages. A really pain in the neck 
+    },
+    /** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's
+     * quite hardwired code to allow adding new languages. A really pain in the neck
      */
-    getUserLang: function(){       
+    getUserLang: function(){
         switch (this.getCookie("language")) {
-            case "english":
-                return "en"; 
-            case "valencia":
-                return "ca";
-            case "spanish":
+            case "en":
+                return "en";
+            case "ca":
+                return "va";
+            case "es":
                 return "es";
             default:
                 return "es";
         }
     },
     /**
-     * Get cookie by name 
-     * @param {string} cname 
+     * Get cookie by name
+     * @param {string} cname
      */
-    getCookie:function(cname) {   
-        try{ 
+    getCookie:function(cname) {
+        try{
             var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w.]*)","i");
             return document.cookie.match(re)[1];
         }catch(e){
@@ -175,7 +175,7 @@ let Utils={
      * Create new cookie
      * @param {string} cname  Cookie name
      * @param {string} cvalue  Cookie value
-     * @param {number} exdays Cookie expiration in days  
+     * @param {number} exdays Cookie expiration in days
      */
     setCookie:function(cname, cvalue, exdays) {
         var d = new Date();
@@ -188,7 +188,7 @@ let Utils={
     },
     /**
      * Get key from userLanguage imported language selected taking into account user choosen lang
-     * @param {string} key 
+     * @param {string} key
      */
     translate:function(key) {
         if (userLanguage[key]) return userLanguage[key]
@@ -200,7 +200,7 @@ let Utils={
         const animations = ["bounce", "flash", "pulse", "rubberBand", "shake", "headShake", "swing", "tada", "wobble", "jello", "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "jackInTheBox", "rollIn", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp", "slideInDown", "slideInLeft", "slideInRight", "slideInUp"]
         return "animated " + animations[Math.floor(Math.random() * (animations.length + 1))];
     },
-    
+
     checkURL: function(hrefText) {
         if(hrefText){
             let reURL= /(http:\/\/|https:\/\/)/;
@@ -209,7 +209,7 @@ let Utils={
             }else{
                 return "http://"+hrefText;
             }
-        }   
+        }
     },
     deleteCookie:function(name) {
         document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
