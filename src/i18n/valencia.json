@@ -63,11 +63,6 @@
     "register-passs":"Contrasenya",
     "register-repeatPassw":"Repetix contrasenya",
     "register-legal":"He llegit i acepte la política de privacitat",
-<<<<<<< HEAD
-    "register-newslater":"Marque esta casella per a NO recibir noves ofertes",
-    "register-button": "ENVIAR"
-}
-=======
     "register-newsletter":"Marque esta casella per a NO recibir noves ofertes",
     "register-button": "ENVIAR",
     "register-cifnie": "CIF/NIF",
@@ -75,4 +70,3 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid"
 }
->>>>>>> singIn
