@@ -25,8 +25,8 @@ const AppRoutes = () =>
             <Route exact path="/contacte" render={() => <Contacte />} />
             <Route exact path="/cookies" render={() => <Cookies />} />
             <Route exact path="/rates" render={() => <Rates />} />
-            <Route exact path="/login" render={() => <SingIn />} />
-            <Route exact path="/register" render={() => <SingIn />} />
+            <Route exact path="/login" render={() => <SingIn type="login"/>} />
+            <Route exact path="/register" render={() => <SingIn type="register"/>} />
        </Switch>
     );
 
