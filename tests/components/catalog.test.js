@@ -26,7 +26,7 @@ describe('<Catalog />', () => {
       expect(catalog.props().value.storeState.articulo.results[0].referencia).toBe("0cab50a1-ea99-4aa4-9a49-1983f06a5614");
       expect(store.getActions()).toMatchSnapshot();
       //expect(catalog.find(Catalog).find('.catalog')).toBe(true);
-      console.log(catalog.find(Catalog));
+      console.log(catalog.find(Catalog).last());
       
     });
   });
