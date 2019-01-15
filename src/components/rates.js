@@ -86,8 +86,8 @@ class Rates extends React.Component {
                             <img src={item.icono} />
                         </div>
                         <div className="card-body">
-                            <h5 className="card-title font-weight-bold text-uppercase"> {item.titulo}</h5>
-                            <p className="card-text">{item.texto}</p>
+                            <h5 className="card-title font-weight-bold text-uppercase" dangerouslySetInnerHTML={{__html: item.titulo}}></h5>
+                            <p className="card-text" dangerouslySetInnerHTML={{__html: item.texto}}></p>
                         </div>
                     </div>);
             });

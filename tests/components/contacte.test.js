@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import { configure } from "enzyme";
+import {Utils} from '../../src/utils';
 import Adapter from "enzyme-adapter-react-16";
 configure({ adapter: new Adapter() });
 import { shallow, mount, render } from "enzyme";
