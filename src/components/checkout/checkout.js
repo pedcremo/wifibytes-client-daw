@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
+import { Step } from 'semantic-ui-react'
+
 class Checkout extends React.Component {
     constructor(props) {
         super(props)
@@ -27,16 +29,20 @@ class Checkout extends React.Component {
     showStep() {
         switch (this.state.step) {
             case 1:
-                return <h1>1st Step</h1>
-
+                console.log("firstStep");
+                return <button onClick={this.nextStep}>Next</button>
+                
             case 2:
-                return <h1>2nd Step</h1>
+                console.log("secondStep");
+                return <button onClick={this.nextStep}>Next</button>
 
             case 3:
-                return <h1>3rd Step</h1>
+                console.log("thirdStep");
+                return <button onClick={this.nextStep}>Next</button>
 
             case 4:
-                <h1>4th Step</h1>
+                console.log("4thStep");
+                return <h1>4th Step</h1>
 
             default:
                 return
