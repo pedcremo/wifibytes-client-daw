@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { Step } from 'semantic-ui-react'
+import { Agent } from './agent'
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -30,6 +31,8 @@ class Checkout extends React.Component {
         switch (this.state.step) {
             case 1:
                 console.log("firstStep");
+                let g = Agent.getSteps([2,"0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
+                console.log("G",g);
                 return <button onClick={this.nextStep}>Next</button>
                 
             case 2:
