@@ -1,6 +1,10 @@
-export const SET_ITEM_BEGIN = 'SET_ITEM_BEGIN';
+export const SET_ITEM = 'SET_ITEM';
 
-export const setItem = (form) => ({
-    type: SET_ITEM_BEGIN,
-    form
+export const setItem = item => (dispatch) => {
+    dispatch(setItemBegin(item))
+}
+
+export const setItemBegin = (item) => ({
+    type: SET_ITEM,
+    item
 });

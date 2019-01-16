@@ -6,6 +6,7 @@ import currentRateDetails from "./currentRateDetailsReducer";
 import datosArticulos from "./datosArticulosReducer";
 import datosRates from "./datosRatesReducer";
 import {i18nState} from "redux-i18n"
+import cartReducer from "./cartReducer"
 
 export default combineReducers({
     datosHome,
@@ -14,5 +15,6 @@ export default combineReducers({
     datosTarifa,
     currentRateDetails,
     datosArticulos,
+    cartReducer,
     i18nState
 });
