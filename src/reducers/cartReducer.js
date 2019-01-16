@@ -1,5 +1,6 @@
 import {
     SET_ITEM,
+    GET_ITEMS
 } from '../actions/cartActions';
 
 const initialState = {
