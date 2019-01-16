@@ -1,11 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Table } from 'semantic-ui-react';
+import { getItems } from '../actions/cartActions';
 
 
 class Cart extends React.Component {
   constructor(){
     super();
+  }
+
+  componentWillMount() {
+      this.props.dispatch(getItems());
   }
 
   render(){
@@ -45,4 +50,7 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = state => ({
+    items: state.items
+});
+export default connect(mapStateToProps)(Cart);
