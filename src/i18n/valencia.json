@@ -68,5 +68,7 @@
     "register-cifnie": "CIF/NIF",
     "register-error-pass": "Les contrasenyes deuen coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
-    "register-error-email": "El correu no es valid"
+    "register-error-email": "El correu no es valid",
+
+    "cart-button": "Carret"
 }

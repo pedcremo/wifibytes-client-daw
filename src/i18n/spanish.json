@@ -68,5 +68,7 @@
     "register-cifnif": "CIF/NIF",
     "register-error-pass": "Las contrasenyas deben coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
-    "register-error-email": "El correo no es valido"
+    "register-error-email": "El correo no es valido",
+
+    "cart-button": "Carrito"
 }
