@@ -19,6 +19,8 @@ export default function cart(state = initialState, action) {
                 loading: true,
                 error: null
             };
+        case GET_ITEMS:
+            return state;
         default:
             return state;
     }
