@@ -3,49 +3,23 @@
 let Agent = {
 
     getSteps: function (item = []) {
-        var itemsProd = [], itemsTarifas = [],stepsProd = [];
-        let regTarifa = /^([0-9]{1})$/;
+        var itemsProd = [], itemsTarifas = [], stepsProd = {};
+        let regTarifa = /^([0-9]{1,})$/;
         let regProd = /^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$/;
-        
-        item.map(it => {
-            regProd.test(it) ? itemsProd.push(it) : false || 
-            regTarifa.test(it) ? itemsTarifas.push(it) : false ||
-            it ? [] : console.error("Error, item not found");
-        });
-        
-        console.log("PROD",itemsProd, "TAR",itemsTarifas);
 
-        if(itemsProd.length > 0){
-            stepsProd.push(
-                {"Prod":
-                    [{
-                        "count":itemsProd.length,
-                        "steps":["personal information","product","payment"]
-                    }]
-                }
-            )
+        item.map(it => {
+            regProd.test(it) ? itemsProd.push(it) : false ||
+                regTarifa.test(it) ? itemsTarifas.push(it) : false ||
+                    it ? [] : console.error("Error, item not found");
+        });
+
+        if (itemsProd.length > 0) stepsProd = {"productos":{"steps": ["personal information", "payment"]}}
+        
+        if (itemsTarifas.length > 0) {
+            stepsProd = {"tarifas":{"steps": ["personal information", "contract", "payment"]}}
         }
-        if(itemsTarifas.length > 0){
-            stepsProd.push(
-                {"Tarifas":
-                    [{
-                        "count":itemsTarifas.length,
-                        "steps":["personal information","contract","payment"]
-                    }]
-                }
-            )
-        }
-        if(itemsTarifas.length > 0 && itemsProd.length > 0){
-            let countTotal = itemsProd.length + itemsTarifas.length;
-            stepsProd = [];
-            stepsProd.push(
-                {"both":
-                    [{
-                        "count":countTotal,
-                        "steps":["personal information","contract","product","payment"]
-                    }]
-                }
-            )
+        if (itemsTarifas.length > 0 && itemsProd.length > 0) {
+            stepsProd = {"general":{"steps": ["personal information", "contract", "payment"]}}
         }
         return stepsProd;
     },
