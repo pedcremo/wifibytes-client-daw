@@ -20,4 +20,33 @@
  *  methodPayment = mastercard;
  * } bucle infinito, ya veremos cómo solucionarlo
  * 
+ * Campos del formulario:
+ * paymentMethods can be:
+ * - mastercard
+ * - visa
+ * - cuenta bancaria
+ * 
+ * 
  */
+
+import React from 'react'
+import { connect } from "react-redux";
+import PaymentForm from './paymentForm'
+
+class Payment extends React.Component {
+/*   submit = values => {
+    // print the form values to the console
+    console.log(values)
+  } */
+  render() {
+    return <PaymentForm onSubmit={this.submit} />
+  }
+}
+const mapStateToProps = () => {
+    
+  return {
+      error: true
+  }
+};
+
+export default connect(mapStateToProps)(Payment);
