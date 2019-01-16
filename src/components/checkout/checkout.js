@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { Step } from 'semantic-ui-react'
+import { Step, Icon } from 'semantic-ui-react'
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -11,6 +11,10 @@ class Checkout extends React.Component {
         this.nextStep = this.nextStep.bind(this)
         this.previousStep = this.previousStep.bind(this)
         this.showStep = this.showStep.bind(this)
+    }
+
+    setStep(step) {
+        this.setState({ step: step})
     }
 
     nextStep() {
@@ -53,25 +57,26 @@ class Checkout extends React.Component {
         return (
             <div>
                 <Step.Group attached='top'>
-                    <Step active={this.state.step === 1}>
+                    <Step active={this.state.step === 1} onClick={() => this.setStep(1)}>
                         <Step.Content>
-                            <Step.Title>1st Step</Step.Title>
+                            <Step.Title>Datos Personales</Step.Title>
                         </Step.Content>
+                        <Icon name='check' />
                     </Step>
 
-                    <Step active={this.state.step === 2}>
+                    <Step active={this.state.step === 2} onClick={() => this.setStep(2)}>
                         <Step.Content>
                             <Step.Title>2nd Step</Step.Title>
                         </Step.Content>
                     </Step>
 
-                    <Step active={this.state.step === 3}>
+                    <Step active={this.state.step === 3} onClick={() => this.setStep(3)}>
                         <Step.Content>
                             <Step.Title>3rd Step</Step.Title>
                         </Step.Content>
                     </Step>
 
-                    <Step active={this.state.step === 4}>
+                    <Step active={this.state.step === 4} onClick={() => this.setStep(4)}>
                         <Step.Content>
                             <Step.Title>4th Step</Step.Title>
                         </Step.Content>
