@@ -3,12 +3,13 @@ import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
 import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
+import Payment from './payment';
 
 const steps = [
     {
         key: 'personal_data',
         active: true,
-        completed: true,
+        completed: false,
         title: 'Dades Personals',
     },
     {
@@ -56,7 +57,7 @@ class Checkout extends React.Component {
 
             case 3:
                 console.log("thirdStep");
-                return <h1>3rd Step</h1>
+                return <Payment />
 
             default:
                 return
