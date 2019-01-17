@@ -1,37 +1,49 @@
 import React from 'react'
-import { connect } from "react-redux";
-import { Step, Icon } from 'semantic-ui-react'
+import { connect } from "react-redux"
+import { Step } from 'semantic-ui-react'
+import { addSteps, updateStep } from "../../actions/checkoutActions";
+
+const steps = [
+    {
+        key: 'personal_data',
+        active: true,
+        completed: false,
+        title: 'Dades Personals',
+    },
+    {
+        key: 'contract',
+        active: false,
+        completed: false,
+        title: 'Contracte',
+    },
+    { 
+        key: 'confirm',
+        active: false,
+        completed: false,
+        title: 'Confirmar Pedido' },
+]
 
 class Checkout extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            step: 1
-        }
         this.nextStep = this.nextStep.bind(this)
         this.previousStep = this.previousStep.bind(this)
-        this.showStep = this.showStep.bind(this)
     }
 
     setStep(step) {
-        this.setState({ step: step})
+        this.props.dispatch(updateStep(step));
     }
 
     nextStep() {
-        this.setState({ step: this.state.step + 1 })
+        this.props.dispatch(updateStep(this.props.currentStep+1));
     }
 
     previousStep() {
-        this.setState({ step: this.state.step - 1 })
-    }
-
-    handleRemoveItem(e, item) {
-        e.stopPropagation()
-        this.props.removeFromCart(item.id)
+        this.props.dispatch(updateStep(this.props.currentStep-1));
     }
 
     showStep() {
-        switch (this.state.step) {
+        switch (this.props.currentStep) {
             case 1:
                 console.log("firstStep");
                 return <button onClick={this.nextStep}>Next</button>
@@ -42,55 +54,41 @@ class Checkout extends React.Component {
 
             case 3:
                 console.log("thirdStep");
-                return <button onClick={this.nextStep}>Next</button>
-
-            case 4:
-                console.log("4thStep");
-                return <h1>4th Step</h1>
+                return <h1>3rd Step</h1>
 
             default:
                 return
         }
     }
 
+    componentDidMount(){
+        this.props.dispatch(addSteps(1, steps));
+    }
+
     render() {
-        return (
-            <div>
-                <Step.Group attached='top'>
-                    <Step active={this.state.step === 1} onClick={() => this.setStep(1)}>
-                        <Step.Content>
-                            <Step.Title>Datos Personales</Step.Title>
-                        </Step.Content>
-                        <Icon name='check' />
-                    </Step>
+        const { loading, steps, currentStep } = this.props;
+        if (loading) 
+            return (<div>Loading...</div>);
+        if (steps.length>0 && currentStep){
+            return (
+                <div>
+                    <Step.Group items={steps} attached='top' ordered />
 
-                    <Step active={this.state.step === 2} onClick={() => this.setStep(2)}>
-                        <Step.Content>
-                            <Step.Title>2nd Step</Step.Title>
-                        </Step.Content>
-                    </Step>
-
-                    <Step active={this.state.step === 3} onClick={() => this.setStep(3)}>
-                        <Step.Content>
-                            <Step.Title>3rd Step</Step.Title>
-                        </Step.Content>
-                    </Step>
-
-                    <Step active={this.state.step === 4} onClick={() => this.setStep(4)}>
-                        <Step.Content>
-                            <Step.Title>4th Step</Step.Title>
-                        </Step.Content>
-                    </Step>
-                </Step.Group>
-
-                {this.showStep()}
-            </div>
-        )
+                    {this.showStep()}
+                </div>
+            )
+        } else {
+            return(
+                <span>LOADING!</span>
+            );
+        }
     }
 }
 
 const mapStateToProps = state => ({
-
+    currentStep: state.currentCheckout.currentStep,
+    steps: state.currentCheckout.steps,
+    loading: state.currentCheckout.loading
 });
 
 export default connect(mapStateToProps)(Checkout);
