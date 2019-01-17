@@ -23,11 +23,12 @@ const AppRoutes = () =>
             <Route exact path="/legal" render={() => <Legal />} />
             <Route exact path="/catalog" render={() => <Catalog />} />
             <Route exact path="/company" render={() => <Company />} />
-            <Route exact path="/contacte" render={() => <Payment />} />
+            <Route exact path="/contacte" render={() => <Contacte />} />
             <Route exact path="/cookies" render={() => <Cookies />} />
             <Route exact path="/rates" render={() => <Rates />} />
             <Route exact path="/login" render={() => <SingIn type="login"/>} />
             <Route exact path="/register" render={() => <SingIn type="register"/>} />
+            <Route exact path="/payment" render={() => <Payment/>} />
        </Switch>
     );
 
