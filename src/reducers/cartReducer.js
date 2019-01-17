@@ -14,6 +14,7 @@ export default function cart(state = initialState, action) {
     switch (action.type) {
         case SET_ITEM:
             state.items.push(action.item)
+            console.log("SET_ITEM")
             return {
                 ...state,
                 items : state.items,
@@ -21,7 +22,7 @@ export default function cart(state = initialState, action) {
                 error: null
             };
         case GET_ITEMS:
-            console.log(state)
+            console.log("GET_ITEMS")
             return state;
         default:
             return state;
