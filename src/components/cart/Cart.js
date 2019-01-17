@@ -9,8 +9,9 @@ class Cart extends React.Component {
     super();
   }
 
-  componentWillMount() {
+  componentDidMount() {
       this.props.dispatch(getItems());
+      console.log(this.props.cartItems);
   }
 
   render(){
@@ -21,6 +22,6 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    //items: state.items
+    items: state.items
 });
 export default connect(mapStateToProps)(Cart);

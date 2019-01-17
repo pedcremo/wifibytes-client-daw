@@ -11,7 +11,7 @@ import { getItems } from './actions/cartActions';
  * It defines the webpage structure.
  */
 class App extends Component {
- /** render  
+ /** render
   * It renders the app view which loads the Navbar and Footer components and the AppRoutes component which has all the routes.
  */
  componentDidMount(){
@@ -24,13 +24,13 @@ class App extends Component {
             <Navbar cartItems={this.props.cartItems}/>
         </nav>
         <HashRouter>
-            <div id="main" className="container-fluid pl-0 pr-0"> 
-                <AppRoutes />
-            </div> 
-        </HashRouter>    
+            <div id="main" className="container-fluid pl-0 pr-0">
+                <AppRoutes cartItems={this.props.cartItems} />
+            </div>
+        </HashRouter>
         <footer className="page-footer font-small bg-light pt-4">
             <Footer />
-        </footer> 
+        </footer>
      </div>
    );
  }
