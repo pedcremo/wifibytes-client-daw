@@ -64,7 +64,8 @@ class Checkout extends React.Component {
     }
 
     componentDidMount(){
-        let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
+        let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614",5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
+       // let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
         console.log("G",g);
         this.props.dispatch(addSteps(1, steps));
     }
