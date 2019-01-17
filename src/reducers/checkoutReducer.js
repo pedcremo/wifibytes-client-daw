@@ -3,7 +3,7 @@ import {
 } from '../actions/checkoutActions';
 
 const initialState = {
-    paymentViewIsValid:false,
+    paymentStepIsValid:false,
     paymentMethod:null, /**Iremos viendo qué hacemos con esto */
     existsService:false,
     checkoutProcessIsValid:false

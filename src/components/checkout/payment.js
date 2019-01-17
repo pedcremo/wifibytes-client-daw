@@ -46,6 +46,7 @@ class Payment extends React.Component {
 
   render() {
     const email = this.props.email;
+    const cvv = this.props.cvv;
     const expirationMonth = this.props.expireMonth;
     const expirationYear = this.props.expireYear;
     return (
@@ -107,7 +108,7 @@ class Payment extends React.Component {
                       className="form-control form-control-lg"
                       type="number"
                       placeholder="CVV"
-                      value={email}
+                      value={cvv}
                       onChange={this.changeEmail} />
                   </fieldset>
                   <button

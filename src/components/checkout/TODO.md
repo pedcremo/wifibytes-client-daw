@@ -1,0 +1,20 @@
+-Validación CVV
+-Validación fecha tarjeta
+-Crear IBAN case 
+    -validación domiciliación bancaria
+-Automatizar creación de fechas
+-Validación nombre tarjeta
+-Validación número tarjeta
+-Añadir los eventos onChange()
+-Dar la opción a elegir qué tipo de pago si no hay servicios
+-Añadir estados iniciales:
+    -cardName:""
+    -cardNumber:""
+    -expireMonth:1
+    -expireYear:2019
+    -cvv:""
+    -cardNameIsValid:false
+    -cardNumberIsValid:false,
+    -expireDateIsValid:false,
+    -cvvIsValid:false,
+    -paymentIsValid
