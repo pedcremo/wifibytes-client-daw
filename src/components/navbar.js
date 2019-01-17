@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
 import {setLanguage} from "redux-i18n"
 import {PropTypes} from 'prop-types'
+import {getItems} from '../actions/cartActions'
 
 /**
  * Draw top menu navbar
@@ -18,6 +19,7 @@ class Navbar extends React.Component{
 
     componentDidMount(){
         this.props.dispatch(getDatosEmpresa());
+        // this.props.dispatch(getItems());
         this.handleLangPicker = this.handleLangPicker.bind(this);
     }
 
@@ -36,7 +38,8 @@ class Navbar extends React.Component{
 
     /** render  */
     render() {
-        const { error, loading, datosEmpresa, value } = this.props;
+        const { error, loading, datosEmpresa, value , cart} = this.props;
+        console.log(cart)
         if (error)
             return (<div>Error! </div>);
         if (loading)
@@ -79,6 +82,7 @@ class Navbar extends React.Component{
                                 <li className="nav-item">
                                     <Link to="/cart" className="nav-link text-dark pt-3">
                                         <span className="text-success">::</span> {this.context.t("cart-button")}
+                                        {cart ? cart.length : ' 0'}
                                     </Link>
                                 </li>
                                 <li className="nav-item">
@@ -119,7 +123,8 @@ const mapStateToProps = state => ({
     datosEmpresa: state.datosEmpresa.items,
     loading: state.datosEmpresa.loading,
     error: state.datosEmpresa.error,
-    value: Utils.getCookie("language")
+    value: Utils.getCookie("language"),
+    cart: state.items
 });
 
 Navbar.contextTypes = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setItem} from '../../actions/cartActions'
+import {setItem,getItems} from '../../actions/cartActions'
 
 class AddButton extends React.Component {
   constructor(){
@@ -13,16 +13,19 @@ class AddButton extends React.Component {
           price : this.props.price
         }
         this.props.dispatch(setItem(item));
-    }
+  }
   }
   render(){
+    const { cart } = this.props;
+
     return (
-        <button className="btn btn-secondary" onClick={this.addItem()}>{this.props.text}</button>
+        <button className="btn btn-secondary" onClick={this.addItem()}>{this.props.text}{cart.items ? cart.items.length : ''}</button>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  cart: getItems()
 });
 
 export default connect(mapStateToProps)(AddButton);

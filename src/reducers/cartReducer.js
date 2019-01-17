@@ -1,5 +1,6 @@
 import {
     SET_ITEM,
+    GET_ITEMS
 } from '../actions/cartActions';
 
 const initialState = {
@@ -20,6 +21,7 @@ export default function cart(state = initialState, action) {
                 error: null
             };
         case GET_ITEMS:
+            console.log(state)
             return state;
         default:
             return state;
