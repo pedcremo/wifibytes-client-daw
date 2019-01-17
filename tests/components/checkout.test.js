@@ -1,51 +1,77 @@
-import Checkout, {previousStep, nextStep} from '../../src/components/checkout/checkout';
+import Checkout from '../../src/components/checkout/checkout';
 import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import configureStore from 'redux-mock-store';
+import { Provider } from "react-redux";
+import * as checkoutActions from '../../src/actions/checkoutActions';
+
 
 Enzyme.configure({ adapter: new Adapter() });
 
-let checkout
+const mockStore = configureStore();
+const initialState = {
+    currentStep: 1,
+    steps: [
+        {
+            key: 'personal_data',
+            active: true,
+            completed: false,
+            title: 'Dades Personals',
+        },
+        {
+            key: 'contract',
+            active: false,
+            completed: false,
+            title: 'Contracte',
+        },
+        { 
+            key: 'confirm',
+            active: false,
+            completed: false,
+            title: 'Confirmar Pedido' 
+        },
+    ]
+};
 
-beforeEach(() => {
-    checkout = Enzyme.shallow(<Checkout />);
+const store = mockStore(initialState);
 
-    checkout.setState({
-        step: 1
+const checkout = Enzyme.shallow(<Provider store={store}><Checkout /></Provider>);
+
+describe('<Checkout />', () => {
+
+    it("Checkout snapshot is done", () => {
+        expect(checkout).toMatchSnapshot(); 
     });
-});
-
-describe('state', () => {
-
-    function nextStep() {
-        checkout.setState({ step: checkout.state('step') + 1 })
-    }
-
-    function previousStep() {
-        checkout.setState({ step: checkout.state('step') - 1 })
-    }
-
 
     it("Checkout render must be called and it works properly", () => {
         expect(checkout).toHaveLength(1);
     });
-
-    it("Step must be equal 1", () => {
-        expect(checkout.state('step')).toBe(1);
+    
+    it("Store must contain a currentStep", () => {
+        expect(checkout.props().value.storeState.currentStep).toBe(1);
+    });
+    
+    it("Store must contain a currentStep", () => {
+        expect(checkout.props().value.storeState.currentStep).toBe(1);
+    });
+    it("Store snapshot is done", () => {
+        expect(store.getActions()).toMatchSnapshot();
     });
 
-    it('Step can be increased and decreased', () => {
-        nextStep();
-        expect(checkout.state('step')).toBe(2);
-        previousStep();
-        expect(checkout.state('step')).toBe(1);
-    })
+    it('Dispatches the correct action and payload', () => {
+        const selectedActions = [
+          {
+            'type': 'UPDATE_STEP',
+            'payload': {
+                step: 1
+            },
+          },
+        ];
+    
+        store.dispatch(checkoutActions.updateStep(1));
+        expect(store.getActions()).toEqual(selectedActions);
+    });
 
-    // it('When button is clicked the step is changed', () => {
-    //     const checkout = Enzyme.shallow(<Checkout />);
-    //     checkout.debug();
-    //     checkout.find('#step').simulate('click');
-    //     expect(checkout.state('step')).toBe(2);
-    // })
 
-})
+});
