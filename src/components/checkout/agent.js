@@ -1,6 +1,6 @@
 /** @module Agent */
 
-export default Agent = {
+export const Agent = {
 
     getSteps: function (item = []) {
         var itemsProd = [], itemsTarifas = [], stepsProd = {};
