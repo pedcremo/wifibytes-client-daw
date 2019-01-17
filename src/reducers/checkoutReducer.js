@@ -37,8 +37,8 @@ export default function checkout(state = initialState, action) {
                 inProgress: false,
                 errors: action.error ? action.payload.errors : null
             };
-        case PAYMENT_UPDATE:
-            return { ...state, [action.key]: action.value, [action.key]:false };
+        case FORM_UPDATE:
+            return { ...state, [action.key]: action.value};
         default:
             return state;
     }
