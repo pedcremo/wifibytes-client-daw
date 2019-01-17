@@ -46,6 +46,8 @@ class Checkout extends React.Component {
         switch (this.props.currentStep) {
             case 1:
                 console.log("firstStep");
+                let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
+                console.log("G",g);
                 return <button onClick={this.nextStep}>Next</button>
                 
             case 2:
