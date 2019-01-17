@@ -1,6 +1,6 @@
 /** @module Agent */
 
-let Agent = {
+export const Agent = {
 
     getSteps: function (item = []) {
         var itemsProd = [], itemsTarifas = [], stepsProd = {};
@@ -25,5 +25,3 @@ let Agent = {
     },
 
 };
-
-export { Agent };
