@@ -8,7 +8,7 @@ const steps = [
     {
         key: 'personal_data',
         active: true,
-        completed: false,
+        completed: true,
         title: 'Dades Personals',
     },
     {
@@ -32,9 +32,9 @@ class Checkout extends React.Component {
         this.previousStep = this.previousStep.bind(this)
     }
 
-    setStep(step) {
+    /* setStep(step) {
         this.props.dispatch(updateStep(step));
-    }
+    } */
 
     nextStep() {
         this.props.dispatch(updateStep(this.props.currentStep+1));
