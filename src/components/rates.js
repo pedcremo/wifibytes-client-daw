@@ -65,7 +65,7 @@ class Rates extends React.Component {
 
         if (ratesDescription && ratesDescription.length > 0 && rates.length > 0) {
             /* console.warn("this.state", this.state) */
-
+            console.log("RATES",rates)
             let boxTextsArray = [];
             for (let [key, value] of Object.entries(ratesDescription[0])) {            
                 if (key.startsWith("caja")) {
