@@ -32,7 +32,7 @@ class Contracts extends React.Component {
     /** render  */
     render() {
         let pdf = '<p><strong>AUTORIZACION CUENTA BANCARIA PARA ADEUDOS</strong></p><p>D. ${person.name} con nº NIF ${person.NIF} y domicilio en C/ ${person.direccion}, de ${person.ciudad}. provincia de ${person.provincia}. declara subsistentes las facultades con las que interviene que en modo alguno le han sido revocadas, modificadas ni suspendidas y , en la calidad que actúa,</p> <p><strong>AUTORIZA</strong></p><p> a la empresa WIFIBYTES, S.L , provista de CIF B98137078 a que desde la fecha de la presente y con carácter indefinido en tanto continúen las relaciones comerciales entre la empresa y el cliente, a que gire en el número de cuenta bancaria especificada en la presente autorización, todos los recibos correspondientes a las facturas que se originen como consecuencia de conexión de internet establecida, según lo exigido por la Ley de Servicios de Pago 16/2009.</p><p><strong>DATOS DE CONFIRMACION DE LA ENTIDAD BANCARIA</strong></p><p>Nombre de la Entidad Bancaria:</p><p>Domicilio de la Entidad Bancaria:</p><p>Nº de cuenta:</p><p>Confirma mediante firma:</p><p>Fecha: El ${person.day} de ${person.month} de ${person.year} ${this.state.sign}</p>';
-        let person = {
+        let person = {    
             name: "Daniel Ortiz Garcia",
             NIF: "49264590Q",
             direccion: "Avenida Almaig",
