@@ -1,5 +1,6 @@
 export const SET_ITEM = 'SET_ITEM';
 export const GET_ITEMS = 'GET_ITEMS'
+export const QUANTITY_ITEM = 'QUANTITY_ITEM';
 
 export const setItem = item => {
     return (dispatch) => {

@@ -14,7 +14,7 @@ class AddButton extends React.Component {
           quantity : 1
         }
         this.props.dispatch(setItem(item));
-  }
+    }
   }
   render(){
     const { cart } = this.props;
