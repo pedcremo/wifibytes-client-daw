@@ -1,7 +1,12 @@
+/** @module ComponentsApp */
 import React from 'react';
 import { connect } from "react-redux";
 import SignaturePad from 'react-signature-pad-wrapper';
 
+/**
+ * @class
+ * Draw Contracts text information
+ */
 class SignPad extends React.Component {
     handleClear() {
         this.signaturePad.instance.clear();
@@ -12,7 +17,8 @@ class SignPad extends React.Component {
             // eslint-disable-next-line no-alert
             alert('Please provide a signature first.');
         } else {
-            window.open(this.signaturePad.toDataURL());
+            let data = this.signaturePad.toDataURL('image/svg+xml');
+            this.props.onReciveSign(atob(data.split(',')[1]))
         }
     }
 
@@ -41,6 +47,7 @@ class SignPad extends React.Component {
         );
     }
 
+    /**Render */
     render() {
         return (
             <section className="section">
