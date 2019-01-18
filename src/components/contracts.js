@@ -2,12 +2,25 @@
 /** @module ComponentsApp */
 import React from 'react';
 import { connect } from "react-redux";
+import SignPad from './signaturePad';
 
 /**
  * @class
  * Draw Contracts text information
  */
 class Contracts extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          showComponent: false,
+        };
+        this._onButtonClick = this._onButtonClick.bind(this);
+    }
+
+    _onButtonClick() {
+        this.setState({ showComponent: true });
+    }
 
     /** render  */
     render() {
@@ -43,12 +56,17 @@ class Contracts extends React.Component {
                                 <p dangerouslySetInnerHTML={{ __html: eval('`' + pdf + '`') }}></p>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button>
+                                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this._onButtonClick}>Acept</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                {
+                    this.state.showComponent?
+                        <SignPad /> 
+                    :
+                        null
+                }
             </div>
 
         );
