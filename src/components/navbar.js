@@ -38,7 +38,6 @@ class Navbar extends React.Component{
     /** render  */
     render() {
         const { error, loading, datosEmpresa, value , cartItems} = this.props;
-        // console.log(cart)
         if (error)
             return (<div>Error! </div>);
         if (loading)

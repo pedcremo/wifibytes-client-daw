@@ -16,7 +16,7 @@ import Cart from './components/cart/Cart';
  * <Route /> is used to declaratively map routes to your application's component hierarchy.
  * You would declare in path the path used in the URL and in render the single component to be rendered when the route matches the URL.
  */
-const AppRoutes = (cartItems) =>
+const AppRoutes = ({cartItems}) =>
    (
        <Switch>
             <Route exact path="/" render={() => <Home />} />

@@ -10,7 +10,8 @@ class AddButton extends React.Component {
         let item = {
           id : this.props.id /* id item*/,
           description : this.props.description,
-          price : this.props.price
+          price : this.props.price,
+          quantity : 1
         }
         this.props.dispatch(setItem(item));
   }

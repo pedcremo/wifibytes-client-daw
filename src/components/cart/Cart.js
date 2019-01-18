@@ -9,19 +9,13 @@ class Cart extends React.Component {
     super();
   }
 
-  componentDidMount() {
-      this.props.dispatch(getItems());
-      console.log(this.props.cartItems);
-  }
-
   render(){
     return (
-      <ListCart />
+      <ListCart cartItems={this.props.cartItems}/>
     );
   }
 }
 
 const mapStateToProps = state => ({
-    items: state.items
 });
 export default connect(mapStateToProps)(Cart);
