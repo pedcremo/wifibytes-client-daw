@@ -28,9 +28,8 @@ class Personal extends React.Component  {
         })
     }
     componentDidMount(){
-
         AuthService.isAuth().then((value)=>{
-            console.log("EL usuario esta logeado")
+            console.log("EL usuario esta logeado", value)
         }).catch(()=>{
             console.log("No esta logueado")
             this.changeModal("block")
@@ -54,7 +53,7 @@ class Personal extends React.Component  {
     
 
     render() {
-        console.log(this.state.styleModal)
+        /* console.log(this.state.styleModal) */
         return(
             <div>
                 <div>
@@ -63,15 +62,14 @@ class Personal extends React.Component  {
                     <button  onClick={()=>this.changeType("register")}>Register</button>
                 </div>
                 <div>
-                    {this.state.type === "register"?
-                        <Facturacion/>:
-                        <Pdata />
-                    }
+                    
+                    {this.state.type === "register" ? <Facturacion/>: <Pdata />}
+                    
                 </div>
-/**
-En el modal el style da error, a ver como hacemos para que funcione
- */
-                    <div id="myModal" className="modal" style={this.state.styleModal} >
+
+{/* En el modal el style da error, a ver como hacemos para que funcione */}
+
+                    <div id="myModal" className="modal" styles={this.state.styleModal} >
                         <div className="modal-content">
                             <span className="close" onClick={()=>this.changeModal("none")}>&times;</span>
                             <p>Some text in the Modal..</p>
