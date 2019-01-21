@@ -2,7 +2,7 @@ import {Utils} from "../utils";
 
 
 export const PAYMENT_SUBMIT = 'PAYMENT_SUBMIT';
-export const PAYMENT_UPDATE = 'PAYMENT_UPDATE';
+export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
 export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
@@ -20,9 +20,10 @@ export function getPaymentTypes() {
 }
 
 export function paymentUpdate(key, value) {
+    console.log("hola");
     return dispatch => {
         dispatch({
-            type: PAYMENT_UPDATE, 
+            type: FORM_UPDATE, 
             key: {key},
             value: {value}
         });
