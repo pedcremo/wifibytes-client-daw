@@ -35,18 +35,14 @@
 import React from 'react'
 import { connect } from "react-redux";
 import {
-  FORM_UPDATE
+  paymentUpdate
 } from '../../actions/checkoutActions';
 const mapStateToProps = state => ({ ...state.payment });
-const mapDispatchToProps = dispatch => ({
-  onChangeCardOwner: value =>
-    dispatch({ type: FORM_UPDATE, key: 'cardOwner', value }),
-});
 
 class Payment extends React.Component {
   constructor() {
     super();
-    this.changeCardOwner = ev => this.props.onChangeCardOwner(ev.target.value);
+    this.changeCardOwner = ev => paymentUpdate("cardOwner", ev.target.value);
     this.submitForm = () => ev => {
       ev.preventDefault();
       alert("Submit button works!");
@@ -56,6 +52,7 @@ class Payment extends React.Component {
   render() {
     const email = this.props.email;
     const cardOwner = this.props.cardOwner;
+    console.log(cardOwner);
     const cvv = this.props.cvv;
     const expirationMonth = this.props.expireMonth;
     const expirationYear = this.props.expireYear;
@@ -134,4 +131,4 @@ class Payment extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Payment);
+export default connect(mapStateToProps)(Payment);
