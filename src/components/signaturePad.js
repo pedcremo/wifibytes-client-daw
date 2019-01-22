@@ -8,6 +8,14 @@ import SignaturePad from 'react-signature-pad-wrapper';
  * Draw Contracts text information
  */
 class SignPad extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          showPad: false
+        };
+    }
+
     handleClear() {
         this.signaturePad.instance.clear();
     }
@@ -19,6 +27,7 @@ class SignPad extends React.Component {
         } else {
             let data = this.signaturePad.toDataURL('image/svg+xml');
             this.props.onReciveSign(atob(data.split(',')[1]))
+            this.setState({ showPad: true });
         }
     }
 
@@ -52,7 +61,13 @@ class SignPad extends React.Component {
         return (
             <section className="section">
                 <div className="container">
-                    {this.renderSignaturePad()}
+                {
+                    !this.state.showPad?
+                        this.renderSignaturePad()
+                    :
+                        null
+                }
+                    
                 </div>
             </section>
         )
