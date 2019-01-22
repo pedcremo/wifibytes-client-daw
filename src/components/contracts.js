@@ -32,10 +32,12 @@ class Contracts extends React.Component {
         this.sendContract = this.sendContract.bind(this);
     }
 
+    /**Accept terms and conditions before sign the contracts  */
     _onButtonClick() {
         this.setState({ showComponent: true });
     }
 
+    /**Recive sign from the child */
     reciveSign(sign) {
         this.setState({ 
             sign: sign,

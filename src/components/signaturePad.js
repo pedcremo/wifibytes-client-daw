@@ -16,10 +16,11 @@ class SignPad extends React.Component {
         };
     }
 
+    /**Clear the pad */
     handleClear() {
         this.signaturePad.instance.clear();
     }
-
+    /**Checking if the user sign the contract, converting the paint in svg and sending to the father */
     handleSave() {
         if (this.signaturePad.isEmpty()) {
             // eslint-disable-next-line no-alert
@@ -30,7 +31,7 @@ class SignPad extends React.Component {
             this.setState({ showPad: true });
         }
     }
-
+    /**Render SignaturePad */
     renderSignaturePad() {
 
         return (                               
