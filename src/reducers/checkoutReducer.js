@@ -14,7 +14,7 @@ const initialState = {
     checkoutProcessIsValid:false,
     cardOwner:"",
     cardNumber:"",
-    expirationMonth:1,
+    expirationMonth:"",
     expirationYear:"",
     cvv:"",
     cardNameIsValid:false,

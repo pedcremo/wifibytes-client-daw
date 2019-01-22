@@ -40,6 +40,7 @@ import {
   setExpirationDate
 } from '../../actions/checkoutActions';
 import {Utils} from "../utils";
+import {RegExps} from '../../regExps';
 const mapStateToProps = state => ({ ...state.checkout });
 
 class Payment extends React.Component {
@@ -55,8 +56,16 @@ class Payment extends React.Component {
       alert("Submit button works!");
     }
   }
+  disabled(){
+    return !this.validateCvv() || !this.validateCardOwner();
+  }
   validateCvv(){
-    if(this.props.cvv.match(/^[0-9]{3,4}$/))
+    if(this.props.cvv.match(RegExps.cvv))
+      return true;
+    return false;
+  }
+  validateCardOwner(){
+    if(this.props.cardOwner.match(RegExps.cardOwner))
       return true;
     return false;
   }
@@ -138,7 +147,7 @@ class Payment extends React.Component {
                   <button
                     className="btn btn-lg btn-primary pull-xs-right"
                     type="submit"
-                    disabled={!this.validateCvv()}>
+                    disabled={this.disabled()}>
                     Comprar
                   </button>
                 </fieldset>
