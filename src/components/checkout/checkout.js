@@ -4,6 +4,9 @@ import { Step } from 'semantic-ui-react'
 import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
 
+/**
+ * mock steps
+ */
 const steps = [
     {
         key: 'personal_data',
@@ -24,7 +27,9 @@ const steps = [
         title: 'Confirmar Pedido' 
     },
 ]
-
+/**
+ * Component Checkout validate the steps you have to follow
+ */
 class Checkout extends React.Component {
     constructor(props) {
         super(props)
@@ -36,14 +41,23 @@ class Checkout extends React.Component {
         this.props.dispatch(updateStep(step));
     } */
 
+    /**
+     * go to the next step
+     */
     nextStep() {
         this.props.dispatch(updateStep(this.props.currentStep+1));
     }
 
+    /**
+     * go to the previous step
+     */
     previousStep() {
         this.props.dispatch(updateStep(this.props.currentStep-1));
     }
 
+    /**
+     * shows the step in which you are
+     */
     showStep() {
         switch (this.props.currentStep) {
             case 1:
@@ -63,6 +77,10 @@ class Checkout extends React.Component {
         }
     }
 
+    /**
+     * we call getsteps to validate the items and depending on the items shows the steps to follow
+     * 
+     */
     componentDidMount(){
         let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614",5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
        // let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
@@ -70,6 +88,9 @@ class Checkout extends React.Component {
         this.props.dispatch(addSteps(1, steps));
     }
 
+    /**
+     * render paint the step where are you
+     */
     render() {
         const { loading, steps, currentStep } = this.props;
         if (loading) 
