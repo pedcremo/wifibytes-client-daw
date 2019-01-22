@@ -70,6 +70,8 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid",
 
+    "payment-method0": "Domiciliació bancaria",
+    "payment-method1": "Tarjeta de credit",
     "payment-owner": "Propietari de la tarjeta",
     "payment-numberCard": "Número de la tarjeta",
     "payment-expirationMonth": "Mes de caducitat",

@@ -68,6 +68,8 @@
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
+    "payment-method0": "Direct debit",
+    "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
     "payment-numberCard": "Credit number card",
     "payment-expirationMonth": "Expiration month",
