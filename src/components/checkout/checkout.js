@@ -5,7 +5,33 @@ import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
 import Payment from './payment';
 
-const steps = [
+let library = {
+    fieldsToValidate:[
+        {
+            field: "personal_data",
+            regexp: /^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$/
+        },
+        {
+            field: "contract",
+            regexp: /^([0-9]{1,})$/
+        }
+    ],
+    requiredFields:["confirm"]
+};
+
+let items = [
+    {
+        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
+    },
+    {
+        id: "5"
+    },
+    {
+        id: "0cab70a1-ea99-4aa4-9a49-1983f06a5614"
+    }
+]
+
+let steps = [
     {
         key: 'personal_data',
         active: true,
@@ -46,16 +72,16 @@ class Checkout extends React.Component {
     }
 
     showStep() {
-        switch (this.props.currentStep) {
-            case 1:
+        switch (this.props.steps[this.props.currentStep-1].key) {
+            case 'personal_data':
                 console.log("firstStep");
                 return <button onClick={this.nextStep}>Next</button>
                 
-            case 2:
+            case 'contract':
                 console.log("secondStep");
                 return <button onClick={this.nextStep}>Next</button>
 
-            case 3:
+            case 'confirm':
                 console.log("thirdStep");
                 return <Payment />
 
@@ -65,9 +91,8 @@ class Checkout extends React.Component {
     }
 
     componentDidMount(){
-        let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614",5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
-       // let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
-        console.log("G",g);
+        let stepsRates = Agent.objectsToArray(items, library);
+        steps = Agent.filterArray(steps, stepsRates);
         this.props.dispatch(addSteps(1, steps));
     }
 
