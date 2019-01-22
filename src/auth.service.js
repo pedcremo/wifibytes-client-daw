@@ -22,7 +22,9 @@ let AuthService = {
             if(!data.password) reject("No password");
 
             Utils.post("/api-token-auth/",data).then(function(res){
+                console.log(res)
                 res = JSON.parse(res);
+                console.log(res)
                 if(!Utils.getCookie("tokenAuth") || Utils.getCookie("tokenAuth") != res.token){
                     Utils.setCookie("tokenAuth",res.token,365)
                 }
