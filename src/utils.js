@@ -89,6 +89,24 @@ let Utils={
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
     */
     get: function (url,filterFunction=null) {
+        let json;
+        if (url==='/formaspago')
+         return json = {
+            "results": [
+                {
+                    "codpago": 3,
+                    "nombre": "Domiciliación Bancaria",
+                    "descripcion": "A través del banco",
+                    "cod_eneboo": "2"
+                },
+                {
+                    "codpago": 1,
+                    "nombre": "Visa / Mastercard / American Express",
+                    "descripcion": "Stripe",
+                    "cod_eneboo": "1"
+                }
+            ]
+        }
         // Return a new promise.
         return new Promise(function(resolve, reject) {
             if (CACHE_TEMPLATES.has(url)) {
