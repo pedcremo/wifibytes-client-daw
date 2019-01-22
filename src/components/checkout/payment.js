@@ -57,17 +57,17 @@ class Payment extends React.Component {
     }
   }
   disabled(){
-    return !this.validateCvv() || !this.validateCardOwner();
+    return !this.validateCvv() || !this.validateCardOwner() || !this.validateExpirationDate();
   }
+  validateExpirationDate(){
+    const today = new Date();
+    return ((today.getMonth() + 1) >this.props.expirationMonth? today.getFullYear() < this.props.expirationYear : today.getFullYear() <= this.props.expirationYear); 
+    }
   validateCvv(){
-    if(this.props.cvv.match(RegExps.cvv))
-      return true;
-    return false;
+    return this.props.cvv.match(RegExps.cvv);
   }
   validateCardOwner(){
-    if(this.props.cardOwner.match(RegExps.cardOwner))
-      return true;
-    return false;
+    return this.props.cardOwner.match(RegExps.cardOwner);
   }
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
@@ -129,6 +129,7 @@ class Payment extends React.Component {
                     className="form-control form-control-lg"
                     value={expirationYear}
                     onChange={this.changeExpirationYear}>
+                      <option value={2018}>2018</option>
                       <option value={2019}>2019</option>
                       <option value={2020}>2020</option>
                       <option value={2021}>2021</option>
