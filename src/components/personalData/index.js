@@ -1,10 +1,11 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {AuthService} from "../../auth.service";
-import PersonalDataForm from "./personalDataForm";
 import UserChoice from "./userChoice"
-import { withRouter } from 'react-router-dom';
-
+import LogIn from "../login/loginComponent";
+import Register from "../login/registerComponent";
+import PersonalDataForm from "./personalDataForm";
+import SignIn from "../login/signIn";
 
 /**
  * @class
@@ -16,68 +17,69 @@ class Personal extends React.Component  {
      */
     constructor(props) {
         super(props);
-        this.contiWithoutLogin = this.contiWithoutLogin.bind(this);
-        this.redirect = this.redirect.bind(this);
         this.state = {
-            optionsToShow: {
-                display: "none"
-            },
-            showForm: {
-                display: "none"
-            },
             personalDataViewIsValid: false,
-            styleModal: "display: none"
+            styleModal: false,
+            selected: false
         }
+        this.printComponent = this.printComponent.bind(this);
     }
 
-    componentWillReceiveProps(){
-        /* this.setState({
-            recive datos del usuario
-        }) */
-    }
     componentDidMount(){
-        AuthService.isAuth().then( value =>{
+        AuthService.isAuth().then((value)=>{
             console.log("EL usuario esta logeado", value)
         }).catch(()=>{
-            console.log("No esta logueado")
-            this.setState({optionsToShow: {display: "block"}})
-            /* this.setState({showForm: {display: "block"}}) */
-
-            /* this.changeState("optionsToShow", {display: "block"}) */
+            this.changeModal(true)
         })
     }
-
-    contiWithoutLogin() {
-         this.setState({
-            optionsToShow: {
-                display: "none"
-            },
-            showForm: {
-                display: "block"
-            }
+    changeType(res){
+        this.setState({
+            selected : res
         })
     }
-    
-
-    redirect(goTo) { 
-        this.props.history.push(goTo);
+    changeModal(value){
+        this.setState({
+            styleModal : value
+        })
+    }
+    printComponent(value){
+        switch(value){
+            case "login":
+                this.changeType(value)
+            break;
+            case "register":
+                this.changeType(value)
+            break;
+            case "none":
+                this.changeModal(false)
+            break;
+            // default:
+            //     return <UserChoice choice={this.printComponent} />
+            // break;
+        }
+        this.render()
     }
     
-
     render() {
         return(
             <div>
-                <div style={this.state.optionsToShow}>
-                    <button  onClick={()=>this.redirect("login")}>Login / Register</button>
-                    <button onClick={()=>this.contiWithoutLogin()}> Continuar igualmente </button>
-                </div>
-
-                <div style={this.state.showForm}>
+                <div>
                     <PersonalDataForm />
                 </div>
-
+                <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
+                    <div className="modal-content">
+                    <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
+                        {this.state.selected == "login" ? <SignIn type="login"/> :
+                         this.state.selected == "register" ? <SignIn type="register"/> :
+                         this.state.selected == "none" ? this.printComponent("none") :
+                         <UserChoice choice={this.printComponent}/> }
+                    </div>
+                </div>
             </div>
         )
     }
 }
-export default withRouter(Personal);
+export default Personal;
+// {this.printComponent()}
+//BOTO TANCAR MODAL
+// <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
