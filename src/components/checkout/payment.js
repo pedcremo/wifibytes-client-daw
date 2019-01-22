@@ -55,6 +55,9 @@ class Payment extends React.Component {
       alert("Submit button works!");
     }
   }
+  disabled(){
+    return !this.validateCvv() || !this.validateCardOwner();
+  }
   validateCvv(){
     if(this.props.cvv.match(RegExps.cvv))
       return true;
@@ -72,7 +75,6 @@ class Payment extends React.Component {
 }
 
   render() {
-    console.log(this.validateCardOwner());
     const cardOwner = this.props.cardOwner;
     const cardNumber = this.props.cardNumber;
     const expirationMonth = this.props.expirationMonth;
@@ -144,7 +146,7 @@ class Payment extends React.Component {
                   <button
                     className="btn btn-lg btn-primary pull-xs-right"
                     type="submit"
-                    disabled={!this.validateCvv() || !this.validateCardOwner()}>
+                    disabled={this.disabled()}>
                     Comprar
                   </button>
                 </fieldset>
