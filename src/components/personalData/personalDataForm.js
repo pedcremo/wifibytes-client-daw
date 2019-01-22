@@ -5,6 +5,7 @@ import {
     getContactDataForm,
     updateContactDataForm
 } from "../../actions/personalDataFormActions";
+import {validator}  from "./validation";
 /**
  * @class
  * Draw Login. A form to login
@@ -53,14 +54,28 @@ class PersonalForm extends React.Component  {
         else
             value = target.value
             
+        const error = validator(value, name)
 
         return new Promise((resolve, reject) => 
             resolve(this.setState({
                 [name]: {
-                    value: value
+                    value: value,
+                    error: error
                 }
             }))
-        ).then(() => this.props.dispatch(updateContactDataForm(this.state)))
+        )
+        .then(() => this.props.dispatch(updateContactDataForm(this.state)))
+        /* .then(()=>{
+            for (const elem in this.state){ 
+                if (elem.error)
+                    return console.log("s")
+                if (elem.value === undefined)
+                    return console.log("s")
+            }
+            
+            alert("todo valido")
+            
+        }) */
     }
 
     render() {
@@ -77,6 +92,7 @@ class PersonalForm extends React.Component  {
                         type="text"
                         checked={this.state.name.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
                     </div>
 
                     <br />
@@ -88,6 +104,7 @@ class PersonalForm extends React.Component  {
                         type="text"
                         value={this.state.surname.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.surname.error? "":this.state.surname.error}</span>
                     </div>
 
                     <br />
@@ -99,6 +116,7 @@ class PersonalForm extends React.Component  {
                         type="email"
                         value={this.state.email.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.email.error? "":this.state.email.error}</span>
                     </div>
 
                     <br />
@@ -110,6 +128,7 @@ class PersonalForm extends React.Component  {
                         type="number"
                         value={this.state.phone.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.phone.error? "":this.state.phone.error}</span>
                     </div>
                 </div>
 
@@ -120,9 +139,10 @@ class PersonalForm extends React.Component  {
                         className="grid-data-form__fields"
                         placeholder="Address"
                         name = "address"
-                        type = "address"
+                        type = "text"
                         value={this.state.address.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.address.error? "":this.state.address.error}</span>
                     </div>
 
                     <br />
@@ -134,17 +154,19 @@ class PersonalForm extends React.Component  {
                         type="number"
                         value={this.state.zip.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.zip.error? "":this.state.zip.error}</span>
                     </div>
 
                     <br />
                     <div>
-                        <input
-                        className="grid-data-form__fields"
+                        <input                        
+                        className={"grid-data-form__fields "+ (!this.state.city.error? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
                         type="text"
                         value={this.state.city.value}
                         onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
                     </div>
                 </div >
             </form>
