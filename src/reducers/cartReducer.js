@@ -33,7 +33,13 @@ export default function cart(state = initialState, action) {
         console.log(action.item.quantity)
             state.items.filter((item)=>{
                 if(item.id == action.item.id){
+                  if(item.quantity_item === 1){
                     item.quantity = item.quantity + item.quantity_item;
+                  }else{
+                    if(item.quantity > 1){
+                      item.quantity = item.quantity + item.quantity_item;
+                    }
+                  }
                 }
             })
             return {
