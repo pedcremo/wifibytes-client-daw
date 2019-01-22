@@ -88,9 +88,7 @@ class Payment extends React.Component {
           <input type="radio" name="method" value="0"/>{Utils.translate("payment-method0")}
           <input type="radio" name="method" value="1"/>{Utils.translate("payment-method1")}
         </form>
-
         <div className="payment-form">
-
         </div>
    
         <form onSubmit={this.submitForm()}>
