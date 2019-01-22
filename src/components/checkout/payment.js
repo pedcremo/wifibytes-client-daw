@@ -37,12 +37,16 @@ import { connect } from "react-redux";
 import {
   paymentUpdate
 } from '../../actions/checkoutActions';
-const mapStateToProps = state => ({ ...state.payment });
+const mapStateToProps = state => ({ ...state.checkout });
 
 class Payment extends React.Component {
   constructor() {
     super();
     this.changeCardOwner = ev => paymentUpdate("cardOwner", ev.target.value);
+    this.changeCardNumber = ev => paymentUpdate("cardNumber", ev.target.value);
+    this.changeExpirationMonth = ev => paymentUpdate("expirationMonth", ev.target.value);
+    this.changeExpirationYear = ev => paymentUpdate("expirationYear", ev.target.value);
+    this.changeCvv = ev => paymentUpdate("cvv", ev.target.value);
     this.submitForm = () => ev => {
       ev.preventDefault();
       alert("Submit button works!");
@@ -50,12 +54,12 @@ class Payment extends React.Component {
   }
 
   render() {
-    const email = this.props.email;
     const cardOwner = this.props.cardOwner;
-    console.log(cardOwner);
+    const cardNumber = this.props.cardNumber;
+    const expirationMonth = this.props.expirationMonth;
+    const expirationYear = this.props.expirationYear;
     const cvv = this.props.cvv;
-    const expirationMonth = this.props.expireMonth;
-    const expirationYear = this.props.expireYear;
+    
     return (
       <form onSubmit={this.submitForm()}>
                 <fieldset>
@@ -74,15 +78,15 @@ class Payment extends React.Component {
                       className="form-control form-control-lg"
                       type="number"
                       placeholder="Número de tarjeta"
-                      value={email}
-                      onChange={this.changeEmail} />
+                      value={cardNumber}
+                      onChange={this.changeCardNumber} />
                   </fieldset>
                   <fieldset className="form-group">
                     <label>Mes de vencimiento</label>
                     <select
                     className="form-control form-control-lg"
                     value={expirationMonth}
-                    onChange={this.changeEmail}>
+                    onChange={this.changeExpirationMonth}>
                       <option value={1}>01</option>
                       <option value={2}>02</option>
                       <option value={3}>03</option>
@@ -102,7 +106,7 @@ class Payment extends React.Component {
                     <select
                     className="form-control form-control-lg"
                     value={expirationYear}
-                    onChange={this.changeEmail}>
+                    onChange={this.changeExpirationYear}>
                       <option value={2019}>2019</option>
                       <option value={2020}>2020</option>
                       <option value={2021}>2021</option>
@@ -116,7 +120,7 @@ class Payment extends React.Component {
                       type="number"
                       placeholder="CVV"
                       value={cvv}
-                      onChange={this.changeEmail} />
+                      onChange={this.changeCvv} />
                   </fieldset>
                   <button
                     className="btn btn-lg btn-primary pull-xs-right"

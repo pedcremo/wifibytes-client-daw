@@ -19,16 +19,17 @@ export function getPaymentTypes() {
         };
 }
 
-export function paymentUpdate(key, value) {
+
+ export function paymentUpdate(key, value) {
     console.log("hola");
-    return dispatch => {
-        dispatch({
+    dispatch => {
+        return dispatch({
             type: FORM_UPDATE, 
             key: {key},
             value: {value}
         });
     };
-}
+} 
 
 // export function paymentsubmit(payload) {
 //     return dispatch => {

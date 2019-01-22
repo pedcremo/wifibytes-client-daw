@@ -1,5 +1,9 @@
 import {
-
+    GET_PAYMENTS_BEGIN,
+    GET_PAYMENTS_SUCCESS,
+    GET_PAYMENTS_FAILURE,
+    PAYMENT_SUBMIT,
+    FORM_UPDATE
 } from '../actions/checkoutActions';
 
 const initialState = {
@@ -9,7 +13,7 @@ const initialState = {
     checkoutProcessIsValid:false
 };
 
-export default function checkout(state = initialState, action) {
+export default function checkoutReducer(state = initialState, action) {
 
     switch (action.type) {
         case GET_PAYMENTS_BEGIN:
@@ -41,6 +45,6 @@ export default function checkout(state = initialState, action) {
             console.log("abc");
             return { ...state, [action.key]: action.value};
         default:
-            return state;
+            return {...state};
     }
 }
