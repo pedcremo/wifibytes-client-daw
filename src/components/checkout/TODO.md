@@ -1,4 +1,3 @@
--Validación CVV
 -Validación fecha tarjeta
 -Crear IBAN case
     -validación domiciliación bancaria

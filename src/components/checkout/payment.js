@@ -53,6 +53,11 @@ class Payment extends React.Component {
       alert("Submit button works!");
     }
   }
+  validateCvv(){
+    if(this.props.cvv.match(/^[0-9]{3,4}$/))
+      return true;
+    return false;
+  }
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
 }
@@ -129,7 +134,7 @@ class Payment extends React.Component {
                   <button
                     className="btn btn-lg btn-primary pull-xs-right"
                     type="submit"
-                    disabled={this.props.inProgress}>
+                    disabled={!this.validateCvv()}>
                     Comprar
                   </button>
                 </fieldset>
