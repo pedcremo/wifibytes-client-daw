@@ -82,6 +82,7 @@ class Personal extends React.Component  {
                          <UserChoice choice={this.printComponent}/> }
                     </div>
                 </div>
+                <button onClick={this.props.nextStep}>Next</button>
             </div>
         )
     }

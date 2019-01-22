@@ -1,34 +1,32 @@
-import Catalog from '../../src/components/catalog/catalog';
+import Catalog from "../../src/components/footer";
 import React from 'react';
-import Enzyme from 'enzyme'
+import {Utils} from '../../src/utils';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16'
 import filtros from "../json_endpoints/filtros.json";
 import articulo from "../json_endpoints/articulo.json";
-import {Utils} from '../../src/utils';
-import Adapter from 'enzyme-adapter-react-16'
+import configureStore from 'redux-mock-store';
+import { Provider } from "react-redux";
+
 Enzyme.configure({ adapter: new Adapter() });
 
 jest.mock('../../src/utils');
-const $ = require('jquery');
+const mockStore = configureStore();
+const initialState = {filtros, articulo};
+Utils.getUserLang.mockReturnValue("va");
 
-beforeEach(() => {
-    // Set up our document body
-    document.body.innerHTML =
-        `<div id="main" class="container-fluid pl-0 pr-0">
-        </div>`;
-});
+const store = mockStore(initialState);
 
-const json1 = filtros;
-const json2 = articulo;
-Utils.get.mockResolvedValueOnce(json1);
-Utils.get.mockResolvedValueOnce(json2);
-Utils.get.mockResolvedValue(json1);
+const catalog = Enzyme.shallow(<Provider store={store}><Catalog /></Provider>);
 
-it('We can check if Catalog component called the class constructor', () => {
-    const catalog = Enzyme.shallow(<Catalog />);
-    expect(catalog).toMatchSnapshot();
-});
-
-it('Catalog render must be called and it works properly', () => {
-    const catalog = Enzyme.shallow(<Catalog />);
-    expect(catalog.find('.catalog')).toHaveLength(1);
-});
+describe('<Catalog />', () => {
+    test('dispatches event to show catalog data', () => {
+      expect(catalog).toMatchSnapshot();
+      expect(catalog.props().value.storeState.filtros.pantalla[1].num_pantalla).toBe(4);
+      expect(catalog.props().value.storeState.articulo.results[0].referencia).toBe("0cab50a1-ea99-4aa4-9a49-1983f06a5614");
+      expect(store.getActions()).toMatchSnapshot();
+      //expect(catalog.find(Catalog).find('.catalog')).toBe(true);
+      console.log(catalog.find(Catalog));
+      
+    });
+  });
