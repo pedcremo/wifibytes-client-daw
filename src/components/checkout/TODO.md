@@ -1,6 +1,6 @@
 -Validación CVV
 -Validación fecha tarjeta
--Crear IBAN case 
+-Crear IBAN case
     -validación domiciliación bancaria
 -Automatizar creación de fechas
 -Validación nombre tarjeta

@@ -50,7 +50,6 @@ export default function checkoutReducer(state = initialState, action) {
                 errors: action.error ? action.payload.errors : null
             };
         case FORM_UPDATE:
-            console.log(action);
             return { ...state, [action.key]: action.value};
         default:
             return {...state};

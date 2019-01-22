@@ -35,7 +35,8 @@
 import React from 'react'
 import { connect } from "react-redux";
 import {
-  paymentUpdate
+  paymentUpdate,
+  getPaymentTypes
 } from '../../actions/checkoutActions';
 const mapStateToProps = state => ({ ...state.checkout });
 
@@ -52,6 +53,9 @@ class Payment extends React.Component {
       alert("Submit button works!");
     }
   }
+  componentDidMount() {
+    this.props.dispatch(getPaymentTypes());
+}
 
   render() {
     const cardOwner = this.props.cardOwner;
@@ -59,8 +63,6 @@ class Payment extends React.Component {
     const expirationMonth = this.props.expirationMonth;
     const expirationYear = this.props.expirationYear;
     const cvv = this.props.cvv;
-    console.log(this.props);
-    console.log(this.props.cardOwner);
     
     return (
       <form onSubmit={this.submitForm()}>
