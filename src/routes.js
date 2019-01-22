@@ -10,7 +10,7 @@ import Cookies from "./components/cookies";
 import Rates from "./components/rates";
 import Contacte from "./components/contacte";
 import SingIn from './components/login/signIn'
-import Payment from './components/checkout/payment'
+import Payment from './components/checkout/payment/payment'
 
 /**
  * <Route /> is used to declaratively map routes to your application's component hierarchy. 
