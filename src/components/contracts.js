@@ -3,7 +3,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { /*SEND_CONTRACT_BEGIN, GET_CONTRACT_BEGIN, */sendContractsActiondHtml, getDatosContracts } from "../actions/datosContractsAction";
+import { sendContractsActiondHtml, getDatosContracts } from "../actions/datosContractsAction";
+//import { getContactDataForm } from "../actions/personalDataFormActions";
+
 
 /**
  * @class
@@ -24,7 +26,8 @@ class Contracts extends React.Component {
     }
 
     componentDidMount(){
-        this.props.dispatch(getDatosContracts());
+        //this.props.dispatch(getDatosContracts());
+        //this.props.dispatch(getContactDataForm());
     }
 
     /**Accept terms and conditions before sign the contracts  */
@@ -41,7 +44,7 @@ class Contracts extends React.Component {
     }
 
     sendContract(html){
-        this.props.onSubmit(html);
+        this.props.dispatch(sendContractsActiondHtml(html));
     }
 
     /** render  */
