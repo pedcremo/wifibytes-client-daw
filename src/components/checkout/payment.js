@@ -57,18 +57,17 @@ class Payment extends React.Component {
     }
   }
   disabled(){
-    return !this.validateCvv() || !this.validateCardOwner();
+    return !this.validateCvv() || !this.validateCardOwner() || !this.validateExpirationDate();
   }
-
+  validateExpirationDate(){
+    const today = new Date();
+    return ((today.getMonth() + 1) >this.props.expirationMonth? today.getFullYear() < this.props.expirationYear : today.getFullYear() <= this.props.expirationYear); 
+    }
   validateCvv(){
-    if(this.props.cvv.match(RegExps.cvv))
-      return true;
-    return false;
+    return this.props.cvv.match(RegExps.cvv);
   }
   validateCardOwner(){
-    if(this.props.cardOwner.match(RegExps.cardOwner))
-      return true;
-    return false;
+    return this.props.cardOwner.match(RegExps.cardOwner);
   }
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
@@ -92,78 +91,79 @@ class Payment extends React.Component {
 
         <div className="payment-form">
 
-
         </div>
+   
+        <form onSubmit={this.submitForm()}>
+                  <fieldset>
+                    <fieldset className="form-group">
+                      <label>{Utils.translate("payment-owner")}</label>
+                      <input
+                        className="form-control form-control-lg"
+                        type="text"
+                        placeholder={Utils.translate("payment-owner")}
+                        value={cardOwner}
+                        onChange={this.changeCardOwner} />
+                    </fieldset>
+                    <fieldset className="form-group">
+                      <label>{Utils.translate("payment-numberCard")}</label>
+                      <input
+                        className="form-control form-control-lg"
+                        type="number"
+                        placeholder={Utils.translate("payment-numberCard")}
+                        value={cardNumber}
+                        onChange={this.changeCardNumber} />
+                    </fieldset>
+                    <fieldset className="form-group">
+                      <label>{Utils.translate("payment-expirationMonth")}</label>
+                      <select
+                      className="form-control form-control-lg"
+                      value={expirationMonth}
+                      onChange={this.changeExpirationMonth}>
+                        <option value={1}>01</option>
+                        <option value={2}>02</option>
+                        <option value={3}>03</option>
+                        <option value={4}>04</option>
+                        <option value={5}>05</option>
+                        <option value={6}>06</option>
+                        <option value={7}>07</option>
+                        <option value={8}>08</option>
+                        <option value={9}>09</option>
+                        <option value={10}>10</option>
+                        <option value={11}>11</option>
+                        <option value={12}>12</option>
+                      </select>
+                    </fieldset>
+                    <fieldset className="form-group">
+                      <label>{Utils.translate("payment-expirationYear")}</label>
+                      <select
+                      className="form-control form-control-lg"
+                      value={expirationYear}
+                      onChange={this.changeExpirationYear}>
+                        <option value={2018}>2018</option>
+                        <option value={2019}>2019</option>
+                        <option value={2020}>2020</option>
+                        <option value={2021}>2021</option>
+                        <option value={2022}>2022</option>
+                      </select>
+                    </fieldset>
+                    <fieldset className="form-group">
+                      <label>{Utils.translate("CVV")}</label>
+                      <input
+                        className="form-control form-control-lg"
+                        type="number"
+                        placeholder={Utils.translate("CVV")}
+                        value={cvv}
+                        onChange={this.changeCvv} />
+                    </fieldset>
+                    <button
+                      className="btn btn-lg btn-primary pull-xs-right"
+                      type="submit"
+                      disabled={this.disabled()}>
+                      Comprar
+                    </button>
+                  </fieldset>
+        </form>
       </div>
-      // <form onSubmit={this.submitForm()}>
-      //           <fieldset>
-      //             <fieldset className="form-group">
-      //               <label>{Utils.translate("payment-owner")}</label>
-      //               <input
-      //                 className="form-control form-control-lg"
-      //                 type="text"
-      //                 placeholder={Utils.translate("payment-owner")}
-      //                 value={cardOwner}
-      //                 onChange={this.changeCardOwner} />
-      //             </fieldset>
-      //             <fieldset className="form-group">
-      //               <label>{Utils.translate("payment-numberCard")}</label>
-      //               <input
-      //                 className="form-control form-control-lg"
-      //                 type="number"
-      //                 placeholder={Utils.translate("payment-numberCard")}
-      //                 value={cardNumber}
-      //                 onChange={this.changeCardNumber} />
-      //             </fieldset>
-      //             <fieldset className="form-group">
-      //               <label>{Utils.translate("payment-expirationMonth")}</label>
-      //               <select
-      //               className="form-control form-control-lg"
-      //               value={expirationMonth}
-      //               onChange={this.changeExpirationMonth}>
-      //                 <option value={1}>01</option>
-      //                 <option value={2}>02</option>
-      //                 <option value={3}>03</option>
-      //                 <option value={4}>04</option>
-      //                 <option value={5}>05</option>
-      //                 <option value={6}>06</option>
-      //                 <option value={7}>07</option>
-      //                 <option value={8}>08</option>
-      //                 <option value={9}>09</option>
-      //                 <option value={10}>10</option>
-      //                 <option value={11}>11</option>
-      //                 <option value={12}>12</option>
-      //               </select>
-      //             </fieldset>
-      //             <fieldset className="form-group">
-      //               <label>{Utils.translate("payment-expirationYear")}</label>
-      //               <select
-      //               className="form-control form-control-lg"
-      //               value={expirationYear}
-      //               onChange={this.changeExpirationYear}>
-      //                 <option value={2019}>2019</option>
-      //                 <option value={2020}>2020</option>
-      //                 <option value={2021}>2021</option>
-      //                 <option value={2022}>2022</option>
-      //               </select>
-      //             </fieldset>
-      //             <fieldset className="form-group">
-      //               <label>{Utils.translate("CVV")}</label>
-      //               <input
-      //                 className="form-control form-control-lg"
-      //                 type="number"
-      //                 placeholder={Utils.translate("CVV")}
-      //                 value={cvv}
-      //                 onChange={this.changeCvv} />
-      //             </fieldset>
-      //             <button
-      //               className="btn btn-lg btn-primary pull-xs-right"
-      //               type="submit"
-      //               disabled={this.disabled()}>
-      //               Comprar
-      //             </button>
-      //           </fieldset>
-      // </form>
   ); 
 
   }
