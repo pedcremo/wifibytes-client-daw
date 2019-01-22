@@ -20,17 +20,24 @@ class Personal extends React.Component  {
         this.state = {
             personalDataViewIsValid: false,
             styleModal: false,
-            selected: false
+            selected: false,
+            auth: {}
         }
         this.printComponent = this.printComponent.bind(this);
+        
     }
 
     componentDidMount(){
-        AuthService.isAuth().then((value)=>{
+        /**
+        * Esta comprobando si el usuario esta logueado verificando el token de cookies
+        * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
+        **/
+        AuthService.isAuth().then(value =>{
             console.log("EL usuario esta logeado", value)
-        }).catch(()=>{
-            this.changeModal(true)
-        })
+            this.setState({
+                auth: value
+            })
+        }).catch(() => this.changeModal(true))
     }
     changeType(res){
         this.setState({
@@ -64,7 +71,7 @@ class Personal extends React.Component  {
         return(
             <div>
                 <div>
-                    <PersonalDataForm />
+                    <PersonalDataForm dataUser={this.state.auth}/>
                 </div>
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">
