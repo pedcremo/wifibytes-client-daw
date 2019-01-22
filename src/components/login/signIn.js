@@ -1,6 +1,5 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../utils";
 import LogIn from "./loginComponent";
 import Register from "./registerComponent";
 /**

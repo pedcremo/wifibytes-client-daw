@@ -1,7 +1,32 @@
+/*-------------------------
+    DATA FORM STYLES
+-------------------------*/
+
+.grid-data-form {
+    display: grid;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    padding: 20px;
+}
+
+.grid-data-form__fields {
+    width: 100%;
+    padding: 5px;
+}
+
+@media (min-width: 600px) {
+    .grid-data-form {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 .grid-container--fit {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap:50px;
+    gap: 50px;
     margin-top: 30px;
 }
 
@@ -27,7 +52,8 @@
     font-weight: normal;
     src: local('Duepuntozero Black'), url('duepuntozero_black.woff') format('woff');
 }
-html{
+
+html {
     overflow-x: hidden;
     position: relative;
     width: 100%;
@@ -63,13 +89,15 @@ nav {
     width: 100%;
     display: flex;
 }
+
 /*************** LOGIN ******************/
 
-.left{
+.left {
     margin-left: 10px;
 }
 
 /* Style the tab */
+
 .tab {
     border: 1px solid #ccc;
     background-color: #f1f1f1;
@@ -79,156 +107,16 @@ nav {
     margin-right: 100px;
     display: flex;
     justify-content: center;
-  }
-  .center{
-      margin: auto;
-      text-align: center;
-      width: 215px;
-  }
-
-  /* Style the buttons inside the tab */
-  .tab button {
-      background-color: inherit;
-      border: none;
-      width: 100px;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
-  }
-
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ddd;
-  }
-
-  /* Create an active/current tablink class */
-  .tab button.active {
-    background-color: #ccc;
-  }
-
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-  }
-  .loginForm{
-      margin: auto;
-      text-align: center;
-      width: 215px;
-      padding-top: 30px;
-      padding-bottom: 50px;
-      height: 600px;
-  }
-  .login-acces{
-      margin-top: 50px;
-      text-align: left;
-  }
-  .loginInput{
-      width: 240px;
-  }
-  .login{
-      background-image: url("image/fondo-login.jpg");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
-      width: 100%;
-      height: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-  }
-  .login-button{
-      margin-top: 10px;
-      color: white;
-      background: green;
-  }
-  .login-recuperar{
-      color: #23527c;
-      clear: left;
-      margin-top: 10px;
-      cursor: pointer;
-  }
-
-  .login-recov-pass{
-      visibility: hidden;
-      -ms-transform: skewx(500px); /* IE 9 */
-      -webkit-transform: skewx(500px); /* Safari */
-      transform: translatex(500px);
-  }
-
-  .login-recuperar-input{
-      transition: transform 1s;
-      -ms-transform: skewx(0); /* IE 9 */
-      -webkit-transform: skewx(0); /* Safari */
-      transform: translatex(0);
-  }
-  /*************** REGISTER ******************/
-  #register {
-      display: grid;
-      justify-content: center;
-      color: white;
-      margin-top: 60px;
-      margin-bottom: 60px;
-  }
-
-  #register h1 {
-      text-align: center;
-  }
-
-  .register--checkbox {
-      margin-top: 15px;
-  }
-
-  .register--containers {
-      display: flex;
-      margin-top: 15px;
-  }
-
-  .register--content {
-      margin-left: 5px;
-  }
-
-  #captcha {
-      margin-top: 15px;
-  }
-
-  .errors {
-      color: red;
-      size: 12px;
-  }
-
-.zoom-rates:hover {
-    transition: 0.4s;
-    transform: scale(1.07);
 }
 
-.left{
-    margin-left: 10px;
-}
-/*************** LOGIN ******************/
-
-/* Style the tab */
-.tab {
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  margin-top: 30px;
-  width: 200px;
-  height: 80px;
-  margin-right: 100px;
-  display: flex;
-  justify-content: center;
-}
-.center{
+.center {
     margin: auto;
     text-align: center;
     width: 215px;
 }
 
 /* Style the buttons inside the tab */
+
 .tab button {
     background-color: inherit;
     border: none;
@@ -240,23 +128,27 @@ nav {
 }
 
 /* Change background color of buttons on hover */
+
 .tab button:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
+
 .tab button.active {
-  background-color: #ccc;
+    background-color: #ccc;
 }
 
 /* Style the tab content */
+
 .tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
-.loginForm{
+
+.loginForm {
     margin: auto;
     text-align: center;
     width: 215px;
@@ -264,14 +156,17 @@ nav {
     padding-bottom: 50px;
     height: 600px;
 }
-.login-acces{
+
+.login-acces {
     margin-top: 50px;
     text-align: left;
 }
-.loginInput{
+
+.loginInput {
     width: 240px;
 }
-.login{
+
+.login {
     background-image: url("image/fondo-login.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -283,32 +178,40 @@ nav {
     flex-direction: column;
     justify-content: flex-start;
 }
-.login-button{
+
+.login-button {
     margin-top: 10px;
     color: white;
     background: green;
 }
-.login-recuperar{
+
+.login-recuperar {
     color: #23527c;
     clear: left;
     margin-top: 10px;
     cursor: pointer;
 }
 
-.login-recov-pass{
+.login-recov-pass {
     visibility: hidden;
-    -ms-transform: skewx(500px); /* IE 9 */
-    -webkit-transform: skewx(500px); /* Safari */
+    -ms-transform: skewx(500px);
+    /* IE 9 */
+    -webkit-transform: skewx(500px);
+    /* Safari */
     transform: translatex(500px);
 }
 
-.login-recuperar-input{
+.login-recuperar-input {
     transition: transform 1s;
-    -ms-transform: skewx(0); /* IE 9 */
-    -webkit-transform: skewx(0); /* Safari */
+    -ms-transform: skewx(0);
+    /* IE 9 */
+    -webkit-transform: skewx(0);
+    /* Safari */
     transform: translatex(0);
 }
+
 /*************** REGISTER ******************/
+
 #register {
     display: grid;
     justify-content: center;
@@ -342,3 +245,223 @@ nav {
     color: red;
     size: 12px;
 }
+
+.zoom-rates:hover {
+    transition: 0.4s;
+    transform: scale(1.07);
+}
+
+.left {
+    margin-left: 10px;
+}
+
+/*************** LOGIN ******************/
+
+/* Style the tab */
+
+.tab {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-top: 30px;
+    width: 200px;
+    height: 80px;
+    margin-right: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+    width: 215px;
+}
+
+/* Style the buttons inside the tab */
+
+.tab button {
+    background-color: inherit;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.loginForm {
+    margin: auto;
+    text-align: center;
+    width: 215px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    height: 600px;
+}
+
+.login-acces {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.loginInput {
+    width: 240px;
+}
+
+.login {
+    background-image: url("image/fondo-login.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.login-button {
+    margin-top: 10px;
+    color: white;
+    background: green;
+}
+
+.login-recuperar {
+    color: #23527c;
+    clear: left;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-recov-pass {
+    visibility: hidden;
+    -ms-transform: skewx(500px);
+    /* IE 9 */
+    -webkit-transform: skewx(500px);
+    /* Safari */
+    transform: translatex(500px);
+}
+
+.login-recuperar-input {
+    transition: transform 1s;
+    -ms-transform: skewx(0);
+    /* IE 9 */
+    -webkit-transform: skewx(0);
+    /* Safari */
+    transform: translatex(0);
+}
+
+/*************** REGISTER ******************/
+
+#register {
+    display: grid;
+    justify-content: center;
+    color: white;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+#register h1 {
+    text-align: center;
+}
+
+.register--checkbox {
+    margin-top: 15px;
+}
+
+.register--containers {
+    display: flex;
+    margin-top: 15px;
+}
+
+.register--content {
+    margin-left: 5px;
+}
+
+#captcha {
+    margin-top: 15px;
+}
+
+.errors {
+    color: red;
+    size: 12px;
+}
+
+/***********************************
+
+    MODAL
+
+************************************/
+
+/* The Modal (background) */
+
+.modal {
+    display: block;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-image: url("image/fondo-login.jpg");
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: rgb(0, 0, 0);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: right;
+    width: 10px;
+    margin-top: -10px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: rgb(78, 78, 78);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .selectionButtons{
+      margin-top: 30px;
+      display:  grid;
+      grid-column-gap: 20px;
+      grid-template-columns: auto auto auto;
+  }
