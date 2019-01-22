@@ -90,23 +90,27 @@ let Utils={
     */
     get: function (url,filterFunction=null) {
         let json;
-        if (url==='/formaspago')
-         return json = {
-            "results": [
-                {
-                    "codpago": 3,
-                    "nombre": "Domiciliación Bancaria",
-                    "descripcion": "A través del banco",
-                    "cod_eneboo": "2"
-                },
-                {
-                    "codpago": 1,
-                    "nombre": "Visa / Mastercard / American Express",
-                    "descripcion": "Stripe",
-                    "cod_eneboo": "1"
-                }
-            ]
+        if (url==='/formaspago') {
+            json = {
+                "results": [
+                    {
+                        "codpago": 3,
+                        "nombre": "Domiciliación Bancaria",
+                        "descripcion": "A través del banco",
+                        "cod_eneboo": "2"
+                    },
+                    {
+                        "codpago": 1,
+                        "nombre": "Visa / Mastercard / American Express",
+                        "descripcion": "Stripe",
+                        "cod_eneboo": "1"
+                    }
+                ]
+            }
+            return filterFunction(json)
+
         }
+          
         // Return a new promise.
         return new Promise(function(resolve, reject) {
             if (CACHE_TEMPLATES.has(url)) {

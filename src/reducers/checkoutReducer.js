@@ -41,7 +41,7 @@ export default function checkoutReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                items: action.payload.formasdepago
+                paymentMethod: action.payload.formasdepago.results
             };
         case GET_PAYMENTS_FAILURE:
             return {
