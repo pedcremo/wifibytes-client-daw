@@ -68,5 +68,11 @@
     "register-cifnie": "CIF/NIF",
     "register-error-pass": "Les contrasenyes deuen coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
-    "register-error-email": "El correu no es valid"
+    "register-error-email": "El correu no es valid",
+
+    "payment-owner": "Propietari de la tarjeta",
+    "payment-numberCard": "Número de la tarjeta",
+    "payment-expirationMonth": "Mes de caducitat",
+    "payment-expirationYear": "Any de caducitat",
+    "payment-cvv": "CVV"
 }

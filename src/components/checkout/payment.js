@@ -39,6 +39,7 @@ import {
   getPaymentTypes,
   setExpirationDate
 } from '../../actions/checkoutActions';
+import {Utils} from "../utils";
 const mapStateToProps = state => ({ ...state.checkout });
 
 class Payment extends React.Component {
@@ -76,25 +77,25 @@ class Payment extends React.Component {
       <form onSubmit={this.submitForm()}>
                 <fieldset>
                   <fieldset className="form-group">
-                    <label>Nombre en la tarjeta</label>
+                    <label>{Utils.translate("payment-owner")}</label>
                     <input
                       className="form-control form-control-lg"
                       type="text"
-                      placeholder="Nombre en la tarjeta"
+                      placeholder={Utils.translate("payment-owner")}
                       value={cardOwner}
                       onChange={this.changeCardOwner} />
                   </fieldset>
                   <fieldset className="form-group">
-                    <label>Número de tarjeta</label>
+                    <label>{Utils.translate("payment-numberCard")}</label>
                     <input
                       className="form-control form-control-lg"
                       type="number"
-                      placeholder="Número de tarjeta"
+                      placeholder={Utils.translate("payment-numberCard")}
                       value={cardNumber}
                       onChange={this.changeCardNumber} />
                   </fieldset>
                   <fieldset className="form-group">
-                    <label>Mes de vencimiento</label>
+                    <label>{Utils.translate("payment-expirationMonth")}</label>
                     <select
                     className="form-control form-control-lg"
                     value={expirationMonth}
@@ -114,7 +115,7 @@ class Payment extends React.Component {
                     </select>
                   </fieldset>
                   <fieldset className="form-group">
-                    <label>Año de vencimiento</label>
+                    <label>{Utils.translate("payment-expirationYear")}</label>
                     <select
                     className="form-control form-control-lg"
                     value={expirationYear}
@@ -126,11 +127,11 @@ class Payment extends React.Component {
                     </select>
                   </fieldset>
                   <fieldset className="form-group">
-                    <label>CVV</label>
+                    <label>{Utils.translate("CVV")}</label>
                     <input
                       className="form-control form-control-lg"
                       type="number"
-                      placeholder="CVV"
+                      placeholder={Utils.translate("CVV")}
                       value={cvv}
                       onChange={this.changeCvv} />
                   </fieldset>
