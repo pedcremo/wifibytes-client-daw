@@ -39,7 +39,7 @@ import {
   getPaymentTypes,
   setExpirationDate
 } from '../../actions/checkoutActions';
-import {Utils} from "../utils";
+import {Utils} from "../../utils";
 import {RegExps} from '../../regExps';
 const mapStateToProps = state => ({ ...state.checkout });
 
