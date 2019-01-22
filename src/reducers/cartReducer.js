@@ -30,9 +30,10 @@ export default function cart(state = initialState, action) {
                 error: null
             };
         case QUANTITY_ITEM:
+        console.log(action.item.quantity)
             state.items.filter((item)=>{
                 if(item.id == action.item.id){
-                    item.quantity = item.quantity + action.quantity_item;
+                    item.quantity = item.quantity + item.quantity_item;
                 }
             })
             return {

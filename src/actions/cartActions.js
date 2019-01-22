@@ -21,3 +21,8 @@ export const setItemBegin = (item) => ({
 export const getItemsBegin = () => ({
     type: GET_ITEMS,
 });
+
+export const increment_item = (item) => ({
+  type: QUANTITY_ITEM,
+  item
+});
