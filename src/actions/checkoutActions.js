@@ -21,12 +21,11 @@ export function getPaymentTypes() {
 
 
  export function paymentUpdate(key, value) {
-    console.log("hola");
-    dispatch => {
+    return dispatch => {
         return dispatch({
             type: FORM_UPDATE, 
-            key: {key},
-            value: {value}
+            key: key,
+            value: value
         });
     };
 } 

@@ -42,11 +42,11 @@ const mapStateToProps = state => ({ ...state.checkout });
 class Payment extends React.Component {
   constructor() {
     super();
-    this.changeCardOwner = ev => paymentUpdate("cardOwner", ev.target.value);
-    this.changeCardNumber = ev => paymentUpdate("cardNumber", ev.target.value);
-    this.changeExpirationMonth = ev => paymentUpdate("expirationMonth", ev.target.value);
-    this.changeExpirationYear = ev => paymentUpdate("expirationYear", ev.target.value);
-    this.changeCvv = ev => paymentUpdate("cvv", ev.target.value);
+    this.changeCardOwner = ev => this.props.dispatch(paymentUpdate("cardOwner", ev.target.value));
+    this.changeCardNumber = ev => this.props.dispatch(paymentUpdate("cardNumber", ev.target.value));
+    this.changeExpirationMonth = ev => this.props.dispatch(paymentUpdate("expirationMonth", ev.target.value));
+    this.changeExpirationYear = ev => this.props.dispatch(paymentUpdate("expirationYear", ev.target.value));
+    this.changeCvv = ev => this.props.dispatch(paymentUpdate("cvv", ev.target.value));
     this.submitForm = () => ev => {
       ev.preventDefault();
       alert("Submit button works!");
@@ -59,6 +59,8 @@ class Payment extends React.Component {
     const expirationMonth = this.props.expirationMonth;
     const expirationYear = this.props.expirationYear;
     const cvv = this.props.cvv;
+    console.log(this.props);
+    console.log(this.props.cardOwner);
     
     return (
       <form onSubmit={this.submitForm()}>

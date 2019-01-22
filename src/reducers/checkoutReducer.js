@@ -10,11 +10,19 @@ const initialState = {
     paymentStepIsValid:false,
     paymentMethod:null, /**Iremos viendo qué hacemos con esto */
     existsService:false,
-    checkoutProcessIsValid:false
+    checkoutProcessIsValid:false,
+    cardOwner:"",
+    cardNumber:"",
+    expirationMonth:1,
+    expirationYear:2019,
+    cvv:"",
+    cardNameIsValid:false,
+    cardNumberIsValid:false,
+    expireDateIsValid:false,
+    cvvIsValid:false
 };
 
 export default function checkoutReducer(state = initialState, action) {
-
     switch (action.type) {
         case GET_PAYMENTS_BEGIN:
             return {
@@ -42,7 +50,7 @@ export default function checkoutReducer(state = initialState, action) {
                 errors: action.error ? action.payload.errors : null
             };
         case FORM_UPDATE:
-            console.log("abc");
+            console.log(action);
             return { ...state, [action.key]: action.value};
         default:
             return {...state};
