@@ -36,7 +36,8 @@ import React from 'react'
 import { connect } from "react-redux";
 import {
   paymentUpdate,
-  getPaymentTypes
+  getPaymentTypes,
+  setExpirationDate
 } from '../../actions/checkoutActions';
 const mapStateToProps = state => ({ ...state.checkout });
 
@@ -60,6 +61,8 @@ class Payment extends React.Component {
   }
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
+    const thisDate = new Date();
+    this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()+1));
 }
 
   render() {

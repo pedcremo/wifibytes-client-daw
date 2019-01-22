@@ -6,6 +6,7 @@ export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
 export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
+export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
 
 export function getPaymentTypes() {
     return dispatch => {
@@ -20,7 +21,17 @@ export function getPaymentTypes() {
 }
 
 
- export function paymentUpdate(key, value) {
+export function setExpirationDate(year, month) {
+    return dispatch => {
+        return dispatch({
+            type: SET_EXPIRATION_DATE,
+            year: year,
+            month:month
+        });
+    };
+}
+
+export function paymentUpdate(key, value) {
     return dispatch => {
         return dispatch({
             type: FORM_UPDATE, 

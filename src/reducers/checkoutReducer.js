@@ -3,7 +3,8 @@ import {
     GET_PAYMENTS_SUCCESS,
     GET_PAYMENTS_FAILURE,
     PAYMENT_SUBMIT,
-    FORM_UPDATE
+    FORM_UPDATE,
+    SET_EXPIRATION_DATE
 } from '../actions/checkoutActions';
 
 const initialState = {
@@ -14,16 +15,22 @@ const initialState = {
     cardOwner:"",
     cardNumber:"",
     expirationMonth:1,
-    expirationYear:2019,
+    expirationYear:"",
     cvv:"",
     cardNameIsValid:false,
     cardNumberIsValid:false,
-    expireDateIsValid:false,
+    expirationDateIsValid:false,
     cvvIsValid:false
 };
 
 export default function checkoutReducer(state = initialState, action) {
     switch (action.type) {
+        case SET_EXPIRATION_DATE:
+            return {
+                ...state,
+                expirationYear : action.year,
+                expirationMonth : action.month
+            }
         case GET_PAYMENTS_BEGIN:
             return {
                 ...state,
