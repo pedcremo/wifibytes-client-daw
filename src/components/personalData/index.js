@@ -2,8 +2,6 @@
 import React from 'react';
 import {AuthService} from "../../auth.service";
 import UserChoice from "./userChoice"
-import LogIn from "../login/loginComponent";
-import Register from "../login/registerComponent";
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../login/signIn";
 
@@ -20,28 +18,80 @@ class Personal extends React.Component  {
         this.state = {
             personalDataViewIsValid: false,
             styleModal: false,
-            selected: false
+            selected: false,
+            isAuth: false
         }
+        /**
+         * print Component va a userChoice y agafa quin component vol pintar el usuari
+         * login o register, o tambe que vol continuar sense login.
+         * changeIsAuth es per a cuan anem al component de login o register lo que torna es
+         * si el usuari s'ha logeat o registrat
+         */
         this.printComponent = this.printComponent.bind(this);
+        this.changeIsAuth = this.changeIsAuth.bind(this);
     }
 
+    /**
+     * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
+     * posarem al changeIsAuth, si no esta logueat mostrarem el modal
+     */
     componentDidMount(){
         AuthService.isAuth().then((value)=>{
+            this.changeIsAuth(true)
             console.log("EL usuario esta logeado", value)
         }).catch(()=>{
             this.changeModal(true)
         })
     }
-    changeType(res){
-        this.setState({
-            selected : res
-        })
+    /**
+     * 
+     * @param {changeIsAuth} value
+     * Cuan elegim si logear-se o registrarse anem a ixe component (login | register)
+     * i cuan tornem ho recibim açi i cambiem el estat de isAuth que ens diu si esta o no
+     * logeat i amaguem el modal per a que pugam omplir el formulari
+     */
+    changeIsAuth(value){
+        if (value == true){
+            console.log("Nos ha vuelto al padre todo poderoso");
+            this.setState({
+                isAuth : value
+            })
+            setTimeout(()=>{this.changeModal(false) }, 1000);
+        }else{
+            console.log("Error, el usuario no se ha logeado/registrado")
+        }
     }
+
+    /**
+     * 
+     * @param {changeModal} value
+     * Ens permitix cambiar el estat del modal, true se pinta i en false s'amaga 
+     */
     changeModal(value){
         this.setState({
             styleModal : value
         })
     }
+    /**
+     * 
+     * @param {changeType} res
+     * Res es el valor de quin componen te que pintarse si login o register
+     * this.state.selected indica quin component te que pintar-se 
+     */
+    changeType(res){
+        this.setState({
+            selected : res
+        })
+    }
+    /**
+     * 
+     * @param {printComponent} value
+     * Lo que fa es recollir del component userChoice que ha elegit el usuari,
+     * despres va al ${changeType} y li asigna el valor de register o login i de esta
+     * forma pintar uno o altre, si el valor que torna es none significa que vol
+     * continuar sense logejarse ni registrarse i el modal se tanca per a rellenar
+     * els formularis de PersonalDataForm
+     */
     printComponent(value){
         switch(value){
             case "login":
@@ -53,9 +103,6 @@ class Personal extends React.Component  {
             case "none":
                 this.changeModal(false)
             break;
-            // default:
-            //     return <UserChoice choice={this.printComponent} />
-            // break;
         }
         this.render()
     }
@@ -69,8 +116,8 @@ class Personal extends React.Component  {
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">
                     <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
-                        {this.state.selected == "login" ? <SignIn type="login"/> :
-                         this.state.selected == "register" ? <SignIn type="register"/> :
+                        {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth}/> :
+                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth}/> :
                          this.state.selected == "none" ? this.printComponent("none") :
                          <UserChoice choice={this.printComponent}/> }
                     </div>
@@ -80,6 +127,3 @@ class Personal extends React.Component  {
     }
 }
 export default Personal;
-// {this.printComponent()}
-//BOTO TANCAR MODAL
-// <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
