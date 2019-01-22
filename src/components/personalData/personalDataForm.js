@@ -6,6 +6,7 @@ import {
     updateContactDataForm
 } from "../../actions/personalDataFormActions";
 import {validator}  from "./validation";
+
 /**
  * @class
  * Draw Login. A form to login
@@ -86,7 +87,7 @@ class PersonalForm extends React.Component  {
                     <h4>Personal Data</h4>
                     <div>
                         <input
-                        className="grid-data-form__fields"
+                        className="form-control form-control-lg"
                         placeholder="Name"
                         name="name"
                         type="text"
@@ -98,7 +99,7 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <input
-                        className="grid-data-form__fields"
+                        className="form-control form-control-lg"
                         placeholder="Surname"
                         name = "surname"
                         type="text"
@@ -110,7 +111,7 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <input
-                        className="grid-data-form__fields"
+                        className="form-control form-control-lg"
                         placeholder="Email"
                         name = "email"
                         type="email"
@@ -122,7 +123,7 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <input
-                        className="grid-data-form__fields"
+                        className="form-control form-control-lg"
                         placeholder="Phone"
                         name = "phone"
                         type="number"
@@ -136,7 +137,7 @@ class PersonalForm extends React.Component  {
                     <h4>Address</h4>
                     <div>
                         <input
-                        className="grid-data-form__fields"
+                        className="form-control form-control-lg"
                         placeholder="Address"
                         name = "address"
                         type = "text"
@@ -148,7 +149,7 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <input
-                        className="grid-data-form__fields"
+                        className="form-control form-control-lg"
                         placeholder="Zip"
                         name = "zip"
                         type="number"
@@ -160,7 +161,7 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <input                        
-                        className={"grid-data-form__fields "+ (!this.state.city.error? "":"border border-danger")}
+                        className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
                         type="text"
