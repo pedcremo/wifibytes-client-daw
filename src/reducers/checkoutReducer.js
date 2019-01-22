@@ -20,7 +20,8 @@ const initialState = {
     cardNameIsValid:false,
     cardNumberIsValid:false,
     expirationDateIsValid:false,
-    cvvIsValid:false
+    cvvIsValid:false,
+    paymentMethods:[]
 };
 
 export default function checkoutReducer(state = initialState, action) {
@@ -41,7 +42,8 @@ export default function checkoutReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                paymentMethod: action.payload.formasdepago.results
+                paymentMethods: action.payload.formasdepago.results,
+                paymentMethod:action.payload.formasdepago.results[0]
             };
         case GET_PAYMENTS_FAILURE:
             return {
