@@ -19,10 +19,16 @@ export function updateContactDataForm(newData) {
     return dispatch => dispatch(getContactDataFormSuccess(newData));
 }
 
+export function getCurrentContactDataForm() {
+    return dispatch => dispatch(getCurrentContactDataFormSuccess());
+}
+
 
 export const GET_CONTACT_DATA_FORM_BEGIN = 'GET_CONTACT_DATA_FORM_BEGIN';
 export const GET_CONTACT_DATA_FORM_SUCCESS = 'GET_CONTACT_DATA_FORM_SUCCESS';
 export const GET_CONTACT_DATA_FORM_FAILURE = 'GET_CONTACT_DATA_FORM_FAILURE';
+export const GET_CURRENT_CONTACT_DATA_FORM = 'GET_CURRENT_CONTACT_DATA_FORM';
+
 
 export const getContactDataFormBegin = () => ({
     type: GET_CONTACT_DATA_FORM_BEGIN
@@ -40,4 +46,9 @@ export const getContactDataFormFailure = error => ({
     payload: {
         error
     }
+});
+
+export const getCurrentContactDataFormSuccess = () => ({
+    type: GET_CURRENT_CONTACT_DATA_FORM,
+    payload
 });

@@ -27,6 +27,7 @@ class PersonalForm extends React.Component  {
             city: conten
         };
         this.handleInputChange = this.handleInputChange.bind(this);
+        console.log("this.props.dataUser",this.props.dataUser)
     }
 
     componentDidMount() {
@@ -34,7 +35,12 @@ class PersonalForm extends React.Component  {
     }
 
     componentWillReceiveProps(newProps) {
-
+        /* this.setState({
+            [name]: {
+                value: value,
+                error: error
+            }
+        }) */
         
         /*IGUALAR EL ESTADO A LAS PROPS QUE LLEGAN VIA PETICION */
         console.log("1111111", newProps.fields)
@@ -55,7 +61,7 @@ class PersonalForm extends React.Component  {
         else
             value = target.value
             
-        const error = validator(value, name)
+        const error = validator(value, name, target.type)
 
         return new Promise((resolve, reject) => 
             resolve(this.setState({
@@ -65,33 +71,26 @@ class PersonalForm extends React.Component  {
                 }
             }))
         )
-        .then(() => this.props.dispatch(updateContactDataForm(this.state)))
-        /* .then(()=>{
-            for (const elem in this.state){ 
-                if (elem.error)
-                    return console.log("s")
-                if (elem.value === undefined)
-                    return console.log("s")
-            }
-            
-            alert("todo valido")
-            
-        }) */
+        .then(() => this.props.dispatch(updateContactDataForm(this.state)))        
+    }
+
+    checkInfoIsCompleted(){
+        
     }
 
     render() {
-        console.log(this.state)
         return (
             <form className="grid-data-form">
                 <div>
                     <h4>Personal Data</h4>
                     <div>
                         <input
-                        className="form-control form-control-lg"
+                        className="form-control form-control-lg mio"
                         placeholder="Name"
                         name="name"
+                        id = "name"
                         type="text"
-                        checked={this.state.name.value}
+                        value={this.state.name.value}
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
                     </div>

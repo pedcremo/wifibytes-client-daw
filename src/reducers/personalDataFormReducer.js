@@ -1,7 +1,8 @@
 import {
     GET_CONTACT_DATA_FORM_BEGIN,
     GET_CONTACT_DATA_FORM_SUCCESS,
-    GET_CONTACT_DATA_FORM_FAILURE
+    GET_CONTACT_DATA_FORM_FAILURE,
+    GET_CURRENT_CONTACT_DATA_FORM
 } from '../actions/personalDataFormActions';
 
 const initialState = {
@@ -13,6 +14,7 @@ export default function personalDataFormReducer(state = initialState, action) {
     
     switch (action.type) {
         case GET_CONTACT_DATA_FORM_BEGIN:
+            
             return {
                 ...state,
                 loaded: true,
@@ -32,6 +34,13 @@ export default function personalDataFormReducer(state = initialState, action) {
                 loaded: false,
                 error: action.payload,
                 fields: []
+            };
+        
+        case GET_CURRENT_CONTACT_DATA_FORM:
+            return {
+                ...state,
+                loaded: false,
+                fields: state
             };
 
         default:
