@@ -105,13 +105,13 @@ describe('Reducer', () => {
             currentCheckout([], {
                 type: checkoutActions.ADD_STEPS,
                 payload: {
-                    step: 1,
+                    currentStep: undefined,
                     steps: ['pas1', 'pas2']
                 }
             })
         ).toEqual(
             {
-                currentStep: 1,
+                currentStep: undefined,
                 steps: ['pas1', 'pas2'],
                 loading: false
             }
@@ -121,28 +121,59 @@ describe('Reducer', () => {
 
 
     it('should handle UPDATE_STEP', () => {
+        const store = mockStore(initialState);
         expect(
-            currentCheckout([
-                    {
-                        currentStep: 0,
-                        steps: ['pas1', 'pas2'],
-                        loading: false
-                    }
-                ], {
+            currentCheckout(store.getState(), 
+                {
                 type: checkoutActions.UPDATE_STEP,
                 payload: {
-                    step: 1,
-                    steps: ['pas1', 'pas2'],
+                    step: 2,
+                    steps: [
+                        {
+                            key: 'personal_data',
+                            active: false,
+                            completed: false,
+                            title: 'Dades Personals',
+                        },
+                        {
+                            key: 'contract',
+                            active: true,
+                            completed: false,
+                            title: 'Contracte',
+                        },
+                        { 
+                            key: 'confirm',
+                            active: false,
+                            completed: false,
+                            title: 'Confirmar Pedido' 
+                        },
+                    ]
                 }
-                
             })
-        ).toEqual([
-            {
-                currentStep: 1,
-                steps: ['pas1', 'pas2'],
-                loading: false
-            }
-        ])
+        ).toEqual({
+                currentStep: 2, 
+                loading: false,
+                steps: [
+                    {
+                        key: 'personal_data',
+                        active: false,
+                        completed: false,
+                        title: 'Dades Personals',
+                    },
+                    {
+                        key: 'contract',
+                        active: true,
+                        completed: false,
+                        title: 'Contracte',
+                    },
+                    { 
+                        key: 'confirm',
+                        active: false,
+                        completed: false,
+                        title: 'Confirmar Pedido' 
+                    },
+                ]
+            })
 
     })
 });
