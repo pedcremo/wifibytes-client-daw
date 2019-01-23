@@ -52,6 +52,7 @@ class Payment extends React.Component {
     this.changeExpirationMonth = ev => this.props.dispatch(paymentUpdate("expirationMonth", ev.target.value));
     this.changeExpirationYear = ev => this.props.dispatch(paymentUpdate("expirationYear", ev.target.value));
     this.changeCvv = ev => this.props.dispatch(paymentUpdate("cvv", ev.target.value));
+    this.changePaymentMethod = ev => this.props.dispatch(paymentUpdate("paymentMethod", ev.target.value));
     this.submitForm = () => ev => {
       ev.preventDefault();
       alert("Submit button works!");
@@ -85,7 +86,8 @@ class Payment extends React.Component {
     
     return (
       <div className="payment-container">
-        {<PaymentOptions paymentOptions={this.props.paymentMethods} />}
+        {<PaymentOptions onChange={this.changePaymentMethod} paymentOptions={this.props.paymentMethods} paymentMethod = {this.props.paymentMethod} />}
+
         <div className="payment-form">
 
         </div>
