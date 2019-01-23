@@ -1,8 +1,19 @@
+/** @module Component AddButton
+*/
+
 import React from 'react';
 import {connect} from 'react-redux';
 import {setItem,getItems} from '../../actions/cartActions'
 
+
+/** @class
+* Draw a button to add items or rates at cart
+*/
 class AddButton extends React.Component {
+
+  /** constructor
+  *
+  */
   constructor(){
     super();
     this.addItem = () => ev =>{
@@ -16,6 +27,7 @@ class AddButton extends React.Component {
         this.props.dispatch(setItem(item));
     }
   }
+  /** render */
   render(){
     const { cart } = this.props;
 

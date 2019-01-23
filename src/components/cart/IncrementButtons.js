@@ -15,6 +15,9 @@ class IncrementButtons extends React.Component{
         <Button size='mini' onClick={() => this.props.onClick(this.props.item, -1)}>
           <Icon name='minus' />
         </Button>
+        <Button size='mini' onClick={() => this.props.function(this.props.item)}>
+          <Icon name='trash' />
+        </Button>
       </Button.Group>
     )
   }

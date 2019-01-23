@@ -1,7 +1,8 @@
 import {
     SET_ITEM,
     QUANTITY_ITEM,
-    GET_ITEMS
+    GET_ITEMS,
+    DEL_ITEM
 } from '../actions/cartActions';
 
 const initialState = {
@@ -29,8 +30,15 @@ export default function cart(state = initialState, action) {
                 loading: true,
                 error: null
             };
+        case DEL_ITEM:
+            const items = state.items.filter((item)=>{return item.id !== action.item.id})
+            return{
+              ...state,
+              items : items,
+              loading: true,
+              error: null
+            };
         case QUANTITY_ITEM:
-        console.log(action.item.quantity)
             state.items.filter((item)=>{
                 if(item.id == action.item.id){
                   if(item.quantity_item === 1){
