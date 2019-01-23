@@ -80,10 +80,16 @@ class Payment extends React.Component {
   validateCardOwner(){
     return this.props.cardOwner.match(RegExps.cardOwner);
   }
-  validateDirectDebit(){ //VALIDATE ALL NECESARI IN DIRECT DEBIT
+  validateDirectDebit(){ 
+    /**
+   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
+   */
     return this.props.iban.match(RegExps.iban) && this.props.address && this.props.debitOwner && this.validateIBAN();
   }
-  validateIBAN() { //FUNCTION NEDDED IN IBAN VALIDATION
+  validateIBAN() { 
+    /**
+     * FUNCTION NEDDED IN IBAN VALIDATION
+     */
       let IBAN = this.props.iban.toUpperCase();
       IBAN = IBAN.replace(/\s/g, ""); 
       
@@ -99,28 +105,36 @@ class Payment extends React.Component {
       isbanaux = String(num1) + String(num2) + IBAN.substring(2);
       isbanaux = isbanaux.substring(6) + isbanaux.substring(0,6);
 
-      //CALCULATE THE REST
+      /**
+       * CALCULATE THE REST
+       */
       if (this.modulo97(isbanaux) == 1){
           return true;
       }else{
           return false;
       }
   }
-  modulo97(iban) { //FUNCTION NEDDED IN IBAN VALIDATION
+  modulo97(iban) { 
+    /**
+     * FUNCTION NEDDED IN IBAN VALIDATION
+     */
       let remainer = "";
       for (let i = 1; i <= Math.ceil(iban.length/7); i++) {
           remainer = String(parseFloat(remainer+iban.substr((i-1)*7, 7))%97);
       }
       return remainer;
   }
-  getnumIBAN(letra) { //FUNCTION NEDDED IN IBAN VALIDATION
+  getnumIBAN(letra) { 
+    /**
+     * FUNCTION NEDDED IN IBAN VALIDATION
+     */
       let ls_letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       return ls_letras.search(letra) + 10;
   }
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
     const thisDate = new Date();
-    this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()+1));
+    this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()));
   }
 
   paymentForm(){

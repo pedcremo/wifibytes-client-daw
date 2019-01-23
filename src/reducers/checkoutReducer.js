@@ -33,7 +33,7 @@ export default function checkoutReducer(state = initialState, action) {
             return {
                 ...state,
                 expirationYear : action.year,
-                expirationMonth : action.month
+                expirationMonth : action.month + 1 /**January starts at 0 */
             }
         case GET_PAYMENTS_BEGIN:
             return {
