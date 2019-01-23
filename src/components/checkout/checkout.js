@@ -71,27 +71,29 @@ class Checkout extends React.Component {
         this.nextStep = this.nextStep.bind(this)
         this.previousStep = this.previousStep.bind(this)
     }
-
+    /**
+     * Sets a specific step
+     */
     /* setStep(step) {
         this.props.dispatch(updateStep(step));
     } */
 
     /**
-     * go to the next step
+     * Go to the next step
      */
     nextStep() {
         this.props.dispatch(updateStep(this.props.currentStep+1));
     }
 
     /**
-     * go to the previous step
+     * Go to the previous step
      */
     previousStep() {
         this.props.dispatch(updateStep(this.props.currentStep-1));
     }
 
     /**
-     * shows the step in which you are
+     * Shows the step in which you are
      */
     showStep() {
         switch (this.props.steps[this.props.currentStep-1].key) {
@@ -116,7 +118,7 @@ class Checkout extends React.Component {
     }
 
     /**
-     * we call getsteps to validate the items and depending on the items shows the steps to follow
+     * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
         let stepsRates = Agent.objectsToArray(items, library);
@@ -125,7 +127,7 @@ class Checkout extends React.Component {
     }
 
     /**
-     * render paint the step where are you
+     * Render prints the steps to follow and calls the function show step
      */
     render() {
         const { loading, steps, currentStep } = this.props;

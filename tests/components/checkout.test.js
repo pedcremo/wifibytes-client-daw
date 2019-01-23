@@ -105,7 +105,7 @@ describe('Reducer', () => {
             currentCheckout([], {
                 type: checkoutActions.ADD_STEPS,
                 payload: {
-                    currentStep: 1,
+                    step: 1,
                     steps: ['pas1', 'pas2']
                 }
             })
@@ -125,13 +125,13 @@ describe('Reducer', () => {
             currentCheckout([
                     {
                         currentStep: 0,
-                        steps: [],
+                        steps: ['pas1', 'pas2'],
                         loading: false
                     }
                 ], {
                 type: checkoutActions.UPDATE_STEP,
                 payload: {
-                    currentStep: 1,
+                    step: 1,
                     steps: ['pas1', 'pas2'],
                 }
                 
