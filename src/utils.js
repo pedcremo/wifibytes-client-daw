@@ -90,6 +90,7 @@ let Utils={
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
     */
     get: function (url,filterFunction=null) {
+        /**Mocking /formaspago because is not ready in backend */
         if (url==='/formaspago') 
             return filterFunction(PaymentMethod)
 

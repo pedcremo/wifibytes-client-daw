@@ -41,7 +41,7 @@ import {
 } from '../../../actions/checkoutActions';
 import {RegExps} from '../../../regExps';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
-import DirectDebitForm from './paymentTypes/directDebit';
+import DirectDebitForm from './paymentTypes/DirectDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
 const mapStateToProps = state => ({ ...state.checkout });
 
@@ -62,11 +62,12 @@ class Payment extends React.Component {
       alert("Submit button works!");
     }
   }
+  /**We have to move validations into each component */
   disabled(){
-    if (this.props.paymentMethod == 1) //CREDIT CARD
+    if (this.props.paymentMethod === 1) //CREDIT CARD
       return !this.validateCvv() || !this.validateCardOwner() || !this.validateExpirationDate();
 
-    if (this.props.paymentMethod == 3) //DIRECT DEBIT
+    if (this.props.paymentMethod === 3) //DIRECT DEBIT
       return !this.validateDirectDebit();
   }
   validateExpirationDate(){
