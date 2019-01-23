@@ -39,7 +39,6 @@ import {
   getPaymentTypes,
   setExpirationDate
 } from '../../../actions/checkoutActions';
-import {RegExps} from '../../../regExps';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
@@ -62,61 +61,7 @@ class Payment extends React.Component {
       alert("Submit button works!");
     }
   }
-  /**We have to move validations into each component */
-  disabled(){
-      return !this.validateDirectDebit();
-  }
-  validateDirectDebit(){ 
-    /**
-   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
-   */
-    return this.props.iban.match(RegExps.iban) && this.props.address && this.props.debitOwner && this.validateIBAN();
-  }
-  validateIBAN() { 
-    /**
-     * FUNCTION NEDDED IN IBAN VALIDATION
-     */
-      let IBAN = this.props.iban.toUpperCase();
-      IBAN = IBAN.replace(/\s/g, ""); 
-      
-      let letra1,letra2,num1,num2,isbanaux;
-
-      if (IBAN.length != 24)
-          return false;
-
-      letra1 = IBAN.substring(0, 1); 
-      letra2 = IBAN.substring(1, 2);
-      num1 = this.getnumIBAN(letra1); 
-      num2 = this.getnumIBAN(letra2);
-      isbanaux = String(num1) + String(num2) + IBAN.substring(2);
-      isbanaux = isbanaux.substring(6) + isbanaux.substring(0,6);
-
-      /**
-       * CALCULATE THE REST
-       */
-      if (this.modulo97(isbanaux) == 1){
-          return true;
-      }else{
-          return false;
-      }
-  }
-  modulo97(iban) { 
-    /**
-     * FUNCTION NEDDED IN IBAN VALIDATION
-     */
-      let remainer = "";
-      for (let i = 1; i <= Math.ceil(iban.length/7); i++) {
-          remainer = String(parseFloat(remainer+iban.substr((i-1)*7, 7))%97);
-      }
-      return remainer;
-  }
-  getnumIBAN(letra) { 
-    /**
-     * FUNCTION NEDDED IN IBAN VALIDATION
-     */
-      let ls_letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      return ls_letras.search(letra) + 10;
-  }
+  
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
     const thisDate = new Date();
@@ -141,10 +86,12 @@ class Payment extends React.Component {
       case 3:
         return <DirectDebitForm 
         submitForm={this.submitForm}
-        disabled={this.disabled()}
         changeDebitOwner={this.changeDebitOwner}
         changeAddress={this.changeAddress}
-        changeIban={this.changeIban}/>
+        changeIban={this.changeIban}
+        debitOwner={this.props.debitOwner}
+        iban={this.props.iban}
+        address={this.props.address}/>
       default:
         console.error('CANNOT GET FROM SERVER, PAYMENT METHOD');
         return ;
