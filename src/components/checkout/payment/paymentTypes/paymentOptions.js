@@ -1,6 +1,5 @@
 import React from 'react';
 export default function PaymentOptions(props) {
-    console.log(props.paymentMethod);
     if(props.paymentOptions.length === 0){
         return (null);
     }
