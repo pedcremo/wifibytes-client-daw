@@ -1,31 +1,29 @@
-import { Step } from "semantic-ui-react";
-
-/** @module Agent */
-
 export const Agent = {
 
-    getSteps: function (item = []) {
-        var stepsProd = [], res;
-        var validation = {
-            patternProd: /^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$/,
-            patternTarifa: /^([0-9]{1,})$/,
-            stepsProducts: ["personal information", "payment"],
-            stepsRates: ["personal information", "contract", "payment"]
-        };
-
-        var isItemValidated = function isItemValidated(validation, item) {
-            item.map(it => {
-                validation.patternProd.test(it) ? stepsProd.push(...validation.stepsProducts) : false ||
-                    validation.patternTarifa.test(it) ? stepsProd.push(...validation.stepsRates) : false ||
-                        it ? [] : console.error("Error, item not found");
+    /**
+     * return the steps to follow depending on the type of item
+     */
+    objectsToArray: function (array, library){
+        if( typeof array == "object" && typeof library == "object"){
+            let filtered = [];
+            array.forEach(function(element) {
+                library.fieldsToValidate.forEach(function(item) {
+                    if(item.regexp.test(element.id) && !filtered.includes(item.field)) filtered.push(item.field);
+                });
             });
-
-            res = [...new Set(stepsProd)];
-            return res;
-        };
-
-        //console.log("VAL",isItemValidated(validation,item));
-        return isItemValidated(validation, item);
+            return filtered.concat(library.requiredFields);
+        }else
+            throw("Error in the objectsToArray method of the agent. Parameters have to be objects");
+                 
     },
 
+    /**
+     * it checks if it exists in the predefined steps in the component and 
+     * returns an object that needs Step.Group to put it in active
+     */
+    filterArray: function (array, requested) {
+        return array.filter(function (el) {
+            return requested.includes(el.key)
+        });
+    }
 };

@@ -3,15 +3,48 @@ import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
 import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
+import Payment from './payment';
 
 /**
- * mock steps
+ * library that is needed to validate the agent, where we pass the steps (field) and regular expressions
  */
-const steps = [
+let library = {
+    fieldsToValidate:[
+        {
+            field: "personal_data",
+            regexp: /^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$/
+        },
+        {
+            field: "contract",
+            regexp: /^([0-9]{1,})$/
+        }
+    ],
+    requiredFields:["confirm"]
+};
+
+/**
+ * mock items
+ */
+let items = [
+    {
+        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
+    },
+    {
+        id:5
+    },
+    {
+        id: "0cab70a1-ea99-4aa4-9a49-1983f06a5614"
+    }
+]
+
+/**
+ * object that Step.Group needs to show the steps
+ */
+let steps = [
     {
         key: 'personal_data',
         active: true,
-        completed: true,
+        completed: false,
         title: 'Dades Personals',
     },
     {
@@ -59,32 +92,31 @@ class Checkout extends React.Component {
      * shows the step in which you are
      */
     showStep() {
-        switch (this.props.currentStep) {
-            case 1:
+        switch (this.props.steps[this.props.currentStep-1].key) {
+            case 'personal_data':
                 console.log("firstStep");
                 return <button onClick={this.nextStep}>Next</button>
                 
-            case 2:
+            case 'contract':
                 console.log("secondStep");
                 return <button onClick={this.nextStep}>Next</button>
 
-            case 3:
+            case 'confirm':
                 console.log("thirdStep");
-                return <h1>3rd Step</h1>
+                return <Payment />
 
             default:
                 return
         }
+
     }
 
     /**
      * we call getsteps to validate the items and depending on the items shows the steps to follow
-     * 
      */
     componentDidMount(){
-        let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614",5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
-       // let g = Agent.getSteps(["0cab50a1-ea99-4aa4-9a49-1983f06a5614", 5,"0cab70a1-ea99-4aa4-9a49-1983f06a5614"]);
-        console.log("G",g);
+        let stepsRates = Agent.objectsToArray(items, library);
+        steps = Agent.filterArray(steps, stepsRates);
         this.props.dispatch(addSteps(1, steps));
     }
 
@@ -99,7 +131,6 @@ class Checkout extends React.Component {
             return (
                 <div>
                     <Step.Group items={steps} attached='top' ordered />
-
                     {this.showStep()}
                 </div>
             )

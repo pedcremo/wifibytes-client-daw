@@ -52,9 +52,6 @@ describe('<Checkout />', () => {
         expect(checkout.props().value.storeState.currentStep).toBe(1);
     });
     
-    it("Store must contain a currentStep", () => {
-        expect(checkout.props().value.storeState.currentStep).toBe(1);
-    });
     it("Store snapshot is done", () => {
         expect(store.getActions()).toMatchSnapshot();
     });
