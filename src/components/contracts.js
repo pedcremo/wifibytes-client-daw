@@ -26,7 +26,7 @@ class Contracts extends React.Component {
     }
 
     componentDidMount(){
-        //this.props.dispatch(getDatosContracts());
+        this.props.dispatch(getDatosContracts());
         //this.props.dispatch(getContactDataForm());
     }
 
@@ -50,9 +50,9 @@ class Contracts extends React.Component {
     /** render  */
     render() {
         const { error, loading, datosContracts} = this.props;
-        if(datosContracts[0]){
-            console.log(datosContracts[0].content);
-        }
+
+        if (error) return (<div>Error Home! </div>);
+        if (loading) return (<div>Loading Home ...</div>);
 
         let person = {    
             name: "Daniel Ortiz Garcia",
@@ -65,7 +65,18 @@ class Contracts extends React.Component {
             year: new Date().getFullYear()
         }
         if(datosContracts.length > 0){
-            let contractsHTML = eval('`' + datosContracts[0].content + '`');
+            let servicios1 = ['fibra','movil','tv'];
+            let servicios2 = ['fibra','movil'];
+            let servicios3 = ['fibra'];
+
+            let re = new RegExp("("+servicios3.join('|')+"|autorizacion)","i");
+            const datosTexts = datosContracts.filter((itemText) => {
+                return itemText.key.match(re);
+            }).map((item) => {
+                return item.title+" "+item.content;
+            });
+
+            let contractsHTML = eval('`' + datosTexts.join(' ') + '`');
             return (
                 <div>
                     <h1>Contracts</h1>
