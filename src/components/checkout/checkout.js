@@ -4,6 +4,7 @@ import { Step } from 'semantic-ui-react'
 import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
 import Payment from './payment';
+import Personal from '../personalData';
 
 /**
  * library that is needed to validate the agent, where we pass the steps (field) and regular expressions
@@ -95,7 +96,9 @@ class Checkout extends React.Component {
         switch (this.props.steps[this.props.currentStep-1].key) {
             case 'personal_data':
                 console.log("firstStep");
-                return <button onClick={this.nextStep}>Next</button>
+                return <Personal 
+                            nextStep={this.nextStep}
+                        />
                 
             case 'contract':
                 console.log("secondStep");
