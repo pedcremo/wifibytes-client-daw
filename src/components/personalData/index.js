@@ -19,7 +19,8 @@ class Personal extends React.Component  {
             personalDataViewIsValid: false,
             styleModal: false,
             selected: false,
-            isAuth: false
+            isAuth: false,
+            auth: {}
         }
         /**
          * print Component va a userChoice y agafa quin component vol pintar el usuari
@@ -36,12 +37,17 @@ class Personal extends React.Component  {
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
      */
     componentDidMount(){
-        AuthService.isAuth().then((value)=>{
-            this.changeIsAuth(true)
+        /**
+        * Esta comprobando si el usuario esta logueado verificando el token de cookies
+        * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
+        **/
+        AuthService.isAuth().then(value =>{
             console.log("EL usuario esta logeado", value)
-        }).catch(()=>{
-            this.changeModal(true)
-        })
+            this.changeIsAuth(true)
+            this.setState({
+                auth: value
+            })
+        }).catch(() => this.changeModal(true))
     }
     /**
      * 
@@ -111,7 +117,7 @@ class Personal extends React.Component  {
         return(
             <div>
                 <div>
-                    <PersonalDataForm />
+                    <PersonalDataForm dataUser={this.state.auth}/>
                 </div>
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">
@@ -122,6 +128,7 @@ class Personal extends React.Component  {
                          <UserChoice choice={this.printComponent}/> }
                     </div>
                 </div>
+                <button onClick={this.props.nextStep}>Next</button>
             </div>
         )
     }
