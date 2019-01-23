@@ -5,16 +5,13 @@ export const Agent = {
      * It returns an array of the validated rules
      */
     objectsToArray: function (array, library){
-        if( typeof array == "object" && typeof library == "object"){
-            let filtered = [];
-            array.forEach(function(element) {
-                library.fieldsToValidate.forEach(function(item) {
-                    if(item.regexp.test(element.id) && !filtered.includes(item.field)) filtered.push(item.field);
-                });
+        let filtered = [];
+        array.forEach(function(element) {
+            library.fieldsToValidate.forEach(function(item) {
+                if(item.regexp.test(element.id) && !filtered.includes(item.field)) filtered.push(item.field);
             });
-            return filtered.concat(library.requiredFields);
-        }else
-            throw("Error in the objectsToArray method of the agent. Parameters have to be objects");
+        });
+        return filtered.concat(library.requiredFields);
                  
     },
 
