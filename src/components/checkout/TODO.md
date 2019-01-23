@@ -1,6 +1,5 @@
 -Crear IBAN case
     -validación domiciliación bancaria
--Case IBAN
 -Componetizar case IBAN
 -Validación número tarjeta
 -Dar la opción a elegir qué tipo de pago si no hay servicios

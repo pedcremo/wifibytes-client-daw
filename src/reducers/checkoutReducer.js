@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     paymentStepIsValid:false,
-    paymentMethod:3, /**codpago de backend, vida/mastercard/american express por defecto */
+    paymentMethod:3, /**codpago de backend, visa/mastercard/american express por defecto */
     existsService:false,
     checkoutProcessIsValid:false,
     cardOwner:"",
@@ -17,7 +17,7 @@ const initialState = {
     expirationMonth:"",
     expirationYear:"",
     cvv:"",
-    cardNameIsValid:false,
+    cardNameIsValid:false, /**not using this yet, waiting for the checkout to be incorpored */
     cardNumberIsValid:false,
     expirationDateIsValid:false,
     cvvIsValid:false,
