@@ -122,49 +122,45 @@ class Payment extends React.Component {
     this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()+1));
   }
 
-//   componentWillMount() {
-//     this.props.dispatch(getPaymentTypes());
-// console.log('will mount');
-//   }
+  paymentForm(){
+    switch(this.props.paymentMethod){
+      case 1:
+        return <MastercardVisaAmericanExpressForm 
+        submitForm={this.submitForm} 
+        changeCardOwner={this.changeCardOwner}
+        changeCardNumber={this.changeCardNumber}
+        changeExpirationMonth={this.changeExpirationMonth}
+        changeExpirationYear={this.changeExpirationYear}
+        changeCvv={this.changeCvv}
+        disabled={this.disabled()}
+        cardOwner={this.props.cardOwner}
+        cardNumber={this.props.cardNumber}
+        expirationYear={this.props.expirationYear}
+        expirationMonth={this.props.expirationMonth}
+        cvv={this.props.cvv}/>
+      case 3:
+        return <DirectDebitForm 
+        submitForm={this.submitForm}
+        disabled={this.disabled()}
+        changeDebitOwner={this.changeDebitOwner}
+        changeAddress={this.changeAddress}
+        changeIban={this.changeIban}/>
+      default:
+        console.error('CANNOT GET FROM SERVER, PAYMENT METHOD');
+        return ;
+    }
+  }
+
   render() {
+
     return (
       <div className="payment-container">
         {<PaymentOptions
         onChange={this.changePaymentMethod}
         paymentOptions={this.props.paymentMethods}
         paymentMethod = {this.props.paymentMethod} />}
-        <div className="payment-form">
 
-        </div>
-        {
-          
-          this.props.paymentMethod === 1?
-            <MastercardVisaAmericanExpressForm 
-                submitForm={this.submitForm} 
-                changeCardOwner={this.changeCardOwner}
-                changeCardNumber={this.changeCardNumber}
-                changeExpirationMonth={this.changeExpirationMonth}
-                changeExpirationYear={this.changeExpirationYear}
-                changeCvv={this.changeCvv}
-                disabled={this.disabled()}
-                cardOwner={this.props.cardOwner}
-                cardNumber={this.props.cardNumber}
-                expirationYear={this.props.expirationYear}
-                expirationMonth={this.props.expirationMonth}
-                cvv={this.props.cvv}
-            />
-          :
-          this.props.paymentMethod === 3?
-          <DirectDebitForm 
-              submitForm={this.submitForm}
-              disabled={this.disabled()}
-              changeDebitOwner={this.changeDebitOwner}
-              changeAddress={this.changeAddress}
-              changeIban={this.changeIban}
-          />
-          :
-          console.error('Payment method error')
-        }
+        {this.paymentForm()}
       </div>
   ); 
 
