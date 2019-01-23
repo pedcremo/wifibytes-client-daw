@@ -41,6 +41,7 @@ import {
 } from '../../../actions/checkoutActions';
 import {RegExps} from '../../../regExps';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
+import DirectDebitForm from './paymentTypes/directDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
 const mapStateToProps = state => ({ ...state.checkout });
 
@@ -90,7 +91,15 @@ class Payment extends React.Component {
         <div className="payment-form">
 
         </div>
-        {<MastercardVisaAmericanExpressForm 
+
+        {<DirectDebitForm 
+            submitForm={this.submitForm}
+            disabled={this.disabled()}
+            changeCardOwner={this.changeCardOwner}
+            changeCardNumber={this.changeCardNumber}
+        />}
+
+        {/* {<MastercardVisaAmericanExpressForm 
         submitForm={this.submitForm} 
         changeCardOwner={this.changeCardOwner}
         changeCardNumber={this.changeCardNumber}
@@ -102,7 +111,7 @@ class Payment extends React.Component {
         cardNumber={this.props.cardNumber}
         expirationYear={this.props.expirationYear}
         expirationMonth={this.props.expirationMonth}
-        cvv={this.props.cvv}/>}
+        cvv={this.props.cvv}/>} */}
       </div>
   ); 
 
