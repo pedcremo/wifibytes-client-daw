@@ -74,5 +74,10 @@
     "payment-numberCard": "Credit number card",
     "payment-expirationMonth": "Expiration month",
     "payment-expirationYear": "Expiration year",
-    "payment-cvv": "CVV"
+    "payment-cvv": "CVV",
+    "payment-owner-debit": "Direct debit Owner",
+    "payment-address-debit": "Address",
+    "payment-address2-debit": "Madrid /Example Street Nº2 p2",
+    "payment-iban-debit": "IBAN",
+    "payment-iban2-debit": "ES9820385778983000760236"
 }
