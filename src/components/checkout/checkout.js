@@ -5,6 +5,7 @@ import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
 import Payment from './payment';
 import Personal from '../personalData';
+import { PropTypes } from 'prop-types';
 
 let library = {
     fieldsToValidate:[
@@ -124,5 +125,9 @@ const mapStateToProps = state => ({
     steps: state.currentCheckout.steps,
     loading: state.currentCheckout.loading
 });
+
+Checkout.contextTypes = {
+    t: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps)(Checkout);
