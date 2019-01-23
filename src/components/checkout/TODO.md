@@ -1,9 +1,8 @@
 -Crear IBAN case
     -validación domiciliación bancaria
 -Case IBAN
--Componetizar case tarjeta, case IBAN
+-Componetizar case IBAN
 -Validación número tarjeta
--Validación fecha tarjeta
 -Dar la opción a elegir qué tipo de pago si no hay servicios
 -Testing
 -Automatizar creación de fechas

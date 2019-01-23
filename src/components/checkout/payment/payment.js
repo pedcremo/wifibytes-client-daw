@@ -76,21 +76,10 @@ class Payment extends React.Component {
     const thisDate = new Date();
     this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()+1));
 }
-
-  render() {
-    
-    
-    return (
-      <div className="payment-container">
-        {<PaymentOptions
-        onChange={this.changePaymentMethod}
-        paymentOptions={this.props.paymentMethods}
-        paymentMethod = {this.props.paymentMethod} />}
-
-        <div className="payment-form">
-
-        </div>
-        {<MastercardVisaAmericanExpressForm 
+  paymentForm(){
+    switch(this.props.paymentMethod){
+      case 1:
+        return <MastercardVisaAmericanExpressForm 
         submitForm={this.submitForm} 
         changeCardOwner={this.changeCardOwner}
         changeCardNumber={this.changeCardNumber}
@@ -102,7 +91,23 @@ class Payment extends React.Component {
         cardNumber={this.props.cardNumber}
         expirationYear={this.props.expirationYear}
         expirationMonth={this.props.expirationMonth}
-        cvv={this.props.cvv}/>}
+        cvv={this.props.cvv}/>
+      case 3:
+        return ;
+      default:
+        return ;
+    }
+  }
+
+  render() {
+
+    return (
+      <div className="payment-container">
+        {<PaymentOptions
+        onChange={this.changePaymentMethod}
+        paymentOptions={this.props.paymentMethods}
+        paymentMethod = {this.props.paymentMethod} />}
+        {this.paymentForm()}
       </div>
   ); 
 
