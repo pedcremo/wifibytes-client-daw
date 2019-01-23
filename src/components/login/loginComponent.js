@@ -84,7 +84,7 @@ class Login extends React.Component  {
         }
         AuthService.login(loginSubmit).then((res)=>{
             console.log(res.token ? "Succes" : "Error")
-            res.token === "Success" ? this.props.stat(true) : this.props.stat(false);
+            res.token === "Succes" ? this.props.stat(true) : this.props.stat(false);
         }).catch((err)=>{
             console.log(err)
         })

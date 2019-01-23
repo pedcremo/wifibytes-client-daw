@@ -1,4 +1,4 @@
-import PersonalData from '../../src/components/personalData/index';
+import UserChoice from '../../src/components/personalData/userChoice';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
@@ -13,12 +13,12 @@ beforeEach(() => {
         </div>`;
 });
 
-it('PersonalData component renders the component correctly', () => {
-    const rendered = Enzyme.shallow(<PersonalData />);
+it('userChoice component renders the component correctly', () => {
+    const rendered = Enzyme.shallow(<UserChoice />);
     expect(rendered).toHaveLength(1);
 });
 
-it('We can check if persolaData component called the class constructor', () => {
-    const rendered = Enzyme.shallow(<PersonalData />);
+it('We can check if userChoice component called the class constructor', () => {
+    const rendered = Enzyme.shallow(<UserChoice />);
     expect(rendered).toMatchSnapshot();
 });

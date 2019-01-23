@@ -47,10 +47,9 @@ class Personal extends React.Component  {
             this.setState({
                 auth: value
             })
-        }).catch(() => {
-            console.log("NO logueado", value)
+        }).catch((err) => {
+            console.log("NO logueado", err)
             this.changeModal(true)
-            
         })
     }
     /**
@@ -61,6 +60,7 @@ class Personal extends React.Component  {
      * logeat i amaguem el modal per a que pugam omplir el formulari
      */
     changeIsAuth(value){
+        console.log(value)
         if (value == true){
             console.log("Nos ha vuelto al padre todo poderoso");
             this.setState({
