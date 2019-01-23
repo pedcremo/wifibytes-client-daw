@@ -3,17 +3,11 @@ import {Utils} from "../../../../utils";
 import {RegExps} from '../../../../regExps';
 
 export default function DirectDebitForm(props) {
-  function disabled(){
-    return !validateDirectDebit();
-  }
+
   function validateDirectDebit(){ 
-    /**
-   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
+  /**
+  *VALIDATE ALL NECESARI IN DIRECT DEBIT 
   */
-    console.log(props.iban.match(RegExps.iban));
-    console.log(props.address);
-    console.log(props.debitOwner);
-    console.log(validateIBAN());
     return props.iban.match(RegExps.iban) && props.address && props.debitOwner && validateIBAN();
   }
   function validateIBAN() {
@@ -95,7 +89,7 @@ export default function DirectDebitForm(props) {
             <button
               className="btn btn-lg btn-primary pull-xs-right"
               type="submit"
-              disabled={disabled()}>
+              disabled={!validateDirectDebit()}>
               Comprar
             </button>
           </fieldset>

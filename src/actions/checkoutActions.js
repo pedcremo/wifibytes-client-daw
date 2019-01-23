@@ -10,7 +10,6 @@ export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
 
 export function getPaymentTypes() {
     return dispatch => {
-        console.log('aqui');
         try {
             dispatch(getPaymentsBegin());
             return Utils.get("/formaspago", function(response) {
