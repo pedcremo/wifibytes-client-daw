@@ -21,7 +21,10 @@ const initialState = {
     cardNumberIsValid:false,
     expirationDateIsValid:false,
     cvvIsValid:false,
-    paymentMethods:[]
+    paymentMethods:[],
+    iban:"",
+    address:"",
+    debitOwner:"",
 };
 
 export default function checkoutReducer(state = initialState, action) {
