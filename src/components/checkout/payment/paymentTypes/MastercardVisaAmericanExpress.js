@@ -1,7 +1,21 @@
 import React from 'react';
 import {Utils} from "../../../../utils";
+import {RegExps} from '../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
+  function disabled(){
+    return !validateCvv() || !validateCardOwner() || !validateExpirationDate();
+  }
+  function validateExpirationDate(){
+    const today = new Date();
+    return ((today.getMonth() + 1) >props.expirationMonth? today.getFullYear() < props.expirationYear : today.getFullYear() <= props.expirationYear); 
+    }
+  function validateCvv(){
+    return props.cvv.match(RegExps.cvv);
+  }
+  function validateCardOwner(){
+    return props.cardOwner.match(RegExps.cardOwner);
+  }
     const cardOwner = props.cardOwner;
     const cardNumber = props.cardNumber;
     const expirationMonth = props.expirationMonth;
@@ -73,7 +87,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
             <button
               className="btn btn-lg btn-primary pull-xs-right"
               type="submit"
-              disabled={props.disabled}>
+              disabled={disabled()}>
               Comprar
             </button>
           </fieldset>

@@ -64,21 +64,7 @@ class Payment extends React.Component {
   }
   /**We have to move validations into each component */
   disabled(){
-    if (this.props.paymentMethod === 1) //CREDIT CARD
-      return !this.validateCvv() || !this.validateCardOwner() || !this.validateExpirationDate();
-
-    if (this.props.paymentMethod === 3) //DIRECT DEBIT
       return !this.validateDirectDebit();
-  }
-  validateExpirationDate(){
-    const today = new Date();
-    return ((today.getMonth() + 1) >this.props.expirationMonth? today.getFullYear() < this.props.expirationYear : today.getFullYear() <= this.props.expirationYear); 
-    }
-  validateCvv(){
-    return this.props.cvv.match(RegExps.cvv);
-  }
-  validateCardOwner(){
-    return this.props.cardOwner.match(RegExps.cardOwner);
   }
   validateDirectDebit(){ 
     /**
@@ -147,7 +133,6 @@ class Payment extends React.Component {
         changeExpirationMonth={this.changeExpirationMonth}
         changeExpirationYear={this.changeExpirationYear}
         changeCvv={this.changeCvv}
-        disabled={this.disabled()}
         cardOwner={this.props.cardOwner}
         cardNumber={this.props.cardNumber}
         expirationYear={this.props.expirationYear}
