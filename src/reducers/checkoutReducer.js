@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     paymentStepIsValid:false,
-    paymentMethod:null, /**Iremos viendo qué hacemos con esto */
+    paymentMethod:3, /**codpago de backend, visa/mastercard/american express por defecto */
     existsService:false,
     checkoutProcessIsValid:false,
     cardOwner:"",
@@ -17,7 +17,7 @@ const initialState = {
     expirationMonth:"",
     expirationYear:"",
     cvv:"",
-    cardNameIsValid:false,
+    cardNameIsValid:false, /**not using this yet, waiting for the checkout to be incorpored */
     cardNumberIsValid:false,
     expirationDateIsValid:false,
     cvvIsValid:false,
@@ -43,7 +43,7 @@ export default function checkoutReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 paymentMethods: action.payload.formasdepago.results,
-                paymentMethod:action.payload.formasdepago.results[0]
+                paymentMethod: action.payload.formasdepago.results[1].codpago
             };
         case GET_PAYMENTS_FAILURE:
             return {
