@@ -37,7 +37,11 @@ class Personal extends React.Component  {
             this.setState({
                 auth: value
             })
-        }).catch(() => this.changeModal(true))
+        }).catch(() => {
+            console.log("NO logueado", value)
+            this.changeModal(true)
+            
+        })
     }
     changeType(res){
         this.setState({
