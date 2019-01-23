@@ -41,6 +41,7 @@ import {
 } from '../../../actions/checkoutActions';
 import {Utils} from "../../../utils";
 import {RegExps} from '../../../regExps';
+import PaymentOptions from './paymentTypes/paymentOptions';
 const mapStateToProps = state => ({ ...state.checkout });
 
 class Payment extends React.Component {
@@ -84,11 +85,7 @@ class Payment extends React.Component {
     
     return (
       <div className="payment-container">
-        <form className="payment-method">
-          <input type="radio" name="method" value="2"/>{Utils.translate("payment-method0")}
-          <input type="radio" name="method" value="1"/>{Utils.translate("payment-method1")}
-        </form>
-
+        {<PaymentOptions paymentOptions={this.props.paymentMethods} />}
         <div className="payment-form">
 
         </div>
