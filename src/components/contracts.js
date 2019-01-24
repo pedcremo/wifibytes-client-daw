@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { sendContractsActiondHtml, getDatosContracts } from "../actions/datosContractsAction";
+import { sendContractsAction, getDatosContracts } from "../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
 
 
@@ -44,7 +44,7 @@ class Contracts extends React.Component {
     }
 
     sendContract(html){
-        this.props.dispatch(sendContractsActiondHtml(html));
+        this.props.dispatch(sendContractsAction(html));
     }
 
     /** render  */

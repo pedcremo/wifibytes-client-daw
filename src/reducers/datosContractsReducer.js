@@ -1,7 +1,8 @@
 import {
     GET_CONTRACT_BEGIN,
     GET_CONTRACT_SUCCESS,
-    GET_CONTRACT_FAILURE
+    GET_CONTRACT_FAILURE,
+    SEND_CONTRACT
   } from '../actions/datosContractsAction';
   
   const initialState = {
@@ -47,7 +48,14 @@ import {
           error: action.payload,
           items: []
         };
-  
+
+      case SEND_CONTRACT:
+        console.log(action.payload.contract);
+        return {
+          ...state,
+          contractSigned: action.payload.html
+        }
+
       default:
       //console.warn("1GET_DATOS_EMPRESA_DEF")
         // ALWAYS have a default case in a reducer

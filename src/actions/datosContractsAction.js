@@ -1,18 +1,14 @@
 import {Utils} from "../utils";
 
-export const SEND_CONTRACT_BEGIN = 'SEND_CONTRACT_BEGIN';
-export const SEND_CONTRACT_SUCCESS = 'SEND_CONTRACT_SUCCESS';
-export const SEND_CONTRACT_FAILURE = 'SEND_CONTRACT_FAILURE';
-
 export const GET_CONTRACT_BEGIN = 'GET_CONTRACT_BEGIN';
 export const GET_CONTRACT_SUCCESS = 'GET_CONTRACT_SUCCESS';
 export const GET_CONTRACT_FAILURE = 'GET_CONTRACT_FAILURE';
 
+export const SEND_CONTRACT = 'SEND_CONTRACT';
 
 /**Get the contracts */
 
 export function getDatosContracts(){
-    console.log("ARRIBA ESPAÑA");
     return dispatch => {
         dispatch(getContractsBegin());
         return Utils.get("/textos_contratos")
@@ -38,27 +34,9 @@ export const getContractsFailure = error => ({
 
 /**Send the contracts signed */
 
-export function sendContractsActiondHtml(html) {
-    console.log(html);
-    return dispatch => {
-      dispatch(sendContractsBegin());
-      return Utils.post("/contratos" + html)
-            .then(response => dispatch(sendContractsSuccess(response)))
-            .catch(error => dispatch(sendContractsFailure(error)));
-    };
-}
-
-export const sendContractsBegin = () => ({
-    type: SEND_CONTRACT_BEGIN
+export const sendContractsAction = html => ({
+    type: SEND_CONTRACT,
+    payload: {
+        html
+    }
 });
-
-export const sendContractsSuccess = status => ({
-    type: SEND_CONTRACT_SUCCESS,
-    payload: { status }
-});
-
-export const sendContractsFailure = error => ({
-    type: SEND_CONTRACT_FAILURE,
-    payload: { error }
-});
-
