@@ -3,7 +3,7 @@ import {
     QUANTITY_ITEM,
     GET_ITEMS,
     DEL_ITEM
-} from '../actions/cartActions';
+} from './cartActions';
 
 const initialState = {
     items: [],
@@ -16,6 +16,7 @@ export default function cart(state = initialState, action) {
         case SET_ITEM:
             let exist = state.items.filter((item)=>{return item.id == action.item.id})
             if(exist.length == 0){
+                action.item.quantity = 1;
                 state.items.push(action.item)
             }else{
                 state.items.filter((item)=>{

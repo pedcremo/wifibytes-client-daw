@@ -3,8 +3,8 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {setItem,getItems} from '../../actions/cartActions'
-
+import {setItem,getItems} from './cartActions'
+import PropTypes from 'prop-types'
 
 /** @class
 * Draw a button to add items or rates at cart
@@ -16,25 +16,37 @@ class AddButton extends React.Component {
   */
   constructor(){
     super();
-    this.addItem = () => ev =>{
-        ev.preventDefault();
-        let item = {
-          id : this.props.id /* id item*/,
-          description : this.props.description,
-          price : this.props.price,
-          quantity : 1
-        }
-        this.props.dispatch(setItem(item));
-    }
+    this.addItem = this.addItem.bind(this);
   }
+
+  /**
+   * AddItem Will store the current Prop item to the State
+   */
+  addItem(ev){
+    ev.preventDefault();
+    this.props.dispatch(setItem(this.props.item));
+  }
+
   /** render */
   render(){
-    const { cart } = this.props;
+    const { cart , item} = this.props;
 
     return (
-        <button className="btn btn-secondary" onClick={this.addItem()}>{this.props.text}{cart.items ? cart.items.length : ''}</button>
+        <button className="btn btn-secondary" onClick={(ev)=>this.addItem(ev)}>{this.props.text}</button>
     );
   }
+}
+/**
+ * PropType is a kind of validation for Props incoming
+ * 
+ * We are validating the required information we globaly use to make the listing of cart
+ */
+AddButton.propTypes = {
+  item : PropTypes.shape({
+    id: PropTypes.any.isRequired,
+    description : PropTypes.string.isRequired,
+    price : PropTypes.number.isRequired
+  })
 }
 
 const mapStateToProps = state => ({

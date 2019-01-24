@@ -4,7 +4,7 @@ import AppRoutes from './routes';
 import { HashRouter } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
-import { getItems } from './actions/cartActions';
+import { getItems } from './components/cart/cartActions';
 
 /**
  * @class

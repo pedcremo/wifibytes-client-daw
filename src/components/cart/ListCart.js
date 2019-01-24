@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Table } from 'semantic-ui-react';
 import IncrementButtons from './IncrementButtons';
+import AddButton from '../cart/AddButton';
 
 class ListCart extends React.Component {
   constructor(){
@@ -13,17 +14,15 @@ class ListCart extends React.Component {
 
 
   render(){
-    if(Object.keys(this.props.cartItems.items).length > 0){
-      const { cartItems} = this.props;
-      const total = cartItems.items.reduce( (cnt,o) => { return cnt + (o.price * o.quantity); }, 0)
+    const { cartItems , onClick } = this.props;
+    if(Object.keys(cartItems.items).length > 0){
+      const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity); }, 0)
       let table = cartItems.items.map((item)=>{
         return (
           <Table.Row>
             <Table.Cell>{item.description}</Table.Cell>
-            <Table.Cell>
-            {item.quantity}
-            </Table.Cell>
-            {(this.props.canAdd)?<Table.Cell><IncrementButtons item={item} onClick={this.props.onClick} function={this.props.function} /></Table.Cell>:null}
+            <Table.Cell>{item.quantity}</Table.Cell>
+            <Table.Cell><IncrementButtons item={item} onClick={onClick} function={this.props.function} /></Table.Cell>
             <Table.Cell>{item.price} €</Table.Cell>
             <Table.Cell>{(item.price * item.quantity).toFixed(2)} €</Table.Cell>
           </Table.Row>
@@ -56,6 +55,8 @@ class ListCart extends React.Component {
       return (
         <div>
           <h1>Empty Cart...</h1>
+          {/** JUST FOR TESTING */}
+          <AddButton item={{id:1,price:10,description:"esto"}} text={"buy"}/>
         </div>
       )
     }

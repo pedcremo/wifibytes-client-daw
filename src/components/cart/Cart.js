@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import { getItems, increment_item, delete_item } from '../../actions/cartActions';
+import { getItems, increment_item, delete_item } from './cartActions';
 import ListCart from './ListCart';
 
 /** @class
