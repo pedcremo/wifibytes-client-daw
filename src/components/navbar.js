@@ -79,7 +79,10 @@ class Navbar extends React.Component{
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/cart" className="nav-link text-dark pt-3">
-                                        <span className="text-success">::</span> {this.context.t("cart-button")} {cartItems.items.length}
+                                    <span className="fa-stack fa-1x has-badge" data-count={cartItems.items.length}>
+                                        <i className="fa fa-circle fa-stack-2x fa-inverse"></i>
+                                        <i className="fa fa-shopping-cart fa-stack-2x red-cart"></i>
+                                    </span>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
