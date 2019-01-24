@@ -40,7 +40,9 @@ ShallowWrapper {
             </button>
           </div>
         </div>,
-        <Login />,
+        <Login
+          stat={[Function]}
+        />,
       ],
       "className": "login",
     },
@@ -134,7 +136,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
-        "props": Object {},
+        "props": Object {
+          "stat": [Function],
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -171,7 +175,9 @@ ShallowWrapper {
               </button>
             </div>
           </div>,
-          <Login />,
+          <Login
+            stat={[Function]}
+          />,
         ],
         "className": "login",
       },
@@ -265,7 +271,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
-          "props": Object {},
+          "props": Object {
+            "stat": [Function],
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
