@@ -47,7 +47,7 @@ export function validator(value, name, type="text") {
 
     
         default:
-            return true
+            return ""
             break;
     }
     

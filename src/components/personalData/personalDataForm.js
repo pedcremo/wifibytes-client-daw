@@ -1,6 +1,5 @@
 /** @module ComponentsApp */
 import React from 'react';
-import { connect } from "react-redux";
 import {
     getContactDataForm,
     updateContactDataForm
@@ -9,14 +8,12 @@ import {validator}  from "./validation";
 
 /**
  * @class
- * Draw Login. A form to login
+ * This component contain the Personal Data Form
  */
 class PersonalForm extends React.Component  {
     constructor(props) {
         super(props);
-        const conten = {
-            value:"",
-        }
+        const conten = {value:"",}
         this.state = {
             name:conten,
             surname: conten,
@@ -27,42 +24,62 @@ class PersonalForm extends React.Component  {
             city: conten
         };
         this.handleInputChange = this.handleInputChange.bind(this);
-        console.log("this.props.dataUser",this.props.dataUser)
     }
 
-    componentDidMount() {
-        this.props.dispatch(getContactDataForm());
-    }
-
+    /**
+     * This method is listening changes of some prop (comming from its father)
+     * @param {newProps} newProps  
+     */
     componentWillReceiveProps(newProps) {
-        /* this.setState({
-            [name]: {
-                value: value,
-                error: error
-            }
-        }) */
-        
-        /*IGUALAR EL ESTADO A LAS PROPS QUE LLEGAN VIA PETICION */
-        console.log("1111111", newProps.fields)
+        /* console.log("newProps.fields", newProps.dataUser, "-----", newProps.dataUser.fields, "--------", Object.keys(newProps.dataUser.fields).length) */
 
+/**WARNING TO EMPROVE
+ * ----------------------------------------------------------------------------------------------
+ * Cuando la informacion viene del backend o de local deberia volver a pasar el validador y comprobar si los datos ya estan correctos de acuerdo a las reglas marcadas
+ * * ----------------------------------------------------------------------------------------------
+ */
+        if (Object.keys(newProps.dataUser.fields).length > 0) 
+            for (const key in this.state) {
+                this.setState({
+                    [key]: {
+                        value: newProps.dataUser.fields[key].value,
+                        error: newProps.dataUser.fields[key].error
+                    }
+                })
+            }
     }
 
-    /* This method is listening changes of each form element and the redux state of this form change */
+
+
+    /** 
+     * This method is listening changes of each form element 
+     * The redux state of this form also change 
+     */
     handleInputChange(event) {
         const target = event.target;
-        let value;// = target.type === 'checkbox' ? target.checked : target.value;
+        // = target.type === 'checkbox' ? target.checked : target.value;
+        let value;
         const name = target.name;
         
-
+        /** 
+         * Check what kind of type is each element and transform them
+         */
         if (target.type === "number") 
             value = Number(target.value)
         else if (target.type === 'checkbox')
             value = target.checked
         else
             value = target.value
-            
+        
+        /** 
+         * Return a error if a field is incorrect 
+         */
         const error = validator(value, name, target.type)
 
+        /** 
+         * The component change its own state and send a dispatch to redux
+         * this.props.updateField "updateField" is a function which come from its father
+         */
         return new Promise((resolve, reject) => 
             resolve(this.setState({
                 [name]: {
@@ -71,12 +88,11 @@ class PersonalForm extends React.Component  {
                 }
             }))
         )
-        .then(() => this.props.dispatch(updateContactDataForm(this.state)))        
+        .then(() => this.props.updateField(updateContactDataForm(this.state)))
     }
 
-    checkInfoIsCompleted(){
-        
-    }
+
+
 
     render() {
         return (
@@ -175,11 +191,4 @@ class PersonalForm extends React.Component  {
 
 
 }
-
-const mapStateToProps = state => ({
-    fields: state.personalDataForm.fields,
-    loaded: state.personalDataForm.loaded,
-    error: state.personalDataForm.error
-});
-
-export default connect(mapStateToProps)(PersonalForm);
+export default PersonalForm;
