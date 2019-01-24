@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../utils";
+import {AuthService} from "../../../../utils";
 
 /**
  * @class

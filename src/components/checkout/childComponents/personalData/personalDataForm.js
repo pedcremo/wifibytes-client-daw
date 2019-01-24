@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
     getContactDataForm,
     updateContactDataForm
-} from "../../actions/personalDataFormActions";
+} from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
 
 /**

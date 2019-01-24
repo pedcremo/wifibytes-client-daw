@@ -1,11 +1,11 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
-import LogIn from "../login/loginComponent";
-import Register from "../login/registerComponent";
+import LogIn from "../../../login/loginComponent";
+import Register from "../../../login/registerComponent";
 import PersonalDataForm from "./personalDataForm";
-import SignIn from "../login/signIn";
+import SignIn from "../../../login/signIn";
 
 /**
  * @class
@@ -82,7 +82,6 @@ class Personal extends React.Component  {
                          <UserChoice choice={this.printComponent}/> }
                     </div>
                 </div>
-                <button onClick={this.props.nextStep}>Next</button>
             </div>
         )
     }

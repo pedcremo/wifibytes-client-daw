@@ -9,7 +9,8 @@ export const Agent = {
             let filtered = [];
             array.forEach(function(element) {
                 library.fieldsToValidate.forEach(function(item) {
-                    if(item.regexp.test(element.id) && !filtered.includes(item.field)) filtered.push(item.field);
+                    let regexp = new RegExp(item.regexp);
+                    if(regexp.test(element.id) && !filtered.includes(item.field)) filtered.push(item.field);
                 });
             });
             return filtered.concat(library.requiredFields);
