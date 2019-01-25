@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import { getItems, increment_item, delete_item } from './cartActions';
+import { getItems,  delete_item , quantityItem } from './cartActions';
 import ListCart from './ListCart';
 
 /** @class
@@ -19,16 +19,15 @@ class Cart extends React.Component {
     this.state = {
       canAdd : true
     }
-    this.incrementItem = this.incrementItem.bind(this);
+    this.quantityItem_ = this.quantityItem_.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
   }
   /**
    * Triggered when user click on +/- button
    * @param {id} item item's id to increment or decreases quantity
    */
-  incrementItem(item, quantity){
-    item.quantity_item = quantity;
-    this.props.dispatch(increment_item(item))
+  quantityItem_(item, quantity){
+    this.props.dispatch(quantityItem(item,quantity))
   }
   /**
    * Triggered when user click on trash icon
@@ -41,7 +40,7 @@ class Cart extends React.Component {
 /** render */
   render(){
     return (
-      <ListCart cartItems={this.props.cartItems} canAdd={this.state.canAdd} onClick={this.incrementItem} function={this.deleteItem}/>
+      <ListCart cartItems={this.props.cartItems} canAdd={this.state.canAdd} quantityItem={this.quantityItem_} function={this.deleteItem}/>
     );
   }
 }

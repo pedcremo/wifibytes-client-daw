@@ -1,8 +1,9 @@
 import {
     SET_ITEM,
-    QUANTITY_ITEM,
+    // QUANTITY_ITEM,
     GET_ITEMS,
-    DEL_ITEM
+    DEL_ITEM,
+    SET_QUANTITY
 } from './cartActions';
 
 const initialState = {
@@ -39,17 +40,14 @@ export default function cart(state = initialState, action) {
               loading: true,
               error: null
             };
-        case QUANTITY_ITEM:
+        case SET_QUANTITY:
             state.items.filter((item)=>{
-                if(item.id == action.item.id){
-                  if(item.quantity_item === 1){
-                    item.quantity = item.quantity + item.quantity_item;
-                  }else{
-                    if(item.quantity > 1){
-                      item.quantity = item.quantity + item.quantity_item;
-                    }
-                  }
-                }
+                if(item.id == action.item.id && action.quantity > 0 || item.id == action.item.id && action.quantity === ''){
+                    if(item.id == action.item.id && action.quantity === ''){
+                        item.quantity = action.quantity
+                    }else
+                        item.quantity = parseInt(action.quantity)
+                } 
             })
             return {
                 ...state,
@@ -57,6 +55,24 @@ export default function cart(state = initialState, action) {
                 loading: true,
                 error: null
             };
+        // case QUANTITY_ITEM:
+        //     state.items.filter((item)=>{
+        //         if(item.id == action.item.id){
+        //           if(item.quantity_item === 1){
+        //             item.quantity = item.quantity + item.quantity_item;
+        //           }else{
+        //             if(item.quantity > 1){
+        //               item.quantity = item.quantity + item.quantity_item;
+        //             }
+        //           }
+        //         }
+        //     })
+        //     return {
+        //         ...state,
+        //         items : state.items,
+        //         loading: true,
+        //         error: null
+        //     };
         case GET_ITEMS:
             return state;
         default:

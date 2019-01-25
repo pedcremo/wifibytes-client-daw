@@ -9,10 +9,10 @@ class IncrementButtons extends React.Component{
   render(){
     return(
       <Button.Group icon>
-        <Button size="mini" onClick={() => this.props.onClick(this.props.item, 1)}>
+        <Button size="mini" onClick={() => this.props.quantityItem(this.props.item, this.props.item.quantity + 1)}>
           <Icon name='add' />
         </Button>
-        <Button size='mini' onClick={() => this.props.onClick(this.props.item, -1)}>
+        <Button size='mini' onClick={() => this.props.quantityItem(this.props.item, this.props.item.quantity - 1)}>
           <Icon name='minus' />
         </Button>
         <Button size='mini' onClick={() => this.props.function(this.props.item)}>

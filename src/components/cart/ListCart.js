@@ -14,17 +14,17 @@ class ListCart extends React.Component {
 
 
   render(){
-    const { cartItems , onClick } = this.props;
+    const { cartItems , quantityItem } = this.props;
     if(Object.keys(cartItems.items).length > 0){
       const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity); }, 0)
       let table = cartItems.items.map((item)=>{
         return (
           <Table.Row>
             <Table.Cell>{item.description}</Table.Cell>
-            <Table.Cell>{item.quantity}</Table.Cell>
-            <Table.Cell><IncrementButtons item={item} onClick={onClick} function={this.props.function} /></Table.Cell>
+            <Table.Cell><input value={item.quantity} onChange={(ev)=>quantityItem(item,ev.target.value)}/></Table.Cell>
+            <Table.Cell><IncrementButtons item={item} quantityItem={quantityItem} function={this.props.function} /></Table.Cell>
             <Table.Cell>{item.price} €</Table.Cell>
-            <Table.Cell>{(item.price * item.quantity).toFixed(2)} €</Table.Cell>
+            <Table.Cell>{item.quantity > 0 ? (item.price * item.quantity).toFixed(2) +`€` : `Not a Number`}</Table.Cell>
           </Table.Row>
         )
       })
