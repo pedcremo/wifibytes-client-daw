@@ -16,12 +16,8 @@ class SignPad extends React.Component {
         };
     }
 
-    /**Clear the pad */
-    handleClear() {
-        this.signaturePad.instance.clear();
-    }
     /**Checking if the user sign the contract, converting the paint in svg and sending to the father */
-    handleSave() {
+    /*handleSave() {
         if (this.signaturePad.isEmpty()) {
             // eslint-disable-next-line no-alert
             alert('Please provide a signature first.');
@@ -30,45 +26,79 @@ class SignPad extends React.Component {
             this.props.onReciveSign(atob(data.split(',')[1]))
             this.setState({ showPad: true });
         }
-    }
-    /**Render SignaturePad */
-    renderSignaturePad() {
+    }*/
 
-        return (                               
-            <div className="columns">
-                <div className="column is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop">
-                    <div className="card">
-                        <div className="card-content">
-                            <div className="content">
-                                <SignaturePad redrawOnResize={true} ref={ref => this.signaturePad = ref} />
-                            </div>
-                        </div>
-                        <footer className="card-footer">
-                            <button className="card-footer-item" onClick={this.handleClear.bind(this)}>
-                                Clear
-                            </button>
-                            <button className="card-footer-item" onClick={this.handleSave.bind(this)}>
-                                Save
-                            </button>
-                        </footer>
-                    </div>
-                </div>
-            </div>
-        );
+    componentDidMount() {
+        let canvas = document.getElementById('paint');
+        let ctx = canvas.getContext('2d');
+        
+        let sketch = document.getElementById('sketch');
+        let sketch_style = getComputedStyle(sketch);
+        canvas.width = 500;
+        canvas.height = 250;
+
+        let mouse = {x: 0, y: 0};
+        
+        /* Mouse Capturing Work */
+        canvas.addEventListener('mousemove', function(e) {
+            mouse.x = e.pageX - this.offsetLeft;
+            mouse.y = e.pageY - this.offsetTop;
+        }, false);
+
+        /* Drawing on Paint App */
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+
+        ctx.strokeStyle = "#fff";
+        
+        canvas.addEventListener('mousedown', function(e) {
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+        
+            canvas.addEventListener('mousemove', onPaint, false);
+        }, false);
+        
+        canvas.addEventListener('mouseup', function() {
+            canvas.removeEventListener('mousemove', onPaint, false);
+        }, false);
+        
+        let onPaint = function() {
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        };
+    }
+
+    /**Clear the pad */
+    handleClear() {
+        let canvas = document.getElementById('paint');
+        let ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    /**Checking if the user sign the contract, converting the paint in svg and sending to the father */
+    handleSave() {
+        let canvas = document.getElementById('paint');
+        let data = canvas.toDataURL('image/png');
+        this.props.onReciveSign(data);
     }
 
     /**Render */
     render() {
+        const style={
+            border: "1px solid black", 
+            background : "#333333", 
+            marginLeft: "auto", 
+            marginRight: "auto", 
+            display: "block"
+        }
         return (
             <section className="section">
                 <div className="container">
-                {
-                    !this.state.showPad?
-                        this.renderSignaturePad()
-                    :
-                        null
-                }
-                    
+                    <div id="sketch">
+                        <canvas id="paint" style={style}></canvas>
+                    </div>
+                    <button onClick={() => this.handleClear()}>Clear</button>
+                    <button onClick={() => this.handleSave()}>Save</button>
                 </div>
             </section>
         )

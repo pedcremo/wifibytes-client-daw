@@ -26,7 +26,7 @@ class Contracts extends React.Component {
     }
 
     componentDidMount(){
-        this.props.dispatch(getDatosContracts());
+        //this.props.dispatch(getDatosContracts());
         //this.props.dispatch(getContactDataForm());
     }
 
@@ -37,6 +37,7 @@ class Contracts extends React.Component {
 
     /**Recive sign from the child */
     reciveSign(sign) {
+        console.log(sign);
         this.setState({ 
             sign: sign,
             next: true
@@ -51,8 +52,8 @@ class Contracts extends React.Component {
     render() {
         const { error, loading, datosContracts} = this.props;
 
-        if (error) return (<div>Error Home! </div>);
-        if (loading) return (<div>Loading Home ...</div>);
+        /*if (error) return (<div>Error Home! </div>);
+        if (loading) return (<div>Loading Home ...</div>);*/
 
         let person = {    
             name: "Daniel Ortiz Garcia",
@@ -64,7 +65,7 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
-        if(datosContracts.length > 0){
+        //if(datosContracts.length > 0){
             let servicios1 = ['fibra','movil','tv'];
             let servicios2 = ['fibra','movil'];
             let servicios3 = ['fibra'];
@@ -116,11 +117,11 @@ class Contracts extends React.Component {
                 </div>
     
             );
-        }else{
+        /*}else{
             return(
                 <span>LOADING!</span>
             );
-        }
+        }*/
 
     }
 }
