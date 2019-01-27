@@ -1,11 +1,15 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
-import { addSteps, updateStep } from "../../actions/checkoutActions";
+//import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
 import { PropTypes } from 'prop-types';
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
+import {
+    ADD_STEPS,
+    UPDATE_STEP
+} from '../../actions/checkoutActions';
 
 /**
  * mock items
@@ -22,7 +26,6 @@ let items = [
     }
 ]
 
-
 /**
  * Component Checkout validate the steps you have to follow
  */
@@ -35,39 +38,41 @@ class Checkout extends React.Component {
     /**
      * Sets a specific step
      */
-    setStep(step) {
-        this.props.dispatch(updateStep(step));
-    }
+    setStep(step) { this.props.dispatch({type: UPDATE_STEP,payload: {step}}); }
 
     /**
      * Go to the next step
      */
     nextStep() {
-        this.props.dispatch(updateStep(this.props.currentStep+1));
+        let step = this.props.currentStep;
+        step++
+        this.props.dispatch({type: UPDATE_STEP,payload: {step}});   
     }
 
     /**
      * Go to the previous step
      */
     previousStep() {
-        this.props.dispatch(updateStep(this.props.currentStep-1));
+        let step = parseInt(this.props.currentStep);
+        step--
+        this.props.dispatch({type: UPDATE_STEP,payload: {step}});
     }
 
     /**
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
+        let numStep = 1;
         let stepsRates = Agent.objectsToArray(items, library);
         let filteredSteps = Agent.filterArray(steps, stepsRates);
-        this.props.dispatch(addSteps(1, filteredSteps));
-        
+        this.props.dispatch({type: ADD_STEPS,payload: {numStep,filteredSteps}});
 
     }
 
     componentWillReceiveProps() {
         let that=this;
         const addClickEvent = elem => elem.addEventListener("click", function(event){
-            that.setStep(event.target.id);
+            that.setStep(parseInt(event.target.id));
         });
         document.querySelectorAll("div.step").forEach(addClickEvent);
     }
@@ -80,6 +85,7 @@ class Checkout extends React.Component {
         if (loading) 
             return (<div>Loading...</div>);
         if (steps.length>0 && currentStep){
+            console.log("currentStep",currentStep)
             return (
                 <div>
                     <Step.Group items={steps} attached='top' ordered />

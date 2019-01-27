@@ -10,18 +10,19 @@ const initialState = {
 };
 
 export default function currentCheckout(state = initialState, action) {
+    console.log("REDUCER_CHECKOUT",action)
     switch (action.type) {
-
         case ADD_STEPS:
             return {
                 ...state,
                 loading: false,
-                currentStep: action.payload.step,
-                steps: action.payload.steps
+                currentStep: action.payload.numStep,
+                steps: action.payload.filteredSteps
             };
 
         case UPDATE_STEP:
             if (state.currentStep < state.steps.length + 1){
+                console.log("STATE",state);
                 state.steps[state.currentStep-1].active=false;
                 state.steps[action.payload.step-1].active=true;
             }
