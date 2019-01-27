@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignaturePad from 'react-signature-pad-wrapper';
+import { throws } from 'assert';
 
 /**
  * @class
@@ -12,21 +13,10 @@ class SignPad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          showPad: false
+          showPad: false,
+          defaultCanvas: ""
         };
     }
-
-    /**Checking if the user sign the contract, converting the paint in svg and sending to the father */
-    /*handleSave() {
-        if (this.signaturePad.isEmpty()) {
-            // eslint-disable-next-line no-alert
-            alert('Please provide a signature first.');
-        } else {
-            let data = this.signaturePad.toDataURL('image/svg+xml');
-            this.props.onReciveSign(atob(data.split(',')[1]))
-            this.setState({ showPad: true });
-        }
-    }*/
 
     componentDidMount() {
         let canvas = document.getElementById('paint');
@@ -49,7 +39,7 @@ class SignPad extends React.Component {
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
 
-        ctx.strokeStyle = "#fff";
+        ctx.strokeStyle = "#000";
         
         canvas.addEventListener('mousedown', function(e) {
             ctx.beginPath();
@@ -66,6 +56,10 @@ class SignPad extends React.Component {
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
         };
+
+        this.setState({
+            defaultCanvas: canvas.toDataURL()
+        })
     }
 
     /**Clear the pad */
@@ -77,20 +71,27 @@ class SignPad extends React.Component {
 
     /**Checking if the user sign the contract, converting the paint in svg and sending to the father */
     handleSave() {
-        let canvas = document.getElementById('paint');
-        let data = canvas.toDataURL('image/png');
-        this.props.onReciveSign(data);
+        let can = document.getElementById('paint');
+        let img = new Image();
+
+        if(can.toDataURL() === this.state.defaultCanvas) {
+            alert('Canvas is blank');
+        } else {
+            img.src = can.toDataURL("image/png");
+            this.props.onReciveSign(img.src);
+        }
     }
 
     /**Render */
     render() {
         const style={
-            border: "1px solid black", 
-            background : "#333333", 
+            border: "1px solid #969696", 
+            background : "#BFBFBF", 
             marginLeft: "auto", 
             marginRight: "auto", 
             display: "block"
         }
+
         return (
             <section className="section">
                 <div className="container">
