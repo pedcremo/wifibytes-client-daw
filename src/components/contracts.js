@@ -37,6 +37,7 @@ class Contracts extends React.Component {
 
     /**Recive sign from the child */
     reciveSign(sign) {
+        console.log(sign);
         this.setState({ 
             sign: sign,
             next: true
@@ -50,8 +51,6 @@ class Contracts extends React.Component {
     /** render  */
     render() {
         const { error, loading, datosContracts} = this.props;
-
-        const pdf = "<p>asdasdas</p><img src='${this.state.sign}' />";
 
         /*if (error) return (<div>Error Home! </div>);
         if (loading) return (<div>Loading Home ...</div>);*/
@@ -78,7 +77,7 @@ class Contracts extends React.Component {
                 return item.title+" "+item.content;
             });
 
-            let contractsHTML = eval('`' + pdf + '`');
+            let contractsHTML = eval('`' + datosTexts.join(' ') + '`');
             return (
                 <div>
                     <h1>Contracts</h1>
