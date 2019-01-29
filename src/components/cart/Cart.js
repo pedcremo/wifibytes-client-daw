@@ -25,6 +25,7 @@ class Cart extends React.Component {
   /**
    * Triggered when user click on +/- button
    * @param {id} item item's id to increment or decreases quantity
+   * @param {int} quantity take the quantity of the object and modify it
    */
   quantityItem_(item, quantity){
     this.props.dispatch(quantityItem(item,quantity))

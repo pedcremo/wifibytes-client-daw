@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import { Table } from 'semantic-ui-react';
 import IncrementButtons from './IncrementButtons';
 import AddButton from '../cart/AddButton';
-
+/** @module Component ListCart
+* this component list all items in the cart on datatable
+*/
 class ListCart extends React.Component {
   constructor(){
     super();
@@ -12,8 +14,13 @@ class ListCart extends React.Component {
     }
   }
 
-
+/**render*/
   render(){
+    /**
+    * First check if cartItems have getItems
+    * If is empty print a <div><p>Empty Cart</p></div>
+    * Else list all the items
+    */
     const { cartItems , quantityItem } = this.props;
     if(Object.keys(cartItems.items).length > 0){
       const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity); }, 0)
