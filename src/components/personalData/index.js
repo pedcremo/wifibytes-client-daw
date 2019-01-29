@@ -3,12 +3,23 @@ import React from 'react';
 import {AuthService} from "../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
+import PortabilidadForm from "./portabilidadForm";
 import SignIn from "../login/signIn";
 import { connect } from "react-redux";
 import {
     getContactDataForm,
     updateContactDataForm
 } from "../../actions/personalDataFormActions";
+
+var mockItems= [
+       {
+           id: "",
+            quantity:""
+        }
+]
+let mockCompanies=["orange", "vodafone", "jaxxtel", "yoigo", "pepephone"]
+let serviciosContratados = [654654654, 987654321, 852741963, 14789652, 951159753]
+
 
 /**
  * @class
@@ -36,7 +47,6 @@ class Personal extends React.Component  {
         this.printComponent = this.printComponent.bind(this);
         this.changeIsAuth = this.changeIsAuth.bind(this);
     }
-
     /**
      * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
@@ -57,12 +67,6 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
-
-        /* setTimeout( ()=> {
-            return this.setState({
-                auth: "hola mundo"
-            })
-        }, 10000); */
 
     }
 
@@ -138,10 +142,17 @@ class Personal extends React.Component  {
     }
     
     render() {
+        console.log(this.props)
         return(
             <div>
-
-                <PersonalDataForm dataUser={this.props.infoContactForm} updateField={this.props.dispatch}/>
+                <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
+                <div className="grid-data-form">
+                    {
+                        serviciosContratados.map((item, i) => {
+                            return <PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>
+                        })
+                    }     
+                </div>
 
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">
@@ -159,12 +170,10 @@ class Personal extends React.Component  {
 }
 
 
-const mapStateToProps = state => ({
-    infoContactForm: {
-        fields: state.personalDataForm.fields,
-        loaded: state.personalDataForm.loaded,
-        error: state.personalDataForm.error
-    }
+const mapStateToProps = state => ({    
+    fields: state.personalDataForm.fields,
+    loaded: state.personalDataForm.loaded,
+    error: state.personalDataForm.error
 });
 
 

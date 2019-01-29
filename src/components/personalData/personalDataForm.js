@@ -31,19 +31,17 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-        /* console.log("newProps.fields", newProps.dataUser, "-----", newProps.dataUser.fields, "--------", Object.keys(newProps.dataUser.fields).length) */
-
 /**WARNING TO EMPROVE
  * ----------------------------------------------------------------------------------------------
  * Cuando la informacion viene del backend o de local deberia volver a pasar el validador y comprobar si los datos ya estan correctos de acuerdo a las reglas marcadas
  * * ----------------------------------------------------------------------------------------------
  */
-        if (Object.keys(newProps.dataUser.fields).length > 0) 
+        if (Object.keys(newProps.dataUser).length > 0) 
             for (const key in this.state) {
                 this.setState({
                     [key]: {
-                        value: newProps.dataUser.fields[key].value,
-                        error: newProps.dataUser.fields[key].error
+                        value: newProps.dataUser[key].value,
+                        error: newProps.dataUser[key].error
                     }
                 })
             }
@@ -97,7 +95,7 @@ class PersonalForm extends React.Component  {
     render() {
         return (
             <form className="grid-data-form">
-                <div>
+               <div>
                     <h4>Personal Data</h4>
                     <div>
                         <input
