@@ -31,7 +31,11 @@
  * 
  * 
  */
-
+/**
+ * Stripe apis
+ * public key:pk_test_MNfK7djOIZNyWbIp4BlJCgJi
+ * secre key : sk_test_JDWG4vGA3yZ7e0BAvTJkh82N
+ */
 import React from 'react'
 import { connect } from "react-redux";
 import {
