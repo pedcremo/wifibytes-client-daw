@@ -1,13 +1,15 @@
 import React from 'react'
 import * as components from '../childComponents'
-
+import {Utils} from '../../../utils';
+import {translations} from '../../../i18n/translations';
+let currentLang = Utils.getUserLang();
 let steps = [
     {
         "key": "personal_data",
         "id": 1,
         "active": true,
         "completed": false,
-        "title": "Dades Personals",
+        "title": translations[currentLang]["checkout-personal-data"],
         "component": <components.Personal />
     },
     {
@@ -15,7 +17,7 @@ let steps = [
         "id": 2,
         "active": false,
         "completed": false,
-        "title": "Contracte",
+        "title": translations[currentLang]["checkout-contract"],
         "component": <components.Personal />
     },
     { 
@@ -23,7 +25,7 @@ let steps = [
         "id": 3,
         "active": false,
         "completed": false,
-        "title": "Confirmar Pedido",
+        "title": translations[currentLang]["checkout-confirm"],
         "component": <components.Payment />
     }
 ];
