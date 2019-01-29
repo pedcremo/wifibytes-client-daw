@@ -1,7 +1,9 @@
 import {
     ADD_STEPS,
+    NEXT_STEP,
+    PREVIOUS_STEP,
     UPDATE_STEP
-} from '../actions/checkoutActions';
+} from '../constants/actionTypes';
 
 const initialState = {
     currentStep: 0,
@@ -10,19 +12,39 @@ const initialState = {
 };
 
 export default function currentCheckout(state = initialState, action) {
-    console.log("REDUCER_CHECKOUT",action)
     switch (action.type) {
         case ADD_STEPS:
             return {
                 ...state,
                 loading: false,
-                currentStep: action.payload.numStep,
-                steps: action.payload.filteredSteps
+                currentStep: action.payload.step,
+                steps: action.payload.steps
+            };
+
+        case NEXT_STEP:
+            if (state.currentStep < state.steps.length + 1){
+                state.steps[state.currentStep-1].active=false;
+                state.steps[state.currentStep].active=true;
+            }
+            return {
+                ...state,
+                loading: false,
+                currentStep: state.currentStep+1
+            };
+
+        case PREVIOUS_STEP:
+            if (state.currentStep < state.steps.length + 1){
+                state.steps[state.currentStep-1].active=false;
+                state.steps[state.currentStep].active=true;
+            }
+            return {
+                ...state,
+                loading: false,
+                currentStep: state.currentStep-1
             };
 
         case UPDATE_STEP:
             if (state.currentStep < state.steps.length + 1){
-                console.log("STATE",state);
                 state.steps[state.currentStep-1].active=false;
                 state.steps[action.payload.step-1].active=true;
             }
