@@ -86,7 +86,7 @@ class RateBoxSubComponent extends React.Component {
                         <a href={'#rate/' + itemFiltered.codtarifa} className="btn btn-primary">
                             <h4 className="mb-0">{this.context.t("view-details")}</h4>
                         </a>
-                          <AddButton item={{id : itemFiltered.codtarifa, price : itemFiltered.precio, description : itemFiltered.nombretarifa}} text={Utils.translate('hire')}/>
+                          <AddButton item={{id : itemFiltered.codtarifa, price : itemFiltered.precio, description : itemFiltered.nombretarifa}} text={this.context.t('hire')}/>
                     </div>
                 </div>
             );

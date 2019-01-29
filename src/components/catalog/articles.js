@@ -1,6 +1,7 @@
 import React from 'react';
 import AddButton from '../cart/AddButton';
 import {Utils} from "../../utils";
+import {PropTypes} from 'prop-types';
 /**
  * Draw legal texts
  */
@@ -19,13 +20,16 @@ class Articles extends React.Component{
 
                     </div>
                     <div className="card-footer bg-light"><a href="#" className="btn btn-primary">View details</a>
-                    <AddButton item={{id:itemArticle.referencia,price:itemArticle.pvp,description:itemArticle.descripcion_breve}} text={this.translate('buy')}/>
+                    <AddButton item={{id:itemArticle.referencia,price:itemArticle.pvp,description:itemArticle.descripcion_breve}} text={this.context.t('buy')}/>
                     </div>
                 </div>
                 ))}
             </div>
         )
     }
+}
+Articles.contextTypes = {
+    t: PropTypes.func.isRequired
 }
 
 export default Articles;

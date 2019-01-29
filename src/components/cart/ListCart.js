@@ -4,6 +4,7 @@ import { Table } from 'semantic-ui-react';
 import IncrementButtons from './IncrementButtons';
 import AddButton from '../cart/AddButton';
 import {Utils} from "../../utils";
+import {PropTypes} from 'prop-types';
 /** @module Component ListCart
 * this component list all items in the cart on datatable
 */
@@ -40,10 +41,10 @@ class ListCart extends React.Component {
         <Table singleLine>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>{Utils.translate('description')}</Table.HeaderCell>
-              <Table.HeaderCell>Quantity</Table.HeaderCell>
+              <Table.HeaderCell>{this.context.t('description')}</Table.HeaderCell>
+              <Table.HeaderCell>{this.context.t('quantity')}</Table.HeaderCell>
               {(this.props.canAdd)?<Table.HeaderCell></Table.HeaderCell>:null}
-              <Table.HeaderCell>Price</Table.HeaderCell>
+              <Table.HeaderCell>{this.context.t('price')}</Table.HeaderCell>
               <Table.HeaderCell>Total</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -62,7 +63,7 @@ class ListCart extends React.Component {
     }else{
       return (
         <div>
-          <h1>Empty Cart...</h1>
+          <h1>{this.context.t('empty_cart')}</h1>
           {/** JUST FOR TESTING */}
           <AddButton item={{id:1,price:10,description:"esto"}} text={"buy"}/>
         </div>
@@ -72,4 +73,8 @@ class ListCart extends React.Component {
 }
 const mapStateToProps = state => ({
 });
+
+ListCart.contextTypes = {
+    t: PropTypes.func.isRequired
+}
 export default connect(mapStateToProps)(ListCart);
