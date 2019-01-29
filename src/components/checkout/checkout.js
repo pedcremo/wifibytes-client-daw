@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
 import {Agent} from './agent';
-import { PropTypes } from 'prop-types';
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
 import {
@@ -65,7 +64,7 @@ class Checkout extends React.Component {
         this.addSteps(1, filteredSteps);
     }
 
-    componentWillReceiveProps() {
+    componentDidUpdate() {
         let that=this;
         const addClickEvent = elem => elem.addEventListener("click", function(event){
             if (!event.target.id) {
@@ -115,9 +114,5 @@ const mapStateToProps = state => ({
     steps: state.currentCheckout.steps,
     loading: state.currentCheckout.loading
 });
-
-Checkout.contextTypes = {
-    t: PropTypes.func.isRequired
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
