@@ -70,5 +70,12 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido",
 
-    "cart-button": "Carrito"
+    "cart-button": "Carrito",
+    "description": "Descripción",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "check-out-button": "Proceso de compra",
+    "buy": "Comprar",
+    "empty_cart": "Carrito vacio...",
+    "hire": "Contratar"
 }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Table } from 'semantic-ui-react';
 import IncrementButtons from './IncrementButtons';
 import AddButton from '../cart/AddButton';
+import {Utils} from "../../utils";
 /** @module Component ListCart
 * this component list all items in the cart on datatable
 */
@@ -39,7 +40,7 @@ class ListCart extends React.Component {
         <Table singleLine>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Product</Table.HeaderCell>
+              <Table.HeaderCell>{Utils.translate('description')}</Table.HeaderCell>
               <Table.HeaderCell>Quantity</Table.HeaderCell>
               {(this.props.canAdd)?<Table.HeaderCell></Table.HeaderCell>:null}
               <Table.HeaderCell>Price</Table.HeaderCell>
@@ -53,7 +54,7 @@ class ListCart extends React.Component {
               <Table.Cell></Table.Cell>
               <Table.Cell></Table.Cell>
               {(this.props.canAdd)?<Table.Cell></Table.Cell>:null}
-              <Table.Cell><button>Confirm buy</button></Table.Cell>
+              <Table.Cell><button>{Utils.translate('check-out-button')}</button></Table.Cell>
               <Table.Cell>Total: {(total).toFixed(2)} €</Table.Cell>
             </Table.Row>
         </Table>

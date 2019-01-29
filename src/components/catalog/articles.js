@@ -1,5 +1,6 @@
 import React from 'react';
 import AddButton from '../cart/AddButton';
+import {Utils} from "../../utils";
 /**
  * Draw legal texts
  */
@@ -18,7 +19,7 @@ class Articles extends React.Component{
 
                     </div>
                     <div className="card-footer bg-light"><a href="#" className="btn btn-primary">View details</a>
-                    <AddButton item={{id:itemArticle.referencia,price:itemArticle.pvp,description:itemArticle.descripcion_breve}} text={"buy"}/>
+                    <AddButton item={{id:itemArticle.referencia,price:itemArticle.pvp,description:itemArticle.descripcion_breve}} text={this.translate('buy')}/>
                     </div>
                 </div>
                 ))}
