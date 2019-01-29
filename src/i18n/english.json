@@ -66,5 +66,11 @@
     "register-cifnif": "CIF/NIF",
     "register-error-pass": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
-    "register-error-email": "The email is not valid"
+    "register-error-email": "The email is not valid",
+
+
+    "personalData-notifyModal-title": "We have detected that you are not logged in, please choose an option:",
+    "personalData-notifyModal-choiceLogin":"Log in",
+    "personalData-notifyModal-choiceRegister":"Register",
+    "personalData-notifyModal-choiceNone":"Continue anyway"
 }

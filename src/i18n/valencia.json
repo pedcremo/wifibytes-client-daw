@@ -68,5 +68,11 @@
     "register-cifnie": "CIF/NIF",
     "register-error-pass": "Les contrasenyes deuen coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
-    "register-error-email": "El correu no es valid"
+    "register-error-email": "El correu no es valid",
+
+
+    "personalData-notifyModal-title": "Hem detectat que no esta loguejat, perfavor, escollixca una opcio:",
+    "personalData-notifyModal-choiceLogin":"Loguejarse",
+    "personalData-notifyModal-choiceRegister":"Registrarse",
+    "personalData-notifyModal-choiceNone":"Continuar igualment"
 }
