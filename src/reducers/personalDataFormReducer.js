@@ -2,11 +2,12 @@ import {
     GET_CONTACT_DATA_FORM_BEGIN,
     GET_CONTACT_DATA_FORM_SUCCESS,
     GET_CONTACT_DATA_FORM_FAILURE,
-    GET_CURRENT_CONTACT_DATA_FORM
+    GET_CURRENT_CONTACT_DATA_FORM,
+    GET_CONTACT_DATA_FORM_UPDATE
 } from '../actions/personalDataFormActions';
 
 const initialState = {
-    fields: [],
+    fields: {},
     loaded: false,
 };
 
@@ -22,6 +23,13 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case GET_CONTACT_DATA_FORM_SUCCESS:
+            return {
+                ...state,
+                loaded: false,
+                fields: getUserData(action)
+            };
+
+        case GET_CONTACT_DATA_FORM_UPDATE:
             return {
                 ...state,
                 loaded: false,
@@ -45,5 +53,20 @@ export default function personalDataFormReducer(state = initialState, action) {
 
         default:
             return state;
+    }
+}
+
+
+let getUserData = (action) => {
+    //action.payload.contactDataForm
+    /* hay que convertir lo que viene de backend en un objeto valido para el form */
+    return {
+        name: {error:"", value: "pepe"},
+        surname: {error:"", value: "lopez"},
+        email: {error:"", value: "lopez@gmail.com"},
+        phone: {error:"", value: 654654654},
+        address: {error:"", value: "C/ alicante 1"},
+        zip: {error:"", value: 46870},
+        city: {error:"", value: "Gandia"}
     }
 }

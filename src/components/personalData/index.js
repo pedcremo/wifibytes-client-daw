@@ -4,6 +4,11 @@ import {AuthService} from "../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../login/signIn";
+import { connect } from "react-redux";
+import {
+    getContactDataForm,
+    updateContactDataForm
+} from "../../actions/personalDataFormActions";
 
 /**
  * @class
@@ -37,6 +42,7 @@ class Personal extends React.Component  {
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
      */
     componentDidMount(){
+        this.props.dispatch(getContactDataForm());
         /**
         * Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
@@ -51,6 +57,20 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
+
+        /* setTimeout( ()=> {
+            return this.setState({
+                auth: "hola mundo"
+            })
+        }, 10000); */
+
+    }
+
+
+    updateFieldPerDataForm(form_new_state){
+        console.log(form_new_state)
+        this.props.dispatch(getContactDataForm());
+        /* this.props.dispatch(updateContactDataForm("form_new_state")) */
     }
     /**
      * 
@@ -120,9 +140,9 @@ class Personal extends React.Component  {
     render() {
         return(
             <div>
-                <div>
-                    <PersonalDataForm dataUser={this.state.auth}/>
-                </div>
+
+                <PersonalDataForm dataUser={this.props.infoContactForm} updateField={this.props.dispatch}/>
+
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">
                     <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
@@ -137,4 +157,15 @@ class Personal extends React.Component  {
         )
     }
 }
-export default Personal;
+
+
+const mapStateToProps = state => ({
+    infoContactForm: {
+        fields: state.personalDataForm.fields,
+        loaded: state.personalDataForm.loaded,
+        error: state.personalDataForm.error
+    }
+});
+
+
+export default connect(mapStateToProps)(Personal);
