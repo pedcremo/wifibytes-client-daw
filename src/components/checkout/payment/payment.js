@@ -24,7 +24,7 @@ class Payment extends React.Component {
     this.changeAddress = ev => this.props.dispatch(paymentUpdate("address", ev.target.value));
     this.changeDebitOwner = ev => this.props.dispatch(paymentUpdate("debitOwner", ev.target.value));
     this.submitForm = () => ev => {
-      //ev.preventDefault();
+      ev.preventDefault();
       alert("Submit button works!");
       //this.props.dispatch(paymentsubmit("submitPayment"), ev.target.value);
     }

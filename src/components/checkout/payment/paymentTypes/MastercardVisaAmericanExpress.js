@@ -17,6 +17,17 @@ export default function MastercardVisaAmericanExpressForm(props) {
   function validateCardOwner(){
     return props.cardOwner.match(RegExps.cardOwner);
   }
+  function createExpirationYears(){
+    const today = new Date();
+    let options = [];
+    for (let i = 0; i <= 20; i++) {
+      options.push(
+        <option key={i} value={today.getFullYear() + i}>{today.getFullYear() + i}</option>
+      );
+    
+  }
+    return options;
+  }
     const cardOwner = props.cardOwner;
     const cardNumber = props.cardNumber;
     const expirationMonth = props.expirationMonth;
@@ -69,11 +80,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
               className="form-control form-control-lg"
               value={expirationYear}
               onChange={props.changeExpirationYear}>
-                <option value={2018}>2018</option>
-                <option value={2019}>2019</option>
-                <option value={2020}>2020</option>
-                <option value={2021}>2021</option>
-                <option value={2022}>2022</option>
+                {createExpirationYears()}
               </select>
             </fieldset>
             <fieldset className="form-group">
