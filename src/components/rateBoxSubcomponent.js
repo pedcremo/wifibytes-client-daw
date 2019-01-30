@@ -63,7 +63,11 @@ class RateBoxSubComponent extends React.Component {
 
             }))//INNER MAP
             const textTarifa = Utils.getUserLang() == "va" ? itemFiltered["subtarifas"]["0"]["subtarifa_tarifa"]["pretitulo_va"] : itemFiltered["subtarifas"]["0"]["subtarifa_tarifa"]["pretitulo"];
-
+            console.log(itemFiltered)
+            const typeSubtaifa = [] 
+            itemFiltered.subtarifas.map((subtarifa)=>{
+                typeSubtaifa.push(subtarifa.tipo_tarifa)
+            })
             return (
 
                 <div key={index} className={`card rounded border text-center border-dark text-center zoom-rates ${Utils.randomAnimation()} `} style={{backgroundColor:"rgba(255, 255, 255, 0.8)"}}>
@@ -86,7 +90,7 @@ class RateBoxSubComponent extends React.Component {
                         <a href={'#rate/' + itemFiltered.codtarifa} className="btn btn-primary">
                             <h4 className="mb-0">{this.context.t("view-details")}</h4>
                         </a>
-                          <AddButton item={{id : itemFiltered.codtarifa, price : itemFiltered.precio, description : itemFiltered.nombretarifa}} text={this.context.t('hire')}/>
+                          <AddButton item={{id : itemFiltered.codtarifa, price : itemFiltered.precio, description : itemFiltered.nombretarifa, subtarifas:typeSubtaifa}} text={this.context.t('hire')}/>
                     </div>
                 </div>
             );

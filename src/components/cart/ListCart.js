@@ -24,6 +24,7 @@ class ListCart extends React.Component {
     * Else list all the items
     */
     const { cartItems , quantityItem } = this.props;
+    // console.log(cartItems)
     if(Object.keys(cartItems.items).length > 0){
       const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity); }, 0)
       let table = cartItems.items.map((item)=>{

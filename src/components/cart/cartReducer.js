@@ -1,9 +1,9 @@
 import {
     SET_ITEM,
-    // QUANTITY_ITEM,
     GET_ITEMS,
     DEL_ITEM,
-    SET_QUANTITY
+    SET_QUANTITY,
+    SET_LOCALSTORAGE
 } from './cartActions';
 
 const initialState = {
@@ -55,26 +55,15 @@ export default function cart(state = initialState, action) {
                 loading: true,
                 error: null
             };
-        // case QUANTITY_ITEM:
-        //     state.items.filter((item)=>{
-        //         if(item.id == action.item.id){
-        //           if(item.quantity_item === 1){
-        //             item.quantity = item.quantity + item.quantity_item;
-        //           }else{
-        //             if(item.quantity > 1){
-        //               item.quantity = item.quantity + item.quantity_item;
-        //             }
-        //           }
-        //         }
-        //     })
-        //     return {
-        //         ...state,
-        //         items : state.items,
-        //         loading: true,
-        //         error: null
-        //     };
         case GET_ITEMS:
             return state;
+        case SET_LOCALSTORAGE:
+            return {
+                ...state,
+                items : action.currentStore.items,
+                loading: action.currentStore.loading,
+                error: action.currentStore.error
+            }
         default:
             return state;
     }
