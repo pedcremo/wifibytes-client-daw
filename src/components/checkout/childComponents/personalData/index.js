@@ -2,11 +2,49 @@
 import React from 'react';
 import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
-import LogIn from "../../../login/loginComponent";
-import Register from "../../../login/registerComponent";
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../../../login/signIn";
+import PortabilidadForm from "./portabilidadForm";
+import { connect } from "react-redux";
+import {
+    getContactDataForm
+} from "../../../../actions/personalDataFormActions";
+import {Agent} from '../../agent';
+import subitems_library from "../../libraries/subitems_based_library.json";
 
+let mockCompanies=["orange", "vodafone", "jaxxtel", "yoigo", "pepephone"]
+let serviciosContratados = [654654654, 987654321, 852741963, 14789652, 951159753]
+
+let items = [
+    {
+        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
+    },
+    {
+        id: 5,
+        tarifa: [
+            {
+                id: 4
+            },
+            {
+                id: 5
+            }
+        ]
+    },
+    {
+        id: 6,
+        tarifa: [
+            {
+                id: 2
+            },
+            {
+                id: 4
+            },
+            {
+                id: 2
+            }
+        ]
+    }
+]
 /**
  * @class
  * Draw Login. A form to login
@@ -21,34 +59,98 @@ class Personal extends React.Component  {
             personalDataViewIsValid: false,
             styleModal: false,
             selected: false,
+            isAuth: false,
             auth: {}
         }
+        /**
+         * print Component va a userChoice y agafa quin component vol pintar el usuari
+         * login o register, o tambe que vol continuar sense login.
+         * changeIsAuth es per a cuan anem al component de login o register lo que torna es
+         * si el usuari s'ha logeat o registrat
+         */
         this.printComponent = this.printComponent.bind(this);
-        
+        this.changeIsAuth = this.changeIsAuth.bind(this);
     }
-
+    /**
+     * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
+     * posarem al changeIsAuth, si no esta logueat mostrarem el modal
+     */
     componentDidMount(){
+        this.props.dispatch(getContactDataForm());
         /**
         * Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
         AuthService.isAuth().then(value =>{
             console.log("EL usuario esta logeado", value)
+            this.changeIsAuth(true)
             this.setState({
                 auth: value
             })
-        }).catch(() => this.changeModal(true))
-    }
-    changeType(res){
-        this.setState({
-            selected : res
+        }).catch((err) => {
+            console.log("NO logueado", err)
+            this.changeModal(true)
         })
+        let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
+        console.log(tarifes);
     }
+
+
+    updateFieldPerDataForm(form_new_state){
+        console.log(form_new_state)
+        this.props.dispatch(getContactDataForm());
+        /* this.props.dispatch(updateContactDataForm("form_new_state")) */
+    }
+    /**
+     * 
+     * @param {changeIsAuth} value
+     * Cuan elegim si logear-se o registrarse anem a ixe component (login | register)
+     * i cuan tornem ho recibim açi i cambiem el estat de isAuth que ens diu si esta o no
+     * logeat i amaguem el modal per a que pugam omplir el formulari
+     */
+    changeIsAuth(value){
+        console.log(value)
+        if (value == true){
+            console.log("Nos ha vuelto al padre todo poderoso");
+            this.setState({
+                isAuth : value
+            })
+            setTimeout(()=>{this.changeModal(false) }, 1000);
+        }else{
+            console.log("Error, el usuario no se ha logeado/registrado")
+        }
+    }
+
+    /**
+     * 
+     * @param {changeModal} value
+     * Ens permitix cambiar el estat del modal, true se pinta i en false s'amaga 
+     */
     changeModal(value){
         this.setState({
             styleModal : value
         })
     }
+    /**
+     * 
+     * @param {changeType} res
+     * Res es el valor de quin componen te que pintarse si login o register
+     * this.state.selected indica quin component te que pintar-se 
+     */
+    changeType(res){
+        this.setState({
+            selected : res
+        })
+    }
+    /**
+     * 
+     * @param {printComponent} value
+     * Lo que fa es recollir del component userChoice que ha elegit el usuari,
+     * despres va al ${changeType} y li asigna el valor de register o login i de esta
+     * forma pintar uno o altre, si el valor que torna es none significa que vol
+     * continuar sense logejarse ni registrarse i el modal se tanca per a rellenar
+     * els formularis de PersonalDataForm
+     */
     printComponent(value){
         switch(value){
             case "login":
@@ -60,24 +162,28 @@ class Personal extends React.Component  {
             case "none":
                 this.changeModal(false)
             break;
-            // default:
-            //     return <UserChoice choice={this.printComponent} />
-            // break;
         }
         this.render()
     }
     
     render() {
+        console.log(this.props)
         return(
             <div>
-                <div>
-                    <PersonalDataForm dataUser={this.state.auth}/>
-                </div>
+                <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
+                {<div className="grid-data-form">
+                    {
+                        serviciosContratados.map((item, i) => {
+                            return <PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>
+                        })
+                    }     
+                </div> }
+
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">
                     <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
-                        {this.state.selected == "login" ? <SignIn type="login"/> :
-                         this.state.selected == "register" ? <SignIn type="register"/> :
+                        {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth}/> :
+                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth}/> :
                          this.state.selected == "none" ? this.printComponent("none") :
                          <UserChoice choice={this.printComponent}/> }
                     </div>
@@ -86,7 +192,13 @@ class Personal extends React.Component  {
         )
     }
 }
-export default Personal;
-// {this.printComponent()}
-//BOTO TANCAR MODAL
-// <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
+
+
+const mapStateToProps = state => ({    
+    fields: state.personalDataForm.fields,
+    loaded: state.personalDataForm.loaded,
+    error: state.personalDataForm.error
+});
+
+
+export default connect(mapStateToProps)(Personal);
