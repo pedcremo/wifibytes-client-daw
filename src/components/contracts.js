@@ -66,9 +66,9 @@ class Contracts extends React.Component {
             year: new Date().getFullYear()
         }
         if(datosContracts.length > 0){
-            let servicios1 = ['fibra','movil','tv'];
-            let servicios2 = ['fibra','movil'];
-            let servicios3 = ['fibra'];
+            let servicios1 = [ 1, 2, 3 ];
+            let servicios2 = [ 1, 2 ];
+            let servicios3 = [ 1 ];
 
             let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
             const datosTexts = datosContracts.filter((itemText) => {

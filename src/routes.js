@@ -10,7 +10,6 @@ import Cookies from "./components/cookies";
 import Rates from "./components/rates";
 import Contacte from "./components/contacte";
 import SingIn from './components/login/signIn';
-import Contracts from './components/contracts';
 
 /**
  * <Route /> is used to declaratively map routes to your application's component hierarchy. 
@@ -28,7 +27,6 @@ const AppRoutes = () =>
             <Route exact path="/rates" render={() => <Rates />} />
             <Route exact path="/login" render={() => <SingIn />} />
             <Route exact path="/register" render={() => <SingIn />} />
-            <Route exact path="/contracts" render={() => <Contracts />} />
        </Switch>
     );
 
