@@ -5,5 +5,5 @@ import valencian from "./valencia.json";
 export const translations = {
     "en": english,
     "es": spanish, 
-    "ca": valencian
+    "va": valencian
   }

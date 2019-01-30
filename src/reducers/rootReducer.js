@@ -7,6 +7,9 @@ import datosArticulos from "./datosArticulosReducer";
 import datosRates from "./datosRatesReducer";
 import {i18nState} from "redux-i18n";
 import payment from "./paymentReducer";
+import currentCheckout from "./checkoutReducer";
+import personalDataForm from "./personalDataFormReducer";
+
 
 export default combineReducers({
     datosHome,
@@ -16,5 +19,7 @@ export default combineReducers({
     currentRateDetails,
     datosArticulos,
     i18nState,
-    payment
+    payment,
+    currentCheckout,
+    personalDataForm
 });

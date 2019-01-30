@@ -91,7 +91,7 @@ let Utils={
     */
     get: function (url,filterFunction=null) {
         /**Mocking /formaspago because is not ready in backend */
-        if (url==='/formaspago') 
+        if (url==='/formaspago')
             return filterFunction(PaymentMethod)
 
         // Return a new promise.

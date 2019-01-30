@@ -1,6 +1,6 @@
 import React from 'react';
-import {Utils} from "../../../../utils";
-import {RegExps} from '../../../../regExps';
+import {Utils} from "../../../../../utils";
+import {RegExps} from '../../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
   props=props.props;

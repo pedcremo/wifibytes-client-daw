@@ -83,6 +83,7 @@ class Login extends React.Component  {
             password:this.state.password
         }
         AuthService.login(loginSubmit).then((res)=>{
+            console.log(res)
             console.log(res.token ? "Succes" : "Error")
         }).catch((err)=>{
             console.log(err)

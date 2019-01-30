@@ -1,0 +1,13 @@
+{
+    "fieldsToValidate":[
+        {
+            "field": "personal_data",
+            "regexp": "^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$"
+        },
+        {
+            "field": "contract",
+            "regexp": "^([0-9]{1,})$"
+        }
+    ],
+    "requiredFields":["confirm"]
+}

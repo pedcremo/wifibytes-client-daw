@@ -79,5 +79,8 @@
     "payment-address-debit": "Direcció",
     "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
     "payment-iban-debit": "IBAN",
-    "payment-iban2-debit": "ES9820385778983000760236"
+    "payment-iban2-debit": "ES9820385778983000760236",
+    "checkout-personal-data": "Dades Personals",
+    "checkout-contract": "Contracte",
+    "checkout-confirm": "Confirmar Comanda"
 }
