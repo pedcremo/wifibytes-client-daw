@@ -146,13 +146,13 @@ class Personal extends React.Component  {
         return(
             <div>
                 <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
-                <div className="grid-data-form">
+                {<div className="grid-data-form">
                     {
                         serviciosContratados.map((item, i) => {
                             return <PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>
                         })
                     }     
-                </div>
+                </div> }
 
                 <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
                     <div className="modal-content">

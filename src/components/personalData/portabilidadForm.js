@@ -62,7 +62,7 @@ class PortabilidadForm extends React.Component  {
         return new Promise((resolve, reject) =>
             resolve(this.setState({
                 
-                    value: value,
+                    [name]: value,
                     key: this.props.id
                 
             }))
@@ -97,9 +97,7 @@ class PortabilidadForm extends React.Component  {
                             <select
                             className = "form-control form-control-lg mio" 
                             onChange={this.handleInputChange} 
-                            name="company"
-                            /* value={!this.state.datos[this.props.id]?"":(this.state.datos[this.props.id]["operador"])} */
-                            >
+                            name="company">
                                 <option value=""></option>         
                                 {
                                     this.companies.map((item, i) => {
@@ -108,18 +106,15 @@ class PortabilidadForm extends React.Component  {
                                 }                   
                             </select>
                             
-                            {/* <span className="text-danger">{!this.state.datos.operador.error? "":this.state.datos.operador.error}</span> */}
                         </div>
 
-                       {/*  <div>
+                       <div>
                             <input
                             className="form-control form-control-lg mio"
                             placeholder="Numeros de la sim"
                             name = "sim"
                             type = "number"
-                            value={this.state.datos.sim.value}
                             onChange={this.handleInputChange} />
-                            <span className="text-danger">{!this.state.datos.sim.error? "":this.state.datos.sim.error}</span>
                         </div>
 
                         <div>
@@ -128,11 +123,8 @@ class PortabilidadForm extends React.Component  {
                             placeholder="movil"
                             name = "phone"
                             type = "number"
-                            value={this.state.datos.phone.value}
                             onChange={this.handleInputChange} />
-                            <span className="text-danger">{!this.state.datos.phone.error? "":this.state.datos.phone.error}</span>
-                        </div> */}
-
+                        </div> 
                     </div>
                 </form>)
         }else{

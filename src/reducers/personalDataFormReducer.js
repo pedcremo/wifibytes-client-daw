@@ -60,14 +60,24 @@ export default function personalDataFormReducer(state = initialState, action) {
             let exist = state.fields["datosProductos"].filter((item)=>{return item.key == action.payload.key})
             console.log("exist, state.fields",exist, state.fields)
             
-            if (exist.length == 0) {                
-                state.fields["datosProductos"].push(action.payload)
+            if (exist.length == 0) {
+                console.log("IF -----------exist.length == 0")
+                let obj= {
+                    key: action.payload.key,
+                    value: action.payload,
+                }
+                state.fields["datosProductos"].push(obj)
             } else {
+                console.log("ELSE-----------  exist.length == 0", action.payload, state)
                 state.fields["datosProductos"].filter((item) => {
-                    if (item.id == action.payload.id) {
-                        item = action.payload;
+                    if (item.key == action.payload.key) {
+                        /* 
+                        item.key = action.payload.key;
+                        item.value = action.payload.value; */
+                        item.value=action.payload
                     }
                 })
+                console.log("------------", action.payload, state)
             }
             
             return {
