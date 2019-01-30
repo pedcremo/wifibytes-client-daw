@@ -9,7 +9,7 @@ import currentCheckout from "./checkoutReducer";
 import datosContracts from "./datosContractsReducer";
 import {i18nState} from "redux-i18n"
 import personalDataForm from "./personalDataFormReducer";
-
+import payment from "./paymentReducer";
 
 export default combineReducers({
     datosHome,
@@ -21,5 +21,6 @@ export default combineReducers({
     currentCheckout,
     personalDataForm,
     datosContracts,
-    i18nState
+    i18nState,
+    payment
 });
