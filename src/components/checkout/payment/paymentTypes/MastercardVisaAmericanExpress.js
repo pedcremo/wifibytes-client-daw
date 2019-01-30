@@ -22,7 +22,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
     const expirationYear = props.expirationYear;
     const cvv = props.cvv;
     return (
-        <form onSubmit={props.submitForm}>
+        <form onSubmit={props.submitForm()}>
           <fieldset>
             <fieldset className="form-group">
               <label>{Utils.translate("payment-owner")}</label>

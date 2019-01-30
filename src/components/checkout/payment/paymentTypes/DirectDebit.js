@@ -56,7 +56,7 @@ export default function DirectDebitForm(props) {
     const address = props.address;
 
     return (
-        <form onSubmit={props.submitForm}>
+        <form onSubmit={props.submitForm()}>
           <fieldset>
             <fieldset className="form-group">
               <label>{Utils.translate("payment-owner-debit")}</label>

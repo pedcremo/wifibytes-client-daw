@@ -2,7 +2,9 @@ import {
     GET_PAYMENTS_BEGIN,
     GET_PAYMENTS_SUCCESS,
     GET_PAYMENTS_FAILURE,
-    PAYMENT_SUBMIT,
+    PAYMENT_SUBMIT_BEGIN,
+    PAYMENT_SUBMIT_SUCCESS,
+    PAYMENT_SUBMIT_FAILURE,
     FORM_UPDATE,
     SET_EXPIRATION_DATE
 } from '../actions/checkoutActions';
@@ -55,11 +57,24 @@ export default function checkoutReducer(state = initialState, action) {
                 error: action.payload,
                 items: []
             };
-        case PAYMENT_SUBMIT:
+        case PAYMENT_SUBMIT_BEGIN:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+        case PAYMENT_SUBMIT_SUCCESS:
             return {
                 ...state,
                 inProgress: false,
                 errors: action.error ? action.payload.errors : null
+            };
+        case PAYMENT_SUBMIT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+                items: []
             };
         case FORM_UPDATE:
             return { ...state, [action.key]: action.value};

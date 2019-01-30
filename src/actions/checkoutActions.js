@@ -1,7 +1,9 @@
 import {Utils} from "../utils";
 
 
-export const PAYMENT_SUBMIT = 'PAYMENT_SUBMIT';
+export const PAYMENT_SUBMIT_BEGIN = 'PAYMENT_SUBMIT_BEGIN';
+export const PAYMENT_SUBMIT_SUCCESS = 'PAYMENT_SUBMIT_SUCCESS';
+export const PAYMENT_SUBMIT_FAILURE = 'PAYMENT_SUBMIT_FAILURE';
 export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
@@ -41,28 +43,43 @@ export function paymentUpdate(key, value) {
     };
 } 
 
-// export function paymentsubmit(payload) {
-//     return dispatch => {
-//         dispatch({
-//             type: PAYMENT_SUBMIT, 
-//             payload
-//         });
-//     };
-// }
+export function paymentsubmit(payload) {
+    return dispatch => {
+        try {
+            dispatch(paymentSubmitBegin());
+            return Utils.post();
+        } catch (e){
+            dispatch(paymentSubmitFailure(e));
+        }
+    };
+}
 
+/* SUBMIT TYPES ACTIONS */
+    export const paymentSubmitBegin = () => ({
+        type: PAYMENT_SUBMIT_SUCCESS
+    });
+
+    export const paymentSubmitSuccess = formasdepago => ({
+        type: GET_PAYMENTS_SUCCESS,
+        payload: { formasdepago }
+    });
+
+    export const paymentSubmitFailure = error => ({
+        type: PAYMENT_SUBMIT_FAILURE,
+        payload: { error }
+    });
 
 /* GET PAYMENTS TYPES ACTIONS */
+    export const getPaymentsBegin = () => ({
+        type: PAYMENT_SUBMIT_BEGIN
+    });
 
-export const getPaymentsBegin = () => ({
-    type: GET_PAYMENTS_BEGIN
-});
+    export const getPaymentsSuccess = formasdepago => ({
+        type: GET_PAYMENTS_SUCCESS,
+        payload: { formasdepago }
+    });
 
-export const getPaymentsSuccess = formasdepago => ({
-    type: GET_PAYMENTS_SUCCESS,
-    payload: { formasdepago }
-});
-
-export const getPaymentsFailure = error => ({
-    type: GET_PAYMENTS_FAILURE,
-    payload: { error }
-});
+    export const getPaymentsFailure = error => ({
+        type: GET_PAYMENTS_FAILURE,
+        payload: { error }
+    });
