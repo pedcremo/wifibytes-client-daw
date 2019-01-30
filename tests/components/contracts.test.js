@@ -1,4 +1,4 @@
-import Contracts from '../../src/components/contracts';
+import Contracts from '../../src/components/contracts/contracts';
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter  from "enzyme-adapter-react-16";

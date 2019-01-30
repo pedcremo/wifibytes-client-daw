@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { sendContractsAction, getDatosContracts } from "../actions/datosContractsAction";
+import { sendContractsAction, getDatosContracts } from "../../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
 
 

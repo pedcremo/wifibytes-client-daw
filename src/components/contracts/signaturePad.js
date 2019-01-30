@@ -1,8 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
 import { connect } from "react-redux";
-import SignaturePad from 'react-signature-pad-wrapper';
-import { throws } from 'assert';
 
 /**
  * @class
