@@ -76,7 +76,7 @@ export default function checkoutReducer(state = initialState, action) {
                 error: action.payload,
                 items: []
             };
-        case FORM_UPDATE:
+        case FORM_UPDATE:    
             return { ...state, [action.key]: action.value};
         default:
             return {...state};
