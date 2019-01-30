@@ -1,0 +1,1 @@
+export default stripeApiKey = "pk_test_MNfK7djOIZNyWbIp4BlJCgJi";
