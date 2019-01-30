@@ -7,7 +7,7 @@ import {
     PAYMENT_SUBMIT_FAILURE,
     FORM_UPDATE,
     SET_EXPIRATION_DATE
-} from '../actions/checkoutActions';
+} from '../actions/paymentActions';
 
 const initialState = {
     paymentStepIsValid:false,

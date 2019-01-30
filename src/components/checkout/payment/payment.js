@@ -4,12 +4,12 @@ import {
   paymentUpdate,
   getPaymentTypes,
   setExpirationDate
-} from '../../../actions/checkoutActions';
+} from '../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
 import PaymentForm from './paymentTypes/paymentForm';
-const mapStateToProps = state => ({ ...state.checkout });
+const mapStateToProps = state => ({ ...state.payment });
 
 class Payment extends React.Component {
   constructor() {
