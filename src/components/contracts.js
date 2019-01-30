@@ -32,13 +32,11 @@ class Contracts extends React.Component {
 
     /** Change the state to show or hide the modal of signing*/
     stateModal(state) {
-        console.log(state)
         this.setState({ showModal: state });
     }
 
     /**Recive sign from the child */
     reciveSign(sign) {
-        console.log(sign);
         this.setState({ 
             sign: sign,
             showModal: false,

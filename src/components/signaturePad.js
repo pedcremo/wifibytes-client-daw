@@ -95,11 +95,13 @@ class SignPad extends React.Component {
         return (
             <section className="section">
                 <div className="container">
-                    <div id="sketch">
+                    <div id="sketch" className="mb-4">
                         <canvas id="paint" style={style}></canvas>
                     </div>
-                    <button onClick={() => this.handleClear()}>Clear</button>
-                    <button onClick={() => this.handleSave()}>Save</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>Clear</button>
+                        <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>Save</button>
+                    </div>
                 </div>
             </section>
         )

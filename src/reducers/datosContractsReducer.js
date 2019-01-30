@@ -50,7 +50,6 @@ import {
         };
 
       case SEND_CONTRACT:
-        console.log(action.payload.contract);
         return {
           ...state,
           contractSigned: action.payload.html
