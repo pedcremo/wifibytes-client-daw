@@ -16,23 +16,24 @@ class Contracts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          showComponent: false,
-          sign: "",
-          next: false
+            showModal: false,
+            sign: "",
+            next: false
         };
-        this._onButtonClick = this._onButtonClick.bind(this);
         this.reciveSign = this.reciveSign.bind(this);
         this.sendContract = this.sendContract.bind(this);
+        this.stateModal = this.stateModal.bind(this);
     }
 
     componentDidMount(){
-        //this.props.dispatch(getDatosContracts());
+        this.props.dispatch(getDatosContracts());
         //this.props.dispatch(getContactDataForm());
     }
 
-    /**Accept terms and conditions before sign the contracts  */
-    _onButtonClick() {
-        this.setState({ showComponent: true });
+    /** Change the state to show or hide the modal of signing*/
+    stateModal(state) {
+        console.log(state)
+        this.setState({ showModal: state });
     }
 
     /**Recive sign from the child */
@@ -40,6 +41,7 @@ class Contracts extends React.Component {
         console.log(sign);
         this.setState({ 
             sign: sign,
+            showModal: false,
             next: true
         });
     }
@@ -65,12 +67,12 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
-        //if(datosContracts.length > 0){
+        if(datosContracts.length > 0){
             let servicios1 = ['fibra','movil','tv'];
             let servicios2 = ['fibra','movil'];
             let servicios3 = ['fibra'];
 
-            let re = new RegExp("("+servicios3.join('|')+"|autorizacion)","i");
+            let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
             const datosTexts = datosContracts.filter((itemText) => {
                 return itemText.key.match(re);
             }).map((item) => {
@@ -97,31 +99,40 @@ class Contracts extends React.Component {
                                     <p dangerouslySetInnerHTML={{ __html: contractsHTML}}></p>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this._onButtonClick}>Acept</button>
+                                    { 
+                                        !this.state.next?
+                                            <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>Accept and Sign</button>
+                                        :
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.nextStep}>Next</button>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     {
-                        this.state.showComponent?
-                            <SignPad onReciveSign={this.reciveSign} /> 
-                        :
-                            null
-                    }
-                    {
-                        this.state.next?
-                            <button onClick={ () => this.sendContract(contractsHTML) }>Send</button>
-                        :
-                            null
+                        this.state.showModal ?
+                            <div id="myModal" className="modal_manual modal_manual_con">
+                                <div className="modal_content_manual modal_content_manual_con">
+                                    <div className="modal-header mb-4">
+                                        <h5 className="modal-title" id="exampleModalLong">Firmar Contratos</h5>
+                                        <button type="button" className="close" aria-label="Close" onClick={() => this.stateModal(false)}>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <SignPad onReciveSign={this.reciveSign} /> 
+                                </div>
+                            </div>
+                        :   ''
                     }
                 </div>
     
             );
-        /*}else{
+        }else{
             return(
                 <span>LOADING!</span>
             );
-        }*/
+        }
 
     }
 }
