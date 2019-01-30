@@ -5,6 +5,7 @@ import {
     updateContactDataForm
 } from "../../actions/personalDataFormActions";
 import {validator}  from "./validation";
+import typeCliente from './typeCliente'
 
 /**
  * @class
@@ -21,7 +22,8 @@ class PersonalForm extends React.Component  {
             phone: conten,
             address:conten,
             zip: conten,
-            city: conten
+            city: conten,
+            tipcli: conten
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -48,8 +50,6 @@ class PersonalForm extends React.Component  {
                 })
             }
     }
-
-
 
     /** 
      * This method is listening changes of each form element 
@@ -90,9 +90,6 @@ class PersonalForm extends React.Component  {
         )
         .then(() => this.props.updateField(updateContactDataForm(this.state)))
     }
-
-
-
 
     render() {
         return (
@@ -137,11 +134,13 @@ class PersonalForm extends React.Component  {
 
                     <br />
                     <div>
+                        <h4>Introduzca numero de movil a traspasar: </h4>
                         <input
                         className="form-control form-control-lg"
                         placeholder="Phone"
-                        name = "phone"
-                        type="number"
+                        name="phone"
+                        type="tel"
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                         value={this.state.phone.value}
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.phone.error? "":this.state.phone.error}</span>
@@ -175,7 +174,7 @@ class PersonalForm extends React.Component  {
 
                     <br />
                     <div>
-                        <input                        
+                        <input                      
                         className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
@@ -183,6 +182,24 @@ class PersonalForm extends React.Component  {
                         value={this.state.city.value}
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
+                    </div>
+                    <br />
+                    <div>
+                        <h4>Introduzca el tipo de cliente: </h4>
+                        <select value={this.state.tipcli.value} onChange={this.handleInputChange} className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
+                            <option value="0">Particular</option>
+                            <option value="5">Autonomo</option>
+                            <option value="1">Empresa</option>
+                            <option value="2">Extranjero</option>
+                        </select>
+                        <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
+                    </div>
+                    <br />
+                    <div>
+                        {this.state.tipcli == "0" ? <typeCliente type={0}/> : 
+                         this.state.tipcli == "1" ? <typeCliente type={1}/> :
+                         this.state.tipcli == "2" ? <typeCliente type={2}/> :
+                         <typeCliente type={5}/> }
                     </div>
                 </div >
             </form>

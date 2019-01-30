@@ -10,6 +10,7 @@
     grid-template-columns: 1fr;
     grid-gap: 2rem;
     padding: 20px;
+    height: 100%;
 }
 
 .grid-data-form__fields {
@@ -167,7 +168,6 @@ nav {
 }
 
 .login {
-    background-image: url("image/fondo-login.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -415,7 +415,7 @@ nav {
 
 /* The Modal (background) */
 
-.modal {
+.modal_manual {
     display: block;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -428,9 +428,12 @@ nav {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
 
-  /* Modal Content/Box */
-  .modal-content {
+  .login_background{
     background-image: url("image/fondo-login.jpg");
+  }
+
+  /* Modal Content/Box */
+  .modal_content_manual {
     background-color: #fefefe;
     margin: 15% auto;
     /* 15% from the top and centered */
@@ -463,4 +466,9 @@ nav {
       display:  grid;
       grid-column-gap: 20px;
       grid-template-columns: auto auto auto;
+  }
+
+  .sim{
+      margin-left: 10px;
+      display: inline;
   }

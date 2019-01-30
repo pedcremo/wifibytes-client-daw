@@ -1,8 +1,8 @@
 {
-    "name": "calculator",
+    "name": "Wifibytes",
     "version": "1.0.0",
-    "description": "calculator machine",
-    "main": "calculator.js",
+    "description": "Wifibytes web",
+    "main": "index.js",
     "scripts": {
         "start": "node ./tools/startMessage.js && node ./src/server.js",
         "poststart": "node ./tools/startMessage.js",
@@ -11,7 +11,7 @@
         "doc": "jsdoc -c jsdoc.json README.md src/*",
         "test": "jest --verbose -u --env=jsdom"
     },
-    "author": "",
+    "author": "2_DAW 2018/2019 & Pere crespo",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.1.2",

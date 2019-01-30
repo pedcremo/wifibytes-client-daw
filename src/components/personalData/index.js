@@ -140,11 +140,10 @@ class Personal extends React.Component  {
     render() {
         return(
             <div>
+                <PersonalDataForm sim={true} dataUser={this.props.infoContactForm} updateField={this.props.dispatch}/>
 
-                <PersonalDataForm dataUser={this.props.infoContactForm} updateField={this.props.dispatch}/>
-
-                <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
-                    <div className="modal-content">
+                <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
+                    <div className="modal_content_manual login_background">
                     <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
                         {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth}/> :
                          this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth}/> :
