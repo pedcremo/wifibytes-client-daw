@@ -1,41 +1,3 @@
-/**
- * TODO
- * getSteps
- * verify state that will be true or false
- * paymentMethods can be:
- * - mastercard
- * - visa
- * - cuenta bancaria
- * 
- * Si hay un servicio cuenta bancaria, sino mastercard (by default)
- * 
- * Resumen de la compra
- * 
- * ReduxForms / SimpleForms
- * 
- * Importes de productos, servicios...
- * if(this.props.existsServices){
- *  methodPayment = cuenta bancaria;
- * }else{
- *  methodPayment = mastercard;
- * } bucle infinito, ya veremos cómo solucionarlo
- * 
- * Campos del formulario:
- * paymentMethods can be:
- * - mastercard
- * - visa
- * - cuenta bancaria
- * 
- * cvv
- * 20+ años de año de vencimiento
- * 
- * 
- */
-/**
- * Stripe apis
- * public key:pk_test_MNfK7djOIZNyWbIp4BlJCgJi
- * secre key : sk_test_JDWG4vGA3yZ7e0BAvTJkh82N
- */
 import React from 'react'
 import { connect } from "react-redux";
 import {
@@ -46,6 +8,7 @@ import {
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
+import PaymentForm from './paymentTypes/paymentForm';
 const mapStateToProps = state => ({ ...state.checkout });
 
 class Payment extends React.Component {
@@ -74,45 +37,49 @@ class Payment extends React.Component {
   }
 
   paymentForm(){
+    let forms = [];
     switch(this.props.paymentMethod){
       case 1:
-        return <MastercardVisaAmericanExpressForm 
-        submitForm={this.submitForm} 
-        changeCardOwner={this.changeCardOwner}
-        changeCardNumber={this.changeCardNumber}
-        changeExpirationMonth={this.changeExpirationMonth}
-        changeExpirationYear={this.changeExpirationYear}
-        changeCvv={this.changeCvv}
-        cardOwner={this.props.cardOwner}
-        cardNumber={this.props.cardNumber}
-        expirationYear={this.props.expirationYear}
-        expirationMonth={this.props.expirationMonth}
-        cvv={this.props.cvv}/>
+        forms.push(<MastercardVisaAmericanExpressForm 
+          submitForm={this.submitForm} 
+          changeCardOwner={this.changeCardOwner}
+          changeCardNumber={this.changeCardNumber}
+          changeExpirationMonth={this.changeExpirationMonth}
+          changeExpirationYear={this.changeExpirationYear}
+          changeCvv={this.changeCvv}
+          cardOwner={this.props.cardOwner}
+          cardNumber={this.props.cardNumber}
+          expirationYear={this.props.expirationYear}
+          expirationMonth={this.props.expirationMonth}
+          cvv={this.props.cvv}/>);
+        return forms;
       case 3:
-        return <DirectDebitForm 
+      forms.push(<DirectDebitForm 
         submitForm={this.submitForm}
         changeDebitOwner={this.changeDebitOwner}
         changeAddress={this.changeAddress}
         changeIban={this.changeIban}
         debitOwner={this.props.debitOwner}
         iban={this.props.iban}
-        address={this.props.address}/>
+        address={this.props.address}/>);
+        return forms;
       default:
         console.error('CANNOT GET FROM SERVER, PAYMENT METHOD');
-        return ;
+        return forms;
     }
   }
 
   render() {
-
+    const form = this.paymentForm();
     return (
       <div className="payment-container">
         {<PaymentOptions
         onChange={this.changePaymentMethod}
         paymentOptions={this.props.paymentMethods}
         paymentMethod = {this.props.paymentMethod} />}
-
-        {this.paymentForm()}
+        {<PaymentForm 
+        submitForm={this.submitForm}
+        forms={form}/>}
       </div>
   ); 
 

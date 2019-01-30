@@ -3,6 +3,7 @@ import {Utils} from "../../../../utils";
 import {RegExps} from '../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
+  props=props.props;
   function disabled(){
     return !validateCvv() || !validateCardOwner() || !validateExpirationDate();
   }
@@ -22,8 +23,8 @@ export default function MastercardVisaAmericanExpressForm(props) {
     const expirationYear = props.expirationYear;
     const cvv = props.cvv;
     return (
-        <form onSubmit={props.submitForm()}>
           <fieldset>
+            <h1>{"Mastercard/Visa/American Express"}</h1>
             <fieldset className="form-group">
               <label>{Utils.translate("payment-owner")}</label>
               <input
@@ -84,12 +85,5 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 value={cvv}
                 onChange={props.changeCvv} />
             </fieldset>
-            <button
-              className="btn btn-lg btn-primary pull-xs-right"
-              type="submit"
-              disabled={disabled()}>
-              Comprar
-            </button>
-          </fieldset>
-        </form>);
+          </fieldset>);
   }

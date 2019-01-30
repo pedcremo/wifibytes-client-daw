@@ -3,7 +3,7 @@ import {Utils} from "../../../../utils";
 import {RegExps} from '../../../../regExps';
 
 export default function DirectDebitForm(props) {
-
+  props=props.props;
   function validateDirectDebit(){ 
   /**
   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
@@ -56,8 +56,8 @@ export default function DirectDebitForm(props) {
     const address = props.address;
 
     return (
-        <form onSubmit={props.submitForm()}>
           <fieldset>
+            <h1>{"Domiciliación bancaria"}</h1>
             <fieldset className="form-group">
               <label>{Utils.translate("payment-owner-debit")}</label>
               <input
@@ -86,12 +86,5 @@ export default function DirectDebitForm(props) {
                 value={iban}
                 onChange={props.changeIban} />
             </fieldset>
-            <button
-              className="btn btn-lg btn-primary pull-xs-right"
-              type="submit"
-              disabled={!validateDirectDebit()}>
-              Comprar
-            </button>
-          </fieldset>
-        </form>);
+          </fieldset>);
   }
