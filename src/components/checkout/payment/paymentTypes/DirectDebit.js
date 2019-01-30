@@ -54,34 +54,33 @@ export default function DirectDebitForm(props) {
     const debitOwner = props.debitOwner;
     const iban = props.iban;
     const address = props.address;
-
     return (
           <fieldset>
-            <h1>{"Domiciliación bancaria"}</h1>
+            <h1>{props.translate.t("payment-method0")}</h1>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-owner-debit")}</label>
+              <label>{props.translate.t("payment-owner-debit")}</label>
               <input
                 className="form-control form-control-lg"
                 type="text"
-                placeholder={Utils.translate("payment-owner-debit")}
+                placeholder={props.translate.t("payment-owner-debit")}
                 value={debitOwner}
                 onChange={props.changeDebitOwner} />
             </fieldset>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-address-debit")}</label>
+              <label>{props.translate.t("payment-address-debit")}</label>
               <input
                 className="form-control form-control-lg"
                 type="text"
-                placeholder={Utils.translate("payment-address2-debit")}
+                placeholder={props.translate.t("payment-address2-debit")}
                 value={address}
                 onChange={props.changeAddress} />
             </fieldset>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-iban-debit")}</label>
+              <label>{props.translate.t("payment-iban-debit")}</label>
               <input
                 className="form-control form-control-lg"
                 type="text"
-                placeholder={Utils.translate("payment-iban2-debit")}
+                placeholder={props.translate.t("payment-iban2-debit")}
                 pattern="^ES\d{22}$"
                 value={iban}
                 onChange={props.changeIban} />

@@ -1,9 +1,7 @@
 import {Utils} from "../utils";
 
 
-export const PAYMENT_SUBMIT_BEGIN = 'PAYMENT_SUBMIT_BEGIN';
-export const PAYMENT_SUBMIT_SUCCESS = 'PAYMENT_SUBMIT_SUCCESS';
-export const PAYMENT_SUBMIT_FAILURE = 'PAYMENT_SUBMIT_FAILURE';
+export const PAYMENT_SUBMIT = 'PAYMENT_SUBMIT';
 export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
@@ -43,15 +41,31 @@ export function paymentUpdate(key, value) {
     };
 } 
 
-export function paymentsubmit(payload) {
+export function paymentsubmit(data) {
+    let payment = {
+        cardOwner:data.cardNumber,
+        cardNumber:data.cardNumber,
+        expirationMonth:data.expirationMonth,
+        expirationYear:data.expirationYear,
+        cvv:data.cvv,
+        iban:data.iban,
+        address:data.address,
+        debitOwner:data.debitOwner
+    }
     return dispatch => {
-        try {
-            dispatch(paymentSubmitBegin());
-            return Utils.post();
-        } catch (e){
-            dispatch(paymentSubmitFailure(e));
-        }
-    };
+        return dispatch({
+            type: PAYMENT_SUBMIT, 
+            value: payment
+        });
+    }
+    // return dispatch => {
+    //     try {
+    //         dispatch(paymentSubmitBegin());
+    //         //return Utils.post();
+    //     } catch (e){
+    //         dispatch(paymentSubmitFailure(e));
+    //     }
+    // };
 }
 
 /* SUBMIT TYPES ACTIONS */

@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import {
   paymentUpdate,
   getPaymentTypes,
-  setExpirationDate
+  setExpirationDate,
+  paymentsubmit
 } from '../../../actions/checkoutActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
 import PaymentForm from './paymentTypes/paymentForm';
+import {PropTypes} from 'prop-types';
+
 const mapStateToProps = state => ({ ...state.checkout });
 
 class Payment extends React.Component {
@@ -24,9 +27,9 @@ class Payment extends React.Component {
     this.changeAddress = ev => this.props.dispatch(paymentUpdate("address", ev.target.value));
     this.changeDebitOwner = ev => this.props.dispatch(paymentUpdate("debitOwner", ev.target.value));
     this.submitForm = () => ev => {
-      //ev.preventDefault();
-      alert("Submit button works!");
-      //this.props.dispatch(paymentsubmit("submitPayment"), ev.target.value);
+      ev.preventDefault();
+      // alert("Submit button works!");
+      this.props.dispatch(paymentsubmit(this.props));
     }
   }
   
@@ -40,7 +43,8 @@ class Payment extends React.Component {
     let forms = [];
     switch(this.props.paymentMethod){
       case 1:
-        forms.push(<MastercardVisaAmericanExpressForm 
+        forms.push(<MastercardVisaAmericanExpressForm
+          translate={this.context} 
           submitForm={this.submitForm} 
           changeCardOwner={this.changeCardOwner}
           changeCardNumber={this.changeCardNumber}
@@ -54,7 +58,8 @@ class Payment extends React.Component {
           cvv={this.props.cvv}/>);
         return forms;
       case 3:
-      forms.push(<DirectDebitForm 
+      forms.push(<DirectDebitForm
+        translate={this.context} 
         submitForm={this.submitForm}
         changeDebitOwner={this.changeDebitOwner}
         changeAddress={this.changeAddress}
@@ -84,6 +89,10 @@ class Payment extends React.Component {
   ); 
 
   }
+}
+
+Payment.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps)(Payment);

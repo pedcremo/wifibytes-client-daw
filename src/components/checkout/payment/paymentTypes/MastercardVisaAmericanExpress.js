@@ -24,27 +24,27 @@ export default function MastercardVisaAmericanExpressForm(props) {
     const cvv = props.cvv;
     return (
           <fieldset>
-            <h1>{"Mastercard/Visa/American Express"}</h1>
+            <h1>{props.translate.t("payment-method1")}</h1>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-owner")}</label>
+              <label>{props.translate.t("payment-owner")}</label>
               <input
                 className="form-control form-control-lg"
                 type="text"
-                placeholder={Utils.translate("payment-owner")}
+                placeholder={props.translate.t("payment-owner")}
                 value={cardOwner}
                 onChange={props.changeCardOwner} />
             </fieldset>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-numberCard")}</label>
+              <label>{props.translate.t("payment-numberCard")}</label>
               <input
                 className="form-control form-control-lg"
                 type="number"
-                placeholder={Utils.translate("payment-numberCard")}
+                placeholder={props.translate.t("payment-numberCard")}
                 value={cardNumber}
                 onChange={props.changeCardNumber} />
             </fieldset>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-expirationMonth")}</label>
+              <label>{props.translate.t("payment-expirationMonth")}</label>
               <select
               className="form-control form-control-lg"
               value={expirationMonth}
@@ -64,7 +64,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
               </select>
             </fieldset>
             <fieldset className="form-group">
-              <label>{Utils.translate("payment-expirationYear")}</label>
+              <label>{props.translate.t("payment-expirationYear")}</label>
               <select
               className="form-control form-control-lg"
               value={expirationYear}
@@ -77,11 +77,11 @@ export default function MastercardVisaAmericanExpressForm(props) {
               </select>
             </fieldset>
             <fieldset className="form-group">
-              <label>{Utils.translate("CVV")}</label>
+              <label>{props.translate.t("CVV")}</label>
               <input
                 className="form-control form-control-lg"
                 type="number"
-                placeholder={Utils.translate("CVV")}
+                placeholder={props.translate.t("CVV")}
                 value={cvv}
                 onChange={props.changeCvv} />
             </fieldset>
