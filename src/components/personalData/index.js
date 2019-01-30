@@ -7,8 +7,8 @@ import PortabilidadForm from "./portabilidadForm";
 import SignIn from "../login/signIn";
 import { connect } from "react-redux";
 import {
-    getContactDataForm,
-    updateContactDataForm
+    getContactDataForm
+    
 } from "../../actions/personalDataFormActions";
 
 var mockItems= [
