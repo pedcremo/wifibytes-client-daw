@@ -16,7 +16,13 @@ export function getContactDataForm() {
 }
 
 export function updateContactDataForm(newData) {
+    console.log("updateContactDataFormDatosPersonales", newData)
     return dispatch => dispatch(updateContactDataFormSuccess(newData));
+}
+
+export function updateContactDataFormServices(newData) {
+    console.log("updateContactDataFormServices-----", newData)
+    return dispatch => dispatch(updateServices(newData));
 }
 
 export function getCurrentContactDataForm() {
@@ -29,6 +35,14 @@ export const GET_CONTACT_DATA_FORM_SUCCESS = 'GET_CONTACT_DATA_FORM_SUCCESS';
 export const GET_CONTACT_DATA_FORM_FAILURE = 'GET_CONTACT_DATA_FORM_FAILURE';
 export const GET_CURRENT_CONTACT_DATA_FORM = 'GET_CURRENT_CONTACT_DATA_FORM';
 export const GET_CONTACT_DATA_FORM_UPDATE = 'GET_CONTACT_DATA_FORM_UPDATE';
+export const UPDATE_CONTACT_DATA_FORM_SERVICES = 'UPDATE_CONTACT_DATA_FORM_SERVICES';
+
+
+export const updateServices = productos => ({
+    type: UPDATE_CONTACT_DATA_FORM_SERVICES,
+    payload: productos
+    
+});
 
 
 export const updateContactDataFormSuccess = contactDataForm => ({
