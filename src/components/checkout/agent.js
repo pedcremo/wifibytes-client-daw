@@ -26,5 +26,28 @@ export const Agent = {
         return array.filter(function (el) {
             return requested.includes(el.key)
         });
+    },
+
+    arrayToQuantityObject: function (array, library){
+        if( typeof array == "object" && typeof library == "object" ){
+            let quantities = {};
+            library.forEach(function(element) {
+               quantities[element.field] = 0;
+            });
+            array.forEach(function(element) {
+                if (element.tarifa){
+                    element.tarifa.forEach(function(item) {
+                        library.filter(function (el) {
+                            let regexp = new RegExp(el.regexp);
+                            if (regexp.test(item.id))return quantities[el.field]++
+                            return;
+                        });
+                    });
+                }
+            });
+            return quantities;
+        } else
+            throw( "Error in objectsToArray method. Parameters must be objects" );
+                 
     }
 };
