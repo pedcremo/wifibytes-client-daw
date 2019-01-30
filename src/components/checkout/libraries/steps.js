@@ -18,7 +18,7 @@ let steps = [
         "active": false,
         "completed": false,
         "title": translations[currentLang]["checkout-contract"],
-        "component": <components.Payment />
+        "component": <components.Contracts />
     },
     { 
         "key": "confirm",

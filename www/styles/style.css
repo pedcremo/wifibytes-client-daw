@@ -433,7 +433,7 @@ nav {
 
 /* The Modal (background) */
 
-.modal {
+.modal_manual {
     display: block;
     position: fixed;
     /* Stay in place */
@@ -452,10 +452,13 @@ nav {
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
 }
-
+.modal_manual_con {
+    z-index: 999999999999999;
+    overflow: inherit;
+}
 /* Modal Content/Box */
 
-.modal-content {
+.modal-content_manual {
     background-image: url("image/fondo-login.jpg");
     background-color: #fefefe;
     margin: 15% auto;
@@ -466,7 +469,9 @@ nav {
     /* Could be more or less, depending on screen size */
     overflow: hidden;
 }
-
+.modal-content_manual_con {
+    background-image: none;
+}
 /* The Close Button */
 
 .close {

@@ -6,6 +6,7 @@ import currentRateDetails from "./currentRateDetailsReducer";
 import datosArticulos from "./datosArticulosReducer";
 import datosRates from "./datosRatesReducer";
 import currentCheckout from "./checkoutReducer";
+import datosContracts from "./datosContractsReducer";
 import {i18nState} from "redux-i18n"
 import personalDataForm from "./personalDataFormReducer";
 
@@ -19,5 +20,6 @@ export default combineReducers({
     datosArticulos,
     currentCheckout,
     personalDataForm,
+    datosContracts,
     i18nState
 });
