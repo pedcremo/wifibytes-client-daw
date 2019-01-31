@@ -5,14 +5,14 @@ import {
   getPaymentTypes,
   setExpirationDate,
   paymentsubmit
-} from '../../../actions/checkoutActions';
+} from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import PaymentOptions from './paymentTypes/paymentOptions';
 import PaymentForm from './paymentTypes/paymentForm';
 import {PropTypes} from 'prop-types';
 
-const mapStateToProps = state => ({ ...state.checkout });
+const mapStateToProps = state => ({ ...state.payment });
 
 class Payment extends React.Component {
   constructor() {
@@ -82,7 +82,7 @@ class Payment extends React.Component {
         onChange={this.changePaymentMethod}
         paymentOptions={this.props.paymentMethods}
         paymentMethod = {this.props.paymentMethod} />}
-        {<PaymentForm 
+        {<PaymentForm
         submitForm={this.submitForm}
         forms={form}/>}
       </div>

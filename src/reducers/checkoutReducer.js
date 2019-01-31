@@ -1,69 +1,61 @@
 import {
-    GET_PAYMENTS_BEGIN,
-    GET_PAYMENTS_SUCCESS,
-    GET_PAYMENTS_FAILURE,
-    PAYMENT_SUBMIT,
-    FORM_UPDATE,
-    SET_EXPIRATION_DATE
-} from '../actions/checkoutActions';
+    ADD_STEPS,
+    NEXT_STEP,
+    PREVIOUS_STEP,
+    UPDATE_STEP
+} from '../constants/actionTypes';
 
 const initialState = {
-    paymentStepIsValid:false,
-    paymentMethod:3, /**codpago de backend, visa/mastercard/american express por defecto */
-    existsService:false,
-    checkoutProcessIsValid:false,
-    cardOwner:"",
-    cardNumber:"",
-    expirationMonth:"",
-    expirationYear:"",
-    cvv:"",
-    cardNameIsValid:false, /**not using this yet, waiting for the checkout to be incorpored */
-    cardNumberIsValid:false,
-    expirationDateIsValid:false,
-    cvvIsValid:false,
-    paymentMethods:[],
-    iban:"",
-    address:"",
-    debitOwner:"",
+    currentStep: 0,
+    steps: [],
+    loading: false,
 };
 
-export default function checkoutReducer(state = initialState, action) {
+export default function currentCheckout(state = initialState, action) {
     switch (action.type) {
-        case SET_EXPIRATION_DATE:
+        case ADD_STEPS:
             return {
                 ...state,
-                expirationYear : action.year,
-                expirationMonth : action.month + 1 /**January starts at 0 */
+                loading: false,
+                currentStep: action.payload.step,
+                steps: action.payload.steps
+            };
+
+        case NEXT_STEP:
+            if (state.currentStep < state.steps.length + 1){
+                state.steps[state.currentStep-1].active=false;
+                state.steps[state.currentStep].active=true;
             }
-        case GET_PAYMENTS_BEGIN:
-            return {
-                ...state,
-                loading: true,
-                error: null
-            };
-        case GET_PAYMENTS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                paymentMethods: action.payload.formasdepago.results,
-                paymentMethod: action.payload.formasdepago.results[1].codpago
+                currentStep: state.currentStep+1
             };
-        case GET_PAYMENTS_FAILURE:
+
+        case PREVIOUS_STEP:
+            if (state.currentStep < state.steps.length + 1){
+                state.steps[state.currentStep-1].active=false;
+                state.steps[state.currentStep].active=true;
+            }
             return {
                 ...state,
                 loading: false,
-                error: action.payload,
-                items: []
+                currentStep: state.currentStep-1
             };
-        case PAYMENT_SUBMIT:
+
+        case UPDATE_STEP:
+            if (state.currentStep < state.steps.length + 1){
+                state.steps[state.currentStep-1].active=false;
+                state.steps[action.payload.step-1].active=true;
+            }
             return {
                 ...state,
                 loading: false,
-                payment: action.value,
+                currentStep: action.payload.step
             };
-        case FORM_UPDATE:    
-            return { ...state, [action.key]: action.value};
+
         default:
-            return {...state};
+            // ALWAYS have a default case in a reducer
+            return state;
     }
 }

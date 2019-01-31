@@ -9,7 +9,8 @@
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
         "doc": "jsdoc -c jsdoc.json README.md src/*",
-        "test": "jest --verbose -u --env=jsdom"
+        "test": "jest --verbose -u --env=jsdom",
+        "coverage": "jest --coverage"
     },
     "author": "",
     "license": "ISC",
@@ -50,10 +51,15 @@
         },
         "snapshotSerializers": [
             "enzyme-to-json/serializer"
+        ],
+        "collectCoverage": true,
+        "collectCoverageFrom": [
+            "src/**/*.js"
         ]
     },
     "dependencies": {
         "cross-fetch": "^3.0.0",
+        "react-reactive-form": "^1.0.28",
         "react-redux": "^6.0.0",
         "react-router-dom": "^4.3.1",
         "reaptcha": "^1.4.0",
@@ -62,6 +68,7 @@
         "redux-mock-store": "^1.5.3",
         "redux-testkit": "^1.0.6",
         "redux-thunk": "^2.3.0",
+        "semantic-ui-react": "^0.84.0",
         "vegas": "^2.4.4"
     }
 }

@@ -10,7 +10,7 @@ export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
 
 export function getPaymentTypes() {
     return dispatch => {
-        try {
+       try {
             dispatch(getPaymentsBegin());
             return Utils.get("/formaspago", function(response) {
                 dispatch(getPaymentsSuccess(response));
@@ -74,7 +74,7 @@ export function paymentsubmit(data) {
     });
 
     export const paymentSubmitSuccess = formasdepago => ({
-        type: GET_PAYMENTS_SUCCESS,
+        type: PAYMENTS_SUBMIT_SUCCESS,
         payload: { formasdepago }
     });
 
@@ -85,7 +85,7 @@ export function paymentsubmit(data) {
 
 /* GET PAYMENTS TYPES ACTIONS */
     export const getPaymentsBegin = () => ({
-        type: PAYMENT_SUBMIT_BEGIN
+        type: GET_PAYMENTS_BEGIN
     });
 
     export const getPaymentsSuccess = formasdepago => ({
