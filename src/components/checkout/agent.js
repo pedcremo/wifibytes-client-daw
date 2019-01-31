@@ -41,8 +41,7 @@ export const Agent = {
                 let ObjectExist = element.hasOwnProperty(library.requiredFields);
                 if (ObjectExist) {
                     let fieldRequire = library.requiredFields;
-                    let valueArray = element[fieldRequire];
-                    valueArray.forEach(item => {
+                    element[fieldRequire].forEach(item => {
                         library.fieldsToValidate.filter(el => {
                             let regexp = new RegExp(el.regexp);
                             regexp.test(item.id) ? quantities[el.field]++ : false;
