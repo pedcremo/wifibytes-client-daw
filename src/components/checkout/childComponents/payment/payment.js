@@ -86,6 +86,7 @@ class Payment extends React.Component {
         submitForm={this.submitForm}
         forms={form}/>}
       </div>
+      
   ); 
 
   }

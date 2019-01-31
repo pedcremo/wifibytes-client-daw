@@ -13,7 +13,12 @@ export default function PaymentOptions(props) {
         );
     });
     return (
-        <form className="payment-method">
-            {options}
-        </form>);
+        <div id="myModal" className="modal" style={{visibility: this.props.modal ? 'visible' : 'hidden' }}>
+            <div className="modal-content">
+                <form className="payment-method">
+                    {options}
+                </form>
+            </div>
+        </div>
+    );
   }
