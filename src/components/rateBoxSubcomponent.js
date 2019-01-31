@@ -66,7 +66,7 @@ class RateBoxSubComponent extends React.Component {
             console.log(itemFiltered)
             const typeSubtaifa = [] 
             itemFiltered.subtarifas.map((subtarifa)=>{
-                typeSubtaifa.push(subtarifa.tipo_tarifa)
+                typeSubtaifa.push({id: subtarifa.tipo_tarifa})
             })
             return (
 

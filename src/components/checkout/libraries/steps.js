@@ -2,6 +2,7 @@ import React from 'react'
 import * as components from '../childComponents'
 import {Utils} from '../../../utils';
 import {translations} from '../../../i18n/translations';
+
 let currentLang = Utils.getUserLang();
 let steps = [
     {
@@ -10,7 +11,7 @@ let steps = [
         "active": true,
         "completed": false,
         "title": translations[currentLang]["checkout-personal-data"],
-        "component": <components.Personal />
+        "component": <components.Personal/>
     },
     {
         "key": "contract",
