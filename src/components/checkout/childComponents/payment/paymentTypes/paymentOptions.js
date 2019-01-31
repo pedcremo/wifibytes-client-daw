@@ -15,17 +15,23 @@ export default function PaymentOptions(props) {
     });
     const buttonOptions = props.paymentOptions.map((option, i) => {
         return (
-            <label key={i}>
-                <button key={i} onClick={alert("a")} value={option.codpago}> {option.nombre}</button>
-            </label>
+            <button key={i} onClick={alert("a")} value={option.codpago}> {option.nombre}</button>
         );
     });
     return (
         <div id="myModal" className="modal" style={{visibility:'visible'}}>
-                    <div className="modal-content">
-                    <span className="close" onClick={()=>closeModal()}>&times;</span>
+            <div className="modal-content">
+            <span className="close" onClick={()=>closeModal()}>&times;</span>
+            <div>
+                <div>
+                    <h2>Seleccione qué opción de pago quieres añadir</h2>
+                    <div className="selectionButtons">
                         {buttonOptions}
                     </div>
                 </div>
+            </div>
+                    
+            </div>
+        </div>
     );
   }
