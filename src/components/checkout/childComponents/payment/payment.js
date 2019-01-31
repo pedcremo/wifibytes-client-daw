@@ -28,8 +28,12 @@ class Payment extends React.Component {
     this.changeDebitOwner = ev => this.props.dispatch(paymentUpdate("debitOwner", ev.target.value));
     this.submitForm = () => ev => {
       ev.preventDefault();
-      // alert("Submit button works!");
+      alert("Submit button works!");
       this.props.dispatch(paymentsubmit(this.props));
+    }
+    this.addPaymentMethod = () => ev => {
+      ev.preventDefault();
+      alert("hola");
     }
   }
   
@@ -83,6 +87,7 @@ class Payment extends React.Component {
         paymentOptions={this.props.paymentMethods}
         paymentMethod = {this.props.paymentMethod} />}
         {<PaymentForm
+        addPaymentMethod = {this.addPaymentMethod}
         submitForm={this.submitForm}
         forms={form}/>}
       </div>

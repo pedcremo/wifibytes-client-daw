@@ -105,7 +105,6 @@ let Utils={
                     // Resolve the promise with the response text
                     CACHE_TEMPLATES.set(url,JSON.parse(req.response));
                     if (filterFunction) {
-
                         let fFilter=filterFunction[0];
                         //resolve(fFilter(req.response));
                         resolve(fFilter(req.response,filterFunction[1]));
