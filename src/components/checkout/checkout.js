@@ -1,7 +1,10 @@
 import React from 'react'
 import { connect } from "react-redux"
+import { Route } from 'react-router-dom'
 import { Step } from 'semantic-ui-react'
 import {Agent} from './agent';
+import PropTypes from 'prop-types'
+
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
 import {
@@ -45,12 +48,16 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
-        let stepsRates;
-        !this.props.cartItems.items?
-        stepsRates = Agent.objectsToArray(this.props.cartItems.items, library):
-        stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
-        let filteredSteps = Agent.filterArray(steps, stepsRates);
-        this.addSteps(1, filteredSteps);
+        if(this.props.cartItems.items.length === 0 && JSON.parse(localStorage.getItem('cartReducer')).items.length === 0) {
+            this.context.router.history.push('/')
+        } else {
+            let stepsRates;
+            this.props.cartItems.items.length !== 0?
+            stepsRates = Agent.objectsToArray(this.props.cartItems.items, library):
+            stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
+            let filteredSteps = Agent.filterArray(steps, stepsRates);
+            this.addSteps(1, filteredSteps);
+        }  
     }
 
     componentDidUpdate() {
@@ -102,5 +109,9 @@ const mapStateToProps = state => ({
     steps: state.currentCheckout.steps,
     loading: state.currentCheckout.loading
 });
+
+Checkout.contextTypes = {
+    router: PropTypes.object
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
