@@ -43,7 +43,13 @@ class Navbar extends React.Component{
         if (loading)
             return (<div>Loading...</div>);
         if(datosEmpresa){
-          const total = cartItems.items.reduce( (cnt,o) => {return cnt + o.quantity; }, 0)
+          const total = cartItems.items.reduce( (cnt,o) => {
+            if(o.quantity){
+              return cnt + o.quantity;
+            }else{
+              return cnt + 0;
+            }
+          }, 0)
             return (
             <HashRouter>
                 <div className="navRender">
