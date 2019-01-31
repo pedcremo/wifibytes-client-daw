@@ -63,10 +63,9 @@ class RateBoxSubComponent extends React.Component {
 
             }))//INNER MAP
             const textTarifa = Utils.getUserLang() == "va" ? itemFiltered["subtarifas"]["0"]["subtarifa_tarifa"]["pretitulo_va"] : itemFiltered["subtarifas"]["0"]["subtarifa_tarifa"]["pretitulo"];
-            console.log(itemFiltered)
             const typeSubtaifa = [] 
             itemFiltered.subtarifas.map((subtarifa)=>{
-                typeSubtaifa.push(subtarifa.tipo_tarifa)
+                typeSubtaifa.push({id:subtarifa.tipo_tarifa})
             })
             return (
 
