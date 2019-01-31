@@ -5,6 +5,7 @@ import {Agent} from './agent';
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
 import subitems_library from "./libraries/subitems_based_library.json";
+import validate_library from "./libraries/validate_based_library.json";
 import {
     ADD_STEPS,
     NEXT_STEP,
