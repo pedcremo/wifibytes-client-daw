@@ -4,46 +4,12 @@ import { Step } from 'semantic-ui-react'
 import {Agent} from './agent';
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
-import subitems_library from "./libraries/subitems_based_library.json";
 import {
     ADD_STEPS,
     NEXT_STEP,
     PREVIOUS_STEP,
     UPDATE_STEP
   } from '../../constants/actionTypes';
-/**
- * mock items
- */
-let items = [
-    {
-        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
-    },
-    {
-        id: 5,
-        tarifa: [
-            {
-                id: 4
-            },
-            {
-                id: 5
-            }
-        ]
-    },
-    {
-        id: 6,
-        tarifa: [
-            {
-                id: 2
-            },
-            {
-                id: 4
-            },
-            {
-                id: 2
-            }
-        ]
-    }
-]
 
 const mapDispatchToProps = dispatch => ({
     addSteps: (step, steps) =>
@@ -79,7 +45,10 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
-        let stepsRates = Agent.objectsToArray(items, library);
+        let stepsRates;
+        !this.props.cartItems.items?
+        stepsRates = Agent.objectsToArray(this.props.cartItems.items, library):
+        stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
         let filteredSteps = Agent.filterArray(steps, stepsRates);
         this.addSteps(1, filteredSteps);
     }
@@ -93,7 +62,6 @@ class Checkout extends React.Component {
                 that.setStep(parseInt(event.target.id));
             }
         });
-        document.querySelectorAll("div.step").forEach(addClickEvent);
         document.querySelectorAll("div.step").forEach(addClickEvent);
     }
       

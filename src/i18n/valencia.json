@@ -28,7 +28,6 @@
     "home-free-channels":"canals debades",
     "home-euros-month":"€/mes",
     "home-vat-included":"IVA inclós",
-
     "contact-title": "Contacta amb ",
     "contact-name-surnames":"Escriu el teu nom",
     "contact-phone":"telèfon",
@@ -38,7 +37,6 @@
 
     "catalog-our-articles":"Els nostres productes",
     "catalog-change-family":"Canvia de familia de productes",
-
     "catalog-pantalla": "Pantalla",
     "catalog-procesador": "UCP",
     "catalog-ram": "RAM",
@@ -72,5 +70,27 @@
 
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
-    "checkout-confirm": "Confirmar Comanda"
+    "checkout-confirm": "Confirmar Comanda",
+    
+    "payment-method0": "Domiciliació bancaria",
+    "payment-method1": "Tarjeta de credit",
+    "payment-owner": "Propietari de la tarjeta",
+    "payment-numberCard": "Número de la tarjeta",
+    "payment-expirationMonth": "Mes de caducitat",
+    "payment-expirationYear": "Any de caducitat",
+    "payment-cvv": "CVV",
+    "payment-owner-debit": "Propietari de la domiciliació bancaria",
+    "payment-address-debit": "Direcció",
+    "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
+    "payment-iban-debit": "IBAN",
+    "payment-iban2-debit": "ES9820385778983000760236",
+    
+    "cart-button": "Carret",
+    "description": "Descripció",
+    "quantity": "Cantitat",
+    "price": "Preu",
+    "check-out-button": "Procés de compra",
+    "buy": "Comprar",
+    "empty_cart": "Carret buit...",
+    "hire": "Contactar"
 }
