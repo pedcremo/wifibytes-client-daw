@@ -15,7 +15,7 @@ export default function PaymentOptions(props) {
     });
     const buttonOptions = props.paymentOptions.map((option, i) => {
         return (
-            <button key={i} onClick={alert("a")} value={option.codpago}> {option.nombre}</button>
+            <button key={i} onClick={()=>closeModal()} value={option.codpago}> {option.nombre}</button>
         );
     });
     return (
@@ -29,8 +29,7 @@ export default function PaymentOptions(props) {
                         {buttonOptions}
                     </div>
                 </div>
-            </div>
-                    
+            </div>         
             </div>
         </div>
     );
