@@ -1,10 +1,10 @@
-export const SET_LOCALSTORAGE = "SET_LOCALSTORAGE"
-export const SET_ITEM = 'SET_ITEM';
-export const GET_ITEMS = 'GET_ITEMS'
-// export const QUANTITY_ITEM = 'QUANTITY_ITEM';
-export const DEL_ITEM = 'DEL_ITEM';
-export const SET_QUANTITY = 'SET_QUANTITY'
-
+import {
+    SET_LOCALSTORAGE,
+    SET_ITEM,
+    GET_ITEMS,
+    DEL_ITEM,
+    SET_QUANTITY
+}from '../../constants/actionTypes'
 export const setItem = (item) => ({
     type: SET_ITEM,
     item,

@@ -2,7 +2,6 @@ const localStorage = store => next => action =>{
     if(action.localStorageSave){
         next(action)
         const currentStore = store.getState()
-        console.log(currentStore)
         window.localStorage.setItem(action.reducer,JSON.stringify(currentStore[action.reducer]))
     }else if(action.localStorageUpdate){
         next(action)

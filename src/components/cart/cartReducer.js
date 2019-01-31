@@ -15,6 +15,7 @@ const initialState = {
 export default function cart(state = initialState, action) {
     switch (action.type) {
         case SET_ITEM:
+            console.log(action.item)
             let exist = state.items.filter((item)=>{return item.id == action.item.id})
             if(exist.length == 0){
                 action.item.quantity = 1;
