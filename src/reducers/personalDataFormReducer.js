@@ -71,9 +71,6 @@ export default function personalDataFormReducer(state = initialState, action) {
                 console.log("ELSE-----------  exist.length == 0", action.payload, state)
                 state.fields["datosProductos"].filter((item) => {
                     if (item.key == action.payload.key) {
-                        /* 
-                        item.key = action.payload.key;
-                        item.value = action.payload.value; */
                         item.value=action.payload
                     }
                 })

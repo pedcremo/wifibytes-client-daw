@@ -14,16 +14,19 @@ import subitems_library from "../../libraries/subitems_based_library.json";
 
 let mockCompanies=["orange", "vodafone", "jaxxtel", "yoigo", "pepephone"]
 let serviciosContratados = [654654654, 987654321, 852741963, 14789652, 951159753]
-
+/*
+tarifas 
+1: //Movil
+*/
 let items = [
     {
         id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
     },
     {
-        id: 5,
+        id: 5, 
         tarifa: [
             {
-                id: 4
+                id: 1
             },
             {
                 id: 5
@@ -40,11 +43,18 @@ let items = [
                 id: 4
             },
             {
-                id: 2
+                id: 1
+            },
+            {
+                id: 1
+            },
+            {
+                id: 1
             }
         ]
     }
 ]
+console.log("------------------------",Agent.arrayToQuantityObject(items, subitems_library))
 /**
  * @class
  * Draw Login. A form to login
@@ -167,14 +177,18 @@ class Personal extends React.Component  {
     }
     
     render() {
-        console.log(this.props)
+        console.log(this.props, Agent.arrayToQuantityObject(items, subitems_library)["movil"])
+        let array=[];
+        for (let i = 0; i < Agent.arrayToQuantityObject(items, subitems_library)["movil"]; i++) {            
+            array.push(<PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>)
+        }
         return(
             <div>
                 <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
                 {<div className="grid-data-form">
                     {
-                        serviciosContratados.map((item, i) => {
-                            return <PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>
+                        array.map((item, i) => {
+                            return item
                         })
                     }     
                 </div> }
