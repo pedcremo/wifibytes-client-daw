@@ -105,9 +105,6 @@ let Utils={
                     // Resolve the promise with the response text
                     CACHE_TEMPLATES.set(url,JSON.parse(req.response));
                     if (filterFunction) {
-                        if (url==='/formaspago')
-                            return filterFunction(JSON.parse(req.response));
-
                         let fFilter=filterFunction[0];
                         //resolve(fFilter(req.response));
                         resolve(fFilter(req.response,filterFunction[1]));
