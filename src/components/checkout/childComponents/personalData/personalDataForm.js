@@ -10,6 +10,7 @@ import {validator}  from "./validation";
  * This component contain the Personal Data Form
  */
 class PersonalForm extends React.Component  {
+    
     constructor(props) {
         super(props);
         const conten = {value:"",}
@@ -22,6 +23,13 @@ class PersonalForm extends React.Component  {
             zip: conten,
             city: conten
         };
+        this.name = React.createRef();
+        this.surname = React.createRef();
+        this.email = React.createRef();
+        this.phone = React.createRef();
+        this.address = React.createRef();
+        this.zip = React.createRef();
+        this.city = React.createRef();
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
@@ -35,15 +43,34 @@ class PersonalForm extends React.Component  {
  * Cuando la informacion viene del backend o de local deberia volver a pasar el validador y comprobar si los datos ya estan correctos de acuerdo a las reglas marcadas
  * * ----------------------------------------------------------------------------------------------
  */
-        if (Object.keys(newProps.dataUser).length > 0) 
+
+/* console.log(this.refs.name, this.refs.name.id) */
+        if (Object.keys(newProps.dataUser).length > 0) {
             for (const key in this.state) {
-                this.setState({
-                    [key]: {
-                        value: newProps.dataUser[key].value,
-                        error: newProps.dataUser[key].error
+                new Promise((resolve, reject) =>
+                resolve(
+                    this.setState({
+                        [key]: {
+                            value: newProps.dataUser[key].value,
+                            error: newProps.dataUser[key].error
+                        }
+                    })
+                )
+                ).then(()=>{
+                    const error = validator(this.refs[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
+                    if (error) {
+                        this.setState({
+                            [key]: {
+                                value: newProps.dataUser[key].value,
+                                error: error
+                            }
+                        })
                     }
                 })
+                
             }
+        }
+
     }
 
 
@@ -101,6 +128,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg mio"
                         placeholder="Name"
                         name="name"
+                        ref="name"
                         id = "name"
                         type="text"
                         value={this.state.name.value}
@@ -114,6 +142,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Surname"
                         name = "surname"
+                        ref = "surname"
                         type="text"
                         value={this.state.surname.value}
                         onChange={this.handleInputChange} />
@@ -126,6 +155,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Email"
                         name = "email"
+                        ref = "email"
                         type="email"
                         value={this.state.email.value}
                         onChange={this.handleInputChange} />
@@ -138,6 +168,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Phone"
                         name = "phone"
+                        ref = "phone"
                         type="number"
                         value={this.state.phone.value}
                         onChange={this.handleInputChange} />
@@ -152,6 +183,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Address"
                         name = "address"
+                        ref = "address"
                         type = "text"
                         value={this.state.address.value}
                         onChange={this.handleInputChange} />
@@ -164,6 +196,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Zip"
                         name = "zip"
+                        ref = "zip"
                         type="number"
                         value={this.state.zip.value}
                         onChange={this.handleInputChange} />
@@ -176,6 +209,7 @@ class PersonalForm extends React.Component  {
                         className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
+                        ref = "city"
                         type="text"
                         value={this.state.city.value}
                         onChange={this.handleInputChange} />

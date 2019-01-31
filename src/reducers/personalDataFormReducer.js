@@ -12,6 +12,9 @@ const initialState = {
         datosPersonales:{},
         datosProductos:[]
     },
+    totalServices:0,
+    validDatosPersonales: false,
+    validDatosProductos:false,
     loaded: false,
 };
 
@@ -29,13 +32,13 @@ export default function personalDataFormReducer(state = initialState, action) {
         case GET_CONTACT_DATA_FORM_SUCCESS:
 
             state.fields.datosPersonales ={
-                    name: {error:"", value: "alicia"},
-                    surname: {error:"", value: "lopez"},
-                    email: {error:"", value: "lopez@gmail.com"},
-                    phone: {error:"", value: 654654654},
-                    address: {error:"", value: "C/ alicante 1"},
-                    zip: {error:"", value: 46870},
-                    city: {error:"", value: "Gandia"}        
+                    name: { value: "al"},
+                    surname: { value: "lopez"},
+                    email: { value: "lopez gmail.com"},
+                    phone: { value: 654654654},
+                    address: { value: "C/ alicante 1"},
+                    zip: { value: 46870},
+                    city: { value: "Gandia"}        
             }
 
             return {
@@ -104,16 +107,3 @@ export default function personalDataFormReducer(state = initialState, action) {
 }
 
 
-let getUserData = (action) => {
-    //action.payload.contactDataForm
-    /* hay que convertir lo que viene de backend en un objeto valido para el form */
-    return {
-            name: {error:"", value: "pepe"},
-            surname: {error:"", value: "lopez"},
-            email: {error:"", value: "lopez@gmail.com"},
-            phone: {error:"", value: 654654654},
-            address: {error:"", value: "C/ alicante 1"},
-            zip: {error:"", value: 46870},
-            city: {error:"", value: "Gandia"}        
-    }
-}
