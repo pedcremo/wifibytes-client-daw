@@ -1,114 +1,124 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
-import { addSteps, updateStep } from "../../actions/checkoutActions";
 import {Agent} from './agent';
-import Payment from './payment';
-import Personal from '../personalData';
-
-let library = {
-    fieldsToValidate:[
-        {
-            field: "personal_data",
-            regexp: /^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$/
-        },
-        {
-            field: "contract",
-            regexp: /^([0-9]{1,})$/
-        }
-    ],
-    requiredFields:["confirm"]
-};
-
+import steps from "./libraries/steps";
+import library from "./libraries/rule_based_library.json";
+import subitems_library from "./libraries/subitems_based_library.json";
+import {
+    ADD_STEPS,
+    NEXT_STEP,
+    PREVIOUS_STEP,
+    UPDATE_STEP
+  } from '../../constants/actionTypes';
+/**
+ * mock items
+ */
 let items = [
     {
         id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
     },
     {
-        id: "5"
+        id: 5,
+        tarifa: [
+            {
+                id: 4
+            },
+            {
+                id: 5
+            }
+        ]
     },
     {
-        id: "0cab70a1-ea99-4aa4-9a49-1983f06a5614"
+        id: 6,
+        tarifa: [
+            {
+                id: 2
+            },
+            {
+                id: 4
+            },
+            {
+                id: 2
+            }
+        ]
     }
 ]
 
-let steps = [
-    {
-        key: 'personal_data',
-        active: true,
-        completed: false,
-        title: 'Dades Personals',
-    },
-    {
-        key: 'contract',
-        active: false,
-        completed: false,
-        title: 'Contracte',
-    },
-    { 
-        key: 'confirm',
-        active: false,
-        completed: false,
-        title: 'Confirmar Pedido' 
-    },
-]
+const mapDispatchToProps = dispatch => ({
+    addSteps: (step, steps) =>
+      dispatch({ type: ADD_STEPS, payload:{ step, steps } }),
+    /**
+     * Go to the next step
+     */
+    nextStep: () =>
+      dispatch({ type: NEXT_STEP }),
+    /**
+     * Go to the previous step
+     */
+    previousStep: () =>
+      dispatch({ type: PREVIOUS_STEP }),
+    /**
+     * Sets a specific step
+     */
+    setStep: (step) =>
+      dispatch({ type: UPDATE_STEP, payload: { step } })
+  });
 
+/**
+ * Component Checkout validate the steps you have to follow
+ */
 class Checkout extends React.Component {
     constructor(props) {
         super(props)
-        this.nextStep = this.nextStep.bind(this)
-        this.previousStep = this.previousStep.bind(this)
+        this.addSteps = (step, steps) => this.props.addSteps(step, steps);
+        this.setStep = (step) => this.props.setStep(step);
     }
 
-    /* setStep(step) {
-        this.props.dispatch(updateStep(step));
-    } */
-
-    nextStep() {
-        this.props.dispatch(updateStep(this.props.currentStep+1));
-    }
-
-    previousStep() {
-        this.props.dispatch(updateStep(this.props.currentStep-1));
-    }
-
-    showStep() {
-        switch (this.props.steps[this.props.currentStep-1].key) {
-            case 'personal_data':
-                console.log("firstStep");
-                return <Personal 
-                            nextStep={this.nextStep}
-                        />
-                
-            case 'contract':
-                console.log("secondStep");
-                return <button onClick={this.nextStep}>Next</button>
-
-            case 'confirm':
-                console.log("thirdStep");
-                return <Payment />
-
-            default:
-                return
-        }
-    }
-
+    /**
+     * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
+     */
     componentDidMount(){
         let stepsRates = Agent.objectsToArray(items, library);
-        steps = Agent.filterArray(steps, stepsRates);
-        this.props.dispatch(addSteps(1, steps));
+        let filteredSteps = Agent.filterArray(steps, stepsRates);
+        this.addSteps(1, filteredSteps);
     }
 
+    componentDidUpdate() {
+        let that=this;
+        const addClickEvent = elem => elem.addEventListener("click", function(event){
+            if (!event.target.id) {
+                return;
+            } else {
+                that.setStep(parseInt(event.target.id));
+            }
+        });
+        document.querySelectorAll("div.step").forEach(addClickEvent);
+        document.querySelectorAll("div.step").forEach(addClickEvent);
+    }
+      
+    /**
+     * Render prints the steps to follow and calls the function show step
+     */
     render() {
-        const { loading, steps, currentStep } = this.props;
+        const { loading, steps, currentStep, nextStep } = this.props;
         if (loading) 
             return (<div>Loading...</div>);
         if (steps.length>0 && currentStep){
             return (
                 <div>
                     <Step.Group items={steps} attached='top' ordered />
+                    
+                    {steps[currentStep-1].component}
 
-                    {this.showStep()}
+                    {steps.length > currentStep?
+                        (<button onClick={nextStep}>
+                            Next
+                        </button>):(
+                        <button>
+                            Submit
+                        </button>)
+                    }
                 </div>
             )
         } else {
@@ -125,4 +135,4 @@ const mapStateToProps = state => ({
     loading: state.currentCheckout.loading
 });
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

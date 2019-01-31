@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react'
 import {
     updateContactDataFormServices
-} from "../../actions/personalDataFormActions";
+} from "../../../../actions/personalDataFormActions";
 
 import {validator}  from "./validation";
 let po={

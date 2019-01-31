@@ -1,9 +1,8 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {
-    getContactDataForm,
     updateContactDataForm
-} from "../../actions/personalDataFormActions";
+} from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
 
 /**

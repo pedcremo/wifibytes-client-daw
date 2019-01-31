@@ -66,5 +66,9 @@
     "register-cifnif": "CIF/NIF",
     "register-error-pass": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
-    "register-error-email": "The email is not valid"
+    "register-error-email": "The email is not valid",
+
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Payment"
 }
