@@ -83,5 +83,14 @@
     "payment-address-debit": "Address",
     "payment-address2-debit": "Madrid /Example Street Nº2 p2",
     "payment-iban-debit": "IBAN",
-    "payment-iban2-debit": "ES9820385778983000760236"
+    "payment-iban2-debit": "ES9820385778983000760236",
+    
+    "cart-button": "Cart",
+    "description": "Description",
+    "quantity": "Quantity",
+    "price": "Price",
+    "check-out-button": "Go Checkout",
+    "buy": "Buy",
+    "empty_cart": "Empty cart...",
+    "hire": "Hire"
 }

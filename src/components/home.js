@@ -8,11 +8,12 @@ import { getDatosHome } from "../actions/datosHomeActions";
 import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 
 class Home extends React.Component {
-    
+
     componentDidMount() {
         this.props.dispatch(getDatosTarifas());
         this.props.dispatch(getDatosHome());
         this.props.dispatch(getDatosEmpresa());
+        console.log(this.props);
     }
     /** render: Array with two JSONs first element tarifa?destacado=true endpoint and second home endpoint */
     render() {
@@ -66,7 +67,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
-    
+
     return {
         datosHome: state.datosHome.items,
         datosTarifa: state.datosTarifa.items,

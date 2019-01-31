@@ -83,5 +83,14 @@
     "payment-address-debit": "Dirección",
     "payment-address2-debit": "Madrid /Calle de ejemplo Nº2 p2",
     "payment-iban-debit": "IBAN",
-    "payment-iban2-debit": "ES9820385778983000760236"
+    "payment-iban2-debit": "ES9820385778983000760236",
+    
+    "cart-button": "Carrito",
+    "description": "Descripción",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "check-out-button": "Proceso de compra",
+    "buy": "Comprar",
+    "empty_cart": "Carrito vacio...",
+    "hire": "Contratar"
 }

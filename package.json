@@ -8,6 +8,7 @@
         "poststart": "node ./tools/startMessage.js",
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
+        "production": "webpack -p --progress",
         "doc": "jsdoc -c jsdoc.json README.md src/*",
         "test": "jest --verbose -u --env=jsdom",
         "coverage": "jest --coverage"
@@ -62,6 +63,8 @@
     "dependencies": {
         "cross-fetch": "^3.0.0",
         "react-reactive-form": "^1.0.28",
+        "prop-types": "^15.6.2",
+        "react-beforeunload": "^1.0.4",
         "react-redux": "^6.0.0",
         "react-router-dom": "^4.3.1",
         "react-signature-pad-wrapper": "^1.2.3",

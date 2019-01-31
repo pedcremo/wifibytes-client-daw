@@ -9,8 +9,8 @@ import { getRates } from "../actions/datosRatesActions";
 /**
  * Draw active rates
  */
-class Rates extends React.Component {    
-    
+class Rates extends React.Component {
+
     constructor() {
         super()
         this.state = {
@@ -21,8 +21,7 @@ class Rates extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(getRates());
-        this.props.dispatch(getDatosEmpresa());
-    } 
+    }
 
     componentWillReceiveProps(newProps) {
         this.setState({
@@ -45,9 +44,9 @@ class Rates extends React.Component {
             this.setState({
                 rates:filteredRates,
                 ratesDescription:this.props.cajitas
-            }); 
+            });
         }else {
-            this.setState({  
+            this.setState({
                 rates: this.props.tarifas,
                 ratesDescription: this.props.cajitas
             });
@@ -57,22 +56,22 @@ class Rates extends React.Component {
         
         $(`#${event.target.id}`).addClass("active");
     }
-   
+
     render() {
         const { error, datosEmpresa } = this.props;
         const { ratesDescription, rates }= this.state;
 
-        
+
         if (error) return (<div>Error! </div>);
 
         if (Object.keys(datosEmpresa).length > 0 && ratesDescription && ratesDescription.length > 0 && rates.length > 0) {
             /* console.warn("this.state", this.state) */
             console.log("RATES",rates)
             let boxTextsArray = [];
-            for (let [key, value] of Object.entries(ratesDescription[0])) {            
+            for (let [key, value] of Object.entries(ratesDescription[0])) {
                 if (key.startsWith("caja")) {
                     let groups=key.match(/caja_([\d]*)_([\w]*)/)
-                    if (!boxTextsArray[groups[1]]) boxTextsArray[groups[1]]={};                
+                    if (!boxTextsArray[groups[1]]) boxTextsArray[groups[1]]={};
                     boxTextsArray[groups[1]][groups[2]]=value;
                 }
             }
@@ -91,31 +90,31 @@ class Rates extends React.Component {
                         </div>
                     </div>);
             });
-                
+
             return (
                 <div className="p-5">
                     <h1 className="glow text-center pt-1">{this.state.ratesDescription[0].pretitulo}</h1>
                     <h1 className="glow text-center pt-1">{this.state.ratesDescription[0].titulo}</h1>
-                    
+
                     <nav className="nav nav-pills nav-justified">
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-All" value="0" className="active nav-item  nav-link">TOTES</button>
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-fibra" value="3" className="nav-item nav-link"><i className="fas fa-filter"></i>Fibra óptica</button>
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-movil" value="1" className="nav-item nav-link"><i className="fas fa-filter"></i>Móvil</button>
                         <button onClick={(e) => this.handleFamilyPicker(e)} id="btn-wifi" value="4" className="nav-item nav-link"><i className="fas fa-filter"></i>Wifi diseminado</button>
-                    </nav> 
-                    <VegasCarousel vegas={datosEmpresa} />
+                    </nav>
+
                     <RateBoxSubComponent rates={this.state.rates}></RateBoxSubComponent>
-                    
+
                     <div className="card-deck mt-2 mb-5">
                         {boxTextsArray}
                     </div>
-                </div> 
+                </div>
             )
 
 
-        }else  
+        }else
             return (<div>Loading...</div>)
-        
+
     }
 }
 
@@ -139,13 +138,13 @@ export default connect(mapStateToProps)(Rates);
  //                   if (subItem.tipo_tarifa==tipo_tarifa) return subItem;
  //               });
  //               if (subs.length>0) return item;
- //           });     
+ //           });
  //           this.setState({
  //               rates:filteredRates,
  //               ratesDescription:this.state.originalRatesDescription
- //           }); 
+ //           });
  //       }else {
- //           this.setState({  
+ //           this.setState({
  //               rates:this.state.originalRates,
  //               ratesDescription:this.state.originalRatesDescription
  //           });

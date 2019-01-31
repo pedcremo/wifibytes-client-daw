@@ -1,5 +1,0 @@
--Cambiar las validaciones de Payment al DirectDebit component
--Validación número tarjeta
--Dar la opción a elegir qué tipo de pago si no hay servicios
--Testing
--Automatizar creación de fechas

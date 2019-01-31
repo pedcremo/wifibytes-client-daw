@@ -168,10 +168,11 @@ let Utils={
      * Get cookie by name
      * @param {string} cname
      */
-    getCookie:function(cname) {
+    getCookie:function(name) {
         try{
-            var re = new RegExp(cname+"[\\s]*=[\\s]*([\\w.]*)","i");
-            return document.cookie.match(re)[1];
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
         }catch(e){
             return "";
         }

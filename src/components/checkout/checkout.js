@@ -79,7 +79,7 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
-        let stepsRates = Agent.objectsToArray(items, library);
+        let stepsRates = Agent.objectsToArray(this.props.cartItems.items, library);
         let filteredSteps = Agent.filterArray(steps, stepsRates);
         this.addSteps(1, filteredSteps);
     }
