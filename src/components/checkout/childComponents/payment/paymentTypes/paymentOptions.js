@@ -1,7 +1,8 @@
 import React from 'react';
 export default function PaymentOptions(props) {
-    // console.log("props");
-    // console.log(props);
+    function closeModal(){
+        document.getElementById("myModal").style.visibility = "hidden";
+    }
     if(props.paymentOptions.length === 0){
         return (null);
     }
@@ -12,13 +13,19 @@ export default function PaymentOptions(props) {
             </label>
         );
     });
+    const buttonOptions = props.paymentOptions.map((option, i) => {
+        return (
+            <label key={i}>
+                <button key={i} onClick={alert("a")} value={option.codpago}> {option.nombre}</button>
+            </label>
+        );
+    });
     return (
-        <div id="myModal" className="modal" style={{visibility: this.props.modal ? 'visible' : 'hidden' }}>
-            <div className="modal-content">
-                <form className="payment-method">
-                    {options}
-                </form>
-            </div>
-        </div>
+        <div id="myModal" className="modal" style={{visibility:'visible'}}>
+                    <div className="modal-content">
+                    <span className="close" onClick={()=>closeModal()}>&times;</span>
+                        {buttonOptions}
+                    </div>
+                </div>
     );
   }
