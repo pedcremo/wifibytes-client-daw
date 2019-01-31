@@ -5,7 +5,7 @@ export default function PaymentOptions(props) {
     }
     if(props.paymentOptions.length === 0){
         return (null);
-    }
+    } 
     const options = props.paymentOptions.map((option, i) => {
         return (
             <label key={i}>
