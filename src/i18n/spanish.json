@@ -28,7 +28,6 @@
     "home-free-channels":"canales gratis",
     "home-euros-month":"€/mes",
     "home-vat-included":"IVA incluido",
-
     "contact-title": "Contacta con ",
     "contact-name-surnames":"Escribe tu nombre",
     "contact-phone":"teléfono",
@@ -38,7 +37,6 @@
 
     "catalog-our-articles":"Nuestros productos",
     "catalog-change-family":"Cambia de familia de productos",
-
     "catalog-pantalla": "Pantalla",
     "catalog-procesador": "UCP",
     "catalog-ram": "RAM",
@@ -70,6 +68,23 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido",
 
+    "checkout-personal-data": "Datos Personales",
+    "checkout-contract": "Contrato",
+    "checkout-confirm": "Confirmar Pedido",
+    
+    "payment-method0": "Domiciliación bancaria",
+    "payment-method1": "Tarjeta de credito",
+    "payment-owner": "Propietario de la tarjeta",
+    "payment-numberCard": "Numero de la tarjeta",
+    "payment-expirationMonth": "Mes de caducidad",
+    "payment-expirationYear": "Año de caducidad",
+    "payment-cvv": "CVV",
+    "payment-owner-debit": "Propietario de la doomiciliacion bancaria",
+    "payment-address-debit": "Dirección",
+    "payment-address2-debit": "Madrid /Calle de ejemplo Nº2 p2",
+    "payment-iban-debit": "IBAN",
+    "payment-iban2-debit": "ES9820385778983000760236",
+    
     "cart-button": "Carrito",
     "description": "Descripción",
     "quantity": "Cantidad",

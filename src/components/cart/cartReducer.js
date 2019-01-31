@@ -1,10 +1,10 @@
 import {
+    SET_LOCALSTORAGE,
     SET_ITEM,
     GET_ITEMS,
     DEL_ITEM,
-    SET_QUANTITY,
-    SET_LOCALSTORAGE
-} from './cartActions';
+    SET_QUANTITY
+}from '../../constants/actionTypes'
 
 const initialState = {
     items: [],

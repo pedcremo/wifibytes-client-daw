@@ -26,21 +26,23 @@ ShallowWrapper {
           >
             <button
               className="tablinks"
-              id="login"
+              id="loginButton"
               onClick={[Function]}
             >
               Login
             </button>
             <button
               className="tablinks"
-              id="register"
+              id="registerButton"
               onClick={[Function]}
             >
               Register
             </button>
           </div>
         </div>,
-        <Login />,
+        <Login
+          stat={[Function]}
+        />,
       ],
       "className": "login",
     },
@@ -56,14 +58,14 @@ ShallowWrapper {
           >
             <button
               className="tablinks"
-              id="login"
+              id="loginButton"
               onClick={[Function]}
             >
               Login
             </button>
             <button
               className="tablinks"
-              id="register"
+              id="registerButton"
               onClick={[Function]}
             >
               Register
@@ -80,14 +82,14 @@ ShallowWrapper {
             "children": Array [
               <button
                 className="tablinks"
-                id="login"
+                id="loginButton"
                 onClick={[Function]}
               >
                 Login
               </button>,
               <button
                 className="tablinks"
-                id="register"
+                id="registerButton"
                 onClick={[Function]}
               >
                 Register
@@ -104,7 +106,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "Login",
                 "className": "tablinks",
-                "id": "login",
+                "id": "loginButton",
                 "onClick": [Function],
               },
               "ref": null,
@@ -118,7 +120,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "Register",
                 "className": "tablinks",
-                "id": "register",
+                "id": "registerButton",
                 "onClick": [Function],
               },
               "ref": null,
@@ -134,7 +136,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
-        "props": Object {},
+        "props": Object {
+          "stat": [Function],
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -157,21 +161,23 @@ ShallowWrapper {
             >
               <button
                 className="tablinks"
-                id="login"
+                id="loginButton"
                 onClick={[Function]}
               >
                 Login
               </button>
               <button
                 className="tablinks"
-                id="register"
+                id="registerButton"
                 onClick={[Function]}
               >
                 Register
               </button>
             </div>
           </div>,
-          <Login />,
+          <Login
+            stat={[Function]}
+          />,
         ],
         "className": "login",
       },
@@ -187,14 +193,14 @@ ShallowWrapper {
             >
               <button
                 className="tablinks"
-                id="login"
+                id="loginButton"
                 onClick={[Function]}
               >
                 Login
               </button>
               <button
                 className="tablinks"
-                id="register"
+                id="registerButton"
                 onClick={[Function]}
               >
                 Register
@@ -211,14 +217,14 @@ ShallowWrapper {
               "children": Array [
                 <button
                   className="tablinks"
-                  id="login"
+                  id="loginButton"
                   onClick={[Function]}
                 >
                   Login
                 </button>,
                 <button
                   className="tablinks"
-                  id="register"
+                  id="registerButton"
                   onClick={[Function]}
                 >
                   Register
@@ -235,7 +241,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": "Login",
                   "className": "tablinks",
-                  "id": "login",
+                  "id": "loginButton",
                   "onClick": [Function],
                 },
                 "ref": null,
@@ -249,7 +255,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": "Register",
                   "className": "tablinks",
-                  "id": "register",
+                  "id": "registerButton",
                   "onClick": [Function],
                 },
                 "ref": null,
@@ -265,7 +271,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
-          "props": Object {},
+          "props": Object {
+            "stat": [Function],
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],

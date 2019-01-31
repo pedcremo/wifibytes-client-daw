@@ -9,7 +9,8 @@ import Company from "./components/company";
 import Cookies from "./components/cookies";
 import Rates from "./components/rates";
 import Contacte from "./components/contacte";
-import SingIn from './components/login/signIn';
+import SingIn from './components/login/signIn'
+import Checkout from './components/checkout/checkout'
 import Cart from './components/cart/Cart';
 
 /**
@@ -28,6 +29,7 @@ const AppRoutes = ({cartItems}) =>
             <Route exact path="/rates" render={() => <Rates />} />
             <Route exact path="/login" render={() => <SingIn type="login"/>} />
             <Route exact path="/register" render={() => <SingIn type="register"/>} />
+            <Route exact path="/checkout" render={() => <Checkout cartItems={cartItems} />} />
             <Route exact path="/cart" render={() =><Cart cartItems={cartItems} />}/>
        </Switch>
     );

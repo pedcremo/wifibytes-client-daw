@@ -5,6 +5,8 @@ import IncrementButtons from './IncrementButtons';
 import AddButton from '../cart/AddButton';
 import {Utils} from "../../utils";
 import {PropTypes} from 'prop-types';
+import { Link } from 'react-router-dom';
+
 /** @module Component ListCart
 * this component list all items in the cart on datatable
 */
@@ -29,7 +31,7 @@ class ListCart extends React.Component {
       const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity);}, 0)
       let table = cartItems.items.map((item)=>{
         return (
-          <Table.Row>
+          <Table.Row key={item.id}>
             <Table.Cell>{item.description}</Table.Cell>
             <Table.Cell><input value={item.quantity} onChange={(ev)=>quantityItem(item,ev.target.value)}/></Table.Cell>
             <Table.Cell><IncrementButtons item={item} quantityItem={quantityItem} function={this.props.function} /></Table.Cell>
@@ -52,13 +54,19 @@ class ListCart extends React.Component {
           <Table.Body>
             {table}
           </Table.Body>
+          <Table.Body>
             <Table.Row>
               <Table.Cell></Table.Cell>
               <Table.Cell></Table.Cell>
               {(this.props.canAdd)?<Table.Cell></Table.Cell>:null}
-              <Table.Cell><button>{Utils.translate('check-out-button')}</button></Table.Cell>
+              <Table.Cell>
+                <Link to="/checkout">
+                  <button>{Utils.translate('check-out-button')}</button>
+                </Link>
+              </Table.Cell>
               <Table.Cell>Total: {(total).toFixed(2)} €</Table.Cell>
             </Table.Row>
+          </Table.Body>
         </Table>
       );
     }else{

@@ -4,6 +4,7 @@ import {Settings} from "./settings";
 import english from "./i18n/english.json";
 import spanish from "./i18n/spanish.json";
 import valencia from "./i18n/valencia.json";
+import PaymentMethod from "../tests/json_endpoints/checkout_payment.json";
 
 /**
  * Map to cache JSON already got from server.
@@ -89,6 +90,10 @@ let Utils={
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
     */
     get: function (url,filterFunction=null) {
+        /**Mocking /formaspago because is not ready in backend */
+        if (url==='/formaspago') 
+            return filterFunction(PaymentMethod)
+
         // Return a new promise.
         return new Promise(function(resolve, reject) {
             if (CACHE_TEMPLATES.has(url)) {

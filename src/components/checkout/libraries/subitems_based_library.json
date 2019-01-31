@@ -1,0 +1,26 @@
+{
+    "fieldsToValidate":
+    [
+        {
+            "field": "movil",
+            "regexp": "1"
+        },
+        {
+            "field": "fijo",
+            "regexp": "2"
+        },
+        {
+            "field": "fibra",
+            "regexp": "3"
+        },
+        {
+            "field": "wifi",
+            "regexp": "4"
+        },
+        {
+            "field": "tv",
+            "regexp": "5"
+        }
+    ],
+    "requiredFields":"subtarifas"
+}
