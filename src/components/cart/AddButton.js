@@ -46,7 +46,8 @@ AddButton.propTypes = {
     id: PropTypes.any.isRequired,
     description : PropTypes.string.isRequired,
     price : PropTypes.number.isRequired
-  })
+  }),
+  text : PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({

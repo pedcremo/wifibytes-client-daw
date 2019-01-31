@@ -2,7 +2,6 @@ import AddButton from "../../../src/components/cart/AddButton";
 import React from 'react';
 import Enzyme from 'enzyme'
 import { mount , shallow} from 'enzyme'
-import * as cartActions from '../../../src/constants/actionTypes';
 import configureStore from 'redux-mock-store';
 import Adapter from 'enzyme-adapter-react-16'
 import { setItem } from '../../../src/components/cart/cartActions'
@@ -19,7 +18,17 @@ const initialState = {
 };
 const store = mockStore(initialState);
 
-const rendered = Enzyme.shallow(<AddButton id={15} price={15} description={"Hola"} text={"buy"}/>);
+
+const item = {
+  id:15, 
+  price:15, 
+  description:"Hola", 
+}
+const props ={
+  item : item,
+  text:"buy"
+}
+const rendered = Enzyme.shallow(<AddButton {...props}/>);
 
 describe('<AddButton />', () => {
 
@@ -30,10 +39,9 @@ describe('<AddButton />', () => {
   it("AddButton render must be called and it works properly", () => {
     expect(rendered).toHaveLength(1);
   });
-  // it("Store must contain a currentStep", () => {
-  //   console.log(rendered.props())
-  //     expect(rendered.props().value.storeState.currentStep).toBe(1);
-  // });
+  it("Store must contain a currentStep", () => {
+    expect(rendered.instance().props).toEqual(props);
+  });
   it(' Dispatches the correct action and payload', () => {
     const selectedActions = [
       {
@@ -48,18 +56,13 @@ describe('<AddButton />', () => {
         reducer : "cartReducer",
       },
     ];
-  
     const item = {
       id:15, 
       price:15, 
       description:"Hola", 
       text:"buy"
     }
-
     store.dispatch(setItem(item));
     expect(store.getActions()).toEqual(selectedActions);
   })
-
 })
-
-
