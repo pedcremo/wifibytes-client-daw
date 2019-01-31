@@ -43,6 +43,7 @@ class Navbar extends React.Component{
         if (loading)
             return (<div>Loading...</div>);
         if(datosEmpresa){
+          const total = cartItems.items.reduce( (cnt,o) => {return cnt + o.quantity; }, 0)
             return (
             <HashRouter>
                 <div className="navRender">
@@ -79,7 +80,7 @@ class Navbar extends React.Component{
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/cart" className="nav-link text-dark pt-3">
-                                    <span className="fa-stack fa-1x has-badge" data-count={cartItems.items.length}>
+                                    <span className="fa-stack fa-1x has-badge" data-count={total}>
                                         <i className="fa fa-circle fa-stack-2x fa-inverse"></i>
                                         <i className="fa fa-shopping-cart fa-stack-2x red-cart"></i>
                                     </span>
