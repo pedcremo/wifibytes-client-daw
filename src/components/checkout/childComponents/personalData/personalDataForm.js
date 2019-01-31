@@ -1,11 +1,10 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {
-    getContactDataForm,
     updateContactDataForm
-} from "../../actions/personalDataFormActions";
+} from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
-import typeCliente from './typeCliente'
+import Typecliente from './typeCliente';
 
 /**
  * @class
@@ -23,7 +22,7 @@ class PersonalForm extends React.Component  {
             address:conten,
             zip: conten,
             city: conten,
-            tipcli: conten
+            tipcli: 0
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -194,10 +193,10 @@ class PersonalForm extends React.Component  {
                     </div>
                     <br />
                     <div>
-                        {this.state.tipcli == "0" ? <typeCliente type={0}/> : 
-                         this.state.tipcli == "1" ? <typeCliente type={1}/> :
-                         this.state.tipcli == "2" ? <typeCliente type={2}/> :
-                         <typeCliente type={5}/> }
+                        {this.state.tipcli == 0 ? <Typecliente type={0}/> : 
+                         this.state.tipcli == 1 ? <Typecliente type={1}/> :
+                         this.state.tipcli == 2 ? <Typecliente type={2}/> :
+                         <Typecliente type={5}/> }
                     </div>
                 </div >
             </form>

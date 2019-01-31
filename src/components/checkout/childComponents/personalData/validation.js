@@ -1,7 +1,7 @@
 /**
  * Regex is a library of a regular expressions to the APP
  */
-import { Regex } from '../../regex'
+import { Regex } from '../../../../regex'
 
 
 

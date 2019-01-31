@@ -4,7 +4,14 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import configureStore from 'redux-mock-store';
 import { Provider } from "react-redux";
-import * as checkoutActions from '../../src/actions/checkoutActions';
+import * as checkoutActions from '../../src/constants/actionTypes';
+import currentCheckout from '../../src/reducers/checkoutReducer';
+// import {
+//     ADD_STEPS,
+//     NEXT_STEP,
+//     PREVIOUS_STEP,
+//     UPDATE_STEP
+// } from '../../src/constants/actionTypes';
 
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -68,7 +75,228 @@ describe('<Checkout />', () => {
     
         store.dispatch(checkoutActions.updateStep(1));
         expect(store.getActions()).toEqual(selectedActions);
+    });  
+
+    it('Dispatches the correct action and payload', () => {
+        const store = mockStore(initialState);
+        const add = [
+        {
+            'type': 'ADD_STEPS',
+            'payload': {
+                step: 1,
+                steps: ['step1','step2']
+            },
+        },
+        ];
+
+        store.dispatch(checkoutActions.addSteps(1, ['step1','step2']));
+        expect(store.getActions()).toEqual(add);
     });
 
+});
 
+describe('Reducer', () => {
+    it('should return the initial state', () => {
+        expect(currentCheckout(undefined, {})).toEqual(
+            {
+                currentStep: 0,
+                steps: [],
+                loading: false,
+            }
+        )
+    })
+
+    it('should handle ADD_STEPS', () => {
+        expect(
+            currentCheckout([], {
+                type: checkoutActions.ADD_STEPS,
+                payload: {
+                    currentStep: undefined,
+                    steps: ['pas1', 'pas2']
+                }
+            })
+        ).toEqual(
+            {
+                currentStep: undefined,
+                steps: ['pas1', 'pas2'],
+                loading: false
+            }
+        )
+    })
+
+    it('should handle UPDATE_STEP', () => {
+        const store = mockStore(initialState);
+        expect(
+            currentCheckout(store.getState(), 
+                {
+                type: checkoutActions.UPDATE_STEP,
+                payload: {
+                    step: 2,
+                    steps: [
+                        {
+                            key: 'personal_data',
+                            active: false,
+                            completed: false,
+                            title: 'Dades Personals',
+                        },
+                        {
+                            key: 'contract',
+                            active: true,
+                            completed: false,
+                            title: 'Contracte',
+                        },
+                        { 
+                            key: 'confirm',
+                            active: false,
+                            completed: false,
+                            title: 'Confirmar Pedido' 
+                        },
+                    ]
+                }
+            })
+        ).toEqual({
+                currentStep: 2, 
+                loading: false,
+                steps: [
+                    {
+                        key: 'personal_data',
+                        active: false,
+                        completed: false,
+                        title: 'Dades Personals',
+                    },
+                    {
+                        key: 'contract',
+                        active: true,
+                        completed: false,
+                        title: 'Contracte',
+                    },
+                    { 
+                        key: 'confirm',
+                        active: false,
+                        completed: false,
+                        title: 'Confirmar Pedido' 
+                    },
+                ]
+            }
+        )  
+    })
+
+    it('should handle NEXT_STEP', () => {
+        const store = mockStore(initialState);
+        expect(
+            currentCheckout(store.getState(), 
+            {
+                type: checkoutActions.NEXT_STEP,
+                payload: {
+                    step: 1,
+                    steps: [
+                        {
+                            key: 'personal_data',
+                            active: true,
+                            completed: false,
+                            title: 'Dades Personals',
+                        },
+                        {
+                            key: 'contract',
+                            active: true,
+                            completed: false,
+                            title: 'Contracte',
+                        },
+                        { 
+                            key: 'confirm',
+                            active: false,
+                            completed: false,
+                            title: 'Confirmar Pedido' 
+                        },
+                    ]
+                }
+            }
+            )
+        ).toEqual(
+            {
+                currentStep: 2, 
+                loading: false,
+                steps: [
+                    {
+                        key: 'personal_data',
+                        active: false,
+                        completed: false,
+                        title: 'Dades Personals',
+                    },
+                    {
+                        key: 'contract',
+                        active: true,
+                        completed: false,
+                        title: 'Contracte',
+                    },
+                    { 
+                        key: 'confirm',
+                        active: false,
+                        completed: false,
+                        title: 'Confirmar Pedido' 
+                    },
+                ]
+            }
+        )
+    })
+
+    it('should handle PREVIOUS_STEP', () => {
+        const store = mockStore(initialState);
+        expect(
+            currentCheckout(store.getState(),
+            {
+                type: checkoutActions.PREVIOUS_STEP,
+                payload: {
+                    step: 1,
+                    steps: [
+                        {
+                            key: 'personal_data',
+                            active: false,
+                            completed: false,
+                            title: 'Dades Personals',
+                        },
+                        {
+                            key: 'contract',
+                            active: true,
+                            completed: false,
+                            title: 'Contracte',
+                        },
+                        { 
+                            key: 'confirm',
+                            active: false,
+                            completed: false,
+                            title: 'Confirmar Pedido' 
+                        },
+                    ]
+                }
+            }
+            )
+        ).toEqual(
+            {
+                currentStep: 0, 
+                loading: false,
+                steps: [
+                    {
+                        key: 'personal_data',
+                        active: false,
+                        completed: false,
+                        title: 'Dades Personals',
+                    },
+                    {
+                        key: 'contract',
+                        active: true,
+                        completed: false,
+                        title: 'Contracte',
+                    },
+                    { 
+                        key: 'confirm',
+                        active: false,
+                        completed: false,
+                        title: 'Confirmar Pedido' 
+                    },
+                ]
+            }
+        )
+
+    })
 });

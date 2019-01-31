@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {T} from "../../utils";
+import {T} from "../../../../utils";
 
 /**
  * @class
@@ -17,10 +17,48 @@ class typeCliente extends React.Component  {
         };
     }
 
+    handleInputChange(event) {
+        const target = event.target;
+        // = target.type === 'checkbox' ? target.checked : target.value;
+        let value;
+        const name = target.name;
+        
+        /** 
+         * Check what kind of type is each element and transform them
+         */
+        if (target.type === "number") 
+            value = Number(target.value)
+        else if (target.type === 'checkbox')
+            value = target.checked
+        else
+            value = target.value
+        
+        /** 
+         * Return a error if a field is incorrect 
+         */
+        const error = validator(value, name, target.type)
+
+        /** 
+         * The component change its own state and send a dispatch to redux
+         * this.props.updateField "updateField" is a function which come from its father
+         */
+        return new Promise((resolve, reject) => 
+            resolve(this.setState({
+                [name]: {
+                    value: value,
+                    error: error
+                }
+            }))
+        )
+    }
+
     render() {
+        console.log("Aqui llega")
+        console.log(this.props.type)
+        debugger
             switch (this.props.type) {
-                case "0":
-                case "5":
+                case 0:
+                case 5:
                         return (
                             <div>
                                 <h4>Introduzca su dni: </h4>
@@ -36,7 +74,7 @@ class typeCliente extends React.Component  {
                             </div>
                         );
                     break;
-                case "1":
+                case 1:
                     return (
                         <div>
                             <h4>Introduzca el cif de la empresa: </h4>
@@ -52,7 +90,7 @@ class typeCliente extends React.Component  {
                         </div>
                     );
                 break;
-                case "2":
+                case 2:
                     return (
                         <div>
                             <h4>Introduzca su nie: </h4>
@@ -62,7 +100,7 @@ class typeCliente extends React.Component  {
                             name="nie"
                             type="text"
                             pattern="/^[a-z]{3}[0-9]{6}[a-z]?$/i"
-                            value={this.state.cif.value}
+                            value={this.state.nie.value}
                             onChange={this.handleInputChange} />
                             <span className="text-danger">{!this.state.nie.error? "":this.state.nie.error}</span>
                         </div>

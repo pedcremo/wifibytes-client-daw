@@ -72,5 +72,10 @@
     "personalData-notifyModal-title": "We have detected that you are not logged in, please choose an option:",
     "personalData-notifyModal-choiceLogin":"Log in",
     "personalData-notifyModal-choiceRegister":"Register",
-    "personalData-notifyModal-choiceNone":"Continue anyway"
+    "personalData-notifyModal-choiceNone":"Continue anyway",
+
+    
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Payment"
 }

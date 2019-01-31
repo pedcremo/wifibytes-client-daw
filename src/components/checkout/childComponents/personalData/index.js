@@ -1,26 +1,50 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
+import SignIn from "../../../login/signIn";
 import PortabilidadForm from "./portabilidadForm";
-import SignIn from "../login/signIn";
 import { connect } from "react-redux";
 import {
-    getContactDataForm,
-    updateContactDataForm
-} from "../../actions/personalDataFormActions";
+    getContactDataForm
+} from "../../../../actions/personalDataFormActions";
+import {Agent} from '../../agent';
+import subitems_library from "../../libraries/subitems_based_library.json";
 
-var mockItems= [
-       {
-           id: "",
-            quantity:""
-        }
-]
 let mockCompanies=["orange", "vodafone", "jaxxtel", "yoigo", "pepephone"]
 let serviciosContratados = [654654654, 987654321, 852741963, 14789652, 951159753]
 
-
+let items = [
+    {
+        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
+    },
+    {
+        id: 5,
+        tarifa: [
+            {
+                id: 4
+            },
+            {
+                id: 5
+            }
+        ]
+    },
+    {
+        id: 6,
+        tarifa: [
+            {
+                id: 2
+            },
+            {
+                id: 4
+            },
+            {
+                id: 2
+            }
+        ]
+    }
+]
 /**
  * @class
  * Draw Login. A form to login
@@ -67,7 +91,8 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
-
+        let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
+        console.log(tarifes);
     }
 
 
@@ -145,7 +170,7 @@ class Personal extends React.Component  {
         console.log(this.props)
         return(
             <div>
-                <PersonalDataForm sim={true} dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
+                <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
                 {<div className="grid-data-form">
                     {
                         serviciosContratados.map((item, i) => {
@@ -163,7 +188,6 @@ class Personal extends React.Component  {
                          <UserChoice choice={this.printComponent}/> }
                     </div>
                 </div>
-                <button onClick={this.props.nextStep}>Next</button>
             </div>
         )
     }

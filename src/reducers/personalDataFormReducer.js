@@ -118,7 +118,7 @@ let getUserData = (action) => {
         address: {error:"", value: "C/ alicante 1"},
         zip: {error:"", value: 46870},
         city: {error:"", value: "Gandia"},
-        tipcli: {error:"", value: ""},
+        tipcli: {error:"", value: "0"},
         dni: {error:"", value: "48606013k"},
         cif: {error:"", value: "48606013k"},
         nie: {error:"", value: "48606013k"}

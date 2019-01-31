@@ -74,6 +74,10 @@
     "personalData-notifyModal-title": "Hemos detectado que no esta logueado, porfavor elija una opción:",
     "personalData-notifyModal-choiceLogin":"Loguearse",
     "personalData-notifyModal-choiceRegister":"Registrarse",
-    "personalData-notifyModal-choiceNone":"Continuar igualmente"
+    "personalData-notifyModal-choiceNone":"Continuar igualmente",
 
+
+    "checkout-personal-data": "Datos Personales",
+    "checkout-contract": "Contrato",
+    "checkout-confirm": "Confirmar Pedido"
 }

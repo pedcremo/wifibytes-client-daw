@@ -1,5 +1,5 @@
 {
-    "name": "Wifibytes",
+    "name": "wifibytes",
     "version": "1.0.0",
     "description": "Wifibytes web",
     "main": "index.js",
@@ -9,7 +9,8 @@
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
         "doc": "jsdoc -c jsdoc.json README.md src/*",
-        "test": "jest --verbose -u --env=jsdom"
+        "test": "jest --verbose -u --env=jsdom",
+        "coverage": "jest --coverage"
     },
     "author": "2_DAW 2018/2019 & Pere crespo",
     "license": "ISC",
@@ -52,6 +53,10 @@
         },
         "snapshotSerializers": [
             "enzyme-to-json/serializer"
+        ],
+        "collectCoverage": true,
+        "collectCoverageFrom": [
+            "src/**/*.js"
         ]
     },
     "dependencies": {
