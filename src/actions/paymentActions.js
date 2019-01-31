@@ -10,14 +10,10 @@ export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
 
 export function getPaymentTypes() {
     return dispatch => {
-       try {
-            dispatch(getPaymentsBegin());
-            return Utils.get("/formaspago", function(response) {
-                dispatch(getPaymentsSuccess(response));
-            });
-        } catch (e){
-            dispatch(getPaymentsFailure(e));
-        }
+        dispatch(getPaymentsBegin());
+        return Utils.get("/formaspago")
+        .then(response => dispatch(getPaymentsSuccess(response)))
+        .catch(error => dispatch(getPaymentsFailure(error)));
     };
 }
 
