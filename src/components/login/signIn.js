@@ -1,61 +1,43 @@
 /** @module ComponentsApp */
+import {connect} from 'react-redux';
 import React from 'react';
 import LogIn from "./loginComponent";
 import Register from "./registerComponent";
+
+import {changeView} from './loginActions'
 /**
  * @class
  * Draw Login. A form to login
  */
+
 class SignIn extends React.Component  {
-    /**
-     * @constructor
-     */
-    constructor(props) {
-        super(props);
-        this.state = {
-            type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"
-        }
-        this.isAuth = this.isAuth.bind(this);
-    }
-
-    componentWillReceiveProps(){
-        this.setState({
-            type : window.location.href.split('/')[4]
-        })
-    }
-    componentDidMount(){
-    }
-
-    changeType(res){
-        this.setState({
-            type : res
-        })
-    }
-
-    /**
-     * 
-     * @param {isAuth} value
-     * Açi el que fem es retornar al component de personal data (al index) que el usuari
-     * ya s'ha logeat o registrat
-     */
-    isAuth(value){
-        this.props.stat(value)
+    componentWillMount(){
+        this.props.changeView(window.location.href.split('/')[4])
     }
     render() {
+        const { changeView , view} = this.props
         return(
             <div className="login">
                 <div className="center">
                     <div className="tab">
-                        <button className="tablinks" id="loginButton" onClick={()=>this.changeType("login")}>Login</button>
-                        <button className="tablinks" id="registerButton" onClick={()=>this.changeType("register")}>Register</button>
+                        <button className="tablinks" id="loginButton" onClick={()=>changeView("login")}>Login</button>
+                        <button className="tablinks" id="registerButton" onClick={()=>changeView("register")}>Register</button>
                     </div>
                 </div>
-                {this.state.type === "register"?
+                {view === "register"?
                     <Register stat={this.isAuth}/>:
-                    <LogIn stat={this.isAuth}/>
+                    <LogIn stat={this.isAuth} changeView={changeView}/>
                 }
             </div>
         )
     }
 }
-export default SignIn;
+
+const mapDispatchToProps = dispatch =>({
+    changeView : (view) => dispatch(changeView(view)),
+})
+const mapStateToProps = state => ({
+    ...state.loginReducer
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
