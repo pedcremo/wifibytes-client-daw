@@ -7,6 +7,9 @@ import PropTypes from 'prop-types'
 
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
+
+import sublibrary from "./libraries/subitems_based_library.json";
+
 import {
     ADD_STEPS,
     NEXT_STEP,
@@ -48,6 +51,14 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
+        let quantities;
+        if(this.props.cartItems.items.length !==0 ){
+            quantities = Agent.arrayToQuantityObject(this.props.cartItems.items, sublibrary);
+        } else {
+            quantities = Agent.arrayToQuantityObject(JSON.parse(localStorage.getItem('cartReducer')).items, sublibrary);
+        }
+        
+        console.log(quantities);
         if(this.props.cartItems.items.length === 0 && JSON.parse(localStorage.getItem('cartReducer')).items.length === 0) {
             this.context.router.history.push('/')
         } else {
