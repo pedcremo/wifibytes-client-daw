@@ -49,6 +49,7 @@ export const Agent = {
                     });
                 }
             });
+            console.log("quantities", quantities)
             return quantities;
         } else
             throw( "Error in objectsToArray method. Parameters must be objects" );

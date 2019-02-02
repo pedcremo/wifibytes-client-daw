@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import {
     getContactDataForm
 } from "../../../../actions/personalDataFormActions";
+import {getItems} from "../../../cart/cartActions";
+
 import {Agent} from '../../agent';
 import subitems_library from "../../libraries/subitems_based_library.json";
 
@@ -26,7 +28,7 @@ let items = [
         id: 5, 
         tarifa: [
             {
-                id: 1
+                id: 3
             },
             {
                 id: 5
@@ -54,7 +56,6 @@ let items = [
         ]
     }
 ]
-console.log("------------------------",Agent.arrayToQuantityObject(items, subitems_library))
 /**
  * @class
  * Draw Login. A form to login
@@ -87,6 +88,7 @@ class Personal extends React.Component  {
      */
     componentDidMount(){
         this.props.dispatch(getContactDataForm());
+        this.props.dispatch(getItems());
         /**
         * Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
@@ -177,33 +179,57 @@ class Personal extends React.Component  {
     }
     
     render() {
-        console.log(this.props, Agent.arrayToQuantityObject(items, subitems_library)["movil"])
-        let array=[];
-        for (let i = 0; i < Agent.arrayToQuantityObject(items, subitems_library)["movil"]; i++) {            
-            array.push(<PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>)
-        }
-        return(
-            <div>
-                <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
-                {<div className="grid-data-form">
-                    {
-                        array.map((item, i) => {
-                            return item
-                        })
-                    }     
-                </div> }
+        console.log("this.props, Agent.arrayToQuantityObject(items, subitems_library)", Agent.arrayToQuantityObject(this.props.cartItems, subitems_library))
 
-                <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
-                    <div className="modal-content">
-                    <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
-                        {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth}/> :
-                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth}/> :
-                         this.state.selected == "none" ? this.printComponent("none") :
-                         <UserChoice choice={this.printComponent}/> }
-                    </div>
-                </div>
+
+        let array=[];
+        for (let i = 0; i < 5; i++) {            
+            array.push(i)
+        }
+
+        return (
+          <div>
+            <PersonalDataForm
+              dataUser={this.props.fields.datosPersonales}
+              updateField={this.props.dispatch}
+            />
+
+            
+            <div className="grid-data-form">
+                {array.map((item, i) => {
+                    console.log(i)
+                    return (<PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>);
+                })}                
             </div>
-        )
+            
+
+            <div
+              id="myModal"
+              className="modal"
+              style={{
+                visibility: this.state.styleModal ? "visible" : "hidden"
+              }}
+            >
+              <div className="modal-content">
+                <span
+                  className="close"
+                  onClick={() => this.changeModal(false)}
+                >
+                  &times;
+                </span>
+                {this.state.selected == "login" ? (
+                  <SignIn type="login" stat={this.changeIsAuth} />
+                ) : this.state.selected == "register" ? (
+                  <SignIn type="register" stat={this.changeIsAuth} />
+                ) : this.state.selected == "none" ? (
+                  this.printComponent("none")
+                ) : (
+                  <UserChoice choice={this.printComponent} />
+                )}
+              </div>
+            </div>
+          </div>
+        );
     }
 }
 
@@ -211,7 +237,8 @@ class Personal extends React.Component  {
 const mapStateToProps = state => ({    
     fields: state.personalDataForm.fields,
     loaded: state.personalDataForm.loaded,
-    error: state.personalDataForm.error
+    error: state.personalDataForm.error,
+    cartItems: state.cartReducer.items
 });
 
 
