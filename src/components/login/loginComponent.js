@@ -79,7 +79,7 @@ class Login extends React.Component  {
     }
     loginSubmit(){
         let loginSubmit = {
-            username:this.state.username,
+            username_or_email:this.state.username,
             password:this.state.password
         }
         AuthService.login(loginSubmit).then((res)=>{
@@ -106,8 +106,8 @@ class Login extends React.Component  {
                     <div className="login-acces">
                         <form>
 
-                            <h4>{Utils.translate("login-acces-dni")}</h4>
-                                <input type="text" required size="10" maxLength="9" className="loginInput" pattern="^[0-9]{8}[a-zA-Z]{1}$" value={this.state.username} onChange={(e)=>this.updateInput(e,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
+                            <h4>{Utils.translate("login-acces-email-or-username")}</h4>
+                                <input type="email" required size="1"  className="loginInput" value={this.state.username} onChange={(e)=>this.updateInput(e,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
 
                             <h4>{Utils.translate("login-acces-password")}</h4>
                             <input type="password" required className="loginInput" value={this.state.password} onChange={(e)=>this.updateInput(e,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
