@@ -4,11 +4,13 @@ import {
   paymentUpdate,
   getPaymentTypes,
   setExpirationDate,
-  paymentsubmit
+  paymentsubmit,
+  setShowModalToTrue,
+  setShowModalToFalse
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
-import PaymentOptions from './paymentTypes/paymentOptions';
+import {PaymentOptions, PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import PaymentForm from './paymentTypes/paymentForm';
 import {PropTypes} from 'prop-types';
 
@@ -26,6 +28,11 @@ class Payment extends React.Component {
     this.changeIban = ev => this.props.dispatch(paymentUpdate("iban", ev.target.value));
     this.changeAddress = ev => this.props.dispatch(paymentUpdate("address", ev.target.value));
     this.changeDebitOwner = ev => this.props.dispatch(paymentUpdate("debitOwner", ev.target.value));
+    this.closeModal = codpago => {
+      console.log(codpago);
+      document.getElementById("myModal").style.visibility = "hidden";
+      this.props.dispatch(setShowModalToFalse())
+    }
     this.submitForm = () => ev => {
       ev.preventDefault();
       alert("Submit button works!");
@@ -33,6 +40,7 @@ class Payment extends React.Component {
     }
     this.addPaymentMethod = () => ev => {
       ev.preventDefault();
+      this.props.dispatch(setShowModalToTrue())
     }
   }
   
@@ -81,7 +89,13 @@ class Payment extends React.Component {
     const form = this.paymentForm();
     return (
       <div className="payment-container">
-        {<PaymentOptions
+      {<PaymentOptions
+        onChange={this.changePaymentMethod}
+        paymentOptions={this.props.paymentMethods}
+        paymentMethod = {this.props.paymentMethod}
+        show={this.props.showModal}
+        closeModal = {this.closeModal} />}
+        {<PaymentOptionsRadioButton
         onChange={this.changePaymentMethod}
         paymentOptions={this.props.paymentMethods}
         paymentMethod = {this.props.paymentMethod} />}

@@ -5,6 +5,8 @@ import {
     FORM_UPDATE,
     SET_EXPIRATION_DATE,
     PAYMENT_SUBMIT,
+    SET_SHOW_MODAL_TRUE,
+    SET_SHOW_MODAL_FALSE,
 } from '../actions/paymentActions';
 
 const initialState = {
@@ -25,6 +27,7 @@ const initialState = {
     iban:"",
     address:"",
     debitOwner:"",
+    showModal:false,
 };
 
 export default function checkoutReducer(state = initialState, action) {
@@ -34,6 +37,16 @@ export default function checkoutReducer(state = initialState, action) {
                 ...state,
                 expirationYear : action.year,
                 expirationMonth : action.month + 1 /**January starts at 0 */
+            }
+        case SET_SHOW_MODAL_TRUE:
+            return{
+                ...state,
+                showModal:true
+            }
+        case SET_SHOW_MODAL_FALSE:
+            return{
+                ...state,
+                showModal:false
             }
         case GET_PAYMENTS_BEGIN:
             return {

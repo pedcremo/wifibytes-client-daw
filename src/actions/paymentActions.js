@@ -7,6 +7,8 @@ export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
 export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
 export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
+export const SET_SHOW_MODAL_TRUE = 'SET_SHOW_MODAL_TRUE';
+export const SET_SHOW_MODAL_FALSE = 'SET_SHOW_MODAL_FALSE';
 
 export function getPaymentTypes() {
     return dispatch => {
@@ -23,6 +25,22 @@ export function setExpirationDate(year, month) {
             type: SET_EXPIRATION_DATE,
             year: year,
             month:month
+        });
+    };
+}
+
+export function setShowModalToTrue() {
+    return dispatch => {
+        return dispatch({
+            type: SET_SHOW_MODAL_TRUE
+        });
+    };
+}
+
+export function setShowModalToFalse() {
+    return dispatch => {
+        return dispatch({
+            type: SET_SHOW_MODAL_FALSE
         });
     };
 }
