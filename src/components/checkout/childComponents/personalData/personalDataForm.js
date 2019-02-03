@@ -1,7 +1,8 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {
-    updateContactDataForm
+    updateContactDataForm,
+    updateValidDtoPersForm
 } from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
 
@@ -38,40 +39,35 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-/**WARNING TO EMPROVE
- * ----------------------------------------------------------------------------------------------
- * Cuando la informacion viene del backend o de local deberia volver a pasar el validador y comprobar si los datos ya estan correctos de acuerdo a las reglas marcadas
- * * ----------------------------------------------------------------------------------------------
- */
-
-/* console.log(this.refs.name, this.refs.name.id) */
+        
         if (Object.keys(newProps.dataUser).length > 0) {
+            let cont=0;
             for (const key in this.state) {
-                new Promise((resolve, reject) =>
-                resolve(
-                    this.setState({
-                        [key]: {
-                            value: newProps.dataUser[key].value,
-                            error: newProps.dataUser[key].error
-                        }
-                    })
-                )
-                ).then(()=>{
-                    const error = validator(this.refs[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
-                    if (error) {
+                new Promise((resolve, reject) =>{
+                    const error = validator(newProps.dataUser[key].value, this.refs[key]["name"], this.refs[key]["type"])
+                    if (error!=undefined) 
+                        cont++          
+                                      
+                    resolve(
                         this.setState({
                             [key]: {
                                 value: newProps.dataUser[key].value,
                                 error: error
                             }
-                        })
-                    }
+                        }))
                 })
-                
-            }
+                .then(()=>{
+                    if (cont==0) 
+                        this.props.updateField(updateValidDtoPersForm())
+                    else
+                        console.log("no valid")
+                })
+            }//end for
         }
 
     }
+
+    
 
 
 
@@ -122,7 +118,7 @@ class PersonalForm extends React.Component  {
         return (
             <form className="grid-data-form">
                <div>
-                    <h4>Personal Data</h4>
+                    <h2>Personal Data</h2>
                     <div>
                         <input
                         className="form-control form-control-lg mio"
@@ -177,7 +173,7 @@ class PersonalForm extends React.Component  {
                 </div>
 
                 <div>
-                    <h4>Address</h4>
+                    <h2>Address</h2>
                     <div>
                         <input
                         className="form-control form-control-lg"

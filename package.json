@@ -62,9 +62,9 @@
     },
     "dependencies": {
         "cross-fetch": "^3.0.0",
-        "react-reactive-form": "^1.0.28",
         "prop-types": "^15.6.2",
         "react-beforeunload": "^1.0.4",
+        "react-reactive-form": "^1.0.28",
         "react-redux": "^6.0.0",
         "react-router-dom": "^4.3.1",
         "react-signature-pad-wrapper": "^1.2.3",
@@ -74,6 +74,8 @@
         "redux-testkit": "^1.0.6",
         "redux-thunk": "^2.3.0",
         "semantic-ui-react": "^0.84.0",
+        "sweetalert2": "^7.33.1",
+        "sweetalert2-react-content": "^1.0.1",
         "vegas": "^2.4.4"
     }
 }

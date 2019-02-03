@@ -7,15 +7,15 @@ import SignIn from "../../../login/signIn";
 import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
 import {
-    getContactDataForm
+    getContactDataForm,
+    updateContactDataFormServices
 } from "../../../../actions/personalDataFormActions";
 import {getItems} from "../../../cart/cartActions";
 
 import {Agent} from '../../agent';
 import subitems_library from "../../libraries/subitems_based_library.json";
 
-let mockCompanies=["orange", "vodafone", "jaxxtel", "yoigo", "pepephone"]
-let serviciosContratados = [654654654, 987654321, 852741963, 14789652, 951159753]
+let mockCompanies=["orange", "vodafone", "jazztel", "yoigo", "pepephone"]
 /*
 tarifas 
 1: //Movil
@@ -26,7 +26,7 @@ let items = [
     },
     {
         id: 5, 
-        tarifa: [
+        subtarifas: [
             {
                 id: 3
             },
@@ -37,7 +37,7 @@ let items = [
     },
     {
         id: 6,
-        tarifa: [
+        subtarifas: [
             {
                 id: 2
             },
@@ -56,6 +56,7 @@ let items = [
         ]
     }
 ]
+
 /**
  * @class
  * Draw Login. A form to login
@@ -89,6 +90,8 @@ class Personal extends React.Component  {
     componentDidMount(){
         this.props.dispatch(getContactDataForm());
         this.props.dispatch(getItems());
+        /* this.props.dispatch(getContactDataFormServices()); */
+        
         /**
         * Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
@@ -103,13 +106,13 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
-        let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
-        console.log(tarifes);
+        /* let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
+        console.log(tarifes); */
     }
 
 
     updateFieldPerDataForm(form_new_state){
-        console.log(form_new_state)
+        //console.log(form_new_state)
         this.props.dispatch(getContactDataForm());
         /* this.props.dispatch(updateContactDataForm("form_new_state")) */
     }
@@ -121,9 +124,8 @@ class Personal extends React.Component  {
      * logeat i amaguem el modal per a que pugam omplir el formulari
      */
     changeIsAuth(value){
-        console.log(value)
         if (value == true){
-            console.log("Nos ha vuelto al padre todo poderoso");
+            //console.log("Nos ha vuelto al padre todo poderoso");
             this.setState({
                 isAuth : value
             })
@@ -179,56 +181,60 @@ class Personal extends React.Component  {
     }
     
     render() {
-        console.log("this.props, Agent.arrayToQuantityObject(items, subitems_library)", Agent.arrayToQuantityObject(this.props.cartItems, subitems_library))
-
-
-        let array=[];
-        for (let i = 0; i < 5; i++) {            
-            array.push(i)
+        /**
+         * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
+         */
+        if (this.props.datosProductos.length===0) {
+            let array=[];
+            let obj = Agent.arrayToQuantityObject(items, subitems_library)
+            let cont=-1;
+            let quantity = obj["movil"] + obj["fijo"]
+            if (quantity> 0) {
+                for (const keyName in obj) {
+                    if (`${keyName}` === "movil" || `${keyName}`==="fijo"){
+                        for (let i = 0; i < parseInt(`${obj[keyName]}`); i++) {
+                            cont++
+                            /* array.push(<PortabilidadForm tipo={`${keyName}`} key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>); */
+                            this.props.dispatch(updateContactDataFormServices({
+                                tipo: "alta",
+                                tipoTlf: `${keyName}`,
+                                key: parseInt (`${cont}`)
+                            }))
+                            array.push({tipo:`${keyName}`});
+                        }
+                    }
+                }
+            }
         }
+        
 
+        
+        
         return (
-          <div>
-            <PersonalDataForm
-              dataUser={this.props.fields.datosPersonales}
-              updateField={this.props.dispatch}
-            />
+            <div>
+                <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
 
-            
-            <div className="grid-data-form">
-                {array.map((item, i) => {
-                    console.log(i)
-                    return (<PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>);
-                })}                
-            </div>
-            
+                <div className="grid-data-form">
+                    {this.props.datosProductos.map((item, i)=> 
+                        <PortabilidadForm tipo={item.value.tipoTlf}  key={i} id={i} datosProductos={item} companies={mockCompanies} updateField={this.props.dispatch}/>)
+                    }                
+                </div>
 
-            <div
-              id="myModal"
-              className="modal"
-              style={{
-                visibility: this.state.styleModal ? "visible" : "hidden"
-              }}
-            >
-              <div className="modal-content">
-                <span
-                  className="close"
-                  onClick={() => this.changeModal(false)}
-                >
-                  &times;
-                </span>
-                {this.state.selected == "login" ? (
-                  <SignIn type="login" stat={this.changeIsAuth} />
-                ) : this.state.selected == "register" ? (
-                  <SignIn type="register" stat={this.changeIsAuth} />
-                ) : this.state.selected == "none" ? (
-                  this.printComponent("none")
-                ) : (
-                  <UserChoice choice={this.printComponent} />
-                )}
-              </div>
+                <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? "visible" : "hidden"}}>
+                    <div className="modal-content">
+                        <span className="close" onClick={() => this.changeModal(false)}>&times;</span>
+                        {this.state.selected == "login" ? (
+                            <SignIn type="login" stat={this.changeIsAuth} />
+                        ) : this.state.selected == "register" ? (
+                            <SignIn type="register" stat={this.changeIsAuth} />
+                        ) : this.state.selected == "none" ? (
+                        this.printComponent("none")
+                        ) : (
+                            <UserChoice choice={this.printComponent} />
+                        )}
+                    </div>
+                </div>
             </div>
-          </div>
         );
     }
 }
@@ -236,6 +242,7 @@ class Personal extends React.Component  {
 
 const mapStateToProps = state => ({    
     fields: state.personalDataForm.fields,
+    datosProductos: state.personalDataForm.fields.datosProductos,
     loaded: state.personalDataForm.loaded,
     error: state.personalDataForm.error,
     cartItems: state.cartReducer.items
