@@ -1,6 +1,8 @@
 import React from 'react';
 export default function PaymentOptions(props) {
-    function closeModal(){
+    function closeModal(codpago){
+        alert(codpago);
+        console.log("hola2");
         document.getElementById("myModal").style.visibility = "hidden";
     }
     if(props.paymentOptions.length === 0){
@@ -15,7 +17,7 @@ export default function PaymentOptions(props) {
     });
     const buttonOptions = props.paymentOptions.map((option, i) => {
         return (
-            <button key={i} onClick={()=>closeModal()} value={option.codpago}> {option.nombre}</button>
+            <button key={i} onClick={()=>closeModal(option.codpago)} value={option.codpago}> {option.nombre}</button>
         );
     });
     return (

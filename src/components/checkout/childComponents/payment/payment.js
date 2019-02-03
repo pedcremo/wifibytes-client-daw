@@ -33,7 +33,6 @@ class Payment extends React.Component {
     }
     this.addPaymentMethod = () => ev => {
       ev.preventDefault();
-      alert("hola");
     }
   }
   
