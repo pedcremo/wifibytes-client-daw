@@ -33,10 +33,10 @@ class Payment extends React.Component {
     }
     this.addPaymentMethod = () => ev => {
       ev.preventDefault();
-      alert("hola");
+      this.render();
     }
   }
-  
+
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
     const thisDate = new Date();
