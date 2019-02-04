@@ -38,6 +38,9 @@ export default function MastercardVisaAmericanExpressForm(props) {
           <fieldset>
             <h1>{props.translate.t("payment-method1")}</h1>
             <fieldset className="form-group">
+              <h3 className="errors"
+              hidden={!props.submittedAtLeastOnce || validateCardOwner()}>
+              Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("payment-owner")}</label>
               <input
                 className="form-control form-control-lg"
@@ -56,6 +59,9 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 onChange={props.changeAnyFormField(number, "cardNumber")} />
             </fieldset>
             <fieldset className="form-group">
+            <h3 className="errors"
+              hidden={!props.submittedAtLeastOnce || validateExpirationDate()}>
+              Something is wrong with the expiration date, check it out!</h3>
               <label>{props.translate.t("payment-expirationMonth")}</label>
               <select
               className="form-control form-control-lg"
@@ -85,6 +91,9 @@ export default function MastercardVisaAmericanExpressForm(props) {
               </select>
             </fieldset>
             <fieldset className="form-group">
+            <h3 className="errors"
+              hidden={!props.submittedAtLeastOnce || validateCvv()}>
+              Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("CVV")}</label>
               <input
                 className="form-control form-control-lg"
