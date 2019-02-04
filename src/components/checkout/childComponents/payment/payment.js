@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import {
   paymentUpdate,
   getPaymentTypes,
-  setExpirationDate,
   paymentsubmit,
   setShowModalToTrue,
   setShowModalToFalse,
@@ -21,13 +20,11 @@ class Payment extends React.Component {
   constructor() {
     super();
 
+    /**Changes any form field, number is the element of the array */
     this.changeAnyFormField = (number, field) => ev =>{
       let form =this.props.form.map(
-        (form, i) => {if(i === number){
-          return {...form, props: {...form.props, [field]:ev.target.value}}
-        } 
-        return form;
-      }
+        (form, i) => i === number ? {...form, props: {...form.props, [field]:ev.target.value}}
+        : form
     );
     this.setForms(form);
 
@@ -48,30 +45,31 @@ class Payment extends React.Component {
         let form = this.props.form.filter((form, i) => {
           return i === number? null : form;
       });
-        console.log(form);
         this.setForms(form);
       }
       /**
        * @param add will be true if a form has to be added and false if it has to be changed
        */
     this.changePaymentMethod = add => ev => {
-      this.props.dispatch(paymentUpdate("paymentMethod", parseInt(ev.target.value)));
+      this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
       this.paymentForm(parseInt(ev.target.value), add);} 
   
+      /**Closes modal and if it was selected a valid codpago will add a form*/
     this.closeModal = codpago => {
       document.getElementById("myModal").style.visibility = "hidden";
       this.props.dispatch(setShowModalToFalse());
       this.paymentForm(parseInt(codpago), true);
     }
-    
+    /**Adds a payment method */
     this.addPaymentMethod = () => ev => {
       ev.preventDefault();
       this.props.dispatch(setShowModalToTrue())
     }
+    /**Updates form from reducer */
     this.setForms = forms => this.props.dispatch(setForm(forms));
 
+    /**Adds a delete payment method button, number is the element of the array we have to remove */
     this.addDeletePaymentMethodButton = (number) => {
-      console.log(number);
       return this.props.form.length > 1? <button
       className="btn btn-lg btn-primary pull-xs-right"
       onClick={this.deletePaymentMethod(number)}
@@ -83,17 +81,14 @@ class Payment extends React.Component {
   
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
-    const thisDate = new Date();
-    this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()));
-    if(this.props.form.length < 1){
-      this.paymentForm();
-    }
+    this.props.form.length <1? this.paymentForm() : null;
   }
-
+  /**Get the month we are, thisDate.getMonth() is an array so january is month 0, we have to add 1 */
   getMonth(){
     const thisDate = new Date();
     return thisDate.getMonth()+1;
   }
+  /**Get the year we are */
   getYear(){
     const thisDate = new Date();
     return thisDate.getFullYear();

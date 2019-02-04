@@ -2,14 +2,13 @@ import {Utils} from "../utils";
 
 
 export const PAYMENT_SUBMIT = 'PAYMENT_SUBMIT';
-export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
 export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
-export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
 export const SET_SHOW_MODAL_TRUE = 'SET_SHOW_MODAL_TRUE';
 export const SET_SHOW_MODAL_FALSE = 'SET_SHOW_MODAL_FALSE';
 export const SET_FORM = 'SET_FORM';
+export const PAYMENT_METHOD_UPDATE = 'PAYMENT_METHOD_UPDATE';
 
 export function getPaymentTypes() {
     return dispatch => {
@@ -24,16 +23,6 @@ export function setForm(form) {
         return dispatch({
             type: SET_FORM,
             form:form
-        });
-    };
-}
-
-export function setExpirationDate(year, month) {
-    return dispatch => {
-        return dispatch({
-            type: SET_EXPIRATION_DATE,
-            year: year,
-            month:month
         });
     };
 }
@@ -54,11 +43,10 @@ export function setShowModalToFalse() {
     };
 }
 
-export function paymentUpdate(key, value) {
+export function paymentUpdate(value) {
     return dispatch => {
         return dispatch({
-            type: FORM_UPDATE, 
-            key: key,
+            type: PAYMENT_METHOD_UPDATE,
             value: value
         });
     };
