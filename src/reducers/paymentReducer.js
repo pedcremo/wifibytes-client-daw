@@ -7,6 +7,7 @@ import {
     PAYMENT_SUBMIT,
     SET_SHOW_MODAL_TRUE,
     SET_SHOW_MODAL_FALSE,
+    SET_FORM
 } from '../actions/paymentActions';
 
 const initialState = {
@@ -14,20 +15,13 @@ const initialState = {
     paymentMethod:3, /**codpago de backend, visa/mastercard/american express por defecto */
     existsService:false,
     checkoutProcessIsValid:false,
-    cardOwner:"",
-    cardNumber:"",
-    expirationMonth:"",
-    expirationYear:"",
-    cvv:"",
     cardNameIsValid:false, /**not using this yet, waiting for the checkout to be incorpored */
     cardNumberIsValid:false,
     expirationDateIsValid:false,
     cvvIsValid:false,
     paymentMethods:[],
-    iban:"",
-    address:"",
-    debitOwner:"",
     showModal:false,
+    form:[],
 };
 
 export default function checkoutReducer(state = initialState, action) {
@@ -37,6 +31,11 @@ export default function checkoutReducer(state = initialState, action) {
                 ...state,
                 expirationYear : action.year,
                 expirationMonth : action.month + 1 /**January starts at 0 */
+            }
+        case SET_FORM:
+            return {
+                ...state,
+                form:action.form
             }
         case SET_SHOW_MODAL_TRUE:
             return{

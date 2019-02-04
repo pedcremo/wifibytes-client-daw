@@ -9,6 +9,7 @@ export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
 export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
 export const SET_SHOW_MODAL_TRUE = 'SET_SHOW_MODAL_TRUE';
 export const SET_SHOW_MODAL_FALSE = 'SET_SHOW_MODAL_FALSE';
+export const SET_FORM = 'SET_FORM';
 
 export function getPaymentTypes() {
     return dispatch => {
@@ -16,6 +17,14 @@ export function getPaymentTypes() {
         return Utils.get("/formaspago")
         .then(response => dispatch(getPaymentsSuccess(response)))
         .catch(error => dispatch(getPaymentsFailure(error)));
+    };
+}
+export function setForm(form) {
+    return dispatch => {
+        return dispatch({
+            type: SET_FORM,
+            form:form
+        });
     };
 }
 
@@ -72,14 +81,6 @@ export function paymentsubmit(data) {
             value: payment
         });
     }
-    // return dispatch => {
-    //     try {
-    //         dispatch(paymentSubmitBegin());
-    //         //return Utils.post();
-    //     } catch (e){
-    //         dispatch(paymentSubmitFailure(e));
-    //     }
-    // };
 }
 
 /* SUBMIT TYPES ACTIONS */
