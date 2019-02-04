@@ -93,5 +93,6 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 value={cvv}
                 onChange={props.changeAnyFormField(number, "cvv")} />
             </fieldset>
+            {props.addDeletePaymentMethodButton(number)}
           </fieldset>);
   }

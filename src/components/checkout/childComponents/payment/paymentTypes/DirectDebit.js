@@ -85,5 +85,6 @@ export default function DirectDebitForm(props) {
                 value={iban}
                 onChange={props.changeAnyFormField(number, "iban")} />
             </fieldset>
+            {props.addDeletePaymentMethodButton(number)}
           </fieldset>);
   }

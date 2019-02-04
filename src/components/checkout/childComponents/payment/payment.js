@@ -43,12 +43,20 @@ class Payment extends React.Component {
 
       /**Changing payment methods */
 
-    this.changePaymentMethod = add => ev => {
-      this.props.dispatch(paymentUpdate("paymentMethod", parseInt(ev.target.value)));
-      this.paymentForm(parseInt(ev.target.value), add);} /**
-       * 
+      this.deletePaymentMethod = number => ev => {
+        ev.preventDefault();
+        let form = this.props.form.filter((form, i) => {
+          return i === number? null : form;
+      });
+        console.log(form);
+        this.setForms(form);
+      }
+      /**
        * @param add will be true if a form has to be added and false if it has to be changed
        */
+    this.changePaymentMethod = add => ev => {
+      this.props.dispatch(paymentUpdate("paymentMethod", parseInt(ev.target.value)));
+      this.paymentForm(parseInt(ev.target.value), add);} 
   
     this.closeModal = codpago => {
       document.getElementById("myModal").style.visibility = "hidden";
@@ -61,6 +69,16 @@ class Payment extends React.Component {
       this.props.dispatch(setShowModalToTrue())
     }
     this.setForms = forms => this.props.dispatch(setForm(forms));
+
+    this.addDeletePaymentMethodButton = (number) => {
+      console.log(number);
+      return this.props.form.length > 1? <button
+      className="btn btn-lg btn-primary pull-xs-right"
+      onClick={this.deletePaymentMethod(number)}
+      type="button">
+      Quitar método de pago
+    </button>:null;
+    }
   }
   
   componentDidMount() {
@@ -97,7 +115,9 @@ class Payment extends React.Component {
           cardNumber={""}
           expirationYear={this.getYear()}
           expirationMonth={this.getMonth()}
-          cvv={""}/>);
+          cvv={""}
+          deletePaymentMethod = {this.deletePaymentMethod}
+          addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}/>);
           this.setForms(forms);
         return forms;
       case 3:
@@ -110,7 +130,9 @@ class Payment extends React.Component {
         changeIban={this.changeIban}
         debitOwner={""}
         iban={""}
-        address={""}/>);
+        address={""}
+        deletePaymentMethod = {this.deletePaymentMethod}
+        addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}/>);
         this.setForms(forms);
         return forms;
       default:

@@ -1,19 +1,19 @@
 import React from 'react';
 
 export default function PaymentForm(props) {
-      const formulario = props.forms;
+      const forms = props.forms;
       console.log()
       const formsToFill = props.forms.map((form, i) => {
         return (
           <label key={i}>
             <form.type
             number={i}
-            forms = {formulario}/>
+            forms = {forms}/>
           </label>
         )
     });
     function showAddButton(){
-      return formulario.length >= 5? null : <button
+      return forms.length >= 5? null : <button
       className="btn btn-lg btn-primary pull-xs-right"
       onClick={props.addPaymentMethod()}>
       Añadir método de pago
