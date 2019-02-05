@@ -94,7 +94,7 @@ class Payment extends React.Component {
     const thisDate = new Date();
     return thisDate.getFullYear();
   }
-  paymentForm(codPago=3, add){
+  paymentForm(codPago=1, add){
     let forms = add? this.props.form : [];
     switch(codPago){
       case 1:

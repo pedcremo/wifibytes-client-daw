@@ -10,12 +10,12 @@ import {
 } from '../actions/paymentActions';
 
 const initialState = {
-    paymentMethod:3, /**codpago de backend, visa/mastercard/american express por defecto */
+    paymentMethod:0, /**codpago de backend, visa/mastercard/american express por defecto */
     paymentMethods:[],
     showModal:false,
     form:[],
     /** submittedAtLeastOnce it's true if payment form was submitted even if it had errors */
-    submittedAtLeastOnce:false, 
+    submittedAtLeastOnce:true, 
     /**
     * It's true if payment form was submitted even if it had errors */
 };
@@ -53,7 +53,7 @@ export default function checkoutReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 paymentMethods: action.payload.formasdepago.results,
-                paymentMethod: action.payload.formasdepago.results[1].codpago
+                paymentMethod: action.payload.formasdepago.results[2].codpago
             };
         case GET_PAYMENTS_FAILURE:
             return {
