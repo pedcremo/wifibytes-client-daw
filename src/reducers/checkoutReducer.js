@@ -59,12 +59,14 @@ export default function currentCheckout(state = initialState, action) {
         
         case SET_COMPLETED:
             state.steps[state.currentStep-1].completed=true;
+            state.steps[state.currentStep-1].className="";
             return {
                 ...state,
             };
 
         case SET_UNCOMPLETED:
             state.steps[state.currentStep-1].completed=false;
+            state.steps[state.currentStep-1].className="error";
             return {
                 ...state,
             };
