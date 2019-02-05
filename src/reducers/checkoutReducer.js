@@ -5,12 +5,14 @@ import {
     UPDATE_STEP,
     SET_COMPLETED,
     SET_UNCOMPLETED,
-    SET_CONTRACTS
+    SET_CONTRACTS,
+    UPDATE_DATA
 } from '../constants/actionTypes';
 
 const initialState = {
     currentStep: 0,
     steps: [],
+    data: {},
     loading: false,
 };
 
@@ -69,13 +71,11 @@ export default function currentCheckout(state = initialState, action) {
                 ...state,
             };
 
-        case SET_CONTRACTS:
+        case UPDATE_DATA:
             return {
                 ...state,
-                contracts:{
-                    html: action.payload.contractsHTML,
-                    next: true
-                }
+                // data[action.payload]: action.payload.data
+                data
             };
         default:
             // ALWAYS have a default case in a reducer
