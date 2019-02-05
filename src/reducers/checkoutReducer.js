@@ -5,12 +5,13 @@ import {
     UPDATE_STEP,
     SET_COMPLETED,
     SET_UNCOMPLETED,
-    SET_CONTRACTS
+    UPDATE_DATA
 } from '../constants/actionTypes';
 
 const initialState = {
     currentStep: 0,
     steps: [],
+    data: {},
     loading: false,
 };
 
@@ -71,12 +72,12 @@ export default function currentCheckout(state = initialState, action) {
                 ...state,
             };
 
-        case SET_CONTRACTS:
+        case UPDATE_DATA:
             return {
                 ...state,
-                contracts:{
-                    html: action.payload.contractsHTML,
-                    next: true
+                data: {
+                    ...state.data,
+                    [action.payload.key]: action.payload.data
                 }
             };
         default:
