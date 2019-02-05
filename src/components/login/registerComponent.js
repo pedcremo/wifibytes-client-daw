@@ -41,6 +41,8 @@ class Register extends React.Component  {
             };
             AuthService.register(diccionario).then((res)=>{
                 console.log(res.token ? "Succes" : "Error")
+                //Açi li retornem al component signIn que el usuari s'ha registrat
+                res.token === "Success" ? this.props.stat(true) : this.props.stat(false);
             }).catch((err)=>{
                 this.setState({error:err})
             })

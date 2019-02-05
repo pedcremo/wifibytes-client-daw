@@ -5,7 +5,14 @@ import datosTarifa from "./datosTarifaReducer";
 import currentRateDetails from "./currentRateDetailsReducer";
 import datosArticulos from "./datosArticulosReducer";
 import datosRates from "./datosRatesReducer";
+import currentCheckout from "./checkoutReducer";
+import datosContracts from "./datosContractsReducer";
 import {i18nState} from "redux-i18n"
+import personalDataForm from "./personalDataFormReducer";
+import payment from "./paymentReducer";
+import loginReducer from "../components/login/loginReducer"
+import cartReducer from "../components/cart/cartReducer"
+import isAuth from "./authReducer"
 
 export default combineReducers({
     datosHome,
@@ -14,5 +21,12 @@ export default combineReducers({
     datosTarifa,
     currentRateDetails,
     datosArticulos,
-    i18nState
+    currentCheckout,
+    personalDataForm,
+    datosContracts,
+    payment,
+    cartReducer,
+    i18nState,
+    isAuth,
+    loginReducer
 });
