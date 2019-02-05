@@ -14,29 +14,23 @@ export const changeView = (view)=>({
 export const changeValue = (value , target) => ({
     type : CHANGE_VALUE,
     value,
-    target
+    target,
 })
 
 /**
  * Login
  */
 
-export function login(loginData) {
-    return dispatch => {
-      dispatch({
-          type : LOGIN,
-          payload : Utils.post("/api-token-auth/",loginData)
-      })
-    };
-}
+export const login = (loginData) =>({
+    type : LOGIN,
+    payload : Utils.post("/api-token-auth/",loginData),
+    isAuth : true
+})
 /**
  * Recover Pass
  */
-export function recoverPass(recoverData) {
-    return dispatch => {
-        dispatch({
-            type : RECOVER,
-            payload : Utils.post("/clientenoreg/",recoverData)
-        })
-      };
-}
+
+export const recoverPass = ( email) => ({
+    type : RECOVER,
+    payload : Utils.post("/clientenoreg/",{email: email})
+})

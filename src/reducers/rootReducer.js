@@ -12,6 +12,7 @@ import personalDataForm from "./personalDataFormReducer";
 import payment from "./paymentReducer";
 import loginReducer from "../components/login/loginReducer"
 import cartReducer from "../components/cart/cartReducer"
+import isAuth from "./authReducer"
 
 export default combineReducers({
     datosHome,
@@ -26,5 +27,6 @@ export default combineReducers({
     payment,
     cartReducer,
     i18nState,
+    isAuth,
     loginReducer
 });
