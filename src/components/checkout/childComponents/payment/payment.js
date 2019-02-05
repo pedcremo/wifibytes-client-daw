@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import {
   paymentUpdate,
   getPaymentTypes,
-  setExpirationDate,
-  paymentsubmit
+  paymentsubmit,
+  setShowModalToTrue,
+  setShowModalToFalse,
+  setForm
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
-import PaymentOptions from './paymentTypes/paymentOptions';
+import {PaymentOptions, PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import PaymentForm from './paymentTypes/paymentForm';
 import {PropTypes} from 'prop-types';
 
@@ -17,75 +19,139 @@ const mapStateToProps = state => ({ ...state.payment });
 class Payment extends React.Component {
   constructor() {
     super();
-    this.changeCardOwner = ev => this.props.dispatch(paymentUpdate("cardOwner", ev.target.value));
-    this.changeCardNumber = ev => this.props.dispatch(paymentUpdate("cardNumber", ev.target.value));
-    this.changeExpirationMonth = ev => this.props.dispatch(paymentUpdate("expirationMonth", ev.target.value));
-    this.changeExpirationYear = ev => this.props.dispatch(paymentUpdate("expirationYear", ev.target.value));
-    this.changeCvv = ev => this.props.dispatch(paymentUpdate("cvv", ev.target.value));
-    this.changePaymentMethod = ev => this.props.dispatch(paymentUpdate("paymentMethod", parseInt(ev.target.value)));
-    this.changeIban = ev => this.props.dispatch(paymentUpdate("iban", ev.target.value));
-    this.changeAddress = ev => this.props.dispatch(paymentUpdate("address", ev.target.value));
-    this.changeDebitOwner = ev => this.props.dispatch(paymentUpdate("debitOwner", ev.target.value));
-    this.submitForm = () => ev => {
-      ev.preventDefault();
-      alert("Submit button works!");
-      this.props.dispatch(paymentsubmit(this.props));
+
+    /**Changes any form field, number is the element of the array */
+    this.changeAnyFormField = (number, field) => ev =>{
+      let form =this.props.form.map(
+        (form, i) => i === number ? {...form, props: {...form.props, [field]:ev.target.value}}
+        : form
+    );
+    this.setForms(form);
+
     }
+
+      /**Submit method */
+
+      this.submitForm = () => ev => {
+        ev.preventDefault();
+        alert("Submit button works!");
+        this.props.dispatch(paymentsubmit(this.props));
+      }
+
+      /**Changing payment methods */
+
+      this.deletePaymentMethod = number => ev => {
+        ev.preventDefault();
+        let form = this.props.form.filter((form, i) => {
+          return i === number? null : form;
+      });
+        this.setForms(form);
+      }
+      /**
+       * @param add will be true if a form has to be added and false if it has to be changed
+       */
+    this.changePaymentMethod = add => ev => {
+      this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
+      this.paymentForm(parseInt(ev.target.value), add);} 
+  
+      /**Closes modal and if it was selected a valid codpago will add a form*/
+    this.closeModal = codpago => {
+      document.getElementById("myModal").style.visibility = "hidden";
+      this.props.dispatch(setShowModalToFalse());
+      this.paymentForm(parseInt(codpago), true);
+    }
+    /**Adds a payment method */
     this.addPaymentMethod = () => ev => {
       ev.preventDefault();
-      this.render();
+      this.props.dispatch(setShowModalToTrue())
+    }
+    /**Updates form from reducer */
+    this.setForms = forms => this.props.dispatch(setForm(forms));
+
+    /**Adds a delete payment method button, number is the element of the array we have to remove */
+    this.addDeletePaymentMethodButton = (number) => {
+      return this.props.form.length > 1? <button
+      className="btn btn-lg btn-primary pull-xs-right"
+      onClick={this.deletePaymentMethod(number)}
+      type="button">
+      Quitar método de pago
+    </button>:null;
     }
   }
 
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
-    const thisDate = new Date();
-    this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()));
+    this.props.form.length <1? this.paymentForm() : null;
   }
-
-  paymentForm(){
-    let forms = [];
-    switch(this.props.paymentMethod){
+  /**Get the month we are, thisDate.getMonth() is an array so january is month 0, we have to add 1 */
+  getMonth(){
+    const thisDate = new Date();
+    return thisDate.getMonth()+1;
+  }
+  /**Get the year we are */
+  getYear(){
+    const thisDate = new Date();
+    return thisDate.getFullYear();
+  }
+  paymentForm(codPago=3, add){
+    let forms = add? this.props.form : [];
+    switch(codPago){
       case 1:
         forms.push(<MastercardVisaAmericanExpressForm
-          translate={this.context} 
-          submitForm={this.submitForm} 
+          changeAnyFormField={this.changeAnyFormField}
+          translate={this.context}
+          submitForm={this.submitForm}
           changeCardOwner={this.changeCardOwner}
           changeCardNumber={this.changeCardNumber}
           changeExpirationMonth={this.changeExpirationMonth}
           changeExpirationYear={this.changeExpirationYear}
           changeCvv={this.changeCvv}
-          cardOwner={this.props.cardOwner}
-          cardNumber={this.props.cardNumber}
-          expirationYear={this.props.expirationYear}
-          expirationMonth={this.props.expirationMonth}
-          cvv={this.props.cvv}/>);
+          cardOwner={""}
+          cardNumber={""}
+          expirationYear={this.getYear()}
+          expirationMonth={this.getMonth()}
+          cvv={""}
+          deletePaymentMethod = {this.deletePaymentMethod}
+          addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}/>);
+          this.setForms(forms);
         return forms;
       case 3:
       forms.push(<DirectDebitForm
+        changeAnyFormField={this.changeAnyFormField}
         translate={this.context} 
         submitForm={this.submitForm}
         changeDebitOwner={this.changeDebitOwner}
         changeAddress={this.changeAddress}
         changeIban={this.changeIban}
-        debitOwner={this.props.debitOwner}
-        iban={this.props.iban}
-        address={this.props.address}/>);
+        debitOwner={""}
+        iban={""}
+        address={""}
+        deletePaymentMethod = {this.deletePaymentMethod}
+        addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}/>);
+        this.setForms(forms);
         return forms;
       default:
-        console.error('CANNOT GET FROM SERVER, PAYMENT METHOD');
         return forms;
     }
   }
+  showPaymentOptionsRadioButton(){
+    return this.props.form.length > 1? null :  <PaymentOptionsRadioButton
+    changePaymentMethod={this.changePaymentMethod}
+    paymentOptions={this.props.paymentMethods}
+    paymentMethod = {this.props.paymentMethod} />;
+  }
 
   render() {
-    const form = this.paymentForm();
+    const form = this.props.form;
     return (
       <div className="payment-container">
-        {<PaymentOptions
-        onChange={this.changePaymentMethod}
+      {<PaymentOptions
+        changePaymentMethod={this.changePaymentMethod}
         paymentOptions={this.props.paymentMethods}
-        paymentMethod = {this.props.paymentMethod} />}
+        paymentMethod = {this.props.paymentMethod}
+        show={this.props.showModal}
+        closeModal = {this.closeModal} />}
+        {this.showPaymentOptionsRadioButton()}
         {<PaymentForm
         addPaymentMethod = {this.addPaymentMethod}
         submitForm={this.submitForm}

@@ -1,9 +1,15 @@
 import React from 'react';
-import {Utils} from "../../../../../utils";
 import {RegExps} from '../../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
-  props=props.props;
+  const number = props.number;
+  props=props.forms[number].props;
+  const cardOwner = props.cardOwner;
+  const cardNumber = props.cardNumber;
+  const expirationMonth = props.expirationMonth;
+  const expirationYear = props.expirationYear;
+  const cvv = props.cvv;
+
   function disabled(){
     return !validateCvv() || !validateCardOwner() || !validateExpirationDate();
   }
@@ -18,21 +24,16 @@ export default function MastercardVisaAmericanExpressForm(props) {
     return props.cardOwner.match(RegExps.cardOwner);
   }
   function createExpirationYears(){
-    const today = new Date();
     let options = [];
     for (let i = 0; i <= 20; i++) {
       options.push(
-        <option key={i} value={today.getFullYear() + i}>{today.getFullYear() + i}</option>
+        <option key={i} value={expirationYear + i}>{expirationYear + i}</option>
       );
     
   }
     return options;
   }
-    const cardOwner = props.cardOwner;
-    const cardNumber = props.cardNumber;
-    const expirationMonth = props.expirationMonth;
-    const expirationYear = props.expirationYear;
-    const cvv = props.cvv;
+
     return (
           <fieldset>
             <h1>{props.translate.t("payment-method1")}</h1>
@@ -43,7 +44,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="text"
                 placeholder={props.translate.t("payment-owner")}
                 value={cardOwner}
-                onChange={props.changeCardOwner} />
+                onChange={props.changeAnyFormField(number, "cardOwner")} />
             </fieldset>
             <fieldset className="form-group">
               <label>{props.translate.t("payment-numberCard")}</label>
@@ -52,14 +53,14 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="number"
                 placeholder={props.translate.t("payment-numberCard")}
                 value={cardNumber}
-                onChange={props.changeCardNumber} />
+                onChange={props.changeAnyFormField(number, "cardNumber")} />
             </fieldset>
             <fieldset className="form-group">
               <label>{props.translate.t("payment-expirationMonth")}</label>
               <select
               className="form-control form-control-lg"
               value={expirationMonth}
-              onChange={props.changeExpirationMonth}>
+              onChange={props.changeAnyFormField(number, "expirationMonth")}>
                 <option value={1}>01</option>
                 <option value={2}>02</option>
                 <option value={3}>03</option>
@@ -79,7 +80,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
               <select
               className="form-control form-control-lg"
               value={expirationYear}
-              onChange={props.changeExpirationYear}>
+              onChange={props.changeAnyFormField(number, "expirationYear")}>
                 {createExpirationYears()}
               </select>
             </fieldset>
@@ -90,7 +91,8 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="number"
                 placeholder={props.translate.t("CVV")}
                 value={cvv}
-                onChange={props.changeCvv} />
+                onChange={props.changeAnyFormField(number, "cvv")} />
             </fieldset>
+            {props.addDeletePaymentMethodButton(number)}
           </fieldset>);
   }

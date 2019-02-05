@@ -1,9 +1,9 @@
 import React from 'react';
-import {Utils} from "../../../../../utils";
 import {RegExps} from '../../../../../regExps';
 
 export default function DirectDebitForm(props) {
-  props=props.props;
+  const number = props.number;
+  props=props.forms[number].props;
   function validateDirectDebit(){ 
   /**
   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
@@ -64,7 +64,7 @@ export default function DirectDebitForm(props) {
                 type="text"
                 placeholder={props.translate.t("payment-owner-debit")}
                 value={debitOwner}
-                onChange={props.changeDebitOwner} />
+                onChange={props.changeAnyFormField(number, "debitOwner")} />
             </fieldset>
             <fieldset className="form-group">
               <label>{props.translate.t("payment-address-debit")}</label>
@@ -73,7 +73,7 @@ export default function DirectDebitForm(props) {
                 type="text"
                 placeholder={props.translate.t("payment-address2-debit")}
                 value={address}
-                onChange={props.changeAddress} />
+                onChange={props.changeAnyFormField(number, "address")} />
             </fieldset>
             <fieldset className="form-group">
               <label>{props.translate.t("payment-iban-debit")}</label>
@@ -83,7 +83,8 @@ export default function DirectDebitForm(props) {
                 placeholder={props.translate.t("payment-iban2-debit")}
                 pattern="^ES\d{22}$"
                 value={iban}
-                onChange={props.changeIban} />
+                onChange={props.changeAnyFormField(number, "iban")} />
             </fieldset>
+            {props.addDeletePaymentMethodButton(number)}
           </fieldset>);
   }

@@ -2,11 +2,13 @@ import {Utils} from "../utils";
 
 
 export const PAYMENT_SUBMIT = 'PAYMENT_SUBMIT';
-export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
 export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
-export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
+export const SET_SHOW_MODAL_TRUE = 'SET_SHOW_MODAL_TRUE';
+export const SET_SHOW_MODAL_FALSE = 'SET_SHOW_MODAL_FALSE';
+export const SET_FORM = 'SET_FORM';
+export const PAYMENT_METHOD_UPDATE = 'PAYMENT_METHOD_UPDATE';
 
 export function getPaymentTypes() {
     return dispatch => {
@@ -16,22 +18,35 @@ export function getPaymentTypes() {
         .catch(error => dispatch(getPaymentsFailure(error)));
     };
 }
-
-export function setExpirationDate(year, month) {
+export function setForm(form) {
     return dispatch => {
         return dispatch({
-            type: SET_EXPIRATION_DATE,
-            year: year,
-            month:month
+            type: SET_FORM,
+            form:form
         });
     };
 }
 
-export function paymentUpdate(key, value) {
+export function setShowModalToTrue() {
     return dispatch => {
         return dispatch({
-            type: FORM_UPDATE, 
-            key: key,
+            type: SET_SHOW_MODAL_TRUE
+        });
+    };
+}
+
+export function setShowModalToFalse() {
+    return dispatch => {
+        return dispatch({
+            type: SET_SHOW_MODAL_FALSE
+        });
+    };
+}
+
+export function paymentUpdate(value) {
+    return dispatch => {
+        return dispatch({
+            type: PAYMENT_METHOD_UPDATE,
             value: value
         });
     };
@@ -54,14 +69,6 @@ export function paymentsubmit(data) {
             value: payment
         });
     }
-    // return dispatch => {
-    //     try {
-    //         dispatch(paymentSubmitBegin());
-    //         //return Utils.post();
-    //     } catch (e){
-    //         dispatch(paymentSubmitFailure(e));
-    //     }
-    // };
 }
 
 /* SUBMIT TYPES ACTIONS */
