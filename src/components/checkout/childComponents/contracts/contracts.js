@@ -83,7 +83,7 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
-        if(datosContracts.length > 0){
+        if(datosContracts.length > 0 && true){
             let servicios1 = [ 1, 2, 3 ];
             let servicios2 = [ 1, 2 ];
             let servicios3 = [ 1 ];
@@ -147,7 +147,14 @@ class Contracts extends React.Component {
             );
         }else{
             return(
-                <span>LOADING!</span>
+                <div className="d-flex flex-column align-items-center">
+                    <label className="mt-5 text-danger">* Personal Data is required</label>
+                    <div className="mb-5 ml-5 mr-5 mt-3 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
+                        <button type="button" className="btn btn-danger ml-5 mr-5" disabled>
+                            Disabled
+                        </button>
+                    </div>
+                </div>
             );
         }
 
