@@ -31,7 +31,6 @@ class Rates extends React.Component {
     }
 
     handleFamilyPicker(event){
-        console.warn(event.target.id)
         let tipo_tarifa = event.target.value
         //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV
         if (tipo_tarifa>0){
@@ -126,29 +125,3 @@ const mapStateToProps = state => ({
     error: state.datosRates.error
 });
 export default connect(mapStateToProps)(Rates);
-
-
- //  handleFamilyPicker(event) {
- //      console.error(event)
- //      /*  let tipo_tarifa = event.target.value
- //       //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV
- //       if (tipo_tarifa>0){
- //           let filteredRates= this.state.originalRates.filter((item)=>{
- //               let subs=item.subtarifas.filter((subItem) => {
- //                   if (subItem.tipo_tarifa==tipo_tarifa) return subItem;
- //               });
- //               if (subs.length>0) return item;
- //           });
- //           this.setState({
- //               rates:filteredRates,
- //               ratesDescription:this.state.originalRatesDescription
- //           });
- //       }else {
- //           this.setState({
- //               rates:this.state.originalRates,
- //               ratesDescription:this.state.originalRatesDescription
- //           });
- //       } */
- //      //$("button.nav-item").find("button.active").removeClass("active");
- //      // $("#"+event.target.id ).addClass("active");
- //  }
