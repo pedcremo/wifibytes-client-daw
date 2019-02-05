@@ -23,12 +23,6 @@ export default function PaymentForm(props) {
           <fieldset>
             {formsToFill}
             {showAddButton()}
-            <button
-              className="btn btn-lg btn-primary pull-xs-right"
-              type="submit"
-              disabled={props.submittedAtLeastOnce}>
-              Comprar
-            </button>
           </fieldset>
         </form>);
   }
