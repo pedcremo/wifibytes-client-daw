@@ -1,7 +1,6 @@
 -Validación número tarjeta
 -No mostrar formulario si no hay productos
 -Borrar todo hasta dejar solo lo del radio button
--Borrar botón submit
 -Cambiar lo de añadir método de pago por cambiar método de pago
 -Quitar quitar método de pago
 -Añadir resumen del carrito
