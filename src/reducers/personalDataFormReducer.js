@@ -35,8 +35,14 @@ export default function personalDataFormReducer(state = initialState, action) {
                     phone: {error:"", value: 654654654},
                     address: {error:"", value: "C/ alicante 1"},
                     zip: {error:"", value: 46870},
-                    city: {error:"", value: "Gandia"}        
-            }
+                    city: {error:"", value: "Gandia"},
+                    tipcli: {error:"", value: 0},
+                    date: {error:"", value: ""},
+                    preview: {error:"", value: ""},
+                    dni: {error:"", value: ""},
+                    cif: {error:"", value: ""},
+                    nie: {error:"", value: ""}
+                }
 
             return {
                 ...state,
@@ -115,9 +121,8 @@ let getUserData = (action) => {
         address: {error:"", value: "C/ alicante 1"},
         zip: {error:"", value: 46870},
         city: {error:"", value: "Gandia"},
-        tipcli: {error:"", value: "0"},
-        dni: {error:"", value: "48606013k"},
-        cif: {error:"", value: "48606013k"},
-        nie: {error:"", value: "48606013k"}
+        tipcli: {error:"", value: 0},
+        date: {error:"", value: ""},
+        pictures: {error:"", value: []}
     }
 }

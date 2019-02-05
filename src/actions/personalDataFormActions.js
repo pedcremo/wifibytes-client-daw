@@ -41,7 +41,6 @@ export const UPDATE_CONTACT_DATA_FORM_SERVICES = 'UPDATE_CONTACT_DATA_FORM_SERVI
 export const updateServices = productos => ({
     type: UPDATE_CONTACT_DATA_FORM_SERVICES,
     payload: productos
-    
 });
 
 

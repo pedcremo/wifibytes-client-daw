@@ -1,18 +1,19 @@
 {
-    "name": "wifibytes",
+    "name": "calculator",
     "version": "1.0.0",
-    "description": "Wifibytes web",
-    "main": "index.js",
+    "description": "calculator machine",
+    "main": "calculator.js",
     "scripts": {
         "start": "node ./tools/startMessage.js && node ./src/server.js",
         "poststart": "node ./tools/startMessage.js",
         "dev": "webpack --mode development",
         "build": "webpack --mode production",
+        "production": "webpack -p --progress",
         "doc": "jsdoc -c jsdoc.json README.md src/*",
         "test": "jest --verbose -u --env=jsdom",
         "coverage": "jest --coverage"
     },
-    "author": "2_DAW 2018/2019 & Pere crespo",
+    "author": "",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.1.2",
@@ -61,15 +62,20 @@
     },
     "dependencies": {
         "cross-fetch": "^3.0.0",
+        "prop-types": "^15.6.2",
+        "react-beforeunload": "^1.0.4",
         "react-reactive-form": "^1.0.28",
         "react-redux": "^6.0.0",
         "react-router-dom": "^4.3.1",
+        "react-signature-pad-wrapper": "^1.2.3",
         "reaptcha": "^1.4.0",
         "redux": "^4.0.1",
         "redux-i18n": "^1.5.14",
         "redux-testkit": "^1.0.6",
         "redux-thunk": "^2.3.0",
         "semantic-ui-react": "^0.84.0",
+        "sweetalert2": "^7.33.1",
+        "sweetalert2-react-content": "^1.0.1",
         "vegas": "^2.4.4"
     }
 }

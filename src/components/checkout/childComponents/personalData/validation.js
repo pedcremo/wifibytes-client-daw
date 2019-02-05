@@ -29,14 +29,14 @@ export function validator(value, name, type="text") {
                 return "This field has minus of 3 values"
             if (value.length < 7 && name === "address")
                 return "This field has minus of 7 values"
+            if (name === "dni" && !Regex.regexDni.test(value))
+                return "Este no es un dni valido"
             break;
-
 
         case "email":
             if (!Regex.regexEmail.test(value))
             return "This is not a valid email"
         break;
-
         
         case "number":
             if (name === "phone" && !Regex.regexPhone.test(value))
@@ -44,7 +44,10 @@ export function validator(value, name, type="text") {
             if (name === "zip" && !Regex.regexZip.test(value))
                 return "This is not a valid zip"
             break;
-
+        case "date":
+            if (!Regex.regexFNAC.test(value))
+                return "Esta fecha no es valida"
+            break;
     
         default:
             return ""

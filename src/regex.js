@@ -17,7 +17,15 @@ let Regex = {
     /**  
      * regexPhone check if a phone has 9 digits and has started by 9 or 6 
      */
-    regexPhone: /^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}$/
+    regexPhone: /^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}$/,
+    /**
+     * regexDni check if dni is valid
+     */
+    regexDni: /^[0-9]{8,8}[A-Za-z]$/g,
+    /**
+     * regexFechNac check if fecha nacimiento is valid
+     */
+    regexFNAC: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g
 }; //END Regex object
 
 

@@ -22,8 +22,14 @@ class PersonalForm extends React.Component  {
             address:conten,
             zip: conten,
             city: conten,
-            tipcli: 0
+            tipcli: 0,
+            date: conten,
+            preview: "",
+            dni: conten,
+            cif: conten,
+            nie: conten
         };
+        this.previewFile = this.previewFile.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
@@ -46,18 +52,18 @@ class PersonalForm extends React.Component  {
                     }
                 })
             }
-    }
+        }
 
     /** 
      * This method is listening changes of each form element 
      * The redux state of this form also change 
      */
     handleInputChange(event) {
+        
         const target = event.target;
         // = target.type === 'checkbox' ? target.checked : target.value;
         let value;
         const name = target.name;
-        
         /** 
          * Check what kind of type is each element and transform them
          */
@@ -67,7 +73,7 @@ class PersonalForm extends React.Component  {
             value = target.checked
         else
             value = target.value
-        
+
         /** 
          * Return a error if a field is incorrect 
          */
@@ -88,7 +94,31 @@ class PersonalForm extends React.Component  {
         .then(() => this.props.updateField(updateContactDataForm(this.state)))
     }
 
+    previewFile(){
+        var reader  = new FileReader();
+        let can = document.getElementById('dni').files[0];
+
+        reader.src = reader.readAsDataURL(can);
+        new Promise((resolve, reject) => {
+            reader.addEventListener("load", ()=> {
+                resolve(reader.result)
+            })
+        }).then((value)=>{
+            this.setState({
+                preview: {
+                    value: value,
+                    error: ""
+                }
+            })
+        }).then(this.props.updateField(updateContactDataForm(this.state)))
+      }
+
     render() {
+        let cli=[]
+        for (let x in this.props.tipCliente){
+            cli.push(x)
+        }
+        //cli.push(<option value={this.props.tipCliente[x]}>{x}</option>)
         return (
             <form className="grid-data-form">
                <div>
@@ -142,6 +172,22 @@ class PersonalForm extends React.Component  {
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.phone.error? "":this.state.phone.error}</span>
                     </div>
+                    <br></br>
+                    <div>
+                        <h4>Fecha de nacimiento: </h4>
+                        <input className="form-control form-control-lg"
+                        name="date"
+                        type="date"
+                        value={this.state.date.value}
+                        onChange={this.handleInputChange}/>
+                        <span className="text-danger">{!this.state.date.error? "":this.state.date.error}</span>
+                    </div>
+                    <br/>
+                    <div>
+                        <h4>Suba una imagen de su dni</h4>
+                        <input type="file" id="dni" onChange={this.previewFile} /><br/>
+                        <img src={this.state.preview.value} height="200" alt="Image preview..."></img>
+                    </div>
                 </div>
 
                 <div>
@@ -183,20 +229,22 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <h4>Introduzca el tipo de cliente: </h4>
-                        <select value={this.state.tipcli.value} onChange={this.handleInputChange} className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
-                            <option value="0">Particular</option>
-                            <option value="5">Autonomo</option>
-                            <option value="1">Empresa</option>
-                            <option value="2">Extranjero</option>
+                        <select name="tipcli" onChange={this.handleInputChange} className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
+                            {
+                                cli.map((a, i)=>{
+                                    return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
+                                })
+                            }     
                         </select>
                         <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
                     </div>
                     <br />
                     <div>
-                        {this.state.tipcli == 0 ? <Typecliente type={0}/> : 
-                         this.state.tipcli == 1 ? <Typecliente type={1}/> :
-                         this.state.tipcli == 2 ? <Typecliente type={2}/> :
-                         <Typecliente type={5}/> }
+                        {
+                        this.state.tipcli.value == 0 ? <Typecliente type={0} dni={this.state.dni.value} change={this.handleInputChange} dnierror={this.state.dni.error}/> : 
+                         this.state.tipcli.value == 1 ? <Typecliente type={1} cif={this.state.cif.value} change={this.handleInputChange} ciferror={this.state.cif.error}/> :
+                         this.state.tipcli.value == 2 ? <Typecliente type={2} nie={this.state.nie.value} change={this.handleInputChange} nierror={this.state.nie.error}/> :
+                         <Typecliente type={5} dni={this.state.dni.value} change={this.handleInputChange} dnierror={this.state.dni.error}/> }
                     </div>
                 </div >
             </form>
