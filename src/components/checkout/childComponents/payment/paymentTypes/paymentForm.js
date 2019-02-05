@@ -7,7 +7,7 @@ export default function PaymentForm(props) {
           <label key={i}>
             <form.type
             number={i}
-            forms = {forms}/>
+            form = {forms[i].props}/>
           </label>
         )
     });

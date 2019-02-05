@@ -3,7 +3,7 @@ import {RegExps} from '../../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
   const number = props.number;
-  props=props.forms[number].props;
+  props=props.form;
   const cardOwner = props.cardOwner;
   const cardNumber = props.cardNumber;
   const expirationMonth = props.expirationMonth;

@@ -3,7 +3,7 @@ import {RegExps} from '../../../../../regExps';
 
 export default function DirectDebitForm(props) {
   const number = props.number;
-  props=props.forms[number].props;
+  props=props.form;
   function validateDirectDebit(){ 
   /**
   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
