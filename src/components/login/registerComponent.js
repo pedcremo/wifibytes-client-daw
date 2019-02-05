@@ -1,6 +1,7 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {Utils} from "../../utils";
+import {connect} from 'react-redux';
 import {Settings} from "../../settings";
 import {AuthService} from "../../auth.service";
 import Reaptcha from 'reaptcha';
@@ -14,21 +15,21 @@ class Register extends React.Component  {
     /**
      * @constructor
      */
-    constructor() { 
+    constructor() {
         super();
         this.recaptchaRef = React.createRef();
         this.registerSubmit = this.registerSubmit.bind(this);
         this.state = {
             nombre : "", apellido : "", email : "",
             cifnif : "", password : "", captcha: false,
-            legal: false, newsletter: false, errorPassword: "", errorPassword2: "", 
+            legal: false, newsletter: false, errorPassword: "", errorPassword2: "",
             errorCaptcha: "", errorEmail: "", error: ""
         }
     }
     componentDidMount(){
-        
+
     }
-    
+
     registerSubmit () {
         if(!this.validateData()){
             let diccionario = {
@@ -70,7 +71,7 @@ class Register extends React.Component  {
         if (this.state.captcha != true){
             this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
             res = true;
-        } 
+        }
         return res;
     }
     render() {
@@ -120,7 +121,7 @@ class Register extends React.Component  {
                         <div>
                             {/* CHECK POLITICA PRIV */}
                             <input required type="checkbox" value={this.state.legal} onClick={()=>{ if(this.state.legal) {this.setState({legal:false}) }else{ this.setState({legal:true}) } }}></input>
-                            <a href="/#legal"> {Utils.translate("register-legal")} </a>    
+                            <a href="/#legal"> {Utils.translate("register-legal")} </a>
                         </div>
                         <div>
                             {/* CHECK NO REBRE OFERTES */}
@@ -148,5 +149,11 @@ class Register extends React.Component  {
 		);
     }
 }
+const mapDispatchToProps = dispatch =>({
 
-export default Register;
+});
+const mapStateToProps = state => ({
+    ...state.registerReducer
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Register);

@@ -17,7 +17,7 @@ class Legal extends React.Component{
         if (error) {
             return (<div>Error! {error.message}</div>);
         }
-    
+
         if (loading) {
             return (<div>Loading...</div>);
         }
@@ -36,7 +36,7 @@ class Legal extends React.Component{
                 <div className="p-5" dangerouslySetInnerHTML={{__html: legalTexts}}></div>
             );
         }
-              
+
     }
 }
 
@@ -47,5 +47,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Legal);
-
-//export default Legal; 

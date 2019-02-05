@@ -2,7 +2,7 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import LogIn from "./loginComponent";
-import Register from "./registerComponent";
+import Register from "./RegisterComponent";
 
 import {changeView} from './loginActions'
 /**
