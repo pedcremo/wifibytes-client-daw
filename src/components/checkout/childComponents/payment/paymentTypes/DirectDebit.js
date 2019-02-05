@@ -3,12 +3,12 @@ import {RegExps} from '../../../../../regExps';
 
 export default function DirectDebitForm(props) {
   const number = props.number;
-  props=props.forms[number].props;
+  props=props.form;
   function validateDirectDebit(){ 
   /**
   *VALIDATE ALL NECESARI IN DIRECT DEBIT 
   */
-    return props.iban.match(RegExps.iban) && props.address && props.debitOwner && validateIBAN();
+    return props.address && props.debitOwner && validateIBAN();
   }
   function validateIBAN() {
     /**
@@ -32,7 +32,8 @@ export default function DirectDebitForm(props) {
       /**
        * CALCULATE THE REST
        */
-      return modulo97(isbanaux) === 1? true:false;
+      const firstValidation = modulo97(isbanaux) === 1? true:false;
+      return firstValidation && IBAN.match(RegExps.iban);
   }
   function modulo97(iban) { 
     /**
@@ -58,6 +59,9 @@ export default function DirectDebitForm(props) {
           <fieldset>
             <h1>{props.translate.t("payment-method0")}</h1>
             <fieldset className="form-group">
+            <h3 className="errors"
+              hidden={!props.submittedAtLeastOnce || debitOwner}>
+              Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("payment-owner-debit")}</label>
               <input
                 className="form-control form-control-lg"
@@ -67,6 +71,9 @@ export default function DirectDebitForm(props) {
                 onChange={props.changeAnyFormField(number, "debitOwner")} />
             </fieldset>
             <fieldset className="form-group">
+            <h3 className="errors"
+              hidden={!props.submittedAtLeastOnce || address}>
+              Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("payment-address-debit")}</label>
               <input
                 className="form-control form-control-lg"
@@ -76,6 +83,9 @@ export default function DirectDebitForm(props) {
                 onChange={props.changeAnyFormField(number, "address")} />
             </fieldset>
             <fieldset className="form-group">
+            <h3 className="errors"
+              hidden={!props.submittedAtLeastOnce || validateIBAN()}>
+              Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("payment-iban-debit")}</label>
               <input
                 className="form-control form-control-lg"

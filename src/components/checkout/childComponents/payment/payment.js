@@ -23,7 +23,8 @@ class Payment extends React.Component {
     /**Changes any form field, number is the element of the array */
     this.changeAnyFormField = (number, field) => ev =>{
       let form =this.props.form.map(
-        (form, i) => i === number ? {...form, props: {...form.props, [field]:ev.target.value}}
+        (form, i) => i === number ? 
+        {...form, props: {...form.props, [field]:ev.target.value}}
         : form
     );
     this.setForms(form);
@@ -100,34 +101,26 @@ class Payment extends React.Component {
         forms.push(<MastercardVisaAmericanExpressForm
           changeAnyFormField={this.changeAnyFormField}
           translate={this.context}
-          submitForm={this.submitForm}
-          changeCardOwner={this.changeCardOwner}
-          changeCardNumber={this.changeCardNumber}
-          changeExpirationMonth={this.changeExpirationMonth}
-          changeExpirationYear={this.changeExpirationYear}
-          changeCvv={this.changeCvv}
           cardOwner={""}
           cardNumber={""}
           expirationYear={this.getYear()}
           expirationMonth={this.getMonth()}
           cvv={""}
           deletePaymentMethod = {this.deletePaymentMethod}
-          addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}/>);
+          addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}
+          submittedAtLeastOnce = {this.props.submittedAtLeastOnce}/>);
           this.setForms(forms);
         return forms;
       case 3:
       forms.push(<DirectDebitForm
         changeAnyFormField={this.changeAnyFormField}
         translate={this.context} 
-        submitForm={this.submitForm}
-        changeDebitOwner={this.changeDebitOwner}
-        changeAddress={this.changeAddress}
-        changeIban={this.changeIban}
         debitOwner={""}
         iban={""}
         address={""}
         deletePaymentMethod = {this.deletePaymentMethod}
-        addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}/>);
+        addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}
+        submittedAtLeastOnce = {this.props.submittedAtLeastOnce}/>);
         this.setForms(forms);
         return forms;
       default:
@@ -153,6 +146,7 @@ class Payment extends React.Component {
         closeModal = {this.closeModal} />}
         {this.showPaymentOptionsRadioButton()}
         {<PaymentForm
+        submittedAtLeastOnce = {this.props.submittedAtLeastOnce}
         addPaymentMethod = {this.addPaymentMethod}
         submitForm={this.submitForm}
         forms={form}/>}

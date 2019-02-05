@@ -2,13 +2,12 @@ import React from 'react';
 
 export default function PaymentForm(props) {
       const forms = props.forms;
-      console.log()
       const formsToFill = props.forms.map((form, i) => {
         return (
           <label key={i}>
             <form.type
             number={i}
-            forms = {forms}/>
+            form = {forms[i].props}/>
           </label>
         )
     });
@@ -27,7 +26,7 @@ export default function PaymentForm(props) {
             <button
               className="btn btn-lg btn-primary pull-xs-right"
               type="submit"
-              disabled={false}>
+              disabled={props.submittedAtLeastOnce}>
               Comprar
             </button>
           </fieldset>

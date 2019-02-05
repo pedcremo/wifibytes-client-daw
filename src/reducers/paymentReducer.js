@@ -14,6 +14,10 @@ const initialState = {
     paymentMethods:[],
     showModal:false,
     form:[],
+    /** submittedAtLeastOnce it's true if payment form was submitted even if it had errors */
+    submittedAtLeastOnce:false, 
+    /**
+    * It's true if payment form was submitted even if it had errors */
 };
 
 export default function checkoutReducer(state = initialState, action) {
