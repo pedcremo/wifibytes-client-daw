@@ -101,12 +101,6 @@ class Payment extends React.Component {
         forms.push(<MastercardVisaAmericanExpressForm
           changeAnyFormField={this.changeAnyFormField}
           translate={this.context}
-          submitForm={this.submitForm}
-          changeCardOwner={this.changeCardOwner}
-          changeCardNumber={this.changeCardNumber}
-          changeExpirationMonth={this.changeExpirationMonth}
-          changeExpirationYear={this.changeExpirationYear}
-          changeCvv={this.changeCvv}
           cardOwner={""}
           cardNumber={""}
           expirationYear={this.getYear()}
@@ -121,10 +115,6 @@ class Payment extends React.Component {
       forms.push(<DirectDebitForm
         changeAnyFormField={this.changeAnyFormField}
         translate={this.context} 
-        submitForm={this.submitForm}
-        changeDebitOwner={this.changeDebitOwner}
-        changeAddress={this.changeAddress}
-        changeIban={this.changeIban}
         debitOwner={""}
         iban={""}
         address={""}
