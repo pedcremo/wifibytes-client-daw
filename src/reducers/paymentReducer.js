@@ -60,7 +60,6 @@ export default function checkoutReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload,
-                items: []
             };
         case PAYMENT_SUBMIT:
             return {
