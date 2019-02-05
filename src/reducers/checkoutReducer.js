@@ -2,7 +2,10 @@ import {
     ADD_STEPS,
     NEXT_STEP,
     PREVIOUS_STEP,
-    UPDATE_STEP
+    UPDATE_STEP,
+    SET_COMPLETED,
+    SET_UNCOMPLETED,
+    SET_CONTRACTS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -53,7 +56,27 @@ export default function currentCheckout(state = initialState, action) {
                 loading: false,
                 currentStep: action.payload.step
             };
+        
+        case SET_COMPLETED:
+            state.steps[state.currentStep-1].completed=true;
+            return {
+                ...state,
+            };
 
+        case SET_UNCOMPLETED:
+            state.steps[state.currentStep-1].completed=false;
+            return {
+                ...state,
+            };
+
+        case SET_CONTRACTS:
+            return {
+                ...state,
+                contracts:{
+                    html: action.payload.contractsHTML,
+                    next: true
+                }
+            };
         default:
             // ALWAYS have a default case in a reducer
             return state;
