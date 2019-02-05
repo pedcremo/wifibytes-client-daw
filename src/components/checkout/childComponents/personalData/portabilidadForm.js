@@ -11,6 +11,9 @@ import {
 
 import {validator}  from "./validation";
 
+const initialState = {
+    /* etc */
+};
 /**
  * @class
  * This component contain the Portabilidad Data Form
@@ -19,11 +22,8 @@ class PortabilidadForm extends React.Component  {
 
     constructor(props) {
         super(props);
-         const conten = {
-             value: "",
-         }
-         this.state = {
-         };
+        
+        this.state = {};
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClickOptions = this.handleClickOptions.bind(this);
         this.companies=[]
@@ -86,78 +86,30 @@ class PortabilidadForm extends React.Component  {
             }
         }
         console.log("newProps.datosProductos",newProps.datosProductos)
-        /* let product = newProps.dataProducts[this.props.id]
-        if (product.tipo === "portabilidad") {
-            alert("kkk")
-            new Promise((resolve, reject) =>
-                resolve(this.setState({
-                    tipo: "portabilidad",
-                    phone: product.phone,
-                    sim: product.sim,
-                    key: this.props.id
-                }))
-            )
-        }else{
-            this.props.updateField(updateContactDataFormServices(this.state))
-        } */
     }
 
-    componentWillMount(){
-        console.log("-----------componentWillMount", this.props)
-    }
+    
     componentDidMount() {
         console.log("-----------componentDidMount", this.props)
         if (this.props.dataProducts) {
             let product = this.props.dataProducts
             console.warn(product)
-        }
-         /* let product = this.props.dataProducts[this.props.id]
-         if (product.tipo === "portabilidad") {
-             alert("kkk")
-             new Promise((resolve, reject) =>
-                 resolve(this.setState({
-                     tipo: "portabilidad",
-                     phone: product.phone,
-                     sim: product.sim,
-                     key: this.props.id
-                 }))
-             )
-         } else {
-             this.props.updateField(updateContactDataFormServices(this.state))
-         } */
-        //this.props.updateField(updateContactDataFormServices(this.state))
+        }        
     }
 
     handleClickOptions(type, id){
-        if (this.state.tipo != type) {
-            Swal.fire({
-                title: `Estas seguro de cambiar a ${type.toUpperCase()}?`,
-                text: "Tus datos guardados de esta linea se borraran!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar'
-            }).then((result) => {
-                if (result.value) {
-                    return new Promise((resolve, reject) =>
-                    resolve(this.setState({
+        if (this.state.tipo != type ) {
+            if (this.state.tipo === "portabilidad") {
+                this.setState({},
+                    ()=>this.setState({
                         tipo: type,
                         key: this.props.id
-                    }))
-                    )
-                    .then(() => {
-                        
-                        this.props.updateField(updateContactDataFormServices(this.state))
-                    })
-                    .then(()=>{
-                        console.log(this.state)
-                        if (type === "portabilidad") {
-                            console.warn(this.refs.company.value)
-                        }
-                    })
-                }
-            })
+                    }, () => this.props.updateField(updateContactDataFormServices({tipo: type,key: this.props.id}))))
+            }else{
+                this.setState({}, 
+                    ()=>this.setState({tipo: type, key: this.props.id}, 
+                            ()=>this.props.updateField(updateContactDataFormServices(this.state))))
+            }
         }
         
     }
