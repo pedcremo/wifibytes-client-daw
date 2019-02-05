@@ -14,7 +14,8 @@ import {
     ADD_STEPS,
     NEXT_STEP,
     PREVIOUS_STEP,
-    UPDATE_STEP
+    UPDATE_STEP,
+    UPDATE_DATA
   } from '../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
@@ -34,7 +35,10 @@ const mapDispatchToProps = dispatch => ({
      * Sets a specific step
      */
     setStep: (step) =>
-      dispatch({ type: UPDATE_STEP, payload: { step } })
+      dispatch({ type: UPDATE_STEP, payload: { step } }),
+
+    updateData: (key, data) =>
+      dispatch({ type: UPDATE_DATA, payload: { key, data } })
   });
 
 /**
@@ -44,13 +48,19 @@ class Checkout extends React.Component {
     constructor(props) {
         super(props)
         this.addSteps = (step, steps) => this.props.addSteps(step, steps);
+        
         this.setStep = (step) => this.props.setStep(step);
+
+        this.updateData = (key, data) => this.props.updateData(key, data);
     }
 
     /**
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
+        this.updateData("hola",{hola22:"jo22"});
+        this.updateData("hola2",{hola:"jo"});
+        
         let quantities;
         if(this.props.cartItems.items.length !==0 ){
             quantities = Agent.arrayToQuantityObject(this.props.cartItems.items, sublibrary);
@@ -72,6 +82,7 @@ class Checkout extends React.Component {
     }
 
     componentDidUpdate() {
+        console.log(this.props.data);
         let that=this;
         const addClickEvent = elem => elem.addEventListener("click", function(event){
             if (!event.target.id) {
@@ -118,6 +129,7 @@ class Checkout extends React.Component {
 const mapStateToProps = state => ({
     currentStep: state.currentCheckout.currentStep,
     steps: state.currentCheckout.steps,
+    data: state.currentCheckout.data,
     loading: state.currentCheckout.loading
 });
 

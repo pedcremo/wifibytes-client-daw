@@ -5,7 +5,6 @@ import {
     UPDATE_STEP,
     SET_COMPLETED,
     SET_UNCOMPLETED,
-    SET_CONTRACTS,
     UPDATE_DATA
 } from '../constants/actionTypes';
 
@@ -61,12 +60,14 @@ export default function currentCheckout(state = initialState, action) {
         
         case SET_COMPLETED:
             state.steps[state.currentStep-1].completed=true;
+            state.steps[state.currentStep-1].className="";
             return {
                 ...state,
             };
 
         case SET_UNCOMPLETED:
             state.steps[state.currentStep-1].completed=false;
+            state.steps[state.currentStep-1].className="error";
             return {
                 ...state,
             };
@@ -74,8 +75,10 @@ export default function currentCheckout(state = initialState, action) {
         case UPDATE_DATA:
             return {
                 ...state,
-                // data[action.payload]: action.payload.data
-                data
+                data: {
+                    ...state.data,
+                    [action.payload.key]: action.payload.data
+                }
             };
         default:
             // ALWAYS have a default case in a reducer
