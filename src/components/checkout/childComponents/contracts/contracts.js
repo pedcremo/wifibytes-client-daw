@@ -17,10 +17,12 @@ class Contracts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: {
+                sign: "",
+                pos: "",
+                time: ""
+            },
             showModal: false,
-            sign: "",
-            time: "",
-            pos: "",
             next: false
         };
         this.reciveSign = this.reciveSign.bind(this);
@@ -45,13 +47,16 @@ class Contracts extends React.Component {
     /**Recive sign from the child */
     reciveSign(sign) {
         this.getPosition().then( pos => {
-            this.setState({ 
-                sign: sign,
+            this.setState({
                 showModal: false,
                 next: true,
-                pos: "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude,
-                time: 'Hour: ' + new Date()
-            });
+                data: {
+                    ...this.state.data,
+                        sign: sign,
+                        pos: "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude,
+                        time: 'Hour: ' + new Date()
+                }
+            }); 
         });
         //navigator.geolocation ? navigator.geolocation.getCurrentPosition(this.success) : '';
     }
@@ -69,6 +74,7 @@ class Contracts extends React.Component {
 
     /** render  */
     render() {
+        console.log(this.state.data);
         const { error, loading, datosContracts} = this.props;
         if (error) return (<div>Error Home! </div>);
         if (loading) return (<div>Loading Home ...</div>);
@@ -98,6 +104,12 @@ class Contracts extends React.Component {
             let contractsHTML = eval('`' + datosTexts.join(' ') + '`');
             return (
                 <div className="d-flex justify-content-center">
+                    {
+                        !this.state.next? 
+                            <p className="text-danger">*The contracts need to be signed</p>
+                        :
+                            ''
+                    }
                     <div widh="60%" className="m-5 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
                         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalContracts">
                             See Contracts
@@ -120,7 +132,7 @@ class Contracts extends React.Component {
                                         !this.state.next?
                                             <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>Accept and Sign</button>
                                         :
-                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.nextStep}>Next</button>
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.nextStep}>Next</button>
                                     }
                                 </div>
                             </div>
