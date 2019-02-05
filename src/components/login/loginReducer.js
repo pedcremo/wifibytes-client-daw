@@ -2,7 +2,8 @@ import {
     CHANGE_VIEW,
     ASYNC_START,
     LOGIN,
-    RECOVER
+    RECOVER,
+    CHANGE_VALUE
 }from '../../constants/actionTypes'
 
 const initialState = {

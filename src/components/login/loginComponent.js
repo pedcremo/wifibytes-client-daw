@@ -45,8 +45,7 @@ class Login extends React.Component  {
     }
     /** render  */
     render() {
-        const { loading , showRecoverPass , error , changeView, loadingRecover, errorRecover} = this.props
-        const { changeValue , username , password , email , login} = this.props
+        const { loading , showRecoverPass , error , changeView, loadingRecover, errorRecover , changeValue , username , password , email , login , errorCaptcha} = this.props
 		return (
                 <div className="loginForm">
                     <h1>{Utils.translate("login-title")}</h1>
@@ -54,29 +53,29 @@ class Login extends React.Component  {
                         <form>
                             <span>
                                 <h4>Username or Password</h4>
-                                <input type="text" required value={username} onChange={changeValue(username,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
+                                <input type="text" required value={username} onChange={()=>changeValue(username,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
                             </span>
                             <span>
                                 <h4>{Utils.translate("login-acces-password")}</h4>
-                                <input type="password" required value={password} onChange={changeValue(password,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
+                                <input type="password" required value={password} onChange={()=>changeValue(password,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
                             </span>
                             <span>
-                                <button className="login-button btn" id="loginButton" onClick={login({username_or_email:username,password:password})}>{Utils.translate("login-button-acces")}</button>
+                                <button className="login-button btn" id="loginButton" onClick={()=>login({username_or_email:username,password:password})}>{Utils.translate("login-button-acces")}</button>
                                 <a onClick={()=>changeView("register")} className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                                 {loading ? <img src="https://www.voya.ie/Interface/Icons/LoadingBasketContents.gif" width="50" height="40"></img> : ''}
                                 {error ? <p>{error + " Not correct password or username"}</p> : ''}
                             </span>
                         </form>
-                        <p className="login-recuperar" onClick={changeValue(!showRecoverPass,'showRecoverPass')}>{Utils.translate("login-text-recover")}</p>
+                        <p className="login-recuperar" onClick={()=>changeValue(!showRecoverPass,'showRecoverPass')}>{Utils.translate("login-text-recover")}</p>
                         <div id="login-recover" className={showRecoverPass ? 'login-recuperar-input' : 'login-recov-pass'}>
                             <form>
                                 <span>
-                                    <input value={email} required onChange={changeValue(email,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
+                                    <input value={email} required onChange={()=>changeValue(email,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
                                     <button onClick={this.recoverPass} className="login-button btn">{Utils.translate("login-button-recover")}</button>
                                 </span>
                             </form>
                             <div id="captcha">
-                                <Reaptcha sitekey={ Settings.captchaSiteKey } onVerify={ changeValue(true,'captcha') } onExpire={ changeValue(false,'captcha') } hl={Utils.getUserLang() == "va" ? "es" : Utils.getUserLang()}/>
+                                <Reaptcha sitekey={ Settings.captchaSiteKey } onVerify={ ()=> changeValue(true,'captcha') } onExpire={ ()=> changeValue(false,'captcha') } hl={Utils.getUserLang() == "va" ? "es" : Utils.getUserLang()}/>
                                 <span className="errors">{errorCaptcha}</span>
                                 {loadingRecover ? <img src="https://www.voya.ie/Interface/Icons/LoadingBasketContents.gif" width="50" height="40"></img> : ''}
                                 {errorRecover ? <p>{errorRecover}</p> : ''}
