@@ -129,6 +129,7 @@ describe('<Payment />', () => {
                 "loading": false, 
                 "paymentMethod": 1, 
                 "paymentMethods": [
+                    {"codpago": 2,"nombre": "Efectivo","descripcion": "Efectivo","cod_eneboo": "2"},
                     {"cod_eneboo": "2", "codpago": 3, "descripcion": "A través del banco", "nombre": "Domiciliación Bancaria"}, 
                     {"cod_eneboo": "1", "codpago": 1, "descripcion": "Stripe", "nombre": "Visa / Mastercard / American Express"}
                 ], 
