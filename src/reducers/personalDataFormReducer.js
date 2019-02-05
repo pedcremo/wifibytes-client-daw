@@ -4,7 +4,9 @@ import {
     GET_CONTACT_DATA_FORM_FAILURE,
     GET_CURRENT_CONTACT_DATA_FORM,
     GET_CONTACT_DATA_FORM_UPDATE,
-    UPDATE_CONTACT_DATA_FORM_SERVICES
+    UPDATE_CONTACT_DATA_FORM_SERVICES,
+    UPDATE_VALID_DTOS_PERSONALES,
+    GET_CONTACT_DATA_FORM_SERVICES,
 } from '../actions/personalDataFormActions';
 
 const initialState = {
@@ -12,6 +14,10 @@ const initialState = {
         datosPersonales:{},
         datosProductos:[]
     },
+    totalServices:0,
+    validDatosPersonales: false,
+    validDatosProductos:false,
+    validForms:false,
     loaded: false,
 };
 
@@ -32,7 +38,6 @@ export default function personalDataFormReducer(state = initialState, action) {
                     name: {error:"", value: "alicia"},
                     surname: {error:"", value: "lopez"},
                     email: {error:"", value: "lopez@gmail.com"},
-                    phone: {error:"", value: 654654654},
                     address: {error:"", value: "C/ alicante 1"},
                     zip: {error:"", value: 46870},
                     city: {error:"", value: "Gandia"},
@@ -43,7 +48,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                     cif: {error:"", value: ""},
                     nie: {error:"", value: ""}
                 }
-
+                
             return {
                 ...state,
                 loaded: false,
@@ -59,30 +64,25 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case UPDATE_CONTACT_DATA_FORM_SERVICES:
-            console.log("state.fields",state.fields)
             if (!state.fields["datosProductos"]) 
                 state.fields["datosProductos"]=[]
             
-            let exist = state.fields["datosProductos"].filter((item)=>{return item.key == action.payload.key})
-            console.log("exist, state.fields",exist, state.fields)
+            let exist = state.fields["datosProductos"].filter((item)=>{return item.key == parseInt(action.payload.key)})
             
             if (exist.length == 0) {
-                console.log("IF -----------exist.length == 0")
                 let obj= {
-                    key: action.payload.key,
+                    key: parseInt(action.payload.key),
                     value: action.payload,
                 }
                 state.fields["datosProductos"].push(obj)
             } else {
-                console.log("ELSE-----------  exist.length == 0", action.payload, state)
                 state.fields["datosProductos"].filter((item) => {
-                    if (item.key == action.payload.key) {
+                    if (item.key == parseInt(action.payload.key)) {
                         item.value=action.payload
                     }
                 })
-                console.log("------------", action.payload, state)
             }
-            
+                
             return {
                 ...state,
                 loaded: false,
@@ -104,25 +104,22 @@ export default function personalDataFormReducer(state = initialState, action) {
                 fields: state
             };
 
+        case UPDATE_VALID_DTOS_PERSONALES:
+            state.validDatosPersonales = true
+            if (state.validDatosProductos) 
+                this.validForms=true
+
+            return {
+                ...state,
+            };
+
+        case GET_CONTACT_DATA_FORM_SERVICES:
+            /**tiene verificar si esiste un objeto con la key que recibe y si no existe crearlo */
+            return {
+                products: state.fields.datosProductos
+            };
+
         default:
             return state;
-    }
-}
-
-
-let getUserData = (action) => {
-    //action.payload.contactDataForm
-    /* hay que convertir lo que viene de backend en un objeto valido para el form */
-    return {
-        name: {error:"", value: "pepe"},
-        surname: {error:"", value: "lopez"},
-        email: {error:"", value: "lopez@gmail.com"},
-        phone: {error:"", value: 654654654},
-        address: {error:"", value: "C/ alicante 1"},
-        zip: {error:"", value: 46870},
-        city: {error:"", value: "Gandia"},
-        tipcli: {error:"", value: 0},
-        date: {error:"", value: ""},
-        pictures: {error:"", value: []}
     }
 }

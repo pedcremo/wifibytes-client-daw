@@ -1,7 +1,8 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {
-    updateContactDataForm
+    updateContactDataForm,
+    updateValidDtoPersForm
 } from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
 import Typecliente from './typeCliente';
@@ -11,6 +12,7 @@ import Typecliente from './typeCliente';
  * This component contain the Personal Data Form
  */
 class PersonalForm extends React.Component  {
+    
     constructor(props) {
         super(props);
         const conten = {value:"",}
@@ -18,7 +20,6 @@ class PersonalForm extends React.Component  {
             name:conten,
             surname: conten,
             email:conten,
-            phone: conten,
             address:conten,
             zip: conten,
             city: conten,
@@ -29,6 +30,13 @@ class PersonalForm extends React.Component  {
             cif: conten,
             nie: conten
         };
+        this.name = React.createRef();
+        this.surname = React.createRef();
+        this.email = React.createRef();
+        this.phone = React.createRef();
+        this.address = React.createRef();
+        this.zip = React.createRef();
+        this.city = React.createRef();
         this.previewFile = this.previewFile.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -38,21 +46,33 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-/**WARNING TO EMPROVE
- * ----------------------------------------------------------------------------------------------
- * Cuando la informacion viene del backend o de local deberia volver a pasar el validador y comprobar si los datos ya estan correctos de acuerdo a las reglas marcadas
- * * ----------------------------------------------------------------------------------------------
- */
-        if (Object.keys(newProps.dataUser).length > 0) 
+        
+        if (Object.keys(newProps.dataUser).length > 0) {
+            let cont=0;
             for (const key in this.state) {
-                this.setState({
-                    [key]: {
-                        value: newProps.dataUser[key].value,
-                        error: newProps.dataUser[key].error
-                    }
+                new Promise((resolve, reject) =>{
+                    const error = validator(newProps.dataUser[key].value, this.refs[key]["name"], this.refs[key]["type"])
+                    if (error!=undefined) 
+                        cont++          
+                                      
+                    resolve(
+                        this.setState({
+                            [key]: {
+                                value: newProps.dataUser[key].value,
+                                error: error
+                            }
+                        }))
                 })
-            }
+                .then(()=>{
+                    if (cont==0) 
+                        this.props.updateField(updateValidDtoPersForm())
+                    else
+                        console.log("no valid")
+                })
+            }//end for
         }
+
+    }
 
     /** 
      * This method is listening changes of each form element 
@@ -122,12 +142,13 @@ class PersonalForm extends React.Component  {
         return (
             <form className="grid-data-form">
                <div>
-                    <h4>Personal Data</h4>
+                    <h2>Personal Data</h2>
                     <div>
                         <input
                         className="form-control form-control-lg mio"
                         placeholder="Name"
                         name="name"
+                        ref="name"
                         id = "name"
                         type="text"
                         value={this.state.name.value}
@@ -141,6 +162,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Surname"
                         name = "surname"
+                        ref = "surname"
                         type="text"
                         value={this.state.surname.value}
                         onChange={this.handleInputChange} />
@@ -153,26 +175,13 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Email"
                         name = "email"
+                        ref = "email"
                         type="email"
                         value={this.state.email.value}
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.email.error? "":this.state.email.error}</span>
                     </div>
-
                     <br />
-                    <div>
-                        <h4>Introduzca numero de movil a traspasar: </h4>
-                        <input
-                        className="form-control form-control-lg"
-                        placeholder="Phone"
-                        name="phone"
-                        type="tel"
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                        value={this.state.phone.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.phone.error? "":this.state.phone.error}</span>
-                    </div>
-                    <br></br>
                     <div>
                         <h4>Fecha de nacimiento: </h4>
                         <input className="form-control form-control-lg"
@@ -191,12 +200,13 @@ class PersonalForm extends React.Component  {
                 </div>
 
                 <div>
-                    <h4>Address</h4>
+                    <h2>Address</h2>
                     <div>
                         <input
                         className="form-control form-control-lg"
                         placeholder="Address"
                         name = "address"
+                        ref = "address"
                         type = "text"
                         value={this.state.address.value}
                         onChange={this.handleInputChange} />
@@ -209,6 +219,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Zip"
                         name = "zip"
+                        ref = "zip"
                         type="number"
                         value={this.state.zip.value}
                         onChange={this.handleInputChange} />
@@ -221,6 +232,7 @@ class PersonalForm extends React.Component  {
                         className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
+                        ref = "city"
                         type="text"
                         value={this.state.city.value}
                         onChange={this.handleInputChange} />

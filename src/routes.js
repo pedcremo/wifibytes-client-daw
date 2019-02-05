@@ -11,13 +11,13 @@ import Rates from "./components/rates";
 import Contacte from "./components/contacte";
 import SingIn from './components/login/signIn'
 import Checkout from './components/checkout/checkout'
-
+import Cart from './components/cart/Cart';
 
 /**
- * <Route /> is used to declaratively map routes to your application's component hierarchy. 
+ * <Route /> is used to declaratively map routes to your application's component hierarchy.
  * You would declare in path the path used in the URL and in render the single component to be rendered when the route matches the URL.
  */
-const AppRoutes = () =>
+const AppRoutes = ({cartItems}) =>
    (
        <Switch>
             <Route exact path="/" render={() => <Home />} />
@@ -29,7 +29,8 @@ const AppRoutes = () =>
             <Route exact path="/rates" render={() => <Rates />} />
             <Route exact path="/login" render={() => <SingIn type="login"/>} />
             <Route exact path="/register" render={() => <SingIn type="register"/>} />
-            <Route exact path="/checkout" render={() => <Checkout />} />
+            <Route exact path="/checkout" render={() => <Checkout cartItems={cartItems} />} />
+            <Route exact path="/cart" render={() =><Cart cartItems={cartItems} />}/>
        </Switch>
     );
 

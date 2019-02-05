@@ -1,0 +1,13 @@
+{
+    "fieldsToValidate":[
+        {
+            "field": "productos",
+            "regexp": "^([0-9a-z]{8})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{4})-([0-9a-z]{12})$"
+        },
+        {
+            "field": "servicios",
+            "regexp": "^([0-9]{1,})$"
+        }
+    ],
+    "requiredFields":""
+}
