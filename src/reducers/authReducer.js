@@ -1,7 +1,8 @@
 import {
     AUTH_SET,
     NOT_AUTH,
-    LOGOUT
+    LOGOUT,
+    GET_PROFILE
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -28,6 +29,11 @@ export default function isAuth(state = initialState, action) {
                 ...state,
                 isAuth : false,
                 user : undefined
+            }
+        case GET_PROFILE:
+            return {
+                ...state,
+                profile : action.payload
             }
         default:
             return state;

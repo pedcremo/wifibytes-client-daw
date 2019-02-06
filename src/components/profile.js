@@ -6,7 +6,8 @@ import {Utils} from '../utils'
 import  { Redirect } from 'react-router-dom'
 
 import {
-    LOGOUT
+    LOGOUT,
+    GET_PROFILE
 }from '../constants/actionTypes'
 
 /**
@@ -20,25 +21,51 @@ import {
 
 const mapDispatchToProps = dispatch =>({
     logout : () => 
-        dispatch({type : LOGOUT , payload : logout()})
+        dispatch({type : LOGOUT , payload : logout()}),
+    onLoad : (id) =>
+        dispatch({type : GET_PROFILE , payload : Utils.get(`/cliente/${id}`)})
 })
 const mapStateToProps = state => ({
     ...state.isAuth
 });
 
 class Profile extends React.Component  {
+    constructor(props){
+        super(props)
+            this.props.onLoad(this.props.user.id_consumer)
+    }
     render() {
-        const { isAuth , user , logout} = this.props
+        const { isAuth , user , logout , profile} = this.props
+        console.log(profile)
         if(!isAuth)
             return <Redirect to='/'  />
         return (
                 <div className="loginForm">
                     <IsAuth />
                         <div display={user ? 'none' : 'block'}>
-                            <h1>{user.cifnif}</h1>
-                            <h1>{user.email}</h1>
-                            <h1>{user.id_consumer}</h1>
-                            <button onClick={logout}>Logout</button>
+                            <div>
+                                <span>
+                                    <h1>Nombre : </h1>
+                                    <h3>{profile.nombre}</h3>
+                                </span>
+                                <span>
+                                    <h1>Apellido : </h1>
+                                    <h3>{profile.apellido}</h3>
+                                </span>
+                                <span>
+                                    <h1>Email : </h1>
+                                    <h3>{profile.email}</h3>
+                                </span>
+                                <span>
+                                    <h1>Telefono : </h1>
+                                    <h3>{profile.telefono}</h3>
+                                </span>
+                                <span>
+                                    <h1>Genero : </h1>
+                                    <h3>{profile.genero}</h3>
+                                </span>
+                                <button onClick={logout}>Logout</button>
+                            </div>
                         </div>
                 </div>
         );

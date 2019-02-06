@@ -93,7 +93,7 @@ let Utils={
         /**Mocking /formaspago because is not ready in backend */
         if (url==='/formaspago') 
             return filterFunction(PaymentMethod)
-
+        let jwt = this.getCookie("jwt")
         // Return a new promise.
         return new Promise(function(resolve, reject) {
             if (CACHE_TEMPLATES.has(url)) {
@@ -102,7 +102,7 @@ let Utils={
                 // Do the usual XHR stuff
                 var req = new XMLHttpRequest();
                 req.open("GET", Settings.baseURL+url);
-
+                if(jwt)req.setRequestHeader('Authorization' , 'JWT ' + jwt);
                 req.onload = function() {
                 // This is called even on 404 etc
                 // so check the status
