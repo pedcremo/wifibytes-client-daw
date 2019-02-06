@@ -68,11 +68,7 @@
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
-    "checkout-personal-data": "Personal Data",
-    "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment",
-    
-    "payment-method0": "Direct debit",
+    "payment-method0": "Direct bank transfer",
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
     "payment-numberCard": "Credit number card",
@@ -92,5 +88,8 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire"
+    "hire": "Hire",
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Payment"
 }
