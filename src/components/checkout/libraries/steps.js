@@ -7,7 +7,7 @@ let currentLang = Utils.getUserLang();
 let steps = [
     {
         "key": "personal_data",
-        "active": false,
+        "active": true,
         "completed": false,
         "className": "",
         "title": translations[currentLang]["checkout-personal-data"],
