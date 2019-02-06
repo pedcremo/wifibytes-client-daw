@@ -117,14 +117,10 @@ nav {
 /* Style the tab */
 
 .tab {
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    margin-top: 30px;
-    width: 200px;
-    height: 80px;
-    margin-right: 100px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
+    align-content: center;
 }
 
 .center {
@@ -138,17 +134,19 @@ nav {
 .tab button {
     background-color: inherit;
     border: none;
-    width: 100px;
+    width: 100%;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 22px;
+    transition-duration: 1s;
 }
 
 /* Change background color of buttons on hover */
 
 .tab button:hover {
-    background-color: #ddd;
+    transform: scale(1.1);
+    text-shadow: 4px 4px 25px green;
 }
 
 /* Create an active/current tablink class */
@@ -164,15 +162,6 @@ nav {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-}
-
-.loginForm {
-    margin: auto;
-    text-align: center;
-    width: 215px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-    height: 600px;
 }
 
 .login-acces {
@@ -197,10 +186,8 @@ nav {
     justify-content: flex-start;
 }
 
-.login-button {
-    margin-top: 10px;
-    color: white;
-    background: green;
+.login__top{
+    display: grid;
 }
 
 .login-recuperar {
@@ -275,42 +262,6 @@ nav {
 
 /*************** LOGIN ******************/
 
-/* Style the tab */
-
-.tab {
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    margin-top: 30px;
-    width: 200px;
-    height: 80px;
-    margin-right: 100px;
-    display: flex;
-    justify-content: center;
-}
-
-.center {
-    margin: auto;
-    text-align: center;
-    width: 215px;
-}
-
-/* Style the buttons inside the tab */
-
-.tab button {
-    background-color: inherit;
-    border: none;
-    width: 100px;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-
-.tab button:hover {
-    background-color: #ddd;
-}
 
 /* Create an active/current tablink class */
 
@@ -328,17 +279,57 @@ nav {
 }
 
 .loginForm {
-    margin: auto;
     text-align: center;
-    width: 215px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-    height: 600px;
+    width: 100vw;
+    min-height: 600px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.loginForm input {
+    width: 100%;
+    font-size: 20px;
+    border-bottom: #888;
+    padding: 18px 8px;
+    border : 0;
+    box-shadow: 0px 0px 25px 3px rgba(0,0,0,0.75);
+}
+
+.loginForm input:focus {
+    border-bottom-color: green;
+    transform : scale(1.05);
+    box-shadow: 0px 0px 45px 5px rgba(0,0,0,0.75);
+}
+.loginForm h1 {
+    text-decoration: underline;
+}
+.loginForm h4{
+    font-size: 22px;
+    text-align: center;
+}
+
+.loginForm .login-button {
+        margin: 0;
+        color: white;
+        background: green;
+}
+
+.loginForm .login-button:hover {
+    color: blue;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 2px blue;
 }
 
 .login-acces {
-    margin-top: 50px;
-    text-align: left;
+    display: grid;
+    grid-gap: 25px;
+}
+
+.login-acces > form {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1fr 1fr;
 }
 
 .loginInput {
@@ -358,16 +349,10 @@ nav {
     justify-content: flex-start;
 }
 
-.login-button {
-    margin-top: 10px;
-    color: white;
-    background: green;
-}
-
 .login-recuperar {
     color: #23527c;
+    font-size: 18px;
     clear: left;
-    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -379,7 +364,14 @@ nav {
     /* Safari */
     transform: translatex(500px);
 }
-
+p.login-recuperar{
+    text-align: center;
+    transition-duration: 0.5s;
+}
+p.login-recuperar:hover {
+    text-shadow: 4px 4px 25px green;
+    transform : scale(1.05);
+}
 .login-recuperar-input {
     transition: transform 1s;
     -ms-transform: skewx(0);
@@ -387,6 +379,18 @@ nav {
     -webkit-transform: skewx(0);
     /* Safari */
     transform: translatex(0);
+}
+
+.login-recover {
+    display: grid;
+    grid-gap: 15px;
+    justify-content: center;
+    align-content: center;
+}
+.login-recover span {
+    display: grid;
+    grid-gap: 15px;
+    width: 100%;
 }
 
 /*************** REGISTER ******************/

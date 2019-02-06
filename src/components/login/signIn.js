@@ -19,7 +19,7 @@ class SignIn extends React.Component  {
         return(
             <div className="login">
                 <IsAuth redirect={true}/>
-                <div className="center">
+                <div className="login__top">
                     <div className="tab">
                         <button className="tablinks" id="loginButton" onClick={()=>changeView("login")}>Login</button>
                         <button className="tablinks" id="registerButton" onClick={()=>changeView("register")}>Register</button>
