@@ -13,6 +13,7 @@ import EfectivoForm from './paymentTypes/Efectivo';
 import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import {PropTypes} from 'prop-types';
 import Cart from '../../../cart/Cart';
+import {RegExps} from '../../../../regExps';
 
 const mapStateToProps = state => ({ ...state.payment });
 const cartItems=JSON.parse(localStorage.getItem('cartReducer'))
@@ -40,6 +41,19 @@ class Payment extends React.Component {
     this.onChangeCardOwner = () => ev =>{
       this.onChangeField("cardOwner", ev.target.value)
     }
+  }
+  disabled(){
+    return !validateCvv() || !validateCardOwner() || !validateExpirationDate();
+  }
+  validateExpirationDate(){
+    const today = new Date();
+    return ((today.getMonth() + 1) >expirationMonth? today.getFullYear() < expirationYear : today.getFullYear() <= expirationYear); 
+    }
+  validateCvv(){
+    return cvv.toString().match(RegExps.cvv);
+  }
+  validateCardOwner(){
+    return cardOwner.match(RegExps.cardOwner);
   }
   
 
@@ -73,6 +87,10 @@ class Payment extends React.Component {
         onChangeExpirationYear={this.onChangeExpirationYear}
         translate={this.context}
         cardOwner={this.props.cardOwner}
+        cardOwnerIsValid={true}
+        cardNumberIsValid={true}
+        expirationDateIsValid={true}
+        cvvIsValid={true}
         cardNumber={this.props.cardNumber}
         expirationYear={this.props.expirationYear}
         expirationMonth={this.props.expirationMonth}
