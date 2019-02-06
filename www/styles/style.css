@@ -586,3 +586,8 @@ p.login-recuperar:hover {
         opacity: 0;
     }
 }
+
+.checkoutRedirect{
+    display: grid;
+    justify-content: right;
+}

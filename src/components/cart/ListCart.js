@@ -52,30 +52,33 @@ class ListCart extends React.Component {
         )
       })
       return (
-        <Table singleLine>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>
-                {this.context.t('description')}
-              </Table.HeaderCell>
-              <Table.HeaderCell>{this.context.t('quantity')}</Table.HeaderCell>
-              {(this.props.canAdd)?<Table.HeaderCell></Table.HeaderCell>:null}
-              <Table.HeaderCell>{this.context.t('price')}</Table.HeaderCell>
-              <Table.HeaderCell>Total</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {table}
-          </Table.Body>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell></Table.Cell>
-              <Table.Cell></Table.Cell>
-              {(this.props.canAdd)?<Table.Cell></Table.Cell>:null}
-              <Table.Cell>
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
+        <div className="listCart">
+          <Table singleLine>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>
+                  {this.context.t('description')}
+                </Table.HeaderCell>
+                <Table.HeaderCell>{this.context.t('quantity')}</Table.HeaderCell>
+                {(this.props.canAdd)?<Table.HeaderCell></Table.HeaderCell>:null}
+                <Table.HeaderCell>{this.context.t('price')}</Table.HeaderCell>
+                <Table.HeaderCell>Total</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {table}
+            </Table.Body>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell></Table.Cell>
+                <Table.Cell></Table.Cell>
+                {(this.props.canAdd)?<Table.Cell></Table.Cell>:null}
+                <Table.Cell>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+          <div className="checkoutRedirect">
             <Link to="/checkout">
             <Input
                     action={{ color: 'teal', labelPosition: 'left', icon: 'cart', content: this.context.t('check-out-button') }}
@@ -83,8 +86,8 @@ class ListCart extends React.Component {
                     defaultValue={(total).toFixed(2) + " €"}
                   />
             </Link>
-        </Table>
-        
+          </div>
+        </div>
       );
     }else{
       return (

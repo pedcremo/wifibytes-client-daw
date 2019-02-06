@@ -32,7 +32,7 @@ class AddButton extends React.Component {
     const { cart , item} = this.props;
 
     return (
-        <i className="buttonAdd"><button className="btn btn-secondary" onClick={(ev)=>(ev.preventDefault(),this.addItem(ev))}>{this.props.text}</button><span className="suma">+1</span><span class="cart fa fa-shopping-cart fa-stack-2x red-cart"></span></i>
+        <i className="buttonAdd"><button className="btn btn-secondary" onClick={(ev)=>(ev.preventDefault(),this.addItem(ev))}>{this.props.text}</button><span className="suma">+1</span><span className="cart fa fa-shopping-cart fa-stack-2x red-cart"></span></i>
     );
   }
 }
