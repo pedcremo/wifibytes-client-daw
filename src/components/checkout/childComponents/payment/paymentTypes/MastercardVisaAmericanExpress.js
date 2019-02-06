@@ -13,13 +13,13 @@ export default function MastercardVisaAmericanExpressForm(props) {
   }
   function validateExpirationDate(){
     const today = new Date();
-    return ((today.getMonth() + 1) >props.expirationMonth? today.getFullYear() < props.expirationYear : today.getFullYear() <= props.expirationYear); 
+    return ((today.getMonth() + 1) >expirationMonth? today.getFullYear() < expirationYear : today.getFullYear() <= expirationYear); 
     }
   function validateCvv(){
-    return props.cvv.match(RegExps.cvv);
+    return cvv.toString().match(RegExps.cvv);
   }
   function validateCardOwner(){
-    return props.cardOwner.match(RegExps.cardOwner);
+    return cardOwner.match(RegExps.cardOwner);
   }
   function createExpirationYears(){
     let options = [];
@@ -45,7 +45,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="text"
                 placeholder={props.translate.t("payment-owner")}
                 value={cardOwner}
-                onChange={props.onChangeField()} />
+                onChange={props.onChangeCardOwner()} />
             </fieldset>
             <fieldset className="form-group">
               <label>{props.translate.t("payment-numberCard")}</label>
@@ -54,7 +54,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="number"
                 placeholder={props.translate.t("payment-numberCard")}
                 value={cardNumber}
-                onChange={props.onChangeField()} />
+                onChange={props.onChangeCardNumber()} />
             </fieldset>
             <fieldset className="form-group">
             <h3 className="errors"
@@ -64,7 +64,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
               <select
               className="form-control form-control-lg"
               value={expirationMonth}
-              onChange={props.onChangeField()}>
+              onChange={props.onChangeExpirationMonth()}>
                 <option value={1}>01</option>
                 <option value={2}>02</option>
                 <option value={3}>03</option>
@@ -84,7 +84,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
               <select
               className="form-control form-control-lg"
               value={expirationYear}
-              onChange={props.onChangeField()}>
+              onChange={props.onChangeExpirationYear()}>
                 {createExpirationYears()}
               </select>
             </fieldset>
@@ -98,7 +98,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="number"
                 placeholder={props.translate.t("CVV")}
                 value={cvv}
-                onChange={props.onChangeField()} />
+                onChange={props.onChangeCvv()} />
             </fieldset>
           </fieldset>);
   }
