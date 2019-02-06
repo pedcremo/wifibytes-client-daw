@@ -11,9 +11,10 @@ import DirectDebitForm from './paymentTypes/DirectDebit';
 import EfectivoForm from './paymentTypes/Efectivo';
 import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import {PropTypes} from 'prop-types';
+import Cart from '../../../cart/Cart';
 
 const mapStateToProps = state => ({ ...state.payment });
-
+const cartItems=JSON.parse(localStorage.getItem('cartReducer'))
 class Payment extends React.Component {
   constructor() {
     super();
@@ -79,6 +80,7 @@ class Payment extends React.Component {
       <div className="payment-container">
         {this.showPaymentOptionsRadioButton()}
         {this.paymentForm(this.props.paymentMethod)}
+        {<Cart cartItems={cartItems}/>}
       </div>
       
   ); 
