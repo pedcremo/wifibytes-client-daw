@@ -45,10 +45,10 @@ class Contracts extends React.Component {
     
     componentDidMount(){
         this.props.dispatch(getDatosContracts());
-        fetch('http://ip-api.com/json')
+/*         fetch('http://ip-api.com/json')
         .then(response => console.log(response.json()))
         .then(json => console.log(json))
-        .catch(error => console.log((error, null)))
+        .catch(error => console.log((error, null))) */
         //this.props.dispatch(getContactDataForm());
     }
 
@@ -78,11 +78,6 @@ class Contracts extends React.Component {
             this.props.dispatch(updateData("contracts", this.state));
         });
     }
-
-/*     sendContract(html){
-        this.props.dispatch(sendContractsAction(html));
-    } */
-
 
     getPosition() {
         return new Promise((res, rej) => {
