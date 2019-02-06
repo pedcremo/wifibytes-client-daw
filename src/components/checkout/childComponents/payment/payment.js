@@ -12,6 +12,7 @@ import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmer
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import EfectivoForm from './paymentTypes/Efectivo';
 import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
+import Resume from './paymentTypes/Resume';
 import {PropTypes} from 'prop-types';
 import Cart from '../../../cart/Cart';
 import {RegExps} from '../../../../regExps';
@@ -116,6 +117,7 @@ class Payment extends React.Component {
           {this.paymentForm(this.props.paymentMethod)}
         </div>
         <div className="cart-resume">
+          {<Resume/>}
           {<Cart cartItems={cartItems}/>}
         </div>
       </div>
