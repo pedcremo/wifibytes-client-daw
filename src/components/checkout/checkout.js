@@ -64,17 +64,18 @@ class Checkout extends React.Component {
     }
 
     componentDidUpdate() {
-        
-
-        let that=this;
-        const addClickEvent = elem => elem.addEventListener("click", function(event){
-            if (!event.target.id) {
-                return;
-            } else {
-                that.setStep(parseInt(event.target.id));
-            }
+        const self=this;
+        const setID = (item, index) => {
+            item.id = index+1;
+        };
+        const addClickEvent = (item, index) => item.addEventListener("click", function(){
+            self.setStep(index+1);
         });
-        document.querySelectorAll("div.step").forEach(addClickEvent);
+        
+        document.querySelectorAll("div.step").forEach((item, index) => {
+            setID(item, index);
+            addClickEvent(item, index);
+        });
     }
     
     sendOrder(){
