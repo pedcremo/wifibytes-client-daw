@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
 import { Utils } from "../../../../utils";
-import { sendContractsAction, getDatosContracts } from "../../../../actions/datosContractsAction";
+import { sendContractsAction, getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
 
 
@@ -57,6 +57,9 @@ class Contracts extends React.Component {
                         time: 'Hour: ' + new Date()
                 }
             }); 
+            ///////////////////////////////////////////////////
+            this.props.dispatch(updateData("contracts", this.state));
+            ///////////////////////////////////////////////////
             this.mountContracts();
         });
     }
@@ -99,7 +102,16 @@ class Contracts extends React.Component {
         });
 
         this.setState({ contractsHTML: eval('`' + datosTexts.join(' ') + '`') });
+        ///////////////////////////////////////////////////
+        this.props.dispatch(updateData("contracts", this.state));
+        ///////////////////////////////////////////////////
+    }
 
+    componentDidUpdate(){
+        //////////////////// IS VALID ///////////////////////////
+        //this.props.dispatch(setCompleted());
+        //////////////////// INVALID ////////////////////////////
+        this.props.dispatch(setUncompleted());
     }
 
     /** render  */
