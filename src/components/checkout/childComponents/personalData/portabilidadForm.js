@@ -1,15 +1,19 @@
 /** @module ComponentsApp */
 import React from 'react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
+
 import { Button } from 'semantic-ui-react'
 import {
     updateContactDataFormServices
 } from "../../../../actions/personalDataFormActions";
 
 import {validator}  from "./validation";
-let po={
-    1:"eeee",
-    2:"000"
-}
+
+const initialState = {
+    /* etc */
+};
 /**
  * @class
  * This component contain the Portabilidad Data Form
@@ -18,15 +22,15 @@ class PortabilidadForm extends React.Component  {
 
     constructor(props) {
         super(props);
-         const conten = {
-             value: "",
-         }
-         this.state = {
-         };
-         this.handleInputChange = this.handleInputChange.bind(this);
-         this.handleClick = this.handleClick.bind(this);
-         this.companies=[]
-         this.myRef = React.createRef();
+        
+        this.state = {};
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClickOptions = this.handleClickOptions.bind(this);
+        this.companies=[]
+        this.company = React.createRef()
+        this.state.tipo="alta"
+        this.state.key = this.props.id
+        this.state.tipoTlf = this.props.tipo
     }
 
     /** 
@@ -59,44 +63,82 @@ class PortabilidadForm extends React.Component  {
          * this.props.updateField "updateField" is a function which come from its father
          */
         return new Promise((resolve, reject) =>
-            resolve(this.setState({
-                
+        resolve(this.setState({                
                     [name]: value,
                     key: this.props.id
                 
             }))
         )
-        .then(() => this.props.updateField(updateContactDataFormServices(this.state)))
-        
-
+        .then(() => this.props.updateField(updateContactDataFormServices(this.state)))        
         
     }
 
-    componentWillReceiveProps(newProps) {
-        
+    
+    componentWillReceiveProps(newProps) {     
+        console.log("-----------newProps",newProps.dataProducts)
         if (newProps.companies.length > 0)
             this.companies = newProps.companies
+        if (Object.keys(newProps.datosProductos).length>0) {
+            for (const key in newProps.datosProductos.value) {
+                this.setState({
+                    [key]: `${newProps.datosProductos.value[key]}`
+                })
+            }
+        }
+        console.log("newProps.datosProductos",newProps.datosProductos)
     }
 
-    handleClick(e){
-        return new Promise((resolve, reject) =>
-            resolve(this.setState({
-                tipo: e,
-            }))
-        )
+    
+    componentDidMount() {
+        console.log("-----------componentDidMount", this.props)
+        if (this.props.dataProducts) {
+            let product = this.props.dataProducts
+            console.warn(product)
+        }        
+    }
+
+    handleClickOptions(type, id){
+        if (this.state.tipo != type ) {
+            if (this.state.tipo === "portabilidad") {
+                this.setState({},
+                    ()=>this.setState({
+                        tipo: type,
+                        key: this.props.id
+                    }, () => this.props.updateField(updateContactDataFormServices({tipo: type,key: this.props.id}))))
+            }else{
+                this.setState({}, 
+                    ()=>this.setState({tipo: type, key: this.props.id}, 
+                            ()=>this.props.updateField(updateContactDataFormServices(this.state))))
+            }
+        }
         
+    }
+
+    /* handleClickSaveData(type, id){
+        if (type === "portabilidad") {
+            console.warn(this.refs.company.value)
+        }
+    } */
+
+    handleSubmit(event) {
+        event.preventDefault();
+        alert('A name was submitted: ');
     }
 
     render() {
         let form;
-        if (this.state.tipo!="portabilidad") {
-            form=(<form>
+        //console.log(this.props.tipo, this.props.id)
+        if (this.state.tipo === "portabilidad") {
+            form=(<form onSubmit={this.handleSubmit}>
                     <div className="grid-data-form__fields">
                         <div>
                             <select
                             className = "form-control form-control-lg mio" 
                             onChange={this.handleInputChange} 
+                            ref = "company"
+                            value={!this.state.company?"":this.state.company}
                             name="company">
+                            
                                 <option value=""></option>         
                                 {
                                     this.companies.map((item, i) => {
@@ -107,11 +149,12 @@ class PortabilidadForm extends React.Component  {
                             
                         </div>
 
-                       <div>
+                       <div style={{display:`${this.props.tipo=='fijo'?'none':'block'}`}}>
                             <input
                             className="form-control form-control-lg mio"
                             placeholder="Numeros de la sim"
                             name = "sim"
+                            value={!this.state.sim?"":this.state.sim}
                             type = "number"
                             onChange={this.handleInputChange} />
                         </div>
@@ -121,21 +164,29 @@ class PortabilidadForm extends React.Component  {
                             className="form-control form-control-lg mio"
                             placeholder="movil"
                             name = "phone"
+                            value={!this.state.phone?"":this.state.phone}
                             type = "number"
                             onChange={this.handleInputChange} />
                         </div> 
                     </div>
+                    
+                    {/* <button type="submit" className="btn btn-large btn-block btn-default">Save data</button> */}
+                    
                 </form>)
         }else{
-            form=(<p>Se le asignara un telefono y se lo enviaremos a la direccion indicada</p>)
+            form=(this.props.tipo=="fijo"?(<p>Nos pondremos en contacto con usted para la instalacion</p>):(<p>Se le asignara un numero nuevo telefono y se lo enviaremos a la direccion indicada</p>))
         }
 
         return (
             <div id={this.props.id}>
+                <div style={{height:"60px"}}>
+                    <h2>Linea {`${parseInt(this.props.id)+1} ${this.props.tipo.toUpperCase()}`}</h2>
+                </div>
                 <Button.Group size='large' className="centrar">
-                    <Button onClick={() => this.handleClick("portabilidad")}>Portabilidad</Button>
+                    <Button positive={this.state.tipo==="portabilidad"?true:false} onClick={() => this.handleClickOptions("portabilidad",this.props.id )}>Portabilidad</Button>
+                    
                     <Button.Or />
-                    <Button onClick={() => this.handleClick("alta")}>Alta</Button>
+                    <Button positive={this.state.tipo==="alta"?true:false} onClick={() => this.handleClickOptions("alta", this.props.id)}>Alta</Button>
                 </Button.Group>
                 
                 {form}

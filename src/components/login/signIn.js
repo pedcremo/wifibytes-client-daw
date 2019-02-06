@@ -17,7 +17,7 @@ class SignIn extends React.Component  {
     render() {
         const { changeView , view } = this.props
         return(
-            <div className="login">
+            <div className="login login_background">
                 <IsAuth redirect={true}/>
                 <div className="center">
                     <div className="tab">
