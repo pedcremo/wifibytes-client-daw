@@ -28,10 +28,13 @@ class Home extends React.Component {
                         <div>
                             <div className="p-5">
                                 <span key="0">
-                                    <h1 id="title" className="glow text-center pb-5" key="0">{datosHome[0].subtitulo}</h1>
+                                    <h1 id="title" className="glow text-center pb-3" key="0">{datosHome[0].subtitulo}</h1>
                                     <RateBoxSubComponent key={"rateBox"} rates={datosTarifa.results} />
                                 </span>
-                                <VegasCarousel vegas={datosEmpresa} />
+                                <br></br>
+                                <span className="p-5">
+                                    <VegasCarousel vegas={datosEmpresa} />
+                                </span>
                             </div>
 
                             <div className="row p-5 bg-white">
