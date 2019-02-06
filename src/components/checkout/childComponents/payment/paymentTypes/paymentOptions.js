@@ -7,7 +7,7 @@ import React from 'react';
     const options = props.paymentOptions.map((option, i) => {
         return (
             <label key={i}>
-                <input type="radio" name="method" key={i} onChange={props.changePaymentMethod(false)} value={option.codpago} checked={props.paymentMethod === option.codpago}/> {option.nombre}
+                <input type="radio" name="method" key={i} onChange={props.changePaymentMethod()} value={option.codpago} checked={props.paymentMethod === option.codpago}/> {option.nombre}
             </label>
         );
     });
