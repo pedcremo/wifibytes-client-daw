@@ -76,22 +76,25 @@ const saveJWT = store => next => action => {
 
 const isAuth = store => next => action =>{
   if (action.isAuth){
-      let token = Utils.getCookie("tokenAuth");
-      Utils.post("/api-token-verify/",{'token':token}).then(
-        res => {
-            res = JSON.parse(res);
+      let token = Utils.getCookie("jwt");
+      if(token){
+        Utils.post("/api-token-verify/",{'token':token}).then(
+          res => {
+              store.dispatch({
+                type : AUTH_SET,
+                user : JSON.parse(res)
+              })
+          },
+          error => {
+            console.log(error)
             store.dispatch({
-              type : AUTH_SET,
-              user : res
+              type : NOT_AUTH,
             })
-        },
-        error => {
-          console.log(error)
-          store.dispatch({
-            type : NOT_AUTH,
-          })
-        }
-      )
+          }
+        )
+      }else{
+        next(action)
+      }
   }
   next(action)
 }

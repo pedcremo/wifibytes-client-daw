@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import React from 'react';
 import LogIn from "./loginComponent";
 import Register from "./RegisterComponent";
-
+import IsAuth from '../isAuth'
 import {changeView} from './loginActions'
 /**
  * @class
@@ -15,9 +15,10 @@ class SignIn extends React.Component  {
         this.props.changeView(window.location.href.split('/')[4])
     }
     render() {
-        const { changeView , view} = this.props
+        const { changeView , view } = this.props
         return(
             <div className="login">
+                <IsAuth redirect={true}/>
                 <div className="center">
                     <div className="tab">
                         <button className="tablinks" id="loginButton" onClick={()=>changeView("login")}>Login</button>
@@ -34,7 +35,8 @@ class SignIn extends React.Component  {
 }
 
 const mapDispatchToProps = dispatch =>({
-    changeView : (view) => dispatch(changeView(view)),
+    changeView : (view) =>
+        dispatch(changeView(view)),
 })
 const mapStateToProps = state => ({
     ...state.loginReducer
