@@ -6,10 +6,18 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
     rootReducer,
+    (typeof(Storage) && window.localStorage.getItem('redux-store')) ?
+        JSON.parse(window.localStorage.getItem('redux-store')) :
+        {},
     composeEnhancers(applyMiddleware(thunk, localStorage,isAuth , promiseMiddleware , saveJWT ))
 
 );
 
 store.subscribe(() => {
-    localStorage['redux-store'] = JSON.stringify(store.getState())
+    
+    // Check browser support
+    if (typeof(Storage) !== "undefined") {
+        console.log("LOCALSTORAGE CHANGE");
+        window.localStorage.setItem('redux-store',JSON.stringify(store.getState()));
+    }
 })
