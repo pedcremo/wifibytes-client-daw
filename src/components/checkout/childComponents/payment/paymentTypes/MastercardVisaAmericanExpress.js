@@ -1,5 +1,4 @@
 import React from 'react';
-import {RegExps} from '../../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
   const cardOwner = props.cardOwner;
@@ -8,19 +7,6 @@ export default function MastercardVisaAmericanExpressForm(props) {
   const expirationYear = props.expirationYear;
   const cvv = props.cvv;
 
-  function disabled(){
-    return !validateCvv() || !validateCardOwner() || !validateExpirationDate();
-  }
-  function validateExpirationDate(){
-    const today = new Date();
-    return ((today.getMonth() + 1) >expirationMonth? today.getFullYear() < expirationYear : today.getFullYear() <= expirationYear); 
-    }
-  function validateCvv(){
-    return cvv.toString().match(RegExps.cvv);
-  }
-  function validateCardOwner(){
-    return cardOwner.match(RegExps.cardOwner);
-  }
   function createExpirationYears(){
     let options = [];
     for (let i = 0; i <= 20; i++) {
@@ -37,7 +23,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
             <h1>{props.translate.t("payment-method1")}</h1>
             <fieldset className="form-group">
               <h3 className="errors"
-              hidden={validateCardOwner()}>
+              hidden={props.cardOwnerIsValid}>
               Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("payment-owner")}</label>
               <input
@@ -58,7 +44,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
             </fieldset>
             <fieldset className="form-group">
             <h3 className="errors"
-              hidden={validateExpirationDate()}>
+              hidden={props.expirationDateIsValid}>
               Something is wrong with the expiration date, check it out!</h3>
               <label>{props.translate.t("payment-expirationMonth")}</label>
               <select
@@ -90,7 +76,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
             </fieldset>
             <fieldset className="form-group">
             <h3 className="errors"
-              hidden={validateCvv()}>
+              hidden={props.cvvIsValid}>
               Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("CVV")}</label>
               <input
