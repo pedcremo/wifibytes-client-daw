@@ -10,7 +10,7 @@ import {
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
-import {PaymentOptions, PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
+import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import PaymentForm from './paymentTypes/paymentForm';
 import {PropTypes} from 'prop-types';
 
@@ -138,12 +138,7 @@ class Payment extends React.Component {
     const form = this.props.form;
     return (
       <div className="payment-container">
-      {<PaymentOptions
-        changePaymentMethod={this.changePaymentMethod}
-        paymentOptions={this.props.paymentMethods}
-        paymentMethod = {this.props.paymentMethod}
-        show={this.props.showModal}
-        closeModal = {this.closeModal} />}
+      
         {this.showPaymentOptionsRadioButton()}
         {<PaymentForm
         submittedAtLeastOnce = {this.props.submittedAtLeastOnce}
