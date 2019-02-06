@@ -3,8 +3,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { Utils } from "../../../../utils";
-import { sendContractsAction, getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
+import { getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
 
 
@@ -16,17 +15,32 @@ class Contracts extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: {
-                sign: "",
-                pos: "",
-                time: ""
-            },
-            showModal: false,
-            next: false
-        };
+        if(this.props.infoContracts.contracts) {
+            this.state = {
+                data: {
+                    sign: this.props.infoContracts.contracts.data.sign,
+                    pos: this.props.infoContracts.contracts.data.pos,
+                    time: this.props.infoContracts.contracts.data.time
+                },
+                showModal: this.props.infoContracts.contracts.showModal,
+                next: this.props.infoContracts.contracts.next,
+                contractsHTML: this.props.infoContracts.contracts.contractsHTML
+            };
+        }else {
+            this.state = {
+                data: {
+                    sign: "",
+                    pos: "",
+                    time: ""
+                },
+                showModal: false,
+                next: false,
+                contractsHTML: ""
+            };
+        }
+
         this.reciveSign = this.reciveSign.bind(this);
-        this.sendContract = this.sendContract.bind(this);
+        /* this.sendContract = this.sendContract.bind(this); */
         this.stateModal = this.stateModal.bind(this);
     }
 
@@ -64,9 +78,9 @@ class Contracts extends React.Component {
         });
     }
 
-    sendContract(html){
+/*     sendContract(html){
         this.props.dispatch(sendContractsAction(html));
-    }
+    } */
 
 
     getPosition() {
@@ -76,7 +90,6 @@ class Contracts extends React.Component {
     };
 
     mountContracts() {
-
         //this.props.DataPersonal
         let person = {    
             name: "Daniel Ortiz Garcia",
@@ -197,6 +210,7 @@ class Contracts extends React.Component {
 
 const mapStateToProps = state => ({
     datosContracts: state.datosContracts.items,
+    infoContracts: state.currentCheckout.data
 });
 
 export default connect(mapStateToProps)(Contracts);
