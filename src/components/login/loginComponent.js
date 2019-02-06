@@ -1,149 +1,82 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {Utils} from "../../utils";
-import {AuthService} from "../../auth.service";
+import {connect} from 'react-redux';
 import Reaptcha from 'reaptcha';
 import { Settings } from "../../settings";
-
+import {login ,recoverPass , changeValue} from './loginActions'
+import IsAuth from '../isAuth'
 /**
  * @class
  * Draw Login. A form to login
  */
-class Login extends React.Component  {
-    /**
-     * @constructor
-     */
-    constructor() {
-        super();
-        this.loginSubmit = this.loginSubmit.bind(this);
-        this.recoverPass = this.recoverPass.bind(this);
-        this.state = {
-            username:"",
-            password:"",
-            email:"",
-            errorCaptcha: "",
-            captcha: false,
-            error:null
-        }
-	}
 
-	componentDidMount(){
-        AuthService.isAuth().then((res)=>{
-            console.log("Already loged")
-            console.log(res)
-            Router.navigate("home");
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
-    showrecoverPass(){
-        /**It check if hidden class is in recovery div and if it is in it, it will remove it
-         * and add class with animation and see visible it and vice versa*/
-        let recover = document.getElementById("login-recover");
-        /**
-         * It check if hidden class is in recovery div and if it is in it, it will remove it
-         * and add class with animation and see visible it and vice versa
-         * */
-            if (recover.classList.contains("login-recuperar-input")){
-                recover.classList.toggle("login-recuperar-input")
-                recover.classList.add("login-recov-pass");
-            }else if (!recover.classList.contains("login-recuperar-input")){
-                recover.classList.toggle("login-recov-pass")
-                recover.classList.add("login-recuperar-input");
-            }
-    }
-    /**
-     * Recover password, it does a connection with backend and ofert they your
-     * email in diccionario(on the data is sended) and the backend do everything else.
-     */
+
+const mapDispatchToProps = dispatch =>({
+    login : (data) => 
+        dispatch(login(data)),
+    recoverPass : (email) => 
+        dispatch(recoverPass(email)),
+    changeValue : (value , target) =>
+        dispatch(changeValue(value , target)),
+})
+const mapStateToProps = state => ({
+    ...state.loginReducer,
+});
+
+class Login extends React.Component  {
+
     recoverPass(){
-    /*** Recover password, it does a connection with backend and ofert they your
-     * email in diccionario(on the data is sended) and the backend do everything else.*/
-        if (this.state.captcha === true){ // Check if captcha is checked
-            if(this.state.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)){// Check if email is correct
-                let diccionario = {
-                    email: this.state.email
-                }
-                AuthService.recoverPass(diccionario).then((res)=>{
-                    res = JSON.parse(res)
-                    console.log(res.message ? "Succes" : "Error")
-                    alert(res.message+", compruebe su correo, tenga en cuenta que esto puede tardar unos minutos.")
-                })
-                .catch((err)=>{
-                    console.log(err)
-                })
+        if (this.props.captcha){ // Check if captcha is checked
+            if(this.props.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)){// Check if email is correct
+                this.props.recoverPass(this.props.email)
             }
-        }else{
-            this.setState({ errorCaptcha: Utils.translate("register-error-captcha")});
-        }
-    }
-    loginSubmit(){
-        let loginSubmit = {
-            username:this.state.username,
-            password:this.state.password
-        }
-        AuthService.login(loginSubmit).then((res)=>{
-            console.log(res.token ? "Succes" : "Error")
-            res.token ? this.props.stat(true) : this.props.stat(false);
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
-    lang() {
-        let lang = Utils.getUserLang();
-        if (lang=="va") lang="es"
-        return lang
-    }
-    updateInput(evt,target){
-        this.setState({ [target] : evt.target.value });
+        }else
+            this.props.changeValue(Utils.translate("register-error-captcha"),'errorCaptcha')
     }
     /** render  */
     render() {
-		return (
-            <div>
+        const { loading , showRecoverPass , error , changeView, loadingRecover, errorRecover , changeValue , username , password , email , login , errorCaptcha , captcha} = this.props
+        return (
                 <div className="loginForm">
+                    <IsAuth redirect={true}/>
                     <h1>{Utils.translate("login-title")}</h1>
-
                     <div className="login-acces">
                         <form>
-
-                            <h4>{Utils.translate("login-acces-dni")}</h4>
-                                <input type="text" required size="10" maxLength="9" className="loginInput" pattern="^[0-9]{8}[a-zA-Z]{1}$" value={this.state.username} onChange={(e)=>this.updateInput(e,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
-
-                            <h4>{Utils.translate("login-acces-password")}</h4>
-                            <input type="password" required className="loginInput" value={this.state.password} onChange={(e)=>this.updateInput(e,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
-                            <button className="login-button btn" id="loginButton" onClick={this.loginSubmit}>{Utils.translate("login-button-acces")}</button>
-                            <a className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
-
+                            <span>
+                                <h4>Username or Password</h4>
+                                <input type="text" required value={username} onChange={(ev)=>changeValue(ev.target.value,'username')} placeholder={Utils.translate("login-acces-dni-form")}></input>
+                            </span>
+                            <span>
+                                <h4>{Utils.translate("login-acces-password")}</h4>
+                                <input type="password" required value={password} onChange={(ev)=>changeValue(ev.target.value,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
+                            </span>
+                            <span>
+                                <button className="login-button btn" id="loginButton" onClick={()=>login({username_or_email:username,password:password})}>{Utils.translate("login-button-acces")}</button>
+                                <a onClick={()=>changeView("register")} className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
+                                {loading ? <img src="https://www.voya.ie/Interface/Icons/LoadingBasketContents.gif" width="50" height="40"></img> : ''}
+                                {error ? <p>{error + " Not correct password or username"}</p> : ''}
+                            </span>
                         </form>
-
-                        <p className="login-recuperar" onClick={this.showrecoverPass}>{Utils.translate("login-text-recover")}</p>
-
-                        <div id="login-recover" className="login-recov-pass">
+                        <p className="login-recuperar" onClick={()=>changeValue(!showRecoverPass,'showRecoverPass')}>{Utils.translate("login-text-recover")}</p>
+                        <div id="login-recover" className={showRecoverPass ? 'login-recuperar-input' : 'login-recov-pass'}>
                             <form>
-
-                                <input className="loginInput" required onChange={(e)=>this.updateInput(e,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
-                                <button value={this.state.email} onClick={this.recoverPass} className="login-button btn">{Utils.translate("login-button-recover")}</button>
-
+                                <span>
+                                    <input value={email} required onChange={(ev)=>changeValue(ev.target.value,'email')} pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" placeholder={Utils.translate("login-recover-password")}></input>
+                                    <button onClick={() => this.recoverPass( captcha , email )} className="login-button btn">{Utils.translate("login-button-recover")}</button>
+                                </span>
                             </form>
                             <div id="captcha">
-                                <Reaptcha
-                                sitekey={Settings.captchaSiteKey}
-                                onVerify={() => {
-                                    this.state.captcha = true;
-                                }}
-                                onExpire={() => {
-                                    this.state.captcha = false;
-                                }}
-                                hl={this.lang()}
-                                />
-                                <span className="errors">{this.state.errorCaptcha}</span>
+                                <Reaptcha sitekey={ Settings.captchaSiteKey } onVerify={ () => changeValue(true,'captcha') } onExpire={ ()=> changeValue(false,'captcha') } hl={Utils.getUserLang() == "va" ? "es" : Utils.getUserLang()}/>
+                                <span className="errors">{errorCaptcha}</span>
+                                {loadingRecover ? <img src="https://www.voya.ie/Interface/Icons/LoadingBasketContents.gif" width="50" height="40"></img> : ''}
+                                {errorRecover ? <p>{errorRecover}</p> : ''}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         );
     }
 }
-export default Login;
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

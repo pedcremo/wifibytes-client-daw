@@ -2,7 +2,6 @@
 import React from 'react';
 import {Utils} from "../../utils";
 import {Settings} from "../../settings";
-import {AuthService} from "../../auth.service";
 import Reaptcha from 'reaptcha';
 
 
@@ -31,21 +30,7 @@ class Register extends React.Component  {
     
     registerSubmit () {
         if(!this.validateData()){
-            let diccionario = {
-                nombre : this.state.nombre,
-                apellido : this.state.apellido,
-                email : this.state.email,
-                cifnif : this.state.cifnif,
-                password : this.state.password,
-                newsletter : this.state.newsletter
-            };
-            AuthService.register(diccionario).then((res)=>{
-                console.log(res.token ? "Succes" : "Error")
-                //Açi li retornem al component signIn que el usuari s'ha registrat
-                res.token === "Success" ? this.props.stat(true) : this.props.stat(false);
-            }).catch((err)=>{
-                this.setState({error:err})
-            })
+
         }
     }
     updateInput(evt,target){
