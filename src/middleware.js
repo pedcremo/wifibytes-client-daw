@@ -1,4 +1,5 @@
-import { REGISTER , LOGOUT, LOGIN , ASYNC_START , ASYNC_END} from "./constants/actionTypes";
+import {Utils} from './utils'
+import { REGISTER , LOGOUT, LOGIN , ASYNC_START , ASYNC_END , AUTH_SET , NOT_AUTH} from "./constants/actionTypes";
 
 const localStorage = store => next => action =>{
   if(action.localStorageSave){
@@ -19,7 +20,7 @@ const localStorage = store => next => action =>{
 }
 
 const promiseMiddleware = store => next => action => {
-    if (isPromise(action.payload)) {
+  if (isPromise(action.payload)) {
       store.dispatch({ type: ASYNC_START, subtype: action.type });
   
       const currentView = store.getState().viewChangeCounter;
@@ -60,10 +61,12 @@ const promiseMiddleware = store => next => action => {
 const saveJWT = store => next => action => {
   if (action.type === REGISTER || action.type === LOGIN) {
       if (!action.error) {
+          Utils.setCookie('jwt',JSON.parse(action.payload).token ,365)
           window.localStorage.setItem('jwt', JSON.parse(action.payload).token);
           // agent.setToken(JSON.parse(action.payload).token);
       }
   } else if (action.type === LOGOUT) {
+      Utils.setCookie('jwt','')
       window.localStorage.setItem('jwt', '');
       // agent.setToken(null);
   }
@@ -71,7 +74,29 @@ const saveJWT = store => next => action => {
   next(action);
 }
 
+const isAuth = store => next => action =>{
+  if (action.isAuth){
+      let token = Utils.getCookie("tokenAuth");
+      Utils.post("/api-token-verify/",{'token':token}).then(
+        res => {
+            res = JSON.parse(res);
+            store.dispatch({
+              type : AUTH_SET,
+              user : res
+            })
+        },
+        error => {
+          console.log(error)
+          store.dispatch({
+            type : NOT_AUTH,
+          })
+        }
+      )
+  }
+  next(action)
+}
+
 function isPromise(v) {
   return v && typeof v.then === 'function';
 }
-export { localStorage , saveJWT , promiseMiddleware};
+export { localStorage , saveJWT , promiseMiddleware , isAuth};

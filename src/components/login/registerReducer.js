@@ -1,5 +1,6 @@
 import {
-  UPDATE_FIELD
+  UPDATE_FIELD,
+  REGISTER
 }
 from '../../constants/actionTypes'
 
@@ -10,16 +11,19 @@ let initialState = {
   cifnif: "",
   password: "",
   password2: "",
-  captcha: false
+  captcha: false,
+  politica: false,
+  ofertas: false
 }
 export default function register(state = initialState, action) {
     switch (action.type) {
         case UPDATE_FIELD:
-        console.log(action)
           state[action.field] = action.data;
             return {
                 ...state,
             };
+          case REGISTER:
+            
             default:
                 return state;
         }

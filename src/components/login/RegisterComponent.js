@@ -3,12 +3,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {PropTypes} from 'prop-types';
 import Reaptcha from 'reaptcha';
-import { updateField } from './registerActions';
+import { updateField, register } from './registerActions';
 
 
 const mapDispatchToProps = dispatch =>({
   updateInput: (data, field) =>
-    dispatch(updateField(data, field))
+    dispatch(updateField(data, field)),
+  register: (data) =>
+    dispatch(register(data))
 })
 const mapStateToProps = state => ({
     ...state.registerReducer
@@ -65,12 +67,12 @@ class Register extends React.Component  {
         <div className="register--checkbox">
             <div>
                 {/* CHECK POLITICA PRIV */}
-                <input type="checkbox" onChange={(e)=>this.props.updateInput(e.target.value, 'politica')}></input>
+                <input type="checkbox" onClick={()=>this.props.updateInput(!this.props.politica, 'politica')}></input>
                 <a href="/#legal"> {this.context.t("register-legal")} </a>
             </div>
             <div>
                 {/* CHECK NO REBRE OFERTES */}
-                <input type="checkbox"></input>
+                <input type="checkbox" onClick={()=>this.props.updateInput(!this.props.ofertas, 'ofertas')}></input>
                 <a> {this.context.t("register-newsletter")}</a>
             </div>
         </div>
@@ -83,7 +85,11 @@ class Register extends React.Component  {
             />
         </div>
 
-        <button className="login-button btn" onClick={()=>this.props.register({nombre:this.props.nombre, apellido: this.props.apellido, email: this.props.email, password: this.props.password, password2: this.props.password2, captcha: this.props.captcha})}>{this.context.t("register-button")}</button>
+        <button
+          className="login-button btn"
+          onClick={()=>this.props.register({nombre:this.props.nombre, apellido: this.props.apellido, email: this.props.email, password: this.props.password, password2: this.props.password2, captcha: this.props.captcha})}
+          disabled={!this.props.nombre || !this.props.apellido || !this.props.email || !this.props.cifnif || !this.props.password || !this.props.password2 || !this.props.politica || !this.props.captcha}
+          >{this.context.t("register-button")}</button>
 
     </form>
 </section>

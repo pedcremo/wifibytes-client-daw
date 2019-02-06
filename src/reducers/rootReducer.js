@@ -13,6 +13,7 @@ import payment from "./paymentReducer";
 import loginReducer from "../components/login/loginReducer";
 import cartReducer from "../components/cart/cartReducer";
 import registerReducer from "../components/login/registerReducer";
+import isAuth from "./authReducer"
 
 export default combineReducers({
     datosHome,
@@ -28,5 +29,6 @@ export default combineReducers({
     cartReducer,
     i18nState,
     loginReducer,
-    registerReducer
+    registerReducer,
+    isAuth
 });
