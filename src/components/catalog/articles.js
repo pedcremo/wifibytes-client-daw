@@ -9,6 +9,7 @@ class Articles extends React.Component{
 
     /** render  */
     render() {
+        console.log(this.props.articles)
         return (
             <div className="card-columns m-5">
                 {this.props.articles.map(itemArticle => (
@@ -20,7 +21,7 @@ class Articles extends React.Component{
 
                     </div>
                     <div className="card-footer bg-light"><a href="#" className="btn btn-primary">View details</a>
-                    <AddButton item={{id:itemArticle.referencia,price:itemArticle.pvp,description:itemArticle.descripcion_breve}} text={this.context.t('buy')}/>
+                    <AddButton item={{id:itemArticle.referencia,price:itemArticle.pvp,description:itemArticle.descripcion_breve,imagen:itemArticle.imagen}} text={this.context.t('buy')}/>
                     </div>
                 </div>
                 ))}

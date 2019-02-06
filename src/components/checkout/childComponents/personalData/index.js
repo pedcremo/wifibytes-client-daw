@@ -1,11 +1,12 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../../../auth.service";
+// import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../../../login/signIn";
 import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
+import {AuthService} from '../../../../auth.service'
 import {
     getContactDataForm,
     updateContactDataFormServices
@@ -26,7 +27,7 @@ let items = [
         id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
     },
     {
-        id: 5, 
+        id: 5,
         subtarifas: [
             {
                 id: 3

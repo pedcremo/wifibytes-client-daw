@@ -10,6 +10,7 @@ let steps = [
         "id": 1,
         "active": true,
         "completed": false,
+        "className": "",
         "title": translations[currentLang]["checkout-personal-data"],
         "component": <components.Personal />
     },
@@ -18,6 +19,7 @@ let steps = [
         "id": 2,
         "active": false,
         "completed": false,
+        "className": "",
         "title": translations[currentLang]["checkout-contract"],
         "component": <components.Contracts />
     },
@@ -26,6 +28,7 @@ let steps = [
         "id": 3,
         "active": false,
         "completed": false,
+        "className": "",
         "title": translations[currentLang]["checkout-confirm"],
         "component": <components.Payment />
     }

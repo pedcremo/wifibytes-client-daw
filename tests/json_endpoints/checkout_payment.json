@@ -1,6 +1,12 @@
 {
     "results": [
         {
+            "codpago": 2,
+            "nombre": "Efectivo",
+            "descripcion": "Efectivo",
+            "cod_eneboo": "2"
+        },
+        {
             "codpago": 3,
             "nombre": "Domiciliación Bancaria",
             "descripcion": "A través del banco",

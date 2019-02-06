@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Table } from 'semantic-ui-react';
+import { Table, Input, Popup, Image } from 'semantic-ui-react';
 import IncrementButtons from './IncrementButtons';
 import AddButton from '../cart/AddButton';
-import {Utils} from "../../utils";
 import {PropTypes} from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -26,13 +25,25 @@ class ListCart extends React.Component {
     * Else list all the items
     */
     const { cartItems , quantityItem } = this.props;
-    // console.log(cartItems)
     if(Object.keys(cartItems.items).length > 0){
       const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity);}, 0)
       let table = cartItems.items.map((item)=>{
+        if(item.imagen){
+          console.log("hay")
+        }else{
+          console.log("No hay")
+        }
         return (
           <Table.Row key={item.id}>
-            <Table.Cell>{item.description}</Table.Cell>
+          {item.imagen?
+          <Table.Cell>
+            <Popup 
+              trigger={<p>{item.description}</p>}
+              content={<Image src={item.imagen} size="medium" />}
+              on="hover"
+              />
+            </Table.Cell>:
+            <Table.Cell>{item.description}</Table.Cell>}
             <Table.Cell><input value={item.quantity} onChange={(ev)=>quantityItem(item,ev.target.value)}/></Table.Cell>
             <Table.Cell><IncrementButtons item={item} quantityItem={quantityItem} function={this.props.function} /></Table.Cell>
             <Table.Cell>{item.price} €</Table.Cell>
@@ -44,7 +55,9 @@ class ListCart extends React.Component {
         <Table singleLine>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>{this.context.t('description')}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {this.context.t('description')}
+              </Table.HeaderCell>
               <Table.HeaderCell>{this.context.t('quantity')}</Table.HeaderCell>
               {(this.props.canAdd)?<Table.HeaderCell></Table.HeaderCell>:null}
               <Table.HeaderCell>{this.context.t('price')}</Table.HeaderCell>
@@ -60,14 +73,18 @@ class ListCart extends React.Component {
               <Table.Cell></Table.Cell>
               {(this.props.canAdd)?<Table.Cell></Table.Cell>:null}
               <Table.Cell>
-                <Link to="/checkout">
-                  <button>{Utils.translate('check-out-button')}</button>
-                </Link>
               </Table.Cell>
-              <Table.Cell>Total: {(total).toFixed(2)} €</Table.Cell>
             </Table.Row>
           </Table.Body>
+            <Link to="/checkout">
+            <Input
+                    action={{ color: 'teal', labelPosition: 'left', icon: 'cart', content: this.context.t('check-out-button') }}
+                    actionPosition='left'
+                    defaultValue={(total).toFixed(2) + " €"}
+                  />
+            </Link>
         </Table>
+        
       );
     }else{
       return (
