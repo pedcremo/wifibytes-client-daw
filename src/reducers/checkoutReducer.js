@@ -77,8 +77,7 @@ export default function currentCheckout(state = initialState, action) {
                 ...state,
                 data: {
                     ...state.data,
-                    [action.payload.key]: action.payload.data
-                }
+                    [action.payload.key]: action.payload.data}
             };
         default:
             // ALWAYS have a default case in a reducer
