@@ -93,7 +93,7 @@ class Navbar extends React.Component{
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/login" className="nav-link disabled pt-3">
+                                    <Link to="/login" className="nav-link text-dark pt-3">
                                         {this.context.t("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i>
                                     </Link>
                                 </li>
