@@ -78,12 +78,15 @@ class Payment extends React.Component {
   render() {
     return (
       <div className="payment-container">
-        {this.showPaymentOptionsRadioButton()}
-        {this.paymentForm(this.props.paymentMethod)}
-        {<Cart cartItems={cartItems}/>}
+        <div className="payment-components">
+          {this.showPaymentOptionsRadioButton()}
+          {this.paymentForm(this.props.paymentMethod)}
+        </div>
+        <div className="cart-resume">
+          {<Cart cartItems={cartItems}/>}
+        </div>
       </div>
-      
-  ); 
+  );
 
   }
 }
