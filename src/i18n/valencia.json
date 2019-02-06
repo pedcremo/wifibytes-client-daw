@@ -68,7 +68,17 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid",
 
-    "payment-method0": "Transferència bancària",
+    "personalData-notifyModal-title": "Hem detectat que no esta loguejat, perfavor, escollixca una opcio:",
+    "personalData-notifyModal-choiceLogin":"Loguejarse",
+    "personalData-notifyModal-choiceRegister":"Registrarse",
+    "personalData-notifyModal-choiceNone":"Continuar igualment",
+
+
+    "checkout-personal-data": "Dades Personals",
+    "checkout-contract": "Contracte",
+    "checkout-confirm": "Confirmar Comanda",
+    
+    "payment-method0": "Domiciliació bancaria",
     "payment-method1": "Tarjeta de credit",
     "payment-owner": "Propietari de la tarjeta",
     "payment-numberCard": "Número de la tarjeta",

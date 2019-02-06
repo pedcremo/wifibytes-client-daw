@@ -69,6 +69,16 @@
     "register-error-email": "The email is not valid",
 
     "payment-method0": "Direct bank transfer",
+
+    "personalData-notifyModal-title": "We have detected that you are not logged in, please choose an option:",
+    "personalData-notifyModal-choiceLogin":"Log in",
+    "personalData-notifyModal-choiceRegister":"Register",
+    "personalData-notifyModal-choiceNone":"Continue anyway",
+    
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Payment",
+    
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
     "payment-numberCard": "Credit number card",
