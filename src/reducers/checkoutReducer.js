@@ -18,6 +18,11 @@ const initialState = {
 export default function currentCheckout(state = initialState, action) {
     switch (action.type) {
         case ADD_STEPS:
+            //Podria ser millorat
+            action.payload.steps.map(function(step) {
+                return step.active=false;
+            });
+            action.payload.steps[action.payload.step-1].active=true;
             return {
                 ...state,
                 loading: false,
