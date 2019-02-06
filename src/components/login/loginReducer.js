@@ -3,7 +3,8 @@ import {
     ASYNC_START,
     LOGIN,
     RECOVER,
-    CHANGE_VALUE
+    CHANGE_VALUE,
+    ASYNC_END
 }from '../../constants/actionTypes'
 
 const initialState = {
@@ -31,11 +32,17 @@ export default function login(state = initialState, action) {
                 ...state,
                 loading : true
             }
+        case ASYNC_END:
+            return {
+                ...state,
+                loading : false,
+                error : action.promise ? true : false
+            }
         case LOGIN:
             return {
                 ...state  ,
                 loading: false,
-                error: false,
+                error: action.error,
                 loginData : action.payload.loginData
             }
         case RECOVER:

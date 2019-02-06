@@ -34,7 +34,7 @@ class SignIn extends React.Component  {
     }
 }
 
-const mapDispatchToProps = dispatch =>({
+const mapDispatchToProps = (dispatch, onwProps) =>({
     changeView : (view) => 
         dispatch(changeView(view)),
 })
