@@ -64,7 +64,11 @@ class Payment extends React.Component {
 
   componentDidUpdate() {
     this.isValid()? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
-    this.props.dispatch(updateData('payment',{num_targeta: "holaa", propietario: "yo"}));
+    this.props.paymentMethod === 1? 
+    this.props.dispatch(updateData('payment',{cardOwner: this.props.cardOwner, 
+    cardNumber:this.props.cardNumber, expirationMonth:this.props.expirationMonth,
+    expirationYear:this.props.expirationYear, cvv:this.props.cvv})):
+    this.props.dispatch(updateData('payment',{codpago: this.props.paymentMethod}));
   }
 
   paymentForm(codPago=1){
