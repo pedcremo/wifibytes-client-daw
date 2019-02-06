@@ -7,7 +7,6 @@ import { Utils } from "../../../../utils";
 import { sendContractsAction, getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
 
-
 /**
  * @class
  * Read and accept the terms and conditions text information
@@ -29,7 +28,7 @@ class Contracts extends React.Component {
         this.sendContract = this.sendContract.bind(this);
         this.stateModal = this.stateModal.bind(this);
     }
-
+    
     componentDidMount(){
         this.props.dispatch(getDatosContracts());
         fetch('http://ip-api.com/json')
@@ -58,9 +57,11 @@ class Contracts extends React.Component {
                 }
             }); 
             ///////////////////////////////////////////////////
-            this.props.dispatch(updateData("contracts", this.state));
-            ///////////////////////////////////////////////////
             this.mountContracts();
+            //////////////////// IS VALID ///////////////////////////
+            this.props.dispatch(setCompleted());
+            ///////////////////////////////////////////////////
+            this.props.dispatch(updateData("contracts", this.state));
         });
     }
 
@@ -88,13 +89,17 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
-
+        
         //this.props.Tarifes
-        let servicios1 = [ 1, 2, 3 ];
-        let servicios2 = [ 1, 2 ];
-        let servicios3 = [ 1 ];
+        let cartReducer = [];
+        JSON.parse(localStorage.getItem('cartReducer'))
+        .items.map(item => {return item.subtarifas})
+        .map(item => {return item.map(item => {
+            if(cartReducer.indexOf(item.id) < 0)
+                cartReducer.push(item.id);
+        })});
 
-        let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
+        let re = new RegExp("("+cartReducer.join('|')+"|autorizacion)","i");
         const datosTexts = this.props.datosContracts.filter((itemText) => {
             return itemText.key.match(re);
         }).reverse().map((item) => {
@@ -102,14 +107,9 @@ class Contracts extends React.Component {
         });
 
         this.setState({ contractsHTML: eval('`' + datosTexts.join(' ') + '`') });
-        ///////////////////////////////////////////////////
-        this.props.dispatch(updateData("contracts", this.state));
-        ///////////////////////////////////////////////////
     }
 
     componentDidUpdate(){
-        //////////////////// IS VALID ///////////////////////////
-        //this.props.dispatch(setCompleted());
         //////////////////// INVALID ////////////////////////////
         this.props.dispatch(setUncompleted());
     }
