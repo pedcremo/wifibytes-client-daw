@@ -529,10 +529,14 @@ nav {
 .payment-container .cart-resume .table {
     display: contents;
 }
-
 .payment-method .button {
     width: 130px;
     height: 100px;
     max-width: 130px;
     max-height: 100px;
+}
+.payment-method {
+    display: grid;
+    grid-template-columns: 23% 24% 24%;
+    justify-content: center;
 }
