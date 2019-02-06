@@ -4,7 +4,8 @@ import {
   paymentUpdate,
   getPaymentTypes,
   setUncompleted,
-  updateData
+  updateData,
+  fieldUpdate
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
@@ -20,9 +21,24 @@ class Payment extends React.Component {
     super();
     this.changePaymentMethod = () => ev => {
       this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
-      this.paymentForm(parseInt(ev.target.value));} 
-    this.onChangeField = () => ev =>{
-      console.log(ev.target.value);
+} 
+    this.onChangeField = (field, value) =>{
+      this.props.dispatch(fieldUpdate(field, value));
+    }
+    this.onChangeCvv = () => ev =>{
+      this.onChangeField("cvv", ev.target.value)
+    }
+    this.onChangeExpirationYear = () => ev =>{
+      this.onChangeField("expirationYear", parseInt(ev.target.value))
+    }
+    this.onChangeExpirationMonth = () => ev =>{
+      this.onChangeField("expirationMonth", parseInt(ev.target.value))
+    }
+    this.onChangeCardNumber = () => ev =>{
+      this.onChangeField("cardNumber", ev.target.value)
+    }
+    this.onChangeCardOwner = () => ev =>{
+      this.onChangeField("cardOwner", ev.target.value)
     }
   }
   
@@ -37,16 +53,6 @@ class Payment extends React.Component {
     this.props.dispatch(setUncompleted());
   }
 
-  /**Get the month we are, thisDate.getMonth() is an array so january is month 0, we have to add 1 */
-  getMonth(){
-    const thisDate = new Date();
-    return thisDate.getMonth()+1;
-  }
-  /**Get the year we are */
-  getYear(){
-    const thisDate = new Date();
-    return thisDate.getFullYear();
-  }
   paymentForm(codPago=1){
     switch(codPago){
       case 2:
@@ -60,12 +66,17 @@ class Payment extends React.Component {
       default:
         return <MastercardVisaAmericanExpressForm
         onChangeField={this.onChangeField}
+        onChangeCvv={this.onChangeCvv}
+        onChangeCardOwner={this.onChangeCardOwner}
+        onChangeCardNumber={this.onChangeCardNumber}
+        onChangeExpirationMonth={this.onChangeExpirationMonth}
+        onChangeExpirationYear={this.onChangeExpirationYear}
         translate={this.context}
-        cardOwner={""}
-        cardNumber={""}
-        expirationYear={this.getYear()}
-        expirationMonth={this.getMonth()}
-        cvv={""}/>;
+        cardOwner={this.props.cardOwner}
+        cardNumber={this.props.cardNumber}
+        expirationYear={this.props.expirationYear}
+        expirationMonth={this.props.expirationMonth}
+        cvv={this.props.cvv}/>;
     }
   }
   showPaymentOptionsRadioButton(){
