@@ -3,7 +3,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { sendContractsAction, getDatosContracts } from "../../../../actions/datosContractsAction";
+import { Utils } from "../../../../utils";
+import { sendContractsAction, getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
 
 
@@ -16,8 +17,12 @@ class Contracts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: {
+                sign: "",
+                pos: "",
+                time: ""
+            },
             showModal: false,
-            sign: "",
             next: false
         };
         this.reciveSign = this.reciveSign.bind(this);
@@ -27,6 +32,10 @@ class Contracts extends React.Component {
 
     componentDidMount(){
         this.props.dispatch(getDatosContracts());
+        fetch('http://ip-api.com/json')
+        .then(response => console.log(response.json()))
+        .then(json => console.log(json))
+        .catch(error => console.log((error, null)))
         //this.props.dispatch(getContactDataForm());
     }
 
@@ -37,10 +46,21 @@ class Contracts extends React.Component {
 
     /**Recive sign from the child */
     reciveSign(sign) {
-        this.setState({ 
-            sign: sign,
-            showModal: false,
-            next: true
+        this.getPosition().then( pos => {
+            this.setState({
+                showModal: false,
+                next: true,
+                data: {
+                    ...this.state.data,
+                        sign: sign,
+                        pos: "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude,
+                        time: 'Hour: ' + new Date()
+                }
+            }); 
+            ///////////////////////////////////////////////////
+            this.props.dispatch(updateData("contracts", this.state));
+            ///////////////////////////////////////////////////
+            this.mountContracts();
         });
     }
 
@@ -48,13 +68,16 @@ class Contracts extends React.Component {
         this.props.dispatch(sendContractsAction(html));
     }
 
-    /** render  */
-    render() {
-        const { error, loading, datosContracts} = this.props;
 
-        /*if (error) return (<div>Error Home! </div>);
-        if (loading) return (<div>Loading Home ...</div>);*/
+    getPosition() {
+        return new Promise((res, rej) => {
+            navigator.geolocation.getCurrentPosition(res, rej);
+        });
+    };
 
+    mountContracts() {
+
+        //this.props.DataPersonal
         let person = {    
             name: "Daniel Ortiz Garcia",
             NIF: "49264590Q",
@@ -65,26 +88,56 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
-        if(datosContracts.length > 0){
-            let servicios1 = [ 1, 2, 3 ];
-            let servicios2 = [ 1, 2 ];
-            let servicios3 = [ 1 ];
 
-            let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
-            const datosTexts = datosContracts.filter((itemText) => {
-                return itemText.key.match(re);
-            }).map((item) => {
-                return item.title+" "+item.content;
-            });
+        //this.props.Tarifes
+        let servicios1 = [ 1, 2, 3 ];
+        let servicios2 = [ 1, 2 ];
+        let servicios3 = [ 1 ];
 
-            let contractsHTML = eval('`' + datosTexts.join(' ') + '`');
+        let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
+        const datosTexts = this.props.datosContracts.filter((itemText) => {
+            return itemText.key.match(re);
+        }).reverse().map((item) => {
+            return item.title+" "+item.content;
+        });
+
+        this.setState({ contractsHTML: eval('`' + datosTexts.join(' ') + '`') });
+        ///////////////////////////////////////////////////
+        this.props.dispatch(updateData("contracts", this.state));
+        ///////////////////////////////////////////////////
+    }
+
+    componentDidUpdate(){
+        //////////////////// IS VALID ///////////////////////////
+        //this.props.dispatch(setCompleted());
+        //////////////////// INVALID ////////////////////////////
+        this.props.dispatch(setUncompleted());
+    }
+
+    /** render  */
+    render() {
+        const { error, loading, datosContracts} = this.props;
+        if (error) return (<div>Error Home! </div>);
+        if (loading) return (<div>Loading Home ...</div>);
+        
+        if(datosContracts.length > 0 && true){
+            if(!this.state.contractsHTML)
+                this.mountContracts()
+
             return (
-                <div>
-                    <h1>Contracts</h1>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                        Launch demo modal
-                    </button>
-                    <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLong" aria-hidden="true">
+                <div className="d-flex flex-column align-items-center">
+                    {
+                        !this.state.next? 
+                            <p className="mt-5 text-danger">*The contracts need to be signed</p>
+                        :
+                            ''
+                    }
+                    <div className="mb-5 ml-5 mr-5 mt-3 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
+                        <button type="button" className="btn btn-primary ml-5 mr-5" data-toggle="modal" data-target="#modalContracts">
+                            See Contracts
+                        </button>
+                    </div>
+                    <div className="modal fade" id="modalContracts" tabIndex="-1" role="dialog" aria-labelledby="modalContracts" aria-hidden="true">
                         <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -94,14 +147,14 @@ class Contracts extends React.Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <p dangerouslySetInnerHTML={{ __html: contractsHTML}}></p>
+                                    <p dangerouslySetInnerHTML={{ __html: this.state.contractsHTML}}></p>
                                 </div>
                                 <div className="modal-footer">
                                     { 
                                         !this.state.next?
                                             <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>Accept and Sign</button>
                                         :
-                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.nextStep}>Next</button>
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.nextStep}>Next</button>
                                     }
                                 </div>
                             </div>
@@ -128,7 +181,14 @@ class Contracts extends React.Component {
             );
         }else{
             return(
-                <span>LOADING!</span>
+                <div className="d-flex flex-column align-items-center">
+                    <label className="mt-5 text-danger">* Personal Data is required</label>
+                    <div className="mb-5 ml-5 mr-5 mt-3 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
+                        <button type="button" className="btn btn-danger ml-5 mr-5" disabled>
+                            Disabled
+                        </button>
+                    </div>
+                </div>
             );
         }
 

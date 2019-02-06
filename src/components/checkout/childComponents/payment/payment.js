@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import {
   paymentUpdate,
   getPaymentTypes,
+  setUncompleted,
+  updateData
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
@@ -27,6 +29,13 @@ class Payment extends React.Component {
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
   }
+
+  componentDidUpdate() {
+    // this.props.dispatch(setCompleted())
+    this.props.dispatch(updateData('payment',{num_targeta: "holaa", propietario: "yo"}));
+    this.props.dispatch(setUncompleted());
+  }
+
   /**Get the month we are, thisDate.getMonth() is an array so january is month 0, we have to add 1 */
   getMonth(){
     const thisDate = new Date();

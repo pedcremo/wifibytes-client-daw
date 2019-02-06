@@ -10,6 +10,25 @@ export const SET_SHOW_MODAL_FALSE = 'SET_SHOW_MODAL_FALSE';
 export const SET_FORM = 'SET_FORM';
 export const PAYMENT_METHOD_UPDATE = 'PAYMENT_METHOD_UPDATE';
 
+import { UPDATE_DATA, SET_COMPLETED, SET_UNCOMPLETED } from '../constants/actionTypes';
+
+export function updateData(key, data) {
+    return dispatch => {
+        return dispatch({
+            type: UPDATE_DATA,
+            payload: {key, data}
+        });
+    };
+}
+
+export const setCompleted = () => ({
+    type: SET_COMPLETED
+});
+
+export const setUncompleted = () => ({
+    type: SET_UNCOMPLETED
+});
+
 export function getPaymentTypes() {
     return dispatch => {
         dispatch(getPaymentsBegin());

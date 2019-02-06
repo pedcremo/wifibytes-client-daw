@@ -1,7 +1,8 @@
 import React from 'react';
 /* import Component from "./component"; */
 import {Utils} from "../utils";
-import {PropTypes} from 'prop-types'
+import {PropTypes} from 'prop-types';
+import AddButton from './cart/AddButton';
 
 /**
  * Draw rates boxes from an input json with rates information
@@ -9,33 +10,32 @@ import {PropTypes} from 'prop-types'
 class RateBoxSubComponent extends React.Component {
     /**
      * @constructor
-     * @param {json} ratesJSON 
+     * @param {json} ratesJSON
      */
     constructor(props) {
         super(props);
     }
-   
+
 
     /** render  */
     render() {
         //console.log("RATE",this.props.rates);
         const highlitedRates = this.props.rates.map((itemFiltered, index) => {
-            //console.log(itemFiltered)
             const subtarifas = (itemFiltered.subtarifas.map((itemSubtarifa, i) => {
                 //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV
-                     
+
                 switch (itemSubtarifa.tipo_tarifa) {
                     case 1: //Movil
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-mobile-alt" style={{color:itemFiltered.color.hexadecimal}}></i>
                                     <br/> {this.context.t("home-mobile")} {itemSubtarifa.subtarifa_minutos_gratis} {this.context.t("home-min-month")}
-                                    <br/>{itemSubtarifa.subtarifa_datos_internet} {this.context.t("home-gb-month")} 
-                                </p>;                        
+                                    <br/>{itemSubtarifa.subtarifa_datos_internet} {this.context.t("home-gb-month")}
+                                </p>;
                         //break;
                     case 2: //Fijo
                         return <p key={i} className="card-text p-2 border-bottom border-secondary">
                                     <i className="fas fa-2x fa-phone" style={{color:itemFiltered.color.hexadecimal}}></i>
-                                    <br/> {this.context.t("home-land-phone")} 
+                                    <br/> {this.context.t("home-land-phone")}
                                 </p>;
                         //break;
                     case 3: //Fibra
@@ -62,9 +62,12 @@ class RateBoxSubComponent extends React.Component {
 
             }))//INNER MAP
             const textTarifa = Utils.getUserLang() == "va" ? itemFiltered["subtarifas"]["0"]["subtarifa_tarifa"]["pretitulo_va"] : itemFiltered["subtarifas"]["0"]["subtarifa_tarifa"]["pretitulo"];
-            
-            return (      
-                    
+            const typeSubtaifa = [] 
+            itemFiltered.subtarifas.map((subtarifa)=>{
+                typeSubtaifa.push({id:subtarifa.tipo_tarifa})
+            })
+            return (
+
                 <div key={index} className={`card rounded border text-center border-dark text-center zoom-rates ${Utils.randomAnimation()} `} style={{backgroundColor:"rgba(255, 255, 255, 0.8)"}}>
                     <div className="card-header  bg-dark text-light font-weight-bold">
                         <h3>
@@ -72,28 +75,26 @@ class RateBoxSubComponent extends React.Component {
                         </h3>
                     </div>
                     <div className="card-body p-0">
-                        <h5 className="card-title text-white p-2 mr-0" style={{backgroundColor:itemFiltered.color.hexadecimal}}> 
-                            <span className="display-4">{itemFiltered.precio.toLocaleString()} {this.context.t("home-euros-month")} </span> 
+                        <h5 className="card-title text-white p-2 mr-0" style={{backgroundColor:itemFiltered.color.hexadecimal}}>
+                            <span className="display-4">{itemFiltered.precio.toLocaleString()} {this.context.t("home-euros-month")} </span>
                             <br/>{this.context.t("home-vat-included")}
                         </h5>
                         <h5 className="card-text pr-2 pl-2 pb-4 border-bottom border-secondary"><br/>
                             {textTarifa}
-                        </h5>     
-                        {subtarifas}                
+                        </h5>
+                        {subtarifas}
                     </div>
                     <div className="card-footer bg-light d-flex justify-content-around">
                         <a href={'#rate/' + itemFiltered.codtarifa} className="btn btn-primary">
                             <h4 className="mb-0">{this.context.t("view-details")}</h4>
                         </a>
-                        <a href="#" className="btn btn-secondary">
-                            <h4 className="mb-0">{this.context.t("to-contract")}</h4>
-                        </a>
+                          <AddButton item={{id : itemFiltered.codtarifa, price : itemFiltered.precio, description : itemFiltered.nombretarifa, subtarifas:typeSubtaifa}} text={this.context.t('hire')}/>
                     </div>
                 </div>
             );
         });
-        
-        
+
+
         return (
             <div className="grid-container--fit">
                 {highlitedRates}
@@ -106,7 +107,4 @@ RateBoxSubComponent.contextTypes = {
     t: PropTypes.func.isRequired
 }
 
-export default RateBoxSubComponent; 
-
-/* 
- */
+export default RateBoxSubComponent;

@@ -26,7 +26,7 @@ import {
         // All done: set loading "false".
         // Also, replace the items with the ones from the server
         //console.warn("GET_DATOS_HOME_SUCCESS") 
-        //console.warn(action.payload.datosHome);       
+        // console.warn(action.payload.datosHome);       
         return {
           ...state,
           loading: false,

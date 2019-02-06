@@ -5,7 +5,7 @@ export const Agent = {
      * It returns an array of the validated rules
      */
     objectsToArray: function (array, library){
-        if( typeof array == "object" && typeof library == "object" ){
+        if( Array.isArray(array) &&  typeof library == "object" ){
             let filtered = [];
             array.forEach(function(element) {
                 library.fieldsToValidate.forEach(function(item) {
@@ -44,7 +44,7 @@ export const Agent = {
                     element[fieldRequire].forEach(item => {
                         library.fieldsToValidate.filter(el => {
                             let regexp = new RegExp(el.regexp);
-                            regexp.test(item.id) ? quantities[el.field]++ : false;
+                            regexp.test(item.id) ? quantities[el.field]=quantities[el.field]+1*element.quantity : false;
                         });
                     });
                 }

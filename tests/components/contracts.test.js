@@ -1,4 +1,4 @@
-import Contracts from '../../src/components/contracts/contracts';
+import Contracts from '../../src/components/checkout/childComponents/contracts/contracts';
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter  from "enzyme-adapter-react-16";
@@ -78,6 +78,14 @@ describe('<Contracts />', () => {
         store.dispatch(datosContractsAction.getContractsFailure('Error'));
         expect(store.getActions()).toEqual(selectedActions);
     });
+
+    /*it("The main Class exists", () => {
+        console.log(contracts)
+        console.log("Hola mundo")
+        const visitorShortcutsWrapper = contracts.find('.modal_manual_con');
+        console.log(contracts.find('.modal_manual_con'))
+        expect(visitorShortcutsWrapper.length).toBeGreaterThan(0);
+    });*/
 
 });
 

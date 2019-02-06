@@ -22,5 +22,5 @@
             "regexp": "5"
         }
     ],
-    "requiredFields":"tarifa"
+    "requiredFields":"subtarifas"
 }

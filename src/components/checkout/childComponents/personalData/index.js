@@ -1,11 +1,12 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../../../auth.service";
+// import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../../../login/signIn";
 import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
+import {AuthService} from '../../../../auth.service'
 import {
     getContactDataForm
 } from "../../../../actions/personalDataFormActions";
@@ -21,7 +22,7 @@ let items = [
     },
     {
         id: 5,
-        tarifa: [
+        subtarifas: [
             {
                 id: 4
             },
@@ -32,7 +33,7 @@ let items = [
     },
     {
         id: 6,
-        tarifa: [
+        subtarifas: [
             {
                 id: 2
             },
@@ -91,8 +92,8 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
-        let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
-        console.log(tarifes);
+        //let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
+        //console.log(tarifes);
     }
 
 

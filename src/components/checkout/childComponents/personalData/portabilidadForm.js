@@ -58,7 +58,6 @@ class PortabilidadForm extends React.Component  {
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
-        console.log("event", this.state)
         return new Promise((resolve, reject) =>
             resolve(this.setState({
                 
@@ -84,7 +83,7 @@ class PortabilidadForm extends React.Component  {
             resolve(this.setState({
                 tipo: e,
             }))
-        ).then(() => console.log(this.state))
+        )
         
     }
 
@@ -131,7 +130,6 @@ class PortabilidadForm extends React.Component  {
             form=(<p>Se le asignara un telefono y se lo enviaremos a la direccion indicada</p>)
         }
 
-        console.log(this.state,this.props.id)
         return (
             <div id={this.props.id}>
                 <Button.Group size='large' className="centrar">

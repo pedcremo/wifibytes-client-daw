@@ -5,7 +5,11 @@ export const GET_CONTRACT_SUCCESS = 'GET_CONTRACT_SUCCESS';
 export const GET_CONTRACT_FAILURE = 'GET_CONTRACT_FAILURE';
 
 export const SEND_CONTRACT = 'SEND_CONTRACT';
-
+import {
+    UPDATE_DATA,
+    SET_COMPLETED,
+    SET_UNCOMPLETED
+  } from '../constants/actionTypes';
 /**Get the contracts */
 
 export function getDatosContracts(){
@@ -39,4 +43,21 @@ export const sendContractsAction = html => ({
     payload: {
         html
     }
+});
+
+export function updateData(key, data) {
+    return dispatch => {
+        return dispatch({
+            type: UPDATE_DATA,
+            payload: {key, data}
+        });
+    };
+}
+
+export const setCompleted = () => ({
+    type: SET_COMPLETED
+});
+
+export const setUncompleted = () => ({
+    type: SET_UNCOMPLETED
 });

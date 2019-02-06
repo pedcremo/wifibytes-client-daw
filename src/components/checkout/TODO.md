@@ -1,6 +1,0 @@
--Validación número tarjeta
--No mostrar formulario si no hay productos
--Añadir resumen del carrito
--Añadir dirección de envío
--paymentIsValid
--Testing

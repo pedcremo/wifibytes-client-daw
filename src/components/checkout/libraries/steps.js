@@ -2,6 +2,7 @@ import React from 'react'
 import * as components from '../childComponents'
 import {Utils} from '../../../utils';
 import {translations} from '../../../i18n/translations';
+
 let currentLang = Utils.getUserLang();
 let steps = [
     {
@@ -9,6 +10,7 @@ let steps = [
         "id": 1,
         "active": true,
         "completed": false,
+        "className": "",
         "title": translations[currentLang]["checkout-personal-data"],
         "component": <components.Personal />
     },
@@ -17,6 +19,7 @@ let steps = [
         "id": 2,
         "active": false,
         "completed": false,
+        "className": "",
         "title": translations[currentLang]["checkout-contract"],
         "component": <components.Contracts />
     },
@@ -25,6 +28,7 @@ let steps = [
         "id": 3,
         "active": false,
         "completed": false,
+        "className": "",
         "title": translations[currentLang]["checkout-confirm"],
         "component": <components.Payment />
     }

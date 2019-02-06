@@ -26,5 +26,4 @@ const server = new WebpackDevServer(compiler, {
 server.listen(8080, '0.0.0.0', function() { 
   console.log("POINT YOUR BROWSER TO http://localhost:8080 IF THIS DOESN'T HAPPEN AUTOMATICALLY".yellow);
   console.log("ENJOY IT. SALUT I RES PUBLICA!".red);
-  
 });
