@@ -520,3 +520,19 @@ nav {
 .red-cart {
 	color: rgb(44, 170, 6); background:white;
 }
+
+.payment-container {
+    display: grid;
+    grid-template-columns: 48% 50%;
+}
+
+.payment-container .cart-resume .table {
+    display: contents;
+}
+
+.payment-method .button {
+    width: 130px;
+    height: 100px;
+    max-width: 130px;
+    max-height: 100px;
+}

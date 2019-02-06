@@ -39,7 +39,6 @@ export default function checkoutReducer(state = initialState, action) {
                 error: null
             };
         case GET_PAYMENTS_SUCCESS:
-            console.log(action.payload.formasdepago);
             return {
                 ...state,
                 loading: false,
