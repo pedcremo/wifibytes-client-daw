@@ -8,12 +8,12 @@ class IsAuth extends React.Component  {
         this.props.authed()
     }
     render() {
-        const {isAuth} = this.props
-        if(isAuth)
+        const { isAuth , redirect } = this.props
+        
+        if(isAuth && redirect)
             return <Redirect to='/'  />
-        return(
-            <span></span>
-        )
+        
+        return <span></span>
     }
 }
 

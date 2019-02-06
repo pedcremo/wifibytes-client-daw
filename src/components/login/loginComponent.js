@@ -39,7 +39,7 @@ class Login extends React.Component  {
         const { loading , showRecoverPass , error , changeView, loadingRecover, errorRecover , changeValue , username , password , email , login , errorCaptcha , captcha} = this.props
         return (
                 <div className="loginForm">
-                    <IsAuth />
+                    <IsAuth redirect={true}/>
                     <h1>{Utils.translate("login-title")}</h1>
                     <div className="login-acces">
                         <form>

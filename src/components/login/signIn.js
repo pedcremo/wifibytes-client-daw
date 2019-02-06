@@ -18,7 +18,7 @@ class SignIn extends React.Component  {
         const { changeView , view } = this.props
         return(
             <div className="login">
-                <IsAuth />
+                <IsAuth redirect={true}/>
                 <div className="center">
                     <div className="tab">
                         <button className="tablinks" id="loginButton" onClick={()=>changeView("login")}>Login</button>
