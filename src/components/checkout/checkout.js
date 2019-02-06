@@ -44,7 +44,6 @@ class Checkout extends React.Component {
     constructor(props) {
         super(props)
         this.addSteps = (step, steps) => this.props.addSteps(step, steps);
-        
         this.setStep = (step) => this.props.setStep(step);
     }
 
@@ -65,6 +64,8 @@ class Checkout extends React.Component {
     }
 
     componentDidUpdate() {
+        
+
         let that=this;
         const addClickEvent = elem => elem.addEventListener("click", function(event){
             if (!event.target.id) {
@@ -75,7 +76,11 @@ class Checkout extends React.Component {
         });
         document.querySelectorAll("div.step").forEach(addClickEvent);
     }
-      
+    
+    sendOrder(){
+        let data = {"personal_data":{"name":"pepito","surname":"caball"},"contract":{"sd":"sdsd"},"confirm":{"asd":"sdsd"}};
+        Agent.ObjectSendToOrder(data,steps);
+    }
     /**
      * Render prints the steps to follow and calls the function show step
      */
@@ -94,7 +99,7 @@ class Checkout extends React.Component {
                         (<button onClick={nextStep}>
                             Next
                         </button>):(
-                        <button>
+                        <button onClick={this.sendOrder()}>
                             Submit
                         </button>)
                     }
