@@ -16,7 +16,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
     return ((today.getMonth() + 1) >expirationMonth? today.getFullYear() < expirationYear : today.getFullYear() <= expirationYear); 
     }
   function validateCvv(){
-    return cvv.match(RegExps.cvv);
+    return cvv.toString().match(RegExps.cvv);
   }
   function validateCardOwner(){
     return cardOwner.match(RegExps.cardOwner);

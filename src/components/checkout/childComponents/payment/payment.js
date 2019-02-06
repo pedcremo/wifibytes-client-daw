@@ -26,7 +26,7 @@ class Payment extends React.Component {
       this.props.dispatch(fieldUpdate(field, value));
     }
     this.onChangeCvv = () => ev =>{
-      this.onChangeField("cvv", ev.target.value)
+      this.onChangeField("cvv", parseInt(ev.target.value))
     }
     this.onChangeExpirationYear = () => ev =>{
       this.onChangeField("expirationYear", parseInt(ev.target.value))

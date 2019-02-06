@@ -2,4 +2,5 @@
 -No mostrar formulario si no hay productos (A LA ESPERA DE QUE CHECKOUT NOS PROPORCIONE ESTA INFORMACIÓN)
 -Añadir dirección de envío (NO SÉ SI TENEMOS LA INFORMACIÓN)
 -paymentIsValid (CUANTO ANTES)
+-Pasarle la información a checkout en payment component (componentDidUpdate)
 -Testing
