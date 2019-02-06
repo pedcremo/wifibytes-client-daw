@@ -1,11 +1,12 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../../../auth.service";
+// import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../../../login/signIn";
 import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
+import {AuthService} from '../../../../auth.service'
 import {
     getContactDataForm
 } from "../../../../actions/personalDataFormActions";

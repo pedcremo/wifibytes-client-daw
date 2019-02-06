@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
 import {setLanguage} from "redux-i18n"
 import {PropTypes} from 'prop-types'
+import IsAuth from './isAuth'
 
 /**
  * Draw top menu navbar
@@ -37,7 +38,7 @@ class Navbar extends React.Component{
 
     /** render  */
     render() {
-        const { error, loading, datosEmpresa, value , cartItems} = this.props;
+        const { error, loading, datosEmpresa, value , cartItems , isAuth} = this.props;
         if (error)
             return (<div>Error! </div>);
         if (loading)
@@ -53,7 +54,7 @@ class Navbar extends React.Component{
             return (
             <HashRouter>
                 <div className="navRender">
-
+                    <IsAuth />
                     <Link to="/" className="navbar-brand font-weight-bold"><img width="149px" height="49px" src={datosEmpresa.logo} /></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon text-dark"></span>
@@ -93,9 +94,15 @@ class Navbar extends React.Component{
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/login" className="nav-link text-dark pt-3">
-                                        {this.context.t("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i>
-                                    </Link>
+                                    { !isAuth ? 
+                                        <Link to="/login" className="nav-link disabled pt-3">
+                                            {this.context.t("menu-sign-in")} <i className="fas fa-sign-in-alt"> </i>
+                                        </Link>
+                                    :
+                                        <Link to="/profile" className="nav-link disabled pt-3">
+                                            <span>Profile<i className="fas fa-sign-in-alt" /> </span>
+                                        </Link>
+                                    }
                                 </li>
 
 
@@ -131,8 +138,8 @@ const mapStateToProps = state => ({
     loading: state.datosEmpresa.loading,
     error: state.datosEmpresa.error,
     value: Utils.getCookie("language"),
+    ...state.isAuth
 });
-
 Navbar.contextTypes = {
     t: PropTypes.func.isRequired
 }
