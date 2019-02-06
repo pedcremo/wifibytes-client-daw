@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {AuthService} from "../../../../auth.service";
+// import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../../../login/signIn";

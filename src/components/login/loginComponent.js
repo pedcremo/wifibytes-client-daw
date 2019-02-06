@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Reaptcha from 'reaptcha';
 import { Settings } from "../../settings";
 import {login ,recoverPass , changeValue} from './loginActions'
-
+import IsAuth from '../isAuth'
 /**
  * @class
  * Draw Login. A form to login
@@ -18,14 +18,14 @@ const mapDispatchToProps = dispatch =>({
     recoverPass : (email) => 
         dispatch(recoverPass(email)),
     changeValue : (value , target) =>
-        dispatch(changeValue(value , target))
+        dispatch(changeValue(value , target)),
 })
 const mapStateToProps = state => ({
     ...state.loginReducer,
-    ...state.isAuth
 });
 
 class Login extends React.Component  {
+
     recoverPass(){
         if (this.props.captcha){ // Check if captcha is checked
             if(this.props.email.match(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/)){// Check if email is correct
@@ -37,9 +37,9 @@ class Login extends React.Component  {
     /** render  */
     render() {
         const { loading , showRecoverPass , error , changeView, loadingRecover, errorRecover , changeValue , username , password , email , login , errorCaptcha , captcha} = this.props
-        console.log(this.props)
         return (
                 <div className="loginForm">
+                    <IsAuth />
                     <h1>{Utils.translate("login-title")}</h1>
                     <div className="login-acces">
                         <form>
