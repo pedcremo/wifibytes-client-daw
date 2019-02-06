@@ -57,8 +57,8 @@ class Contracts extends React.Component {
                         time: 'Hour: ' + new Date()
                 }
             }); 
+            this.mountContracts();
         });
-        //navigator.geolocation ? navigator.geolocation.getCurrentPosition(this.success) : '';
     }
 
     sendContract(html){
@@ -72,13 +72,9 @@ class Contracts extends React.Component {
         });
     };
 
-    /** render  */
-    render() {
-        console.log(this.state.data);
-        const { error, loading, datosContracts} = this.props;
-        if (error) return (<div>Error Home! </div>);
-        if (loading) return (<div>Loading Home ...</div>);
+    mountContracts() {
 
+        //this.props.DataPersonal
         let person = {    
             name: "Daniel Ortiz Garcia",
             NIF: "49264590Q",
@@ -89,29 +85,43 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
+
+        //this.props.Tarifes
+        let servicios1 = [ 1, 2, 3 ];
+        let servicios2 = [ 1, 2 ];
+        let servicios3 = [ 1 ];
+
+        let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
+        const datosTexts = this.props.datosContracts.filter((itemText) => {
+            return itemText.key.match(re);
+        }).reverse().map((item) => {
+            return item.title+" "+item.content;
+        });
+
+        this.setState({ contractsHTML: eval('`' + datosTexts.join(' ') + '`') });
+
+    }
+
+    /** render  */
+    render() {
+        const { error, loading, datosContracts} = this.props;
+        if (error) return (<div>Error Home! </div>);
+        if (loading) return (<div>Loading Home ...</div>);
+        
         if(datosContracts.length > 0 && true){
-            let servicios1 = [ 1, 2, 3 ];
-            let servicios2 = [ 1, 2 ];
-            let servicios3 = [ 1 ];
+            if(!this.state.contractsHTML)
+                this.mountContracts()
 
-            let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
-            const datosTexts = datosContracts.filter((itemText) => {
-                return itemText.key.match(re);
-            }).reverse().map((item) => {
-                return item.title+" "+item.content;
-            });
-
-            let contractsHTML = eval('`' + datosTexts.join(' ') + '`');
             return (
-                <div className="d-flex justify-content-center">
+                <div className="d-flex flex-column align-items-center">
                     {
                         !this.state.next? 
-                            <p className="text-danger">*The contracts need to be signed</p>
+                            <p className="mt-5 text-danger">*The contracts need to be signed</p>
                         :
                             ''
                     }
-                    <div widh="60%" className="m-5 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
-                        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalContracts">
+                    <div className="mb-5 ml-5 mr-5 mt-3 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
+                        <button type="button" className="btn btn-primary ml-5 mr-5" data-toggle="modal" data-target="#modalContracts">
                             See Contracts
                         </button>
                     </div>
@@ -125,7 +135,7 @@ class Contracts extends React.Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <p dangerouslySetInnerHTML={{ __html: contractsHTML}}></p>
+                                    <p dangerouslySetInnerHTML={{ __html: this.state.contractsHTML}}></p>
                                 </div>
                                 <div className="modal-footer">
                                     { 
