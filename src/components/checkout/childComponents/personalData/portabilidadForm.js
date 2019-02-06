@@ -110,8 +110,7 @@ class PortabilidadForm extends React.Component  {
                     ()=>this.setState({tipo: type, key: this.props.id}, 
                             ()=>this.props.updateField(updateContactDataFormServices(this.state))))
             }
-        }
-        
+        }        
     }
 
     /* handleClickSaveData(type, id){
@@ -138,13 +137,8 @@ class PortabilidadForm extends React.Component  {
                             ref = "company"
                             value={!this.state.company?"":this.state.company}
                             name="company">
-                            
                                 <option value=""></option>         
-                                {
-                                    this.companies.map((item, i) => {
-                                        return <option key={i} value={item}>{item}</option>         
-                                    })
-                                }                   
+                                {this.companies.map((item, i) => <option key={i} value={item}>{item}</option>)}                   
                             </select>
                             
                         </div>

@@ -28,7 +28,8 @@ class PersonalForm extends React.Component  {
             preview: "",
             dni: conten,
             cif: conten,
-            nie: conten
+            nie: conten,
+            cuenta:conten
         };
         this.name = React.createRef();
         this.surname = React.createRef();
@@ -37,6 +38,7 @@ class PersonalForm extends React.Component  {
         this.address = React.createRef();
         this.zip = React.createRef();
         this.city = React.createRef();
+        this.cuenta = React.createRef();
         this.previewFile = this.previewFile.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -46,12 +48,17 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-        
+        console.log("00000000000000000",newProps)
         if (Object.keys(newProps.dataUser).length > 0) {
             let cont=0;
             for (const key in this.state) {
                 new Promise((resolve, reject) =>{
-                    const error = validator(newProps.dataUser[key].value, this.refs[key]["name"], this.refs[key]["type"])
+                    let error=""
+                    console.warn(typeof(newProps.dataUser[key].value), newProps.dataUser[key])
+                    if (typeof (newProps.dataUser[key]["value"])==="object") 
+                        error = validator(newProps.dataUser[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
+                        
+                    
                     if (error!=undefined) 
                         cont++          
                                       
@@ -103,15 +110,13 @@ class PersonalForm extends React.Component  {
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
-        return new Promise((resolve, reject) => 
-            resolve(this.setState({
+        this.setState({
                 [name]: {
                     value: value,
                     error: error
                 }
-            }))
-        )
-        .then(() => this.props.updateField(updateContactDataForm(this.state)))
+            }, () => this.props.updateField(updateContactDataForm(this.state)))
+        
     }
 
     previewFile(){
@@ -238,15 +243,27 @@ class PersonalForm extends React.Component  {
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
                     </div>
+
+                    <div>
+                        <input                      
+                        className={"form-control form-control-lg "+ (!this.state.cuenta.error? "":"border border-danger")}
+                        placeholder="Cuenta bancaria"
+                        name = "cuenta"
+                        ref = "cuenta"
+                        type="text"
+                        value={this.state.cuenta.value}
+                        onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.cuenta.error? "":this.state.cuenta.error}</span>
+                    </div>
+
+
                     <br />
                     <div>
                         <h4>Introduzca el tipo de cliente: </h4>
                         <select name="tipcli" onChange={this.handleInputChange} className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
-                            {
-                                cli.map((a, i)=>{
+                            {cli.map((a, i)=>{
                                     return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
-                                })
-                            }     
+                            })}     
                         </select>
                         <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
                     </div>

@@ -46,7 +46,8 @@ export default function personalDataFormReducer(state = initialState, action) {
                     preview: {error:"", value: ""},
                     dni: {error:"", value: ""},
                     cif: {error:"", value: ""},
-                    nie: {error:"", value: ""}
+                    nie: {error:"", value: ""},
+                    cuenta: {error:"", value: ""}
                 }
                 
             return {
