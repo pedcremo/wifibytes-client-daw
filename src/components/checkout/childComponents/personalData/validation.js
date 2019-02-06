@@ -1,38 +1,53 @@
-const regexEmail = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
+/**
+ * Regex is a library of a regular expressions to the APP
+ */
+import { Regex } from '../../../../regex'
 
-const regexZip = /^(?:0[1-9]\d{3}|[1-4]\d{4}|5[0-2]\d{3})$/
-
-const regexPhone = /^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}$/
 
 
-export function validator(param, type) {
-    console.warn(param, type)
-    if (param.length==0) 
+/**
+ * Function to validate Personal data form
+ * @value {string} its the value of a field.
+ * @type {string} its the type of a field by default will be type text.
+ * @name {string} it will be used to check what kind of param it is.
+ */
+export function validator(value, name, type="text") {
+    /**
+    * If a field does not have value go this first conditional
+    */
+    if (value.length==0) 
         return "This field is required"
 
+    /**
+     * If a field has value got inside here and check using type and value 
+     * Return a error or nothing if the value is correct .
+     */
     switch (type) {
-        case "name":
-            if (param.length < 3)
-                return "This field has minus of 3 params"
+        
+        case "text":
+            if (value.length < 3 && (name === "name" || name === "surname" || name === "city"))
+                return "This field has minus of 3 values"
+            if (value.length < 7 && name === "address")
+                return "This field has minus of 7 values"
             break;
+
 
         case "email":
-            if (!regexEmail.test(param))
-                return "This is not a valid email"
-            break;
+            if (!Regex.regexEmail.test(value))
+            return "This is not a valid email"
+        break;
 
-        case "zip":
-            if (!regexZip.test(param))
+        
+        case "number":
+            if (name === "phone" && !Regex.regexPhone.test(value))
+                return "This is not a valid phone"
+            if (name === "zip" && !Regex.regexZip.test(value))
                 return "This is not a valid zip"
             break;
 
-        case "phone":
-            if (!regexPhone.test(param))
-                return "This is not a valid phone"
-            break;
     
         default:
-            return 
+            return ""
             break;
     }
     

@@ -15,6 +15,7 @@ class SignIn extends React.Component  {
         this.state = {
             type : this.props.type ? this.props.type : window.location.href.split('/')[4] ? window.location.href.split('/')[4] : "login"
         }
+        this.isAuth = this.isAuth.bind(this);
     }
 
     componentWillReceiveProps(){
@@ -30,6 +31,16 @@ class SignIn extends React.Component  {
             type : res
         })
     }
+
+    /**
+     * 
+     * @param {isAuth} value
+     * Açi el que fem es retornar al component de personal data (al index) que el usuari
+     * ya s'ha logeat o registrat
+     */
+    isAuth(value){
+        this.props.stat(value)
+    }
     render() {
         return(
             <div className="login">
@@ -40,8 +51,8 @@ class SignIn extends React.Component  {
                     </div>
                 </div>
                 {this.state.type === "register"?
-                    <Register />:
-                    <LogIn />
+                    <Register stat={this.isAuth}/>:
+                    <LogIn stat={this.isAuth}/>
                 }
             </div>
         )

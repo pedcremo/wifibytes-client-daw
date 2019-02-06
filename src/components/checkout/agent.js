@@ -26,5 +26,32 @@ export const Agent = {
         return array.filter(function (el) {
             return requested.includes(el.key)
         });
+    },
+
+    /**
+     * Iterates an array that will filter a field that comes from the library, 
+     * where it first validates according to the rules of the library and will return 
+     * the quantities of each specified field
+     */
+    arrayToQuantityObject: function (array, library){
+        if( typeof array == "object" && typeof library == "object" ){
+            let quantities = {};
+            library.fieldsToValidate.forEach(element => { quantities[element.field] = 0; });
+            array.forEach(element => {
+                let ObjectExist = element.hasOwnProperty(library.requiredFields);
+                if (ObjectExist) {
+                    let fieldRequire = library.requiredFields;
+                    element[fieldRequire].forEach(item => {
+                        library.fieldsToValidate.filter(el => {
+                            let regexp = new RegExp(el.regexp);
+                            regexp.test(item.id) ? quantities[el.field]++ : false;
+                        });
+                    });
+                }
+            });
+            return quantities;
+        } else
+            throw( "Error in objectsToArray method. Parameters must be objects" );
+                 
     }
 };

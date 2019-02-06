@@ -68,6 +68,10 @@
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Payment",
+    
     "payment-method0": "Direct bank transfer",
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
