@@ -6,6 +6,7 @@ import {
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
+import EfectivoForm from './paymentTypes/Efectivo';
 import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import {PropTypes} from 'prop-types';
 
@@ -17,7 +18,11 @@ class Payment extends React.Component {
     this.changePaymentMethod = () => ev => {
       this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
       this.paymentForm(parseInt(ev.target.value));} 
+    this.onChangeField = () => ev =>{
+      console.log(ev.target.value);
+    }
   }
+  
 
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
@@ -35,29 +40,22 @@ class Payment extends React.Component {
   paymentForm(codPago=1){
     switch(codPago){
       case 2:
-        return ; /**Efectivo */
+        return <EfectivoForm 
+        translate={this.context}
+        description={this.props.paymentMethods[0].descripcion}/>; /**Efectivo */
       case 3:
         return <DirectDebitForm
-        changeAnyFormField={this.changeAnyFormField}
-        translate={this.context} 
-        debitOwner={""}
-        iban={""}
-        address={""}
-        deletePaymentMethod = {this.deletePaymentMethod}
-        addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}
-        submittedAtLeastOnce = {this.props.submittedAtLeastOnce}/>;
+        translate={this.context}
+        description={this.props.paymentMethods[1].descripcion}/>;
       default:
         return <MastercardVisaAmericanExpressForm
-        changeAnyFormField={this.changeAnyFormField}
+        onChangeField={this.onChangeField}
         translate={this.context}
         cardOwner={""}
         cardNumber={""}
         expirationYear={this.getYear()}
         expirationMonth={this.getMonth()}
-        cvv={""}
-        deletePaymentMethod = {this.deletePaymentMethod}
-        addDeletePaymentMethodButton = {this.addDeletePaymentMethodButton}
-        submittedAtLeastOnce = {this.props.submittedAtLeastOnce}/>;
+        cvv={""}/>;
     }
   }
   showPaymentOptionsRadioButton(){
