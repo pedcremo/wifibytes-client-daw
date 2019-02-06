@@ -1,4 +1,4 @@
-import SignaturePad from '../../src/components/contracts/signaturePad';
+import SignaturePad from '../../src/components/checkout/childComponents/contracts/signaturePad';
 import React from 'react';
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
