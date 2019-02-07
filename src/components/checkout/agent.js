@@ -56,12 +56,12 @@ export const Agent = {
 
     },
 
-    ObjectSendToOrder: function (data, steps) {
+    ObjectSendToOrder: function (data, items) {
         let cont = 0;
-        steps.filter(element => {
+        items.filter(element => {
             data.hasOwnProperty(element.key) && Object.keys(data[element.key]).length > 0 ? cont++ : false;
         });
-        if (cont == steps.length) {
+        if (cont == items.length) {
             console.log("LLEST");
             /*Utils.post("/pedidos",data).then(response =>{
                     response = JSON.parse(response);

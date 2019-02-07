@@ -100,7 +100,7 @@ class Checkout extends React.Component {
                         (<button onClick={nextStep}>
                             Next
                         </button>):(
-                        <button onClick={this.sendOrder()}>
+                        <button onClick={() => this.sendOrder()}>
                             Submit
                         </button>)
                     }
