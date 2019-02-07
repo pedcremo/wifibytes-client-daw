@@ -64,7 +64,7 @@ class Payment extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.paymentMethod!== 1 || this.isValid()? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+      this.props.paymentMethod!== 1 || this.isValid()? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
       this.props.paymentMethod === 1? 
         this.props.dispatch(updateData('payment',{cardOwner: this.props.cardOwner, 
         cardNumber:this.props.cardNumber, expirationMonth:this.props.expirationMonth,

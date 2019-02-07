@@ -12,8 +12,6 @@ class Resume extends React.Component {
   }
 
   render() {
-    console.log(this.props.personalDataForm.fields.datosPersonales.address.value);
-
     return (
         <div className="resume">
         <b><h2>{this.props.translate.t("resume")}</h2></b>
