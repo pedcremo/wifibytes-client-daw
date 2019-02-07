@@ -14,17 +14,24 @@ class Contracts extends React.Component {
 
     constructor(props) {
         super(props);
-        if(this.props.infoContracts.contracts) {
-            this.state = {
-                data: {
-                    sign: this.props.infoContracts.contracts.data.sign,
-                    pos: this.props.infoContracts.contracts.data.pos,
-                    time: this.props.infoContracts.contracts.data.time
-                },
-                showModal: this.props.infoContracts.contracts.showModal,
-                next: this.props.infoContracts.contracts.next,
-                contractsHTML: this.props.infoContracts.contracts.contractsHTML
-            };
+        if(this.props.infoContracts) {
+            if(this.props.infoContracts.subTarifasLength === this.subTarifas().length){
+                this.state = this.props.infoContracts;
+                this.props.dispatch(updateData("contracts", this.state));
+            }else{
+                this.state = {
+                    data: {
+                        sign: this.props.infoContracts.data.sign,
+                        pos: this.props.infoContracts.data.pos,
+                        time: this.props.infoContracts.data.time
+                    },
+                    showModal: this.props.infoContracts.showModal,
+                    next: true,
+                    contractsHTML: false,
+                    subTarifasLength: this.subTarifas().length
+                };
+                this.props.dispatch(updateData("contracts", this.state));
+            }
         }else {
             this.state = {
                 data: {
@@ -34,7 +41,8 @@ class Contracts extends React.Component {
                 },
                 showModal: false,
                 next: false,
-                contractsHTML: ""
+                contractsHTML: "",
+                subTarifasLength: 0
             };
         }
 
@@ -70,12 +78,11 @@ class Contracts extends React.Component {
                         time: 'Hour: ' + new Date()
                 }
             }); 
-            ///////////////////////////////////////////////////
+            
             this.mountContracts();
+            this.props.dispatch(updateData("contracts", this.state));
             //////////////////// IS VALID ///////////////////////////
             this.props.dispatch(setCompleted());
-            ///////////////////////////////////////////////////
-            this.props.dispatch(updateData("contracts", this.state));
         });
     }
 
@@ -99,6 +106,22 @@ class Contracts extends React.Component {
         }
         
         //this.props.Tarifes
+        let subTarifasCon = this.subTarifas();
+
+        let re = new RegExp("("+subTarifasCon.join('|')+"|autorizacion)","i");
+        const datosTexts = this.props.datosContracts.filter((itemText) => {
+            return itemText.key.match(re);
+        }).reverse().map((item) => {
+            return item.title+" "+item.content;
+        });
+
+        this.setState({ 
+            contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
+            subTarifasLength: subTarifasCon.length 
+        });
+    }
+
+    subTarifas(){
         let cartReducer = [];
         JSON.parse(localStorage.getItem('cartReducer'))
         .items.map(item => {return item.subtarifas})
@@ -106,20 +129,13 @@ class Contracts extends React.Component {
             if(cartReducer.indexOf(item.id) < 0)
                 cartReducer.push(item.id);
         })});
-
-        let re = new RegExp("("+cartReducer.join('|')+"|autorizacion)","i");
-        const datosTexts = this.props.datosContracts.filter((itemText) => {
-            return itemText.key.match(re);
-        }).reverse().map((item) => {
-            return item.title+" "+item.content;
-        });
-
-        this.setState({ contractsHTML: eval('`' + datosTexts.join(' ') + '`') });
+        return cartReducer;
     }
 
     componentDidUpdate(){
         //////////////////// INVALID ////////////////////////////
-        this.props.dispatch(setUncompleted());
+        if(!this.state.next)
+            this.props.dispatch(setUncompleted());
     }
 
     /** render  */
@@ -205,7 +221,7 @@ class Contracts extends React.Component {
 
 const mapStateToProps = state => ({
     datosContracts: state.datosContracts.items,
-    infoContracts: state.currentCheckout.data
+    infoContracts: state.currentCheckout.data.contracts
 });
 
 export default connect(mapStateToProps)(Contracts);
