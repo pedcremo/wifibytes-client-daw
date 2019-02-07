@@ -15,7 +15,7 @@ import { PaymentOptionsRadioButton } from './paymentTypes/paymentOptions';
 import Resume from './paymentTypes/Resume';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
-import { RegExps } from '../../../../regExps';
+import { Regex } from '../../../../regex';
 
 const mapStateToProps = state => ({ ...state.payment });
 const cartItems = JSON.parse(localStorage.getItem('cartReducer'))
@@ -45,17 +45,33 @@ class Payment extends React.Component {
     }
   }
   isValid() {
-    return this.cvvIsValid() && this.cardOwnerIsValid() && this.expirationDateIsValid();
+    return this.cvvIsValid() && this.cardOwnerIsValid() && this.expirationDateIsValid() && this.cardNumberIsValid();
   }
   expirationDateIsValid() {
     const today = new Date();
     return ((today.getMonth() + 1) > this.props.expirationMonth ? today.getFullYear() < this.props.expirationYear : today.getFullYear() <= this.props.expirationYear);
   }
   cvvIsValid() {
-    return this.props.cvv.toString().match(RegExps.cvv);
+    return this.props.cvv.toString().match(Regex.cvv);
   }
   cardOwnerIsValid() {
-    return this.props.cardOwner.match(RegExps.cardOwner);
+    return this.props.cardOwner.match(Regex.cardOwner);
+  }
+  cardNumberIsValid() {
+    let cardNumberProps = this.props.cardNumber.toString();
+    let cardNumberArray = (cardNumberProps).toString(10).split("").map(t => { return parseInt(t) })
+    cardNumberArray = cardNumberArray.map((number, i) => {
+      return i % 2 === 0 ? number * 2 : number;
+    })
+    cardNumberArray = cardNumberArray.map((number, i) => {
+      return (i % 2 === 0 && number >= 10) ? number - 9 : number;
+    });
+    let sum = 0;
+    cardNumberArray.map(number => {
+      sum += number;
+    });
+    return sum % 10 === 0;
+
   }
 
 
@@ -95,7 +111,7 @@ class Payment extends React.Component {
           translate={this.context}
           cardOwner={this.props.cardOwner}
           cardOwnerIsValid={this.cardOwnerIsValid()}
-          cardNumberIsValid={true}
+          cardNumberIsValid={this.cardNumberIsValid()}
           expirationDateIsValid={this.expirationDateIsValid()}
           cvvIsValid={this.cvvIsValid()}
           cardNumber={this.props.cardNumber}
