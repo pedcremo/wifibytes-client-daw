@@ -8,7 +8,7 @@ let steps = [
     {
         "key": "personal_data",
         "active": true,
-        "completed": false,
+        "completed": true,
         "className": "",
         "title": translations[currentLang]["checkout-personal-data"],
         "component": <components.Personal />

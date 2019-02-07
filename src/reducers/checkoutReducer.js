@@ -5,7 +5,9 @@ import {
     UPDATE_STEP,
     SET_COMPLETED,
     SET_UNCOMPLETED,
-    UPDATE_DATA
+    UPDATE_DATA,
+    DISABLE_BUTTON,
+    ACTIVATE_BUTTON
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
     steps: [],
     data: {},
     loading: false,
+    disabled: true
 };
 
 export default function currentCheckout(state = initialState, action) {
@@ -91,6 +94,16 @@ export default function currentCheckout(state = initialState, action) {
             state.data[action.payload.key]=action.payload.data;
             return {
                 ...state,
+            };
+        case DISABLE_BUTTON:
+            return {
+                ...state,
+                disabled:true
+            };
+        case ACTIVATE_BUTTON:
+            return {
+                ...state,
+                disabled:false
             };
         default:
             // ALWAYS have a default case in a reducer

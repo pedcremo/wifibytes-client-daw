@@ -8,13 +8,13 @@ import PropTypes from 'prop-types'
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
 
-import sublibrary from "./libraries/subitems_based_library.json";
-
 import {
     ADD_STEPS,
     NEXT_STEP,
     PREVIOUS_STEP,
-    UPDATE_STEP
+    UPDATE_STEP,
+    DISABLE_BUTTON,
+    ACTIVATE_BUTTON
 } from '../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
@@ -34,7 +34,20 @@ const mapDispatchToProps = dispatch => ({
      * Sets a specific step
      */
     setStep: (step) =>
-        dispatch({ type: UPDATE_STEP, payload: { step } })
+        dispatch({ type: UPDATE_STEP, payload: { step } }),
+    /**
+     * Go to the next step
+     */
+    disableButton: () =>
+        dispatch({ type: DISABLE_BUTTON }),
+    /**
+     * Go to the previous step
+     */
+    activateButton: () =>
+        dispatch({ type: ACTIVATE_BUTTON }),
+    /**
+     * Sets a specific step
+     */
 });
 
 /**
@@ -76,6 +89,10 @@ class Checkout extends React.Component {
             setID(item, index);
             addClickEvent(item, index);
         });
+        
+        steps.filter(step => step.completed===true).length !== steps.length?
+        this.props.disableButton():
+        this.props.activateButton();
     }
 
     sendOrder() {
@@ -86,7 +103,8 @@ class Checkout extends React.Component {
      * Render prints the steps to follow and calls the function show step
      */
     render() {
-        const { loading, steps, currentStep, nextStep } = this.props;
+        let cont = 0;
+        const { loading, steps, currentStep, nextStep, disabled } = this.props;
         if (loading)
             return (<div>Loading...</div>);
         if (steps.length > 0 && currentStep) {
@@ -95,8 +113,8 @@ class Checkout extends React.Component {
                     <Step.Group items={steps} attached='top' ordered />
                     
                     {steps[currentStep-1].component}
-                    <div class="container">
-                        <div class="row justify-content-md-center p-5">
+                    <div className="container">
+                        <div className="row justify-content-md-center p-5">
                             {steps.length > currentStep?
                                 (<button 
                                     onClick={nextStep} 
@@ -104,12 +122,23 @@ class Checkout extends React.Component {
                                     <i className="right arrow icon"></i>
                                     {this.context.t('checkout-next')}
                                 </button>):(
-                                <button 
-                                    onClick={() => this.sendOrder()}  
-                                    className="massive ui labeled icon black button">
-                                    <i className="icon truck"></i> 
-                                    {this.context.t('checkout-submit')}
-                                </button>)
+                                    (disabled)?
+                                    (
+                                        <button 
+                                                disabled  
+                                                className="massive ui labeled icon black button">
+                                                <i className="icon truck"></i> 
+                                                {this.context.t('checkout-submit')}
+                                        </button>
+                                        ) : (
+                                        <button 
+                                            onClick={() => this.sendOrder()}
+                                            className="massive ui labeled icon black button">
+                                            <i className="icon truck"></i> 
+                                            {this.context.t('checkout-submit')}>
+                                        </button>
+                                    )
+                                )
                             }
                         </div>
                     </div>
@@ -127,7 +156,8 @@ const mapStateToProps = state => ({
     currentStep: state.currentCheckout.currentStep,
     steps: state.currentCheckout.steps,
     data: state.currentCheckout.data,
-    loading: state.currentCheckout.loading
+    loading: state.currentCheckout.loading,
+    disabled: state.currentCheckout.disabled
 });
 
 Checkout.contextTypes = {
