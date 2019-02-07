@@ -117,7 +117,9 @@ class Payment extends React.Component {
           {this.paymentForm(this.props.paymentMethod)}
         </div>
         <div className="cart-resume">
-          {<Resume/>}
+          {<Resume
+          translate={this.context}
+          />}
           {<Cart cartItems={cartItems}/>}
         </div>
       </div>

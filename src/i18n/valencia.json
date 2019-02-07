@@ -80,7 +80,11 @@
     "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+    "resume": "Resumen",
+    "resume-name": "Nom",
+    "resume-email": "Correu",
+    "resume-address": "Direcció de enviament",
+
     "cart-button": "Carret",
     "description": "Descripció",
     "quantity": "Cantitat",
