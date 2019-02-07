@@ -90,7 +90,12 @@
     "payment-address2-debit": "Madrid /Example Street Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+    "resume": "Resume",
+    "resume-name": "Name",
+    "resume-email": "Email",
+    "resume-address": "Address",
+    "efectivo": "Cash",
+
     "cart-button": "Cart",
     "description": "Description",
     "quantity": "Quantity",
