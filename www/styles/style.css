@@ -541,3 +541,9 @@ nav {
     grid-template-columns: 23% 24% 24%;
     justify-content: center;
 }
+.cart-resume button {
+    display: none!important;
+}
+input, select {
+    border-left-color: 0!important;
+}

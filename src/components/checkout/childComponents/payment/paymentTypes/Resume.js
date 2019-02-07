@@ -12,7 +12,6 @@ class Resume extends React.Component {
   }
 
   render() {
-
     return (
       <div className="resume">
         <b><h2>{this.props.translate.t("resume")}</h2></b>

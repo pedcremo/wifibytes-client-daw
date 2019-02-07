@@ -77,11 +77,11 @@ class ListCart extends React.Component {
             </Table.Row>
           </Table.Body>
             <Link to="/checkout">
-            <Input
+            <Input 
                     action={{ color: 'teal', labelPosition: 'left', icon: 'cart', content: this.context.t('check-out-button') }}
                     actionPosition='left'
                     defaultValue={(total).toFixed(2) + " €"}
-                  />
+            />
             </Link>
         </Table>
 

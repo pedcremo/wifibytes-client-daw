@@ -39,6 +39,7 @@ export default function checkoutReducer(state = initialState, action) {
                 error: null
             };
         case GET_PAYMENTS_SUCCESS:
+        console.log('reducer');
             return {
                 ...state,
                 loading: false,
