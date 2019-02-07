@@ -11,27 +11,18 @@ import { getDatosContracts, updateData, setCompleted, setUncompleted } from "../
  * Read and accept the terms and conditions text information
  */
 class Contracts extends React.Component {
-
     constructor(props) {
         super(props);
         if(this.props.infoContracts) {
-            if(this.props.infoContracts.subTarifasLength === this.subTarifas().length){
-                this.state = this.props.infoContracts;
-                this.props.dispatch(updateData("contracts", this.state));
-            }else{
-                this.state = {
-                    data: {
-                        sign: this.props.infoContracts.data.sign,
-                        pos: this.props.infoContracts.data.pos,
-                        time: this.props.infoContracts.data.time
-                    },
-                    showModal: this.props.infoContracts.showModal,
-                    next: true,
-                    contractsHTML: false,
-                    subTarifasLength: this.subTarifas().length
-                };
-                this.props.dispatch(updateData("contracts", this.state));
+            this.state = {
+                data: this.props.infoContracts.data,
+                showModal: this.props.infoContracts.showModal,
+                next: this.props.infoContracts.next,
+                contractsHTML: this.props.infoContracts.subTarifasLength === this.subTarifas().length? this.props.infoContracts.contractsHTML : '',
+                subTarifasLength: this.props.infoContracts.subTarifasLength === this.subTarifas().length? this.props.infoContracts.subTarifasLength : this.subTarifas().length,
+                mounted: false
             }
+            this.props.dispatch(updateData("contracts", this.state));
         }else {
             this.state = {
                 data: {
@@ -42,22 +33,31 @@ class Contracts extends React.Component {
                 showModal: false,
                 next: false,
                 contractsHTML: "",
-                subTarifasLength: 0
+                subTarifasLength: 0,
+                mounted: false
             };
         }
-
         this.reciveSign = this.reciveSign.bind(this);
-        /* this.sendContract = this.sendContract.bind(this); */
         this.stateModal = this.stateModal.bind(this);
     }
     
     componentDidMount(){
-        this.props.dispatch(getDatosContracts());
-/*         fetch('http://ip-api.com/json')
-        .then(response => console.log(response.json()))
-        .then(json => console.log(json))
-        .catch(error => console.log((error, null))) */
+        this.setState({ mounted: true });
+        this.props.dispatch(getDatosContracts()).then((res) => {
+            this.mountContracts();
+        });
         //this.props.dispatch(getContactDataForm());
+    }
+
+    componentDidUpdate(){
+        //////////////////// INVALID ////////////////////////////
+        if(!this.state.next)
+            this.props.dispatch(setUncompleted());
+    }
+
+    /**Set mounted to false */
+    componentWillUnmount() {
+        this.setState({ mounted: false });
     }
 
     /** Change the state to show or hide the modal of signing*/
@@ -114,11 +114,12 @@ class Contracts extends React.Component {
         }).reverse().map((item) => {
             return item.title+" "+item.content;
         });
-
-        this.setState({ 
-            contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
-            subTarifasLength: subTarifasCon.length 
-        });
+        if(this.state.mounted) {
+            this.setState({ 
+                contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
+                subTarifasLength: subTarifasCon.length 
+            });
+        }     
     }
 
     subTarifas(){
@@ -132,12 +133,6 @@ class Contracts extends React.Component {
         return cartReducer;
     }
 
-    componentDidUpdate(){
-        //////////////////// INVALID ////////////////////////////
-        if(!this.state.next)
-            this.props.dispatch(setUncompleted());
-    }
-
     /** render  */
     render() {
         const { error, loading, datosContracts} = this.props;
@@ -145,9 +140,6 @@ class Contracts extends React.Component {
         if (loading) return (<div>Loading Home ...</div>);
         
         if(datosContracts.length > 0 && true){
-            if(!this.state.contractsHTML)
-                this.mountContracts()
-
             return (
                 <div className="d-flex flex-column align-items-center">
                     {
@@ -178,7 +170,7 @@ class Contracts extends React.Component {
                                         !this.state.next?
                                             <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>Accept and Sign</button>
                                         :
-                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.nextStep}>Next</button>
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal">Next</button>
                                     }
                                 </div>
                             </div>
