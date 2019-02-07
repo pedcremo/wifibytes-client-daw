@@ -3,10 +3,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { Utils } from "../../../../utils";
-import { sendContractsAction, getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
+import { getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
 //import { getContactDataForm } from "../actions/personalDataFormActions";
-
 
 /**
  * @class
@@ -16,26 +14,49 @@ class Contracts extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: {
-                sign: "",
-                pos: "",
-                time: ""
-            },
-            showModal: false,
-            next: false
-        };
+        if(this.props.infoContracts) {
+            if(this.props.infoContracts.subTarifasLength === this.subTarifas().length){
+                this.state = this.props.infoContracts;
+                this.props.dispatch(updateData("contracts", this.state));
+            }else{
+                this.state = {
+                    data: {
+                        sign: this.props.infoContracts.data.sign,
+                        pos: this.props.infoContracts.data.pos,
+                        time: this.props.infoContracts.data.time
+                    },
+                    showModal: this.props.infoContracts.showModal,
+                    next: true,
+                    contractsHTML: false,
+                    subTarifasLength: this.subTarifas().length
+                };
+                this.props.dispatch(updateData("contracts", this.state));
+            }
+        }else {
+            this.state = {
+                data: {
+                    sign: "",
+                    pos: "",
+                    time: ""
+                },
+                showModal: false,
+                next: false,
+                contractsHTML: "",
+                subTarifasLength: 0
+            };
+        }
+
         this.reciveSign = this.reciveSign.bind(this);
-        this.sendContract = this.sendContract.bind(this);
+        /* this.sendContract = this.sendContract.bind(this); */
         this.stateModal = this.stateModal.bind(this);
     }
-
+    
     componentDidMount(){
         this.props.dispatch(getDatosContracts());
-        fetch('http://ip-api.com/json')
+/*         fetch('http://ip-api.com/json')
         .then(response => console.log(response.json()))
         .then(json => console.log(json))
-        .catch(error => console.log((error, null)))
+        .catch(error => console.log((error, null))) */
         //this.props.dispatch(getContactDataForm());
     }
 
@@ -57,17 +78,13 @@ class Contracts extends React.Component {
                         time: 'Hour: ' + new Date()
                 }
             }); 
-            ///////////////////////////////////////////////////
-            this.props.dispatch(updateData("contracts", this.state));
-            ///////////////////////////////////////////////////
+            
             this.mountContracts();
+            this.props.dispatch(updateData("contracts", this.state));
+            //////////////////// IS VALID ///////////////////////////
+            this.props.dispatch(setCompleted());
         });
     }
-
-    sendContract(html){
-        this.props.dispatch(sendContractsAction(html));
-    }
-
 
     getPosition() {
         return new Promise((res, rej) => {
@@ -76,7 +93,6 @@ class Contracts extends React.Component {
     };
 
     mountContracts() {
-
         //this.props.DataPersonal
         let person = {    
             name: "Daniel Ortiz Garcia",
@@ -88,30 +104,38 @@ class Contracts extends React.Component {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
             year: new Date().getFullYear()
         }
-
+        
         //this.props.Tarifes
-        let servicios1 = [ 1, 2, 3 ];
-        let servicios2 = [ 1, 2 ];
-        let servicios3 = [ 1 ];
+        let subTarifasCon = this.subTarifas();
 
-        let re = new RegExp("("+servicios1.join('|')+"|autorizacion)","i");
+        let re = new RegExp("("+subTarifasCon.join('|')+"|autorizacion)","i");
         const datosTexts = this.props.datosContracts.filter((itemText) => {
             return itemText.key.match(re);
         }).reverse().map((item) => {
             return item.title+" "+item.content;
         });
 
-        this.setState({ contractsHTML: eval('`' + datosTexts.join(' ') + '`') });
-        ///////////////////////////////////////////////////
-        this.props.dispatch(updateData("contracts", this.state));
-        ///////////////////////////////////////////////////
+        this.setState({ 
+            contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
+            subTarifasLength: subTarifasCon.length 
+        });
+    }
+
+    subTarifas(){
+        let cartReducer = [];
+        JSON.parse(localStorage.getItem('cartReducer'))
+        .items.map(item => {return item.subtarifas})
+        .map(item => {return item.map(item => {
+            if(cartReducer.indexOf(item.id) < 0)
+                cartReducer.push(item.id);
+        })});
+        return cartReducer;
     }
 
     componentDidUpdate(){
-        //////////////////// IS VALID ///////////////////////////
-        //this.props.dispatch(setCompleted());
         //////////////////// INVALID ////////////////////////////
-        this.props.dispatch(setUncompleted());
+        if(!this.state.next)
+            this.props.dispatch(setUncompleted());
     }
 
     /** render  */
@@ -197,6 +221,7 @@ class Contracts extends React.Component {
 
 const mapStateToProps = state => ({
     datosContracts: state.datosContracts.items,
+    infoContracts: state.currentCheckout.data.contracts
 });
 
 export default connect(mapStateToProps)(Contracts);

@@ -4,7 +4,6 @@ export const GET_CONTRACT_BEGIN = 'GET_CONTRACT_BEGIN';
 export const GET_CONTRACT_SUCCESS = 'GET_CONTRACT_SUCCESS';
 export const GET_CONTRACT_FAILURE = 'GET_CONTRACT_FAILURE';
 
-export const SEND_CONTRACT = 'SEND_CONTRACT';
 import {
     UPDATE_DATA,
     SET_COMPLETED,
@@ -33,16 +32,6 @@ export const getContractsSuccess = status => ({
 export const getContractsFailure = error => ({
     type: GET_CONTRACT_FAILURE,
     payload: { error }
-});
-
-
-/**Send the contracts signed */
-
-export const sendContractsAction = html => ({
-    type: SEND_CONTRACT,
-    payload: {
-        html
-    }
 });
 
 export function updateData(key, data) {
