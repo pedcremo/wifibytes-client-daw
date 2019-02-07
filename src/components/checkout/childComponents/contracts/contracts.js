@@ -3,8 +3,24 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { getDatosContracts, updateData, setCompleted, setUncompleted } from "../../../../actions/datosContractsAction";
-//import { getContactDataForm } from "../actions/personalDataFormActions";
+import { getDatosContracts} from "../../../../actions/datosContractsAction";
+
+
+import {
+    UPDATE_DATA,
+    SET_COMPLETED,
+    SET_UNCOMPLETED
+} from '../../../../constants/actionTypes';
+
+const mapDispatchToProps = dispatch => ({
+    updateData: (key, data) =>
+        dispatch({ type: UPDATE_DATA , payload: {key, data}}),
+    setCompleted: () =>
+        dispatch({ type: SET_COMPLETED }),
+    setUncompleted: () =>
+        dispatch({ type: SET_UNCOMPLETED }),
+    getContracts: () => dispatch(getDatosContracts()),
+});
 
 /**
  * @class
@@ -17,7 +33,7 @@ class Contracts extends React.Component {
         if(this.props.infoContracts) {
             if(this.props.infoContracts.subTarifasLength === this.subTarifas().length){
                 this.state = this.props.infoContracts;
-                this.props.dispatch(updateData("contracts", this.state));
+                this.props.updateData("contracts", this.state);
             }else{
                 this.state = {
                     data: {
@@ -30,7 +46,7 @@ class Contracts extends React.Component {
                     contractsHTML: false,
                     subTarifasLength: this.subTarifas().length
                 };
-                this.props.dispatch(updateData("contracts", this.state));
+                this.props.updateData("contracts", this.state);
             }
         }else {
             this.state = {
@@ -47,12 +63,16 @@ class Contracts extends React.Component {
         }
 
         this.reciveSign = this.reciveSign.bind(this);
-        /* this.sendContract = this.sendContract.bind(this); */
         this.stateModal = this.stateModal.bind(this);
+        
+        this.getDatosContracts = () => this.props.getContracts();
+        this.setCompleted = () => this.props.setCompleted();
+        this.setUncompleted = () => this.props.setUncompleted();
+        this.updateData = (key,data) => this.props.updateData(key,data);
     }
     
     componentDidMount(){
-        this.props.dispatch(getDatosContracts());
+        this.getDatosContracts();
 /*         fetch('http://ip-api.com/json')
         .then(response => console.log(response.json()))
         .then(json => console.log(json))
@@ -80,9 +100,8 @@ class Contracts extends React.Component {
             }); 
             
             this.mountContracts();
-            this.props.dispatch(updateData("contracts", this.state));
-            //////////////////// IS VALID ///////////////////////////
-            this.props.dispatch(setCompleted());
+            this.updateData("contracts", this.state);
+            this.props.setCompleted();
         });
     }
 
@@ -108,17 +127,19 @@ class Contracts extends React.Component {
         //this.props.Tarifes
         let subTarifasCon = this.subTarifas();
 
-        let re = new RegExp("("+subTarifasCon.join('|')+"|autorizacion)","i");
-        const datosTexts = this.props.datosContracts.filter((itemText) => {
-            return itemText.key.match(re);
-        }).reverse().map((item) => {
-            return item.title+" "+item.content;
-        });
+        if(this.props.datosContracts.length > 0){
+            let re = new RegExp("("+subTarifasCon.join('|')+"|autorizacion)","i");
+            const datosTexts = this.props.datosContracts.filter((itemText) => {
+                return itemText.key.match(re);
+            }).reverse().map((item) => {
+                return item.title+" "+item.content;
+            });
 
-        this.setState({ 
-            contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
-            subTarifasLength: subTarifasCon.length 
-        });
+            this.setState({ 
+                contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
+                subTarifasLength: subTarifasCon.length 
+            });
+        }
     }
 
     subTarifas(){
@@ -133,9 +154,8 @@ class Contracts extends React.Component {
     }
 
     componentDidUpdate(){
-        //////////////////// INVALID ////////////////////////////
         if(!this.state.next)
-            this.props.dispatch(setUncompleted());
+            this.setUncompleted();
     }
 
     /** render  */
@@ -224,5 +244,5 @@ const mapStateToProps = state => ({
     infoContracts: state.currentCheckout.data.contracts
 });
 
-export default connect(mapStateToProps)(Contracts);
+export default connect(mapStateToProps, mapDispatchToProps)(Contracts);
 
