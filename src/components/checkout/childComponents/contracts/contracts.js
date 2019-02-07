@@ -124,7 +124,7 @@ class Contracts extends React.Component {
     subTarifas(){
         let cartReducer = [];
         JSON.parse(localStorage.getItem('cartReducer'))
-        .items.map(item => {return item.subtarifas})
+        .items.map(item => {return item.subtarifas ? item.subtarifas : []})
         .map(item => {return item.map(item => {
             if(cartReducer.indexOf(item.id) < 0)
                 cartReducer.push(item.id);
