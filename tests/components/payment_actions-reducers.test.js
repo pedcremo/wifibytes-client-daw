@@ -64,40 +64,6 @@ describe('<Payment />', () => {
         )
     })
 
-    it('Update reducer method show modal, first true and after goes false ', () => {
-        const store = mockStore(initialState);
-        expect(
-            reducerPayment(store.getState(), 
-            {
-                'type': 'SET_SHOW_MODAL_TRUE',
-            })
-        ).toEqual(
-            {  
-                'form':[],
-                'submittedAtLeastOnce':false,
-                "paymentMethod": 3, 
-                "paymentMethods": [], 
-                "showModal": true, 
-                "submittedAtLeastOnce": false
-            }
-        )
-        expect(
-            reducerPayment(store.getState(), 
-            {
-                'type': 'SET_SHOW_MODAL_FALSE',
-            })
-        ).toEqual(
-            {  
-                'form':[],
-                'submittedAtLeastOnce':false,
-                "paymentMethod": 3, 
-                "paymentMethods": [], 
-                "showModal": false, 
-                "submittedAtLeastOnce": false
-            }
-        )
-    })
-
     it('Get payments reducer', () => {
         const store = mockStore(initialState);
         expect(
@@ -155,25 +121,5 @@ describe('<Payment />', () => {
             }
         )
     })
-
-    it('Set form in reducer', () => {
-        const store = mockStore(initialState);
-        expect(
-            reducerPayment(store.getState(), 
-            {
-                'type': 'SET_FORM',
-                'form': "<form>This is a complete form</form>"
-            })
-        ).toEqual(
-            {  
-                "form": "<form>This is a complete form</form>", 
-                "paymentMethod": 3, 
-                "paymentMethods": [], 
-                "showModal": false, 
-                "submittedAtLeastOnce": false
-            }
-        )
-    })
-
 
 });
