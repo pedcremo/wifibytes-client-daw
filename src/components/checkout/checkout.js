@@ -95,15 +95,21 @@ class Checkout extends React.Component {
                     <Step.Group items={steps} attached='top' ordered />
                     
                     {steps[currentStep-1].component}
-
-                    {steps.length > currentStep?
-                        (<button onClick={nextStep}>
-                            Next
-                        </button>):(
-                        <button onClick={() => this.sendOrder()}>
-                            Submit
-                        </button>)
-                    }
+                    <div class="container">
+                        <div class="row justify-content-md-center p-5">
+                            {steps.length > currentStep?
+                                (<button onClick={nextStep}>
+                                    Next
+                                </button>):(
+                                <button 
+                                onClick={() => this.sendOrder()}  
+                                className="massive ui labeled icon green button float-right">
+                                    <i class="icon truck"></i> 
+                                    Confirmar comanda
+                                </button>)
+                            }
+                        </div>
+                    </div>
                 </div>
             )
         } else {
