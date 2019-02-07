@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {PropTypes} from 'prop-types';
 import Reaptcha from 'reaptcha';
-import { updateField, register, errorField } from './registerActions';
+import { updateField, register } from './registerActions';
 import {Utils} from "../../utils";
 import {Input, Dropdown } from 'semantic-ui-react';
 

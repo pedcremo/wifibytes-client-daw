@@ -1,7 +1,6 @@
 import {
   UPDATE_FIELD,
-  REGISTER,
-  ERROR_FIELD
+  REGISTER
 }from '../../constants/actionTypes';
 import {Utils} from '../../utils'
 
@@ -9,12 +8,6 @@ export const updateField = (data, field)=>({
     type: UPDATE_FIELD,
     data,
     field
-})
-
-export const errorField = (data, field)=>({
-  type: ERROR_FIELD,
-  data,
-  field
 })
 
 export const register = (data) => ({

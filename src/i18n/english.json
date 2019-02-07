@@ -43,10 +43,10 @@
     "catalog-marca": "Brand",
     "catalog-camara": "Camera",
 
-    "login-title": "Access Client",
+    "login-title": "ACCES CLIENT",
     "login-acces-dni": "DNI Client",
     "login-acces-dni-form": "Enter your ID here: 'xxxxxxL'",
-    "login-acces-password": "Password",
+    "login-acces-password": "PASSWORD",
     "login-acces-password-form": "Enter your password here",
     "login-button-acces": "SEND",
     "login-recover-password": "Enter your e-mail",

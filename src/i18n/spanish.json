@@ -43,10 +43,10 @@
     "catalog-marca": "Marca",
     "catalog-camara": "Camara",
 
-    "login-title": "Acceso Cliente",
+    "login-title": "ACCESO CLIENTE",
     "login-acces-dni": "DNI Cliente",
     "login-acces-dni-form": "Introduzca su dni aqui: 'xxxxxxL'",
-    "login-acces-password": "Contraseña",
+    "login-acces-password": "CONTRASEÑA",
     "login-acces-password-form": "Introduzca aqui su contraseña",
     "login-button-acces": "ENVIAR",
     "login-recover-password": "Introduzca su e-mail",
