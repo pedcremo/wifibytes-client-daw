@@ -11,6 +11,7 @@ const initialState = {
 };
 
 export default function isAuth(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case AUTH_SET:
       return {
@@ -31,7 +32,6 @@ export default function isAuth(state = initialState, action) {
         user: undefined
       };
     case GET_PROFILE:
-      console.log(action);
       return {
         ...state,
         profile: action.payload

@@ -55,6 +55,7 @@ class Login extends React.Component {
       errorCaptcha,
       captcha
     } = this.props;
+    console.log(error);
     return (
       <div className="loginForm">
         <IsAuth redirect={true} />
