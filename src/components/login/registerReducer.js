@@ -11,9 +11,16 @@ let initialState = {
   cifnif: "",
   password: "",
   password2: "",
+  nifnie: "nif",
   captcha: false,
   politica: false,
-  ofertas: false
+  ofertas: false,
+  errorNombre: false,
+  errorApellido: false,
+  errorEmail: false,
+  errorPassword: false,
+  errorPassword2: false,
+  errorCifnif: false
 }
 export default function register(state = initialState, action) {
     switch (action.type) {
@@ -23,8 +30,9 @@ export default function register(state = initialState, action) {
                 ...state,
             };
           case REGISTER:
-            
-            default:
-                return state;
+            console.log("Entro");
+            break;
+          default:
+            return state;
         }
     }

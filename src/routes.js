@@ -12,6 +12,7 @@ import Contacte from "./components/contacte";
 import SingIn from './components/login/signIn'
 import Checkout from './components/checkout/checkout'
 import Cart from './components/cart/Cart';
+import Profile from './components/profile';
 
 /**
  * <Route /> is used to declaratively map routes to your application's component hierarchy.
@@ -31,6 +32,7 @@ const AppRoutes = ({cartItems}) =>
             <Route exact path="/register" render={() => <SingIn type="register"/>} />
             <Route exact path="/checkout" render={() => <Checkout cartItems={cartItems} />} />
             <Route exact path="/cart" render={() =><Cart cartItems={cartItems} />}/>
+            <Route exact path="/profile" render={() =><Profile />}/>
        </Switch>
     );
 
