@@ -52,10 +52,10 @@ class Login extends React.Component  {
                                 <input type="password" required value={password} onChange={(ev)=>changeValue(ev.target.value,'password')} placeholder={Utils.translate("login-acces-password-form")}></input>
                             </span>
                             <span>
-                                <button className="login-button btn" id="loginButton" onClick={()=>login({username_or_email:username,password:password})}>{Utils.translate("login-button-acces")}</button>
+                                <button className="login-button btn" id="loginButton" onClick={(ev)=>(ev.preventDefault(),login({username_or_email:username,password:password}))}>{Utils.translate("login-button-acces")}</button>
                                 <a onClick={()=>changeView("register")} className="login-button btn left" href={"#/register"}>{Utils.translate("login-button-register")}</a>
                                 {loading ? <img src="https://www.voya.ie/Interface/Icons/LoadingBasketContents.gif" width="50" height="40"></img> : ''}
-                                {error ? <p>{error + " Not correct password or username"}</p> : ''}
+                                {error ? <p display={error ? 'none' : 'block'}>{"Not correct password or username"}</p> : ''}
                             </span>
                         </form>
                         <p className="login-recuperar" onClick={()=>changeValue(!showRecoverPass,'showRecoverPass')}>{Utils.translate("login-text-recover")}</p>

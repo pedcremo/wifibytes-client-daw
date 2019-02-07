@@ -25,7 +25,6 @@ const promiseMiddleware = store => next => action => {
   
       const currentView = store.getState().viewChangeCounter;
       const skipTracking = action.skipTracking;
-  
       action.payload.then(
         res => {
           const currentState = store.getState()
@@ -44,7 +43,7 @@ const promiseMiddleware = store => next => action => {
           }
           console.log('ERROR', error);
           action.error = true;
-          action.payload = error.response.body;
+          action.payload = {error : error};
           if (!action.skipTracking) {
             store.dispatch({ type: ASYNC_END, promise: action.payload });
           }
@@ -86,7 +85,8 @@ const isAuth = store => next => action =>{
               })
           },
           error => {
-            console.log(error)
+            console.log("ERROR isAuth Middleware : ", error)
+            console.log(action)
             store.dispatch({
               type : NOT_AUTH,
             })

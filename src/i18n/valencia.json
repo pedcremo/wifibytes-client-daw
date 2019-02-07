@@ -64,7 +64,11 @@
     "register-newsletter":"Marque esta casella per a NO recibir noves ofertes",
     "register-button": "ENVIAR",
     "register-cifnie": "CIF/NIF",
-    "register-error-pass": "Les contrasenyes deuen coincidir",
+    "register-error-name": "Nom molt curt",
+    "register-error-apellido": "Cognom molt curt",
+    "register-error-cifnif": "CIF/NIF no vàlid",
+    "register-error-password": "Contrasenya molt curta",
+    "register-error-pass2": "Les contrasenyes deuen coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid",
 
@@ -78,7 +82,7 @@
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
     "checkout-confirm": "Confirmar Comanda",
-    
+
     "payment-method0": "Domiciliació bancaria",
     "payment-method1": "Tarjeta de credit",
     "payment-owner": "Propietari de la tarjeta",
@@ -91,7 +95,7 @@
     "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+
     "cart-button": "Carret",
     "description": "Descripció",
     "quantity": "Cantitat",

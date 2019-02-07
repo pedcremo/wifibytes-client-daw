@@ -120,6 +120,10 @@ class Personal extends React.Component  {
             this.changeModal(true)
         })
 
+        if (this.props.isAuth){
+            console.log("El usuario esta logueado")
+        }
+
         let array = [];
         let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
         let cont = -1;
@@ -272,6 +276,7 @@ class Personal extends React.Component  {
     }
     
     render() {
+        console.log(this.props.isAuth)
         if (this.state.personalDataViewIsValid){
             console.log("El documento es valido")
         }
@@ -351,7 +356,8 @@ const mapStateToProps = state => ({
     datosProductos: state.personalDataForm.fields.datosProductos,
     loaded: state.personalDataForm.loaded,
     error: state.personalDataForm.error,
-    cartItems: state.cartReducer.items
+    cartItems: state.cartReducer.items,
+    ...state.isAuth
 });
 
 
