@@ -15,6 +15,7 @@ class PersonalForm extends React.Component  {
     
     constructor(props) {
         super(props);
+        /* alert("PersonalForm") */
         const conten = {value:"",}
         this.state = {
             name:conten,
@@ -54,7 +55,7 @@ class PersonalForm extends React.Component  {
             for (const key in this.state) {
                 new Promise((resolve, reject) =>{
                     let error=""
-                    console.warn(typeof(newProps.dataUser[key].value), newProps.dataUser[key])
+                    
                     if (typeof (newProps.dataUser[key]["value"])==="object") 
                         error = validator(newProps.dataUser[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
                         
@@ -73,8 +74,7 @@ class PersonalForm extends React.Component  {
                 .then(()=>{
                     if (cont==0) 
                         this.props.updateField(updateValidDtoPersForm())
-                    else
-                        console.log("no valid")
+                    
                 })
             }//end for
         }

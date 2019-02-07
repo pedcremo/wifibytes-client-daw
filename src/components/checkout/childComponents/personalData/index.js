@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 import {AuthService} from '../../../../auth.service'
 import {
     getContactDataForm,
-    updateContactDataFormServices
+    updateContactDataFormServices,
+    updateDatosProductos
 } from "../../../../actions/personalDataFormActions";
 import {getItems} from "../../../cart/cartActions";
 
@@ -107,10 +108,85 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
+
+        let array = [];
+        let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
+        let cont = -1;
+        let quantityMovil = obj["movil"]
+        let quantityFijo = obj["fijo"]
+        let quantity = quantityMovil + quantityFijo
+
+        if (this.props.datosProductos.length === 0) {
+            if (quantity > 0) {
+                for (const keyName in obj) {
+                    if (`${keyName}` === "movil" || `${keyName}` === "fijo") {
+                        for (let i = 0; i < parseInt(`${obj[keyName]}`); i++) {
+                            cont++
+                            array.push({
+                                key: parseInt(`${cont}`),
+                                value: {
+                                    tipo: "alta",
+                                    tipoTlf: `${keyName}`,
+                                }
+                            });
+                        }
+                    }
+                }
+                this.props.dispatch(updateDatosProductos(array))
+            }
+        }
+
+      
+
+        console.log("did-----989898989898", this.props.datosProductos.length, this.props.datosProductos)
         /* let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
         console.log(tarifes); */
     }
 
+    
+    componentWillReceiveProps(){
+        let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
+        let quantityMovil = obj["movil"]
+        let quantityFijo = obj["fijo"]
+        console.log("componentWillReceiveProps------989898989898", this.props.datosProductos, this.props.datosProductos.length,(quantityMovil + quantityFijo))
+         if (this.props.datosProductos.length > 0 && (this.props.datosProductos.length != (quantityMovil + quantityFijo))) {
+            let array = this.props.datosProductos;
+             let reduxQuantityMovil = this.props.datosProductos.filter((item) => {
+                 if (item.value.tipoTlf == "movil")
+                     return item
+             })
+             let reduxQuantityFijo = this.props.datosProductos.filter((item) => {
+                 if (item.value.tipoTlf == "fijo")
+                     return item
+             })
+
+             if (reduxQuantityMovil.length < quantityMovil) {
+                 for (let i = 0; i < (quantityMovil - reduxQuantityMovil.length); i++) {
+                     array.push({
+                         key: i,
+                         value: {
+                             tipo: "alta",
+                             tipoTlf: "movil",
+                         }
+                     });
+                 }
+             }
+             if (reduxQuantityFijo.length < quantityFijo) {
+                 for (let i = 0; i < (quantityFijo - reduxQuantityFijo.length); i++) {
+                     array.push({
+                         key: i,
+                         value: {
+                             tipo: "alta",
+                             tipoTlf: "fijo",
+                         }
+                     });
+                 }
+             }
+             this.props.dispatch(updateDatosProductos(array))
+
+             console.log("hay diferencias", array, reduxQuantityMovil, reduxQuantityFijo)
+         }
+    }
 
     updateFieldPerDataForm(form_new_state){
         this.props.dispatch(getContactDataForm());
@@ -179,32 +255,57 @@ class Personal extends React.Component  {
         this.render()
     }
     
+    actualizaProductos(cantidad, tipoTlf, datosRedux) {
+        
+        datosRedux.value[`${tipoTlf}`]
+    }
+    
     render() {
         /**
          * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
          */
-        if (this.props.datosProductos.length===0) {
-            let array=[];
-            let obj = Agent.arrayToQuantityObject(items, subitems_library)
-            let cont=-1;
-            let quantity = obj["movil"] + obj["fijo"]
-            if (quantity> 0) {
-                for (const keyName in obj) {
-                    if (`${keyName}` === "movil" || `${keyName}`==="fijo"){
-                        for (let i = 0; i < parseInt(`${obj[keyName]}`); i++) {
-                            cont++
-                            /* array.push(<PortabilidadForm tipo={`${keyName}`} key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>); */
-                            this.props.dispatch(updateContactDataFormServices({
-                                tipo: "alta",
-                                tipoTlf: `${keyName}`,
-                                key: parseInt (`${cont}`)
-                            }))
-                            array.push({tipo:`${keyName}`});
+       /*  let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
+        let quantityMovil = obj["movil"]
+        let quantityFijo = obj["fijo"]
+        let array = [];
+        if (this.props.datosProductos.length > 0 && (this.props.datosProductos.length != (quantityMovil + quantityFijo))) {
+            let reduxQuantityMovil = this.props.datosProductos.filter((item)=>{
+                if (item.value.tipoTlf=="movil") 
+                    return item
+            })
+            let reduxQuantityFijo = this.props.datosProductos.filter((item) => {
+                if (item.value.tipoTlf == "fijo")
+                    return item
+            })
+
+            if (reduxQuantityMovil.length < quantityMovil) {
+                for (let i = (reduxQuantityMovil.length - 1); i < quantityMovil; i++) {
+                    array.push({
+                        key: i,
+                        value: {
+                            tipo: "alta",
+                            tipoTlf: "movil",
                         }
-                    }
+                    });                    
                 }
             }
-        }
+            if (reduxQuantityFijo.length < quantityFijo){
+                for (let i = (reduxQuantityFijo.length - 1); i < quantityFijo; i++) {
+                    array.push({
+                        key: i,
+                        value: {
+                            tipo: "alta",
+                            tipoTlf: "fijo",
+                        }
+                    });
+                }
+            }
+            this.props.dispatch(updateDatosProductos(array))
+
+            console.log("hay diferencias", reduxQuantityMovil, reduxQuantityFijo)
+        } */
+        
+       console.log("render------+++++++++++", this.props.datosProductos.length, Object.keys(this.props.fields.datosProductos).length, this.props.fields.datosProductos)
         
 
         

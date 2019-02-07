@@ -85,12 +85,11 @@ class PortabilidadForm extends React.Component  {
                 })
             }
         }
-        console.log("newProps.datosProductos",newProps.datosProductos)
     }
 
     
     componentDidMount() {
-        console.log("-----------componentDidMount", this.props)
+        
         if (this.props.dataProducts) {
             let product = this.props.dataProducts
             console.warn(product)
