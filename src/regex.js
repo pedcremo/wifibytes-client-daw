@@ -19,9 +19,13 @@ let Regex = {
      */
     regexPhone: /^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}$/,
     /**
-     * regexDni check if dni is valid
+     * regexDni check if dni, nie or cif is valid
      */
-    regexDni: /^[0-9]{8,8}[A-Za-z]$/g,
+    regexDni: /^\d{8}[a-zA-Z]{1}$/g,
+
+    regexNie: /^[XxTtYyZz]{1}\d{7}[a-zA-Z]{1}$/g,
+
+    regexCif: /^[a-zA-Z]{1}\d{7}[a-zA-Z0-9]{1}$/g,
     /**
      * regexFechNac check if fecha nacimiento is valid
      */

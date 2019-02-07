@@ -82,7 +82,18 @@ class Personal extends React.Component  {
          */
         this.printComponent = this.printComponent.bind(this);
         this.changeIsAuth = this.changeIsAuth.bind(this);
+        this.changeState = this.changeState.bind(this);
     }
+
+    changeState(name, value){
+        new Promise((resolve, reject) =>{
+            resolve(
+                this.setState({
+                    [name]: value
+                }))
+        })
+    }
+
     /**
      * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
@@ -179,6 +190,9 @@ class Personal extends React.Component  {
     }
     
     render() {
+        if (this.state.personalDataViewIsValid){
+            console.log("El documento es valido")
+        }
         /**
          * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
          */
@@ -205,12 +219,9 @@ class Personal extends React.Component  {
             }
         }
         
-
-        
-        
         return (
             <div>
-                <PersonalDataForm dataUser={this.props.fields.datosPersonales} tipCliente={mockClientes} updateField={this.props.dispatch}/>
+                <PersonalDataForm value={this.state.personalDataViewIsValid} valid={this.changeState} dataUser={this.props.fields.datosPersonales} tipCliente={mockClientes} updateField={this.props.dispatch}/>
 
                 <div className="grid-data-form">
                     {this.props.datosProductos.map((item, i)=> 

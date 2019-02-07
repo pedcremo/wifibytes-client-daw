@@ -73,6 +73,7 @@
     "personalData-notifyModal-choiceLogin":"Loguearse",
     "personalData-notifyModal-choiceRegister":"Registrarse",
     "personalData-notifyModal-choiceNone":"Continuar igualmente",
+    "personalData-notifyError-bigImage":"Tamaño excesivo, comprueba que sea una imagen con la parte delantera y trasera del DNI",
 
 
     "checkout-personal-data": "Datos Personales",

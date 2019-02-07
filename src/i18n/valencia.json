@@ -73,6 +73,7 @@
     "personalData-notifyModal-choiceLogin":"Loguejarse",
     "personalData-notifyModal-choiceRegister":"Registrarse",
     "personalData-notifyModal-choiceNone":"Continuar igualment",
+    "personalData-notifyError-bigImage":"Tamany excesiu, comproba que siga una image amb la part delantera i trasera del DNI",
 
 
     "checkout-personal-data": "Dades Personals",

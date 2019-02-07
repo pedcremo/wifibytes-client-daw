@@ -44,9 +44,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                     tipcli: {error:"", value: 0},
                     date: {error:"", value: ""},
                     preview: {error:"", value: ""},
-                    dni: {error:"", value: ""},
-                    cif: {error:"", value: ""},
-                    nie: {error:"", value: ""}
+                    identificador: {error:"", value: ""}
                 }
                 
             return {
@@ -66,7 +64,7 @@ export default function personalDataFormReducer(state = initialState, action) {
         case UPDATE_CONTACT_DATA_FORM_SERVICES:
             if (!state.fields["datosProductos"]) 
                 state.fields["datosProductos"]=[]
-            
+            console.log(action.payload)
             let exist = state.fields["datosProductos"].filter((item)=>{return item.key == parseInt(action.payload.key)})
             
             if (exist.length == 0) {

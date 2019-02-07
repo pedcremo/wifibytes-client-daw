@@ -6,6 +6,8 @@ import {
 } from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
 import Typecliente from './typeCliente';
+import Swal from 'sweetalert2';
+import {PropTypes, number} from 'prop-types';
 
 /**
  * @class
@@ -23,12 +25,10 @@ class PersonalForm extends React.Component  {
             address:conten,
             zip: conten,
             city: conten,
-            tipcli: 0,
+            tipcli: {value: "0"},
             date: conten,
-            preview: "",
-            dni: conten,
-            cif: conten,
-            nie: conten
+            preview: conten,
+            identificador: conten
         };
         this.name = React.createRef();
         this.surname = React.createRef();
@@ -37,8 +37,9 @@ class PersonalForm extends React.Component  {
         this.address = React.createRef();
         this.zip = React.createRef();
         this.city = React.createRef();
-        this.previewFile = this.previewFile.bind(this)
+        this.previewFile = this.previewFile.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.comprobacion = this.comprobacion.bind(this);
     }
 
     /**
@@ -67,7 +68,7 @@ class PersonalForm extends React.Component  {
                     if (cont==0) 
                         this.props.updateField(updateValidDtoPersForm())
                     else
-                        console.log("no valid")
+                        console.log("no valido")
                 })
             }//end for
         }
@@ -93,44 +94,96 @@ class PersonalForm extends React.Component  {
             value = target.checked
         else
             value = target.value
-
+            console.log(value)
         /** 
          * Return a error if a field is incorrect 
          */
-        const error = validator(value, name, target.type)
-
+        const error = validator(value, name, target.type, this.state.tipcli.value)
+        
+        
         /** 
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
-        return new Promise((resolve, reject) => 
-            resolve(this.setState({
+        this.setState({
                 [name]: {
                     value: value,
                     error: error
                 }
-            }))
-        )
-        .then(() => this.props.updateField(updateContactDataForm(this.state)))
+            },() =>{
+                this.props.updateField(updateContactDataForm(this.state))
+                this.comprobacion()
+            })
+        
     }
 
+    /**
+     * Comprueba que todo el personalData sea valido, tiene en cuenta si escribes varias
+     * veces para reiniciar la comprobacion guardando los ms del dia de hoy y cada vez que
+     * comprueba un campo antes de ello chequea si los ms principales (antes de comprobar todo)
+     * es menor al actual (para saber si el usuario ha introducido algo mas) si es asi la comprobacion
+     * se reinicia si no sigue
+     */
+    comprobacion(){
+            let a = false;
+            try{
+                Object.values(this.state).forEach((element, i) => {
+                    if (((element.value.length > 1 || element.value.toString().length >= 1) && element.value !== "") &&
+                        (element.error === "" || element.error === undefined || !element.error)){
+                        a = true;
+                    }else{
+                        a = false;
+                        BreakException;
+                    }
+                });
+                if (a){
+                    new Promise((resolve, reject) =>{
+                        resolve(this.props.valid("personalDataViewIsValid",true))
+                    }).then(()=>console.log(this.props.value))
+                }
+            }catch(e){
+                console.log(e)
+                a = false;
+                console.log("No valido")
+            }
+            
+        //})//End then from promise set ms
+    }
+
+    /**
+     * Se sube la imagen, se comprueba que el tamaño no sea superior a 2Mb y se transforma la imagen
+     * a base64 y se guarda en el estado de preview
+     */
     previewFile(){
         var reader  = new FileReader();
-        let can = document.getElementById('dni').files[0];
-
-        reader.src = reader.readAsDataURL(can);
-        new Promise((resolve, reject) => {
-            reader.addEventListener("load", ()=> {
-                resolve(reader.result)
+        let can = document.getElementById('imgdni').files[0];
+        if ( can.size < 2000000 ){
+            reader.src = reader.readAsDataURL(can);
+            new Promise((resolve, reject) => {
+                reader.addEventListener("load", ()=> {
+                    resolve(reader.result)
+                })
+            }).then((value)=>{
+                const error = validator(value, "imgdni", "file")
+                new Promise(() =>{
+                    this.setState({
+                        preview: {
+                            value: value,
+                            error: error
+                        }
+                    })
+                }).then(this.props.updateField(updateContactDataForm(this.state)))
+                this.comprobacion();
             })
-        }).then((value)=>{
-            this.setState({
-                preview: {
-                    value: value,
-                    error: ""
-                }
-            })
-        }).then(this.props.updateField(updateContactDataForm(this.state)))
+        }else{
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: this.context.t('personalData-notifyError-bigImage'),
+              })
+              /* Remove image from input type file because is too big */
+              document.getElementById('imgdni').value = "";
+        }
       }
 
     render() {
@@ -138,7 +191,6 @@ class PersonalForm extends React.Component  {
         for (let x in this.props.tipCliente){
             cli.push(x)
         }
-        //cli.push(<option value={this.props.tipCliente[x]}>{x}</option>)
         return (
             <form className="grid-data-form">
                <div>
@@ -155,7 +207,6 @@ class PersonalForm extends React.Component  {
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
                     </div>
-
                     <br />
                     <div>
                         <input
@@ -168,7 +219,6 @@ class PersonalForm extends React.Component  {
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.surname.error? "":this.state.surname.error}</span>
                     </div>
-
                     <br />
                     <div>
                         <input
@@ -193,8 +243,8 @@ class PersonalForm extends React.Component  {
                     </div>
                     <br/>
                     <div>
-                        <h4>Suba una imagen de su dni</h4>
-                        <input type="file" id="dni" onChange={this.previewFile} /><br/>
+                        <h4>Suba una fotocopia de ambas caras del dni:</h4>
+                        <input type="file" id="imgdni" name="preview" onChange={this.previewFile} /><br/><br/>
                         <img src={this.state.preview.value} height="200" alt="Image preview..."></img>
                     </div>
                 </div>
@@ -253,10 +303,10 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         {
-                        this.state.tipcli.value == 0 ? <Typecliente type={0} dni={this.state.dni.value} change={this.handleInputChange} dnierror={this.state.dni.error}/> : 
-                         this.state.tipcli.value == 1 ? <Typecliente type={1} cif={this.state.cif.value} change={this.handleInputChange} ciferror={this.state.cif.error}/> :
-                         this.state.tipcli.value == 2 ? <Typecliente type={2} nie={this.state.nie.value} change={this.handleInputChange} nierror={this.state.nie.error}/> :
-                         <Typecliente type={5} dni={this.state.dni.value} change={this.handleInputChange} dnierror={this.state.dni.error}/> }
+                        this.state.tipcli.value == 0 ? <Typecliente type={0} dni={this.state.identificador.value} change={this.handleInputChange} dnierror={this.state.identificador.error}/> : 
+                         this.state.tipcli.value == 1 ? <Typecliente type={1} cif={this.state.identificador.value} change={this.handleInputChange} ciferror={this.state.identificador.error}/> :
+                         this.state.tipcli.value == 2 ? <Typecliente type={2} nie={this.state.identificador.value} change={this.handleInputChange} nierror={this.state.identificador.error}/> :
+                         <Typecliente type={5} dni={this.state.identificador.value} change={this.handleInputChange} dnierror={this.state.identificador.error}/> }
                     </div>
                 </div >
             </form>
@@ -265,4 +315,9 @@ class PersonalForm extends React.Component  {
 
 
 }
+
+PersonalForm.contextTypes = {
+    t: PropTypes.func.isRequired
+}
+
 export default PersonalForm;
