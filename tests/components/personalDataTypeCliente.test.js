@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonalDataForm from '../../src/components/checkout/childComponents/personalData/personalDataForm.js';
+import typeCliente from '../../src/components/checkout/childComponents/personalData/typeCliente';
 
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
@@ -23,16 +23,16 @@ const initialState = {
 };
 const store = mockStore(initialState);
 
-const component = shallow(<Provider store={store}><PersonalDataForm/></Provider>);
+const component = shallow(<Provider store={store}><typeCliente/></Provider>);
 /* https: //airbnb.io/enzyme/docs/api/ */
-describe('<PersonalDataForm>', () => {
+describe('<typeCliente>', () => {
     
    
-    it('PersonalDataForm has been rendered correctly', () => {
+    it('typeCliente has been rendered correctly', () => {
         expect(component).toHaveLength(1);
     });
     
-    it('We can check if PersonalDataForm component called to its constructor', () => {
+    it('We can check if typeCliente component called to its constructor', () => {
         expect(component).toMatchSnapshot();
     });
 })

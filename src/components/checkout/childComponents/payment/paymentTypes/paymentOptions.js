@@ -1,17 +1,24 @@
 import React from 'react';
-export default function PaymentOptions(props) {
+import { Button } from 'semantic-ui-react'
+
+  export function PaymentOptionsRadioButton(props) {
     if(props.paymentOptions.length === 0){
         return (null);
     }
     const options = props.paymentOptions.map((option, i) => {
         return (
             <label key={i}>
-                <input type="radio" name="method" key={i} onChange={props.onChange} value={option.codpago} checked={props.paymentMethod === option.codpago}/> {option.nombre}
+                <Button.Group size='large' className="centrar">
+                        { i!=0 ? <Button.Or/>:""}
+                    <Button onClick={props.changePaymentMethod()} value={option.codpago} positive={props.paymentMethod === option.codpago}>{option.nombre}</Button>
+                </Button.Group> 
             </label>
         );
     });
     return (
         <form className="payment-method">
-            {options}
+            <Button.Group size='large' className="centrar">
+                {options}
+            </Button.Group>
         </form>);
   }

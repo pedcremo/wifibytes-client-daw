@@ -68,11 +68,17 @@
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
+    "payment-method0": "Direct bank transfer",
+
+    "personalData-notifyModal-title": "We have detected that you are not logged in, please choose an option:",
+    "personalData-notifyModal-choiceLogin":"Log in",
+    "personalData-notifyModal-choiceRegister":"Register",
+    "personalData-notifyModal-choiceNone":"Continue anyway",
+    
     "checkout-personal-data": "Personal Data",
     "checkout-contract": "Contract",
     "checkout-confirm": "Confirm Payment",
     
-    "payment-method0": "Direct debit",
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
     "payment-numberCard": "Credit number card",
@@ -84,7 +90,12 @@
     "payment-address2-debit": "Madrid /Example Street Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+    "resume": "Resume",
+    "resume-name": "Name",
+    "resume-email": "Email",
+    "resume-address": "Address",
+    "efectivo": "Cash",
+
     "cart-button": "Cart",
     "description": "Description",
     "quantity": "Quantity",
@@ -92,5 +103,8 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire"
+    "hire": "Hire",
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Payment"
 }

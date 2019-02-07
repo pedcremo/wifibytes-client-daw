@@ -44,7 +44,6 @@ class Checkout extends React.Component {
     constructor(props) {
         super(props)
         this.addSteps = (step, steps) => this.props.addSteps(step, steps);
-        
         this.setStep = (step) => this.props.setStep(step);
     }
 
@@ -52,38 +51,37 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount(){
-        let quantities;
-        if(this.props.cartItems.items.length !==0 ){
-            quantities = Agent.arrayToQuantityObject(this.props.cartItems.items, sublibrary);
-        } else {
-            quantities = Agent.arrayToQuantityObject(JSON.parse(localStorage.getItem('cartReducer')).items, sublibrary);
-        }
-        
-        console.log(quantities);
-        if(this.props.cartItems.items.length === 0 && JSON.parse(localStorage.getItem('cartReducer')).items.length === 0) {
-            this.context.router.history.push('/')
-        } else {
+        if(this.props.cartItems.items != null && JSON.parse(localStorage.getItem('cartReducer')) != null) {
             let stepsRates;
             this.props.cartItems.items.length !== 0?
             stepsRates = Agent.objectsToArray(this.props.cartItems.items, library):
             stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
             let filteredSteps = Agent.filterArray(steps, stepsRates);
             this.addSteps(1, filteredSteps);
+        } else {
+            this.context.router.history.push('/');
         }  
     }
 
     componentDidUpdate() {
-        let that=this;
-        const addClickEvent = elem => elem.addEventListener("click", function(event){
-            if (!event.target.id) {
-                return;
-            } else {
-                that.setStep(parseInt(event.target.id));
-            }
+        const self=this;
+        const setID = (item, index) => {
+            item.id = index+1;
+        };
+        const addClickEvent = (item, index) => item.addEventListener("click", function(){
+            self.setStep(index+1);
         });
-        document.querySelectorAll("div.step").forEach(addClickEvent);
+        
+        document.querySelectorAll("div.step").forEach((item, index) => {
+            setID(item, index);
+            addClickEvent(item, index);
+        });
     }
-      
+    
+    sendOrder(){
+        let data = {"personal_data":{"name":"pepito","surname":"caball"},"contract":{"sd":"sdsd"},"confirm":{"asd":"sdsd"}};
+        Agent.ObjectSendToOrder(data,steps);
+    }
     /**
      * Render prints the steps to follow and calls the function show step
      */
@@ -102,7 +100,7 @@ class Checkout extends React.Component {
                         (<button onClick={nextStep}>
                             Next
                         </button>):(
-                        <button>
+                        <button onClick={() => this.sendOrder()}>
                             Submit
                         </button>)
                     }

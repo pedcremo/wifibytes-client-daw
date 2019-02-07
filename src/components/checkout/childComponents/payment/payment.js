@@ -3,87 +3,133 @@ import { connect } from "react-redux";
 import {
   paymentUpdate,
   getPaymentTypes,
-  setExpirationDate
+  setUncompleted,
+  setCompleted,
+  updateData,
+  fieldUpdate
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
-import PaymentOptions from './paymentTypes/paymentOptions';
-import PaymentForm from './paymentTypes/paymentForm';
-const mapStateToProps = state => ({ ...state.payment });
+import EfectivoForm from './paymentTypes/Efectivo';
+import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
+import Resume from './paymentTypes/Resume';
+import {PropTypes} from 'prop-types';
+import Cart from '../../../cart/Cart';
+import {RegExps} from '../../../../regExps';
 
+const mapStateToProps = state => ({ ...state.payment });
+const cartItems=JSON.parse(localStorage.getItem('cartReducer'))
 class Payment extends React.Component {
   constructor() {
     super();
-    this.changeCardOwner = ev => this.props.dispatch(paymentUpdate("cardOwner", ev.target.value));
-    this.changeCardNumber = ev => this.props.dispatch(paymentUpdate("cardNumber", ev.target.value));
-    this.changeExpirationMonth = ev => this.props.dispatch(paymentUpdate("expirationMonth", ev.target.value));
-    this.changeExpirationYear = ev => this.props.dispatch(paymentUpdate("expirationYear", ev.target.value));
-    this.changeCvv = ev => this.props.dispatch(paymentUpdate("cvv", ev.target.value));
-    this.changePaymentMethod = ev => this.props.dispatch(paymentUpdate("paymentMethod", parseInt(ev.target.value)));
-    this.changeIban = ev => this.props.dispatch(paymentUpdate("iban", ev.target.value));
-    this.changeAddress = ev => this.props.dispatch(paymentUpdate("address", ev.target.value));
-    this.changeDebitOwner = ev => this.props.dispatch(paymentUpdate("debitOwner", ev.target.value));
-    this.submitForm = () => ev => {
-      ev.preventDefault();
-      alert("Submit button works!");
-      //this.props.dispatch(paymentsubmit("submitPayment"), ev.target.value);
+    this.changePaymentMethod = () => ev => {
+      this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
+    } 
+    this.onChangeField = (field, value) =>{
+      this.props.dispatch(fieldUpdate(field, value));
     }
+    this.onChangeCvv = () => ev =>{
+      this.onChangeField("cvv", parseInt(ev.target.value))
+    }
+    this.onChangeExpirationYear = () => ev =>{
+      this.onChangeField("expirationYear", parseInt(ev.target.value))
+    }
+    this.onChangeExpirationMonth = () => ev =>{
+      this.onChangeField("expirationMonth", parseInt(ev.target.value))
+    }
+    this.onChangeCardNumber = () => ev =>{
+      this.onChangeField("cardNumber", ev.target.value)
+    }
+    this.onChangeCardOwner = () => ev =>{
+      this.onChangeField("cardOwner", ev.target.value)
+    }
+  }
+  isValid(){
+    return this.cvvIsValid() && this.cardOwnerIsValid() && this.expirationDateIsValid();
+  }
+  expirationDateIsValid(){
+    const today = new Date();
+    return ((today.getMonth() + 1) >this.props.expirationMonth? today.getFullYear() < this.props.expirationYear : today.getFullYear() <= this.props.expirationYear); 
+    }
+  cvvIsValid(){
+    return this.props.cvv.toString().match(RegExps.cvv);
+  }
+  cardOwnerIsValid(){
+    return this.props.cardOwner.match(RegExps.cardOwner);
   }
   
+
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
-    const thisDate = new Date();
-    this.props.dispatch(setExpirationDate(thisDate.getFullYear(), thisDate.getMonth()));
   }
 
-  paymentForm(){
-    let forms = [];
-    switch(this.props.paymentMethod){
-      case 1:
-        forms.push(<MastercardVisaAmericanExpressForm 
-          submitForm={this.submitForm} 
-          changeCardOwner={this.changeCardOwner}
-          changeCardNumber={this.changeCardNumber}
-          changeExpirationMonth={this.changeExpirationMonth}
-          changeExpirationYear={this.changeExpirationYear}
-          changeCvv={this.changeCvv}
-          cardOwner={this.props.cardOwner}
-          cardNumber={this.props.cardNumber}
-          expirationYear={this.props.expirationYear}
-          expirationMonth={this.props.expirationMonth}
-          cvv={this.props.cvv}/>);
-        return forms;
+  componentDidUpdate() {
+    this.props.paymentMethod!== 1 || this.isValid()? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+      this.props.paymentMethod === 1? 
+        this.props.dispatch(updateData('payment',{cardOwner: this.props.cardOwner, 
+        cardNumber:this.props.cardNumber, expirationMonth:this.props.expirationMonth,
+        expirationYear:this.props.expirationYear, cvv:this.props.cvv})):
+        this.props.dispatch(updateData('payment',{codpago: this.props.paymentMethod}));
+  }
+
+  paymentForm(codPago=1){
+    switch(codPago){
+      case 2:
+        return <EfectivoForm 
+        translate={this.context}
+        description={this.props.paymentMethods[0].descripcion}/>; /**Efectivo */
       case 3:
-      forms.push(<DirectDebitForm 
-        submitForm={this.submitForm}
-        changeDebitOwner={this.changeDebitOwner}
-        changeAddress={this.changeAddress}
-        changeIban={this.changeIban}
-        debitOwner={this.props.debitOwner}
-        iban={this.props.iban}
-        address={this.props.address}/>);
-        return forms;
+        return <DirectDebitForm
+        translate={this.context}
+        description={this.props.paymentMethods[1].descripcion}/>;
       default:
-        console.error('CANNOT GET FROM SERVER, PAYMENT METHOD');
-        return forms;
+        return <MastercardVisaAmericanExpressForm
+        onChangeField={this.onChangeField}
+        onChangeCvv={this.onChangeCvv}
+        onChangeCardOwner={this.onChangeCardOwner}
+        onChangeCardNumber={this.onChangeCardNumber}
+        onChangeExpirationMonth={this.onChangeExpirationMonth}
+        onChangeExpirationYear={this.onChangeExpirationYear}
+        translate={this.context}
+        cardOwner={this.props.cardOwner}
+        cardOwnerIsValid={this.cardOwnerIsValid()}
+        cardNumberIsValid={true}
+        expirationDateIsValid={this.expirationDateIsValid()}
+        cvvIsValid={this.cvvIsValid()}
+        cardNumber={this.props.cardNumber}
+        expirationYear={this.props.expirationYear}
+        expirationMonth={this.props.expirationMonth}
+        cvv={this.props.cvv}/>;
     }
+  }
+  showPaymentOptionsRadioButton(){
+    return <PaymentOptionsRadioButton
+    changePaymentMethod={this.changePaymentMethod}
+    paymentOptions={this.props.paymentMethods}
+    paymentMethod = {this.props.paymentMethod} />;
   }
 
   render() {
-    const form = this.paymentForm();
     return (
       <div className="payment-container">
-        {<PaymentOptions
-        onChange={this.changePaymentMethod}
-        paymentOptions={this.props.paymentMethods}
-        paymentMethod = {this.props.paymentMethod} />}
-        {<PaymentForm 
-        submitForm={this.submitForm}
-        forms={form}/>}
+        <div className="payment-components">
+          {this.showPaymentOptionsRadioButton()}
+          {this.paymentForm(this.props.paymentMethod)}
+        </div>
+        <div className="cart-resume">
+          {<Resume
+          translate={this.context}
+          />}
+          {<Cart cartItems={cartItems}/>}
+        </div>
       </div>
-  ); 
+  );
 
   }
+}
+
+Payment.contextTypes = {
+  t: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps)(Payment);

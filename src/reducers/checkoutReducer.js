@@ -18,12 +18,27 @@ const initialState = {
 export default function currentCheckout(state = initialState, action) {
     switch (action.type) {
         case ADD_STEPS:
-            return {
-                ...state,
-                loading: false,
-                currentStep: action.payload.step,
-                steps: action.payload.steps
+            
+            if(state.currentStep===0 || state.currentStep >= state.steps.length + 1 || state.steps.length != action.payload.steps.length){
+                action.payload.steps.map(function(step) {
+                    return step.active=false;
+                });
+                action.payload.steps[0].active=true;
+                return {
+                    ...state,
+                    loading: false,
+                    currentStep: action.payload.step,
+                    steps: action.payload.steps
+                };
+            } else {
+                return {
+                    ...state,
+                    loading: false,
+                    currentStep: state.currentStep,
+                    steps: action.payload.steps
+                };
             };
+            
 
         case NEXT_STEP:
             if (state.currentStep < state.steps.length + 1){

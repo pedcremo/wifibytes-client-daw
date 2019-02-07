@@ -68,6 +68,12 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid",
 
+    "personalData-notifyModal-title": "Hem detectat que no esta loguejat, perfavor, escollixca una opcio:",
+    "personalData-notifyModal-choiceLogin":"Loguejarse",
+    "personalData-notifyModal-choiceRegister":"Registrarse",
+    "personalData-notifyModal-choiceNone":"Continuar igualment",
+
+
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
     "checkout-confirm": "Confirmar Comanda",
@@ -84,7 +90,12 @@
     "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+    "resume": "Resumen",
+    "resume-name": "Nom",
+    "resume-email": "Correu",
+    "resume-address": "Direcció",
+    "efectivo": "Efectiu",
+
     "cart-button": "Carret",
     "description": "Descripció",
     "quantity": "Cantitat",
@@ -92,5 +103,8 @@
     "check-out-button": "Procés de compra",
     "buy": "Comprar",
     "empty_cart": "Carret buit...",
-    "hire": "Contactar"
+    "hire": "Contactar",
+    "checkout-personal-data": "Dades Personals",
+    "checkout-contract": "Contracte",
+    "checkout-confirm": "Confirmar Comanda"
 }
