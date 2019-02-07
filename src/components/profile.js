@@ -31,40 +31,42 @@ const mapStateToProps = state => ({
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.props.onLoad(this.props.user.id_consumer);
   }
   render() {
     const { isAuth, user, logout, profile } = this.props;
-    console.log(profile);
     if (!isAuth) return <Redirect to="/" />;
     return (
       <div className="loginForm">
         <IsAuth />
-        <div display={user ? "none" : "block"}>
-          <div>
-            <span>
-              <h1>Nombre : </h1>
-              <h3>{profile.nombre}</h3>
-            </span>
-            <span>
-              <h1>Apellido : </h1>
-              <h3>{profile.apellido}</h3>
-            </span>
-            <span>
-              <h1>Email : </h1>
-              <h3>{profile.email}</h3>
-            </span>
-            <span>
-              <h1>Telefono : </h1>
-              <h3>{profile.telefono}</h3>
-            </span>
-            <span>
-              <h1>Genero : </h1>
-              <h3>{profile.genero}</h3>
-            </span>
-            <button onClick={logout}>Logout</button>
+        {profile ? (
+          <div display={user ? "none" : "block"}>
+            <div>
+              <span>
+                <h1>Nombre : </h1>
+                <h3>{profile.nombre}</h3>
+              </span>
+              <span>
+                <h1>Apellido : </h1>
+                <h3>{profile.apellido}</h3>
+              </span>
+              <span>
+                <h1>Email : </h1>
+                <h3>{profile.email}</h3>
+              </span>
+              <span>
+                <h1>Telefono : </h1>
+                <h3>{profile.telefono}</h3>
+              </span>
+              <span>
+                <h1>Genero : </h1>
+                <h3>{profile.genero}</h3>
+              </span>
+              <button onClick={logout}>Logout</button>
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     );
   }

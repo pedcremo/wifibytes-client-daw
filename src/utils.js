@@ -79,7 +79,7 @@ let Utils = {
           reject(xhr.statusText);
         }
       };
-      xhr.onerror = () => reject(xhr.statusText);
+      xhr.onerror = () => reject(xhr.response);
       xhr.send(JSON.stringify(data));
     });
   },
