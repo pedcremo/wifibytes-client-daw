@@ -541,6 +541,7 @@ nav {
 .payment-container {
     display: grid;
     grid-template-columns: 48% 50%;
+    justify-content: center;
 }
 
 .payment-container .cart-resume .table {

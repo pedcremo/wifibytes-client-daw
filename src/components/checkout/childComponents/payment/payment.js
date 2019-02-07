@@ -24,7 +24,7 @@ class Payment extends React.Component {
     super();
     this.changePaymentMethod = () => ev => {
       this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
-} 
+    } 
     this.onChangeField = (field, value) =>{
       this.props.dispatch(fieldUpdate(field, value));
     }
@@ -64,12 +64,12 @@ class Payment extends React.Component {
   }
 
   componentDidUpdate() {
-    this.isValid()? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
-    this.props.paymentMethod === 1? 
-    this.props.dispatch(updateData('payment',{cardOwner: this.props.cardOwner, 
-    cardNumber:this.props.cardNumber, expirationMonth:this.props.expirationMonth,
-    expirationYear:this.props.expirationYear, cvv:this.props.cvv})):
-    this.props.dispatch(updateData('payment',{codpago: this.props.paymentMethod}));
+    this.props.paymentMethod!== 1 || this.isValid()? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+      this.props.paymentMethod === 1? 
+        this.props.dispatch(updateData('payment',{cardOwner: this.props.cardOwner, 
+        cardNumber:this.props.cardNumber, expirationMonth:this.props.expirationMonth,
+        expirationYear:this.props.expirationYear, cvv:this.props.cvv})):
+        this.props.dispatch(updateData('payment',{codpago: this.props.paymentMethod}));
   }
 
   paymentForm(codPago=1){
@@ -117,7 +117,9 @@ class Payment extends React.Component {
           {this.paymentForm(this.props.paymentMethod)}
         </div>
         <div className="cart-resume">
-          {<Resume/>}
+          {<Resume
+          translate={this.context}
+          />}
           {<Cart cartItems={cartItems}/>}
         </div>
       </div>
