@@ -77,6 +77,8 @@
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
     "checkout-confirm": "Confirmar Comanda",
+    "checkout-next": "Següent Pas",
+    "checkout-submit": "Confirmar Pagament",
     
     "payment-method0": "Domiciliació bancaria",
     "payment-method1": "Tarjeta de credit",
@@ -103,8 +105,5 @@
     "check-out-button": "Procés de compra",
     "buy": "Comprar",
     "empty_cart": "Carret buit...",
-    "hire": "Contactar",
-    "checkout-personal-data": "Dades Personals",
-    "checkout-contract": "Contracte",
-    "checkout-confirm": "Confirmar Comanda"
+    "hire": "Contactar"
 }

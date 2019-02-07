@@ -77,7 +77,9 @@
     
     "checkout-personal-data": "Personal Data",
     "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment",
+    "checkout-confirm": "Confirm Order",
+    "checkout-next": "Next Step",
+    "checkout-submit": "Confirm Payment",
     
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
@@ -103,8 +105,5 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire",
-    "checkout-personal-data": "Personal Data",
-    "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment"
+    "hire": "Hire"
 }
