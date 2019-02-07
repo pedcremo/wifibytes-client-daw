@@ -64,14 +64,18 @@
     "register-newsletter":"Check this box to NOT receive new offers",
     "register-button": "SEND",
     "register-cifnif": "CIF/NIF",
-    "register-error-pass": "The passwords must to match",
+    "register-error-name": "Name too short",
+    "register-error-apellido": "Surname too short",
+    "register-error-cifnif": "CIF/NIF invalid",
+    "register-error-password": "Password too short",
+    "register-error-pass2": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
     "checkout-personal-data": "Personal Data",
     "checkout-contract": "Contract",
     "checkout-confirm": "Confirm Payment",
-    
+
     "payment-method0": "Direct debit",
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
@@ -84,7 +88,7 @@
     "payment-address2-debit": "Madrid /Example Street Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+
     "cart-button": "Cart",
     "description": "Description",
     "quantity": "Quantity",
@@ -92,5 +96,5 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire"
+    "hire": "Contract"
 }

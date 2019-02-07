@@ -2,7 +2,7 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import LogIn from "./loginComponent";
-import Register from "./registerComponent";
+import Register from "./RegisterComponent";
 import IsAuth from '../isAuth'
 import {changeView} from './loginActions'
 /**
@@ -34,8 +34,8 @@ class SignIn extends React.Component  {
     }
 }
 
-const mapDispatchToProps = (dispatch, onwProps) =>({
-    changeView : (view) => 
+const mapDispatchToProps = dispatch =>({
+    changeView : (view) =>
         dispatch(changeView(view)),
 })
 const mapStateToProps = state => ({

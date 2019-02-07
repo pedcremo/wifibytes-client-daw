@@ -28,16 +28,11 @@ class ListCart extends React.Component {
     if(Object.keys(cartItems.items).length > 0){
       const total = cartItems.items.reduce( (cnt,o) => {return cnt + (o.price * o.quantity);}, 0)
       let table = cartItems.items.map((item)=>{
-        if(item.imagen){
-          console.log("hay")
-        }else{
-          console.log("No hay")
-        }
         return (
           <Table.Row key={item.id}>
           {item.imagen?
           <Table.Cell>
-            <Popup 
+            <Popup
               trigger={<p>{item.description}</p>}
               content={<Image src={item.imagen} size="medium" />}
               on="hover"
