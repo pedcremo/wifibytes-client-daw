@@ -66,6 +66,7 @@
         "react-beforeunload": "^1.0.4",
         "react-reactive-form": "^1.0.28",
         "react-redux": "^6.0.0",
+        "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "react-signature-pad-wrapper": "^1.2.3",
         "reaptcha": "^1.4.0",

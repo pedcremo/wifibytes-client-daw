@@ -7,6 +7,7 @@ import {
     UPDATE_CONTACT_DATA_FORM_SERVICES,
     UPDATE_VALID_DTOS_PERSONALES,
     GET_CONTACT_DATA_FORM_SERVICES,
+    UPDATE_DATOS_PRODUCTOS
 } from '../actions/personalDataFormActions';
 
 const initialState = {
@@ -24,6 +25,17 @@ const initialState = {
 export default function personalDataFormReducer(state = initialState, action) {
     
     switch (action.type) {
+
+        case UPDATE_DATOS_PRODUCTOS:
+            console.log(11111111111, action.payload)
+            alert("oja")
+            state.fields["datosProductos"] = action.payload
+            return {
+                ...state,
+                loaded: false,
+                fields: state.fields
+            };
+
         case GET_CONTACT_DATA_FORM_BEGIN:
             
             return {
@@ -44,7 +56,8 @@ export default function personalDataFormReducer(state = initialState, action) {
                     tipcli: {error:"", value: 0},
                     date: {error:"", value: ""},
                     preview: {error:"", value: ""},
-                    identificador: {error:"", value: ""}
+                    identificador: {error:"", value: ""},
+                    cuenta: {error:"", value: ""}
                 }
                 
             return {

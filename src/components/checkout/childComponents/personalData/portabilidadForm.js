@@ -24,14 +24,30 @@ class PortabilidadForm extends React.Component  {
         super(props);
         
         this.state = {};
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClickOptions = this.handleClickOptions.bind(this);
         this.companies=[]
         this.company = React.createRef()
         this.state.tipo="alta"
         this.state.key = this.props.id
         this.state.tipoTlf = this.props.tipo
+        this.comprobacion = this.comprobacion.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClickOptions = this.handleClickOptions.bind(this);
     }
+
+    // changeState(name, value){
+    //     console.log(name)
+    //     console.log(value)
+    //     //console.log(error)
+    //     this.setState({
+    //         [name]: {
+    //             value: value,
+    //             key: this.props.id,
+    //             //error: error
+    //         }
+    //     },()=>{ this.props.updateField(updateContactDataFormServices(this.state))
+    //         this.comprobacion()
+    //     })
+    // }
 
     /** 
      * This method is listening changes of each form element 
@@ -58,6 +74,8 @@ class PortabilidadForm extends React.Component  {
          */
         const error = validator(value, name, target.type)
 
+        //this.changeState(name,value)
+
         /** 
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
@@ -73,6 +91,29 @@ class PortabilidadForm extends React.Component  {
         
     }
 
+    comprobacion(){
+        let a = false;
+        try{
+            Object.values(this.state).forEach((element, i) => {
+                if (((element.value.length > 1 || element.value.toString().length >= 1) && element.value !== "") &&
+                    (element.error === "" || element.error === undefined || !element.error)){
+                    a = true;
+                }else{
+                    a = false;
+                    BreakException;
+                }
+            });
+            if (a){
+                new Promise((resolve, reject) =>{
+                    resolve(this.props.valid("personalDataViewIsValid",true))
+                }).then(()=>console.log(this.props.value))
+            }
+        }catch(e){
+            a = false;
+            console.log("No valido")
+        }
+}
+
     
     componentWillReceiveProps(newProps) {     
         console.log("-----------newProps",newProps.dataProducts)
@@ -85,12 +126,11 @@ class PortabilidadForm extends React.Component  {
                 })
             }
         }
-        console.log("newProps.datosProductos",newProps.datosProductos)
     }
 
     
     componentDidMount() {
-        console.log("-----------componentDidMount", this.props)
+        
         if (this.props.dataProducts) {
             let product = this.props.dataProducts
             console.warn(product)
@@ -110,8 +150,7 @@ class PortabilidadForm extends React.Component  {
                     ()=>this.setState({tipo: type, key: this.props.id}, 
                             ()=>this.props.updateField(updateContactDataFormServices(this.state))))
             }
-        }
-        
+        }        
     }
 
     /* handleClickSaveData(type, id){
@@ -122,7 +161,7 @@ class PortabilidadForm extends React.Component  {
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('A name was submitted: ');
+        alertalert('A name was submitted: ');
     }
 
     render() {
@@ -138,13 +177,8 @@ class PortabilidadForm extends React.Component  {
                             ref = "company"
                             value={!this.state.company?"":this.state.company}
                             name="company">
-                            
                                 <option value=""></option>         
-                                {
-                                    this.companies.map((item, i) => {
-                                        return <option key={i} value={item}>{item}</option>         
-                                    })
-                                }                   
+                                {this.companies.map((item, i) => <option key={i} value={item}>{item}</option>)}                   
                             </select>
                             
                         </div>

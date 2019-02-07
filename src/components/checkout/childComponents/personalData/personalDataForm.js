@@ -17,6 +17,7 @@ class PersonalForm extends React.Component  {
     
     constructor(props) {
         super(props);
+        /* alert("PersonalForm") */
         const conten = {value:"",}
         this.state = {
             name:conten,
@@ -28,7 +29,8 @@ class PersonalForm extends React.Component  {
             tipcli: {value: "0"},
             date: conten,
             preview: conten,
-            identificador: conten
+            identificador: conten,
+            cuenta:conten
         };
         this.name = React.createRef();
         this.surname = React.createRef();
@@ -38,6 +40,7 @@ class PersonalForm extends React.Component  {
         this.zip = React.createRef();
         this.city = React.createRef();
         this.previewFile = this.previewFile.bind(this);
+        this.cuenta = React.createRef();
         this.handleInputChange = this.handleInputChange.bind(this);
         this.comprobacion = this.comprobacion.bind(this);
     }
@@ -47,12 +50,17 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-        
+        console.log("00000000000000000",newProps)
         if (Object.keys(newProps.dataUser).length > 0) {
             let cont=0;
             for (const key in this.state) {
                 new Promise((resolve, reject) =>{
-                    const error = validator(newProps.dataUser[key].value, this.refs[key]["name"], this.refs[key]["type"])
+                    let error=""
+                    
+                    if (typeof (newProps.dataUser[key]["value"])==="object") 
+                        error = validator(newProps.dataUser[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
+                        
+                    
                     if (error!=undefined) 
                         cont++          
                                       
@@ -73,6 +81,17 @@ class PersonalForm extends React.Component  {
             }//end for
         }
 
+    }
+
+    changeState(name, value, error=""){
+            this.setState({
+                [name]: {
+                    value: value,
+                    error: error
+                }
+            },()=>{ this.props.updateField(updateContactDataForm(this.state))
+                this.comprobacion()
+            })
     }
 
     /** 
@@ -105,16 +124,7 @@ class PersonalForm extends React.Component  {
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
-        this.setState({
-                [name]: {
-                    value: value,
-                    error: error
-                }
-            },() =>{
-                this.props.updateField(updateContactDataForm(this.state))
-                this.comprobacion()
-            })
-        
+        this.changeState(name,value, error)
     }
 
     /**
@@ -142,12 +152,9 @@ class PersonalForm extends React.Component  {
                     }).then(()=>console.log(this.props.value))
                 }
             }catch(e){
-                console.log(e)
                 a = false;
                 console.log("No valido")
             }
-            
-        //})//End then from promise set ms
     }
 
     /**
@@ -157,32 +164,27 @@ class PersonalForm extends React.Component  {
     previewFile(){
         var reader  = new FileReader();
         let can = document.getElementById('imgdni').files[0];
-        if ( can.size < 2000000 ){
-            reader.src = reader.readAsDataURL(can);
-            new Promise((resolve, reject) => {
-                reader.addEventListener("load", ()=> {
-                    resolve(reader.result)
-                })
-            }).then((value)=>{
-                const error = validator(value, "imgdni", "file")
-                new Promise(() =>{
-                    this.setState({
-                        preview: {
-                            value: value,
-                            error: error
-                        }
+
+        if (can){
+            if ( can.size < 2000000 ){
+                reader.src = reader.readAsDataURL(can);
+                new Promise((resolve, reject) => {
+                    reader.addEventListener("load", ()=> {
+                        resolve(reader.result)
                     })
-                }).then(this.props.updateField(updateContactDataForm(this.state)))
-                this.comprobacion();
-            })
-        }else{
-            Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: this.context.t('personalData-notifyError-bigImage'),
-              })
-              /* Remove image from input type file because is too big */
-              document.getElementById('imgdni').value = "";
+                }).then((value)=>{
+                    const error = validator(value, "imgdni", "file")
+                    this.changeState("preview",value, error)
+                })
+            }else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: this.context.t('personalData-notifyError-bigImage'),
+                })
+                /* Remove image from input type file because is too big */
+                document.getElementById('imgdni').value = "";
+            }
         }
       }
 
@@ -244,8 +246,10 @@ class PersonalForm extends React.Component  {
                     <br/>
                     <div>
                         <h4>Suba una fotocopia de ambas caras del dni:</h4>
-                        <input type="file" id="imgdni" name="preview" onChange={this.previewFile} /><br/><br/>
-                        <img src={this.state.preview.value} height="200" alt="Image preview..."></img>
+                        <label>
+                            <input type="file" id="imgdni" name="preview" onChange={this.previewFile} /><br/><br/>
+                            <img src={this.state.preview.value} height="200" width="200" alt="Image preview..."/>
+                        </label>
                     </div>
                 </div>
 
@@ -288,15 +292,25 @@ class PersonalForm extends React.Component  {
                         onChange={this.handleInputChange} />
                         <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
                     </div>
+
+                    <div>
+                        <input                      
+                        className={"form-control form-control-lg "+ (!this.state.cuenta.error? "":"border border-danger")}
+                        placeholder="Cuenta bancaria"
+                        name = "cuenta"
+                        ref = "cuenta"
+                        type="text"
+                        value={this.state.cuenta.value}
+                        onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.cuenta.error? "":this.state.cuenta.error}</span>
+                    </div>
                     <br />
                     <div>
                         <h4>Introduzca el tipo de cliente: </h4>
                         <select name="tipcli" onChange={this.handleInputChange} className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
-                            {
-                                cli.map((a, i)=>{
+                            {cli.map((a, i)=>{
                                     return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
-                                })
-                            }     
+                            })}     
                         </select>
                         <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
                     </div>

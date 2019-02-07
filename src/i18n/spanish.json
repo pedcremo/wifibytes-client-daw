@@ -68,7 +68,6 @@
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido",
 
-
     "personalData-notifyModal-title": "Hemos detectado que no esta logueado, porfavor elija una opción:",
     "personalData-notifyModal-choiceLogin":"Loguearse",
     "personalData-notifyModal-choiceRegister":"Registrarse",
@@ -100,5 +99,8 @@
     "check-out-button": "Proceso de compra",
     "buy": "Comprar",
     "empty_cart": "Carrito vacio...",
-    "hire": "Contratar"
+    "hire": "Contratar",
+    "checkout-personal-data": "Datos Personales",
+    "checkout-contract": "Contrato",
+    "checkout-confirm": "Confirmar Pedido"
 }
