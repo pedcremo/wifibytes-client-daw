@@ -86,7 +86,9 @@ class Checkout extends React.Component {
      * Render prints the steps to follow and calls the function show step
      */
     render() {
+        let cont = 0;
         const { loading, steps, currentStep, nextStep } = this.props;
+
         if (loading)
             return (<div>Loading...</div>);
         if (steps.length > 0 && currentStep) {
@@ -101,9 +103,19 @@ class Checkout extends React.Component {
                             <i class="right arrow icon"></i>
                             Next
                         </button>) : (
-                        <button onClick={() => this.sendOrder()}>
-                            Submit
-                        </button>)
+                            steps.forEach(el => {
+                                el.completed == true ? cont++ : false;
+                                steps.length == cont ?
+                                    (<button onClick={() => this.sendOrder()}>
+                                        Submit
+                                </button>) : (<button disabled>
+                                        Submit
+                                </button>)
+
+                            })
+
+                        )
+
                     }
                 </div>
             )
