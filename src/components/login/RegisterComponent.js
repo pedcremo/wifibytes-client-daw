@@ -169,7 +169,7 @@ class Register extends React.Component  {
                   placeholder={this.context.t('register-repeatPassw')}
                   onChange={(e)=>this.props.updateInput(e.target.value,'password2', this.props.password)}
                 />
-                <br/><span className="errors" hidden={!this.props.errorPassword2}>{this.context.t('register-error-password2')}</span>
+                <br/><span className="errors" hidden={!this.props.errorPassword2}>{this.context.t('register-error-pass2')}</span>
             </div>
         </div>
         <div className="register--checkbox">

@@ -63,9 +63,12 @@
     "register-legal":"He leido i acepto la política de privacidad",
     "register-newsletter":"Marco esta casilla para a NO recibir nuevas ofertas",
     "register-button": "ENVIAR",
+    "register-error-apellido": "Apellido demasiado corto",
+    "register-error-cifnif": "CIF/NIF no válido",
+    "register-error-password": "Contraseña demasiado corta",
     "register-cifnif": "CIF/NIF",
     "register-error-name": "Nombre demasiado corto",
-    "register-error-pass": "Las contrasenyas deben coincidir",
+    "register-error-pass2": "Las contrasenyas deben coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido",
 

@@ -65,7 +65,10 @@
     "register-button": "SEND",
     "register-cifnif": "CIF/NIF",
     "register-error-name": "Name too short",
-    "register-error-pass": "The passwords must to match",
+    "register-error-apellido": "Surname too short",
+    "register-error-cifnif": "CIF/NIF invalid",
+    "register-error-password": "Password too short",
+    "register-error-pass2": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
@@ -93,5 +96,5 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire"
+    "hire": "Contract"
 }

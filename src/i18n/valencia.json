@@ -65,7 +65,10 @@
     "register-button": "ENVIAR",
     "register-cifnie": "CIF/NIF",
     "register-error-name": "Nom molt curt",
-    "register-error-pass": "Les contrasenyes deuen coincidir",
+    "register-error-apellido": "Cognom molt curt",
+    "register-error-cifnif": "CIF/NIF no vàlid",
+    "register-error-password": "Contrasenya molt curta",
+    "register-error-pass2": "Les contrasenyes deuen coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid",
 
