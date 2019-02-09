@@ -3,13 +3,13 @@
 import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
-import { getDatosContracts} from "../../../../actions/datosContractsAction";
-
+import {Utils} from "../../../../utils";
 
 import {
     UPDATE_DATA,
     SET_COMPLETED,
-    SET_UNCOMPLETED
+    SET_UNCOMPLETED,
+    GET_CONTRACTS
 } from '../../../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch({ type: SET_COMPLETED }),
     setUncompleted: () =>
         dispatch({ type: SET_UNCOMPLETED }),
-    getContracts: () => dispatch(getDatosContracts()),
+    getContracts: response => dispatch({ type: GET_CONTRACTS,  response}),
 });
 
 /**
@@ -56,15 +56,19 @@ class Contracts extends React.Component {
         this.reciveSign = this.reciveSign.bind(this);
         this.stateModal = this.stateModal.bind(this);
         
-        this.getDatosContracts = () => this.props.getContracts();
+
+        this.getDatosContracts = () => {
+            return Utils.get("/textos_contratos")
+            .then(response => {this.props.getContracts({contracts: response}); return response;})
+            .catch(error => this.props.getContracts({error: error}));  
+        }
         this.setCompleted = () => this.props.setCompleted();
         this.setUncompleted = () => this.props.setUncompleted();
         this.updateData = (key,data) => this.props.updateData(key,data);
     }
-    
     componentDidMount(){
         this.setState({ mounted: true });
-        this.getDatosContracts().then((res) => {
+        this.getDatosContracts().then(() => {
             this.mountContracts();
         });
         //this.props.dispatch(getContactDataForm());

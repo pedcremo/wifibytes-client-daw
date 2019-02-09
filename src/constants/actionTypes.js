@@ -21,3 +21,4 @@ export const LOGOUT = 'LOGOUT'
 export const CHANGE_VALUE = 'CHANGE_VALUE'
 export const AUTH_SET = 'AUTH_SET'
 export const NOT_AUTH = 'NOT_AUTH'
+export const GET_CONTRACTS = 'GET_CONTRACTS';
