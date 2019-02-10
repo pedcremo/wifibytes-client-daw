@@ -79,56 +79,26 @@ class PortabilidadForm extends React.Component  {
             key: this.props.id,
             name: name
         })))
-        /* this.setState({ 
-                    value:{
-                        [name]: value,
-                        error: error
-                    }               
-            }, ()=>this.props.updateField(updateContactDataFormServices({
-                    [name]:{
-                        error: error,
-                        valor: value,
-                    },
-                    key: this.props.id,
-                    name:name
-                }))) */
         
     }
 
     
     componentWillReceiveProps(newProps) {     
-        console.log("-----------newProps", newProps.datosProductos)
+        //console.log("-----------newProps", newProps.datosProductos)
         if (newProps.companies.length > 0)
             this.companies = newProps.companies
         if (Object.keys(newProps.datosProductos).length>0) {
-            console.log("-----------newPropsssssssssssssssss", newProps.datosProductos.value)
+           //console.log("-----------newPropsssssssssssssssss", newProps.datosProductos.value)
             this.setState({
                 tipo: newProps.datosProductos.tipo,
                 value: newProps.datosProductos.value === undefined ? {} : newProps.datosProductos.value,
             })
         }
-        //alert("componentWillReceiveProps")
     }
-   /*  componentDidUpdate(props){
-        console.log(props)
-        alert("componentDidUpdate")
-        if (newProps.companies.length > 0)
-            this.companies = newProps.companies
-        if (Object.keys(newProps.datosProductos).length > 0) {
-            for (const key in newProps.datosProductos.value) {
-                this.setState({
-                    [key]: `${newProps.datosProductos.value[key]}`
-                })
-            }
-        }
-    }
- */
-    
+
     componentDidMount() {
-        
         if (this.props.dataProducts) {
             let product = this.props.dataProducts
-            //console.warn(product)
         }        
     }
 
@@ -145,17 +115,13 @@ class PortabilidadForm extends React.Component  {
         }        
     }
 
-    
-    componentWillUnmount() {
-        //alert("desmondandose PortabilidadForm")
-    }
     handleSubmit(event) {
         event.preventDefault();
         alert('A name was submitted: ');
     }
 
     render() {
-        console.log("this.state...........", this.state, typeof(this.state))
+        //console.log("this.state...........", this.state, typeof(this.state))
         let form;
         if (this.state.tipo === "portabilidad") {
             form=(<form onSubmit={this.handleSubmit}>

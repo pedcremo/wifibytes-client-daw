@@ -11,7 +11,10 @@ import {
     getContactDataForm,
     updateContactDataFormServices,
     updateDatosProductos,
-    setUncompleted
+    getValidaForms,
+    setUncompleted,
+    setCompleted,
+    updateData
 } from "../../../../actions/personalDataFormActions";
 import {getItems} from "../../../cart/cartActions";
 
@@ -59,13 +62,13 @@ class Personal extends React.Component  {
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
         AuthService.isAuth().then(value =>{
-            console.log("EL usuario esta logeado", value)
+            //console.log("EL usuario esta logeado", value)
             this.changeIsAuth(true)
             this.setState({
                 auth: value
             })
         }).catch((err) => {
-            console.log("NO logueado", err)
+            //console.log("NO logueado", err)
             this.changeModal(true)
         })
         let array = [];
@@ -99,10 +102,6 @@ class Personal extends React.Component  {
 
     }
 
-     componentWillUnmount() {
-        alert("desmondandose index")
-     }
-    
     
      
     /**
@@ -168,11 +167,25 @@ class Personal extends React.Component  {
         this.render()
     }
     
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         //////////////////// IS VALID ///////////////////////////
         //this.props.dispatch(setCompleted());
         //////////////////// INVALID ////////////////////////////
-        this.props.dispatch(setUncompleted());
+        //this.props.dispatch(setUncompleted());
+        //console.log(prevProps.validForms, this.props.validForms)
+        if (prevProps.validForms != this.props.validForms) {
+          //  alert("2")
+            if (this.props.validForms) {
+                this.props.dispatch(setCompleted());
+                this.props.dispatch(updateData("personalData", this.props.fields));
+                
+            //    console.log(1)
+            } else {          
+                this.props.dispatch(setUncompleted());
+              //  console.log(2)
+            }
+            
+        }
     }
     
     render() {
@@ -207,6 +220,7 @@ class Personal extends React.Component  {
 const mapStateToProps = state => ({    
     fields: state.personalDataForm.fields,
     datosProductos: state.personalDataForm.fields.datosProductos,
+    validForms: state.personalDataForm.validForms,
     loaded: state.personalDataForm.loaded,
     error: state.personalDataForm.error,
     cartItems: state.cartReducer.items

@@ -7,7 +7,8 @@ import {
     UPDATE_CONTACT_DATA_FORM_SERVICES,
     UPDATE_VALID_DTOS_PERSONALES,
     GET_CONTACT_DATA_FORM_SERVICES,
-    UPDATE_DATOS_PRODUCTOS
+    UPDATE_DATOS_PRODUCTOS,
+    GET_VALIDA_FORMS
 } from '../actions/personalDataFormActions';
 
 const initialState = {
@@ -44,22 +45,22 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case GET_CONTACT_DATA_FORM_SUCCESS:
-        console.log(Object.keys(state.fields.datosPersonales).length)
+        //console.log(Object.keys(state.fields.datosPersonales).length)
         if (Object.keys(state.fields.datosPersonales).length ==0 ) {
                 state.fields.datosPersonales ={
-                        name: {error:"", value: "alicia"},
-                        surname: {error:"", value: "lopez"},
-                        email: {error:"", value: "lopez@gmail.com"},
-                        address: {error:"", value: "C/ alicante 1"},
-                        zip: {error:"", value: 46870},
-                        city: {error:"", value: "Gandia"},
-                        tipcli: {error:"", value: 0},
-                        date: {error:"", value: ""},
-                        preview: {error:"", value: ""},
-                        dni: {error:"", value: ""},
-                        cif: {error:"", value: ""},
-                        nie: {error:"", value: ""},
-                        cuenta: {error:"", value: ""}
+                        name: {value: "a"},
+                        surname: {value: "lopez"},
+                        email: {value: "lopez@gmail.com"},
+                        address: {value: "C/ alicante 1"},
+                        zip: {value: 46870},
+                        city: {value: "Gandia"},
+                        cuenta: {value: ""},
+                        date: {value: ""},
+                        preview: {value: ""}, 
+                        tipcli: {value: 0},
+                        /* nie: {value: ""},
+                        dni: {value: ""},
+                        cif: {value: ""}, */
                     }
             }
                 
@@ -70,7 +71,23 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case GET_CONTACT_DATA_FORM_UPDATE:
-            state.fields["datosPersonales"] = action.payload.contactDataForm
+            const object = action.payload.contactDataForm
+            let valid=true;
+            state.fields["datosPersonales"] = object
+            //console.log(object)
+            for (const key in object) {
+                if (object[key].hasOwnProperty("error") && object[key]["error"] != false && object[key]["error"] != undefined) {
+                    valid = false;
+                    break;
+                }
+            }
+            state.validDatosPersonales = valid
+            
+            /* if (state.validDatosPersonales && state.validDatosProductos) 
+                state.validForms=true
+            else
+                state.validForms = false */
+            //validar
             return {
                 ...state,
                 loaded: false,
@@ -119,7 +136,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                             delete action.payload.key
                             let name = action.payload.name
                             delete action.payload.name
-                            console.log(action.payload[name])
+                            //console.log(action.payload[name])
                             if (!item.value) {
                                 item.value={}
                             }
@@ -165,20 +182,24 @@ export default function personalDataFormReducer(state = initialState, action) {
                     }
                 })
 
-                let validado = true
                 let arrayValidados = state.fields["datosProductos"].filter((item)=>{
                     if(item.valido){
                         return item
                     }
                 })
-                console.log(arrayValidados.length, state.fields["datosProductos"].length)
+                //console.log(arrayValidados.length, state.fields["datosProductos"].length)
                 if (arrayValidados.length === state.fields["datosProductos"].length) {
                     state.validDatosProductos = true
                 }
                 
                 
             }
-                
+
+            /* if (state.validDatosPersonales === true && state.validDatosProductos === true)
+                state.validForms = true
+            else
+                state.validForms = false */
+
             return {
                 ...state,
                 loaded: false,
@@ -213,6 +234,18 @@ export default function personalDataFormReducer(state = initialState, action) {
             /**tiene verificar si esiste un objeto con la key que recibe y si no existe crearlo */
             return {
                 products: state.fields.datosProductos
+            };
+        case GET_VALIDA_FORMS:
+            let formsValids
+            if (state.validDatosPersonales && state.validDatosProductos)
+                formsValids = true
+            else
+                formsValids = false
+            //console.log(formsValids, "formsValids")
+
+            return {
+                ...state,
+                validForms: formsValids
             };
 
         default:

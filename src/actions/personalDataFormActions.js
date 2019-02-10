@@ -9,7 +9,7 @@ import {
 
 
 export function getContactDataForm() {
-    console.warn("getContactDataForm")
+   // console.warn("getContactDataForm")
     return dispatch => {
         dispatch(getContactDataFormBegin());
         return Utils.get("/tarifa/?destacado=true")
@@ -22,7 +22,7 @@ export function getContactDataForm() {
 }
 
 export function updateContactDataForm(newData) {
-    console.log("updateContactDataFormDatosPersonales", newData)
+    //console.log("updateContactDataFormDatosPersonales", newData)
     return dispatch => dispatch(updateContactDataFormSuccess(newData));
 }
 
@@ -45,6 +45,9 @@ export function getContactDataFormServices() {
 export function updateDatosProductos(items) {
     return dispatch => dispatch(updateDatosProductosToReducer(items));
 }
+export function getValidaForms() {
+    return dispatch => dispatch(getValidaFormsToReducer());
+}
 
 export const GET_CONTACT_DATA_FORM_BEGIN = 'GET_CONTACT_DATA_FORM_BEGIN';
 export const GET_CONTACT_DATA_FORM_SUCCESS = 'GET_CONTACT_DATA_FORM_SUCCESS';
@@ -55,6 +58,11 @@ export const UPDATE_CONTACT_DATA_FORM_SERVICES = 'UPDATE_CONTACT_DATA_FORM_SERVI
 export const UPDATE_VALID_DTOS_PERSONALES = 'UPDATE_VALID_DTOS_PERSONALES';
 export const GET_CONTACT_DATA_FORM_SERVICES = 'GET_CONTACT_DATA_FORM_SERVICES';
 export const UPDATE_DATOS_PRODUCTOS = 'UPDATE_DATOS_PRODUCTOS';
+export const GET_VALIDA_FORMS = 'GET_VALIDA_FORMS';
+
+export const getValidaFormsToReducer = () => ({
+    type: GET_VALIDA_FORMS,
+});
 
 export const updateDatosProductosToReducer = (items) => ({
     type: UPDATE_DATOS_PRODUCTOS,
