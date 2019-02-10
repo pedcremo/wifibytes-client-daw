@@ -97,8 +97,8 @@ class SignPad extends React.Component {
                         <canvas id="paint" style={style}></canvas>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>Clear</button>
-                        <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>Save</button>
+                        <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>{this.props.transalte.t("btn-clear")}</button>
+                        <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>{this.props.transalte.t("btn-save")}</button>
                     </div>
                 </div>
             </section>

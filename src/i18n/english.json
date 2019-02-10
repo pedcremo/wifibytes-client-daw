@@ -106,5 +106,15 @@
     "hire": "Hire",
     "checkout-personal-data": "Personal Data",
     "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment"
+    "checkout-confirm": "Confirm Payment",
+
+    "sign-validation": "*The contracts need to be signed",
+    "btn-seeContracts": "See Contracts",
+    "btn-accept": "Accept and Sign",
+    "btn-next": "Next",
+    "btn-signContracts": "Sign Contracts",
+    "validation-personalData": "* Personal Data is required",
+    "btn-disabled": "Disabled",
+    "btn-clear": "Clear",
+    "btn-save": "Save"
 }
