@@ -31,8 +31,7 @@ export function validator(value, name, type="text") {
                 return "This field has minus of 7 values"
             if (name === "dni" && !Regex.regexDni.test(value))
                 return "Este no es un dni valido"
-            /* if (name === "cuenta" && !fn_ValidateIBAN(value))  */
-            if (value.length < 7 && name === "cuenta")
+            if (name === "cuenta" && !fn_ValidateIBAN(value)) 
                 return "Esta cuenta no es valida"
             break;
 
@@ -69,7 +68,7 @@ function fn_ValidateIBAN(IBAN) {
     //Se pasa a Mayusculas
     IBAN = IBAN.toUpperCase();
     //Se quita los blancos de principio y final.
-    IBAN = IBAN.trim();
+    IBAN = trim(IBAN);
     IBAN = IBAN.replace(/\s/g, ""); //Y se quita los espacios en blanco dentro de la cadena
 
     var letra1, letra2, num1, num2;

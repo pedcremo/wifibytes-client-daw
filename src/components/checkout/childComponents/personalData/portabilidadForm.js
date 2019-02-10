@@ -31,7 +31,6 @@ class PortabilidadForm extends React.Component  {
         this.state.tipo="alta"
         this.state.key = this.props.id
         this.state.tipoTlf = this.props.tipo
-        this.state.value = {}
     }
 
     /** 
@@ -58,62 +57,64 @@ class PortabilidadForm extends React.Component  {
          * Return a error if a field is incorrect 
          */
         const error = validator(value, name, target.type)
+        console.log("+++++++++++++++++",target.value)
         /** 
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
-
-        this.setState(prevState => ({...prevState,
-            value: {
-                ...prevState.value,
-                [name]: {
-                    valor: value,
+        this.setState({                
+                    [name]: value,
+                    key: this.props.id,
                     error: error
-                }
-            }
-        }), () => this.props.updateField(updateContactDataFormServices({
-            [name]: {
-                error: error,
-                valor: value,
-            },
-            key: this.props.id,
-            name: name
-        })))
+            }, ()=>this.props.updateField(updateContactDataFormServices(this.state)))
         
     }
 
     
     componentWillReceiveProps(newProps) {     
-        //console.log("-----------newProps", newProps.datosProductos)
+        console.log("-----------newProps", newProps.datosProductos)
         if (newProps.companies.length > 0)
             this.companies = newProps.companies
         if (Object.keys(newProps.datosProductos).length>0) {
-           //console.log("-----------newPropsssssssssssssssss", newProps.datosProductos.value)
-            this.setState({
-                tipo: newProps.datosProductos.tipo,
-                value: newProps.datosProductos.value === undefined ? {} : newProps.datosProductos.value,
-            })
+            
+            for (const key in newProps.datosProductos.value) {
+                this.setState({
+                    [key]: `${newProps.datosProductos.value[key]}`
+                })
+            }
         }
     }
 
+    
     componentDidMount() {
+        
         if (this.props.dataProducts) {
             let product = this.props.dataProducts
+            console.warn(product)
         }        
     }
 
     handleClickOptions(type, id){
         if (this.state.tipo != type ) {
             if (this.state.tipo === "portabilidad") {
-                this.setState({
+                this.setState({},
+                    ()=>this.setState({
                         tipo: type,
-                    }, () => this.props.updateField(updateContactDataFormServices({tipo: type,key: this.props.id})))
+                        key: this.props.id
+                    }, () => this.props.updateField(updateContactDataFormServices({tipo: type,key: this.props.id}))))
             }else{
-                this.setState({tipo: type, value:{}}, 
-                            ()=>this.props.updateField(updateContactDataFormServices(this.state)))
+                this.setState({}, 
+                    ()=>this.setState({tipo: type, key: this.props.id}, 
+                            ()=>this.props.updateField(updateContactDataFormServices(this.state))))
             }
         }        
     }
+
+    /* handleClickSaveData(type, id){
+        if (type === "portabilidad") {
+            console.warn(this.refs.company.value)
+        }
+    } */
 
     handleSubmit(event) {
         event.preventDefault();
@@ -121,7 +122,6 @@ class PortabilidadForm extends React.Component  {
     }
 
     render() {
-        //console.log("this.state...........", this.state, typeof(this.state))
         let form;
         if (this.state.tipo === "portabilidad") {
             form=(<form onSubmit={this.handleSubmit}>
@@ -131,12 +131,12 @@ class PortabilidadForm extends React.Component  {
                             className = "form-control form-control-lg mio" 
                             onChange={this.handleInputChange} 
                             ref = "company"
-                            value={!this.state.value.company?"":this.state.value.company.valor}
+                            value={!this.state.company?"":this.state.company}
                             name="company">
                                 <option value=""></option>         
                                 {this.companies.map((item, i) => <option key={i} value={item}>{item}</option>)}                   
                             </select>
-                            <span className="text-danger">{(!this.state.value.company ||!this.state.value.company.error)? "":(this.state.value.company.error)}</span>
+                            
                         </div>
 
                        <div style={{display:`${this.props.tipo=='fijo'?'none':'block'}`}}>
@@ -144,10 +144,10 @@ class PortabilidadForm extends React.Component  {
                             className="form-control form-control-lg mio"
                             placeholder="Numeros de la sim"
                             name = "sim"
-                            value={!this.state.value.sim?"":this.state.value.sim.valor}
+                            value={!this.state.sim?"":this.state.sim}
                             type = "number"
                             onChange={this.handleInputChange} />
-                            <span className="text-danger">{(!this.state.value.sim ||!this.state.value.sim.error)? "":(this.state.value.sim.error)}</span>
+                            <span className="text-danger">{(!this.state.error||this.state.error==undefined)? "":this.state.error}</span>
                         </div>
 
                         <div>
@@ -155,10 +155,10 @@ class PortabilidadForm extends React.Component  {
                             className="form-control form-control-lg mio"
                             placeholder="movil"
                             name = "phone"
-                            value={!this.state.value.phone?"":this.state.value.phone.valor}
+                            value={!this.state.phone?"":this.state.phone}
                             type = "number"
                             onChange={this.handleInputChange} />
-                            <span className="text-danger">{(!this.state.value.phone ||!this.state.value.phone.error)? "":(this.state.value.phone.error)}</span>
+                            
                         </div> 
                     </div>
                     
