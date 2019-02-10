@@ -86,7 +86,7 @@ class Personal extends React.Component  {
                                 key: parseInt(`${cont}`),
                                 tipo: "alta",
                                 tipoTlf: `${keyName}`,
-                                validado:true
+                                valido:true
                             });
                         }
                     }

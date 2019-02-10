@@ -80,6 +80,7 @@ export default function personalDataFormReducer(state = initialState, action) {
         case UPDATE_CONTACT_DATA_FORM_SERVICES:
             if (!state.fields["datosProductos"]) 
                 state.fields["datosProductos"]=[]
+                
             state.validDatosProductos = false
             let exist = state.fields["datosProductos"].filter((item)=>{return item.key == parseInt(action.payload.key)})
             
@@ -105,6 +106,11 @@ export default function personalDataFormReducer(state = initialState, action) {
                             if (item.hasOwnProperty("value")) {
                                 delete item.value
                             }
+                            if (item.tipo==="alta") {
+                                item.valido=true
+                            }else{
+                                item.valido = false
+                            }
                         }
                         /**
                          * Si el objeto que recive del action.payload viene con contenido cambia el objeto de redux con el nuevo contenido
@@ -118,9 +124,58 @@ export default function personalDataFormReducer(state = initialState, action) {
                                 item.value={}
                             }
                             item.value[name] = action.payload[name]
+
+                        }
+
+
+                        if (item.tipo === "portabilidad" && item.hasOwnProperty("value")) {
+                            if (item.tipoTlf==="fijo") {
+                                let object = item.value
+                                if (Object.keys(object).length === 2) {
+                                    //console.log(object)
+                                    let valid = true
+                                    //console.log(valid)
+                                    for (const key in object) {
+                                        if (object[key].hasOwnProperty("error") && object[key]["error"] != undefined) {
+                                            valid = false;
+                                            break;
+                                        }
+                                    }
+                                    //console.log(valid)
+                                    item.valido = valid
+                                }
+                            }
+                            if (item.tipoTlf==="movil") {
+                                let object = item.value
+                                if (Object.keys(object).length === 3) {
+                                    //console.log(object)
+                                    let valid = true
+                                    //console.log(valid)
+                                    for (const key in object) {
+                                        if (object[key].hasOwnProperty("error") && object[key]["error"]!=undefined) {
+                                            valid = false;
+                                            break;
+                                        }
+                                    }
+                                    //console.log(valid)
+                                    item.valido = valid
+                                }
+                            }
                         }
                     }
                 })
+
+                let validado = true
+                let arrayValidados = state.fields["datosProductos"].filter((item)=>{
+                    if(item.valido){
+                        return item
+                    }
+                })
+                console.log(arrayValidados.length, state.fields["datosProductos"].length)
+                if (arrayValidados.length === state.fields["datosProductos"].length) {
+                    state.validDatosProductos = true
+                }
+                
                 
             }
                 
@@ -163,4 +218,10 @@ export default function personalDataFormReducer(state = initialState, action) {
         default:
             return state;
     }
+}
+
+
+function iteraObject(object){
+
+    return "errores"
 }
