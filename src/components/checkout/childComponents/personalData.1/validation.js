@@ -68,7 +68,7 @@ function fn_ValidateIBAN(IBAN) {
     //Se pasa a Mayusculas
     IBAN = IBAN.toUpperCase();
     //Se quita los blancos de principio y final.
-    IBAN = IBAN.trim();
+    IBAN = trim(IBAN);
     IBAN = IBAN.replace(/\s/g, ""); //Y se quita los espacios en blanco dentro de la cadena
 
     var letra1, letra2, num1, num2;

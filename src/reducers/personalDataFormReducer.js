@@ -27,9 +27,8 @@ export default function personalDataFormReducer(state = initialState, action) {
     switch (action.type) {
 
         case UPDATE_DATOS_PRODUCTOS:
-            console.log(11111111111, action.payload)
-            alert("oja")
             state.fields["datosProductos"] = action.payload
+            state.validDatosProductos = true
             return {
                 ...state,
                 loaded: false,
@@ -45,22 +44,24 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case GET_CONTACT_DATA_FORM_SUCCESS:
-
-            state.fields.datosPersonales ={
-                    name: {error:"", value: "alicia"},
-                    surname: {error:"", value: "lopez"},
-                    email: {error:"", value: "lopez@gmail.com"},
-                    address: {error:"", value: "C/ alicante 1"},
-                    zip: {error:"", value: 46870},
-                    city: {error:"", value: "Gandia"},
-                    tipcli: {error:"", value: 0},
-                    date: {error:"", value: ""},
-                    preview: {error:"", value: ""},
-                    dni: {error:"", value: ""},
-                    cif: {error:"", value: ""},
-                    nie: {error:"", value: ""},
-                    cuenta: {error:"", value: ""}
-                }
+        console.log(Object.keys(state.fields.datosPersonales).length)
+        if (Object.keys(state.fields.datosPersonales).length ==0 ) {
+                state.fields.datosPersonales ={
+                        name: {error:"", value: "alicia"},
+                        surname: {error:"", value: "lopez"},
+                        email: {error:"", value: "lopez@gmail.com"},
+                        address: {error:"", value: "C/ alicante 1"},
+                        zip: {error:"", value: 46870},
+                        city: {error:"", value: "Gandia"},
+                        tipcli: {error:"", value: 0},
+                        date: {error:"", value: ""},
+                        preview: {error:"", value: ""},
+                        dni: {error:"", value: ""},
+                        cif: {error:"", value: ""},
+                        nie: {error:"", value: ""},
+                        cuenta: {error:"", value: ""}
+                    }
+            }
                 
             return {
                 ...state,
@@ -79,7 +80,7 @@ export default function personalDataFormReducer(state = initialState, action) {
         case UPDATE_CONTACT_DATA_FORM_SERVICES:
             if (!state.fields["datosProductos"]) 
                 state.fields["datosProductos"]=[]
-            
+            state.validDatosProductos = false
             let exist = state.fields["datosProductos"].filter((item)=>{return item.key == parseInt(action.payload.key)})
             
             if (exist.length == 0) {
@@ -88,12 +89,39 @@ export default function personalDataFormReducer(state = initialState, action) {
                     value: action.payload,
                 }
                 state.fields["datosProductos"].push(obj)
+                
             } else {
                 state.fields["datosProductos"].filter((item) => {
+                    /**
+                     * Filtro del el objeto datosProductos por medio de su key
+                     * Este objeto contiene la informacion de las tarifas de altas y portabilidades que tiene el carrito
+                     */
                     if (item.key == parseInt(action.payload.key)) {
-                        item.value=action.payload
+                        /**
+                         * Si tiene tipo lo cambia y si fuese necesario elimina la propiedad values, ya que si cambia alta se tienen que eliminar los datos
+                         */
+                        if (action.payload.tipo) {
+                            item.tipo = action.payload.tipo
+                            if (item.hasOwnProperty("value")) {
+                                delete item.value
+                            }
+                        }
+                        /**
+                         * Si el objeto que recive del action.payload viene con contenido cambia el objeto de redux con el nuevo contenido
+                         */
+                        if (action.payload.name) {
+                            delete action.payload.key
+                            let name = action.payload.name
+                            delete action.payload.name
+                            console.log(action.payload[name])
+                            if (!item.value) {
+                                item.value={}
+                            }
+                            item.value[name] = action.payload[name]
+                        }
                     }
                 })
+                
             }
                 
             return {

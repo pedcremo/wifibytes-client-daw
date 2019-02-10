@@ -1,6 +1,12 @@
 import {
     Utils
 } from "../utils";
+import {
+    UPDATE_DATA,
+    SET_COMPLETED,
+    SET_UNCOMPLETED
+} from '../constants/actionTypes';
+
 
 export function getContactDataForm() {
     console.warn("getContactDataForm")
@@ -98,4 +104,24 @@ export const getContactDataFormFailure = error => ({
 export const getCurrentContactDataFormSuccess = () => ({
     type: GET_CURRENT_CONTACT_DATA_FORM,
     payload
+});
+
+export function updateData(key, data) {
+    return dispatch => {
+        return dispatch({
+            type: UPDATE_DATA,
+            payload: {
+                key,
+                data
+            }
+        });
+    };
+}
+
+export const setCompleted = () => ({
+    type: SET_COMPLETED
+});
+
+export const setUncompleted = () => ({
+    type: SET_UNCOMPLETED
 });

@@ -49,29 +49,36 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-        
+        console.log("00000000000000000",newProps)
         if (Object.keys(newProps.dataUser).length > 0) {
             let cont=0;
             for (const key in this.state) {
-                let error=""                    
-                if (typeof (newProps.dataUser[key]["value"])==="object") 
-                    error = validator(newProps.dataUser[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
+                new Promise((resolve, reject) =>{
+                    let error=""
                     
-                if (error!=undefined) 
+                    if (typeof (newProps.dataUser[key]["value"])==="object") 
+                        error = validator(newProps.dataUser[key]["value"], this.refs[key]["name"], this.refs[key]["type"])
+                        
+                    
+                    if (error!=undefined) 
                         cont++          
                                       
-                this.setState({
-                    [key]: {
-                        value: newProps.dataUser[key].value,
-                        error: error
-                    }
-                }, () => {
-                    if (cont == 0)
+                    resolve(
+                        this.setState({
+                            [key]: {
+                                value: newProps.dataUser[key].value,
+                                error: error
+                            }
+                        }))
+                })
+                .then(()=>{
+                    if (cont==0) 
                         this.props.updateField(updateValidDtoPersForm())
-
-                })                            
-            }
+                    
+                })
+            }//end for
         }
+
     }
 
     /** 
@@ -106,7 +113,7 @@ class PersonalForm extends React.Component  {
         this.setState({
                 [name]: {
                     value: value,
-                    error: (!error?true:error)
+                    error: error
                 }
             }, () => this.props.updateField(updateContactDataForm(this.state)))
         
@@ -131,9 +138,6 @@ class PersonalForm extends React.Component  {
         }).then(this.props.updateField(updateContactDataForm(this.state)))
       }
 
-      componentWillUnmount() {
-          alert("desmondandose PersonalForm")
-      }
     render() {
         let cli=[]
         for (let x in this.props.tipCliente){
@@ -196,7 +200,7 @@ class PersonalForm extends React.Component  {
                     <div>
                         <h4>Suba una imagen de su dni</h4>
                         <input type="file" id="dni" onChange={this.previewFile} /><br/>
-                        <img src={this.state.preview.value} height="130" width="100%" alt="Image preview..."></img>
+                        <img src={this.state.preview.value} height="200" alt="Image preview..."></img>
                     </div>
                 </div>
 
@@ -240,7 +244,6 @@ class PersonalForm extends React.Component  {
                         <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
                     </div>
 
-                    <br />
                     <div>
                         <input                      
                         className={"form-control form-control-lg "+ (!this.state.cuenta.error? "":"border border-danger")}

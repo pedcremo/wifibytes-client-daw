@@ -25,7 +25,9 @@ let Regex = {
     /**
      * regexFechNac check if fecha nacimiento is valid
      */
-    regexFNAC: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g
+    regexFNAC: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g,
+
+    regexSIM: /[0-9]{20}/
 }; //END Regex object
 
 

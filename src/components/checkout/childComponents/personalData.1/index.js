@@ -10,8 +10,7 @@ import {AuthService} from '../../../../auth.service'
 import {
     getContactDataForm,
     updateContactDataFormServices,
-    updateDatosProductos,
-    setUncompleted
+    updateDatosProductos
 } from "../../../../actions/personalDataFormActions";
 import {getItems} from "../../../cart/cartActions";
 
@@ -20,7 +19,46 @@ import subitems_library from "../../libraries/subitems_based_library.json";
 
 let mockClientes={particular:0, autonomo: 5, empresa: 1, extranjero: 2}
 let mockCompanies=["orange", "vodafone", "jazztel", "yoigo", "pepephone"]
-
+/*
+tarifas 
+1: //Movil
+*/
+let items = [
+    {
+        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
+    },
+    {
+        id: 5,
+        subtarifas: [
+            {
+                id: 3
+            },
+            {
+                id: 5
+            }
+        ]
+    },
+    {
+        id: 6,
+        subtarifas: [
+            {
+                id: 2
+            },
+            {
+                id: 4
+            },
+            {
+                id: 1
+            },
+            {
+                id: 1
+            },
+            {
+                id: 1
+            }
+        ]
+    }
+]
 /**
  * @class
  * Draw Login. A form to login
@@ -54,8 +92,10 @@ class Personal extends React.Component  {
     componentDidMount(){
         this.props.dispatch(getContactDataForm());
         this.props.dispatch(getItems());
+        /* this.props.dispatch(getContactDataFormServices()); */
         
-        /* Esta comprobando si el usuario esta logueado verificando el token de cookies
+        /**
+        * Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
         AuthService.isAuth().then(value =>{
@@ -68,25 +108,26 @@ class Personal extends React.Component  {
             console.log("NO logueado", err)
             this.changeModal(true)
         })
+
         let array = [];
-        /**Bring an object like this {movil:1, fijo:5....} */
         let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
         let cont = -1;
         let quantityMovil = obj["movil"]
         let quantityFijo = obj["fijo"]
         let quantity = quantityMovil + quantityFijo
 
-        if ((this.props.datosProductos.length === 0) || (this.props.datosProductos.length!=quantity)) {
-            if (quantity > 0 || (this.props.datosProductos.length!=quantity)) {
+        if (this.props.datosProductos.length === 0) {
+            if (quantity > 0) {
                 for (const keyName in obj) {
                     if (`${keyName}` === "movil" || `${keyName}` === "fijo") {
                         for (let i = 0; i < parseInt(`${obj[keyName]}`); i++) {
                             cont++
                             array.push({
                                 key: parseInt(`${cont}`),
-                                tipo: "alta",
-                                tipoTlf: `${keyName}`,
-                                validado:true
+                                value: {
+                                    tipo: "alta",
+                                    tipoTlf: `${keyName}`
+                                }
                             });
                         }
                     }
@@ -95,16 +136,84 @@ class Personal extends React.Component  {
             }
         }
 
-        
-
     }
 
-     componentWillUnmount() {
-        alert("desmondandose index")
-     }
     
-    
-     
+    componentWillReceiveProps(){
+        let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
+        let quantityMovil = obj["movil"]
+        let quantityFijo = obj["fijo"]
+        
+        if (this.props.datosProductos.length > 0 && (this.props.datosProductos.length != (quantityMovil + quantityFijo))) {
+            let array = this.props.datosProductos;
+            let reduxQuantityMovil = this.props.datosProductos.filter((item) => {
+                if (item.value.tipoTlf == "movil")
+                    return item
+            })
+            let reduxQuantityFijo = this.props.datosProductos.filter((item) => {
+                if (item.value.tipoTlf == "fijo")
+                    return item
+            })
+
+            if (reduxQuantityMovil.length < quantityMovil) {
+                let cont = this.props.datosProductos.length;
+                for (let i = 0; i < (quantityMovil - reduxQuantityMovil.length); i++) {
+                    array.push({
+                        key: cont++,
+                        value: {
+                            tipo: "alta",
+                            tipoTlf: "movil",
+                        }
+                    });
+                }
+            }
+            if (reduxQuantityFijo.length < quantityFijo) {
+                let cont = this.props.datosProductos.length;
+                for (let i = 0; i < (quantityFijo - reduxQuantityFijo.length); i++) {
+                    array.push({
+                        key: cont++,
+                        value: {
+                            tipo: "alta",
+                            tipoTlf: "fijo",
+                        }
+                    });
+                }
+            }
+        
+            /* if ((reduxQuantityFijo.length > quantityFijo) || (reduxQuantityMovil.length > quantityMovil)) {     
+                let newArrayFijo=array.filter((item)=>{
+                    if (item.value.tipoTlf==="fijo") 
+                        return item
+                })
+                let newArrayMovil = array.filter((item) => {
+                    if (item.value.tipoTlf === "movil")
+                        return item
+                })
+                let a1=[]
+                let b1 = []
+                if (reduxQuantityFijo.length > quantityFijo) {
+                    newArrayFijo.splice(-(reduxQuantityFijo.length - quantityFijo));
+                    a1 = newArrayFijo
+                }
+                
+                if (reduxQuantityMovil.length > quantityMovil) {
+                    newArrayMovil.splice(-(reduxQuantityMovil.length - quantityMovil));
+                    b1 = newArrayMovil
+                }
+                array=a1.concat(b1)
+                console.log(array);
+
+            } */
+            this.props.dispatch(updateDatosProductos(array))
+
+
+            console.log("hay diferencias", array, reduxQuantityMovil, reduxQuantityFijo)
+         }
+    }
+
+    updateFieldPerDataForm(form_new_state){
+        this.props.dispatch(getContactDataForm());
+    }
     /**
      * 
      * @param {changeIsAuth} value
@@ -168,23 +277,66 @@ class Personal extends React.Component  {
         this.render()
     }
     
-    componentDidUpdate() {
-        //////////////////// IS VALID ///////////////////////////
-        //this.props.dispatch(setCompleted());
-        //////////////////// INVALID ////////////////////////////
-        this.props.dispatch(setUncompleted());
-    }
+  
     
     render() {
         /**
          * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
          */
+       /*  let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
+        let quantityMovil = obj["movil"]
+        let quantityFijo = obj["fijo"]
+        let array = [];
+        if (this.props.datosProductos.length > 0 && (this.props.datosProductos.length != (quantityMovil + quantityFijo))) {
+            let reduxQuantityMovil = this.props.datosProductos.filter((item)=>{
+                if (item.value.tipoTlf=="movil") 
+                    return item
+            })
+            let reduxQuantityFijo = this.props.datosProductos.filter((item) => {
+                if (item.value.tipoTlf == "fijo")
+                    return item
+            })
+
+            if (reduxQuantityMovil.length < quantityMovil) {
+                for (let i = (reduxQuantityMovil.length - 1); i < quantityMovil; i++) {
+                    array.push({
+                        key: i,
+                        value: {
+                            tipo: "alta",
+                            tipoTlf: "movil",
+                        }
+                    });                    
+                }
+            }
+            if (reduxQuantityFijo.length < quantityFijo){
+                for (let i = (reduxQuantityFijo.length - 1); i < quantityFijo; i++) {
+                    array.push({
+                        key: i,
+                        value: {
+                            tipo: "alta",
+                            tipoTlf: "fijo",
+                        }
+                    });
+                }
+            }
+            this.props.dispatch(updateDatosProductos(array))
+
+            console.log("hay diferencias", reduxQuantityMovil, reduxQuantityFijo)
+        } */
+        
+       console.log("render------+++++++++++", this.props.datosProductos.length, Object.keys(this.props.fields.datosProductos).length, this.props.fields.datosProductos)
+        
+
+        
+        
         return (
             <div>
                 <PersonalDataForm dataUser={this.props.fields.datosPersonales} tipCliente={mockClientes} updateField={this.props.dispatch}/>
 
                 <div className="grid-data-form">
-                    {this.props.datosProductos.map((item, i)=> <PortabilidadForm tipo={item.tipoTlf}  key={i} id={i} datosProductos={item} companies={mockCompanies} updateField={this.props.dispatch}/>)}                
+                    {this.props.datosProductos.map((item, i)=> 
+                        <PortabilidadForm tipo={item.value.tipoTlf}  key={i} id={i} datosProductos={item} companies={mockCompanies} updateField={this.props.dispatch}/>)
+                    }                
                 </div>
 
                 <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal ? "visible" : "hidden"}}>
@@ -196,8 +348,6 @@ class Personal extends React.Component  {
                         <UserChoice choice={this.printComponent} /> }
                     </div>
                 </div>
-
-                <button type="submit" className="btn btn-large btn-block btn-default">Validar Datos</button>
             </div>
         );
     }
