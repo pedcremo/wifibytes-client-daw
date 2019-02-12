@@ -219,7 +219,7 @@ class Contracts extends React.Component {
                     {
                         this.state.showModal ?
                             <div id="myModal" className="modal_manual modal_manual_con">
-                                <div className="modal_content_manual modal_content_manual_con">
+                                <div className="modal-content_manual modal-content_manual_con">
                                     <div className="modal-header mb-4">
                                         <h5 className="modal-title" id="exampleModalLong">{this.context.t("btn-signContracts")}</h5>
                                         <button type="button" className="close" aria-label="Close" onClick={() => this.stateModal(false)}>
