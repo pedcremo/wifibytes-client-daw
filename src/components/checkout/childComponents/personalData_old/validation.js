@@ -11,7 +11,7 @@ import { Regex } from '../../../../regex'
  * @type {string} its the type of a field by default will be type text.
  * @name {string} it will be used to check what kind of param it is.
  */
-export function validator(value, name, type="text") {
+export function validator(value, name, type="text", client) {
     /**
     * If a field does not have value go this first conditional
     */
@@ -24,18 +24,25 @@ export function validator(value, name, type="text") {
      */
     switch (type) {
         
+        case "file":
         case "text":
+            
             if (value.length < 3 && (name === "name" || name === "surname" || name === "city"))
                 return "This field has minus of 3 values"
             if (value.length < 7 && name === "address")
                 return "This field has minus of 7 values"
-            if (name === "dni" && !Regex.regexDni.test(value))
-                return "Este no es un dni valido"
-            /* if (name === "cuenta" && !fn_ValidateIBAN(value))  */
-            if (value.length < 7 && name === "cuenta")
+            if (name === "identificador"){
+                if ((client == 0 || client == 5) && !Regex.regexDni.test(value)){
+                    return "Dni no valido";
+                }else if (client == 1 && !Regex.regexCif.test(value)){
+                    return "Cif no valido";
+                }else if(client == 2 && !Regex.regexNie.test(value)){
+                    return "Nie no valido";
+                }
+            }
+            if (name === "cuenta" && !fn_ValidateIBAN(value)) 
                 return "Esta cuenta no es valida"
             break;
-
         case "email":
             if (!Regex.regexEmail.test(value))
             return "This is not a valid email"
@@ -69,7 +76,7 @@ function fn_ValidateIBAN(IBAN) {
     //Se pasa a Mayusculas
     IBAN = IBAN.toUpperCase();
     //Se quita los blancos de principio y final.
-    IBAN = IBAN.trim();
+    IBAN = trim(IBAN);
     IBAN = IBAN.replace(/\s/g, ""); //Y se quita los espacios en blanco dentro de la cadena
 
     var letra1, letra2, num1, num2;

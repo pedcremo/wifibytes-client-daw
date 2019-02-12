@@ -43,10 +43,10 @@
     "catalog-marca": "Marca",
     "catalog-camara": "Camara",
 
-    "login-title": "Acceso Cliente",
+    "login-title": "ACCESO CLIENTE",
     "login-acces-dni": "DNI Cliente",
     "login-acces-dni-form": "Introduzca su dni aqui: 'xxxxxxL'",
-    "login-acces-password": "Contraseña",
+    "login-acces-password": "CONTRASEÑA",
     "login-acces-password-form": "Introduzca aqui su contraseña",
     "login-button-acces": "ENVIAR",
     "login-recover-password": "Introduzca su e-mail",
@@ -63,8 +63,12 @@
     "register-legal":"He leido i acepto la política de privacidad",
     "register-newsletter":"Marco esta casilla para a NO recibir nuevas ofertas",
     "register-button": "ENVIAR",
+    "register-error-apellido": "Apellido demasiado corto",
+    "register-error-cifnif": "CIF/NIF no válido",
+    "register-error-password": "Contraseña demasiado corta",
     "register-cifnif": "CIF/NIF",
-    "register-error-pass": "Las contrasenyas deben coincidir",
+    "register-error-name": "Nombre demasiado corto",
+    "register-error-pass2": "Las contrasenyas deben coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido",
 
@@ -72,6 +76,7 @@
     "personalData-notifyModal-choiceLogin":"Loguearse",
     "personalData-notifyModal-choiceRegister":"Registrarse",
     "personalData-notifyModal-choiceNone":"Continuar igualmente",
+    "personalData-notifyError-bigImage":"Tamaño excesivo, comprueba que sea una imagen con la parte delantera y trasera del DNI",
 
 
     "checkout-personal-data": "Datos Personales",
