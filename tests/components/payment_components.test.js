@@ -19,13 +19,6 @@ const initialState = {
     showModal:false,
     form:[],
     submittedAtLeastOnce:false,
-    // props: {
-    //     expirationYear: 2022,
-    //     expirationMonth: 02,
-    //     cvv: 123,
-    //     cardOwner: 'Propietario de prueba',
-    //     cardNumber: 'ES9820385778983000760236',
-    // }
 };
 
 const store = mockStore(initialState);

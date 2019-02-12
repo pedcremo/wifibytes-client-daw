@@ -1,13 +1,15 @@
+import { Regex } from '../regex';
+
 export let validations = {
     expirationDateIsValid:function(expirationMonth, expirationYear) {
         const today = new Date();
         return ((today.getMonth() + 1) > expirationMonth ? today.getFullYear() < expirationYear : today.getFullYear() <= expirationYear);
     },
     cvvIsValid:function(cvv) {
-        return cvv.toString().match(Regex.cvv);
+        return cvv.toString().match(Regex.cvv) ? true:false;
     },
     cardOwnerIsValid:function(cardOwner) {
-        return cardOwner.match(Regex.cardOwner);
+        return cardOwner.match(Regex.cardOwner) ? true:false;
     },
     cardNumberIsValid:function(cardNumber) {
         let cardNumberProps = cardNumber.toString();
