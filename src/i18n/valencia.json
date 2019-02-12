@@ -110,5 +110,15 @@
     "check-out-button": "Procés de compra",
     "buy": "Comprar",
     "empty_cart": "Carret buit...",
-    "hire": "Contactar"
+    "hire": "Contactar",
+
+    "sign-validation": "*Els contractes tenen que ser firmats",
+    "btn-seeContracts": "Veure contractes",
+    "btn-accept": "Acceptar i firmar",
+    "btn-next": "Següent",
+    "btn-signContracts": "Firmar Contractes",
+    "validation-personalData": "* La informació personal es necessaria",
+    "btn-disabled": "Deshabilitat",
+    "btn-clear": "Netejar",
+    "btn-save": "Guardar"
 }
