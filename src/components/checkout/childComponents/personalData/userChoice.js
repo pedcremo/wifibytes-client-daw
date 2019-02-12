@@ -1,6 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {PropTypes} from 'prop-types'
+import {Utils} from "../../../../utils";
 
 /**
  * @class
@@ -19,20 +19,15 @@ class UserChoice extends React.Component  {
         return(
             <div>
                <div>
-                   <h2>{this.context.t('personalData-notifyModal-title')}</h2>
+                   <h2>{Utils.translate("personalData-notifyModal-title")}</h2>
                    <div className="selectionButtons">
-                        <button onClick={()=>this.props.choice("login")}>{this.context.t('personalData-notifyModal-choiceLogin')}</button>
-                        <button onClick={()=>this.props.choice("none")}>{this.context.t('personalData-notifyModal-choiceNone')}</button>
-                        <button onClick={()=>this.props.choice("register")}>{this.context.t('personalData-notifyModal-choiceRegister')}</button>
+                        <button onClick={()=>this.props.choice("login")}>{Utils.translate("personalData-notifyModal-choiceLogin")}</button>
+                        <button onClick={()=>this.props.choice("none")}>{Utils.translate("personalData-notifyModal-choiceNone")}</button>
+                        <button onClick={()=>this.props.choice("register")}>{Utils.translate("personalData-notifyModal-choiceRegister")}</button>
                     </div>
                 </div>
             </div>
         )
     }
 }
-
-UserChoice.contextTypes = {
-    t: PropTypes.func.isRequired
-}
-
 export default UserChoice;

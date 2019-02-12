@@ -1,10 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
-import {T} from "../../../../utils";
-import {validator}  from "./validation";
-import {
-    updateContactDataFormServices
-} from "../../../../actions/personalDataFormActions";
+import {PropTypes} from 'prop-types';
 
 /**
  * @class
@@ -22,8 +18,7 @@ class typeCliente extends React.Component  {
                                 <input                        
                                 className={"form-control form-control-lg"}
                                 placeholder="DNI"
-                                name="dni"
-                                ref = "dni"
+                                name="identificador"
                                 type="text"
                                 value={this.props.dni}
                                 onChange={this.props.change} />
@@ -38,8 +33,7 @@ class typeCliente extends React.Component  {
                             <input                        
                             className={"form-control form-control-lg"}
                             placeholder="CIF"
-                            name="cif"
-                            ref = "cif"
+                            name="identificador"
                             type="text"
                             pattern="/^[a-z]{3}[0-9]{6}[a-z]?$/i"
                             value={this.props.cif}
@@ -55,8 +49,7 @@ class typeCliente extends React.Component  {
                             <input                        
                             className={"form-control form-control-lg"}
                             placeholder="NIE"
-                            name="nie"
-                            ref = "nie"
+                            name="identificador"
                             type="text"
                             pattern="/^[a-z]{3}[0-9]{6}[a-z]?$/i"
                             value={this.props.nie}
@@ -68,4 +61,9 @@ class typeCliente extends React.Component  {
             }
     }
 }
+
+typeCliente.contextTypes = {
+    t: PropTypes.func.isRequired
+}
+
 export default typeCliente;
