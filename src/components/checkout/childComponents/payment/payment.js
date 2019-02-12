@@ -128,7 +128,6 @@ class Payment extends React.Component {
   }
 
   render() {
-    console.log(validations)
     return (
       <div className="payment-container">
         <div className="payment-components">
