@@ -173,6 +173,7 @@ class Personal extends React.Component  {
         //////////////////// INVALID ////////////////////////////
         //this.props.dispatch(setUncompleted());
         //console.log(prevProps.validForms, this.props.validForms)
+        this.props.dispatch(setUncompleted());
         if (prevProps.validForms != this.props.validForms) {
           //  alert("2")
             if (this.props.validForms) {
@@ -209,8 +210,6 @@ class Personal extends React.Component  {
                         <UserChoice choice={this.printComponent} /> }
                     </div>
                 </div>
-
-                <button type="submit" className="btn btn-large btn-block btn-default">Validar Datos</button>
             </div>
         );
     }
