@@ -91,29 +91,41 @@ class Contracts extends React.Component {
 
     /**Recive sign from the child */
     reciveSign(sign) {
-        this.getPosition().then( pos => {
-            this.setState({
+        let that = this;
+        navigator.geolocation.getCurrentPosition(succces, error);
+        function succces(pos) {
+            that.setState({
                 showModal: false,
                 next: true,
                 data: {
-                    ...this.state.data,
+                    ...that.state.data,
                         sign: sign,
                         pos: "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude,
                         time: 'Hour: ' + new Date()
                 }
             }); 
             
-            this.mountContracts();
-            this.updateData("contracts", this.state);
-            this.props.setCompleted();
-        });
+            that.mountContracts();
+            that.updateData("contracts", that.state);
+            that.props.setCompleted();
+        };
+        function error() {
+            that.setState({
+                showModal: false,
+                next: true,
+                data: {
+                    ...that.state.data,
+                        sign: sign,
+                        pos: '',
+                        time: 'Hour: ' + new Date()
+                }
+            }); 
+            
+            that.mountContracts();
+            that.updateData("contracts", that.state);
+            that.props.setCompleted();
+        }
     }
-
-    getPosition() {
-        return new Promise((res, rej) => {
-            navigator.geolocation.getCurrentPosition(res, rej);
-        });
-    };
 
     mountContracts() {
         //this.props.DataPersonal
