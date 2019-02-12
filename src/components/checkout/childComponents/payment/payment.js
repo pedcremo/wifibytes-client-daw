@@ -16,7 +16,7 @@ import Resume from './paymentTypes/Resume';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
 import { Regex } from '../../../../regex';
-
+import { validations }  from '../../../../validators/paymentFormValidators';
 const mapStateToProps = state => ({ ...state.payment });
 const cartItems = JSON.parse(localStorage.getItem('cartReducer'))
 class Payment extends React.Component {
@@ -128,6 +128,7 @@ class Payment extends React.Component {
   }
 
   render() {
+    console.log(validations)
     return (
       <div className="payment-container">
         <div className="payment-components">
