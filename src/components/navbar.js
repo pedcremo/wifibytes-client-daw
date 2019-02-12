@@ -172,11 +172,12 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  ...state.isAuth,
+  cartItems: state.cartReducer,
   datosEmpresa: state.datosEmpresa.items,
   loading: state.datosEmpresa.loading,
   error: state.datosEmpresa.error,
-  value: Utils.getCookie("language"),
-  ...state.isAuth
+  value: Utils.getCookie("language")
 });
 Navbar.contextTypes = {
   t: PropTypes.func.isRequired
