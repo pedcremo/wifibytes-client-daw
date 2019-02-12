@@ -23,6 +23,12 @@ const mapDispatchToProps = dispatch => ({
     getContracts: response => dispatch({ type: GET_CONTRACTS,  response}),
 });
 
+const mapStateToProps = state => ({
+    datosContracts: state.datosContracts.items,
+    infoContracts: state.currentCheckout.data.contracts,
+    personalData: state.currentCheckout.data.personalData ? state.currentCheckout.data.personalData.datosPersonales : false
+});
+
 /**
  * @class
  * Read and accept the terms and conditions text information
@@ -45,7 +51,10 @@ class Contracts extends React.Component {
                 data: {
                     sign: "",
                     pos: "",
-                    time: ""
+                    time: "",
+                    day: new Date().getDay(),
+                    month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
+                    year: new Date().getFullYear()
                 },
                 showModal: false,
                 next: false,
@@ -70,9 +79,9 @@ class Contracts extends React.Component {
     componentDidMount(){
         this.setState({ mounted: true });
         this.getDatosContracts().then(() => {
-            this.mountContracts();
+            if(this.props.personalData)
+                this.mountContracts();
         });
-        //this.props.dispatch(getContactDataForm());
     }
 
     componentDidUpdate(){
@@ -129,19 +138,6 @@ class Contracts extends React.Component {
     }
 
     mountContracts() {
-        //this.props.DataPersonal
-        let person = {    
-            name: "Daniel Ortiz Garcia",
-            NIF: "49264590Q",
-            direccion: "Avenida Almaig",
-            ciudad: "Ontinyent",
-            provincia: "Valencia",
-            day: new Date().getDay(),
-            month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()],
-            year: new Date().getFullYear()
-        }
-        
-        //this.props.Tarifes
         let subTarifasCon = this.subTarifas();
 
         if(this.props.datosContracts.length > 0){
@@ -178,7 +174,7 @@ class Contracts extends React.Component {
         if (error) return (<div>Error! </div>);
         if (loading) return (<div>Loading...</div>);
         
-        if(datosContracts.length > 0 && true){
+        if(datosContracts.length > 0 && this.props.personalData){
             return (
                 <div className="d-flex flex-column align-items-center">
                     {
@@ -219,7 +215,7 @@ class Contracts extends React.Component {
                     {
                         this.state.showModal ?
                             <div id="myModal" className="modal_manual modal_manual_con">
-                                <div className="modal_content_manual modal_content_manual_con">
+                                <div className="modal-content_manual modal-content_manual_con">
                                     <div className="modal-header mb-4">
                                         <h5 className="modal-title" id="exampleModalLong">{this.context.t("btn-signContracts")}</h5>
                                         <button type="button" className="close" aria-label="Close" onClick={() => this.stateModal(false)}>
@@ -250,14 +246,9 @@ class Contracts extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    datosContracts: state.datosContracts.items,
-    infoContracts: state.currentCheckout.data.contracts
-});
-
 Contracts.contextTypes = {
     t: PropTypes.func.isRequired
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contracts);
 
