@@ -1,8 +1,7 @@
 import {
     GET_CONTRACT_BEGIN,
     GET_CONTRACT_SUCCESS,
-    GET_CONTRACT_FAILURE,
-    SEND_CONTRACT
+    GET_CONTRACT_FAILURE
   } from '../actions/datosContractsAction';
   
   const initialState = {
@@ -48,12 +47,6 @@ import {
           error: action.payload,
           items: []
         };
-
-      case SEND_CONTRACT:
-        return {
-          ...state,
-          contractSigned: action.payload.html
-        }
 
       default:
       //console.warn("1GET_DATOS_EMPRESA_DEF")

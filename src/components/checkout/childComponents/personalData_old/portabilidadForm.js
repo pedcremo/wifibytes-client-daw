@@ -24,14 +24,30 @@ class PortabilidadForm extends React.Component  {
         super(props);
         
         this.state = {};
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClickOptions = this.handleClickOptions.bind(this);
         this.companies=[]
         this.company = React.createRef()
         this.state.tipo="alta"
         this.state.key = this.props.id
         this.state.tipoTlf = this.props.tipo
+        this.comprobacion = this.comprobacion.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClickOptions = this.handleClickOptions.bind(this);
     }
+
+    // changeState(name, value){
+    //     console.log(name)
+    //     console.log(value)
+    //     //console.log(error)
+    //     this.setState({
+    //         [name]: {
+    //             value: value,
+    //             key: this.props.id,
+    //             //error: error
+    //         }
+    //     },()=>{ this.props.updateField(updateContactDataFormServices(this.state))
+    //         this.comprobacion()
+    //     })
+    // }
 
     /** 
      * This method is listening changes of each form element 
@@ -57,7 +73,9 @@ class PortabilidadForm extends React.Component  {
          * Return a error if a field is incorrect 
          */
         const error = validator(value, name, target.type)
-        console.log("+++++++++++++++++",target.value)
+
+        //this.changeState(name,value)
+
         /** 
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
@@ -69,6 +87,29 @@ class PortabilidadForm extends React.Component  {
             }, ()=>this.props.updateField(updateContactDataFormServices(this.state)))
         
     }
+
+    comprobacion(){
+        let a = false;
+        try{
+            Object.values(this.state).forEach((element, i) => {
+                if (((element.value.length > 1 || element.value.toString().length >= 1) && element.value !== "") &&
+                    (element.error === "" || element.error === undefined || !element.error)){
+                    a = true;
+                }else{
+                    a = false;
+                    BreakException;
+                }
+            });
+            if (a){
+                new Promise((resolve, reject) =>{
+                    resolve(this.props.valid("personalDataViewIsValid",true))
+                }).then(()=>console.log(this.props.value))
+            }
+        }catch(e){
+            a = false;
+            console.log("No valido")
+        }
+}
 
     
     componentWillReceiveProps(newProps) {     
@@ -118,7 +159,7 @@ class PortabilidadForm extends React.Component  {
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('A name was submitted: ');
+        alertalert('A name was submitted: ');
     }
 
     render() {

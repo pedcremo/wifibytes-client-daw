@@ -7,16 +7,14 @@ let currentLang = Utils.getUserLang();
 let steps = [
     {
         "key": "personal_data",
-        "id": 1,
         "active": true,
-        "completed": false,
+        "completed": true,
         "className": "",
         "title": translations[currentLang]["checkout-personal-data"],
         "component": <components.Personal />
     },
     {
         "key": "contract",
-        "id": 2,
         "active": false,
         "completed": false,
         "className": "",
@@ -25,7 +23,6 @@ let steps = [
     },
     { 
         "key": "confirm",
-        "id": 3,
         "active": false,
         "completed": false,
         "className": "",

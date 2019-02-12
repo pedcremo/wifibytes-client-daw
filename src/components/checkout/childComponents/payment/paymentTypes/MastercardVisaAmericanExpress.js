@@ -1,5 +1,4 @@
 import React from 'react';
-import {RegExps} from '../../../../../regExps';
 
 export default function MastercardVisaAmericanExpressForm(props) {
   const cardOwner = props.cardOwner;
@@ -8,19 +7,6 @@ export default function MastercardVisaAmericanExpressForm(props) {
   const expirationYear = props.expirationYear;
   const cvv = props.cvv;
 
-  function disabled(){
-    return !validateCvv() || !validateCardOwner() || !validateExpirationDate();
-  }
-  function validateExpirationDate(){
-    const today = new Date();
-    return ((today.getMonth() + 1) >props.expirationMonth? today.getFullYear() < props.expirationYear : today.getFullYear() <= props.expirationYear); 
-    }
-  function validateCvv(){
-    return props.cvv.match(RegExps.cvv);
-  }
-  function validateCardOwner(){
-    return props.cardOwner.match(RegExps.cardOwner);
-  }
   function createExpirationYears(){
     let options = [];
     for (let i = 0; i <= 20; i++) {
@@ -37,7 +23,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
             <h1>{props.translate.t("payment-method1")}</h1>
             <fieldset className="form-group">
               <h3 className="errors"
-              hidden={validateCardOwner()}>
+              hidden={props.cardOwnerIsValid}>
               Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("payment-owner")}</label>
               <input
@@ -45,7 +31,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="text"
                 placeholder={props.translate.t("payment-owner")}
                 value={cardOwner}
-                onChange={props.onChangeField()} />
+                onChange={props.onChangeCardOwner()} />
             </fieldset>
             <fieldset className="form-group">
               <label>{props.translate.t("payment-numberCard")}</label>
@@ -54,17 +40,17 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="number"
                 placeholder={props.translate.t("payment-numberCard")}
                 value={cardNumber}
-                onChange={props.onChangeField()} />
+                onChange={props.onChangeCardNumber()} />
             </fieldset>
             <fieldset className="form-group">
             <h3 className="errors"
-              hidden={validateExpirationDate()}>
+              hidden={props.expirationDateIsValid}>
               Something is wrong with the expiration date, check it out!</h3>
               <label>{props.translate.t("payment-expirationMonth")}</label>
               <select
               className="form-control form-control-lg"
               value={expirationMonth}
-              onChange={props.onChangeField()}>
+              onChange={props.onChangeExpirationMonth()}>
                 <option value={1}>01</option>
                 <option value={2}>02</option>
                 <option value={3}>03</option>
@@ -84,13 +70,13 @@ export default function MastercardVisaAmericanExpressForm(props) {
               <select
               className="form-control form-control-lg"
               value={expirationYear}
-              onChange={props.onChangeField()}>
+              onChange={props.onChangeExpirationYear()}>
                 {createExpirationYears()}
               </select>
             </fieldset>
             <fieldset className="form-group">
             <h3 className="errors"
-              hidden={validateCvv()}>
+              hidden={props.cvvIsValid}>
               Something is wrong with this field, check it out!</h3>
               <label>{props.translate.t("CVV")}</label>
               <input
@@ -98,7 +84,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
                 type="number"
                 placeholder={props.translate.t("CVV")}
                 value={cvv}
-                onChange={props.onChangeField()} />
+                onChange={props.onChangeCvv()} />
             </fieldset>
           </fieldset>);
   }

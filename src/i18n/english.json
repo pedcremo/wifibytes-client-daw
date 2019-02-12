@@ -43,10 +43,10 @@
     "catalog-marca": "Brand",
     "catalog-camara": "Camera",
 
-    "login-title": "Access Client",
+    "login-title": "ACCES CLIENT",
     "login-acces-dni": "DNI Client",
     "login-acces-dni-form": "Enter your ID here: 'xxxxxxL'",
-    "login-acces-password": "Password",
+    "login-acces-password": "PASSWORD",
     "login-acces-password-form": "Enter your password here",
     "login-button-acces": "SEND",
     "login-recover-password": "Enter your e-mail",
@@ -64,7 +64,11 @@
     "register-newsletter":"Check this box to NOT receive new offers",
     "register-button": "SEND",
     "register-cifnif": "CIF/NIF",
-    "register-error-pass": "The passwords must to match",
+    "register-error-name": "Name too short",
+    "register-error-apellido": "Surname too short",
+    "register-error-cifnif": "CIF/NIF invalid",
+    "register-error-password": "Password too short",
+    "register-error-pass2": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
 
@@ -74,10 +78,14 @@
     "personalData-notifyModal-choiceLogin":"Log in",
     "personalData-notifyModal-choiceRegister":"Register",
     "personalData-notifyModal-choiceNone":"Continue anyway",
+    "personalData-notifyError-bigImage":"Excessive size, check that it is an image with the front and back of the DNI",
+
     
     "checkout-personal-data": "Personal Data",
     "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment",
+    "checkout-confirm": "Confirm Order",
+    "checkout-next": "Next Step",
+    "checkout-submit": "Confirm Payment",
     
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
@@ -90,7 +98,12 @@
     "payment-address2-debit": "Madrid /Example Street Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
-    
+    "resume": "Resume",
+    "resume-name": "Name",
+    "resume-email": "Email",
+    "resume-address": "Address",
+    "efectivo": "Cash",
+
     "cart-button": "Cart",
     "description": "Description",
     "quantity": "Quantity",
@@ -98,8 +111,5 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire",
-    "checkout-personal-data": "Personal Data",
-    "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment"
+    "hire": "Hire"
 }

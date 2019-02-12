@@ -1,11 +1,13 @@
 /** @module ComponentsApp */
 import React from 'react';
+import Swal from 'sweetalert2';
 import {
     updateContactDataForm,
     updateValidDtoPersForm,
     getValidaForms
 } from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
+import {PropTypes} from 'prop-types';
 import Typecliente from './typeCliente';
 
 /**
@@ -119,17 +121,29 @@ class PersonalForm extends React.Component  {
         let can = this.refs["file"].files[0];
         reader.src = reader.readAsDataURL(can);
 
-        new Promise((resolve, reject) => {
-            reader.addEventListener("load", ()=> {
-                resolve(reader.result)
-            })
-        }).then((value)=>{
-            this.setState({
-                preview: {
-                    value: value,
-                }
-            }, ()=>this.props.updateField(updateContactDataForm(this.state)))
-        })
+        if (can){
+            if ( can.size < 2000000 ){
+                new Promise((resolve, reject) => {
+                    reader.addEventListener("load", ()=> {
+                        resolve(reader.result)
+                    })
+                }).then((value)=>{
+                    this.setState({
+                        preview: {
+                            value: value,
+                        }
+                    }, ()=>this.props.updateField(updateContactDataForm(this.state)))
+                })
+            }else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: this.context.t('personalData-notifyError-bigImage'),
+                })
+                /* Remove image from input type file because is too big */
+                document.getElementById('imgdni').value = "";
+            }
+        }
       }
 
     
@@ -287,7 +301,10 @@ class PersonalForm extends React.Component  {
             </form>
         );
     }
-
-
 }
+
+PersonalForm.contextTypes = {
+    t: PropTypes.func.isRequired
+}
+
 export default PersonalForm;

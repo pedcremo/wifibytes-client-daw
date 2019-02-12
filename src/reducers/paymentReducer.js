@@ -2,16 +2,31 @@ import {
     GET_PAYMENTS_BEGIN,
     GET_PAYMENTS_SUCCESS,
     GET_PAYMENTS_FAILURE,
-    PAYMENT_METHOD_UPDATE
+    PAYMENT_METHOD_UPDATE,
+    UPDATE_FIELD
 } from '../actions/paymentActions';
+
+const thisDate = new Date();
 
 const initialState = {
     paymentMethod:0, /**codpago de backend, visa/mastercard/american express por defecto */
     paymentMethods:[],
+    /**Get the month we are, thisDate.getMonth() is an array so january is month 0, we have to add 1 */
+    expirationMonth:thisDate.getMonth()+1,
+    /**Get the year we are */
+    expirationYear:thisDate.getFullYear(),
+    cardOwner:"",
+    cardNumber:"",
+    cvv:""
 };
 
 export default function checkoutReducer(state = initialState, action) {
     switch (action.type) {
+        case UPDATE_FIELD:
+            return{
+                ...state,
+                [action.field] : action.value
+            }
         case PAYMENT_METHOD_UPDATE:
             return{
                 ...state,
@@ -24,7 +39,6 @@ export default function checkoutReducer(state = initialState, action) {
                 error: null
             };
         case GET_PAYMENTS_SUCCESS:
-            console.log(action.payload.formasdepago);
             return {
                 ...state,
                 loading: false,
