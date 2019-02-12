@@ -173,11 +173,17 @@ class Personal extends React.Component  {
         //////////////////// INVALID ////////////////////////////
         //this.props.dispatch(setUncompleted());
         //console.log(prevProps.validForms, this.props.validForms)
+        this.props.dispatch(setUncompleted());
         if (prevProps.validForms != this.props.validForms) {
           //  alert("2")
             if (this.props.validForms) {
                 this.props.dispatch(setCompleted());
-                this.props.dispatch(updateData("personalData", this.props.fields));
+                let objData = this.props.fields
+                for (const key in objData.datosPersonales) {
+                    objData.datosPersonales[key] = objData.datosPersonales[key]["value"];
+                }
+
+                this.props.dispatch(updateData("personalData", objData));
                 
             //    console.log(1)
             } else {          
@@ -210,7 +216,7 @@ class Personal extends React.Component  {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-large btn-block btn-default">Validar Datos</button>
+
             </div>
         );
     }
