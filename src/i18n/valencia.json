@@ -106,5 +106,15 @@
     "hire": "Contactar",
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
-    "checkout-confirm": "Confirmar Comanda"
+    "checkout-confirm": "Confirmar Comanda",
+
+    "sign-validation": "*Els contractes tenene que ser firmats",
+    "btn-seeContracts": "Veure contractes",
+    "btn-accept": "Aseptar i firmar",
+    "btn-next": "Seguent",
+    "btn-signContracts": "Firmar Contractes",
+    "validation-personalData": "* La informació personal es nesesaria",
+    "btn-disabled": "Desabilitat",
+    "btn-clear": "Netejar",
+    "btn-save": "Guardar"
 }

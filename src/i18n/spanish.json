@@ -106,5 +106,15 @@
     "hire": "Contratar",
     "checkout-personal-data": "Datos Personales",
     "checkout-contract": "Contrato",
-    "checkout-confirm": "Confirmar Pedido"
+    "checkout-confirm": "Confirmar Pedido",
+
+    "sign-validation": "*Los contratos tienen que ser firmados",
+    "btn-seeContracts": "Ver cotratos",
+    "btn-accept": "Aceptar y firmar",
+    "btn-next": "Siguiente",
+    "btn-signContracts": "Firmar Contratos",
+    "validation-personalData": "* La informacióbn personal es necesaria",
+    "btn-disabled": "Desabilitado",
+    "btn-clear": "Limpiar",
+    "btn-save": "Guardar"
 }

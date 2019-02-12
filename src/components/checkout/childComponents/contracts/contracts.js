@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import SignPad from './signaturePad';
 import {Utils} from "../../../../utils";
+import {PropTypes} from 'prop-types'
 
 import {
     UPDATE_DATA,
@@ -174,28 +175,28 @@ class Contracts extends React.Component {
     /** render  */
     render() {
         const { error, loading, datosContracts} = this.props;
-        if (error) return (<div>Error Home! </div>);
-        if (loading) return (<div>Loading Home ...</div>);
+        if (error) return (<div>Error! </div>);
+        if (loading) return (<div>Loading...</div>);
         
         if(datosContracts.length > 0 && true){
             return (
                 <div className="d-flex flex-column align-items-center">
                     {
                         !this.state.next? 
-                            <p className="mt-5 text-danger">*The contracts need to be signed</p>
+                            <p className="mt-5 text-danger">{this.context.t("sign-validation")}</p>
                         :
                             ''
                     }
                     <div className="mb-5 ml-5 mr-5 mt-3 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
                         <button type="button" className="btn btn-primary ml-5 mr-5" data-toggle="modal" data-target="#modalContracts">
-                            See Contracts
+                            {this.context.t("btn-seeContracts")}
                         </button>
                     </div>
                     <div className="modal fade" id="modalContracts" tabIndex="-1" role="dialog" aria-labelledby="modalContracts" aria-hidden="true">
                         <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLong">Firmar Contratos</h5>
+                                    <h5 className="modal-title" id="exampleModalLong">{this.context.t("btn-signContracts")}</h5>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -206,9 +207,9 @@ class Contracts extends React.Component {
                                 <div className="modal-footer">
                                     { 
                                         !this.state.next?
-                                            <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>Accept and Sign</button>
+                                            <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>{this.context.t("btn-accept")}</button>
                                         :
-                                            <button type="button" className="btn btn-primary" data-dismiss="modal">Next</button>
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal">{this.context.t("btn-next")}</button>
                                     }
                                 </div>
                             </div>
@@ -220,12 +221,12 @@ class Contracts extends React.Component {
                             <div id="myModal" className="modal_manual modal_manual_con">
                                 <div className="modal_content_manual modal_content_manual_con">
                                     <div className="modal-header mb-4">
-                                        <h5 className="modal-title" id="exampleModalLong">Firmar Contratos</h5>
+                                        <h5 className="modal-title" id="exampleModalLong">{this.context.t("btn-signContracts")}</h5>
                                         <button type="button" className="close" aria-label="Close" onClick={() => this.stateModal(false)}>
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <SignPad onReciveSign={this.reciveSign} /> 
+                                    <SignPad transalte={this.context} onReciveSign={this.reciveSign} /> 
                                 </div>
                             </div>
                         :   ''
@@ -236,10 +237,10 @@ class Contracts extends React.Component {
         }else{
             return(
                 <div className="d-flex flex-column align-items-center">
-                    <label className="mt-5 text-danger">* Personal Data is required</label>
+                    <label className="mt-5 text-danger">{this.context.t("validation-personalData")}</label>
                     <div className="mb-5 ml-5 mr-5 mt-3 p-5 border border-ligth shadow rounded d-flex flex-direction-center">
                         <button type="button" className="btn btn-danger ml-5 mr-5" disabled>
-                            Disabled
+                        {this.context.t("btn-disabled")}
                         </button>
                     </div>
                 </div>
@@ -253,6 +254,10 @@ const mapStateToProps = state => ({
     datosContracts: state.datosContracts.items,
     infoContracts: state.currentCheckout.data.contracts
 });
+
+Contracts.contextTypes = {
+    t: PropTypes.func.isRequired
+  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contracts);
 
