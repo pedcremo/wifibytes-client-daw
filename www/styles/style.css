@@ -439,14 +439,11 @@ p.login-recuperar:hover {
 
 .modal_manual {
   display: block;
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%;
-  /* Full width */
+  width: 100%;/* Full width */
   height: 100%;
   /* Full height */
   overflow: auto;

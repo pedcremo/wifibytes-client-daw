@@ -25,7 +25,6 @@ class PersonalForm extends React.Component  {
             surname: conten,
             email:conten,
             date: conten,
-            file: conten,
             address:conten,
             zip: conten,
             city: conten,
@@ -128,6 +127,7 @@ class PersonalForm extends React.Component  {
                         resolve(reader.result)
                     })
                 }).then((value)=>{
+                    console.log(value)
                     this.setState({
                         preview: {
                             value: value,
@@ -141,7 +141,7 @@ class PersonalForm extends React.Component  {
                     text: this.context.t('personalData-notifyError-bigImage'),
                 })
                 /* Remove image from input type file because is too big */
-                document.getElementById('imgdni').value = "";
+                this.refs["file"].value = "";
             }
         }
       }
@@ -214,9 +214,10 @@ class PersonalForm extends React.Component  {
                         type="file"
                         id="dni" 
                         ref = "file"
-                        name = "file"
+                        name = "preview"
                         onChange={this.previewFile} /><br/>
-                        <img name="preview" ref="preview" src={this.state.preview.value} height="130" width="100%" alt="Image preview..."></img> 
+                        <img name="preview" ref="preview" src={this.state.preview.value} height="130" width="100%" alt="Image preview..."></img>
+                        <span className="text-danger">{!this.state.preview.error? "":this.state.preview.error}</span>
                     </div>
                 </div>
 

@@ -57,20 +57,18 @@ class Personal extends React.Component  {
     componentDidMount(){
         this.props.dispatch(getContactDataForm());
         this.props.dispatch(getItems());
-        
+
         /* Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
-        AuthService.isAuth().then(value =>{
-            //console.log("EL usuario esta logeado", value)
+        if(this.props.isAuth){
             this.changeIsAuth(true)
             this.setState({
                 auth: value
             })
-        }).catch((err) => {
-            //console.log("NO logueado", err)
+        }else{
             this.changeModal(true)
-        })
+        }
         let array = [];
         /**Bring an object like this {movil:1, fijo:5....} */
         let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
@@ -97,13 +95,8 @@ class Personal extends React.Component  {
                 this.props.dispatch(updateDatosProductos(array))
             }
         }
-
-        
-
     }
-
     
-     
     /**
      * 
      * @param {changeIsAuth} value
@@ -144,7 +137,6 @@ class Personal extends React.Component  {
         })
     }
     /**
-     * 
      * @param {printComponent} value
      * Lo que fa es recollir del component userChoice que ha elegit el usuari,
      * despres va al ${changeType} y li asigna el valor de register o login i de esta
@@ -168,11 +160,6 @@ class Personal extends React.Component  {
     }
     
     componentDidUpdate(prevProps, prevState) {
-        //////////////////// IS VALID ///////////////////////////
-        //this.props.dispatch(setCompleted());
-        //////////////////// INVALID ////////////////////////////
-        //this.props.dispatch(setUncompleted());
-        //console.log(prevProps.validForms, this.props.validForms)
         if (prevProps.validForms != this.props.validForms) {
           //  alert("2")
             if (this.props.validForms) {
@@ -201,7 +188,7 @@ class Personal extends React.Component  {
                 </div>
 
                 <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal ? "visible" : "hidden"}}>
-                    <div className="modal_content_manual modal-content_manual">
+                    <div className="modal-content_manual">
                         <span className="close" onClick={() => this.changeModal(false)}>&times;</span>
                         {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth} /> : 
                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth} />  :
@@ -217,7 +204,8 @@ class Personal extends React.Component  {
 }
 
 
-const mapStateToProps = state => ({    
+const mapStateToProps = state => ({
+    ...state.isAuth,
     fields: state.personalDataForm.fields,
     datosProductos: state.personalDataForm.fields.datosProductos,
     validForms: state.personalDataForm.validForms,

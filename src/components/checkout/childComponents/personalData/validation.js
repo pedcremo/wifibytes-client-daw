@@ -50,8 +50,9 @@ export function validator(value, name, type="text") {
                 return "This is not a valid sim"
             break;
         case "date":
-            if (!Regex.regexFNAC.test(value))
+            if (!value.match(Regex.regexFNAC))
                 return "Esta fecha no es valida"
+
             break;
         case "select-one":
             if (value=="")
