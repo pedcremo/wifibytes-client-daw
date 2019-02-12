@@ -1,3 +1,21 @@
+:root {
+	--headerHeight: 75px;
+	--contentHeight: calc(100vh - var(--headerHeight) - var(--footerHeight));
+	--footerHeight: 230px;
+}
+
+nav {
+	height: var(--headerHeight);
+}
+
+#main {
+	min-height: var(--contentHeight);
+}
+
+footer {
+	height: var(--footerHeight);
+}
+
 /*-------------------------
     DATA FORM STYLES
 -------------------------*/
@@ -90,6 +108,7 @@ nav {
 	/* font-family:'Duepuntozero bold'; */
 	font-weight: normal;
 	font-size: 16px;
+	height: var(--headerHeight);
 }
 
 .glow {
@@ -314,9 +333,10 @@ nav {
 }
 
 .login-acces > form {
-	padding: 10%;
+	padding: 0 50px;
 	display: grid;
-	height: 400px;
+	width: 500px;
+	height: 600px;
 	grid-template-columns: 1fr;
 	background-color: rgba(255, 255, 255, 0.9);
 }
@@ -358,6 +378,7 @@ nav {
 }
 .login-acces > form > span > input {
 	letter-spacing: 0.1rem;
+	width: 350px;
 	grid-area: in;
 	background-color: white !important;
 }
@@ -383,7 +404,7 @@ nav {
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	z-index: -1;
 }
 .login:after {
