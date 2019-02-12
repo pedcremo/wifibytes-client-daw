@@ -16,9 +16,13 @@ import Resume from './paymentTypes/Resume';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
 import { Regex } from '../../../../regex';
-import { validations }  from '../../../../validators/paymentFormValidators';
+import { validations } from '../../../../validators/paymentFormValidators';
+import { Agent } from '../../agent';
+import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
+
 const mapStateToProps = state => ({ ...state.payment });
-const cartItems = JSON.parse(localStorage.getItem('cartReducer'))
+
+
 class Payment extends React.Component {
   constructor() {
     super();
@@ -127,14 +131,21 @@ class Payment extends React.Component {
       paymentMethod={this.props.paymentMethod} />;
   }
 
+  showPaymentOptions(thereIsAtLeastOneProduct) {
+    return thereIsAtLeastOneProduct.length > 0 ?
+      <div className="payment-components">
+        {this.showPaymentOptionsRadioButton()}
+        {this.paymentForm(this.props.paymentMethod)}
+      </div> : null;
+  }
+
   render() {
-    console.log(validations)
+    const cartItems = JSON.parse(localStorage.getItem('cartReducer'));
+    let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems.items, CheckIfThereIsAtLeastOneItem);
+    thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter(thing => thing === "productos");
     return (
       <div className="payment-container">
-        <div className="payment-components">
-          {this.showPaymentOptionsRadioButton()}
-          {this.paymentForm(this.props.paymentMethod)}
-        </div>
+        {this.showPaymentOptions(thereIsAtLeastOneProduct)}
         <div className="cart-resume">
           {<Resume
             translate={this.context}
