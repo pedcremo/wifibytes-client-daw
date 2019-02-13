@@ -13,6 +13,7 @@ import { changeView } from './loginActions';
 class SignIn extends React.Component {
 	componentWillMount() {
 		this.props.changeView(window.location.href.split('/')[4]);
+		window.addEventListener('hashchange', (e) => console.log('hashchange1', window.location.hash));
 	}
 	render() {
 		const { changeView, view } = this.props;

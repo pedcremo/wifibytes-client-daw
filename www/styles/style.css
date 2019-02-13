@@ -368,7 +368,7 @@ nav {
 }
 
 .login-acces > form > span > label.down {
-	transform: translate(0, 57px);
+	transform: translate(30px, 66px);
 }
 
 .login-acces > form > span > label {
@@ -381,6 +381,7 @@ nav {
 	width: 350px;
 	grid-area: in;
 	background-color: white !important;
+	border: 1px solid black;
 }
 
 .loginInput {
