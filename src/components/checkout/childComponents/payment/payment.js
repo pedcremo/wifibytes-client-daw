@@ -15,7 +15,6 @@ import { PaymentOptionsRadioButton } from './paymentTypes/paymentOptions';
 import Resume from './paymentTypes/Resume';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
-import { Regex } from '../../../../regex';
 import { Validations } from '../../../../validators/paymentFormValidators';
 import { Agent } from '../../agent';
 import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
@@ -26,6 +25,10 @@ const mapStateToProps = state => ({ ...state.payment });
 class Payment extends React.Component {
   constructor() {
     super();
+    /**
+     * Here we have all dispatch, the dispatch are used to update in reducer the data
+     * that we sent to them
+     */
     this.changePaymentMethod = () => ev => {
       this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
     }
@@ -48,16 +51,23 @@ class Payment extends React.Component {
       this.onChangeField("cardOwner", ev.target.value)
     }
   }
+  /**
+   * Is valid is a function that use all validations to verify that all component is valid
+   */
   isValid() {
     return Validations.cvvIsValid(this.props.cvv) && Validations.cardOwnerIsValid(this.props.cardOwner) && Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear) && Validations.cardNumberIsValid(this.props.cardNumber);
   }
 
+  /**
+   * In componentDidMount we get all payment types from server and save it in the reducer
+   */
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
   }
 
+
   componentDidUpdate() {
-    this.props.paymentMethod !== 1 || this.isValid() ? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+    this.props.paymentMethod !== 1 || this.isValid() || !this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
     this.props.paymentMethod === 1 ?
       this.props.dispatch(updateData('payment', {
         cardOwner: this.props.cardOwner,
@@ -67,36 +77,69 @@ class Payment extends React.Component {
       this.props.dispatch(updateData('payment', { codpago: this.props.paymentMethod }));
   }
 
+  /**
+   * 
+   * @param {*} codPago
+   * In paymentForm we pass him a @param codPago  and return the component choosed by user,
+   * by default in reducer we put MastercardVisaAmericanExpressForm
+   */
   paymentForm(codPago = 1) {
     switch (codPago) {
       case 2:
         return <EfectivoForm
           translate={this.context}
-          description={this.props.paymentMethods[0].descripcion} />; /**Efectivo */
+          /**
+           * Efectivo
+           * Gets from server the data to show in component
+           */
+          description={this.props.paymentMethods[0].descripcion} />;
       case 3:
         return <DirectDebitForm
           translate={this.context}
+          /**
+          * Direct Debit
+          * Gets from server the data to show in component
+          */
           description={this.props.paymentMethods[1].descripcion} />;
       default:
         return <MastercardVisaAmericanExpressForm
+          translate={this.context}
+          /**
+           * Every change item method
+           * When we write it updates the reducer
+           */
           onChangeField={this.onChangeField}
           onChangeCvv={this.onChangeCvv}
           onChangeCardOwner={this.onChangeCardOwner}
           onChangeCardNumber={this.onChangeCardNumber}
           onChangeExpirationMonth={this.onChangeExpirationMonth}
           onChangeExpirationYear={this.onChangeExpirationYear}
-          translate={this.context}
+          /**
+           * Every value from every item from reducer
+           * We do that to dont lose the data when the reducer render after
+           * update an item
+           */
           cardOwner={this.props.cardOwner}
+          cardNumber={this.props.cardNumber}
+          expirationYear={this.props.expirationYear}
+          expirationMonth={this.props.expirationMonth}
+          cvv={this.props.cvv}
+          /**
+           * Validations, to validate that data is the right
+           */
           cardOwnerIsValid={Validations.cardOwnerIsValid(this.props.cardOwner)}
           cardNumberIsValid={Validations.cardNumberIsValid(this.props.cardNumber)}
           expirationDateIsValid={Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear)}
           cvvIsValid={Validations.cvvIsValid(this.props.cvv)}
-          cardNumber={this.props.cardNumber}
-          expirationYear={this.props.expirationYear}
-          expirationMonth={this.props.expirationMonth}
-          cvv={this.props.cvv} />;
+        />;
     }
   }
+
+  /**
+   * showPaymentOptionsRadioButton is a function that returns the payment options component,
+   * we pass to him all payment methots from server, current payment method and the methot to
+   * update it
+   */
   showPaymentOptionsRadioButton() {
     return <PaymentOptionsRadioButton
       changePaymentMethod={this.changePaymentMethod}
@@ -104,26 +147,32 @@ class Payment extends React.Component {
       paymentMethod={this.props.paymentMethod} />;
   }
 
-  showPaymentOptions(thereIsAtLeastOneProduct) {
-    return thereIsAtLeastOneProduct.length > 0 ?
+  showPaymentOptions() {
+    return this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
       <div className="payment-components">
         {this.showPaymentOptionsRadioButton()}
         {this.paymentForm(this.props.paymentMethod)}
       </div> : null;
   }
-
-  render() {
+  /**Gets the cartItems and checks if there is at least one product and returns an array with
+   * that information
+   */
+  getCartItemsAndIfThereIsAtLeastOneProduct() {
     const cartItems = JSON.parse(localStorage.getItem('cartReducer'));
     let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems.items, CheckIfThereIsAtLeastOneItem);
     thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter(thing => thing === "productos");
+    return [cartItems, thereIsAtLeastOneProduct.length > 0];
+  }
+
+  render() {
     return (
       <div className="payment-container">
-        {this.showPaymentOptions(thereIsAtLeastOneProduct)}
+        {this.showPaymentOptions()}
         <div className="cart-resume">
           {<Resume
             translate={this.context}
           />}
-          {<Cart cartItems={cartItems} />}
+          {<Cart cartItems={this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
         </div>
       </div>
     );
