@@ -212,7 +212,7 @@ class PersonalForm extends React.Component  {
                         <h4>Suba una imagen de su dni</h4>
                         <input 
                         type="file"
-                        id="dni" 
+                        id="file" 
                         ref = "file"
                         name = "preview"
                         onChange={this.previewFile} /><br/>

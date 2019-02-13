@@ -93,6 +93,10 @@ const isAuth = store => next => action => {
   if (action.isAuth) {
     let token = Utils.getCookie("jwt");
     if (token) {
+      store.dispatch({
+        type: AUTH_SET,
+        user: true
+      });
       Utils.post("/api-token-verify/", { token: token }).then(
         res => {
           store.dispatch({

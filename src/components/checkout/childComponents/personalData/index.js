@@ -48,13 +48,13 @@ class Personal extends React.Component  {
          * si el usuari s'ha logeat o registrat
          */
         this.printComponent = this.printComponent.bind(this);
-        this.changeIsAuth = this.changeIsAuth.bind(this);
+        // this.changeIsAuth = this.changeIsAuth.bind(this);
     }
     /**
      * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
      */
-    componentDidMount(){
+    componentWillMount(){
         this.props.dispatch(getContactDataForm());
         this.props.dispatch(getItems());
 
@@ -62,10 +62,7 @@ class Personal extends React.Component  {
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
         if(this.props.isAuth){
-            this.changeIsAuth(true)
-            this.setState({
-                auth: value
-            })
+            this.changeModal(false)
         }else{
             this.changeModal(true)
         }
@@ -104,16 +101,16 @@ class Personal extends React.Component  {
      * i cuan tornem ho recibim açi i cambiem el estat de isAuth que ens diu si esta o no
      * logeat i amaguem el modal per a que pugam omplir el formulari
      */
-    changeIsAuth(value){
-        if (value == true){
-            this.setState({
-                isAuth : value
-            })
-            setTimeout(()=>{this.changeModal(false) }, 1000);
-        }else{
-            console.log("Error, el usuario no se ha logeado/registrado")
-        }
-    }
+    // changeIsAuth(value){
+    //     if (value == true){
+    //         this.setState({
+    //             isAuth : value
+    //         })
+    //         setTimeout(()=>{this.changeModal(false) }, 1000);
+    //     }else{
+    //         console.log("Error, el usuario no se ha logeado/registrado")
+    //     }
+    // }
 
     /**
      * 
@@ -160,11 +157,22 @@ class Personal extends React.Component  {
     }
     
     componentDidUpdate(prevProps, prevState) {
+        //////////////////// IS VALID ///////////////////////////
+        //this.props.dispatch(setCompleted());
+        //////////////////// INVALID ////////////////////////////
+        //this.props.dispatch(setUncompleted());
+        //console.log(prevProps.validForms, this.props.validForms)
+        this.props.dispatch(setUncompleted());
         if (prevProps.validForms != this.props.validForms) {
           //  alert("2")
             if (this.props.validForms) {
                 this.props.dispatch(setCompleted());
-                this.props.dispatch(updateData("personalData", this.props.fields));
+                let objData = this.props.fields
+                for (const key in objData.datosPersonales) {
+                    objData.datosPersonales[key] = objData.datosPersonales[key]["value"];
+                }
+
+                this.props.dispatch(updateData("personalData", objData));
                 
             //    console.log(1)
             } else {          
@@ -197,7 +205,7 @@ class Personal extends React.Component  {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-large btn-block btn-default">Validar Datos</button>
+
             </div>
         );
     }
