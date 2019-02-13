@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import IsAuth from '../isAuth';
 import { Utils } from '../../utils';
 import { Redirect } from 'react-router-dom';
+import InicioProfile from './inicioProfile';
 
 import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
 
@@ -31,32 +32,52 @@ const mapStateToProps = (state) => ({
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props);
+		this.state = {
+			view: <InicioProfile />
+		};
+		this.changeView = this.changeView.bind(this);
 		if (this.props.user) this.props.onLoad(this.props.user.id_consumer);
 	}
+
+	changeView(value, ev) {
+		ev.preventDefault();
+		this.setState({
+			view: value
+		});
+	}
+
 	render() {
 		const { isAuth, user, logout, profile } = this.props;
-		if (!isAuth) return <Redirect to="/" />;
 		return (
-			<div className="profile">
+			<main>
 				<IsAuth />
-				{profile ? (
-					<div>
+				{isAuth ? (
+					<div className="profile">
 						<div>
 							<h1>Mi Cuenta</h1>
 							<ul>
-								<li>INICIO</li>
-								<li>MIS PEDIDOS</li>
-								<li>MIS LÍNEAS</li>
-								<li>AJUSTES DE CUENTAS</li>
-								<li>MIS FACTURAS</li>
+								<li>
+									<a onClick={(ev) => this.changeView(<InicioProfile />, ev)}>INICIO</a>
+								</li>
+								<li>
+									<a onClick={(ev) => this.changeView(<div>MIS PEDIDOS</div>, ev)}>MIS PEDIDOS</a>
+								</li>
+								<li>
+									<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
+								</li>
+								<li>
+									<a onClick={(ev) => this.changeView(<div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
+								</li>
+								<li>
+									<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
+								</li>
 							</ul>
 							<button onClick={logout}>Logout</button>
 						</div>
-						<div>CONTAINER</div>
+						<div>{this.state.view}</div>
 					</div>
 				) : null}
-			</div>
+			</main>
 		);
 	}
 }

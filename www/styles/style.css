@@ -666,4 +666,7 @@ p.login-recuperar:hover {
 	background-image: linear-gradient(to right, rgb(46, 91, 189), rgb(23, 175, 142));
 	height: 100%;
 	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	padding: 15vw;
 }
