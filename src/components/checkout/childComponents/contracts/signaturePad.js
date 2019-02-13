@@ -11,7 +11,6 @@ class SignPad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          showPad: false,
           defaultCanvas: ""
         };
     }
@@ -106,8 +105,7 @@ class SignPad extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(SignPad);
 

@@ -101,40 +101,39 @@ class Contracts extends React.Component {
 
     /**Recive sign from the child */
     reciveSign(sign) {
-        let that = this;
-        navigator.geolocation.getCurrentPosition(succces, error);
-        function succces(pos) {
-            that.setState({
-                showModal: false,
-                next: true,
-                data: {
-                    ...that.state.data,
-                        sign: sign,
-                        pos: "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude,
-                        time: 'Hour: ' + new Date()
-                }
-            }); 
-            
-            that.mountContracts();
-            that.updateData("contracts", that.state);
-            that.props.setCompleted();
-        };
-        function error() {
-            that.setState({
-                showModal: false,
-                next: true,
-                data: {
-                    ...that.state.data,
-                        sign: sign,
-                        pos: '',
-                        time: 'Hour: ' + new Date()
-                }
-            }); 
-            
-            that.mountContracts();
-            that.updateData("contracts", that.state);
-            that.props.setCompleted();
-        }
+        this.getPosition({ enableHighAccuracy: true })
+            .then((pos) => {
+                this.setState({
+                    showModal: false,
+                    next: true,
+                    data: {
+                        ...this.state.data,
+                            sign: sign,
+                            pos: pos.coords? "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude : '',
+                            time: 'Hour: ' + new Date()
+                    }
+                }); 
+                
+                this.mountContracts();
+                this.updateData("contracts", this.state);
+                this.props.setCompleted();
+            });
+    }
+
+    getPosition(settings) {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                // On Success
+                function(position) {
+                   resolve(position);
+                },
+                // On Error
+                function(error) {
+                    resolve(error);
+                },
+                settings
+            );
+        }); 
     }
 
     mountContracts() {
