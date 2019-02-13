@@ -16,7 +16,7 @@ import Resume from './paymentTypes/Resume';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
 import { Regex } from '../../../../regex';
-import { validations } from '../../../../validators/paymentFormValidators';
+import { Validations } from '../../../../validators/paymentFormValidators';
 import { Agent } from '../../agent';
 import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
 
@@ -49,35 +49,8 @@ class Payment extends React.Component {
     }
   }
   isValid() {
-    return this.cvvIsValid() && this.cardOwnerIsValid() && this.expirationDateIsValid() && this.cardNumberIsValid();
+    return Validations.cvvIsValid(this.props.cvv) && Validations.cardOwnerIsValid(this.props.cardOwner) && Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear) && Validations.cardNumberIsValid(this.props.cardNumber);
   }
-  expirationDateIsValid() {
-    const today = new Date();
-    return ((today.getMonth() + 1) > this.props.expirationMonth ? today.getFullYear() < this.props.expirationYear : today.getFullYear() <= this.props.expirationYear);
-  }
-  cvvIsValid() {
-    return this.props.cvv.toString().match(Regex.cvv);
-  }
-  cardOwnerIsValid() {
-    return this.props.cardOwner.match(Regex.cardOwner);
-  }
-  cardNumberIsValid() {
-    let cardNumberProps = this.props.cardNumber.toString();
-    let cardNumberArray = (cardNumberProps).toString(10).split("").map(t => { return parseInt(t) })
-    cardNumberArray = cardNumberArray.map((number, i) => {
-      return i % 2 === 0 ? number * 2 : number;
-    })
-    cardNumberArray = cardNumberArray.map((number, i) => {
-      return (i % 2 === 0 && number >= 10) ? number - 9 : number;
-    });
-    let sum = 0;
-    cardNumberArray.map(number => {
-      sum += number;
-    });
-    return sum % 10 === 0;
-
-  }
-
 
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
@@ -114,10 +87,10 @@ class Payment extends React.Component {
           onChangeExpirationYear={this.onChangeExpirationYear}
           translate={this.context}
           cardOwner={this.props.cardOwner}
-          cardOwnerIsValid={this.cardOwnerIsValid()}
-          cardNumberIsValid={this.cardNumberIsValid()}
-          expirationDateIsValid={this.expirationDateIsValid()}
-          cvvIsValid={this.cvvIsValid()}
+          cardOwnerIsValid={Validations.cardOwnerIsValid(this.props.cardOwner)}
+          cardNumberIsValid={Validations.cardNumberIsValid(this.props.cardNumber)}
+          expirationDateIsValid={Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear)}
+          cvvIsValid={Validations.cvvIsValid(this.props.cvv)}
           cardNumber={this.props.cardNumber}
           expirationYear={this.props.expirationYear}
           expirationMonth={this.props.expirationMonth}

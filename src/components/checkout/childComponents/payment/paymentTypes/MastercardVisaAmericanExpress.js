@@ -9,9 +9,10 @@ export default function MastercardVisaAmericanExpressForm(props) {
 
   function createExpirationYears() {
     let options = [];
+    const today = new Date();
     for (let i = 0; i <= 20; i++) {
       options.push(
-        <option key={i} value={expirationYear + i}>{expirationYear + i}</option>
+        <option key={i} value={today.getFullYear() + i}>{today.getFullYear() + i}</option>
       );
 
     }
@@ -35,7 +36,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
       </fieldset>
       <fieldset className="form-group">
         <h3 className="errors"
-          hidden={props.cardOwnerIsValid}>
+          hidden={props.cardNumberIsValid}>          
           {props.translate.t("error-payment-credit-card")}</h3>
         <label>{props.translate.t("payment-numberCard")}</label>
         <input
@@ -69,9 +70,6 @@ export default function MastercardVisaAmericanExpressForm(props) {
         </select>
       </fieldset>
       <fieldset className="form-group">
-        <h3 className="errors"
-          hidden={props.cvvIsValid}>
-          {props.translate.t("error-payment-expiration-year")}</h3>
         <label>{props.translate.t("payment-expirationYear")}</label>
         <select
           className="form-control form-control-lg"
