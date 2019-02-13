@@ -1,11 +1,11 @@
 /** @module ComponentsApp */
 import React from 'react';
 import { connect } from 'react-redux';
-import IsAuth from './isAuth';
-import { Utils } from '../utils';
+import IsAuth from '../isAuth';
+import { Utils } from '../../utils';
 import { Redirect } from 'react-router-dom';
 
-import { LOGOUT, GET_PROFILE } from '../constants/actionTypes';
+import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
 
 /**
  * @class
@@ -41,30 +41,19 @@ class Profile extends React.Component {
 			<div className="profile">
 				<IsAuth />
 				{profile ? (
-					<div display={user ? 'none' : 'block'}>
+					<div>
 						<div>
-							<span>
-								<h1>Nombre : </h1>
-								<h3>{profile.nombre}</h3>
-							</span>
-							<span>
-								<h1>Apellido : </h1>
-								<h3>{profile.apellido}</h3>
-							</span>
-							<span>
-								<h1>Email : </h1>
-								<h3>{profile.email}</h3>
-							</span>
-							<span>
-								<h1>Telefono : </h1>
-								<h3>{profile.telefono}</h3>
-							</span>
-							<span>
-								<h1>Genero : </h1>
-								<h3>{profile.genero}</h3>
-							</span>
+							<h1>Mi Cuenta</h1>
+							<ul>
+								<li>INICIO</li>
+								<li>MIS PEDIDOS</li>
+								<li>MIS LÍNEAS</li>
+								<li>AJUSTES DE CUENTAS</li>
+								<li>MIS FACTURAS</li>
+							</ul>
 							<button onClick={logout}>Logout</button>
 						</div>
+						<div>CONTAINER</div>
 					</div>
 				) : null}
 			</div>
