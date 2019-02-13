@@ -5,9 +5,12 @@ import { PropTypes } from 'prop-types';
 const mapStateToProps = state => ({ ...state });
 
 class Resume extends React.Component {
-  /**
-   * Return the personal data from the user
-   */
+
+
+  componentDidMount() {
+    //this.props.dispatch(getPaymentTypes());
+  }
+
   render() {
     return (
       <div className="resume">
