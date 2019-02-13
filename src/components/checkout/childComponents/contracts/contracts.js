@@ -44,6 +44,9 @@ const mapStateToProps = state => ({
 class Contracts extends React.Component {
     constructor(props) {
         super(props);
+        /**If this.props.infoContracts have info. is saved in the state, else the state is declared empty. 
+         * Then if subtarifas.length previously saved in the props is different to the new count of subtarifas, 
+         * the contracts are declared empty otherwise used the contracts saved in props*/
         if(this.props.infoContracts) {
             this.state = {
                 data: this.props.infoContracts.data,
@@ -87,6 +90,7 @@ class Contracts extends React.Component {
         /* Call function in mapDispatchToProps updateData */
         this.updateData = (key,data) => this.props.updateData(key,data);
     }
+    /**Set the state of the component to true and get the contracts, if the personalData is null the contracts aren't mounted */
     componentDidMount(){
         this.setState({ mounted: true });
         this.getDatosContracts().then(() => {
@@ -95,6 +99,7 @@ class Contracts extends React.Component {
         });
     }
 
+    /**If this.state.next is false it doesn't run setUncompleted */
     componentDidUpdate(){
         if(!this.state.next)
             this.props.setUncompleted();
@@ -134,14 +139,15 @@ class Contracts extends React.Component {
             });
     }
 
+    /**Get the user position */
     getPosition(settings) {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
-                // On Success
+                /** On Success*/
                 function(position) {
                    resolve(position);
                 },
-                // On Error
+                /**On Error */
                 function(error) {
                     resolve(error);
                 },
@@ -168,6 +174,8 @@ class Contracts extends React.Component {
                 return item.title+" "+item.content;
             });
 
+            /**If the this.state.mounted is true then I add contractsHTML and subtarifas length to the state.
+             * Eval is for to join the contracts one behind the other*/
             if(this.state.mounted) {
                 this.setState({ 
                     contractsHTML: eval('`' + datosTexts.join(' ') + '`'),
@@ -204,6 +212,7 @@ class Contracts extends React.Component {
             return (
                 <div className="d-flex flex-column align-items-center">
                     {
+                        /**If this.state.next is false then the error message is shown */
                         !this.state.next? 
                             <p className="mt-5 text-danger">{this.context.t("sign-validation")}</p>
                         :
@@ -214,6 +223,7 @@ class Contracts extends React.Component {
                             {this.context.t("btn-seeContracts")}
                         </button>
                     </div>
+                    {/* Here we show the modal with the contracts */}
                     <div className="modal fade" id="modalContracts" tabIndex="-1" role="dialog" aria-labelledby="modalContracts" aria-hidden="true">
                         <div className="modal-dialog modal-lg" role="document">
                             <div className="modal-content">
@@ -228,6 +238,7 @@ class Contracts extends React.Component {
                                 </div>
                                 <div className="modal-footer">
                                     { 
+                                        /**If this.state.next is false accept button is shown, else show next button */
                                         !this.state.next?
                                             <button type="button" className="btn btn-primary" data-toggle="modal" onClick={() => this.stateModal(true)}>{this.context.t("btn-accept")}</button>
                                         :
@@ -239,6 +250,7 @@ class Contracts extends React.Component {
                     </div>
 
                     {
+                        /**If this.state.showModal is true, the modal with the canvas is showed */
                         this.state.showModal ?
                             <div id="myModal" className="modal_manual modal_manual_con">
                                 <div className="modal-content_manual modal-content_manual_con">
