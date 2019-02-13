@@ -34,6 +34,10 @@ export default function currentCheckout(state = initialState, action) {
                     steps: action.payload.steps
                 };
             } else {
+                action.payload.steps.map(function(step) {
+                    step.className="";
+                    return step.completed=false;
+                });
                 return {
                     ...state,
                     loading: false,

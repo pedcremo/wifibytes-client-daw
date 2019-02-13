@@ -63,7 +63,7 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount() {
-        console.log(JSON.parse(localStorage.getItem('cartReducer')));
+        console.log(localStorage.getItem('cartReducer'));
         if (JSON.parse(localStorage.getItem('cartReducer')) != null) {
             let stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
             let filteredSteps = Agent.filterArray(steps, stepsRates);
@@ -72,6 +72,13 @@ class Checkout extends React.Component {
             this.context.router.history.push('/');
         }
     }
+
+    /**
+     * componentDidUpdate is executed before the next component is mounted but after that component is initiated
+     * with that in mind each step is provided with a new ID each time the method is invoked
+     * then, once is assured no mistake a foreach query selected add event listener is provided 
+     * containing a dispatched action from redux to allow a step to load if its pressed
+     */
 
     componentDidUpdate() {
         const self = this;
@@ -86,14 +93,16 @@ class Checkout extends React.Component {
             setID(item, index);
             addClickEvent(item, index);
         });
-        
+        /**
+         * Each time the component is updated steps are checked to activate the button in case all steps are completed
+         */
         steps.filter(step => step.completed===true).length !== steps.length?
         this.props.disableButton():
         this.props.activateButton();
     }
 
     sendOrder() {
-        console.log("sendOrder",this.props);
+        console.log("sendOrder",this.props.data);
         //let data = { "personal_data": { "name": "pepito", "surname": "caball" }, "contract": { "sd": "sdsd" }, "confirm": { "asd": "sdsd" } };
         Agent.ObjectSendToOrder(this.props.data, steps);
     }
