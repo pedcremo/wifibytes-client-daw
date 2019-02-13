@@ -63,6 +63,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                         cif: {value: ""}, */
                     }
             }
+            console.log(state.fields)
                 
             return {
                 ...state,
@@ -144,7 +145,6 @@ export default function personalDataFormReducer(state = initialState, action) {
 
                         }
 
-
                         if (item.tipo === "portabilidad" && item.hasOwnProperty("value")) {
                             if (item.tipoTlf==="fijo") {
                                 let object = item.value
@@ -194,11 +194,6 @@ export default function personalDataFormReducer(state = initialState, action) {
                 
                 
             }
-
-            /* if (state.validDatosPersonales === true && state.validDatosProductos === true)
-                state.validForms = true
-            else
-                state.validForms = false */
 
             return {
                 ...state,

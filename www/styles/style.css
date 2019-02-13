@@ -26,15 +26,6 @@ footer {
 }
 
 .grid-data-form {
-<<<<<<< HEAD
-    display: grid;
-    max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-columns: 1fr;
-    grid-gap: 2rem;
-    padding: 20px;
-=======
 	display: grid;
 	max-width: 750px;
 	margin-left: auto;
@@ -42,7 +33,6 @@ footer {
 	grid-template-columns: 1fr;
 	grid-gap: 2rem;
 	padding: 20px;
->>>>>>> origin/master
 }
 
 .grid-data-container {
@@ -516,23 +506,20 @@ p.login-recuperar:hover {
 /* The Modal (background) */
 
 .modal_manual {
-	display: block;
-	position: fixed;
-	/* Stay in place */
-	z-index: 1;
-	/* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%;
-	/* Full width */
-	height: 100%;
-	/* Full height */
-	overflow: auto;
-	/* Enable scroll if needed */
-	background-color: rgb(0, 0, 0);
-	/* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4);
-	/* Black w/ opacity */
+  display: block;
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;/* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 .modal_manual_con {
     display: flex;

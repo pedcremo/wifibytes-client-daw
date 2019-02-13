@@ -48,29 +48,19 @@ class Personal extends React.Component  {
          * si el usuari s'ha logeat o registrat
          */
         this.printComponent = this.printComponent.bind(this);
-        this.changeIsAuth = this.changeIsAuth.bind(this);
+        // this.changeIsAuth = this.changeIsAuth.bind(this);
     }
     /**
      * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
      */
-    componentDidMount(){
+    componentWillMount(){
         this.props.dispatch(getContactDataForm());
         this.props.dispatch(getItems());
-        
+
         /* Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
-        AuthService.isAuth().then(value =>{
-            //console.log("EL usuario esta logeado", value)
-            this.changeIsAuth(true)
-            this.setState({
-                auth: value
-            })
-        }).catch((err) => {
-            //console.log("NO logueado", err)
-            this.changeModal(true)
-        })
         let array = [];
         /**Bring an object like this {movil:1, fijo:5....} */
         let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
@@ -97,13 +87,8 @@ class Personal extends React.Component  {
                 this.props.dispatch(updateDatosProductos(array))
             }
         }
-
-        
-
     }
-
     
-     
     /**
      * 
      * @param {changeIsAuth} value
@@ -111,16 +96,16 @@ class Personal extends React.Component  {
      * i cuan tornem ho recibim açi i cambiem el estat de isAuth que ens diu si esta o no
      * logeat i amaguem el modal per a que pugam omplir el formulari
      */
-    changeIsAuth(value){
-        if (value == true){
-            this.setState({
-                isAuth : value
-            })
-            setTimeout(()=>{this.changeModal(false) }, 1000);
-        }else{
-            console.log("Error, el usuario no se ha logeado/registrado")
-        }
-    }
+    // changeIsAuth(value){
+    //     if (value == true){
+    //         this.setState({
+    //             isAuth : value
+    //         })
+    //         setTimeout(()=>{this.changeModal(false) }, 1000);
+    //     }else{
+    //         console.log("Error, el usuario no se ha logeado/registrado")
+    //     }
+    // }
 
     /**
      * 
@@ -144,7 +129,6 @@ class Personal extends React.Component  {
         })
     }
     /**
-     * 
      * @param {printComponent} value
      * Lo que fa es recollir del component userChoice que ha elegit el usuari,
      * despres va al ${changeType} y li asigna el valor de register o login i de esta
@@ -198,6 +182,10 @@ class Personal extends React.Component  {
         /**
          * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
          */
+        // this.setState({
+        //     styleModal : this.props.isAuth
+        // })
+
         return (
             <div>
                 <PersonalDataForm dataUser={this.props.fields.datosPersonales} tipCliente={mockClientes} updateField={this.props.dispatch}/>
@@ -206,9 +194,9 @@ class Personal extends React.Component  {
                     {this.props.datosProductos.map((item, i)=> <PortabilidadForm tipo={item.tipoTlf}  key={i} id={i} datosProductos={item} companies={mockCompanies} updateField={this.props.dispatch}/>)}                
                 </div>
 
-                <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal ? "visible" : "hidden"}}>
-                    <div className="modal_content_manual modal-content_manual">
-                        <span className="close" onClick={() => this.changeModal(false)}>&times;</span>
+                <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal || this.props.isAuth ? "hidden" : "visible"}}>
+                    <div className="modal-content_manual">
+                        <span className="close" onClick={() => this.changeModal(!this.state.styleModal)}>&times;</span>
                         {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth} /> : 
                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth} />  :
                         this.state.selected == "none" ? this.printComponent("none") :
@@ -221,7 +209,8 @@ class Personal extends React.Component  {
 }
 
 
-const mapStateToProps = state => ({    
+const mapStateToProps = state => ({
+    ...state.isAuth,
     fields: state.personalDataForm.fields,
     datosProductos: state.personalDataForm.fields.datosProductos,
     validForms: state.personalDataForm.validForms,
