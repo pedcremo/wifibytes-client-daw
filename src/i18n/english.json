@@ -111,5 +111,15 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Hire"
+    "hire": "Hire",
+
+    "sign-validation": "*Contracts must be signed",
+    "btn-seeContracts": "See Contracts",
+    "btn-accept": "Accept and Sign",
+    "btn-next": "Next",
+    "btn-signContracts": "Sign Contracts",
+    "validation-personalData": "* Personal Data is required",
+    "btn-disabled": "Disabled",
+    "btn-clear": "Clear",
+    "btn-save": "Save"
 }

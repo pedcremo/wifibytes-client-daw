@@ -62,7 +62,7 @@ export const Agent = {
             data.hasOwnProperty(element.key) && Object.keys(data[element.key]).length > 0 ? cont++ : false;
         });
         if (cont == items.length) {
-            console.log("LLEST");
+            console.log("LLEST",data);
             /*Utils.post("/pedidos",data).then(response =>{
                     response = JSON.parse(response);
                     console.log("PEDIDOS",response);

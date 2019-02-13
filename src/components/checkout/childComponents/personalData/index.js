@@ -215,8 +215,6 @@ class Personal extends React.Component  {
                         <UserChoice choice={this.printComponent} /> }
                     </div>
                 </div>
-
-
             </div>
         );
     }

@@ -110,5 +110,15 @@
     "check-out-button": "Proceso de compra",
     "buy": "Comprar",
     "empty_cart": "Carrito vacio...",
-    "hire": "Contratar"
+    "hire": "Contratar",
+
+    "sign-validation": "*Los contratos tienen que ser firmados",
+    "btn-seeContracts": "Ver contratos",
+    "btn-accept": "Aceptar y firmar",
+    "btn-next": "Siguiente",
+    "btn-signContracts": "Firmar Contratos",
+    "validation-personalData": "* La información personal es necesaria",
+    "btn-disabled": "Deshabilitado",
+    "btn-clear": "Limpiar",
+    "btn-save": "Guardar"
 }

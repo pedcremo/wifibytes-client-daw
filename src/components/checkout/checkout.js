@@ -96,14 +96,14 @@ class Checkout extends React.Component {
     }
 
     sendOrder() {
-        let data = { "personal_data": { "name": "pepito", "surname": "caball" }, "contract": { "sd": "sdsd" }, "confirm": { "asd": "sdsd" } };
-        Agent.ObjectSendToOrder(data, steps);
+        console.log("sendOrder",this.props);
+        //let data = { "personal_data": { "name": "pepito", "surname": "caball" }, "contract": { "sd": "sdsd" }, "confirm": { "asd": "sdsd" } };
+        Agent.ObjectSendToOrder(this.props.data, steps);
     }
     /**
      * Render prints the steps to follow and calls the function show step
      */
     render() {
-        let cont = 0;
         const { loading, steps, currentStep, nextStep, disabled } = this.props;
         if (loading)
             return (<div>Loading...</div>);

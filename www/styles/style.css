@@ -457,8 +457,10 @@ p.login-recuperar:hover {
   /* Black w/ opacity */
 }
 .modal_manual_con {
-  z-index: 999999999999999;
-  overflow: inherit;
+    display: flex;
+    align-items: center;
+    z-index: 999999999999999;
+    overflow: inherit;
 }
 /* Modal Content/Box */
 
