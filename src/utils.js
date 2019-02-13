@@ -78,7 +78,7 @@ let Utils={
                 if (xhr.status >= 200 && xhr.status < 300) {
                     resolve(xhr.response);
                 } else {
-                    reject(xhr.statusText);
+                    reject(JSON.parse(xhr.response));
                 }
             };
             xhr.onerror = () => reject(xhr.statusText);
@@ -91,7 +91,7 @@ let Utils={
     */
     get: function (url,filterFunction=null) {
         /**Mocking /formaspago because is not ready in backend */
-        if (url==='/formaspago') 
+        if (url==='/formaspago')
             return filterFunction(PaymentMethod)
         let jwt = this.getCookie("jwt")
         // Return a new promise.

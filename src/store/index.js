@@ -6,7 +6,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 /** We initialize store state with localStorage redux-store entry.
  * It is a persistence backaup of our state if we close browser
- * 
+ *
 */
 export const store = createStore(
     rootReducer,
@@ -18,9 +18,9 @@ export const store = createStore(
 );
 
 store.subscribe(() => {
-    
+
     // Check browser support
-    if (typeof(Storage) !== "undefined") {        
-        window.localStorage.setItem('redux-store',JSON.stringify(store.getState()));
+    if (typeof(Storage) !== "undefined") {
+        //window.localStorage.setItem('redux-store',JSON.stringify(store.getState()));
     }
 })

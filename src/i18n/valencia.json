@@ -71,6 +71,8 @@
     "register-error-pass2": "Les contrasenyes deuen coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correu no es valid",
+    "register-error-emailExist": "El correu ja esta en us",
+    "register-error-cifnifExist": "El CIF/NIF ja esta en us",
 
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
