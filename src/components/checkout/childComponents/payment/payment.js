@@ -15,7 +15,6 @@ import { PaymentOptionsRadioButton } from './paymentTypes/paymentOptions';
 import Resume from './paymentTypes/Resume';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
-import { Regex } from '../../../../regex';
 import { Validations } from '../../../../validators/paymentFormValidators';
 import { Agent } from '../../agent';
 import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
@@ -57,7 +56,7 @@ class Payment extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.paymentMethod !== 1 || this.isValid() ? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+    this.props.paymentMethod !== 1 || this.isValid() || !this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
     this.props.paymentMethod === 1 ?
       this.props.dispatch(updateData('payment', {
         cardOwner: this.props.cardOwner,
@@ -104,26 +103,33 @@ class Payment extends React.Component {
       paymentMethod={this.props.paymentMethod} />;
   }
 
-  showPaymentOptions(thereIsAtLeastOneProduct) {
-    return thereIsAtLeastOneProduct.length > 0 ?
+  showPaymentOptions() {
+    console.log(this.getCartItemsAndIfThereIsAtLeastOneProduct()[1]);
+    return this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
       <div className="payment-components">
         {this.showPaymentOptionsRadioButton()}
         {this.paymentForm(this.props.paymentMethod)}
       </div> : null;
   }
-
-  render() {
+  /**Gets the cartItems and checks if there is at least one product and returns an array with
+   * that information
+   */
+  getCartItemsAndIfThereIsAtLeastOneProduct() {
     const cartItems = JSON.parse(localStorage.getItem('cartReducer'));
     let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems.items, CheckIfThereIsAtLeastOneItem);
     thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter(thing => thing === "productos");
+    return [cartItems, thereIsAtLeastOneProduct.length > 0];
+  }
+
+  render() {
     return (
       <div className="payment-container">
-        {this.showPaymentOptions(thereIsAtLeastOneProduct)}
+        {this.showPaymentOptions()}
         <div className="cart-resume">
           {<Resume
             translate={this.context}
           />}
-          {<Cart cartItems={cartItems} />}
+          {<Cart cartItems={this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
         </div>
       </div>
     );

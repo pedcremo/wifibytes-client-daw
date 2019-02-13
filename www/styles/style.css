@@ -538,7 +538,7 @@ nav {
 }
 .payment-method {
     display: grid;
-    grid-template-columns: 23% 24% 24%;
+    grid-template-columns: 24% 24% 24%;
     justify-content: center;
 }
 .cart-resume button {
