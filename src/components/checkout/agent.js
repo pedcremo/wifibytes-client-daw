@@ -45,7 +45,7 @@ export const Agent = {
                     element[fieldRequire].forEach(item => {
                         library.fieldsToValidate.filter(el => {
                             let regexp = new RegExp(el.regexp);
-                            regexp.test(item.id) ? quantities[el.field] = quantities[el.field] + 1 * element.quantity : false;
+                            regexp.test(item.id) ? quantities[el.field]++ : false;
                         });
                     });
                 }
