@@ -4,7 +4,7 @@ import Enzyme from 'enzyme';
 import Adapter  from "enzyme-adapter-react-16";
 import configureStore from 'redux-mock-store';
 import { Provider } from "react-redux";
-import * as datosContractsAction from '../../src/actions/datosContractsAction';
+import { GET_CONTRACTS } from '../../src/constants/actionTypes';
 import datosContractsReducer from '../../src/reducers/datosContractsReducer'
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -39,28 +39,17 @@ describe('<Contracts />', () => {
     });
 
     it('Dispatches the correct action and payload', () => {
-        const selectedActions = [
-          {
-            'type': 'GET_CONTRACT_BEGIN'
-          },
-        ];
-    
-        store.dispatch(datosContractsAction.getContractsBegin());
-        expect(store.getActions()).toEqual(selectedActions);
-    });
-
-    it('Dispatches the correct action and payload', () => {
         const store = mockStore(initialState);
         const selectedActions = [
           {
-            'type': 'GET_CONTRACT_SUCCESS',
-            'payload': {
-                status: [{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]
+            'type': 'GET_CONTRACTS',
+            'response': {
+                contracts: [{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]
             },
           },
         ];
     
-        store.dispatch(datosContractsAction.getContractsSuccess([{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]));
+        store.dispatch({type: 'GET_CONTRACTS', response:{contracts: [{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]}});
         expect(store.getActions()).toEqual(selectedActions);
     });
 
@@ -68,71 +57,42 @@ describe('<Contracts />', () => {
         const store = mockStore(initialState);
         const selectedActions = [
           {
-            'type': 'GET_CONTRACT_FAILURE',
-            'payload': {
+            'type': 'GET_CONTRACTS',
+            'response': {
                 error: "Error"
             },
           },
         ];
     
-        store.dispatch(datosContractsAction.getContractsFailure('Error'));
+        store.dispatch({type: 'GET_CONTRACTS', response:{error: "Error"}});
         expect(store.getActions()).toEqual(selectedActions);
     });
-
-    /*it("The main Class exists", () => {
-        console.log(contracts)
-        console.log("Hola mundo")
-        const visitorShortcutsWrapper = contracts.find('.modal_manual_con');
-        console.log(contracts.find('.modal_manual_con'))
-        expect(visitorShortcutsWrapper.length).toBeGreaterThan(0);
-    });*/
 
 });
 
 describe('Reducer', () => {
-    /*it('should return the initial state', () => {
-        expect(datosContractsReducer(undefined, {})).toEqual(
-            {
-                loading: false,
-                error: null
-            }
-        )
-    })*/
 
-    it('should handle GET_CONTRACT_BEGIN', () => {
+    it('should handle GET_CONTRACTS', () => {
         expect(
             datosContractsReducer([], {
-                type: datosContractsAction.GET_CONTRACT_BEGIN,
-                payload: null
-            })
-        ).toEqual(
-            {
-                loading: true,
-                error: null
-            }
-        )
-    })
-
-    it('should handle GET_CONTRACT_SUCCESS', () => {
-        expect(
-            datosContractsReducer([], {
-                type: datosContractsAction.GET_CONTRACT_SUCCESS,
-                payload: {status:[{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]}
+                type: GET_CONTRACTS,
+                response: {contracts:[{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]}
                 
             })
         ).toEqual(
             {
                 loading: false,
-                items: [{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}]
+                items: [{title:"tv",content:'content tv'},{title:"movil",content:'content movil'}],
+                error: false
             }
         )
     })
 
-    it('should handle GET_CONTRACT_FAILURE', () => {
+    it('should handle GET_CONTRACTS', () => {
         expect(
             datosContractsReducer([], {
-                type: datosContractsAction.GET_CONTRACT_FAILURE,
-                payload: 'Error'
+                type: GET_CONTRACTS,
+                response: {error:"Error"}
                 
             })
         ).toEqual(
@@ -143,6 +103,5 @@ describe('Reducer', () => {
             }
         )
     })
-
 
 });
