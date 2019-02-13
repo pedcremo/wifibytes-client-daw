@@ -99,6 +99,12 @@
     "payment-address2-debit": "Madrid /Calle de ejemplo Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
+    "error-payment-owner": "El propietario necesita nombre y apellidos",
+    "error-payment-credit-card": "La tarjeta de credito no es valida",
+    "error-payment-expiration-month": "El mes no es valido",
+    "error-payment-expiration-year": "El año no es valido",
+    "error-payment-cvv": "El cvv no es valido",
+
     "resume": "Resumen",
     "resume-name": "Nombre",
     "resume-email": "Correo",
