@@ -6,6 +6,7 @@ import SignPad from './signaturePad';
 import {Utils} from "../../../../utils";
 import {PropTypes} from 'prop-types'
 
+/* Import constants */
 import {
     UPDATE_DATA,
     SET_COMPLETED,
@@ -14,18 +15,25 @@ import {
 } from '../../../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
+    /* Change data contracts in Checkout reducer */
     updateData: (key, data) =>
         dispatch({ type: UPDATE_DATA , payload: {key, data}}),
+    /* Change state contracts to completed */
     setCompleted: () =>
         dispatch({ type: SET_COMPLETED }),
+    /* Change state contracts to uncompleted */
     setUncompleted: () =>
         dispatch({ type: SET_UNCOMPLETED }),
+    /* Get contracts from django server and save in contracts reducer */
     getContracts: response => dispatch({ type: GET_CONTRACTS,  response}),
 });
 
 const mapStateToProps = state => ({
-    datosContracts: state.datosContracts.items,
+    /* We take contracts info from the contract reducer */
+    ...state.datosContracts,
+    /* We obtain our information if it is saved to paint what we already had and to see if they have added or removed contracts */
     infoContracts: state.currentCheckout.data.contracts,
+    /* Check to see if we have the personal data info to paint or not contracts */
     personalData: state.currentCheckout.data.personalData ? state.currentCheckout.data.personalData.datosPersonales : false
 });
 
@@ -66,14 +74,17 @@ class Contracts extends React.Component {
         this.reciveSign = this.reciveSign.bind(this);
         this.stateModal = this.stateModal.bind(this);
         
-
+        /* Call django server and return a Promise to use .then in componentDidMount and call this.mountContracts() to load the contracts */ 
         this.getDatosContracts = () => {
             return Utils.get("/textos_contratos")
             .then(response => {this.props.getContracts({contracts: response}); return response;})
             .catch(error => this.props.getContracts({error: error}));  
         }
+        /* Call function in mapDispatchToProps setCompleted */
         this.setCompleted = () => this.props.setCompleted();
+        /* Call function in mapDispatchToProps setUncompleted */
         this.setUncompleted = () => this.props.setUncompleted();
+        /* Call function in mapDispatchToProps updateData */
         this.updateData = (key,data) => this.props.updateData(key,data);
     }
     componentDidMount(){
@@ -114,8 +125,11 @@ class Contracts extends React.Component {
                     }
                 }); 
                 
+                /* Mount contracts to save new data */
                 this.mountContracts();
+                /* Save new data of the contracts in checkout reducer */
                 this.updateData("contracts", this.state);
+                /* We inform contracts have been correctly performed */
                 this.props.setCompleted();
             });
     }
@@ -136,12 +150,19 @@ class Contracts extends React.Component {
         }); 
     }
 
+    /* Mount the contract HTML */
     mountContracts() {
+        /* Call function subTarifas */
         let subTarifasCon = this.subTarifas();
 
-        if(this.props.datosContracts.length > 0){
+        /* If have the contracts the condition it's true */
+        if(this.props.items.length > 0){
+            /* Create regular expression to get the contracts */
             let re = new RegExp("("+subTarifasCon.join('|')+"|autorizacion)","i");
-            const datosTexts = this.props.datosContracts.filter((itemText) => {
+            /* Filter the contracts using regular expression, 
+            use reverse to show the contract autorizacion at the end of the document, 
+            and concat the title and content to make the HTML*/
+            const datosTexts = this.props.items.filter((itemText) => {
                 return itemText.key.match(re);
             }).reverse().map((item) => {
                 return item.title+" "+item.content;
@@ -156,24 +177,30 @@ class Contracts extends React.Component {
         }     
     }
 
+    /* Get subtarifas from local storage and it will be we returned in a array */
     subTarifas(){
+        /* Declare cartReducer */
         let cartReducer = [];
+        /* Parse JSON gotten from local storage, 
+        make map to items to traverse all the array and get the subrates for the each tariffs, 
+        traverse again the new array and if rates not exists include in the final array */
         JSON.parse(localStorage.getItem('cartReducer'))
         .items.map(item => {return item.subtarifas ? item.subtarifas : []})
         .map(item => {return item.map(item => {
             if(cartReducer.indexOf(item.id) < 0)
                 cartReducer.push(item.id);
         })});
+        /* return cartReducer where we keep id of subrates */
         return cartReducer;
     }
 
     /** render  */
     render() {
-        const { error, loading, datosContracts} = this.props;
-        if (error) return (<div>Error! </div>);
+        const { error, loading, items} = this.props;
+        if (error) return (<p className="mt-5 text-danger">Error to load the contracts! </p>);
         if (loading) return (<div>Loading...</div>);
         
-        if(datosContracts.length > 0 && this.props.personalData){
+        if(items.length > 0 && this.props.personalData){
             return (
                 <div className="d-flex flex-column align-items-center">
                     {
