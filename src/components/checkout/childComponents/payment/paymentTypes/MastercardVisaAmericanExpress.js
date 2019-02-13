@@ -7,6 +7,9 @@ export default function MastercardVisaAmericanExpressForm(props) {
   const expirationYear = props.expirationYear;
   const cvv = props.cvv;
 
+  /**
+   * Generate the expiration year to the credit card
+   */
   function createExpirationYears() {
     let options = [];
     const today = new Date();
@@ -19,6 +22,16 @@ export default function MastercardVisaAmericanExpressForm(props) {
     return options;
   }
 
+  /**
+   * Here we have the form
+   * 
+   * hidden={props.cardOwnerIsValid} we used this method to show an error if the data is not valid
+   * 
+   * onChange={props.onChangeCardOwner()} it is used to update the reducer with new data
+   * 
+   * value={cardOwner} when we render again, it will put the value, if we don't do that
+   * the data will not be updated in the view
+   */
   return (
     <fieldset>
       <h1>{props.translate.t("payment-method1")}</h1>

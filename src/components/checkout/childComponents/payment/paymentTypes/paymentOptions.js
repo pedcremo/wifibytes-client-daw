@@ -3,9 +3,15 @@ import { Button } from 'semantic-ui-react'
 
 export function PaymentOptionsRadioButton(props) {
     const screen = window.innerWidth > 992;
+    /**
+     * If server don't return payment options we return null
+     */
     if (props.paymentOptions.length === 0) {
         return (null);
     }
+    /**
+     * This function it return the button for each payment method recived from the server
+     */
     const options = props.paymentOptions.map((option, i) => {
         /** There is a bug with width buttons and this fixes it */
         const width = {
@@ -25,6 +31,10 @@ export function PaymentOptionsRadioButton(props) {
         );
     });
     return (
+        /**
+         * This is the group, here it will stack the buttons recived from the options
+         * const above here
+         */
         <form className="payment-method">
             {screen ? <Button.Group size='large' className="centrar">
                 {options}
