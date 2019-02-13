@@ -21,23 +21,23 @@ const initialState = {
     currentStep: 1,
     steps: [
         {
-            key: 'personal_data',
+            key: "personal_data",
             active: true,
             completed: false,
-            title: 'Dades Personals',
+            title: "Dades Personals"
         },
         {
-            key: 'contract',
+            key: "contract",
             active: false,
             completed: false,
-            title: 'Contracte',
+            title: "Contracte"
         },
         { 
-            key: 'confirm',
+            key: "confirm",
             active: false,
             completed: false,
-            title: 'Confirmar Pedido' 
-        },
+            title: "Confirmar Pedido"
+        }
     ]
 };
 
@@ -73,7 +73,7 @@ describe('<Checkout />', () => {
           },
         ];
     
-        store.dispatch(checkoutActions.updateStep(1));
+        store.dispatch(checkoutActions.setStep(1));
         expect(store.getActions()).toEqual(selectedActions);
     });  
 
@@ -84,12 +84,12 @@ describe('<Checkout />', () => {
             'type': 'ADD_STEPS',
             'payload': {
                 step: 1,
-                steps: ['step1','step2']
+                steps: initialState.steps
             },
         },
         ];
 
-        store.dispatch(checkoutActions.addSteps(1, ['step1','step2']));
+        store.dispatch(checkoutActions.addSteps(1, initialState.steps));
         expect(store.getActions()).toEqual(add);
     });
 
@@ -100,6 +100,8 @@ describe('Reducer', () => {
         expect(currentCheckout(undefined, {})).toEqual(
             {
                 currentStep: 0,
+                data: {},
+                disabled: true,
                 steps: [],
                 loading: false,
             }
