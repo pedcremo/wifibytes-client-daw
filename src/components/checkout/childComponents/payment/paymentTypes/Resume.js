@@ -12,15 +12,15 @@ class Resume extends React.Component {
   }
 
   render() {
-    console.log(this.props.personalDataForm.fields.datosPersonales.address);
+    console.log(this.props.personalDataForm.fields.datosPersonales.address.value);
 
     return (
         <div className="resume">
         <b><h2>{this.props.translate.t("resume")}</h2></b>
             <div className="resume-data">
-                <p>{this.props.translate.t("resume-name")}: <b>{this.props.personalDataForm.fields.datosPersonales.name.toUpperCase()}  {this.props.personalDataForm.fields.datosPersonales.surname.toUpperCase()}</b></p>
-                <p>{this.props.translate.t("resume-email")}: <b>{this.props.personalDataForm.fields.datosPersonales.email}</b></p>
-                <p>{this.props.translate.t("resume-address")}: <b>{this.props.personalDataForm.fields.datosPersonales.city} {this.props.personalDataForm.fields.datosPersonales.zip} {this.props.personalDataForm.fields.datosPersonales.address}</b></p>
+          <p>{this.props.translate.t("resume-name")}: <b>{this.props.personalDataForm.fields.datosPersonales.name.value.toUpperCase()}  {this.props.personalDataForm.fields.datosPersonales.surname.value.toUpperCase()}</b></p>
+          <p>{this.props.translate.t("resume-email")}: <b>{this.props.personalDataForm.fields.datosPersonales.email.value}</b></p>
+          <p>{this.props.translate.t("resume-address")}: <b>{this.props.personalDataForm.fields.datosPersonales.city.value} {this.props.personalDataForm.fields.datosPersonales.zip} {this.props.personalDataForm.fields.datosPersonales.address}</b></p>
             </div>
         </div>
     );

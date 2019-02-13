@@ -57,21 +57,26 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-
-        if (Object.keys(newProps.dataUser).length > 0) {
+        console.log(newProps, "newProps1111111111111111111", newProps.dataUser)
+        if (newProps.dataUser != undefined && Object.keys(newProps.dataUser).length > 0) {
             let estado={}
+            let error=""                 
             for (const key in newProps.dataUser) {
-                let error=""                 
                 //console.log(newProps.dataUser[key], this.refs[key], key)
                 let element = this.refs[key]
-                //console.log(this.refs[key], r["name"])
+                console.log("this.refs[key]]", newProps.dataUser, this.refs[key])
                 error = validator(newProps.dataUser[key]["value"], element["name"], element["type"])
                 estado[key]= {
                         value: newProps.dataUser[key].value,
-                        error
+                        error: error
                     } 
             }
-            this.setState(estado, () => this.props.updateField(updateContactDataForm(this.state)))
+            console.log("let estado = {}", this.state, estado)
+            
+            this.setState(estado, () => {
+                console.log("let estado = {222222}", this.state, estado)
+                this.props.updateField(updateContactDataForm(estado))
+            })
         }     
     }
 
@@ -110,6 +115,7 @@ class PersonalForm extends React.Component  {
                     error: (!error?false:error)
                 }
             }, () => {
+                console.log("this.state*************",this.state)
                 this.props.updateField(updateContactDataForm(this.state))
                 this.props.updateField(getValidaForms())
             })
@@ -120,7 +126,7 @@ class PersonalForm extends React.Component  {
         var reader  = new FileReader();
         let can = this.refs["file"].files[0];
         reader.src = reader.readAsDataURL(can);
-
+        console.log("this.state------------------1111", this.state)
         if (can){
             if ( can.size < 2000000 ){
                 new Promise((resolve, reject) => {
@@ -132,7 +138,9 @@ class PersonalForm extends React.Component  {
                         preview: {
                             value: value,
                         }
-                    }, ()=>this.props.updateField(updateContactDataForm(this.state)))
+                    }, ()=>{
+                        console.log("this.state------------------2222", this.state)
+                        this.props.updateField(updateContactDataForm(this.state))})
                 })
             }else{
                 Swal.fire({

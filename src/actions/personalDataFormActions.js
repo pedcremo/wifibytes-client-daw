@@ -22,7 +22,7 @@ export function getContactDataForm() {
 }
 
 export function updateContactDataForm(newData) {
-    //console.log("updateContactDataFormDatosPersonales", newData)
+    console.log("updateContactDataFormDatosPersonales", newData)
     return dispatch => dispatch(updateContactDataFormSuccess(newData));
 }
 

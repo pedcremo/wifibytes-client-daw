@@ -112,7 +112,7 @@ class Payment extends React.Component {
   render() {
     return (
       <div className="payment-container">
-        <div className="payment-components">
+        {/* <div className="payment-components">
           {this.showPaymentOptionsRadioButton()}
           {this.paymentForm(this.props.paymentMethod)}
         </div>
@@ -121,7 +121,7 @@ class Payment extends React.Component {
           translate={this.context}
           />}
           {<Cart cartItems={cartItems}/>}
-        </div>
+        </div> */}
       </div>
   );
 

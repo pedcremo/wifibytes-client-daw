@@ -15,7 +15,8 @@ export function validator(value, name, type="text") {
     /**
     * If a field does not have value go this first conditional
     */
-    if (type=="text" && value.length == 0)
+   console.log("validator-------------", value, name, type)
+    if (type=="text" && value.length == 0) 
         return "This field is required"
 
     /**

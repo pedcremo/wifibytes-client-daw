@@ -56,7 +56,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                         city: {value: "Gandia"},
                         cuenta: {value: ""},
                         date: {value: ""},
-                        preview: {value: ""}, 
+                        //preview: {value: ""}, 
                         tipcli: {value: 0},
                         /* nie: {value: ""},
                         dni: {value: ""},
@@ -74,7 +74,7 @@ export default function personalDataFormReducer(state = initialState, action) {
             const object = action.payload.contactDataForm
             let valid=true;
             state.fields["datosPersonales"] = object
-            //console.log(object)
+            console.log("state.fields[datosPersonales]", object)
             for (const key in object) {
                 if (object[key].hasOwnProperty("error") && object[key]["error"] != false && object[key]["error"] != undefined) {
                     valid = false;
