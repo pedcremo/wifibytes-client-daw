@@ -109,7 +109,7 @@ class Contracts extends React.Component {
                     data: {
                         ...this.state.data,
                             sign: sign,
-                            pos: pos.coords.latitude? "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude : '',
+                            pos: pos.coords? "Position: lat: "+ pos.coords.latitude +" long: "+ pos.coords.longitude : '',
                             time: 'Hour: ' + new Date()
                     }
                 }); 
@@ -129,7 +129,7 @@ class Contracts extends React.Component {
                 },
                 // On Error
                 function(error) {
-                   reject(error);
+                    resolve(error);
                 },
                 settings
             );
