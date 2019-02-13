@@ -24,7 +24,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
       <fieldset className="form-group">
         <h3 className="errors"
           hidden={props.cardOwnerIsValid}>
-          Something is wrong with this field, check it out!</h3>
+          {props.translate.t("error-payment-owner")}</h3>
         <label>{props.translate.t("payment-owner")}</label>
         <input
           className="form-control form-control-lg"
@@ -36,7 +36,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
       <fieldset className="form-group">
         <h3 className="errors"
           hidden={props.cardOwnerIsValid}>
-          Something is wrong with this field, check it out!</h3>
+          {props.translate.t("error-payment-credit-card")}</h3>
         <label>{props.translate.t("payment-numberCard")}</label>
         <input
           className="form-control form-control-lg"
@@ -48,7 +48,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
       <fieldset className="form-group">
         <h3 className="errors"
           hidden={props.expirationDateIsValid}>
-          Something is wrong with the expiration date, check it out!</h3>
+          {props.translate.t("error-payment-expiration-month")}</h3>
         <label>{props.translate.t("payment-expirationMonth")}</label>
         <select
           className="form-control form-control-lg"
@@ -69,6 +69,9 @@ export default function MastercardVisaAmericanExpressForm(props) {
         </select>
       </fieldset>
       <fieldset className="form-group">
+        <h3 className="errors"
+          hidden={props.cvvIsValid}>
+          {props.translate.t("error-payment-expiration-year")}</h3>
         <label>{props.translate.t("payment-expirationYear")}</label>
         <select
           className="form-control form-control-lg"
@@ -80,7 +83,7 @@ export default function MastercardVisaAmericanExpressForm(props) {
       <fieldset className="form-group">
         <h3 className="errors"
           hidden={props.cvvIsValid}>
-          Something is wrong with this field, check it out!</h3>
+          {props.translate.t("error-payment-cvv")}</h3>
         <label>{props.translate.t("CVV")}</label>
         <input
           className="form-control form-control-lg"

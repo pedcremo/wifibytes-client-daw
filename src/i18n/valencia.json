@@ -80,6 +80,12 @@
     "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
+    "error-payment-owner": "El propietari necesita nom y cognoms",
+    "error-payment-credit-card": "La tarjeta de credit no es valida",
+    "error-payment-expiration-month": "El mes no es valid",
+    "error-payment-expiration-year": "El año no es valid",
+    "error-payment-cvv": "El cvv no es valid",
+
     "resume": "Resumen",
     "resume-name": "Nom",
     "resume-email": "Correu",
