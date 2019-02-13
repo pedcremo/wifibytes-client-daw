@@ -61,11 +61,6 @@ class Personal extends React.Component  {
         /* Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
-        if(this.props.isAuth){
-            this.changeModal(false)
-        }else{
-            this.changeModal(true)
-        }
         let array = [];
         /**Bring an object like this {movil:1, fijo:5....} */
         let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
@@ -187,6 +182,10 @@ class Personal extends React.Component  {
         /**
          * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
          */
+        // this.setState({
+        //     styleModal : this.props.isAuth
+        // })
+
         return (
             <div>
                 <PersonalDataForm dataUser={this.props.fields.datosPersonales} tipCliente={mockClientes} updateField={this.props.dispatch}/>
@@ -195,9 +194,9 @@ class Personal extends React.Component  {
                     {this.props.datosProductos.map((item, i)=> <PortabilidadForm tipo={item.tipoTlf}  key={i} id={i} datosProductos={item} companies={mockCompanies} updateField={this.props.dispatch}/>)}                
                 </div>
 
-                <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal ? "visible" : "hidden"}}>
+                <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal || this.props.isAuth ? "hidden" : "visible"}}>
                     <div className="modal-content_manual">
-                        <span className="close" onClick={() => this.changeModal(false)}>&times;</span>
+                        <span className="close" onClick={() => this.changeModal(!this.state.styleModal)}>&times;</span>
                         {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth} /> : 
                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth} />  :
                         this.state.selected == "none" ? this.printComponent("none") :

@@ -40,9 +40,7 @@ describe('<PersonalDataForm>', () => {
 
 describe('Test function',() =>{
     it('Integritate of check image', ()=>{
-        form.find('file').files[0](mockIMG).toBeLessThan(2000);
-        // form.find('file').
-
+        form.find('file').text(mockIMG).toBeLessThan(2000);
     })
 })
 

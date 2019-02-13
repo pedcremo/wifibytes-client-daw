@@ -63,6 +63,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                         cif: {value: ""}, */
                     }
             }
+            console.log(state.fields)
                 
             return {
                 ...state,

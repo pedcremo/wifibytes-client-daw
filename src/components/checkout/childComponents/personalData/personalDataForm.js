@@ -39,13 +39,13 @@ class PersonalForm extends React.Component  {
         this.surname = React.createRef();
         this.email = React.createRef();
         this.date = React.createRef();
-        this.dni = React.createRef();
-       // this.file = React.createRef();
+        // this.dni = React.createRef();
         this.address = React.createRef();
         this.zip = React.createRef();
         this.city = React.createRef();
         this.cuenta = React.createRef();
         this.tipcli = React.createRef();
+        this.preview = React.createRef();
 
         this.previewFile = this.previewFile.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
