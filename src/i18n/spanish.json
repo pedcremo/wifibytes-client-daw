@@ -71,6 +71,8 @@
     "register-error-pass2": "Las contrasenyas deben coincidir",
     "register-error-captcha": "Verifica que no eres un robot",
     "register-error-email": "El correo no es valido",
+    "register-error-emailExist": "El correo ya está en uso",
+    "register-error-cifnifExist": "El CIF/NIF ya está en uso",
 
     "personalData-notifyModal-title": "Hemos detectado que no esta logueado, porfavor elija una opción:",
     "personalData-notifyModal-choiceLogin":"Loguearse",

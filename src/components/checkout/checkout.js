@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { Route } from 'react-router-dom'
 import { Step } from 'semantic-ui-react'
 import { Agent } from './agent';
 import PropTypes from 'prop-types'
@@ -64,11 +63,9 @@ class Checkout extends React.Component {
      * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
      */
     componentDidMount() {
-        if (this.props.cartItems.items != null && JSON.parse(localStorage.getItem('cartReducer')) != null) {
-            let stepsRates;
-            this.props.cartItems.items.length !== 0 ?
-                stepsRates = Agent.objectsToArray(this.props.cartItems.items, library) :
-                stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
+        console.log(JSON.parse(localStorage.getItem('cartReducer')));
+        if (JSON.parse(localStorage.getItem('cartReducer')) != null) {
+            let stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
             let filteredSteps = Agent.filterArray(steps, stepsRates);
             this.addSteps(1, filteredSteps);
         } else {
@@ -135,7 +132,7 @@ class Checkout extends React.Component {
                                             onClick={() => this.sendOrder()}
                                             className="massive ui labeled icon black button">
                                             <i className="icon truck"></i> 
-                                            {this.context.t('checkout-submit')}>
+                                            {this.context.t('checkout-submit')}
                                         </button>
                                     )
                                 )

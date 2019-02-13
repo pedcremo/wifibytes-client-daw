@@ -13,5 +13,5 @@ export const updateField = (data, field)=>({
 export const register = (data) => ({
   type: REGISTER,
   payload: Utils.post("/cliente/",data),
-  isAuth: true
+  isAuth: false
 })
