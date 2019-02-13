@@ -660,3 +660,9 @@ p.login-recuperar:hover {
 	display: grid;
 	justify-content: right;
 }
+
+.profile {
+	background-image: linear-gradient(to right, rgb(46, 91, 189), rgb(23, 175, 142));
+	height: 100%;
+	width: 100%;
+}
