@@ -136,11 +136,11 @@ class Payment extends React.Component {
   }
 
   /**
-   * showPaymentOptionsRadioButton is a function that returns the payment options component,
+   * showPaymentOptionsButton is a function that returns the payment options component,
    * we pass to him all payment methots from server, current payment method and the methot to
    * update it
    */
-  showPaymentOptionsRadioButton() {
+  showPaymentOptionsButton() {
     return <PaymentOptionsRadioButton
       changePaymentMethod={this.changePaymentMethod}
       paymentOptions={this.props.paymentMethods}
@@ -150,7 +150,7 @@ class Payment extends React.Component {
   showPaymentOptions() {
     return this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
       <div className="payment-components">
-        {this.showPaymentOptionsRadioButton()}
+        {this.showPaymentOptionsButton()}
         {this.paymentForm(this.props.paymentMethod)}
       </div> : null;
   }
