@@ -168,18 +168,12 @@ class Payment extends React.Component {
     return (
       <div className="payment-container">
         {this.showPaymentOptions()}
-        {/* <div className="payment-components">
-          {this.showPaymentOptionsRadioButton()}
-          {this.paymentForm(this.props.paymentMethod)}
-        </div>
         <div className="cart-resume">
           {<Resume
             translate={this.context}
           />}
           {<Cart cartItems={this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
         </div>
-          {<Cart cartItems={cartItems}/>}
-        </div> */}
       </div>
     );
 
