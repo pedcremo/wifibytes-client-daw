@@ -64,11 +64,13 @@ class PersonalForm extends React.Component  {
                 //console.log(newProps.dataUser[key], this.refs[key], key)
                 let element = this.refs[key]
                 //console.log(this.refs[key], r["name"])
-                error = validator(newProps.dataUser[key]["value"], element["name"], element["type"])
-                estado[key]= {
-                        value: newProps.dataUser[key].value,
-                        error
-                    } 
+                if(newProps.dataUser[key]){
+                    error = validator(newProps.dataUser[key]["value"], element["name"], element["type"])
+                    estado[key]= {
+                            value: newProps.dataUser[key].value,
+                            error
+                    }
+                } 
             }
             this.setState(estado, () => this.props.updateField(updateContactDataForm(this.state)))
         }     
@@ -166,9 +168,9 @@ class PersonalForm extends React.Component  {
                         ref="name"
                         id = "name"
                         type="text"
-                        value={this.state.name.value}
+                        value={!this.state.name?"":this.state.name.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
+                        <span className="text-danger">{!this.state.name? "":this.state.name.error}</span>
                     </div>
 
                     <br />
@@ -179,9 +181,9 @@ class PersonalForm extends React.Component  {
                         name = "surname"
                         ref = "surname"
                         type="text"
-                        value={this.state.surname.value}
+                        value={!this.state.surname?"":this.state.surname.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.surname.error? "":this.state.surname.error}</span>
+                        <span className="text-danger">{!this.state.surname? "":this.state.surname.error}</span>
                     </div>
 
                     <br />
@@ -192,9 +194,9 @@ class PersonalForm extends React.Component  {
                         name = "email"
                         ref = "email"
                         type="email"
-                        value={this.state.email.value}
+                        value={!this.state.email?"":this.state.email.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.email.error? "":this.state.email.error}</span>
+                        <span className="text-danger">{!this.state.email? "":this.state.email.error}</span>
                     </div>
                     <br />
                     <div>
@@ -203,9 +205,9 @@ class PersonalForm extends React.Component  {
                         name="date"
                         ref = "date"
                         type="date"
-                        value={this.state.date.value}
+                        value={!this.state.date?"":this.state.date.value}
                         onChange={this.handleInputChange}/>
-                        <span className="text-danger">{!this.state.date.error? "":this.state.date.error}</span>
+                        <span className="text-danger">{!this.state.date? "":this.state.date.error}</span>
                     </div>
                     <br/>
                     <div>
@@ -216,8 +218,8 @@ class PersonalForm extends React.Component  {
                         ref = "file"
                         name = "preview"
                         onChange={this.previewFile} /><br/>
-                        <img name="preview" ref="preview" src={this.state.preview.value} height="130" width="100%" alt="Image preview..."></img>
-                        <span className="text-danger">{!this.state.preview.error? "":this.state.preview.error}</span>
+                        <img name="preview" ref="preview" src={!this.state.preview?"":this.state.preview.value} height="130" width="100%" alt="Image preview..."></img>
+                        <span className="text-danger">{!this.state.preview? "":this.state.preview.error}</span>
                     </div>
                 </div>
 
@@ -230,9 +232,9 @@ class PersonalForm extends React.Component  {
                         name = "address"
                         ref = "address"
                         type = "text"
-                        value={this.state.address.value}
+                        value={!this.state.address?"":this.state.address.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.address.error? "":this.state.address.error}</span>
+                        <span className="text-danger">{!this.state.address? "":this.state.address.error}</span>
                     </div>
 
                     <br />
@@ -243,35 +245,35 @@ class PersonalForm extends React.Component  {
                         name = "zip"
                         ref = "zip"
                         type="number"
-                        value={this.state.zip.value}
+                        value={!this.state.zip?"":this.state.zip.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.zip.error? "":this.state.zip.error}</span>
+                        <span className="text-danger">{!this.state.zip? "":this.state.zip.error}</span>
                     </div>
 
                     <br />
                     <div>
                         <input                      
-                        className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
+                        className={"form-control form-control-lg "+ (!this.state.city? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
                         ref = "city"
                         type="text"
-                        value={this.state.city.value}
+                        value={!this.state.city?"":this.state.city.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
+                        <span className="text-danger">{!this.state.city? "":this.state.city.error}</span>
                     </div>
 
                     <br />
                     <div>
                         <input                      
-                        className={"form-control form-control-lg "+ (!this.state.cuenta.error? "":"border border-danger")}
+                        className={"form-control form-control-lg "+ (!this.state.cuenta? "":"border border-danger")}
                         placeholder="Cuenta bancaria"
                         name = "cuenta"
                         ref = "cuenta"
                         type="text"
-                        value={this.state.cuenta.value}
+                        value={!this.state.cuenta?"":this.state.cuenta.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.cuenta.error? "":this.state.cuenta.error}</span>
+                        <span className="text-danger">{!this.state.cuenta? "":this.state.cuenta.error}</span>
                     </div>
 
 
@@ -282,13 +284,13 @@ class PersonalForm extends React.Component  {
                         name="tipcli" 
                         ref = "tipcli"
                         onChange={this.handleInputChange} 
-                        className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
+                        className={"form-control form-control-lg "+ (!this.state.tipcli? "":"border border-danger")}>
                             <option value=""></option>   
                             {cli.map((a, i)=>{
                                     return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
                             })}     
                         </select>
-                        <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
+                        <span className="text-danger">{!this.state.tipcli? "" :this.state.tipcli.error}</span>
                     </div>
                     <br />
                     {/* <div>

@@ -4,6 +4,9 @@ export const Agent = {
     /**
      * An array of objects is iterated over another array of object that contains rules to achieve
      * It returns an array of the validated rules
+     * @param array Contains an array of all the available components
+     * @param library Contains a library with the rules for each steps to be displayed
+     * @return array - A simple array that contains needed steps
      */
     objectsToArray: function (array, library) {
         if (Array.isArray(array) && typeof library == "object") {
@@ -22,6 +25,9 @@ export const Agent = {
 
     /**
      * It filters an array of object and returns only the objects that are included in the requested simple array
+     * @param array Contains an array of all the available components
+     * @param requested Contains a simple array with the needed steps
+     * @return array of objects - An array that contains the filtered library steps.js
      */
     filterArray: function (array, requested) {
         return array.filter(function (el) {
@@ -33,6 +39,8 @@ export const Agent = {
      * Iterates an array that will filter a field that comes from the library, 
      * where it first validates according to the rules of the library and will return 
      * the quantities of each specified field
+     * @param array Contains an array of all the cart products
+     * @param library Contains a library with the rules for the method to quantify any param
      */
     arrayToQuantityObject: function (array, library) {
         if (typeof array == "object" && typeof library == "object") {

@@ -17,40 +17,46 @@ import {
 } from '../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
+    /**
+     * @desc Adds the steps to follow
+     * @param step contains the initial step
+     * @param steps contains a library that has been filtered against a library in file agent.js
+     */
     addSteps: (step, steps) =>
         dispatch({ type: ADD_STEPS, payload: { step, steps } }),
     /**
-     * Go to the next step
+     * @desc Go to the next step
      */
     nextStep: () =>
         dispatch({ type: NEXT_STEP }),
     /**
-     * Go to the previous step
+     * @desc Go to the previous step
      */
     previousStep: () =>
         dispatch({ type: PREVIOUS_STEP }),
     /**
-     * Sets a specific step
+     * @desc Sets a specific step
+     * @param step Contains a specific number
      */
     setStep: (step) =>
         dispatch({ type: UPDATE_STEP, payload: { step } }),
     /**
-     * Go to the next step
+     * @desc Go to the next step
      */
     disableButton: () =>
         dispatch({ type: DISABLE_BUTTON }),
     /**
-     * Go to the previous step
+     * @desc Go to the previous step
      */
     activateButton: () =>
         dispatch({ type: ACTIVATE_BUTTON }),
     /**
-     * Sets a specific step
+     * @desc Sets a specific step
      */
 });
 
 /**
- * Component Checkout validate the steps you have to follow
+ * @desc Component Checkout validate the steps you have to follow
  */
 class Checkout extends React.Component {
     constructor(props) {
@@ -59,11 +65,12 @@ class Checkout extends React.Component {
         this.setStep = (step) => this.props.setStep(step);
     }
 
-    /**
-     * Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
-     */
     componentDidMount() {
-        console.log(localStorage.getItem('cartReducer'));
+        /**
+         * @desc Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
+         * @return @true object - Filtered library Steps.js
+         * @return @false redirected to home
+         */
         if (JSON.parse(localStorage.getItem('cartReducer')) != null) {
             let stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
             let filteredSteps = Agent.filterArray(steps, stepsRates);
@@ -74,7 +81,7 @@ class Checkout extends React.Component {
     }
 
     /**
-     * componentDidUpdate is executed before the next component is mounted but after that component is initiated
+     * @desc componentDidUpdate is executed before the next component is mounted but after that component is initiated
      * with that in mind each step is provided with a new ID each time the method is invoked
      * then, once is assured no mistake a foreach query selected add event listener is provided 
      * containing a dispatched action from redux to allow a step to load if its pressed
@@ -82,19 +89,31 @@ class Checkout extends React.Component {
 
     componentDidUpdate() {
         const self = this;
+        /**
+         * @param item It is taken from the current dom element in the forEach function
+         * @param index It is taken from the forEach function and specifies the current loop
+         */
         const setID = (item, index) => {
             item.id = index + 1;
         };
+        /**
+         * @param item It is taken from the current dom element in the forEach function
+         * @param index It is taken from the forEach function and specifies the current loop
+         */
         const addClickEvent = (item, index) => item.addEventListener("click", function () {
             self.setStep(index + 1);
         });
-
+        /**
+         * @param item It is taken from the current dom element in the forEach function
+         * @param index It is taken from the forEach function and specifies the current loop
+         */
         document.querySelectorAll("div.step").forEach((item, index) => {
             setID(item, index);
             addClickEvent(item, index);
         });
         /**
-         * Each time the component is updated steps are checked to activate the button in case all steps are completed
+         * @desc Each time the component is updated steps are checked
+         * Then the button is activated or deactivated in case all steps are completed
          */
         steps.filter(step => step.completed===true).length !== steps.length?
         this.props.disableButton():
@@ -103,11 +122,16 @@ class Checkout extends React.Component {
 
     sendOrder() {
         console.log("sendOrder",this.props.data);
-        //let data = { "personal_data": { "name": "pepito", "surname": "caball" }, "contract": { "sd": "sdsd" }, "confirm": { "asd": "sdsd" } };
+        /**
+         * @desc Agent retrieves data from props into an object for the /checkout endpoint
+         * @param props Contains data from all the child components
+         * @param steps Contains the library of needed steps
+         */
         Agent.ObjectSendToOrder(this.props.data, steps);
     }
     /**
-     * Render prints the steps to follow and calls the function show step
+     * @desc Render prints the steps to follow and loads a step from a library where each
+     * component step is declared and imported
      */
     render() {
         const { loading, steps, currentStep, nextStep, disabled } = this.props;

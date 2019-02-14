@@ -77,7 +77,7 @@ export default function personalDataFormReducer(state = initialState, action) {
             state.fields["datosPersonales"] = object
             //console.log(object)
             for (const key in object) {
-                if (object[key].hasOwnProperty("error") && object[key]["error"] != false && object[key]["error"] != undefined) {
+                if (object[key] != null && object[key]["error"] != false && object[key]["error"] != null) {
                     valid = false;
                     break;
                 }

@@ -164,7 +164,9 @@ class Personal extends React.Component  {
                 this.props.dispatch(setCompleted());
                 let objData = this.props.fields
                 for (const key in objData.datosPersonales) {
-                    objData.datosPersonales[key] = objData.datosPersonales[key]["value"];
+                    if(objData.datosPersonales[key]){
+                        objData.datosPersonales[key] = objData.datosPersonales[key]["value"];
+                    }
                 }
 
                 this.props.dispatch(updateData("personalData", objData));
