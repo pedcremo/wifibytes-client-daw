@@ -663,10 +663,33 @@ p.login-recuperar:hover {
 }
 
 .profile {
-	background-image: linear-gradient(to right, rgb(46, 91, 189), rgb(23, 175, 142));
+	background-image: linear-gradient(to right, rgba(46, 91, 189, 0.8), rgba(23, 175, 142, 0.8));
+	background-size: 400% 400%;
+	animation: moveTo 10s infinite;
 	height: 100%;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	padding: 15vw;
+}
+
+@keyframes moveTo {
+	from {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	to {
+		background-position: 0% 50%;
+	}
+}
+
+.profile > div > .inicioProfile {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.profile > div > .inicioProfile > h1 {
+	grid-column: 1 /s2;
 }

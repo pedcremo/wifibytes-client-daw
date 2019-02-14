@@ -15,7 +15,13 @@ class InicioProfile extends React.Component {
 		super(props);
 	}
 	render() {
-		return <main>InicioProfile</main>;
+		return (
+			<main className="inicioProfile">
+				<h1>INICIO</h1>
+				<div>No tienes ningún pedido HACER UN PEDIDO</div>
+				<div>No tienes facturas HACER UNA FACTURA</div>
+			</main>
+		);
 	}
 }
 
