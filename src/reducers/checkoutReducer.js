@@ -5,7 +5,9 @@ import {
     UPDATE_STEP,
     SET_COMPLETED,
     SET_UNCOMPLETED,
-    UPDATE_DATA
+    UPDATE_DATA,
+    DISABLE_BUTTON,
+    ACTIVATE_BUTTON
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -13,17 +15,37 @@ const initialState = {
     steps: [],
     data: {},
     loading: false,
+    disabled: true
 };
 
 export default function currentCheckout(state = initialState, action) {
     switch (action.type) {
         case ADD_STEPS:
-            return {
-                ...state,
-                loading: false,
-                currentStep: action.payload.step,
-                steps: action.payload.steps
+            
+            if(state.currentStep===0 || state.currentStep >= state.steps.length + 1 || state.steps.length != action.payload.steps.length){
+                action.payload.steps.map(function(step) {
+                    return step.active=false;
+                });
+                action.payload.steps[0].active=true;
+                return {
+                    ...state,
+                    loading: false,
+                    currentStep: action.payload.step,
+                    steps: action.payload.steps
+                };
+            } else {
+                action.payload.steps.map(function(step) {
+                    step.className="";
+                    return step.completed=false;
+                });
+                return {
+                    ...state,
+                    loading: false,
+                    currentStep: state.currentStep,
+                    steps: action.payload.steps
+                };
             };
+            
 
         case NEXT_STEP:
             if (state.currentStep < state.steps.length + 1){
@@ -76,6 +98,16 @@ export default function currentCheckout(state = initialState, action) {
             state.data[action.payload.key]=action.payload.data;
             return {
                 ...state,
+            };
+        case DISABLE_BUTTON:
+            return {
+                ...state,
+                disabled:true
+            };
+        case ACTIVATE_BUTTON:
+            return {
+                ...state,
+                disabled:false
             };
         default:
             // ALWAYS have a default case in a reducer

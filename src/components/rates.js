@@ -103,8 +103,9 @@ class Rates extends React.Component {
                     </nav>
 
                     <RateBoxSubComponent rates={this.state.rates}></RateBoxSubComponent>
+                    <VegasCarousel vegas={datosEmpresa} />
 
-                    <div className="card-deck mt-2 mb-5">
+                    <div className="card-deck mt-5 mb-4">
                         {boxTextsArray}
                     </div>
                 </div>

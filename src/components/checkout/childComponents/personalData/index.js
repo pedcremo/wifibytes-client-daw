@@ -8,44 +8,22 @@ import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
 import {AuthService} from '../../../../auth.service'
 import {
-    getContactDataForm
+    getContactDataForm,
+    updateContactDataFormServices,
+    updateDatosProductos,
+    getValidaForms,
+    setUncompleted,
+    setCompleted,
+    updateData
 } from "../../../../actions/personalDataFormActions";
+import {getItems} from "../../../cart/cartActions";
+
 import {Agent} from '../../agent';
 import subitems_library from "../../libraries/subitems_based_library.json";
 
-let mockCompanies=["orange", "vodafone", "jaxxtel", "yoigo", "pepephone"]
-let serviciosContratados = [654654654, 987654321, 852741963, 14789652, 951159753]
+let mockClientes={particular:0, autonomo: 5, empresa: 1, extranjero: 2}
+let mockCompanies=["orange", "vodafone", "jazztel", "yoigo", "pepephone"]
 
-let items = [
-    {
-        id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"
-    },
-    {
-        id: 5,
-        subtarifas: [
-            {
-                id: 4
-            },
-            {
-                id: 5
-            }
-        ]
-    },
-    {
-        id: 6,
-        subtarifas: [
-            {
-                id: 2
-            },
-            {
-                id: 4
-            },
-            {
-                id: 2
-            }
-        ]
-    }
-]
 /**
  * @class
  * Draw Login. A form to login
@@ -70,38 +48,47 @@ class Personal extends React.Component  {
          * si el usuari s'ha logeat o registrat
          */
         this.printComponent = this.printComponent.bind(this);
-        this.changeIsAuth = this.changeIsAuth.bind(this);
+        // this.changeIsAuth = this.changeIsAuth.bind(this);
     }
     /**
      * Comprobem si esta logueat mitjançant AuthService, si esta logueat liu
      * posarem al changeIsAuth, si no esta logueat mostrarem el modal
      */
-    componentDidMount(){
+    componentWillMount(){
         this.props.dispatch(getContactDataForm());
-        /**
-        * Esta comprobando si el usuario esta logueado verificando el token de cookies
+        this.props.dispatch(getItems());
+
+        /* Esta comprobando si el usuario esta logueado verificando el token de cookies
         * Si esta logueado tiene que pasar al componete form los datos del usuario a travez de props
         **/
-        AuthService.isAuth().then(value =>{
-            console.log("EL usuario esta logeado", value)
-            this.changeIsAuth(true)
-            this.setState({
-                auth: value
-            })
-        }).catch((err) => {
-            console.log("NO logueado", err)
-            this.changeModal(true)
-        })
-        //let tarifes = Agent.arrayToQuantityObject(items, subitems_library);
-        //console.log(tarifes);
-    }
+        let array = [];
+        /**Bring an object like this {movil:1, fijo:5....} */
+        let obj = Agent.arrayToQuantityObject(this.props.cartItems, subitems_library)
+        let cont = -1;
+        let quantityMovil = obj["movil"]
+        let quantityFijo = obj["fijo"]
+        let quantity = quantityMovil + quantityFijo
 
-
-    updateFieldPerDataForm(form_new_state){
-        console.log(form_new_state)
-        this.props.dispatch(getContactDataForm());
-        /* this.props.dispatch(updateContactDataForm("form_new_state")) */
+        if ((this.props.datosProductos.length === 0) || (this.props.datosProductos.length!=quantity)) {
+            if (quantity > 0 || (this.props.datosProductos.length!=quantity)) {
+                for (const keyName in obj) {
+                    if (`${keyName}` === "movil" || `${keyName}` === "fijo") {
+                        for (let i = 0; i < parseInt(`${obj[keyName]}`); i++) {
+                            cont++
+                            array.push({
+                                key: parseInt(`${cont}`),
+                                tipo: "alta",
+                                tipoTlf: `${keyName}`,
+                                valido:true
+                            });
+                        }
+                    }
+                }
+                this.props.dispatch(updateDatosProductos(array))
+            }
+        }
     }
+    
     /**
      * 
      * @param {changeIsAuth} value
@@ -109,18 +96,16 @@ class Personal extends React.Component  {
      * i cuan tornem ho recibim açi i cambiem el estat de isAuth que ens diu si esta o no
      * logeat i amaguem el modal per a que pugam omplir el formulari
      */
-    changeIsAuth(value){
-        console.log(value)
-        if (value == true){
-            console.log("Nos ha vuelto al padre todo poderoso");
-            this.setState({
-                isAuth : value
-            })
-            setTimeout(()=>{this.changeModal(false) }, 1000);
-        }else{
-            console.log("Error, el usuario no se ha logeado/registrado")
-        }
-    }
+    // changeIsAuth(value){
+    //     if (value == true){
+    //         this.setState({
+    //             isAuth : value
+    //         })
+    //         setTimeout(()=>{this.changeModal(false) }, 1000);
+    //     }else{
+    //         console.log("Error, el usuario no se ha logeado/registrado")
+    //     }
+    // }
 
     /**
      * 
@@ -144,7 +129,6 @@ class Personal extends React.Component  {
         })
     }
     /**
-     * 
      * @param {printComponent} value
      * Lo que fa es recollir del component userChoice que ha elegit el usuari,
      * despres va al ${changeType} y li asigna el valor de register o login i de esta
@@ -167,38 +151,74 @@ class Personal extends React.Component  {
         this.render()
     }
     
-    render() {
-        console.log(this.props)
-        return(
-            <div>
-                <PersonalDataForm dataUser={this.props.fields.datosPersonales} updateField={this.props.dispatch}/>
-                {<div className="grid-data-form">
-                    {
-                        serviciosContratados.map((item, i) => {
-                            return <PortabilidadForm key={i} id={i} companies={mockCompanies} updateField={this.props.dispatch}/>
-                        })
-                    }     
-                </div> }
+    componentDidUpdate(prevProps, prevState) {
+        //////////////////// IS VALID ///////////////////////////
+        //this.props.dispatch(setCompleted());
+        //////////////////// INVALID ////////////////////////////
+        //this.props.dispatch(setUncompleted());
+        //console.log(prevProps.validForms, this.props.validForms)
+        this.props.dispatch(setUncompleted());
+        if (prevProps.validForms != this.props.validForms) {
+          //  alert("2")
+            if (this.props.validForms) {
+                this.props.dispatch(setCompleted());
+                let objData = this.props.fields
+                for (const key in objData.datosPersonales) {
+                    if(objData.datosPersonales[key]){
+                        objData.datosPersonales[key] = objData.datosPersonales[key]["value"];
+                    }
+                }
 
-                <div id="myModal" className="modal" style={{visibility: this.state.styleModal ? 'visible' : 'hidden' }}>
-                    <div className="modal-content">
-                    <span className="close" onClick={()=>this.changeModal(false)}>&times;</span>
-                        {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth}/> :
-                         this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth}/> :
-                         this.state.selected == "none" ? this.printComponent("none") :
-                         <UserChoice choice={this.printComponent}/> }
+                this.props.dispatch(updateData("personalData", objData));
+                
+            //    console.log(1)
+            } else {          
+                this.props.dispatch(setUncompleted());
+              //  console.log(2)
+            }
+            
+        }
+    }
+    
+    render() {
+        /**
+         * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
+         */
+        // this.setState({
+        //     styleModal : this.props.isAuth
+        // })
+
+        return (
+            <div>
+                <PersonalDataForm dataUser={this.props.fields.datosPersonales} tipCliente={mockClientes} updateField={this.props.dispatch}/>
+
+                <div className="grid-data-form">
+                    {this.props.datosProductos.map((item, i)=> <PortabilidadForm tipo={item.tipoTlf}  key={i} id={i} datosProductos={item} companies={mockCompanies} updateField={this.props.dispatch}/>)}                
+                </div>
+
+                <div id="myModal" className="modal_manual" style={{visibility: this.state.styleModal || this.props.isAuth ? "hidden" : "visible"}}>
+                    <div className="modal-content_manual">
+                        <span className="close" onClick={() => this.changeModal(!this.state.styleModal)}>&times;</span>
+                        {this.state.selected == "login" ? <SignIn type="login" stat={this.changeIsAuth} /> : 
+                        this.state.selected == "register" ? <SignIn type="register" stat={this.changeIsAuth} />  :
+                        this.state.selected == "none" ? this.printComponent("none") :
+                        <UserChoice choice={this.printComponent} /> }
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
 
-const mapStateToProps = state => ({    
+const mapStateToProps = state => ({
+    ...state.isAuth,
     fields: state.personalDataForm.fields,
+    datosProductos: state.personalDataForm.fields.datosProductos,
+    validForms: state.personalDataForm.validForms,
     loaded: state.personalDataForm.loaded,
-    error: state.personalDataForm.error
+    error: state.personalDataForm.error,
+    cartItems: state.cartReducer.items
 });
 
 

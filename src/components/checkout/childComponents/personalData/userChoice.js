@@ -1,5 +1,6 @@
 /** @module ComponentsApp */
 import React from 'react';
+import {Utils} from "../../../../utils";
 
 /**
  * @class
@@ -18,11 +19,11 @@ class UserChoice extends React.Component  {
         return(
             <div>
                <div>
-                   <h2>Hemos detectado que no esta logeado, porfavor elija una opción:</h2>
+                   <h2>{Utils.translate("personalData-notifyModal-title")}</h2>
                    <div className="selectionButtons">
-                        <button onClick={()=>this.props.choice("login")}>Login</button>
-                        <button onClick={()=>this.props.choice("none")}>Continuar igualmente</button>
-                        <button onClick={()=>this.props.choice("register")}>Register</button>
+                        <button onClick={()=>this.props.choice("login")}>{Utils.translate("personalData-notifyModal-choiceLogin")}</button>
+                        <button onClick={()=>this.props.choice("none")}>{Utils.translate("personalData-notifyModal-choiceNone")}</button>
+                        <button onClick={()=>this.props.choice("register")}>{Utils.translate("personalData-notifyModal-choiceRegister")}</button>
                     </div>
                 </div>
             </div>

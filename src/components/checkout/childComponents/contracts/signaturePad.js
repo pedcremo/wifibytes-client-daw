@@ -11,7 +11,6 @@ class SignPad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          showPad: false,
           defaultCanvas: ""
         };
     }
@@ -19,9 +18,7 @@ class SignPad extends React.Component {
     componentDidMount() {
         let canvas = document.getElementById('paint');
         let ctx = canvas.getContext('2d');
-        
-        let sketch = document.getElementById('sketch');
-        let sketch_style = getComputedStyle(sketch);
+    
         canvas.width = 500;
         canvas.height = 250;
 
@@ -50,7 +47,7 @@ class SignPad extends React.Component {
             canvas.removeEventListener('mousemove', onPaint, false);
         }, false);
         
-        let onPaint = function() {
+        let onPaint = () => {
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
         };
@@ -97,8 +94,8 @@ class SignPad extends React.Component {
                         <canvas id="paint" style={style}></canvas>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>Clear</button>
-                        <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>Save</button>
+                        <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>{this.props.translate.t("btn-clear")}</button>
+                        <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>{this.props.translate.t("btn-save")}</button>
                     </div>
                 </div>
             </section>
@@ -106,8 +103,7 @@ class SignPad extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(SignPad);
 

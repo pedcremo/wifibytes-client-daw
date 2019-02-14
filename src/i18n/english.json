@@ -43,10 +43,10 @@
     "catalog-marca": "Brand",
     "catalog-camara": "Camera",
 
-    "login-title": "Access Client",
+    "login-title": "ACCES CLIENT",
     "login-acces-dni": "DNI Client",
     "login-acces-dni-form": "Enter your ID here: 'xxxxxxL'",
-    "login-acces-password": "Password",
+    "login-acces-password": "PASSWORD",
     "login-acces-password-form": "Enter your password here",
     "login-button-acces": "SEND",
     "login-recover-password": "Enter your e-mail",
@@ -64,11 +64,31 @@
     "register-newsletter":"Check this box to NOT receive new offers",
     "register-button": "SEND",
     "register-cifnif": "CIF/NIF",
-    "register-error-pass": "The passwords must to match",
+    "register-error-name": "Name too short",
+    "register-error-apellido": "Surname too short",
+    "register-error-cifnif": "CIF/NIF invalid",
+    "register-error-password": "Password too short",
+    "register-error-pass2": "The passwords must to match",
     "register-error-captcha": "Verify you are not a robot",
     "register-error-email": "The email is not valid",
+    "register-error-emailExist": "The email is already in use",
+    "register-error-cifnifExist": "The CIF/NIF is alredy in use",
 
     "payment-method0": "Direct bank transfer",
+
+    "personalData-notifyModal-title": "We have detected that you are not logged in, please choose an option:",
+    "personalData-notifyModal-choiceLogin":"Log in",
+    "personalData-notifyModal-choiceRegister":"Register",
+    "personalData-notifyModal-choiceNone":"Continue anyway",
+    "personalData-notifyError-bigImage":"Excessive size, check that it is an image with the front and back of the DNI",
+
+    
+    "checkout-personal-data": "Personal Data",
+    "checkout-contract": "Contract",
+    "checkout-confirm": "Confirm Order",
+    "checkout-next": "Next Step",
+    "checkout-submit": "Confirm Payment",
+    
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
     "payment-numberCard": "Credit number card",
@@ -100,7 +120,14 @@
     "buy": "Buy",
     "empty_cart": "Empty cart...",
     "hire": "Hire",
-    "checkout-personal-data": "Personal Data",
-    "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment"
+
+    "sign-validation": "*Contracts must be signed",
+    "btn-seeContracts": "See Contracts",
+    "btn-accept": "Accept and Sign",
+    "btn-next": "Next",
+    "btn-signContracts": "Sign Contracts",
+    "validation-personalData": "* Personal Data is required",
+    "btn-disabled": "Disabled",
+    "btn-clear": "Clear",
+    "btn-save": "Save"
 }

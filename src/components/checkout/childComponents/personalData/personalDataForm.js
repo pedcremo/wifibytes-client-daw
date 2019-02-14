@@ -1,27 +1,53 @@
 /** @module ComponentsApp */
 import React from 'react';
+import Swal from 'sweetalert2';
 import {
-    updateContactDataForm
+    updateContactDataForm,
+    updateValidDtoPersForm,
+    getValidaForms
 } from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
+import {PropTypes} from 'prop-types';
+import Typecliente from './typeCliente';
 
 /**
  * @class
  * This component contain the Personal Data Form
  */
 class PersonalForm extends React.Component  {
+    
     constructor(props) {
         super(props);
+        /* alert("PersonalForm") */
         const conten = {value:"",}
         this.state = {
             name:conten,
             surname: conten,
             email:conten,
-            phone: conten,
+            date: conten,
             address:conten,
             zip: conten,
-            city: conten
+            city: conten,
+            cuenta:conten,
+            tipcli: {value:0},
+            preview: conten,
+            /* cif: conten,
+            dni: conten,
+            nie: conten, */
         };
+        this.name = React.createRef();
+        this.surname = React.createRef();
+        this.email = React.createRef();
+        this.date = React.createRef();
+        // this.dni = React.createRef();
+        this.address = React.createRef();
+        this.zip = React.createRef();
+        this.city = React.createRef();
+        this.cuenta = React.createRef();
+        this.tipcli = React.createRef();
+        this.preview = React.createRef();
+
+        this.previewFile = this.previewFile.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
@@ -30,34 +56,36 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-/**WARNING TO EMPROVE
- * ----------------------------------------------------------------------------------------------
- * Cuando la informacion viene del backend o de local deberia volver a pasar el validador y comprobar si los datos ya estan correctos de acuerdo a las reglas marcadas
- * * ----------------------------------------------------------------------------------------------
- */
-        if (Object.keys(newProps.dataUser).length > 0) 
-            for (const key in this.state) {
-                this.setState({
-                    [key]: {
-                        value: newProps.dataUser[key].value,
-                        error: newProps.dataUser[key].error
+
+        if (Object.keys(newProps.dataUser).length > 0) {
+            let estado={}
+            for (const key in newProps.dataUser) {
+                let error=""                 
+                //console.log(newProps.dataUser[key], this.refs[key], key)
+                let element = this.refs[key]
+                //console.log(this.refs[key], r["name"])
+                if(newProps.dataUser[key]){
+                    error = validator(newProps.dataUser[key]["value"], element["name"], element["type"])
+                    estado[key]= {
+                            value: newProps.dataUser[key].value,
+                            error
                     }
-                })
+                } 
             }
+            this.setState(estado, () => this.props.updateField(updateContactDataForm(this.state)))
+        }     
     }
-
-
 
     /** 
      * This method is listening changes of each form element 
      * The redux state of this form also change 
      */
     handleInputChange(event) {
+        
         const target = event.target;
         // = target.type === 'checkbox' ? target.checked : target.value;
         let value;
         const name = target.name;
-        
         /** 
          * Check what kind of type is each element and transform them
          */
@@ -67,7 +95,7 @@ class PersonalForm extends React.Component  {
             value = target.checked
         else
             value = target.value
-        
+
         /** 
          * Return a error if a field is incorrect 
          */
@@ -77,35 +105,72 @@ class PersonalForm extends React.Component  {
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
-        return new Promise((resolve, reject) => 
-            resolve(this.setState({
+        this.setState({
                 [name]: {
                     value: value,
-                    error: error
+                    error: (!error?false:error)
                 }
-            }))
-        )
-        .then(() => this.props.updateField(updateContactDataForm(this.state)))
+            }, () => {
+                this.props.updateField(updateContactDataForm(this.state))
+                this.props.updateField(getValidaForms())
+            })
+        
     }
 
+    previewFile(){
+        var reader  = new FileReader();
+        let can = this.refs["file"].files[0];
+        reader.src = reader.readAsDataURL(can);
 
+        if (can){
+            if ( can.size < 2000000 ){
+                new Promise((resolve, reject) => {
+                    reader.addEventListener("load", ()=> {
+                        resolve(reader.result)
+                    })
+                }).then((value)=>{
+                    console.log(value)
+                    this.setState({
+                        preview: {
+                            value: value,
+                        }
+                    }, ()=>this.props.updateField(updateContactDataForm(this.state)))
+                })
+            }else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: this.context.t('personalData-notifyError-bigImage'),
+                })
+                /* Remove image from input type file because is too big */
+                this.refs["file"].value = "";
+            }
+        }
+      }
 
-
+    
     render() {
+        let cli=[]
+        for (let x in this.props.tipCliente){
+            cli.push(x)
+        }
+        //console.log("this.state",this.state)
+        //cli.push(<option value={this.props.tipCliente[x]}>{x}</option>)
         return (
             <form className="grid-data-form">
                <div>
-                    <h4>Personal Data</h4>
+                    <h2>Personal Data</h2>
                     <div>
                         <input
                         className="form-control form-control-lg mio"
                         placeholder="Name"
                         name="name"
+                        ref="name"
                         id = "name"
                         type="text"
-                        value={this.state.name.value}
+                        value={!this.state.name?"":this.state.name.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
+                        <span className="text-danger">{!this.state.name? "":this.state.name.error}</span>
                     </div>
 
                     <br />
@@ -114,10 +179,11 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Surname"
                         name = "surname"
+                        ref = "surname"
                         type="text"
-                        value={this.state.surname.value}
+                        value={!this.state.surname?"":this.state.surname.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.surname.error? "":this.state.surname.error}</span>
+                        <span className="text-danger">{!this.state.surname? "":this.state.surname.error}</span>
                     </div>
 
                     <br />
@@ -126,36 +192,49 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Email"
                         name = "email"
+                        ref = "email"
                         type="email"
-                        value={this.state.email.value}
+                        value={!this.state.email?"":this.state.email.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.email.error? "":this.state.email.error}</span>
+                        <span className="text-danger">{!this.state.email? "":this.state.email.error}</span>
                     </div>
-
                     <br />
                     <div>
-                        <input
-                        className="form-control form-control-lg"
-                        placeholder="Phone"
-                        name = "phone"
-                        type="number"
-                        value={this.state.phone.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.phone.error? "":this.state.phone.error}</span>
+                        <h4>Fecha de nacimiento: </h4>
+                        <input className="form-control form-control-lg"
+                        name="date"
+                        ref = "date"
+                        type="date"
+                        value={!this.state.date?"":this.state.date.value}
+                        onChange={this.handleInputChange}/>
+                        <span className="text-danger">{!this.state.date? "":this.state.date.error}</span>
+                    </div>
+                    <br/>
+                    <div>
+                        <h4>Suba una imagen de su dni</h4>
+                        <input 
+                        type="file"
+                        id="file" 
+                        ref = "file"
+                        name = "preview"
+                        onChange={this.previewFile} /><br/>
+                        <img name="preview" ref="preview" src={!this.state.preview?"":this.state.preview.value} height="130" width="100%" alt="Image preview..."></img>
+                        <span className="text-danger">{!this.state.preview? "":this.state.preview.error}</span>
                     </div>
                 </div>
 
                 <div>
-                    <h4>Address</h4>
+                    <h2>Address</h2>
                     <div>
                         <input
                         className="form-control form-control-lg"
                         placeholder="Address"
                         name = "address"
+                        ref = "address"
                         type = "text"
-                        value={this.state.address.value}
+                        value={!this.state.address?"":this.state.address.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.address.error? "":this.state.address.error}</span>
+                        <span className="text-danger">{!this.state.address? "":this.state.address.error}</span>
                     </div>
 
                     <br />
@@ -164,28 +243,71 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg"
                         placeholder="Zip"
                         name = "zip"
+                        ref = "zip"
                         type="number"
-                        value={this.state.zip.value}
+                        value={!this.state.zip?"":this.state.zip.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.zip.error? "":this.state.zip.error}</span>
+                        <span className="text-danger">{!this.state.zip? "":this.state.zip.error}</span>
                     </div>
 
                     <br />
                     <div>
-                        <input                        
-                        className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
+                        <input                      
+                        className={"form-control form-control-lg "+ (!this.state.city? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
+                        ref = "city"
                         type="text"
-                        value={this.state.city.value}
+                        value={!this.state.city?"":this.state.city.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
+                        <span className="text-danger">{!this.state.city? "":this.state.city.error}</span>
                     </div>
+
+                    <br />
+                    <div>
+                        <input                      
+                        className={"form-control form-control-lg "+ (!this.state.cuenta? "":"border border-danger")}
+                        placeholder="Cuenta bancaria"
+                        name = "cuenta"
+                        ref = "cuenta"
+                        type="text"
+                        value={!this.state.cuenta?"":this.state.cuenta.value}
+                        onChange={this.handleInputChange} />
+                        <span className="text-danger">{!this.state.cuenta? "":this.state.cuenta.error}</span>
+                    </div>
+
+
+                    <br />
+                    <div>
+                        <h4>Introduzca el tipo de cliente: </h4>
+                        <select 
+                        name="tipcli" 
+                        ref = "tipcli"
+                        onChange={this.handleInputChange} 
+                        className={"form-control form-control-lg "+ (!this.state.tipcli? "":"border border-danger")}>
+                            <option value=""></option>   
+                            {cli.map((a, i)=>{
+                                    return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
+                            })}     
+                        </select>
+                        <span className="text-danger">{!this.state.tipcli? "" :this.state.tipcli.error}</span>
+                    </div>
+                    <br />
+                    {/* <div>
+                        {
+                        this.state.tipcli.value == 0 ? <Typecliente type={0} dni={this.state.dni.value} change={this.handleInputChange} dnierror={this.state.dni.error}/> : 
+                         this.state.tipcli.value == 1 ? <Typecliente type={1} cif={this.state.cif.value} change={this.handleInputChange} ciferror={this.state.cif.error}/> :
+                         this.state.tipcli.value == 2 ? <Typecliente type={2} nie={this.state.nie.value} change={this.handleInputChange} nierror={this.state.nie.error}/> :
+                         <Typecliente type={5} dni={this.state.dni.value} change={this.handleInputChange} dnierror={this.state.dni.error}/> }
+                    </div> */}
                 </div >
             </form>
         );
     }
-
-
 }
+
+PersonalForm.contextTypes = {
+    t: PropTypes.func.isRequired
+}
+
 export default PersonalForm;

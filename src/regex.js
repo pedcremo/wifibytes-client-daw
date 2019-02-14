@@ -18,6 +18,20 @@ let Regex = {
      * regexPhone check if a phone has 9 digits and has started by 9 or 6 
      */
     regexPhone: /^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}$/,
+    /**
+     * regexDni check if dni, nie or cif is valid
+     */
+    regexDni: /^\d{8}[a-zA-Z]{1}$/g,
+
+    regexNie: /^[XxTtYyZz]{1}\d{7}[a-zA-Z]{1}$/g,
+
+    regexCif: /^[a-zA-Z]{1}\d{7}[a-zA-Z0-9]{1}$/g,
+    /**
+     * regexFechNac check if fecha nacimiento is valid
+     */
+    regexFNAC: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g,
+
+    regexSIM: /[0-9]{20}/,
 
     cvv: /^[0-9]{3,4}$/,
     cardOwner: /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}/g,
