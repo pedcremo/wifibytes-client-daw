@@ -9,9 +9,7 @@ import {
 import {validator}  from "./validation";
 import {PropTypes} from 'prop-types';
 import Typecliente from './typeCliente';
-const initialState = {
-    /* etc */
-};
+let cont=0
 /**
  * @class
  * This component contain the Personal Data Form
@@ -21,25 +19,25 @@ class PersonalForm extends React.Component  {
     constructor(props) {
         super(props);
         /* alert("PersonalForm") */
-        const conten = {value:"",}
+        const conten = {value:""}
         this.state = {
             name:conten,
-            surname: conten,
+            /* surname: conten,
             email:conten,
             date: conten,
+            file: conten,
             address:conten,
             zip: conten,
             city: conten,
             cuenta:conten,
             tipcli: {value:0},
-            preview: conten,
+            preview: conten, */
             /* cif: conten,
-            file: conten,
             dni: conten,
             nie: conten, */
         };
-        this.name = React.createRef();
-     /*    this.surname = React.createRef();
+      /*   this.name = React.createRef();
+        this.surname = React.createRef();
         this.email = React.createRef();
         this.date = React.createRef();
         this.dni = React.createRef();
@@ -58,26 +56,73 @@ class PersonalForm extends React.Component  {
      * This method is listening changes of some prop (comming from its father)
      * @param {newProps} newProps  
      */
-    componentWillReceiveProps(newProps) {
-
-        if (Object.keys(newProps.dataUser).length > 0) {
-            let estado={}
+    /* componentWillReceiveProps(newProps) {
+        console.log(newProps, "newProps1111111111111111111", newProps.dataUser)
+        let myState={}
+        if (newProps.dataUser != undefined && Object.keys(newProps.dataUser).length > 0) {
+            let error=""                 
+            console.log("myState", myState)
             for (const key in newProps.dataUser) {
-                let error=""                 
                 //console.log(newProps.dataUser[key], this.refs[key], key)
                 let element = this.refs[key]
-                //console.log(this.refs[key], r["name"])
-                error = validator((newProps.dataUser[key]["value"] ? newProps.dataUser[key]["value"]: newProps.dataUser[key]), element["name"], element["type"])
-                estado[key]= {
-                        value: (newProps.dataUser[key]["value"] ? newProps.dataUser[key]["value"] : newProps.dataUser[key]),
-                        error: (!error ? false : error)
-                    } 
+                error = validator(newProps.dataUser[key]["value"], element["name"], element["type"])
+                myState[key]= {
+                    value: newProps.dataUser[key].value,
+                    error: error
+                } 
+                console.log("this.refs[key]]", newProps.dataUser, this.refs[key], myState)
             }
-            console.log("estado, this.state",estado, this.state)
-            this.setState(estado, () => this.props.updateField(updateContactDataForm(this.state)))
+            console.log("let myState = {}", this.state, myState)
+            
+            this.setState(myState, () => {
+                console.log("let myState = {222222}", this.state, myState)
+                this.props.updateField(updateContactDataForm(myState))
+            })
         }     
+    } */
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if ((nextProps.dataUser !== prevState) && Object.keys(nextProps.dataUser).length>0) {
+            //       We can't do this here as we can't access `this` inside this method.
+            //       firebaseRef=firebase.database().ref(nextProps.path);
+            //       this.setState({firebaseRef, path :nextProps.path });
+            //       this.getData(firebaseRef);
+            let res = cont > 0 ? prevState: nextProps.dataUser 
+            console.log("prevState.1111111111111111111", nextProps, prevState, cont++, res)
+            return res
+            
+        } else return null;
     }
-    
+
+    /* componentDidUpdate(prevProps, prevState) {
+        let cont=0
+        if (prevState !== this.state) {
+            let myState={}
+            cont++
+            let error = ""
+            console.log(myState, "5555555555555555555555555", prevProps, prevState, this.state)
+            debugger
+            for (const key in this.state) {
+                let element = this.refs[key]
+                if (this.state[key]["name"] != "preview")
+                    error = validator(this.state[key]["value"], element["name"], element["type"])
+                
+                myState[key] = {
+                    value: this.state[key].value,
+                    error: error
+                }
+                
+                
+                console.log("355555555555555555552222222222", this.state[key]["value"], element["name"], element["type"], error)
+            }
+            console.log(myState, "8484848484", prevProps, prevState, this.state, myState)
+            debugger
+            //this.setState({});
+        }
+        if ((Object.keys(myState).length === Object.keys(this.state).length)&&cont ==1) {
+            this.setState(myState);
+        }
+    } */
     /** 
      * This method is listening changes of each form element 
      * The redux state of this form also change 
@@ -101,21 +146,32 @@ class PersonalForm extends React.Component  {
         /** 
          * Return a error if a field is incorrect 
          */
-        const error = validator(value, name, target.type)
+        let error = validator(value, name, target.type)
+        error = error === undefined ? "noerror" : error
 
         /** 
          * The component change its own state and send a dispatch to redux
          * this.props.updateField "updateField" is a function which come from its father
          */
+        console.log("this.state--------------", this.state[name])
+
+
+
         this.setState({
                 [name]: {
                     value: value,
-                    error: (!error ? false : error)
+                    error:error
                 }
-            }, () => {
+            },
+            function () {
+                console.log("this.state*************", this.state, this.state[name])
                 this.props.updateField(updateContactDataForm(this.state))
                 this.props.updateField(getValidaForms())
-            })
+            }/* () => {
+                console.log("this.state*************", this.state, this.state[name])
+                this.props.updateField(updateContactDataForm(this.state))
+                this.props.updateField(getValidaForms())
+            } */)
         
     }
 
@@ -123,7 +179,7 @@ class PersonalForm extends React.Component  {
         var reader  = new FileReader();
         let can = this.refs["file"].files[0];
         reader.src = reader.readAsDataURL(can);
-
+        console.log("this.state------------------1111", this.state)
         if (can){
             if ( can.size < 2000000 ){
                 new Promise((resolve, reject) => {
@@ -134,9 +190,10 @@ class PersonalForm extends React.Component  {
                     this.setState({
                         preview: {
                             value: value,
-                            error:false
                         }
-                    }, ()=>this.props.updateField(updateContactDataForm(this.state)))
+                    }, ()=>{
+                        console.log("this.state------------------2222", this.state)
+                        this.props.updateField(updateContactDataForm(this.state))})
                 })
             }else{
                 Swal.fire({
@@ -152,11 +209,11 @@ class PersonalForm extends React.Component  {
 
     
     render() {
-        let cli=[]
+       /*  let cli=[]
         for (let x in this.props.tipCliente){
             cli.push(x)
-        }
-        console.log("this.state",this.state)
+        } */
+        //console.log("this.state",this.state)
         //cli.push(<option value={this.props.tipCliente[x]}>{x}</option>)
         return (
             <form className="grid-data-form">
@@ -167,7 +224,7 @@ class PersonalForm extends React.Component  {
                         className="form-control form-control-lg mio"
                         placeholder="Name"
                         name="name"
-                        ref="name"
+                        /* ref="name" */
                         id = "name"
                         type="text"
                         value={this.state.name.value}
@@ -175,7 +232,7 @@ class PersonalForm extends React.Component  {
                         <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
                     </div>
 
-                     <br />
+                    {/* <br />
                     <div>
                         <input
                         className="form-control form-control-lg"
@@ -292,7 +349,7 @@ class PersonalForm extends React.Component  {
                             })}     
                         </select>
                         <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
-                    </div> 
+                    </div> */}
                     <br />
                     {/* <div>
                         {

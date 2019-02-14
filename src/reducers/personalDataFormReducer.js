@@ -46,24 +46,24 @@ export default function personalDataFormReducer(state = initialState, action) {
 
         case GET_CONTACT_DATA_FORM_SUCCESS:
         //console.log(Object.keys(state.fields.datosPersonales).length)
-        if (Object.keys(state.fields.datosPersonales).length ==0 ) {
+            if (Object.keys(state.fields.datosPersonales).length ==0 ) {
                 state.fields.datosPersonales ={
-                        name: {value: "a"},
-                        surname: {value: "lopez"},
-                        email: {value: "lopez@gmail.com"},
-                        address: {value: "C/ alicante 1"},
-                        zip: {value: 46870},
-                        city: {value: "Gandia"},
-                        cuenta: {value: ""},
-                        date: {value: ""},
+                        name:  "a",
+                        surname: "lopez",
+                        email: "lopez@gmail.com",
+                        address: "C/ alicante 1",
+                        zip: 46870,
+                        city: "Gandia",
+                        cuenta: "",
+                        date: ""
                         //preview: {value: ""}, 
-                        tipcli: {value: 0},
+                        /* tipcli: {value: 0}, */
                         /* nie: {value: ""},
                         dni: {value: ""},
-                        cif: {value: ""}, */
+                        cif: {value: ""},*/
                     }
             }
-                
+                console.log("state.fields.datosPersonales",state.fields.datosPersonales)
             return {
                 ...state,
                 loaded: false,
@@ -71,12 +71,13 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case GET_CONTACT_DATA_FORM_UPDATE:
+            console.log("!!!!!!!!!!!!!!!!!!", action.payload.contactDataForm, state.fields["datosPersonales"])
             const object = action.payload.contactDataForm
             let valid=true;
             state.fields["datosPersonales"] = object
             console.log("state.fields[datosPersonales]", object)
             for (const key in object) {
-                if (object[key].hasOwnProperty("error") && object[key]["error"] != false && object[key]["error"] != undefined) {
+                if (object[key].hasOwnProperty("error") && object[key]["error"] != false && object[key]["value"].length>0) {
                     valid = false;
                     break;
                 }
@@ -95,6 +96,8 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         case UPDATE_CONTACT_DATA_FORM_SERVICES:
+
+            
             if (!state.fields["datosProductos"]) 
                 state.fields["datosProductos"]=[]
                 

@@ -177,13 +177,13 @@ class Personal extends React.Component  {
         if (prevProps.validForms != this.props.validForms) {
           //  alert("2")
             if (this.props.validForms) {
-                console.log(this.props.validForms)
-                this.props.dispatch(setCompleted());
                 let objData = this.props.fields
+                console.log(this.props.validForms, this.props.fields.datosPersonales)
                 for (const key in objData.datosPersonales) {
                     objData.datosPersonales[key] = objData.datosPersonales[key]["value"];
                 }
-                this.props.dispatch(updateData("personalData", objData));
+                this.props.dispatch(updateData("personalData", this.props.fields.datosPersonales));
+                this.props.dispatch(setCompleted());
                 
             //    console.log(1)
             } else {          
