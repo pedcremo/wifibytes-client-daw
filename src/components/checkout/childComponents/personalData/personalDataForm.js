@@ -9,9 +9,7 @@ import {
 import {validator}  from "./validation";
 import {PropTypes} from 'prop-types';
 import Typecliente from './typeCliente';
-const initialState = {
-    /* etc */
-};
+
 /**
  * @class
  * This component contain the Personal Data Form
@@ -27,6 +25,7 @@ class PersonalForm extends React.Component  {
             surname: conten,
             email:conten,
             date: conten,
+            file: conten,
             address:conten,
             zip: conten,
             city: conten,
@@ -34,12 +33,11 @@ class PersonalForm extends React.Component  {
             tipcli: {value:0},
             preview: conten,
             /* cif: conten,
-            file: conten,
             dni: conten,
             nie: conten, */
         };
         this.name = React.createRef();
-     /*    this.surname = React.createRef();
+        this.surname = React.createRef();
         this.email = React.createRef();
         this.date = React.createRef();
         this.dni = React.createRef();
@@ -48,7 +46,7 @@ class PersonalForm extends React.Component  {
         this.zip = React.createRef();
         this.city = React.createRef();
         this.cuenta = React.createRef();
-        this.tipcli = React.createRef(); */
+        this.tipcli = React.createRef();
 
         this.previewFile = this.previewFile.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -59,25 +57,29 @@ class PersonalForm extends React.Component  {
      * @param {newProps} newProps  
      */
     componentWillReceiveProps(newProps) {
-
-        if (Object.keys(newProps.dataUser).length > 0) {
+        console.log(newProps, "newProps1111111111111111111", newProps.dataUser)
+        if (newProps.dataUser != undefined && Object.keys(newProps.dataUser).length > 0) {
             let estado={}
+            let error=""                 
             for (const key in newProps.dataUser) {
-                let error=""                 
                 //console.log(newProps.dataUser[key], this.refs[key], key)
                 let element = this.refs[key]
-                //console.log(this.refs[key], r["name"])
-                error = validator((newProps.dataUser[key]["value"] ? newProps.dataUser[key]["value"]: newProps.dataUser[key]), element["name"], element["type"])
+                console.log("this.refs[key]]", newProps.dataUser, this.refs[key])
+                error = validator(newProps.dataUser[key]["value"], element["name"], element["type"])
                 estado[key]= {
-                        value: (newProps.dataUser[key]["value"] ? newProps.dataUser[key]["value"] : newProps.dataUser[key]),
-                        error: (!error ? false : error)
+                        value: newProps.dataUser[key].value,
+                        error: error
                     } 
             }
-            console.log("estado, this.state",estado, this.state)
-            this.setState(estado, () => this.props.updateField(updateContactDataForm(this.state)))
+            console.log("let estado = {}", this.state, estado)
+            
+            this.setState(estado, () => {
+                console.log("let estado = {222222}", this.state, estado)
+                this.props.updateField(updateContactDataForm(estado))
+            })
         }     
     }
-    
+
     /** 
      * This method is listening changes of each form element 
      * The redux state of this form also change 
@@ -110,9 +112,10 @@ class PersonalForm extends React.Component  {
         this.setState({
                 [name]: {
                     value: value,
-                    error: (!error ? false : error)
+                    error: (!error?false:error)
                 }
             }, () => {
+                console.log("this.state*************",this.state)
                 this.props.updateField(updateContactDataForm(this.state))
                 this.props.updateField(getValidaForms())
             })
@@ -123,7 +126,7 @@ class PersonalForm extends React.Component  {
         var reader  = new FileReader();
         let can = this.refs["file"].files[0];
         reader.src = reader.readAsDataURL(can);
-
+        console.log("this.state------------------1111", this.state)
         if (can){
             if ( can.size < 2000000 ){
                 new Promise((resolve, reject) => {
@@ -134,9 +137,10 @@ class PersonalForm extends React.Component  {
                     this.setState({
                         preview: {
                             value: value,
-                            error:false
                         }
-                    }, ()=>this.props.updateField(updateContactDataForm(this.state)))
+                    }, ()=>{
+                        console.log("this.state------------------2222", this.state)
+                        this.props.updateField(updateContactDataForm(this.state))})
                 })
             }else{
                 Swal.fire({
@@ -156,7 +160,7 @@ class PersonalForm extends React.Component  {
         for (let x in this.props.tipCliente){
             cli.push(x)
         }
-        console.log("this.state",this.state)
+        //console.log("this.state",this.state)
         //cli.push(<option value={this.props.tipCliente[x]}>{x}</option>)
         return (
             <form className="grid-data-form">
@@ -175,7 +179,7 @@ class PersonalForm extends React.Component  {
                         <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span>
                     </div>
 
-                     <br />
+                    <br />
                     <div>
                         <input
                         className="form-control form-control-lg"
@@ -292,7 +296,7 @@ class PersonalForm extends React.Component  {
                             })}     
                         </select>
                         <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
-                    </div> 
+                    </div>
                     <br />
                     {/* <div>
                         {
