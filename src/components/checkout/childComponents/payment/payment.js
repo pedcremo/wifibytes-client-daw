@@ -12,14 +12,14 @@ import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmer
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import EfectivoForm from './paymentTypes/Efectivo';
 import { PaymentOptionsRadioButton } from './paymentTypes/paymentOptions';
-import Resume from './paymentTypes/Resume';
+import Summary from './paymentTypes/Summary';
 import { PropTypes } from 'prop-types';
 import Cart from '../../../cart/Cart';
 import { Validations } from '../../../../validators/paymentFormValidators';
 import { Agent } from '../../agent';
 import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
 
-const mapStateToProps = state => ({ ...state.payment });
+const mapStateToProps = state => ({ ...state.payment, ...state.cartReducer });
 
 
 class Payment extends React.Component {
@@ -158,18 +158,19 @@ class Payment extends React.Component {
    * that information
    */
   getCartItemsAndIfThereIsAtLeastOneProduct() {
-    const cartItems = JSON.parse(localStorage.getItem('cartReducer'));
-    let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems.items, CheckIfThereIsAtLeastOneItem);
+    const cartItems = this.props.items;
+    let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems, CheckIfThereIsAtLeastOneItem);
     thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter(thing => thing === "productos");
     return [cartItems, thereIsAtLeastOneProduct.length > 0];
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="payment-container">
         {this.showPaymentOptions()}
         <div className="cart-resume">
-          {<Resume
+          {<Summary
             translate={this.context}
           />}
           {<Cart cartItems={this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
