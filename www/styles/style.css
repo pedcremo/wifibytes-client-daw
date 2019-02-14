@@ -317,10 +317,11 @@ nav {
 }
 
 .loginForm .login-button {
-	margin-top: 5%;
-	color: white;
-	height: 35px;
-	background: #1f4f82;
+	margin: 0 auto;
+    color: white;
+    width: 350px;
+    height: 35px;
+    background: #1f4f82;
 }
 
 .loginForm .login-button:hover {
@@ -338,6 +339,7 @@ nav {
 	width: 500px;
 	height: 600px;
 	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 20px 0.4fr;
 	background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -354,6 +356,8 @@ nav {
 	position: relative;
 	top: 15px;
 	left: 18px;
+	color: red;
+	text-align: center;
 }
 .login-acces > form > span > i {
 	grid-area: i;
@@ -368,7 +372,7 @@ nav {
 }
 
 .login-acces > form > span > label.down {
-	transform: translate(30px, 66px);
+	transform: translate(19px, 72px);
 }
 
 .login-acces > form > span > label {
