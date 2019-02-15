@@ -89,7 +89,8 @@ let Utils={
      * From Jake Archibald's Promises and Back:
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
     */
-    get: function (url,filterFunction=null) {
+    get: function (url,filterFunction=null,header=false) {
+        let jwt = this.getCookie("jwt");
         // Return a new promise.
         return new Promise(function(resolve, reject) {
             if (CACHE_TEMPLATES.has(url)) {
@@ -98,6 +99,7 @@ let Utils={
                 // Do the usual XHR stuff
                 var req = new XMLHttpRequest();
                 req.open("GET", Settings.baseURL+url);
+                if (header) req.setRequestHeader("Authorization", "JWT " + jwt);
 
                 req.onload = function() {
                 // This is called even on 404 etc

@@ -73,35 +73,34 @@ const saveJWT = (store) => (next) => (action) => {
 	next(action);
 };
 
-const isAuth = store => next => action => {
-  if (action.isAuth) {
-    let token = Utils.getCookie("jwt");
-    if (token) {
-      store.dispatch({
-        type: AUTH_SET,
-        user: true
-      });
-      Utils.post("/api-token-verify/", { token: token }).then(
-        res => {
-          store.dispatch({
-            type: AUTH_SET,
-            user: JSON.parse(res)
-          });
-        },
-        error => {
-          console.log("ERROR isAuth Middleware : ", error);
-          console.log(action);
-          store.dispatch({
-            type: NOT_AUTH
-          });
-        }
-      );
-    } else {
-      next(action);
-    }
-  }
-  next(action);
+
+const isAuth = (store) => (next) => (action) => {
+	if (action.isAuth) {
+					let token = Utils.getCookie('jwt');
+					if (token) {
+									Utils.post('/api-token-verify/', { token: token }).then(
+													(res) => {
+																	store.dispatch({
+																					type: AUTH_SET,
+																					user: res
+																	});
+													},
+													(error) => {
+																	console.log('ERROR isAuth Middleware : ', error);
+																	console.log(action);
+																	store.dispatch({
+																					type: NOT_AUTH
+																	});
+													}
+									);
+					} else {
+									next(action);
+					}
+	}
+	next(action);
 };
+
+
 
 function isPromise(v) {
 	return v && typeof v.then === 'function';

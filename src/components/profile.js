@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
 	onLoad: (id) =>
 		dispatch({
 			type: GET_PROFILE,
-			payload: Utils.get(`/cliente/${id}`, null, true)
+			payload: Utils.get(`/cliente/${id}/`, null, true)
 		})
 });
 const mapStateToProps = (state) => ({
