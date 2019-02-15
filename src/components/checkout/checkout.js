@@ -152,22 +152,16 @@ class Checkout extends React.Component {
                                     <i className="right arrow icon"></i>
                                     {this.context.t('checkout-next')}
                                 </button>):(
-                                    (disabled)?
+                                    
                                     (
                                         <button 
-                                                disabled  
+                                                onClick={() => this.sendOrder()}
+                                                disabled={disabled} 
                                                 className="massive ui labeled icon black button">
                                                 <i className="icon truck"></i> 
                                                 {this.context.t('checkout-submit')}
                                         </button>
-                                        ) : (
-                                        <button 
-                                            onClick={() => this.sendOrder()}
-                                            className="massive ui labeled icon black button">
-                                            <i className="icon truck"></i> 
-                                            {this.context.t('checkout-submit')}
-                                        </button>
-                                    )
+                                        )
                                 )
                             }
                         </div>
