@@ -2,9 +2,7 @@
 /** @module ComponentsApp */
 import React from 'react';
 import Swal from 'sweetalert2';
-import {
-    Utils
-} from '../../../../utils'
+
 import {
     updateContactDataForm,
     getContactDataForm,
@@ -15,16 +13,40 @@ import Typecliente from './typeCliente';
 import { connect } from "react-redux";
 
 
-    
+
 
 
 const mapDispatchToProps = dispatch => ({
-    updateField: data => dispatch(updateField(data)),
+    updateField: data => dispatch(updateField(data, field)),
 });
-/*trae el estado del reducer root*/
+
 const mapStateToProps = state => ({
-    ...state.personalDataForm.fields.datosPersonales
+    ...state.fields
 });
+
+
+
+
+/* const mapDispatchToProps = dispatch => ({
+    login: data => dispatch(login(data)),
+    recoverPass: email => dispatch(recoverPass(email)),
+    changeValue: (value, target) => dispatch(changeValue(value, target))
+});
+
+const mapStateToProps = state => ({
+    ...state.loginReducer
+});
+
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+    )(Login); */
+    
+
+
+
 
     /**
  * @class
@@ -37,31 +59,9 @@ class PersonalForm extends React.Component  {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    componentDidMount(){
-        let datosPersonales=localStorage.getItem('datosPersonales');
-        if (datosPersonales || Object.keys(datosPersonales).length == 0) {
-            let token = Utils.getCookie("jwt");
-            if (token) {
-                Utils.post("/clientes/", {
-                    token: token
-                }).then(
-                    res => {
-                        /* store.dispatch({
-                            type: AUTH_SET,
-                            user: JSON.parse(res)
-                        }); */
-                    },
-                    error => {
-                        /* console.log("ERROR isAuth Middleware : ", error);
-                        console.log(action);
-                        store.dispatch({
-                            type: NOT_AUTH
-                        }); */
-                    }
-                );
-            }
-            console.log("dddddddd")
-        }
+
+    componentDidMount() {
+        this.props.dispatch(getContactDataForm());
     }
     /** 
      * This method is listening changes of each form element 
@@ -87,20 +87,17 @@ class PersonalForm extends React.Component  {
          * Return a error if a field is incorrect 
          */
         const error = validator(value, name, target.type)
-        console.log("this.props.dataUser", this.props)
-        /* this.props.dispatch(updateField(value, name)) */
+        console.log("this.props.dataUser", this.props.datosPersonales)
+        //this.props.dispatch(updateContactDataForm(this.props.datosPersonales))
         
     }
 
 
     
     render() {
-        const {
-            name,
-            updateField
-        } = this.props;
+        /* const {loading,} = this.props; */
 
-        console.warn(this.props, "------------------", name)
+        console.warn(this.props.datosPersonales)
         
         return (
             <form className="grid-data-form">
@@ -112,21 +109,21 @@ class PersonalForm extends React.Component  {
                         placeholder="Name"
                         name="name"
                         type="text"
-                        value={name}
-                        onChange={ev => updateField(ev.target.value, ev.target.value)}
-                        />
+                        value={this.props.datosPersonales.name}
+                        onChange={(e)=>this.props.updateField(e.target.value,e.target.value)} />
+                        
                         {/* <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span> */}
                     </div>
 
                     <br />
                     <div>
-                        {/* <input
+                        <input
                         className="form-control form-control-lg"
                         placeholder="Surname"
                         name = "surname"
                         type="text"
-                        value={fields.datosPersonales.surname}
-                        onChange={this.handleInputChange} /> */}
+                        value={this.props.datosPersonales.surname}
+                        onChange={this.handleInputChange} />
                         {/* <span className="text-danger">{!this.state.surname.error? "":this.state.surname.error}</span> */}
                     </div>
 
@@ -242,15 +239,14 @@ class PersonalForm extends React.Component  {
         );
     }
 }
-
-/* const mapStateToProps = state => ({
+/* 
+const mapStateToProps = state => ({
     datosPersonales: state.personalDataForm.fields.datosPersonales,
     loaded: state.personalDataForm.loaded,
     error: state.personalDataForm.error,
-});
+}); */
 
-export default connect(mapStateToProps)(PersonalForm);
- */
+/* export default connect(mapStateToProps)(PersonalForm); */
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -1,11 +1,66 @@
 import {
     Utils
 } from "../utils";
+
 import {
     UPDATE_DATA,
     SET_COMPLETED,
     SET_UNCOMPLETED
 } from '../constants/actionTypes';
+
+export const setCompleted = () => ({
+    type: SET_COMPLETED
+});
+
+export const setUncompleted = () => ({
+    type: SET_UNCOMPLETED
+});
+
+
+
+export const UPDATE_DATOS_PERSONALES = 'UPDATE_DATOS_PERSONALES';
+export const updateField = (data, field) => {
+    console.log("xccccccc"); return({
+    type: UPDATE_DATOS_PERSONALES,
+    data,
+    field
+})}
+
+
+export const GET_DATOS_PERSONALES = 'GET_DATOS_PERSONALES';
+export const getDatosPersonales = () => {
+    console.log("getDatosPersonales");
+    return ({
+        type: GET_DATOS_PERSONALES
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export function getContactDataForm() {
@@ -126,10 +181,3 @@ export function updateData(key, data) {
     };
 }
 
-export const setCompleted = () => ({
-    type: SET_COMPLETED
-});
-
-export const setUncompleted = () => ({
-    type: SET_UNCOMPLETED
-});

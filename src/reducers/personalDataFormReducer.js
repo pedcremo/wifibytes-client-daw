@@ -8,14 +8,20 @@ import {
     UPDATE_VALID_DTOS_PERSONALES,
     GET_CONTACT_DATA_FORM_SERVICES,
     UPDATE_DATOS_PRODUCTOS,
-    GET_VALIDA_FORMS
-} from '../actions/personalDataFormActions';
+    GET_VALIDA_FORMS,
 
+    GET_DATOS_PERSONALES,
+    UPDATE_DATOS_PERSONALES
+} from '../actions/personalDataFormActions';
+import {
+    Utils
+} from "../utils";
 const initialState = {
     fields: {
         datosPersonales:{},
         datosProductos:[]
     },
+    datosPersonales:{},
     totalServices:0,
     validDatosPersonales: false,
     validDatosProductos:false,
@@ -23,9 +29,48 @@ const initialState = {
     loaded: false,
 };
 
+/* localStorage.setItem('myData', data);
+
+// getter
+localStorage.getItem('myData'); */
+
 export default function personalDataFormReducer(state = initialState, action) {
     
     switch (action.type) {
+
+        case UPDATE_DATOS_PERSONALES:
+            console.log("action.field", action.field, action.data)
+            state.datosPersonales[action.field] = action.data;
+            return {
+                ...state,
+            };
+
+        case GET_DATOS_PERSONALES:
+            let token = Utils.getCookie("jwt");
+            localStorage.setItem('myData', data);
+
+            
+            localStorage.getItem('myData');
+
+            state.datosPersonales[action.field] = action.data;
+            return {
+                ...state,
+            };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         case UPDATE_DATOS_PRODUCTOS:
             state.fields["datosProductos"] = action.payload
@@ -48,19 +93,19 @@ export default function personalDataFormReducer(state = initialState, action) {
         //console.log(Object.keys(state.fields.datosPersonales).length)
         if (Object.keys(state.fields.datosPersonales).length ==0 ) {
                 state.fields.datosPersonales ={
-                        name: {value: "a"},
-                        surname: {value: "lopez"},
-                        email: {value: "lopez@gmail.com"},
-                        address: {value: "C/ alicante 1"},
-                        zip: {value: 46870},
-                        city: {value: "Gandia"},
-                        cuenta: {value: ""},
-                        date: {value: ""},
-                        //preview: {value: ""}, 
-                        tipcli: {value: 0},
-                        /* nie: {value: ""},
-                        dni: {value: ""},
-                        cif: {value: ""}, */
+                        name:  "a",
+                        surname:  "lopez",
+                        email:  "lopez@gmail.com",
+                        address:  "C/ alicante 1",
+                        zip:  46870,
+                        city:  "Gandia",
+                        cuenta:  "",
+                        date:  "",
+                        //preview:  "", 
+                        tipcli:  0,
+                        /* nie:  "",
+                        dni:  ""},
+                        cif:  ""}, */
                     }
             }
                 
