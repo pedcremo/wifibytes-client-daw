@@ -11,7 +11,6 @@ class SignPad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          showPad: false,
           defaultCanvas: ""
         };
     }
@@ -19,9 +18,7 @@ class SignPad extends React.Component {
     componentDidMount() {
         let canvas = document.getElementById('paint');
         let ctx = canvas.getContext('2d');
-        
-        let sketch = document.getElementById('sketch');
-        let sketch_style = getComputedStyle(sketch);
+    
         canvas.width = 500;
         canvas.height = 250;
 
@@ -50,7 +47,7 @@ class SignPad extends React.Component {
             canvas.removeEventListener('mousemove', onPaint, false);
         }, false);
         
-        let onPaint = function() {
+        let onPaint = () => {
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
         };
@@ -106,8 +103,7 @@ class SignPad extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(SignPad);
 

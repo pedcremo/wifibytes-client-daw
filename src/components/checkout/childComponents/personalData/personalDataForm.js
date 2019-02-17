@@ -5,25 +5,25 @@ import Swal from 'sweetalert2';
 import {
     Utils
 } from '../../../../utils'
-import {
-    updateContactDataForm,
-    getContactDataForm,
-    updateField
+import {    
+    updateField,
+    initDatosPersonales
 } from "../../../../actions/personalDataFormActions";
 import {validator}  from "./validation";
-import Typecliente from './typeCliente';
+/* import Typecliente from './typeCliente'; */
 import { connect } from "react-redux";
 
 
     
 
 
-const mapDispatchToProps = dispatch => ({
-    updateField: data => dispatch(updateField(data)),
+const mapDispatchToProps = (dispatch) => ({
+    updateField: (data, field, error) => dispatch(updateField(data, field, error)),
+    initDatosPersonales: data => dispatch(initDatosPersonales(data))
 });
 /*trae el estado del reducer root*/
 const mapStateToProps = state => ({
-    ...state.personalDataForm.fields.datosPersonales
+    ...state.personalDataForm.datosPersonales
 });
 
     /**
@@ -34,88 +34,70 @@ class PersonalForm extends React.Component  {
     
     constructor(props) {
         super(props);
-        this.handleInputChange = this.handleInputChange.bind(this);
+        /* this.handleInputChange = this.handleInputChange.bind(this); */
     }
 
-    componentDidMount(){
-        let datosPersonales=localStorage.getItem('datosPersonales');
-        if (datosPersonales || Object.keys(datosPersonales).length == 0) {
-            let token = Utils.getCookie("jwt");
-            if (token) {
-                Utils.post("/clientes/", {
-                    token: token
-                }).then(
-                    res => {
-                        /* store.dispatch({
-                            type: AUTH_SET,
-                            user: JSON.parse(res)
-                        }); */
-                    },
-                    error => {
-                        /* console.log("ERROR isAuth Middleware : ", error);
-                        console.log(action);
-                        store.dispatch({
-                            type: NOT_AUTH
-                        }); */
-                    }
-                );
-            }
-            console.log("dddddddd")
+    componentDidMount(){        
+        const {initDatosPersonales} = this.props;
+        const token = Utils.getCookie("jwt");
+        console.log("this.props", this.props)
+        if (token) {
+            Utils.post('/api-token-verify/', {token: token})
+            .then(
+                res => {
+                    console.log(res)
+                    Utils.get(`/cliente/${res.id_consumer}/`, null, true)
+                    .then(
+                        res => {
+                            console.log(res)
+                            initDatosPersonales(res)
+                            /*despach de objeto con acciones*/                                              
+                        },
+                        error => {
+                            /* arrancar el formulario con estado inicial */
+                            console.log('cliente/${res.id_consumer : ', error);}
+                    );
+                },
+                error => {
+                    /*deberia abrirse el modal y arrancar el formulario con estado inicial*/
+                    console.log('ERROR Utils.post ', error);}
+            );
+        }else{
+            /*deberia abrirse el modal y arrancar el formulario con estado inicial*/
         }
     }
-    /** 
-     * This method is listening changes of each form element 
-     * The redux state of this form also change 
-     */
-    handleInputChange(event) {
-        
-        const target = event.target;
-        // = target.type === 'checkbox' ? target.checked : target.value;
-        let value;
-        const name = target.name;
-        /** 
-         * Check what kind of type is each element and transform them
-         */
-        if (target.type === "number") 
-            value = Number(target.value)
-        else if (target.type === 'checkbox')
-            value = target.checked
-        else
-            value = target.value
-
-        /** 
-         * Return a error if a field is incorrect 
-         */
-        const error = validator(value, name, target.type)
-        console.log("this.props.dataUser", this.props)
-        /* this.props.dispatch(updateField(value, name)) */
-        
-    }
+   
+    
 
 
     
     render() {
         const {
-            name,
-            updateField
+            updateField,
+            nombre        
         } = this.props;
 
-        console.warn(this.props, "------------------", name)
-        
+        console.warn("RENDER DATAFORM", this.props, "------------------", nombre)
+        /**
+         * Es importante que el nombre de los inputs coincida con el combre del objeto en redux que guardara su value, ya que de esta manera reutilizamos el validador en el reducer cuando los datos son extaridos por primera vez o desde backend o desde localStorage
+         */
         return (
             <form className="grid-data-form">
                <div>
                     <h2>Personal Data</h2>
                     <div>
-                        <input
-                        className="form-control form-control-lg mio"
-                        placeholder="Name"
-                        name="name"
-                        type="text"
-                        value={name}
-                        onChange={ev => updateField(ev.target.value, ev.target.value)}
-                        />
-                        {/* <span className="text-danger">{!this.state.name.error? "":this.state.name.error}</span> */}
+                        <label>
+                            Nombre
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="nombre"
+                            type="text"
+                            value={nombre}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "nombre"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!nombre? "": validator(nombre, "nombre")}</span> 
                     </div>
 
                     <br />
@@ -138,9 +120,9 @@ class PersonalForm extends React.Component  {
                         name = "email"
                         ref = "email"
                         type="email"
-                        value={this.state.email.value}
+                        value={!this.state.email?"":this.state.email.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.email.error? "":this.state.email.error}</span>
+                        <span className="text-danger">{!this.state.email? "":this.state.email.error}</span>
                     </div>
                     <br />
                     <div>
@@ -149,20 +131,21 @@ class PersonalForm extends React.Component  {
                         name="date"
                         ref = "date"
                         type="date"
-                        value={this.state.date.value}
+                        value={!this.state.date?"":this.state.date.value}
                         onChange={this.handleInputChange}/>
-                        <span className="text-danger">{!this.state.date.error? "":this.state.date.error}</span>
+                        <span className="text-danger">{!this.state.date? "":this.state.date.error}</span>
                     </div>
                     <br/>
                     <div>
                         <h4>Suba una imagen de su dni</h4>
                         <input 
                         type="file"
-                        id="dni" 
+                        id="file" 
                         ref = "file"
-                        name = "file"
+                        name = "preview"
                         onChange={this.previewFile} /><br/>
-                        <img name="preview" ref="preview" src={this.state.preview.value} height="130" width="100%" alt="Image preview..."></img> 
+                        <img name="preview" ref="preview" src={!this.state.preview?"":this.state.preview.value} height="130" width="100%" alt="Image preview..."></img>
+                        <span className="text-danger">{!this.state.preview? "":this.state.preview.error}</span>
                     </div>
                 </div>
 
@@ -175,9 +158,9 @@ class PersonalForm extends React.Component  {
                         name = "address"
                         ref = "address"
                         type = "text"
-                        value={this.state.address.value}
+                        value={!this.state.address?"":this.state.address.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.address.error? "":this.state.address.error}</span>
+                        <span className="text-danger">{!this.state.address? "":this.state.address.error}</span>
                     </div>
 
                     <br />
@@ -188,35 +171,35 @@ class PersonalForm extends React.Component  {
                         name = "zip"
                         ref = "zip"
                         type="number"
-                        value={this.state.zip.value}
+                        value={!this.state.zip?"":this.state.zip.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.zip.error? "":this.state.zip.error}</span>
+                        <span className="text-danger">{!this.state.zip? "":this.state.zip.error}</span>
                     </div>
 
                     <br />
                     <div>
                         <input                      
-                        className={"form-control form-control-lg "+ (!this.state.city.error? "":"border border-danger")}
+                        className={"form-control form-control-lg "+ (!this.state.city? "":"border border-danger")}
                         placeholder="City"
                         name = "city"
                         ref = "city"
                         type="text"
-                        value={this.state.city.value}
+                        value={!this.state.city?"":this.state.city.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.city.error? "":this.state.city.error}</span>
+                        <span className="text-danger">{!this.state.city? "":this.state.city.error}</span>
                     </div>
 
                     <br />
                     <div>
                         <input                      
-                        className={"form-control form-control-lg "+ (!this.state.cuenta.error? "":"border border-danger")}
+                        className={"form-control form-control-lg "+ (!this.state.cuenta? "":"border border-danger")}
                         placeholder="Cuenta bancaria"
                         name = "cuenta"
                         ref = "cuenta"
                         type="text"
-                        value={this.state.cuenta.value}
+                        value={!this.state.cuenta?"":this.state.cuenta.value}
                         onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.cuenta.error? "":this.state.cuenta.error}</span>
+                        <span className="text-danger">{!this.state.cuenta? "":this.state.cuenta.error}</span>
                     </div>
 
 
@@ -227,13 +210,13 @@ class PersonalForm extends React.Component  {
                         name="tipcli" 
                         ref = "tipcli"
                         onChange={this.handleInputChange} 
-                        className={"form-control form-control-lg "+ (!this.state.tipcli.error? "":"border border-danger")}>
+                        className={"form-control form-control-lg "+ (!this.state.tipcli? "":"border border-danger")}>
                             <option value=""></option>   
                             {cli.map((a, i)=>{
                                     return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
                             })}     
                         </select>
-                        <span className="text-danger">{!this.state.tipcli.error? "" :this.state.tipcli.error}</span>
+                        <span className="text-danger">{!this.state.tipcli? "" :this.state.tipcli.error}</span>
                     </div>
                     <br /> */}
                     
@@ -251,7 +234,4 @@ class PersonalForm extends React.Component  {
 
 export default connect(mapStateToProps)(PersonalForm);
  */
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PersonalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalForm);

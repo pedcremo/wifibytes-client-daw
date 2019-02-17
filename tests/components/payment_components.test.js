@@ -1,8 +1,9 @@
 import Payment from '../../src/components/checkout/childComponents/payment/payment';
 import DirectDebitForm from '../../src/components/checkout/childComponents/payment/paymentTypes/DirectDebit';
 import MastercardVisaAmericanExpressForm from '../../src/components/checkout/childComponents/payment/paymentTypes/MastercardVisaAmericanExpress';
-import PaymentForm from '../../src/components/checkout/childComponents/payment/paymentTypes/paymentForm';
 import PaymentOptions from '../../src/components/checkout/childComponents/payment/paymentTypes/paymentOptions';
+import Efectivo from '../../src/components/checkout/childComponents/payment/paymentTypes/Efectivo';
+import Resume from '../../src/components/checkout/childComponents/payment/paymentTypes/Resume';
 import React from 'react';
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -17,7 +18,7 @@ const initialState = {
     paymentMethods:[],
     showModal:false,
     form:[],
-    submittedAtLeastOnce:false, 
+    submittedAtLeastOnce:false,
 };
 
 const store = mockStore(initialState);
@@ -25,8 +26,9 @@ const store = mockStore(initialState);
 const payment = Enzyme.shallow(<Provider store={store}><Payment /></Provider>);
 const DirectDebit = Enzyme.shallow(<Provider store={store}><DirectDebitForm /></Provider>);
 const MastercardVisaAmericanExpress = Enzyme.shallow(<Provider store={store}><MastercardVisaAmericanExpressForm /></Provider>);
-const PaymentFormC = Enzyme.shallow(<Provider store={store}><PaymentForm /></Provider>);
 const PaymentOptionsC = Enzyme.shallow(<Provider store={store}><PaymentOptions /></Provider>);
+const Efectivoc = Enzyme.shallow(<Provider store={store}><Efectivo /></Provider>);
+const Resumec = Enzyme.shallow(<Provider store={store}><Resume /></Provider>);
 
 describe('<Payment />', () => {
 
@@ -62,14 +64,6 @@ describe('<Payment />', () => {
         expect(MastercardVisaAmericanExpress).toHaveLength(1);
     });
 
-    it("PaymentForm snapshot is done", () => {
-        expect(PaymentFormC).toMatchSnapshot(); 
-    });
-
-    it("Payment render must be called and it works properly", () => {
-        expect(PaymentFormC).toHaveLength(1);
-    });
-
     it("PaymentOptions snapshot is done", () => {
         expect(PaymentOptionsC).toMatchSnapshot(); 
     });
@@ -78,4 +72,19 @@ describe('<Payment />', () => {
         expect(PaymentOptionsC).toHaveLength(1);
     });
 
+    it("Efectivo snapshot is done", () => {
+        expect(Efectivoc).toMatchSnapshot(); 
+    });
+
+    it("Efectivo render must be called and it works properly", () => {
+        expect(Efectivoc).toHaveLength(1);
+    });
+
+    it("Resume snapshot is done", () => {
+        expect(Resumec).toMatchSnapshot(); 
+    });
+
+    it("Resume render must be called and it works properly", () => {
+        expect(Resumec).toHaveLength(1);
+    });
 });

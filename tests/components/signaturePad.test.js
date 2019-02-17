@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const mockStore = configureStore();
 const initialState = {
-    showPad: false
+    defaultCanvas: ""
 };
 
 const store = mockStore(initialState);
@@ -26,7 +26,7 @@ describe('<SignaturePad />', () => {
     });
     
     it("ShowPad must be false", () => {
-        expect(signaturePad.props().value.storeState.showPad).toBe(false);
+        expect(signaturePad.props().value.storeState.defaultCanvas).toBe("");
     });
 
 });

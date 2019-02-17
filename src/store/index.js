@@ -24,11 +24,9 @@ export const store = createStore(
 );
 
 store.subscribe(() => {
-  // Check browser support
-  if (typeof Storage !== "undefined") {
-    window.localStorage.setItem(
-      "redux-store",
-      JSON.stringify(store.getState())
-    );
-  }
-});
+
+    // Check browser support
+    if (typeof(Storage) !== "undefined") {
+        //window.localStorage.setItem('redux-store',JSON.stringify(store.getState()));
+    }
+})

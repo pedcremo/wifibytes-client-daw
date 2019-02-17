@@ -1,21 +1,11 @@
 /** @module ComponentsApp */
 import React from 'react';
-// import {AuthService} from "../../../../auth.service";
 import UserChoice from "./userChoice"
 import PersonalDataForm from "./personalDataForm";
 import SignIn from "../../../login/signIn";
 import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
-import {AuthService} from '../../../../auth.service'
-import {
-    getContactDataForm,
-    updateContactDataFormServices,
-    updateDatosProductos,
-    getValidaForms,
-    setUncompleted,
-    setCompleted,
-    updateData
-} from "../../../../actions/personalDataFormActions";
+
 import {getItems} from "../../../cart/cartActions";
 
 import {Agent} from '../../agent';
@@ -37,16 +27,13 @@ class Personal extends React.Component  {
        
     }
 
+    /* para carrito
     componentDidMount() {
-        /* this.props.dispatch(getContactDataForm()); */
         this.props.dispatch(getItems());
-    }
+    } */
     
    
     render() {
-        /**
-         * Usiang Agent and subitems_library we get the quantity of mobiles and fix phone rates.
-         */
         return (
             <div>
 
@@ -59,11 +46,8 @@ class Personal extends React.Component  {
 
 
 const mapStateToProps = state => ({    
-    fields: state.personalDataForm.fields,    
     validForms: state.personalDataForm.validForms,
     loaded: state.personalDataForm.loaded,
-    error: state.personalDataForm.error,
-    cartItems: state.cartReducer.items
 });
 
 

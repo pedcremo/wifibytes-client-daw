@@ -29,8 +29,7 @@ it("When click Change Set Render", () => {
   login.setState({
       username:"",
       password:"",
-      email:"",
-      errorCaptcha: "",
+      email:"",      
       captcha: false,
       error:null
   });

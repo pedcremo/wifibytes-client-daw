@@ -48,9 +48,9 @@ export default function login(state = initialState, action) {
       return {
         ...state,
         loadingRecover: false,
-        errorRecover: action.payload.error
-          ? "Email of CIFNIF not found"
-          : false,
+        messageRecover: action.payload.error
+          ? action.payload.error.message
+          : action.payload.message,
         recoverData: action.payload.recoverData
       };
     default:

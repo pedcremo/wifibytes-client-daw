@@ -1,9 +1,10 @@
 import {
   UPDATE_FIELD,
-  REGISTER
+  REGISTER,
+  ASYNC_END,
+  ASYNC_START
 }
 from '../../constants/actionTypes'
-
 let initialState = {
   nombre : "",
   apellido: "",
@@ -20,7 +21,10 @@ let initialState = {
   errorEmail: false,
   errorPassword: false,
   errorPassword2: false,
-  errorCifnif: false
+  errorCifnif: false,
+  errorEmailMensaje: "register-error-email",
+  errorCifnifMensaje: "register-error-cifnif",
+  loading: false
 }
 export default function register(state = initialState, action) {
     switch (action.type) {
@@ -29,8 +33,38 @@ export default function register(state = initialState, action) {
             return {
                 ...state,
             };
-          case REGISTER:
-            console.log("Entro");
+          case ASYNC_START:
+              return {
+                  ...state,
+                  loading : true
+              }
+          case ASYNC_END:
+              return {
+                ...state,
+                loading: false
+              }
+        case REGISTER:
+          if(action.payload.error){
+            if(action.payload.error.isRegistered === false){
+              if(action.payload.error.errors.email){
+                return {
+                  ...state,
+                  errorEmail: true,
+                  errorEmailMensaje: "register-error-emailExist"
+                }
+              }
+            }
+            if(action.payload.error.message === "El dni introducido ya existe en la base de datos"){
+              return {
+                ...state,
+                errorCifnif: true,
+                errorCifnifMensaje: "register-error-cifnifExist"
+              }
+            }
+          }else{
+            state = initialState;
+            window.location = "/";
+          }
             break;
           default:
             return state;

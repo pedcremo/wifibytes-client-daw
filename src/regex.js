@@ -8,7 +8,7 @@ let Regex = {
      * regexEmail check if a email is compose of ".", "@"
      */
     regexEmail: /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/,
-    
+
     /**  
      * regexZip check if a zip has 5 digits
      */
@@ -31,7 +31,14 @@ let Regex = {
      */
     regexFNAC: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g,
 
-    regexSIM: /[0-9]{20}/
+    regexSIM: /[0-9]{20}/,
+
+    cvv: /^[0-9]{3,4}$/,
+    cardOwner: /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}/g,
+    iban: /([A-Z]{2})\s*\t*(\d\d)\s*\t*(\d\d\d\d)\s*\t*(\d\d\d\d)\s*\t*(\d\d)\s*\t*(\d\d\d\d\d\d\d\d\d\d)/g,
+    mastercard: /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/,
+    visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
+    americanExpress: /^3[47][0-9]{13}$/
 }; //END Regex object
 
 

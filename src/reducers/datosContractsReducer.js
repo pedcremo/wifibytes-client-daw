@@ -9,14 +9,12 @@ import {
   };
   
   export default function datosContractsReducer(state = initialState, action) {
-    //console.log("REDUCEREMPRESA",action);
     switch(action.type) {
   
       case GET_CONTRACTS:
         // All done: set loading "false".
         // Also, replace the items with the ones from the server
-        //console.warn("GET_DATOS_EMPRESA_SUCCESSx")
-        console.warn(action.response);   
+        // We check to see if we have any error
         return {
           ...state,
           loading: false,

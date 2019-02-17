@@ -93,7 +93,7 @@ describe('<Payment />', () => {
             {  
                 "form": [], 
                 "loading": false, 
-                "paymentMethod": 1, 
+                "paymentMethod": 3, 
                 "paymentMethods": [
                     {"codpago": 2,"nombre": "Efectivo","descripcion": "Efectivo","cod_eneboo": "2"},
                     {"cod_eneboo": "2", "codpago": 3, "descripcion": "A través del banco", "nombre": "Domiciliación Bancaria"}, 

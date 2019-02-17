@@ -54,41 +54,43 @@ let Utils={
                 location.reload();//Reload current document
             }
         }
-        switch (lang){
+
+        switch (lang) {
             case "spanish":
-                userLanguage=spanish;
+                userLanguage = spanish;
                 break;
             case "valencia":
-                userLanguage=valencia;
+                userLanguage = valencia;
                 break;
             default:
-                userLanguage=english;
+                userLanguage = english;
+    }
+  },
+  /**
+   * Post ajax call
+   */
+  post: function(url, data = {}) {
+    return new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", Settings.baseURL + url);
+      xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(JSON.parse(xhr.response));
+            } else {
+            reject(JSON.parse(xhr.response));
+            }
         }
-    },
-    /**
-     * Post ajax call
-     */
-    post: function(url,data = {}){
-        return new Promise((resolve, reject) => {
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", Settings.baseURL+url);
-            xhr.setRequestHeader('Content-Type','application/json');
-            xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    resolve(xhr.response);
-                } else {
-                    reject(xhr.statusText);
-                }
-            };
-            xhr.onerror = () => reject(xhr.statusText);
-            xhr.send(JSON.stringify(data));
+        xhr.onerror = () => reject(xhr.statusText);
+        xhr.send(JSON.stringify(data));
         })
     },
     /** Get is our ajax caller implemented as a promise
      * From Jake Archibald's Promises and Back:
      * http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest
     */
-    get: function (url,filterFunction=null) {
+    get: function (url,filterFunction=null,header=false) {
+        let jwt = this.getCookie("jwt");
         // Return a new promise.
         return new Promise(function(resolve, reject) {
             if (CACHE_TEMPLATES.has(url)) {
@@ -97,6 +99,7 @@ let Utils={
                 // Do the usual XHR stuff
                 var req = new XMLHttpRequest();
                 req.open("GET", Settings.baseURL+url);
+                if (header) req.setRequestHeader("Authorization", "JWT " + jwt);
 
                 req.onload = function() {
                 // This is called even on 404 etc
