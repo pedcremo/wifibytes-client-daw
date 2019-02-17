@@ -671,6 +671,8 @@ p.login-recuperar:hover {
 	width: 100%;
 }
 
+/*************PAYMENT**************/
+
 .payment-container {
     display: grid;
     grid-template-columns: 48% 50%;
@@ -689,7 +691,7 @@ p.login-recuperar:hover {
 .payment-method {
     display: grid;
     grid-template-columns: 24% 24% 24%;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 .cart-resume button {
     display: none!important;
@@ -697,3 +699,19 @@ p.login-recuperar:hover {
 input, select {
     border-left-color: 0!important;
 }
+
+.payment-method button {
+	border-radius: 4px;
+    background-color: #318609;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    width: 137px;
+    transition: all 0.5s;
+    cursor: pointer;
+    height: 100px;
+  }
+  
+
+  
