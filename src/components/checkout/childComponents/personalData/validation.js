@@ -21,11 +21,14 @@ export function validator(value, name) {
         if (value.length<1)
             return "Este campo es requerido"
 
-        if (value.length < 3 && (name === "nombre" || name === "apellido" || name === "ciudad"))
+        if (value.length < 3 && (name === "nombre" || name === "apellido" || name === "direccion" || name === "ciudad"))
             return "Este campo necessita minimo 3 caracteres"
         
-        if (name === "dni" && !Regex.regexDni.test(value))
-            return "Este no es un dni valido"
+        if (name === "DNIparticular" && !Regex.regexDni.test(value))
+            return "Este no es un DNI valido"
+        
+        if (name === "DNIempresa" && !Regex.regexDni.test(value))
+            return "Este no es un CIF valido"
         
         //if (fn_ValidateIBAN(IBAN) && name === "cuenta")
         if (value.length < 7 && name === "cuenta")
@@ -35,17 +38,19 @@ export function validator(value, name) {
             return "Este no es un email valido"
 
         
-        if (name === "phone" && !Regex.regexPhone.test(value))
-            return "This is not a valid phone"
+        if (name === "telefono" && !Regex.regexPhone.test(value))
+            return "No es un telefono valido"
 
-        if (name === "zip" && !Regex.regexZip.test(value))
-            return "This is not a valid zip"
+        if (name === "codpostal" && !Regex.regexZip.test(value))
+            return "No es un codigo postal valido"
 
         if (name === "sim" && !Regex.regexSIM.test(value))
-            return "This is not a valid sim"
+            return "No es una sim valida"
 
-        if (name === "fecha" && !value.match(Regex.regexFNAC))
+        if (name === "birthday_omv" && !value.match(Regex.regexFNAC))
             return "Esta fecha no es valida"
+
+        
 
     }
     return null

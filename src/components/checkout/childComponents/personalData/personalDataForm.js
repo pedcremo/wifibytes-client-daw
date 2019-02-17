@@ -13,7 +13,7 @@ import {validator}  from "./validation";
 /* import Typecliente from './typeCliente'; */
 import { connect } from "react-redux";
 
-
+const TIPO_CLIENTE_VALUE={0: "particular", 1: "empresa", 5: "autonomo", 2 :"extranjero"}
     
 
 
@@ -72,9 +72,20 @@ class PersonalForm extends React.Component  {
 
     
     render() {
+            
         const {
             updateField,
-            nombre        
+            nombre,
+            apellido,
+            email,
+            birthday_omv,
+            cifnif,
+            telefono,
+            tipo_cliente,
+            direccion,
+            codpostal,
+            ciudad,
+            cuenta
         } = this.props;
 
         console.warn("RENDER DATAFORM", this.props, "------------------", nombre)
@@ -84,7 +95,7 @@ class PersonalForm extends React.Component  {
         return (
             <form className="grid-data-form">
                <div>
-                    <h2>Personal Data</h2>
+                    <h2>Datos Personales</h2>
                     <div>
                         <label>
                             Nombre
@@ -102,40 +113,150 @@ class PersonalForm extends React.Component  {
 
                     <br />
                     <div>
-                        {/* <input
-                        className="form-control form-control-lg"
-                        placeholder="Surname"
-                        name = "surname"
-                        type="text"
-                        value={fields.datosPersonales.surname}
-                        onChange={this.handleInputChange} /> */}
-                        {/* <span className="text-danger">{!this.state.surname.error? "":this.state.surname.error}</span> */}
+                        <label>
+                            <span className={`${validator(apellido, "apellido")==null?"":"text-danger"}`}>Apellido</span>
+                            <input
+                            className={`form-control form-control-lg mio ${validator(apellido, "apellido")==null?"":"border-danger"}`}
+                            name="apellido"
+                            type="text"
+                            value={apellido}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "apellido"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!apellido? "": validator(apellido, "apellido")}</span> 
+                    </div>
+                    
+                    <div>
+                        <label>
+                            Tipo de Cliente
+                            
+                            <select 
+                            name = "tipo_cliente"
+                            value={tipo_cliente}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "tipo_cliente"))}
+                            className="form-control form-control-lg mio">
+                                {this.props.tipCliente.map((item, i)=> <option key={i} value={item}>{TIPO_CLIENTE_VALUE[item]}</option>)}  
+                            </select>
+                            <span className="text-danger">{!tipo_cliente? "": validator(tipo_cliente, "tipo_cliente")}</span> 
+                        </label>
+                    </div>
+                    <br />
+
+                    <br />
+                    <div>
+                        <label>
+                            Documento de Identidad
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="cifnif"
+                            type="text"
+                            value={cifnif}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, `DNI${TIPO_CLIENTE_VALUE[tipo_cliente]}`))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!cifnif? "": validator(cifnif, `DNI${TIPO_CLIENTE_VALUE[tipo_cliente]}`)}</span> 
+                    </div>
+
+                    <br />
+                    <div>
+                        <label>
+                            Email
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="email"
+                            type="text"
+                            value={email}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "email"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!email? "": validator(email, "email")}</span> 
                     </div>
 
                     {/* <br />
                     <div>
-                        <input
-                        className="form-control form-control-lg"
-                        placeholder="Email"
-                        name = "email"
-                        ref = "email"
-                        type="email"
-                        value={!this.state.email?"":this.state.email.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.email? "":this.state.email.error}</span>
-                    </div>
-                    <br />
+                        <label>
+                            Fecha de nacimiento
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="birthday_omv"
+                            type="date"
+                            value={birthday_omv}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "birthday_omv"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!birthday_omv? "": validator(birthday_omv, "birthday_omv")}</span> 
+                    </div> */}
+                </div>
+
+                <div>
+                    <h2>Datos Facturacion</h2>
                     <div>
-                        <h4>Fecha de nacimiento: </h4>
-                        <input className="form-control form-control-lg"
-                        name="date"
-                        ref = "date"
-                        type="date"
-                        value={!this.state.date?"":this.state.date.value}
-                        onChange={this.handleInputChange}/>
-                        <span className="text-danger">{!this.state.date? "":this.state.date.error}</span>
+                        <label>
+                            Direccion
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="direccion"
+                            type="text"
+                            value={direccion}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "direccion"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!direccion? "": validator(direccion, "direccion")}</span> 
                     </div>
-                    <br/>
+
+                    <div>
+                        <label>
+                            Codigo Postal
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="codpostal"
+                            type="text"
+                            value={codpostal}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "codpostal"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!codpostal? "": validator(codpostal, "codpostal")}</span> 
+                    </div>
+
+                    <div>
+                        <label>
+                            Ciudad
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="ciudad"
+                            type="text"
+                            value={ciudad}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "ciudad"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!ciudad? "": validator(ciudad, "ciudad")}</span> 
+                    </div>
+
+                    <div>
+                        <label>
+                            Cuenta
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="cuenta"
+                            type="text"
+                            value={cuenta}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "cuenta"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!cuenta? "": validator(cuenta, "cuenta")}</span> 
+                    </div>
+
+                    
+                    {/* 
+                    
                     <div>
                         <h4>Suba una imagen de su dni</h4>
                         <input 
@@ -150,58 +271,7 @@ class PersonalForm extends React.Component  {
                 </div>
 
                 <div>
-                    <h2>Address</h2>
-                    <div>
-                        <input
-                        className="form-control form-control-lg"
-                        placeholder="Address"
-                        name = "address"
-                        ref = "address"
-                        type = "text"
-                        value={!this.state.address?"":this.state.address.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.address? "":this.state.address.error}</span>
-                    </div>
-
-                    <br />
-                    <div>
-                        <input
-                        className="form-control form-control-lg"
-                        placeholder="Zip"
-                        name = "zip"
-                        ref = "zip"
-                        type="number"
-                        value={!this.state.zip?"":this.state.zip.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.zip? "":this.state.zip.error}</span>
-                    </div>
-
-                    <br />
-                    <div>
-                        <input                      
-                        className={"form-control form-control-lg "+ (!this.state.city? "":"border border-danger")}
-                        placeholder="City"
-                        name = "city"
-                        ref = "city"
-                        type="text"
-                        value={!this.state.city?"":this.state.city.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.city? "":this.state.city.error}</span>
-                    </div>
-
-                    <br />
-                    <div>
-                        <input                      
-                        className={"form-control form-control-lg "+ (!this.state.cuenta? "":"border border-danger")}
-                        placeholder="Cuenta bancaria"
-                        name = "cuenta"
-                        ref = "cuenta"
-                        type="text"
-                        value={!this.state.cuenta?"":this.state.cuenta.value}
-                        onChange={this.handleInputChange} />
-                        <span className="text-danger">{!this.state.cuenta? "":this.state.cuenta.error}</span>
-                    </div>
-
+                    
 
                     <br />
                     <div>

@@ -11,7 +11,7 @@ import {getItems} from "../../../cart/cartActions";
 import {Agent} from '../../agent';
 import subitems_library from "../../libraries/subitems_based_library.json";
 
-let mockClientes={particular:0, autonomo: 5, empresa: 1, extranjero: 2}
+let mockClientes=[0, 5, 1, 2]
 let mockCompanies=["orange", "vodafone", "jazztel", "yoigo", "pepephone"]
 
 /**
