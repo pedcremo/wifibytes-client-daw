@@ -38,6 +38,9 @@ class Personal extends React.Component  {
             <div>
 
                 <PersonalDataForm tipCliente={mockClientes}/>
+
+                
+                <PortabilidadForm companies={mockCompanies}/>)                    
                 
             </div>
         );
@@ -45,10 +48,4 @@ class Personal extends React.Component  {
 }
 
 
-const mapStateToProps = state => ({    
-    validForms: state.personalDataForm.validForms,
-    loaded: state.personalDataForm.loaded,
-});
-
-
-export default connect(mapStateToProps)(Personal);
+export default Personal;

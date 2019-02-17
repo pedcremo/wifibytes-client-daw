@@ -15,7 +15,7 @@ export function validator(value, name) {
     /**
      * If a field does not have value go this first conditional
      */
-    console.log(value, name)
+    //console.log(value, name)
     if (value != null) {
 
         if (value.length<1)

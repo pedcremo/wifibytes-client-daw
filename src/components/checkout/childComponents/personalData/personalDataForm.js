@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 const TIPO_CLIENTE_VALUE={0: "particular", 1: "empresa", 5: "autonomo", 2 :"extranjero"}
     
-
+var reader = new FileReader();
 
 const mapDispatchToProps = (dispatch) => ({
     updateField: (data, field, error) => dispatch(updateField(data, field, error)),
@@ -34,22 +34,23 @@ class PersonalForm extends React.Component  {
     
     constructor(props) {
         super(props);
-        /* this.handleInputChange = this.handleInputChange.bind(this); */
+        this.previewFile = this.previewFile.bind(this);
+        this.dniFile = React.createRef();
     }
 
     componentDidMount(){        
         const {initDatosPersonales} = this.props;
         const token = Utils.getCookie("jwt");
-        console.log("this.props", this.props)
+        //console.log("this.props", this.props)
         if (token) {
             Utils.post('/api-token-verify/', {token: token})
             .then(
                 res => {
-                    console.log(res)
+                    //console.log(res)
                     Utils.get(`/cliente/${res.id_consumer}/`, null, true)
                     .then(
                         res => {
-                            console.log(res)
+                            //console.log(res)
                             initDatosPersonales(res)
                             /*despach de objeto con acciones*/                                              
                         },
@@ -68,7 +69,27 @@ class PersonalForm extends React.Component  {
     }
    
     
-
+    previewFile() {
+        var reader = new FileReader();
+        let can = this.refs["dniFile"].files[0];
+        if (can) {
+            if (can.size < 200000) {
+                reader.onloadend = () => {
+                    updateField(reader.result, "dniFile", validator(reader.result, "email"))
+                };
+                reader.readAsDataURL(can);
+                
+                /* reader.src = reader.readAsDataURL(can);
+                return new Promise((resolve, reject) => reader.addEventListener("load", () => resolve(updateField(reader.result, "dniFile", validator(reader.result, "email"))))) */
+            } else
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text:"Imagen muy grande",
+                })
+        }
+        return
+    }
 
     
     render() {
@@ -81,14 +102,16 @@ class PersonalForm extends React.Component  {
             birthday_omv,
             cifnif,
             telefono,
+            dniFile,
             tipo_cliente,
             direccion,
             codpostal,
             ciudad,
-            cuenta
+            cuenta,
+            provincia
         } = this.props;
 
-        console.warn("RENDER DATAFORM", this.props, "------------------", nombre)
+        //console.warn("RENDER DATAFORM", this.props, "------------------", nombre)
         /**
          * Es importante que el nombre de los inputs coincida con el combre del objeto en redux que guardara su value, ya que de esta manera reutilizamos el validador en el reducer cuando los datos son extaridos por primera vez o desde backend o desde localStorage
          */
@@ -160,20 +183,7 @@ class PersonalForm extends React.Component  {
                     </div>
 
                     <br />
-                    <div>
-                        <label>
-                            Email
-                            <input
-                            className="form-control form-control-lg mio"
-                            name="email"
-                            type="text"
-                            value={email}
-                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "email"))}
-                            />
-                        </label>
-                        <br />
-                        <span className="text-danger">{!email? "": validator(email, "email")}</span> 
-                    </div>
+                    
 
                     {/* <br />
                     <div>
@@ -190,10 +200,59 @@ class PersonalForm extends React.Component  {
                         <br />
                         <span className="text-danger">{!birthday_omv? "": validator(birthday_omv, "birthday_omv")}</span> 
                     </div> */}
+
+                    <br />
+                    <div>
+                        <input
+                        className="form-control form-control-lg mio"
+                        name="dniFile"
+                        type="file"
+                        /* value={dniFile} */
+                        ref = "dniFile"
+                        onChange={this.previewFile}
+                        />
+                        <br />
+                        <img src={dniFile} height="200" width="200" alt="Image preview..."/>
+                        {<span className="text-danger">{!dniFile? "": validator(dniFile, "dniFile")}</span> }
+                    </div>
+
+                    
+
                 </div>
 
                 <div>
                     <h2>Datos Facturacion</h2>
+                    <div>
+                        <label>
+                            Email
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="email"
+                            type="text"
+                            value={email}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "email"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!email? "": validator(email, "email")}</span> 
+                    </div>
+
+                    {/* <div>
+                        <label>
+                            Telefono
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="telefono"
+                            type="text"
+                            value={telefono}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "telefono"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!telefono? "": validator(telefono, "telefono")}</span> 
+                    </div> */}
+
+
                     <div>
                         <label>
                             Direccion
@@ -241,6 +300,21 @@ class PersonalForm extends React.Component  {
 
                     <div>
                         <label>
+                            Provincia
+                            <input
+                            className="form-control form-control-lg mio"
+                            name="provincia"
+                            type="text"
+                            value={provincia}
+                            onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "provincia"))}
+                            />
+                        </label>
+                        <br />
+                        <span className="text-danger">{!provincia? "": validator(provincia, "provincia")}</span> 
+                    </div>
+
+                    <div>
+                        <label>
                             Cuenta
                             <input
                             className="form-control form-control-lg mio"
@@ -269,26 +343,7 @@ class PersonalForm extends React.Component  {
                         <span className="text-danger">{!this.state.preview? "":this.state.preview.error}</span>
                     </div>
                 </div>
-
-                <div>
-                    
-
-                    <br />
-                    <div>
-                        <h4>Introduzca el tipo de cliente: </h4>
-                        <select 
-                        name="tipcli" 
-                        ref = "tipcli"
-                        onChange={this.handleInputChange} 
-                        className={"form-control form-control-lg "+ (!this.state.tipcli? "":"border border-danger")}>
-                            <option value=""></option>   
-                            {cli.map((a, i)=>{
-                                    return <option key={i} value={this.props.tipCliente[a]}>{a}</option>
-                            })}     
-                        </select>
-                        <span className="text-danger">{!this.state.tipcli? "" :this.state.tipcli.error}</span>
-                    </div>
-                    <br /> */}
+ */}
                     
                 </div >
             </form>
@@ -296,12 +351,4 @@ class PersonalForm extends React.Component  {
     }
 }
 
-/* const mapStateToProps = state => ({
-    datosPersonales: state.personalDataForm.fields.datosPersonales,
-    loaded: state.personalDataForm.loaded,
-    error: state.personalDataForm.error,
-});
-
-export default connect(mapStateToProps)(PersonalForm);
- */
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalForm);

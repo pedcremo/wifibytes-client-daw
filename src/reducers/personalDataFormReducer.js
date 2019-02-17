@@ -1,9 +1,9 @@
 import { 
     INITIALIZE_DATOS_PERSONALES,
-    UPDATE_DATOS_PERSONALES
+    UPDATE_DATOS_PERSONALES,
+    INIT_DATA_SERVICES
 } from '../actions/personalDataFormActions';
  import {validator}  from "../components/checkout/childComponents/personalData/validation";
-
 
 const initialState = {
     datosPersonales: {
@@ -18,7 +18,9 @@ const initialState = {
         direccion:"",
         codpostal:"",
         ciudad:"",
-        cuenta:""
+        cuenta:"",
+        provincia:"",
+        dniFile:"",
     },
     erroresDatosPersonales: {
         apellido: "",
@@ -32,7 +34,9 @@ const initialState = {
         direccion:"",
         codpostal: "",
         ciudad:"",
-        cuenta:""
+        cuenta:"",
+        provincia:"",
+        dniFile:"",
     },
     validDatosPersonales: false,
 
@@ -52,8 +56,27 @@ export default function personalDataFormReducer(state = initialState, action) {
     
     switch (action.type) {
 
+        case INIT_DATA_SERVICES:
+            console.warn("REDUCER INIT_DATA_SERVICES", action.data);
+            const datos = JSON.parse(localStorage.getItem('personalDataInfo'));
+            const productosEnCarrito = action.data
+            let datosProductosObject;
+            /**
+             * Comprueba si el local hay guardados datos de la ultima visita del usuario al formulario
+             */
+            if (datos && typeof (datos) === "object" && datos != null && datos.datosPersonales.length > 0)
+                datosProductosObject = datos.datosProductos ? datos.datosProductos : initialState.datosProductos;
+            else
+                datosProductosObject = action.data;
+
+            console.error(convierteDatosProductosObject(datosProductosObject, productosEnCarrito))
+
+            return {
+                ...state,
+            };
+
         case UPDATE_DATOS_PERSONALES:
-            console.log("action.field", action.field, action.data, action.error);
+            console.warn("UPDATE_DATOS_PERSONALES", action.field, action.data, action.error);
             let errdatosPersonalesOb;
             /**
              * Actualiza los campos dentro del datosPersonales y erroresDatosPersonales en el storage de redux
@@ -78,8 +101,8 @@ export default function personalDataFormReducer(state = initialState, action) {
         case INITIALIZE_DATOS_PERSONALES:
 
             const info = JSON.parse(localStorage.getItem('personalDataInfo'));
+            console.warn("REDUCER INITIALIZE_DATOS_PERSONALES", info, typeof(info));
             let datosPersonalesObject, errdatosPersonalesObject;
-            console.log("REDUCER INITIALIZE_DATOS_PERSONALES", info, typeof(info));
             /**
              * Comprueba si el local hay guardados datos de la ultima visita del usuario al formulario
              */
@@ -113,16 +136,15 @@ export default function personalDataFormReducer(state = initialState, action) {
              */
             localStorage.setItem('personalDataInfo', JSON.stringify(state));
             
-            console.log("REDUCER INITIALIZE_DATOS_PERSONALES", action.data);
+            //console.log("REDUCER INITIALIZE_DATOS_PERSONALES", action.data);
             return {
                 ...state,
             };
 
 
 
-
-
         default:
+            console.log("REDUCER default", action.data);
             return state;
     }
 }
@@ -133,7 +155,7 @@ export default function personalDataFormReducer(state = initialState, action) {
  * @param {} objectErr Trae consigo el objeto de redux a rellenar 
  */
 function validDatosPersonalesFun(object, objectErr) {
-    console.log("validDatosPersonalesFun",object)
+    //console.log("validDatosPersonalesFun",object)
     let validador=true
     let resValidation;
     /**
@@ -158,6 +180,18 @@ function validDatosPersonalesFun(object, objectErr) {
 }
 
 
-function mapingToRedux(object, objectErr) {
-    
+function convierteDatosProductosObject(arrayDatosProductosLocal, arrayDatosProductosCarrito) {
+    let arrayDatosProductosCarritoFiltrado = arrayDatosProductosCarrito.filter(item => {
+        if (item.subtarifas) 
+            return item
+    }).map(element => {
+        element.subtarifas = element.subtarifas.filter((el) => {
+            if (el.id === 1 || el.id === 2) {
+                el.tipo="alta"
+                return el
+            }
+        })
+        return element
+    });
+   return arrayDatosProductosCarritoFiltrado
 }

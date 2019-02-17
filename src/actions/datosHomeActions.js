@@ -1,7 +1,7 @@
 import {Utils} from "../utils";
 
 export function getDatosHome() {
-  console.warn("getDatosHome")
+  //console.warn("getDatosHome")
     return dispatch => {
       dispatch(getDatosHomeBegin());
       return Utils.get("/home",[ Utils.filterPruneArrayByLang,"lang"])
