@@ -11,7 +11,6 @@ const localStorage = (store) => (next) => (action) => {
 		const currentStore = store.getState();
 		window.localStorage.setItem(action.reducer, JSON.stringify(currentStore[action.reducer]));
 	} else if (action.localStorageGet) {
-		console.log(window.localStorage);
 		if (window.localStorage.getItem(action.reducer)) {
 			const currentStore = JSON.parse(window.localStorage.getItem(action.reducer));
 			store.dispatch({ type: action.action, currentStore });
@@ -22,7 +21,6 @@ const localStorage = (store) => (next) => (action) => {
 const promiseMiddleware = (store) => (next) => (action) => {
 	if (isPromise(action.payload)) {
 		store.dispatch({ type: ASYNC_START, subtype: action.type });
-
 		const currentView = store.getState().viewChangeCounter;
 		const skipTracking = action.skipTracking;
 		action.payload.then(
@@ -33,7 +31,7 @@ const promiseMiddleware = (store) => (next) => (action) => {
 				}
 				console.log('RESULT', res);
 				action.payload = res;
-				store.dispatch({ type: ASYNC_END, promise: action.payload });
+				// store.dispatch({ type: ASYNC_END, promise: action.payload });
 				store.dispatch(action);
 			},
 			(error) => {
@@ -52,22 +50,20 @@ const promiseMiddleware = (store) => (next) => (action) => {
 		);
 
 		return;
-	}
-
-	next(action);
+	} else next(action);
 };
 
 const saveJWT = (store) => (next) => (action) => {
 	if (action.type === REGISTER || action.type === LOGIN) {
 		if (!action.error) {
 			Utils.setCookie('jwt', action.payload.token, 365);
+			Utils.setCookie('id_consumer', action.payload.id_consumer, 365);
 			window.localStorage.setItem('jwt', action.payload.token);
-			// agent.setToken(JSON.parse(action.payload).token);
 		}
 	} else if (action.type === LOGOUT) {
 		Utils.setCookie('jwt', '');
+		Utils.setCookie('id_consumer', '');
 		window.localStorage.setItem('jwt', '');
-		// agent.setToken(null);
 	}
 
 	next(action);
@@ -87,6 +83,8 @@ const isAuth = (store) => (next) => (action) => {
 				(error) => {
 					console.log('ERROR isAuth Middleware : ', error);
 					console.log(action);
+					Utils.deleteCookie('jwt');
+					window.location = '';
 					store.dispatch({
 						type: NOT_AUTH
 					});
