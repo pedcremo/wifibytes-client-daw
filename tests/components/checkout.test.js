@@ -217,6 +217,34 @@ describe('<Checkout />', () => {
         const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
     });
 
+    it('sendOrder', () => {
+        const checkout = Enzyme.shallow(<Provider store={store}><Checkout /></Provider>);
+        checkout.instance().sendOrder = jest.fn();
+        checkout.update();
+        expect(checkout.instance().sendOrder).toBeCalledWith(true);
+    });
+
+    it('button onclick', () => {
+        //const mockCallBack = jest.fn();
+        const store = mockStore(initialState4);
+        const state = { 
+            currentCheckout: {
+                currentStep: 1,
+                steps: ['personalData','contracts','payment'],
+                data: [],
+                loading: false,
+                disabled: false
+            },
+            cartReducer: {
+                items: []
+            }
+        };
+        const checkout = Enzyme.shallow(<Provider store={store}><Checkout {...state}/></Provider>);
+        checkout.find('button').simulate('click');
+        expect(checkout.children()).toBe(true);
+
+});
+
 });
 
 
