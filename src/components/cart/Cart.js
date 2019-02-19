@@ -36,7 +36,6 @@ class Cart extends React.Component {
 
   /** render */
   render() {
-    console.log(this.props);
     return (
       <ListCart
         cartItems={this.props.cartItems}

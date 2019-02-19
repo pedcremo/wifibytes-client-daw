@@ -5,6 +5,7 @@ import IsAuth from '../isAuth';
 import { Utils } from '../../utils';
 import { Redirect } from 'react-router-dom';
 import InicioProfile from './inicioProfile';
+import Settings from './settings';
 
 import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
 
@@ -66,10 +67,10 @@ class Profile extends React.Component {
 									<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
 								</li>
 								<li>
-									<a onClick={(ev) => this.changeView(<div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
+									<a onClick={(ev) => this.changeView(<Settings />, ev)}>AJUSTES DE CUENTAS</a>
 								</li>
 								<li>
-									<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
+									<a onClick={(ev) => this.changeView(<div> MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
 								</li>
 							</ul>
 							<button onClick={logout}>Logout</button>
