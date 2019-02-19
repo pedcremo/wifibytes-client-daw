@@ -53,8 +53,8 @@ class Profile extends React.Component {
 		return (
 			<main className="profile">
 				<section>
-					<h1>Mi Cuenta</h1>
-					<ul>
+					<h1>MI CUENTA</h1>
+					<ul className="category">
 						<li>
 							<a onClick={(ev) => this.changeView(<InicioProfile />, ev)}>INICIO</a>
 						</li>
@@ -71,9 +71,11 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
 						</li>
 					</ul>
-					<button onClick={this.logout}>Logout</button>
+					<button className="logoutButton" onClick={this.logout}>
+						Logout <i className="fas fa-sign-in-alt" />
+					</button>
 				</section>
-				<div>{this.state.view}</div>
+				<div className="content">{this.state.view}</div>
 			</main>
 		);
 	}

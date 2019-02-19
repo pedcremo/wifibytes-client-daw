@@ -666,11 +666,12 @@ p.login-recuperar:hover {
 	background-image: linear-gradient(to right, rgba(46, 91, 189, 0.8), rgba(23, 175, 142, 0.8));
 	background-size: 400% 400%;
 	animation: moveTo 10s infinite;
-	height: 100%;
+	min-height: 800px;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
-	padding: 15vw;
+	padding: 0 10vw;
+	padding-top: 5vw;
 }
 
 @keyframes moveTo {
@@ -688,6 +689,102 @@ p.login-recuperar:hover {
 .profile > div > .inicioProfile {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+}
+
+.profile .category {
+	list-style: none;
+	display: grid;
+	grid-gap: 1vh;
+	justify-content: left;
+	align-content: center;
+}
+.profile > section {
+}
+
+.profile .category a {
+	cursor: pointer;
+	transition: all 1s ease-out;
+}
+
+.profile .category a:hover {
+	transform: scale(1.1);
+	font-weight: bold;
+}
+
+.profile section + * {
+	transform: translate(0, 0);
+	transition: all 3s ease-out;
+	animation: comeIn 1s;
+}
+
+.profile h1 {
+	text-align: center;
+	letter-spacing: 0.1rem;
+	animation: colorIn 10s infinite;
+}
+@keyframes colorIn {
+	from {
+		color: rgb(42, 138, 13);
+	}
+	50% {
+		color: rgb(34, 129, 8);
+	}
+	to {
+		color: rgb(42, 138, 13);
+	}
+}
+
+.profile li {
+	transform: translate(0, 0);
+	animation: comeIn ease-in-out;
+	animation-duration: 1s;
+}
+.profile li:nth-child(1) {
+	animation-duration: 1s;
+}
+.profile li:nth-child(2) {
+	animation-duration: 1.2s;
+}
+.profile li:nth-child(3) {
+	animation-duration: 1.4s;
+}
+.profile li:nth-child(4) {
+	animation-duration: 1.6s;
+}
+.profile li:nth-child(5) {
+	animation-duration: 1.8s;
+}
+
+.profile .logoutButton {
+	position: relative;
+	left: 75vw;
+	bottom: -35vh;
+}
+
+.logoutButton {
+	padding: 10px;
+	color: white;
+	border: 1px solid rgb(31, 121, 4);
+	border-radius: 10px;
+	background-color: rgb(44, 170, 6);
+	font-size: 1.5rem;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+.logoutButton:hover {
+	transform: scale(1.05);
+	color: #666666;
+}
+
+@keyframes comeIn {
+	from {
+		opacity: 0;
+		transform: translate(900px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
 }
 
 .profile > div > .inicioProfile > h1 {
