@@ -99,7 +99,7 @@ let Utils = {
 				// Do the usual XHR stuff
 				var req = new XMLHttpRequest();
 				req.open('GET', Settings.baseURL + url);
-				// if (header) req.setRequestHeader("Authorization", "JWT " + jwt);
+				if (jwt) req.setRequestHeader('Authorization', 'JWT ' + jwt);
 				req.onload = function() {
 					// This is called even on 404 etc
 					// so check the status

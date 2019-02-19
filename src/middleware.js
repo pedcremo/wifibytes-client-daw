@@ -61,13 +61,13 @@ const saveJWT = (store) => (next) => (action) => {
 	if (action.type === REGISTER || action.type === LOGIN) {
 		if (!action.error) {
 			Utils.setCookie('jwt', action.payload.token, 365);
+			Utils.setCookie('id_consumer', action.payload.id_consumer, 365);
 			window.localStorage.setItem('jwt', action.payload.token);
-			// agent.setToken(JSON.parse(action.payload).token);
 		}
 	} else if (action.type === LOGOUT) {
 		Utils.setCookie('jwt', '');
+		Utils.setCookie('id_consumer', '');
 		window.localStorage.setItem('jwt', '');
-		// agent.setToken(null);
 	}
 
 	next(action);
@@ -87,6 +87,8 @@ const isAuth = (store) => (next) => (action) => {
 				(error) => {
 					console.log('ERROR isAuth Middleware : ', error);
 					console.log(action);
+					Utils.deleteCookie('jwt');
+					window.location = '';
 					store.dispatch({
 						type: NOT_AUTH
 					});

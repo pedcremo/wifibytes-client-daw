@@ -13,16 +13,11 @@ import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
  * Draw Login. A form to login
  */
 
-const logout = () => {
-	Utils.deleteCookie('jwt');
-};
-
 const mapDispatchToProps = (dispatch) => ({
-	logout: () => dispatch({ type: LOGOUT, payload: logout() }),
 	onLoad: (id) =>
 		dispatch({
 			type: GET_PROFILE,
-			payload: Utils.get(`/cliente/${id}`, null, true)
+			payload: Utils.get(`/cliente/${Utils.getCookie('id_consumer')}`, null, true)
 		})
 });
 const mapStateToProps = (state) => ({
@@ -36,7 +31,7 @@ class Profile extends React.Component {
 			view: <InicioProfile />
 		};
 		this.changeView = this.changeView.bind(this);
-		if (this.props.user) this.props.onLoad(this.props.user.id_consumer);
+		this.props.onLoad();
 	}
 
 	changeView(value, ev) {
@@ -46,37 +41,39 @@ class Profile extends React.Component {
 		});
 	}
 
+	logout() {
+		Utils.deleteCookie('jwt');
+		window.location = '';
+	}
+
 	render() {
-		const { isAuth, user, logout, profile } = this.props;
+		const { profile, loading, error } = this.props;
+		if (loading) return <h1>LOADING</h1>;
+		if (!loading && error) return <Redirect to={'/'} />;
 		return (
-			<main>
-				<IsAuth />
-				{isAuth ? (
-					<div className="profile">
-						<div>
-							<h1>Mi Cuenta</h1>
-							<ul>
-								<li>
-									<a onClick={(ev) => this.changeView(<InicioProfile />, ev)}>INICIO</a>
-								</li>
-								<li>
-									<a onClick={(ev) => this.changeView(<div>MIS PEDIDOS</div>, ev)}>MIS PEDIDOS</a>
-								</li>
-								<li>
-									<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
-								</li>
-								<li>
-									<a onClick={(ev) => this.changeView(<div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
-								</li>
-								<li>
-									<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
-								</li>
-							</ul>
-							<button onClick={logout}>Logout</button>
-						</div>
-						<div>{this.state.view}</div>
-					</div>
-				) : null}
+			<main className="profile">
+				<section>
+					<h1>Mi Cuenta</h1>
+					<ul>
+						<li>
+							<a onClick={(ev) => this.changeView(<InicioProfile />, ev)}>INICIO</a>
+						</li>
+						<li>
+							<a onClick={(ev) => this.changeView(<div>MIS PEDIDOS</div>, ev)}>MIS PEDIDOS</a>
+						</li>
+						<li>
+							<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
+						</li>
+						<li>
+							<a onClick={(ev) => this.changeView(<div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
+						</li>
+						<li>
+							<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
+						</li>
+					</ul>
+					<button onClick={this.logout}>Logout</button>
+				</section>
+				<div>{this.state.view}</div>
 			</main>
 		);
 	}
