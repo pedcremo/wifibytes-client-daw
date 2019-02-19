@@ -6,6 +6,7 @@ import configureStore from 'redux-mock-store';
 import { Provider } from "react-redux";
 import * as checkoutActions from '../../src/constants/actionTypes';
 import currentCheckout from '../../src/reducers/checkoutReducer';
+import jsdom from 'jsdom'
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -32,6 +33,38 @@ const initialState = {
             title: "Confirmar Pedido"
         }
     ]
+};
+
+const initialState2 = {
+    currentCheckout: {
+        currentStep: 1,
+        steps: [
+            {
+                key: "personal_data",
+                active: true,
+                completed: false,
+                title: "Dades Personals"
+            },
+            {
+                key: "contract",
+                active: false,
+                completed: false,
+                title: "Contracte"
+            },
+            { 
+                key: "confirm",
+                active: false,
+                completed: false,
+                title: "Confirmar Pedido"
+            }
+        ],
+        data: [],
+        loading: true,
+        disabled: false
+    },
+    cartReducer: {
+        items: []
+    }
 };
 
 const initialStateData = {
@@ -74,34 +107,54 @@ describe('<Checkout />', () => {
         expect(store.getActions()).toMatchSnapshot();
     });
 
-    it('Dispatches the correct action and payload', () => {
-        const selectedActions = [
-          {
-            'type': 'UPDATE_STEP',
-            'payload': {
-                step: 1
-            },
-          },
-        ];
+    // it('Dispatches the correct action and payload', () => {
+    //     const selectedActions = [
+    //       {
+    //         'type': 'UPDATE_STEP',
+    //         'payload': {
+    //             step: 1
+    //         },
+    //       },
+    //     ];
     
-        store.dispatch(checkoutActions.setStep(1));
-        expect(store.getActions()).toEqual(selectedActions);
-    });  
+    //     store.dispatch(checkoutActions.setStep(1));
+    //     expect(store.getActions()).toEqual(selectedActions);
+    // });  
 
-    it('Dispatches the correct action and payload', () => {
-        const store = mockStore(initialState);
-        const add = [
-        {
-            'type': 'ADD_STEPS',
-            'payload': {
-                step: 1,
-                steps: initialState.steps
+    // it('Dispatches the correct action and payload', () => {
+    //     const store = mockStore(initialState);
+    //     const add = [
+    //     {
+    //         'type': 'ADD_STEPS',
+    //         'payload': {
+    //             step: 1,
+    //             steps: initialState.steps
+    //         },
+    //     },
+    //     ];
+
+    //     store.dispatch(checkoutActions.addSteps(1, initialState.steps));
+    //     expect(store.getActions()).toEqual(add);
+    // });
+
+    it('should render the component with the mock state', () => {
+        const store = mockStore(initialState2);
+        const state = { 
+            currentCheckout: {
+                currentStep: 1,
+                steps: ['personalData','contracts','payment'],
+                data: [],
+                loading: true,
+                disabled: false,
             },
-        },
-        ];
+            cartReducer: {
+                items: []
+            }
+        };
 
-        store.dispatch(checkoutActions.addSteps(1, initialState.steps));
-        expect(store.getActions()).toEqual(add);
+        const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
+        
+        
     });
 
 });
