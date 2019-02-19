@@ -28,6 +28,8 @@ This comments comes from the inspection of the current master branch 19/02/2019
 
 * We should remove from package.json all libraries that are not used anymore. Otherwise it would be nice to import all css libraries and third party javascript that at the moment are imported by www/index.html using ES6 importing mechanism and installing those libraries as nam libraries
 
+* Maybe we need a litle refactoring of our app. Some react components are outside components folder and it seems confusing
+
 NOTE:As at the moment of this code checking in deep it’s quite evident there are tons of bugs and things need to be fixed in your app. What is quite clear is that the most evident misbehavior on the APP is it doesn’t work as expected. It fails at every level. So in order to prioritize your efforts my tip is; PLEASE!, make it works properly.
 
 
@@ -45,8 +47,16 @@ How your team code will be marked:
 # List of specific things don’t work or I don’t like it too much 
 
 * Personal data component is still very flawed. There is nonsense to specify details 
-* Vegas component sometumes
-
+* Vegas component some times is loaded in web views are not expected to be in
+* In chrome rates boxes appear sticked together without any kind of padding among them
+* The navbar language combobox don't like it (ugly).It's not applying selectpicker bootstrap classname. Maybe some collision with semantic-ui or other style rule. Check it
+* datosEmpresaActions2 is used? It seems is using cross-fetch module to do async calls (ajax)  to server. Maybe we should evaluate again this technology because It appears to be quite interesting because polyfills fetch wheter is not suported and moreover is a multiplatform feching mechanism could be used in mobiles apps too.
+* Navbar->Catalog filters and product family chooser is not working. It has not been finished
+* Navbar->Rates filter some times fails. In some occasions you click and the button filter is not selected neither the filter itself is apllied.
+* Navbar-> Our company . Any suggestion to finish with an original look and feel this section?
+* Contact. Check if the form sends data via POST endpoint 'contacto'
+* secretInfo.js? It is necessary if we have a settings.js file designed for these third party API keys and other related client configurations?
+* Navabar-> Rates the under boxes don't change i18n but n the server do you have the option to specify texts boxes by language
 
    
 
