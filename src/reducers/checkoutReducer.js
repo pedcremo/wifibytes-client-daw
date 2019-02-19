@@ -18,15 +18,17 @@ const initialState = {
     disabled: true
 };
 
+let steps;
+
 export default function currentCheckout(state = initialState, action) {
     switch (action.type) {
         case ADD_STEPS:
-            
-            if(state.currentStep===0 || state.currentStep >= state.steps.length + 1 || state.steps.length != action.payload.steps.length){
-                action.payload.steps.map(function(step) {
-                    return step.active=false;
+
+            if (state.currentStep === 0 || state.currentStep >= state.steps.length + 1 || state.steps.length != action.payload.steps.length) {
+                action.payload.steps.map(function (step) {
+                    return step.active = false;
                 });
-                action.payload.steps[0].active=true;
+                action.payload.steps[0].active = true;
                 return {
                     ...state,
                     loading: false,
@@ -34,9 +36,9 @@ export default function currentCheckout(state = initialState, action) {
                     steps: action.payload.steps
                 };
             } else {
-                action.payload.steps.map(function(step) {
-                    step.className="";
-                    return step.completed=false;
+                action.payload.steps.map(function (step) {
+                    step.className = "";
+                    return step.completed = false;
                 });
                 return {
                     ...state,
@@ -45,69 +47,92 @@ export default function currentCheckout(state = initialState, action) {
                     steps: action.payload.steps
                 };
             };
-            
+
 
         case NEXT_STEP:
-            if (state.currentStep < state.steps.length + 1){
-                state.steps[state.currentStep-1].active=false;
-                state.steps[state.currentStep].active=true;
+
+            if (state.currentStep < state.steps.length + 1) {
+                steps = state.steps;
+                steps[state.currentStep - 1].active = false;
+                steps[state.currentStep].active = true;
             }
+
             return {
                 ...state,
                 loading: false,
-                currentStep: state.currentStep+1
+                currentStep: state.currentStep + 1,
+                steps: steps
             };
 
         case PREVIOUS_STEP:
-            if (state.currentStep < state.steps.length + 1){
-                state.steps[state.currentStep-1].active=false;
-                state.steps[state.currentStep].active=true;
+
+            if (state.currentStep < state.steps.length + 1) {
+                steps = state.steps;
+                steps[state.currentStep - 1].active = false;
+                steps[state.currentStep].active = true;
             }
+
             return {
                 ...state,
                 loading: false,
-                currentStep: state.currentStep-1
+                currentStep: state.currentStep - 1,
+                steps: steps
             };
 
         case UPDATE_STEP:
-            if (state.currentStep < state.steps.length + 1){
-                state.steps[state.currentStep-1].active=false;
-                state.steps[action.payload.step-1].active=true;
+
+            if (state.currentStep < state.steps.length + 1) {
+                steps = state.steps;
+                steps[state.currentStep - 1].active = false;
+                steps[action.payload.step - 1].active = true;
             }
+
             return {
                 ...state,
                 loading: false,
-                currentStep: action.payload.step
+                currentStep: action.payload.step,
+                steps: steps
             };
-        
+
         case SET_COMPLETED:
-            state.steps[state.currentStep-1].completed=true;
-            state.steps[state.currentStep-1].className="";
+
+            steps = state.steps;
+            steps[state.currentStep - 1].completed=true;
+            steps[state.currentStep - 1].className="";
+
             return {
                 ...state,
+                steps: steps
             };
 
         case SET_UNCOMPLETED:
-            state.steps[state.currentStep-1].completed=false;
-            state.steps[state.currentStep-1].className="error";
+        
+            steps = state.steps;
+            steps[state.currentStep - 1].completed=false;
+            steps[state.currentStep - 1].className="error";
+
             return {
                 ...state,
+                steps: steps
             };
 
         case UPDATE_DATA:
-            state.data[action.payload.key]=action.payload.data;
             return {
                 ...state,
+                data: {
+                    ...state.data,
+                    [action.payload.key]: action.payload.data
+                }
             };
         case DISABLE_BUTTON:
             return {
                 ...state,
-                disabled:true
+                disabled: true
             };
         case ACTIVATE_BUTTON:
             return {
                 ...state,
-                disabled:false
+                disabled: false
             };
         default:
             // ALWAYS have a default case in a reducer
