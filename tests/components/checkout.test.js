@@ -7,7 +7,10 @@ import { Provider } from "react-redux";
 import * as checkoutActions from '../../src/constants/actionTypes';
 import currentCheckout from '../../src/reducers/checkoutReducer';
 import jsdom from 'jsdom'
-
+import I18n from "redux-i18n"
+import {i18nState} from "redux-i18n"
+import {Utils} from '../../src/utils'
+import {translations} from "../../src/i18n/translations"
 Enzyme.configure({ adapter: new Adapter() });
 
 const mockStore = configureStore();
@@ -90,7 +93,8 @@ const initialState4 = {
     },
     cartReducer: {
         items: []
-    }
+    },
+    i18nState
 };
 
 const initialStateData = {
@@ -113,7 +117,7 @@ const buttonState = {
 
 const store = mockStore(initialState);
 
-const checkout = Enzyme.shallow(<Provider store={store}><Checkout /></Provider>);
+let checkout = Enzyme.shallow(<Provider store={store}><Checkout /></Provider>);
 
 describe('<Checkout />', () => {
 
@@ -178,7 +182,7 @@ describe('<Checkout />', () => {
             }
         };
 
-        const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
+        checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
     });
 
     it('render > if(steps.length <= 0 && currentStep)', () => {
@@ -196,7 +200,7 @@ describe('<Checkout />', () => {
             }
         };
 
-        const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
+        checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
     });
 
     it('render > if(steps.length > 0 && currentStep', () => {
@@ -210,11 +214,16 @@ describe('<Checkout />', () => {
                 disabled: false
             },
             cartReducer: {
-                items: []
-            }
+                items: [
+                    {id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"},
+                    {id: "5"},
+                    {id: "0cab70a1-ea99-4aa4-9a49-1983f06a5614"}
+                ]
+            },
+            i18nState
         };
 
-        const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
+        checkout = Enzyme.render(<Provider store={store}><I18n translations={translations} initialLang={Utils.getCookie("language")} fallbackLang={Utils.getUserLang()}><Checkout {...state}/></I18n></Provider>);
     });
 
 });
