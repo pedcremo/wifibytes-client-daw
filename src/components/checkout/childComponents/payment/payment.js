@@ -30,6 +30,7 @@ class Payment extends React.Component {
      * that we sent to them
      */
     this.changePaymentMethod = () => ev => {
+      ev.preventDefault();
       this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
     }
     this.onChangeField = (field, value) => {
