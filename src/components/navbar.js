@@ -7,6 +7,7 @@ import { HashRouter } from "react-router-dom";
 import { setLanguage } from "redux-i18n";
 import { PropTypes } from "prop-types";
 import IsAuth from "./isAuth";
+import { getItems } from "./cart/cartActions";
 
 /**
  * Draw top menu navbar
@@ -18,6 +19,7 @@ class Navbar extends React.Component {
    */
 
   componentDidMount() {
+    this.props.dispatch(getItems());
     this.props.dispatch(getDatosEmpresa());
     // this.props.dispatch(getItems());
     this.handleLangPicker = this.handleLangPicker.bind(this);
@@ -34,6 +36,22 @@ class Navbar extends React.Component {
     //var a = document.getElementById("langPicker");
     //a.addEventListener("change", this.handleLangPicker.bind(this), false);
   }
+  showCheckoutOption() {
+    return (this.props.cartItems.items.length > 0 || JSON.parse(localStorage.getItem('cartReducer')).items.length > 0) ?
+      <li className="nav-item">
+        <Link to="/checkout" className="nav-link text-dark pt-3">
+          <span className="text-success">::</span>{" "}
+          Checkout
+        </Link>
+      </li> : null;
+  }
+  showItemsOnCart() {
+    return this.props.cartItems.items.reduce((cnt, o) => {
+      console.log(o);
+      console.log(cnt);
+      return o.quantity ? cnt + o.quantity : cnt + 0;
+    }, 0);
+  }
 
   /** render  */
   render() {
@@ -48,13 +66,7 @@ class Navbar extends React.Component {
     if (error) return <div>Error! </div>;
     if (loading) return <div>Loading...</div>;
     if (datosEmpresa) {
-      const total = cartItems.items.reduce((cnt, o) => {
-        if (o.quantity) {
-          return cnt + o.quantity;
-        } else {
-          return cnt + 0;
-        }
-      }, 0);
+
       return (
         <HashRouter>
           <div className="navRender">
@@ -109,13 +121,14 @@ class Navbar extends React.Component {
                   <Link to="/cart" className="nav-link text-dark pt-3">
                     <span
                       className="fa-stack fa-1x has-badge"
-                      data-count={total}
+                      data-count={this.showItemsOnCart()}
                     >
                       <i className="fa fa-circle fa-stack-2x fa-inverse" />
                       <i className="fa fa-shopping-cart fa-stack-2x red-cart" />
                     </span>
                   </Link>
                 </li>
+                {this.showCheckoutOption()}
                 <li className="nav-item">
                   {!isAuth ? (
                     <Link to="/login" className="nav-link disabled pt-3">
@@ -123,13 +136,13 @@ class Navbar extends React.Component {
                       <i className="fas fa-sign-in-alt"> </i>
                     </Link>
                   ) : (
-                    <Link to="/profile" className="nav-link disabled pt-3">
-                      <span>
-                        Profile
+                      <Link to="/profile" className="nav-link disabled pt-3">
+                        <span>
+                          Profile
                         <i className="fas fa-sign-in-alt" />{" "}
-                      </span>
-                    </Link>
-                  )}
+                        </span>
+                      </Link>
+                    )}
                 </li>
 
                 <li className="nav-item">
