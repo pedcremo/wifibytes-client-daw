@@ -1,4 +1,4 @@
-import { AUTH_SET, NOT_AUTH, LOGOUT, GET_PROFILE, ASYNC_START } from '../constants/actionTypes';
+import { AUTH_SET, NOT_AUTH, LOGOUT, ASYNC_START, ASYNC_END } from '../constants/actionTypes';
 
 const initialState = {
 	isAuth: false,
@@ -11,36 +11,31 @@ export default function isAuth(state = initialState, action) {
 			return {
 				...state,
 				isAuth: true,
-				user: action.user
+				user: action.user,
+				loading: false
 			};
 		case NOT_AUTH:
 			return {
 				...state,
 				isAuth: false,
-				user: undefined
+				user: undefined,
+				loading: false
 			};
+		case ASYNC_START:
+			if (action.subtype === AUTH_SET) {
+				return { ...state, loading: true };
+			}
+			break;
 		case LOGOUT:
 			return {
 				...state,
 				isAuth: false,
 				user: undefined
 			};
-		case GET_PROFILE:
-			if (action.payload.error)
-				return {
-					loadgin: false,
-					error: true
-				};
-			return {
-				...state,
-				loading: false,
-				profile: action.payload
-			};
-		case ASYNC_START:
-			return {
-				loading: true
-			};
+
 		default:
-			return state;
+			return { ...state };
 	}
+
+	return state;
 }

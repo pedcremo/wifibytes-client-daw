@@ -670,8 +670,13 @@ p.login-recuperar:hover {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
-	padding: 0 10vw;
+	padding: 0 5vw;
 	padding-top: 5vw;
+}
+
+.profile table {
+	width: 100%;
+	text-align: center;
 }
 
 @keyframes moveTo {
@@ -755,31 +760,14 @@ p.login-recuperar:hover {
 	animation-duration: 1.8s;
 }
 
-.profile .logoutButton {
-	position: relative;
-	left: 75vw;
-	bottom: -35vh;
-}
-
-.logoutButton {
-	padding: 10px;
-	color: white;
-	border: 1px solid rgb(31, 121, 4);
-	border-radius: 10px;
-	background-color: rgb(44, 170, 6);
-	font-size: 1.5rem;
-	cursor: pointer;
-	transition: all 0.5s ease-in-out;
-}
 .logoutButton:hover {
 	transform: scale(1.05);
-	color: #666666;
 }
 
 @keyframes comeIn {
 	from {
 		opacity: 0;
-		transform: translate(900px, 0);
+		transform: translate(600px, 0);
 	}
 	to {
 		opacity: 1;
@@ -789,4 +777,18 @@ p.login-recuperar:hover {
 
 .profile > div > .inicioProfile > h1 {
 	grid-column: 1 /s2;
+}
+
+.loading {
+	padding: 0 49vw;
+}
+
+.inicioProfile .pedidos > p {
+	text-align: center;
+}
+.inicioProfile .pedidos span {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border-bottom: 1px solid gray;
+	margin-bottom: 1vh;
 }

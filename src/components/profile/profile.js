@@ -5,6 +5,7 @@ import IsAuth from '../isAuth';
 import { Utils } from '../../utils';
 import { Redirect } from 'react-router-dom';
 import InicioProfile from './inicioProfile';
+import MisPedidos from './misPedidos';
 
 import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
 
@@ -17,11 +18,12 @@ const mapDispatchToProps = (dispatch) => ({
 	onLoad: (id) =>
 		dispatch({
 			type: GET_PROFILE,
-			payload: Utils.get(`/cliente/${Utils.getCookie('id_consumer')}`, null, true)
+			payload: Utils.get(`/cliente/${Utils.getCookie('id_consumer')}`)
 		})
 });
 const mapStateToProps = (state) => ({
-	...state.isAuth
+	...state.isAuth,
+	...state.profile
 });
 
 class Profile extends React.Component {
@@ -30,6 +32,7 @@ class Profile extends React.Component {
 		this.state = {
 			view: <InicioProfile />
 		};
+		console.log(this);
 		this.changeView = this.changeView.bind(this);
 		this.props.onLoad();
 	}
@@ -47,8 +50,8 @@ class Profile extends React.Component {
 	}
 
 	render() {
-		const { profile, loading, error } = this.props;
-		if (loading) return <h1>LOADING</h1>;
+		const { profile, loading, error, isAuth } = this.props;
+		if ((loading && !profile) || !isAuth) return <img className="loading" src="/styles/image/loading.svg" />;
 		if (!loading && error) return <Redirect to={'/'} />;
 		return (
 			<main className="profile">
@@ -59,7 +62,7 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView(<InicioProfile />, ev)}>INICIO</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView(<div>MIS PEDIDOS</div>, ev)}>MIS PEDIDOS</a>
+							<a onClick={(ev) => this.changeView(<MisPedidos />, ev)}>MIS PEDIDOS</a>
 						</li>
 						<li>
 							<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
@@ -71,7 +74,7 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
 						</li>
 					</ul>
-					<button className="logoutButton" onClick={this.logout}>
+					<button className="btn btn-primary logoutButton" onClick={this.logout}>
 						Logout <i className="fas fa-sign-in-alt" />
 					</button>
 				</section>
