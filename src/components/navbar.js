@@ -41,14 +41,12 @@ class Navbar extends React.Component {
       <li className="nav-item">
         <Link to="/checkout" className="nav-link text-dark pt-3">
           <span className="text-success">::</span>{" "}
-          Checkout
+          {this.context.t("menu-checkout")}
         </Link>
       </li> : null;
   }
   showItemsOnCart() {
     return this.props.cartItems.items.reduce((cnt, o) => {
-      console.log(o);
-      console.log(cnt);
       return o.quantity ? cnt + o.quantity : cnt + 0;
     }, 0);
   }

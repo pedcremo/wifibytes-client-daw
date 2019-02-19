@@ -55,7 +55,7 @@ How your team code will be marked:
 * Navbar->Rates filter some times fails. In some occasions you click and the button filter is not selected neither the filter itself is apllied.
 * Navbar-> Our company . Any suggestion to finish with an original look and feel this section?
 * Contact. Check if the form sends data via POST endpoint 'contacto'
-* secretInfo.js? It is necessary if we have a settings.js file designed for these third party API keys and other related client configurations?
+* -------------REMOVED FROM THE APP--------------secretInfo.js? It is necessary if we have a settings.js file designed for these third party API keys and other related client configurations?
 * Navabar-> Rates the under boxes don't change i18n but n the server do you have the option to specify texts boxes by language
 
    
