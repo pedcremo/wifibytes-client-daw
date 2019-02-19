@@ -19,6 +19,14 @@ export const setCompleted = () => ({
 export const setUncompleted = () => ({
     type: SET_UNCOMPLETED
 });
+export function updateData(key, data) {
+    return dispatch => {
+        return dispatch({
+            type: UPDATE_DATA,
+            payload: {key, data}
+        });
+    };
+}
 
 
 export const getItems = () => ({
@@ -30,14 +38,7 @@ export const getItems = () => ({
 
 
 
-export const INIT_DATA_SERVICES = 'INIT_DATA_SERVICES';
-export const initDataServices = (data) => {
-    console.log("ACTION INIT_DATA_SERVICES", data);
-    return ({
-        type: INIT_DATA_SERVICES,
-        data
-    })
-}
+
 
 export const UPDATE_DATOS_PERSONALES = 'UPDATE_DATOS_PERSONALES';
 export const updateField = (data, field, error) => {
@@ -61,4 +62,25 @@ export const initDatosPersonales = data => {
 }
 
 
+
+export const INIT_DATA_SERVICES = 'INIT_DATA_SERVICES';
+export const initDataServices = (data) => {
+    console.log("ACTION INIT_DATA_SERVICES", data);
+    return ({
+        type: INIT_DATA_SERVICES,
+        data
+    })
+}
+
+export const UPDATE_DATOS_SERVICES = 'UPDATE_DATOS_SERVICES';
+export const updateFieldDatosProd = (data, field, error, itemKey) => {
+    //console.log("ACTION UPDATE_DATOS_SERVICES", data, field, error);
+    return ({
+        type: UPDATE_DATOS_SERVICES,
+        data,
+        field,
+        error,
+        itemKey
+    })
+}
 

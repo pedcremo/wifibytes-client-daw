@@ -120,10 +120,10 @@ class PersonalForm extends React.Component  {
                <div>
                     <h2>Datos Personales</h2>
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Nombre
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="nombre"
                             type="text"
                             value={nombre}
@@ -136,10 +136,10 @@ class PersonalForm extends React.Component  {
 
                     <br />
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             <span className={`${validator(apellido, "apellido")==null?"":"text-danger"}`}>Apellido</span>
                             <input
-                            className={`form-control form-control-lg mio ${validator(apellido, "apellido")==null?"":"border-danger"}`}
+                            className={`form-control form-control-lg ${validator(apellido, "apellido")==null?"":"border-danger"}`}
                             name="apellido"
                             type="text"
                             value={apellido}
@@ -151,14 +151,14 @@ class PersonalForm extends React.Component  {
                     </div>
                     
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Tipo de Cliente
                             
                             <select 
                             name = "tipo_cliente"
                             value={tipo_cliente}
                             onChange={ev => updateField(ev.target.value, ev.target.name, validator(ev.target.value, "tipo_cliente"))}
-                            className="form-control form-control-lg mio">
+                            className="form-control form-control-lg">
                                 {this.props.tipCliente.map((item, i)=> <option key={i} value={item}>{TIPO_CLIENTE_VALUE[item]}</option>)}  
                             </select>
                             <span className="text-danger">{!tipo_cliente? "": validator(tipo_cliente, "tipo_cliente")}</span> 
@@ -168,10 +168,10 @@ class PersonalForm extends React.Component  {
 
                     <br />
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Documento de Identidad
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="cifnif"
                             type="text"
                             value={cifnif}
@@ -187,10 +187,10 @@ class PersonalForm extends React.Component  {
 
                     {/* <br />
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Fecha de nacimiento
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="birthday_omv"
                             type="date"
                             value={birthday_omv}
@@ -204,7 +204,7 @@ class PersonalForm extends React.Component  {
                     <br />
                     <div>
                         <input
-                        className="form-control form-control-lg mio"
+                        className="form-control form-control-lg"
                         name="dniFile"
                         type="file"
                         /* value={dniFile} */
@@ -223,10 +223,10 @@ class PersonalForm extends React.Component  {
                 <div>
                     <h2>Datos Facturacion</h2>
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Email
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="email"
                             type="text"
                             value={email}
@@ -238,10 +238,10 @@ class PersonalForm extends React.Component  {
                     </div>
 
                     {/* <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Telefono
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="telefono"
                             type="text"
                             value={telefono}
@@ -254,10 +254,10 @@ class PersonalForm extends React.Component  {
 
 
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Direccion
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="direccion"
                             type="text"
                             value={direccion}
@@ -269,10 +269,10 @@ class PersonalForm extends React.Component  {
                     </div>
 
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Codigo Postal
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="codpostal"
                             type="text"
                             value={codpostal}
@@ -284,10 +284,10 @@ class PersonalForm extends React.Component  {
                     </div>
 
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Ciudad
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="ciudad"
                             type="text"
                             value={ciudad}
@@ -299,10 +299,10 @@ class PersonalForm extends React.Component  {
                     </div>
 
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Provincia
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="provincia"
                             type="text"
                             value={provincia}
@@ -314,10 +314,10 @@ class PersonalForm extends React.Component  {
                     </div>
 
                     <div>
-                        <label>
+                        <label className="grid-data-form__inputs">
                             Cuenta
                             <input
-                            className="form-control form-control-lg mio"
+                            className="form-control form-control-lg"
                             name="cuenta"
                             type="text"
                             value={cuenta}

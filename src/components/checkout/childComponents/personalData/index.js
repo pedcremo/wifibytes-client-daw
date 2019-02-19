@@ -7,9 +7,21 @@ import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
 
 import {getItems} from "../../../cart/cartActions";
+import {
+    setCompleted,
+    setUncompleted,
+    updateData
+} from "../../../../actions/personalDataFormActions";
 
-import {Agent} from '../../agent';
-import subitems_library from "../../libraries/subitems_based_library.json";
+const mapDispatchToProps = (dispatch) => ({
+    setCompleted: () => dispatch(setCompleted()),
+    setUncompleted: () => dispatch(setUncompleted()),
+    updateData: (key, data) => dispatch(updateData(key, data)),
+});
+
+const mapStateToProps = state => ({
+    ...state.personalDataForm,
+});
 
 let mockClientes=[0, 5, 1, 2]
 let mockCompanies=["orange", "vodafone", "jazztel", "yoigo", "pepephone"]
@@ -27,25 +39,40 @@ class Personal extends React.Component  {
        
     }
 
-    /* para carrito
-    componentDidMount() {
-        this.props.dispatch(getItems());
-    } */
+    componentDidUpdate(){
+        const {
+            validDatosProductos,
+            setCompleted,
+            setUncompleted,
+            datosPersonales,
+            datosProductos,
+            updateData
+        } = this.props
+        if (validDatosProductos) {
+            updateData("personalData", {
+                datosPersonales,
+                datosProductos
+            })
+            setCompleted()
+
+        }else{
+            setUncompleted()
+        }
+    }
     
-   
+    
     render() {
+        
         return (
             <div>
-
                 <PersonalDataForm tipCliente={mockClientes}/>
-
                 
-                <PortabilidadForm companies={mockCompanies}/>)                    
-                
+                <PortabilidadForm companies={mockCompanies}/>                    
             </div>
         );
     }
 }
 
 
-export default Personal;
+//export default Personal;
+export default connect(mapStateToProps, mapDispatchToProps)(Personal);
