@@ -67,6 +67,32 @@ const initialState2 = {
     }
 };
 
+const initialState3 = {
+    currentCheckout: {
+        currentStep: 1,
+        steps: [],
+        data: [],
+        loading: false,
+        disabled: false
+    },
+    cartReducer: {
+        items: []
+    }
+};
+
+const initialState4 = {
+    currentCheckout: {
+        currentStep: 1,
+        steps: ['personalData','contracts','payment'],
+        data: [],
+        loading: false,
+        disabled: false
+    },
+    cartReducer: {
+        items: []
+    }
+};
+
 const initialStateData = {
     data: {
         "cardOwner": "dfgdf df",
@@ -137,7 +163,7 @@ describe('<Checkout />', () => {
     //     expect(store.getActions()).toEqual(add);
     // });
 
-    it('should render the component with the mock state', () => {
+    it('render > if (loading)', () => {
         const store = mockStore(initialState2);
         const state = { 
             currentCheckout: {
@@ -153,8 +179,42 @@ describe('<Checkout />', () => {
         };
 
         const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
-        
-        
+    });
+
+    it('render > if(steps.length <= 0 && currentStep)', () => {
+        const store = mockStore(initialState3);
+        const state = { 
+            currentCheckout: {
+                currentStep: 1,
+                steps: [],
+                data: [],
+                loading: false,
+                disabled: false,
+            },
+            cartReducer: {
+                items: []
+            }
+        };
+
+        const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
+    });
+
+    it('render > if(steps.length > 0 && currentStep', () => {
+        const store = mockStore(initialState4);
+        const state = { 
+            currentCheckout: {
+                currentStep: 1,
+                steps: ['personalData','contracts','payment'],
+                data: [],
+                loading: false,
+                disabled: false
+            },
+            cartReducer: {
+                items: []
+            }
+        };
+
+        const checkout = Enzyme.render(<Provider store={store}><Checkout {...state}/></Provider>);
     });
 
 });
