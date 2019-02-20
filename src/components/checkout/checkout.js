@@ -66,6 +66,7 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
+        
         /**
          * @desc Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
          * @return @true object - Filtered library Steps.js
