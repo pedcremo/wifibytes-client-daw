@@ -1,4 +1,4 @@
-import {Utils} from "../utils";
+import { Utils } from "../utils";
 
 export const GET_RATES_BEGIN = 'GET_RATES_BEGIN';
 export const GET_RATES_SUCCESS = 'GET_RATES_SUCCESS';
@@ -25,10 +25,10 @@ export const getRatesFailure = error => ({
 
 export function getRates() {
     return dispatch => {
-      dispatch(getRatesBegin());
-      return Promise.all([Utils.get("/tarifa/?activo=true"), Utils.get("/tarifa_descriptor")])
+        dispatch(getRatesBegin());
+        return Promise.all([Utils.get("/tarifa/?activo=true"), Utils.get("/tarifa_descriptor", [Utils.filterPruneArrayByLang, "lang"])])
             .then(response => dispatch(getRatesSuccess(response)))
             .catch(error => dispatch(getRatesFailure(error)));
     };
 }
-  
+
