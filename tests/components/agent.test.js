@@ -156,6 +156,9 @@ describe("Testing agent methods",() => {
             library.fieldsToValidate[0].field,
             library.requiredFields[0]
         ]);
+        
+        let agent_error = Agent.objectsToArray();
+        expect(agent_error).toThrowError();
     });
 
     test("filterArray -> check that an object returns depending on the item", () => {
@@ -178,13 +181,17 @@ describe("Testing agent methods",() => {
         let quantitiesByItems2 = {"fibra": 0, "fijo": 0, "movil": 0, "tv": 1, "wifi": 1}
         let quantity2 = Agent.arrayToQuantityObject(subtarifas2,sublibrary);
         expect(quantity2).toEqual(quantitiesByItems2);
-        
+
+        let agent_error = Agent.arrayToQuantityObject();
+        expect(agent_error).toThrowError();
     });
 
     test("ObjectSendToOrder -> check that returns the correct data", () => {
         let objectOrder = Agent.ObjectSendToOrder(Orderdata,steps);
         expect(objectOrder).not.toBeNull();
-        
+
+        let agent_error = Agent.ObjectSendToOrder();
+        expect(agent_error).toThrowError();
     });
 
 });
