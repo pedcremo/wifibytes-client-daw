@@ -546,6 +546,18 @@ p.login-recuperar:hover {
 }
 /* The Close Button */
 
+body.dimmed.dimmable {
+	overflow-y: scroll !important;
+}
+
+.modal {
+	margin: auto;
+	height: 80vh;
+	top: 5vh !important;
+	left: 0;
+	min-height: 200px;
+}
+
 .close {
 	color: rgb(0, 0, 0);
 	float: right;
@@ -791,4 +803,52 @@ p.login-recuperar:hover {
 	grid-template-columns: 1fr 1fr;
 	border-bottom: 1px solid gray;
 	margin-bottom: 1vh;
+}
+
+.linea {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	justify-content: center;
+	align-content: center;
+	grid-column-gap: 5vw;
+	border-bottom: 1px solid gray;
+}
+
+.linea img {
+	margin: auto;
+}
+
+.linea span * {
+	margin: 0;
+}
+
+.modal .mispedidosModal .total {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-content: center;
+	align-content: center;
+}
+.modal .mispedidosModal .total * {
+	margin: 0;
+}
+.mispedidosModal {
+	display: grid !important;
+	grid-template-columns: 2fr 1fr !important;
+	font-weight: 200;
+}
+
+.mispedidosModal .ubicacion {
+	display: grid;
+	grid-row-gap: 25px;
+}
+
+.mispedidosModal .ubicacion div {
+	background: #e4e4e4;
+	padding: 5px;
+}
+
+.mispedidosModal h1,
+.mispedidosModal h2 {
+	font-weight: 100;
+	margin: 1px;
 }

@@ -6,49 +6,74 @@ import { Utils } from '../../utils';
 import { Redirect } from 'react-router-dom';
 import InicioProfile from './inicioProfile';
 import MisPedidos from './misPedidos';
-
 import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
 
-/**
- * @class
- * Draw Login. A form to login
- */
-
 const mapDispatchToProps = (dispatch) => ({
+	/**
+	 * Function to get all the client profile
+	 */
 	onLoad: (id) =>
 		dispatch({
 			type: GET_PROFILE,
 			payload: Utils.get(`/cliente/${Utils.getCookie('id_consumer')}`)
 		})
 });
+/**
+ * This component is using the isAuth and profile state
+ */
 const mapStateToProps = (state) => ({
 	...state.isAuth,
 	...state.profile
 });
-
+/**
+ * PROFILE COMPONENT
+ */
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			view: <InicioProfile />
-		};
-		console.log(this);
 		this.changeView = this.changeView.bind(this);
+		//Load the Client Profile
 		this.props.onLoad();
-	}
 
-	changeView(value, ev) {
+		// Set the propper view on the component via the key on the url
+		switch (this.props.keyParam) {
+			case 'mispedidos':
+				this.state = {
+					...this.state,
+					view: <MisPedidos />
+				};
+				break;
+			default:
+				this.state = {
+					view: <InicioProfile changeView={this.changeView} />
+				};
+				break;
+		}
+	}
+	/**
+	 * Function to change the current view of component
+	 * 
+	 * @param {String} taget 
+	 * @param {*} value 
+	 */
+	changeView(taget, value, ev) {
 		ev.preventDefault();
 		this.setState({
-			view: value
+			[taget]: value
 		});
 	}
 
+	/**
+	 * Function to logout, delete jwt and redirect
+	 */
 	logout() {
 		Utils.deleteCookie('jwt');
 		window.location = '';
 	}
 
+	/**
+	 * Render
+	 */
 	render() {
 		const { profile, loading, error, isAuth } = this.props;
 		if ((loading && !profile) || !isAuth) return <img className="loading" src="/styles/image/loading.svg" />;
@@ -59,19 +84,24 @@ class Profile extends React.Component {
 					<h1>MI CUENTA</h1>
 					<ul className="category">
 						<li>
-							<a onClick={(ev) => this.changeView(<InicioProfile />, ev)}>INICIO</a>
+							<a
+								onClick={(ev) =>
+									this.changeView('view', <InicioProfile changeView={this.changeView} />, ev)}
+							>
+								INICIO
+							</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView(<MisPedidos />, ev)}>MIS PEDIDOS</a>
+							<a onClick={(ev) => this.changeView('view', <MisPedidos />, ev)}>MIS PEDIDOS</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
+							<a onClick={(ev) => this.changeView('view', <div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView(<div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
+							<a onClick={(ev) => this.changeView('view', <div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
+							<a onClick={(ev) => this.changeView('view', <div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
 						</li>
 					</ul>
 					<button className="btn btn-primary logoutButton" onClick={this.logout}>
