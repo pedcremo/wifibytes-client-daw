@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
 import { Agent } from './agent';
 import PropTypes from 'prop-types'
-
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
 
@@ -66,7 +65,6 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
-        
         /**
          * @desc Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
          * @return @true object - Filtered library Steps.js
@@ -154,15 +152,15 @@ class Checkout extends React.Component {
                             {steps.length > currentStep ?
                                 (<button
                                     onClick={nextStep}
-                                    className="ui right big black labeled icon button">
-                                    <i className="right arrow icon"></i>
-                                    {this.context.t('checkout-next')}
+                                    className="btn btn-secondary">
+                                    {this.context.t('checkout-next')+` `}
+                                    <i className="fa fa-arrow-circle-right"/>
                                 </button>) : (
                                     <button
                                         disabled={disabled}
                                         onClick={() => this.sendOrder()}
-                                        className="massive ui labeled icon black button">
-                                        <i className="icon truck"></i>
+                                        className="btn btn-secondary">
+                                        <i className="fa fa-shopping-cart"/>
                                         {this.context.t('checkout-submit')}
                                     </button>
 
