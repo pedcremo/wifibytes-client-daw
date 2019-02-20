@@ -66,19 +66,19 @@ export default function personalDataFormReducer(state = initialState, action) {
                     item[action.field] = action.data
                 return item
             })  
-            state.datosProductos = newObject
-            state.validDatosProductos = validDatosServicios(newObject)
-            console.warn("UPDATE_DATOS_SERVICES", newObject)
-            console.error(validDatosServicios(newObject))
-            state.validDatosProductos && state.validDatosPersonales ? (state.validForms=true):""
             return {
                 ...state,
+                datosProductos : newObject,
+                validDatosProductos : validDatosServicios(newObject),
+                validForms: state.validDatosProductos && state.validDatosPersonales?true:false
+                
             };
        
 
         case INIT_DATA_SERVICES:
             console.warn("REDUCER INIT_DATA_SERVICES", action.data);
-            const datos = JSON.parse(localStorage.getItem('personalDataInfo'));
+            //const datos = JSON.parse(localStorage.getItem('personalDataInfo'));
+            const datos = state.datosProductos;
             let newDatosProductos=[]
             let datosProductosAlmacenados = []
             /**
@@ -97,7 +97,7 @@ export default function personalDataFormReducer(state = initialState, action) {
             /**
              * Comprueba si el local hay guardados datos de la ultima visita del usuario al formulario
              */
-            if ((datos && typeof (datos) === "object" && datos != null && datos.datosProductos.length > 0) || state.datosProductos.length>0)
+            if ((datos && typeof (datos) === "object" && datos != null && datos.length > 0) || state.datosProductos.length>0)
                 datosProductosAlmacenados = state.datosProductos.length > 0 ? state.datosProductos : datos.datosProductos
             
             
@@ -124,7 +124,6 @@ export default function personalDataFormReducer(state = initialState, action) {
             
             //Entara aqui cuando haya aumentado o disminuido una cantidad de una tarifa en el carrito y lo mezcla con los datos ya guardados en redux
             if (datosProductosAlmacenados.length != newDatosProductos.length) {
-                //newDatosProductos = []
                 for (let i = 0; i < newDatosProductos.length; i++) {
                     for (let j = 0; j < datosProductosAlmacenados.length; j++) {
                         if (newDatosProductos[i]["key"] === datosProductosAlmacenados[j]["key"]) {
@@ -139,59 +138,66 @@ export default function personalDataFormReducer(state = initialState, action) {
                 newDatosProductos = datosProductosAlmacenados
             }
             
-            state.datosProductos = newDatosProductos
+            
             //console.warn("productosEnCarritoActual----", newDatosProductos)
             
         return {
             ...state,
+            datosProductos: newDatosProductos
         };
 
         case UPDATE_DATOS_PERSONALES:
             console.warn("UPDATE_DATOS_PERSONALES", action.field, action.data, action.error);
-            let errdatosPersonalesOb;
             /**
              * Actualiza los campos dentro del datosPersonales y erroresDatosPersonales en el storage de redux
              */
-            state["datosPersonales"][action.field] = action.data;
-            state["erroresDatosPersonales"][action.field] = action.error;
+            let copiaDatosPersonales = state["datosPersonales"]
+            let copiaDatosPersonalesErr = state["erroresDatosPersonales"]
+            // state["datosPersonales"][action.field] = action.data;
+            // state["erroresDatosPersonales"][action.field] = action.error;
+            copiaDatosPersonales[action.field] = action.data;
+            copiaDatosPersonalesErr[action.field] = action.error;
             /**
              * Verificamos si el formulario ya es valido y de ser asi le cambiamos a true validDatosPersonales
              */
-            errdatosPersonalesOb = validDatosPersonalesFun(state["datosPersonales"], state["erroresDatosPersonales"])
-            state["validDatosPersonales"] = errdatosPersonalesOb.valid;
+            let errdatosPersonalesOb = validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr)
+            //state["validDatosPersonales"] = errdatosPersonalesOb.valid;
             /**
              * Guarda en local los cambios realizados
              */
-            localStorage.setItem('personalDataInfo', JSON.stringify(state));
-            state.validDatosProductos && state.validDatosPersonales ? (state.validForms = true) : ""
+            //localStorage.setItem('personalDataInfo', JSON.stringify(state));
+            //state.validDatosProductos && state.validDatosPersonales ? (state.validForms = true) : ""
             return {
                 ...state,
+                validDatosPersonales: errdatosPersonalesOb.valid,
+                datosPersonales: copiaDatosPersonales,
+                erroresDatosPersonales: copiaDatosPersonalesErr,
+                validForms: state.validDatosProductos && state.validDatosPersonales ? true : false
             };
 
 
 
         case INITIALIZE_DATOS_PERSONALES:
 
-            const info = JSON.parse(localStorage.getItem('personalDataInfo'));
-            console.warn("REDUCER INITIALIZE_DATOS_PERSONALES", info, typeof(info));
-            let datosPersonalesObject, errdatosPersonalesObject;
+            //const info = JSON.parse(localStorage.getItem('personalDataInfo'));
+            const info = action.data
+            const infoInitial = initialState.datosPersonales
+            console.warn("REDUCER INITIALIZE_DATOS_PERSONALES", info, action.data);
+            let datosPersonalesObject, errdatosPersonalesObject, erroresDatosPersonales, validDatosPersonales;
+            let newObjDatosPersonales = initialState.datosPersonales;
             /**
              * Comprueba si el local hay guardados datos de la ultima visita del usuario al formulario
              */
-            if (info && typeof (info) === "object" && info != null && Object.keys(info.datosPersonales).length > 0)
-                datosPersonalesObject = info.datosPersonales ? info.datosPersonales : initialState.datosPersonales;            
-            else
-                datosPersonalesObject = action.data;
-
-
+            datosPersonalesObject = (typeof(info)==="object"&&Object.keys(info).length>1) ? info : initialState.datosPersonales;
             
             /**
              * Valida si el form esta completo correctamente y cambia el objeto de errores de datos personales del state REDUX
              */
             errdatosPersonalesObject = validDatosPersonalesFun(datosPersonalesObject, state.erroresDatosPersonales)
-            state.erroresDatosPersonales = errdatosPersonalesObject.err;
-            state.validDatosPersonales = errdatosPersonalesObject.valid;
+            erroresDatosPersonales = errdatosPersonalesObject.err;
+            validDatosPersonales = errdatosPersonalesObject.valid;
             
+            console.error("REDUCER INITIALIZE_DATOS_PERSONALES", datosPersonalesObject);
             /**
              * Rellena el  objeto de datos personales con lo que nos hemos encontrado en local Storage
              */
@@ -199,18 +205,18 @@ export default function personalDataFormReducer(state = initialState, action) {
                 for (const key in datosPersonalesObject) {
                     if (state.datosPersonales.hasOwnProperty(key)) 
                         if (datosPersonalesObject.hasOwnProperty(key))
-                            state.datosPersonales[key] = datosPersonalesObject[key];
+                            newObjDatosPersonales[key] = datosPersonalesObject[key];
                 }
             }
-
             /**
              * Guarda en local los cambios realizados
              */
-            localStorage.setItem('personalDataInfo', JSON.stringify(state));
+            //localStorage.setItem('personalDataInfo', JSON.stringify(state));
             
             //console.log("REDUCER INITIALIZE_DATOS_PERSONALES", action.data);
             return {
                 ...state,
+                datosPersonales: newObjDatosPersonales
             };
 
 
