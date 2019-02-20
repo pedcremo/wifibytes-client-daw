@@ -53,6 +53,11 @@ footer {
 	padding: 5px;
 }
 
+.grid-data-form__inputs {
+	width: 100%;
+	padding: 5px;
+}
+
 @media (min-width: 600px) {
 	.grid-data-form {
 		grid-template-columns: 1fr 1fr;
@@ -308,9 +313,11 @@ nav {
 	border-bottom-color: green;
 	transform: scale(1.05);
 }
+
 .loginForm h1 {
 	text-decoration: underline;
 }
+
 .loginForm h4 {
 	font-size: 22px;
 	text-align: center;
@@ -318,10 +325,10 @@ nav {
 
 .loginForm .login-button {
 	margin: 0 auto;
-    color: white;
-    width: 350px;
-    height: 35px;
-    background: #1f4f82;
+	color: white;
+	width: 350px;
+	height: 35px;
+	background: #1f4f82;
 }
 
 .loginForm .login-button:hover {
@@ -333,7 +340,7 @@ nav {
 	grid-gap: 25px;
 }
 
-.login-acces > form {
+.login-acces>form {
 	padding: 0 50px;
 	display: grid;
 	width: 500px;
@@ -343,7 +350,7 @@ nav {
 	background-color: rgba(255, 255, 255, 0.9);
 }
 
-.login-acces > form > span {
+.login-acces>form>span {
 	display: grid;
 	grid-template-areas: "k l " "i in ";
 	justify-content: center;
@@ -351,7 +358,8 @@ nav {
 	grid-gap: 10%;
 	border-bottom: solid 1px black;
 }
-.login-acces > form > p {
+
+.login-acces>form>p {
 	letter-spacing: 0.1rem;
 	position: relative;
 	top: 15px;
@@ -359,28 +367,30 @@ nav {
 	color: red;
 	text-align: center;
 }
-.login-acces > form > span > i {
+
+.login-acces>form>span>i {
 	grid-area: i;
 	letter-spacing: 0.1rem;
 	margin: auto;
 }
 
-.login-acces > form > button {
+.login-acces>form>button {
 	position: relative;
 	letter-spacing: 0.1rem;
 	top: 25px;
 }
 
-.login-acces > form > span > label.down {
+.login-acces>form>span>label.down {
 	transform: translate(19px, 72px);
 }
 
-.login-acces > form > span > label {
+.login-acces>form>span>label {
 	grid-area: l;
 	transform: translate(0, 0);
 	transition-duration: 0.5s;
 }
-.login-acces > form > span > input {
+
+.login-acces>form>span>input {
 	letter-spacing: 0.1rem;
 	width: 350px;
 	grid-area: in;
@@ -401,6 +411,7 @@ nav {
 	flex-direction: column;
 	justify-content: flex-start;
 }
+
 .login .background {
 	content: '';
 	position: absolute;
@@ -412,6 +423,7 @@ nav {
 	height: 100%;
 	z-index: -1;
 }
+
 .login:after {
 	content: '';
 	width: 100%;
@@ -436,14 +448,17 @@ nav {
 	/* Safari */
 	transform: translatex(500px);
 }
+
 p.login-recuperar {
 	text-align: center;
 	transition-duration: 0.5s;
 }
+
 p.login-recuperar:hover {
 	text-shadow: 4px 4px 25px green;
 	transform: scale(1.05);
 }
+
 .login-recuperar-input {
 	transition: transform 1s;
 	-ms-transform: skewx(0);
@@ -459,6 +474,7 @@ p.login-recuperar:hover {
 	justify-content: center;
 	align-content: center;
 }
+
 .login-recover span {
 	display: grid;
 	grid-gap: 15px;
@@ -510,27 +526,32 @@ p.login-recuperar:hover {
 /* The Modal (background) */
 
 .modal_manual {
-  display: block;
-  position: absolute; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;/* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0);
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+	display: block;
+	position: absolute;
+	/* Stay in place */
+	z-index: 1;
+	/* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
+	overflow: auto;
+	/* Enable scroll if needed */
+	background-color: rgb(0, 0, 0);
+	/* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4);
+	/* Black w/ opacity */
 }
+
 .modal_manual_con {
-    display: flex;
-    align-items: center;
-    z-index: 999999999999999;
-    overflow: inherit;
+	display: flex;
+	align-items: center;
+	z-index: 999999999999999;
+	overflow: inherit;
 }
+
 /* Modal Content/Box */
 
 .modal-content_manual {
@@ -544,9 +565,11 @@ p.login-recuperar:hover {
 	/* Could be more or less, depending on screen size */
 	overflow: hidden;
 }
+
 .modal-content_manual_con {
 	background-image: none;
 }
+
 /* The Close Button */
 
 .close {
@@ -559,8 +582,7 @@ p.login-recuperar:hover {
 	margin-top: -10px;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
 	color: rgb(78, 78, 78);
 	text-decoration: none;
 	cursor: pointer;
@@ -572,6 +594,7 @@ p.login-recuperar:hover {
 	grid-column-gap: 20px;
 	grid-template-columns: auto auto auto;
 }
+
 .fa-stack[data-count]:after {
 	position: absolute;
 	right: 0%;
@@ -589,6 +612,7 @@ p.login-recuperar:hover {
 	background: white;
 	border-style: solid;
 }
+
 .fa-circle {
 	color: rgb(44, 170, 6);
 }
@@ -605,10 +629,12 @@ p.login-recuperar:hover {
 	opacity: 0;
 	z-index: 2;
 }
-.buttonAdd button:focus-within + .suma {
+
+.buttonAdd button:focus-within+.suma {
 	animation-name: go_up;
 	animation-duration: 2s;
 }
+
 .buttonAdd .cart {
 	width: 0;
 	opacity: 0;
@@ -617,11 +643,13 @@ p.login-recuperar:hover {
 	left: 20px;
 	z-index: 1;
 }
-.buttonAdd button:focus-within + .suma + .cart {
+
+.buttonAdd button:focus-within+.suma+.cart {
 	animation-name: hiImthere;
 	animation-duration: 2.2s;
 	transform: translate(20px, -20px);
 }
+
 @keyframes hiImthere {
 	0% {
 		transform: translate(20px, -20px);
@@ -640,6 +668,7 @@ p.login-recuperar:hover {
 		transform: scale(0.5);
 	}
 }
+
 @keyframes go_up {
 	0% {
 		transform: translate(0, 0);
@@ -674,28 +703,38 @@ p.login-recuperar:hover {
 /*************PAYMENT**************/
 
 .payment-container {
-    display: grid;
-    grid-template-columns: 48% 50%;
-    justify-content: center;
+	display: grid;
+	grid-template-columns: 48% 50%;
+	justify-content: center;
 }
 
 .payment-container .cart-resume .table {
-    display: contents;
+	display: contents;
 }
+
 .payment-method .button {
-    width: 130px;
-    height: 100px;
-    max-width: 130px;
-    max-height: 100px;
+	width: 130px;
+	height: 100px;
+	max-width: 130px;
+	max-height: 100px;
 }
+
 .payment-method {
+<<<<<<< HEAD
     display: grid;
     grid-template-columns: 24% 24% 24%;
     justify-content: space-evenly;
+=======
+	display: grid;
+	grid-template-columns: 24% 24% 24%;
+	justify-content: center;
+>>>>>>> personalData
 }
+
 .cart-resume button {
-    display: none!important;
+	display: none!important;
 }
+
 input, select {
     border-left-color: 0!important;
 }
@@ -715,3 +754,15 @@ input, select {
   
 
   
+	border-left-color: 0!important;
+}
+
+/**
+*PERSONAL DATA
+*/
+
+.services-data {
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+}

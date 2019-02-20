@@ -1,255 +1,297 @@
-import {
-    GET_CONTACT_DATA_FORM_BEGIN,
-    GET_CONTACT_DATA_FORM_SUCCESS,
-    GET_CONTACT_DATA_FORM_FAILURE,
-    GET_CURRENT_CONTACT_DATA_FORM,
-    GET_CONTACT_DATA_FORM_UPDATE,
-    UPDATE_CONTACT_DATA_FORM_SERVICES,
-    UPDATE_VALID_DTOS_PERSONALES,
-    GET_CONTACT_DATA_FORM_SERVICES,
-    UPDATE_DATOS_PRODUCTOS,
-    GET_VALIDA_FORMS
+import { 
+    INITIALIZE_DATOS_PERSONALES,
+    UPDATE_DATOS_PERSONALES,
+    INIT_DATA_SERVICES,
+    UPDATE_DATOS_SERVICES
 } from '../actions/personalDataFormActions';
+ import {validator}  from "../components/checkout/childComponents/personalData/validation";
 
+const DATOS_PORTABILIDAD_MOVIL= {numTlf:"", sim:"", compania:"", tipo:"portabilidad"}
+const DATOS_PORTABILIDAD_FIJO= {numTlf:"", compania:"", tipo:"portabilidad"}
+const TIPOS_TARIFAS=[1,2];
 const initialState = {
-    fields: {
-        datosPersonales:{},
-        datosProductos:[]
+    datosPersonales: {
+        apellido: "",
+        birthday_omv: "",
+        cifnif: "",
+        codcliente: "",
+        email: "",
+        nombre: "",
+        telefono: "",
+        tipo_cliente:"",
+        direccion:"",
+        codpostal:"",
+        ciudad:"",
+        cuenta:"",
+        provincia:"",
+        dniFile:"",
     },
-    totalServices:0,
+    erroresDatosPersonales: {
+        apellido: "",
+        birthday_omv: "",
+        cifnif: "",
+        codcliente: "",
+        email: "",
+        nombre: "",
+        telefono: "",
+        tipo_cliente:"",
+        direccion:"",
+        codpostal: "",
+        ciudad:"",
+        cuenta:"",
+        provincia:"",
+        /* dniFile:"", */
+    },
     validDatosPersonales: false,
+
+    datosProductos:[],
     validDatosProductos:false,
+    
     validForms:false,
     loaded: false,
 };
+
+/* localStorage.setItem('myData', data);
+
+// getter
+localStorage.getItem('myData'); */
 
 export default function personalDataFormReducer(state = initialState, action) {
     
     switch (action.type) {
 
-        case UPDATE_DATOS_PRODUCTOS:
-            state.fields["datosProductos"] = action.payload
-            state.validDatosProductos = true
+        case UPDATE_DATOS_SERVICES:
+            let newObject=state.datosProductos.map(item=>{
+                if (item.key === action.itemKey) 
+                    item[action.field] = action.data
+                return item
+            })  
             return {
                 ...state,
-                loaded: false,
-                fields: state.fields
-            };
-
-        case GET_CONTACT_DATA_FORM_BEGIN:
-            
-            return {
-                ...state,
-                loaded: true,
-                error: null
-            };
-
-        case GET_CONTACT_DATA_FORM_SUCCESS:
-        //console.log(Object.keys(state.fields.datosPersonales).length)
-        if (Object.keys(state.fields.datosPersonales).length ==0 ) {
-                state.fields.datosPersonales ={
-                        name: {value: "a"},
-                        surname: {value: "lopez"},
-                        email: {value: "lopez@gmail.com"},
-                        address: {value: "C/ alicante 1"},
-                        zip: {value: 46870},
-                        city: {value: "Gandia"},
-                        cuenta: {value: ""},
-                        date: {value: ""},
-                        preview: {value: ""}, 
-                        tipcli: {value: 0},
-                        /* nie: {value: ""},
-                        dni: {value: ""},
-                        cif: {value: ""}, */
-                    }
-            }
-            console.log(state.fields)
+                datosProductos : newObject,
+                validDatosProductos : validDatosServicios(newObject),
+                validForms: state.validDatosProductos && state.validDatosPersonales?true:false
                 
-            return {
-                ...state,
-                loaded: false,
-                fields: state.fields
             };
+       
 
-        case GET_CONTACT_DATA_FORM_UPDATE:
-            const object = action.payload.contactDataForm
-            let valid=true;
-            state.fields["datosPersonales"] = object
-            //console.log(object)
-            for (const key in object) {
-                if (object[key] != null && object[key]["error"] != false && object[key]["error"] != null) {
-                    valid = false;
-                    break;
+        case INIT_DATA_SERVICES:
+            console.warn("REDUCER INIT_DATA_SERVICES", action.data);
+            //const datos = JSON.parse(localStorage.getItem('personalDataInfo'));
+            const datos = state.datosProductos;
+            let newDatosProductos=[]
+            let datosProductosAlmacenados = []
+            /**
+             * Este objeto filtra todos los productos que hay en el carrito y que necesiten un formulario.
+             * Busca que el id de la subtarifa este contenido en el array TIPOS_TARIFAS. Esto nos da la ventaja de que en el futuro basta agregar un codigo nuevo en el array para que lo incluya.
+             */
+            let productosEnCarritoActual = action.data.length===0 ? [] : action.data.filter(item => {
+                if (item.subtarifas) {
+                    item.subtarifas = item.subtarifas.filter(el => {
+                        if (TIPOS_TARIFAS.includes(el.id))
+                            return el
+                    })
+                    return item
+                }
+            })
+            /**
+             * Comprueba si el local hay guardados datos de la ultima visita del usuario al formulario
+             */
+            if ((datos && typeof (datos) === "object" && datos != null && datos.length > 0) || state.datosProductos.length>0)
+                datosProductosAlmacenados = state.datosProductos.length > 0 ? state.datosProductos : datos.datosProductos
+            
+            
+            
+
+            for (let i = 0; i < productosEnCarritoActual.length; i++) {
+                for (let k = 0; k < productosEnCarritoActual[i]["quantity"]; k++) {
+                    for (let j = 0; j < productosEnCarritoActual[i]["subtarifas"].length; j++) {
+                        newDatosProductos.push({
+                            key: `${i}_${k}_${j}`,
+                            idTarifa: productosEnCarritoActual[i]["id"],
+                            idSubtarifa: productosEnCarritoActual[i]["subtarifas"][j]["id"],
+                            tipo: "portabilidad",
+                            tipoTlf: typeOfService(productosEnCarritoActual[i]["subtarifas"][j]["id"]),
+                            numTlf: "",
+                            sim: "",
+                            compania: "",
+                            description:productosEnCarritoActual[i]["description"]
+                        })
+                    }
+                                            
                 }
             }
-            state.validDatosPersonales = valid
             
-            /* if (state.validDatosPersonales && state.validDatosProductos) 
-                state.validForms=true
-            else
-                state.validForms = false */
-            //validar
-            return {
-                ...state,
-                loaded: false,
-                fields: state.fields
-            };
-
-        case UPDATE_CONTACT_DATA_FORM_SERVICES:
-            if (!state.fields["datosProductos"]) 
-                state.fields["datosProductos"]=[]
-                
-            state.validDatosProductos = false
-            let exist = state.fields["datosProductos"].filter((item)=>{return item.key == parseInt(action.payload.key)})
-            
-            if (exist.length == 0) {
-                let obj= {
-                    key: parseInt(action.payload.key),
-                    value: action.payload,
-                }
-                state.fields["datosProductos"].push(obj)
-                
-            } else {
-                state.fields["datosProductos"].filter((item) => {
-                    /**
-                     * Filtro del el objeto datosProductos por medio de su key
-                     * Este objeto contiene la informacion de las tarifas de altas y portabilidades que tiene el carrito
-                     */
-                    if (item.key == parseInt(action.payload.key)) {
-                        /**
-                         * Si tiene tipo lo cambia y si fuese necesario elimina la propiedad values, ya que si cambia alta se tienen que eliminar los datos
-                         */
-                        if (action.payload.tipo) {
-                            item.tipo = action.payload.tipo
-                            if (item.hasOwnProperty("value")) {
-                                delete item.value
+            //Entara aqui cuando haya aumentado o disminuido una cantidad de una tarifa en el carrito y lo mezcla con los datos ya guardados en redux
+            if (datosProductosAlmacenados.length != newDatosProductos.length) {
+                for (let i = 0; i < newDatosProductos.length; i++) {
+                    for (let j = 0; j < datosProductosAlmacenados.length; j++) {
+                        if (newDatosProductos[i]["key"] === datosProductosAlmacenados[j]["key"]) {
+                            for (const key in newDatosProductos[i]) {
+                                newDatosProductos[i][key] = datosProductosAlmacenados[j][key]
                             }
-                            if (item.tipo==="alta") {
-                                item.valido=true
-                            }else{
-                                item.valido = false
-                            }
-                        }
-                        /**
-                         * Si el objeto que recive del action.payload viene con contenido cambia el objeto de redux con el nuevo contenido
-                         */
-                        if (action.payload.name) {
-                            delete action.payload.key
-                            let name = action.payload.name
-                            delete action.payload.name
-                            //console.log(action.payload[name])
-                            if (!item.value) {
-                                item.value={}
-                            }
-                            item.value[name] = action.payload[name]
-
-                        }
-
-                        if (item.tipo === "portabilidad" && item.hasOwnProperty("value")) {
-                            if (item.tipoTlf==="fijo") {
-                                let object = item.value
-                                if (Object.keys(object).length === 2) {
-                                    //console.log(object)
-                                    let valid = true
-                                    //console.log(valid)
-                                    for (const key in object) {
-                                        if (object[key].hasOwnProperty("error") && object[key]["error"] != undefined) {
-                                            valid = false;
-                                            break;
-                                        }
-                                    }
-                                    //console.log(valid)
-                                    item.valido = valid
-                                }
-                            }
-                            if (item.tipoTlf==="movil") {
-                                let object = item.value
-                                if (Object.keys(object).length === 3) {
-                                    //console.log(object)
-                                    let valid = true
-                                    //console.log(valid)
-                                    for (const key in object) {
-                                        if (object[key].hasOwnProperty("error") && object[key]["error"]!=undefined) {
-                                            valid = false;
-                                            break;
-                                        }
-                                    }
-                                    //console.log(valid)
-                                    item.valido = valid
-                                }
-                            }
-                        }
+                            console.warn("newDatosProductos[i]",newDatosProductos[i])
+                        }                        
                     }
-                })
-
-                let arrayValidados = state.fields["datosProductos"].filter((item)=>{
-                    if(item.valido){
-                        return item
-                    }
-                })
-                //console.log(arrayValidados.length, state.fields["datosProductos"].length)
-                if (arrayValidados.length === state.fields["datosProductos"].length) {
-                    state.validDatosProductos = true
                 }
-                
-                
+            }else{
+                newDatosProductos = datosProductosAlmacenados
             }
+            
+            
+            //console.warn("productosEnCarritoActual----", newDatosProductos)
+            
+        return {
+            ...state,
+            datosProductos: newDatosProductos
+        };
 
+        case UPDATE_DATOS_PERSONALES:
+            console.warn("UPDATE_DATOS_PERSONALES", action.field, action.data, action.error);
+            /**
+             * Actualiza los campos dentro del datosPersonales y erroresDatosPersonales en el storage de redux
+             */
+            let copiaDatosPersonales = state["datosPersonales"]
+            let copiaDatosPersonalesErr = state["erroresDatosPersonales"]
+            // state["datosPersonales"][action.field] = action.data;
+            // state["erroresDatosPersonales"][action.field] = action.error;
+            copiaDatosPersonales[action.field] = action.data;
+            copiaDatosPersonalesErr[action.field] = action.error;
+            /**
+             * Verificamos si el formulario ya es valido y de ser asi le cambiamos a true validDatosPersonales
+             */
+            let errdatosPersonalesOb = validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr)
+            //state["validDatosPersonales"] = errdatosPersonalesOb.valid;
+            /**
+             * Guarda en local los cambios realizados
+             */
+            //localStorage.setItem('personalDataInfo', JSON.stringify(state));
+            //state.validDatosProductos && state.validDatosPersonales ? (state.validForms = true) : ""
             return {
                 ...state,
-                loaded: false,
-                fields: state.fields
+                validDatosPersonales: errdatosPersonalesOb.valid,
+                datosPersonales: copiaDatosPersonales,
+                erroresDatosPersonales: copiaDatosPersonalesErr,
+                validForms: state.validDatosProductos && state.validDatosPersonales ? true : false
             };
 
-        case GET_CONTACT_DATA_FORM_FAILURE:
+
+
+        case INITIALIZE_DATOS_PERSONALES:
+
+            //const info = JSON.parse(localStorage.getItem('personalDataInfo'));
+            const info = action.data
+            const infoInitial = initialState.datosPersonales
+            console.warn("REDUCER INITIALIZE_DATOS_PERSONALES", info, action.data);
+            let datosPersonalesObject, errdatosPersonalesObject, erroresDatosPersonales, validDatosPersonales;
+            let newObjDatosPersonales = initialState.datosPersonales;
+            /**
+             * Comprueba si el local hay guardados datos de la ultima visita del usuario al formulario
+             */
+            datosPersonalesObject = (typeof(info)==="object"&&Object.keys(info).length>1) ? info : initialState.datosPersonales;
+            
+            /**
+             * Valida si el form esta completo correctamente y cambia el objeto de errores de datos personales del state REDUX
+             */
+            errdatosPersonalesObject = validDatosPersonalesFun(datosPersonalesObject, state.erroresDatosPersonales)
+            erroresDatosPersonales = errdatosPersonalesObject.err;
+            validDatosPersonales = errdatosPersonalesObject.valid;
+            
+            console.error("REDUCER INITIALIZE_DATOS_PERSONALES", datosPersonalesObject);
+            /**
+             * Rellena el  objeto de datos personales con lo que nos hemos encontrado en local Storage
+             */
+            if (datosPersonalesObject != initialState.datosPersonales) {
+                for (const key in datosPersonalesObject) {
+                    if (state.datosPersonales.hasOwnProperty(key)) 
+                        if (datosPersonalesObject.hasOwnProperty(key))
+                            newObjDatosPersonales[key] = datosPersonalesObject[key];
+                }
+            }
+            /**
+             * Guarda en local los cambios realizados
+             */
+            //localStorage.setItem('personalDataInfo', JSON.stringify(state));
+            
+            //console.log("REDUCER INITIALIZE_DATOS_PERSONALES", action.data);
             return {
                 ...state,
-                loaded: false,
-                error: action.payload,
-                fields: []
-            };
-        
-        case GET_CURRENT_CONTACT_DATA_FORM:
-            return {
-                ...state,
-                loaded: false,
-                fields: state
+                datosPersonales: newObjDatosPersonales
             };
 
-        case UPDATE_VALID_DTOS_PERSONALES:
-            state.validDatosPersonales = true
-            if (state.validDatosProductos) 
-                this.validForms=true
 
-            return {
-                ...state,
-            };
-
-        case GET_CONTACT_DATA_FORM_SERVICES:
-            /**tiene verificar si esiste un objeto con la key que recibe y si no existe crearlo */
-            return {
-                products: state.fields.datosProductos
-            };
-        case GET_VALIDA_FORMS:
-            let formsValids
-            if (state.validDatosPersonales && state.validDatosProductos)
-                formsValids = true
-            else
-                formsValids = false
-            //console.log(formsValids, "formsValids")
-
-            return {
-                ...state,
-                validForms: formsValids
-            };
 
         default:
+            console.log("REDUCER default", action.data);
             return state;
     }
 }
 
+/**
+ * 
+ * @param {} object Trae consigo el objeto a valiar los values del formulario de un usuario.
+ * @param {} objectErr Trae consigo el objeto de redux a rellenar 
+ */
+function validDatosPersonalesFun(object, objectErr) {
+    //console.log("validDatosPersonalesFun",object)
+    let validador=true
+    let resValidation;
+    /**
+     * Realiza un bucle para rellenar el objeto de errores y para verificar si el form esta lleno correctamente
+     */
+    for (const key in object) {
+        if (objectErr.hasOwnProperty(key)){
+            resValidation = validator(object[key], key)
+            objectErr[key] = resValidation
+            if (resValidation != null)
+                validador = false
+        }
+    }
+    /**
+     * Retorna el objeto de errores a guardar en redux 
+     * Devuelve el resultado de si el formulario ya esta relleno correctamente o no true/false
+     */
+    return {
+        err: objectErr,
+        valid: validador
+    }
+}
 
-function iteraObject(object){
 
-    return "errores"
+
+
+function typeOfService(idService) {
+    switch (idService) {
+        
+        case 1:
+            return "movil"
+            break;
+        
+        case 2:
+            return "fijo"
+            break;
+    
+        default:
+            break;
+    }
+}
+
+function validDatosServicios(currentState) {
+    //console.log("validDatosPersonalesFun",object)
+    let resValidation;
+    /**
+     * Realiza un bucle para buscar errores en el form 
+     */
+    let p = currentState.map(object => {
+        for (const key in object) {
+            if (object.tipo!="alta") {
+                resValidation = validator(object[key], key)
+                if (resValidation != null){
+                    return false
+                }
+            }
+        }
+    });
+    
+    return p.includes(false)?false:true
 }

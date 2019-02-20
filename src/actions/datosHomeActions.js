@@ -4,7 +4,7 @@ import { Settings } from "../settings";
 import fetch from 'cross-fetch';
 
 export function getDatosHome() {
-  console.warn("getDatosHome")
+  //console.warn("getDatosHome")
   return dispatch => {
     dispatch(getDatosHomeBegin());
     return fetch(`${Settings.baseURL}/home`)

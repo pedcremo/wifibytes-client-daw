@@ -145,7 +145,7 @@ let Utils = {
             return item[langPropName] == lang;
         });
         return aux.length === 0 ? jsonArray.filter((item) => {
-            return item[langPropName] == "es";
+            return item[langPropName] == Settings.defaultLanguage;
         }) : aux;
     },
     /** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's
