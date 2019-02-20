@@ -1,6 +1,6 @@
 //import Immutable from 'seamless-immutable';
 import uut from '../../../src/reducers/datosEmpresaReducer';
-import * as actionTypes from '../../../src/actions/datosEmpresaActions2';
+import * as actionTypes from '../../../src/actions/datosEmpresaActions';
 import { Reducer } from 'redux-testkit';
 
 const initialState = {

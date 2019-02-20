@@ -2,11 +2,11 @@
 import React from 'react';
 import { Utils } from "../utils";
 import { connect } from "react-redux";
-import { getDatosEmpresa } from "../actions/datosEmpresaActions2";
+import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 import { getDatosHome } from "../actions/datosHomeActions";
 import { Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
-import {PropTypes} from 'prop-types'
+import { PropTypes } from 'prop-types'
 
 /**
  * @class
@@ -71,9 +71,9 @@ class Footer extends React.Component {
                         {this.context.t("footer-legal-advice")}
                       </Link>
                     </li>
-                      <Link to="/cookies">
-                        {this.context.t("footer-cookies")}
-                      </Link>
+                    <Link to="/cookies">
+                      {this.context.t("footer-cookies")}
+                    </Link>
                     <li>
                       <a href={Utils.checkURL(datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
                     </li>
