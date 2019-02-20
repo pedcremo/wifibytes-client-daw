@@ -1,8 +1,4 @@
 import {
-    Utils
-} from "../utils";
-
-import {
     UPDATE_DATA,
     SET_COMPLETED,
     SET_UNCOMPLETED,

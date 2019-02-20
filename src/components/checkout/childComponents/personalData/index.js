@@ -41,14 +41,14 @@ class Personal extends React.Component  {
 
     componentDidUpdate(){
         const {
-            validDatosProductos,
+            validForms,
             setCompleted,
             setUncompleted,
             datosPersonales,
             datosProductos,
             updateData
         } = this.props
-        if (validDatosProductos) {
+        if (validForms) {
             updateData("personalData", {
                 datosPersonales,
                 datosProductos

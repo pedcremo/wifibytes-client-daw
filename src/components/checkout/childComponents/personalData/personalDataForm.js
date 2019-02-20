@@ -23,7 +23,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 /*trae el estado del reducer root*/
 const mapStateToProps = state => ({
-    ...state.personalDataForm.datosPersonales
+    ...state.personalDataForm.datosPersonales,
+    ...state.loginReducer,
+    ...state.isAuth
 });
 
     /**
@@ -36,13 +38,15 @@ class PersonalForm extends React.Component  {
         super(props);
         this.previewFile = this.previewFile.bind(this);
         this.dniFile = React.createRef();
+
     }
 
     componentDidMount(){        
         const {initDatosPersonales} = this.props;
         const token = Utils.getCookie("jwt");
-        //console.log("this.props", this.props)
+        
         if (token) {
+            
             Utils.post('/api-token-verify/', {token: token})
             .then(
                 res => {
@@ -93,7 +97,6 @@ class PersonalForm extends React.Component  {
 
     
     render() {
-            
         const {
             updateField,
             nombre,

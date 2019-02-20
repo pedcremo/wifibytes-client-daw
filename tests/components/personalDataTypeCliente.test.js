@@ -1,6 +1,6 @@
 import React from 'react';
 import typeCliente from '../../src/components/checkout/childComponents/personalData/typeCliente';
-
+import * as actionTypes from '../../src/actions/personalDataFormActions';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import { Provider } from "react-redux";

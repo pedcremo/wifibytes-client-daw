@@ -215,7 +215,7 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
         default:
-            console.log(state);
+            //console.log(state);
             return state;
     }
 }

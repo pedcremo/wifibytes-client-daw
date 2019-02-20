@@ -3,6 +3,7 @@ import PersonalDataForm from '../../src/components/checkout/childComponents/pers
 import PersonalReducer from '../../src/reducers/personalDataFormReducer';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
+import * as actionTypes from '../../src/actions/personalDataFormActions';
 import { Provider } from "react-redux";
 import { shallow, configure } from "enzyme";
 
@@ -93,7 +94,7 @@ describe('Reducer', () => {
     it('Update state for name', () => {
         expect(
             PersonalReducer(store.getState(), {
-                type: 'UPDATE_DATOS_PERSONALES',
+                type: actionTypes.UPDATE_DATOS_PERSONALES,
                 field: "nombre",
                 data: "cesar"
                 
@@ -137,4 +138,3 @@ describe('Reducer', () => {
             })
     });
 })
-
