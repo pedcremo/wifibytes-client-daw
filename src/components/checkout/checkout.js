@@ -70,7 +70,7 @@ class Checkout extends React.Component {
          * @return @true object - Filtered library Steps.js
          * @return @false redirected to home
          */
-        if (this.props.items != null || JSON.parse(localStorage.getItem('cartReducer')) != null) {
+        if (this.props.items || JSON.parse(localStorage.getItem('cartReducer')) != null) {
             let stepsRates;
             this.props.items.length !== 0 ?
                 stepsRates = Agent.objectsToArray(this.props.items, library) :
