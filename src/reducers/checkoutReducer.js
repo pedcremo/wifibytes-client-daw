@@ -5,6 +5,7 @@ import {
     UPDATE_STEP,
     SET_COMPLETED,
     SET_UNCOMPLETED,
+    EMPTY_CHILD,
     UPDATE_DATA,
     DISABLE_BUTTON,
     ACTIVATE_BUTTON
@@ -114,6 +115,24 @@ export default function currentCheckout(state = initialState, action) {
             return {
                 ...state,
                 steps: steps
+            };
+
+        case EMPTY_CHILD:
+        
+            steps = state.steps;
+            steps.map(function (step) {
+                if(step.key === action.payload.key)
+                    step.className = "error";
+                    return step.completed = false;
+            });
+
+            return {
+                ...state,
+                steps: steps,
+                data: {
+                    ...state.data,
+                    [action.payload.key]: {}
+                }
             };
 
         case UPDATE_DATA:
