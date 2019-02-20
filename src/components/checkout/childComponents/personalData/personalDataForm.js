@@ -79,7 +79,7 @@ class PersonalForm extends React.Component  {
         if (can) {
             if (can.size < 200000) {
                 reader.onloadend = () => {
-                    updateField(reader.result, "dniFile", validator(reader.result, "email"))
+                    updateField(reader.result, "dniFile", validator(reader.result, "nada"))
                 };
                 reader.readAsDataURL(can);
                 
