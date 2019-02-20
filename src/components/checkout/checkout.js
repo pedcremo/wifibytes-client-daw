@@ -153,16 +153,16 @@ class Checkout extends React.Component {
                             {steps.length > currentStep ?
                                 (<button
                                     onClick={nextStep}
-                                    className="btn btn-secondary">
-                                    {this.context.t('checkout-next')+` `}
-                                    <i className="fa fa-arrow-circle-right"/>
+                                    className="ui right big black labeled icon button">
+                                    <i className="right arrow icon"></i>
+                                    {this.context.t('checkout-next')}
                                 </button>) : (
                                     <button
                                         disabled={disabled}
                                         onClick={() => this.sendOrder()}
-                                        className="btn btn-secondary">
-                                        <i className="fa fa-shopping-cart"/>
-                                        {` `+this.context.t('checkout-submit')}
+                                        className="massive ui labeled icon black button">
+                                        <i className="icon truck"></i>
+                                        {this.context.t('checkout-submit')}
                                     </button>
 
                                 )
