@@ -147,7 +147,8 @@ export default function personalDataFormReducer(state = initialState, action) {
         };
 
         case UPDATE_DATOS_PERSONALES:
-            console.warn("UPDATE_DATOS_PERSONALES", action.field, action.data, action.error);
+            //console.warn("UPDATE_DATOS_PERSONALES", action.field, action.data, action.error);
+
             let errdatosPersonalesOb;
             /**
              * Actualiza los campos dentro del datosPersonales y erroresDatosPersonales en el storage de redux
@@ -213,10 +214,8 @@ export default function personalDataFormReducer(state = initialState, action) {
                 ...state,
             };
 
-
-
         default:
-            console.log("REDUCER default", action.data);
+            console.log(state);
             return state;
     }
 }
