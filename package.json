@@ -12,7 +12,7 @@
     "production": "webpack -p --progress",
     "doc": "jsdoc -c jsdoc.json README.md src/*",
     "test": "jest --verbose -u --env=jsdom",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage --env=jsdom"
   },
   "author": "",
   "license": "ISC",
