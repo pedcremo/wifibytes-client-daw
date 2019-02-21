@@ -19,7 +19,17 @@ const initialState = {
     paymentMethods:[],
     showModal:false,
     form:[],
-    submittedAtLeastOnce:false
+    submittedAtLeastOnce:false,
+    personalDataForm:{
+        datosPersonales: {
+            nombre:"Prueba",
+            apellido: "Prueba",
+            email:"prueba@emial.com",
+            ciudad:"prueba",
+            codpostal:"prueba",
+            direccion:"prueba"
+        }
+    }
 };
 
 const store = mockStore(initialState);
@@ -111,5 +121,4 @@ describe('<Payment />', () => {
         console.log(Summaryc.render());
         expect(Summaryc.render());
     });
-
 });
