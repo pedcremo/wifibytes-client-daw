@@ -9,6 +9,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import configureStore from 'redux-mock-store';
 import { Provider } from "react-redux";
+import idioma from "../../src/i18n/spanish.json";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -18,17 +19,24 @@ const initialState = {
     paymentMethods:[],
     showModal:false,
     form:[],
-    submittedAtLeastOnce:false,
+    submittedAtLeastOnce:false
 };
 
 const store = mockStore(initialState);
-
-const payment = Enzyme.shallow(<Provider store={store}><Payment /></Provider>);
+const translate = {
+    t : value => {
+        return idioma[value]
+    }
+}
+const state = {
+    translate
+}
+const payment = Enzyme.shallow(<Provider store={store}><Payment {...state}/></Provider>);
 const DirectDebit = Enzyme.shallow(<Provider store={store}><DirectDebitForm /></Provider>);
 const MastercardVisaAmericanExpress = Enzyme.shallow(<Provider store={store}><MastercardVisaAmericanExpressForm /></Provider>);
 const PaymentOptionsC = Enzyme.shallow(<Provider store={store}><PaymentOptions /></Provider>);
 const Efectivoc = Enzyme.shallow(<Provider store={store}><Efectivo /></Provider>);
-const Summaryc = Enzyme.shallow(<Provider store={store}><Summary /></Provider>);
+const Summaryc = Enzyme.shallow(<Provider store={store}><Summary {...state} /></Provider>);
 
 describe('<Payment />', () => {
 
@@ -87,4 +95,21 @@ describe('<Payment />', () => {
     it("Summary render must be called and it works properly", () => {
         expect(Summaryc).toHaveLength(1);
     });
+
+    it("Summary function", () => {
+        //console.log(Summaryc.props());
+        console.log(idioma);
+        console.log('/***************************/')
+        console.log(Summaryc.props());
+        console.log('/*****************************/')
+        
+        // console.log('/***************************/')
+
+        // console.log(Summaryc.props().children);
+        // console.log('/***************************/')
+        // console.log(Summaryc.props().children.type.WrappedComponent);
+        console.log(Summaryc.render());
+        expect(Summaryc.render());
+    });
+
 });

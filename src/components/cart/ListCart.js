@@ -1,10 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Table, Input, Popup, Image } from "semantic-ui-react";
-import IncrementButtons from "./IncrementButtons";
-import AddButton from "../cart/AddButton";
-import { PropTypes } from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {connect} from 'react-redux';
+import {Table, Input, Popup, Image} from 'semantic-ui-react';
+import IncrementButtons from './IncrementButtons';
+import AddButton from '../cart/AddButton';
+import {PropTypes} from 'prop-types';
+import {Link} from 'react-router-dom';
 
 /** @module Component ListCart
  * this component list all items in the cart on datatable
@@ -13,23 +13,23 @@ class ListCart extends React.Component {
   constructor() {
     super();
     this.state = {
-      total: 0
+      total: 0,
     };
   }
 
-  /**render*/
+  /** render*/
   render() {
     /**
      * First check if cartItems have getItems
      * If is empty print a <div><p>Empty Cart</p></div>
      * Else list all the items
      */
-    const { cartItems, quantityItem } = this.props;
+    const {cartItems, quantityItem} = this.props;
     if (Object.keys(cartItems.items).length > 0) {
       const total = cartItems.items.reduce((cnt, o) => {
         return cnt + o.price * o.quantity;
       }, 0);
-      let table = cartItems.items.map(item => {
+      const table = cartItems.items.map((item) => {
         return (
           <Table.Row key={item.id}>
             {item.imagen ? (
@@ -46,7 +46,7 @@ class ListCart extends React.Component {
             <Table.Cell>
               <input
                 value={item.quantity}
-                onChange={ev => quantityItem(item, ev.target.value)}
+                onChange={(ev) => quantityItem(item, ev.target.value)}
               />
             </Table.Cell>
             <Table.Cell>
@@ -60,7 +60,7 @@ class ListCart extends React.Component {
             <Table.Cell>
               {item.quantity > 0
                 ? (item.price * item.quantity).toFixed(2) + `€`
-                : 0 + " €"}
+                : 0 + ' €'}
             </Table.Cell>
           </Table.Row>
         );
@@ -71,13 +71,13 @@ class ListCart extends React.Component {
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>
-                  {this.context.t("description")}
+                  {this.context.t('description')}
                 </Table.HeaderCell>
                 <Table.HeaderCell>
-                  {this.context.t("quantity")}
+                  {this.context.t('quantity')}
                 </Table.HeaderCell>
                 {this.props.canAdd ? <Table.HeaderCell /> : null}
-                <Table.HeaderCell>{this.context.t("price")}</Table.HeaderCell>
+                <Table.HeaderCell>{this.context.t('price')}</Table.HeaderCell>
                 <Table.HeaderCell>Total</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
@@ -95,15 +95,15 @@ class ListCart extends React.Component {
             <Link to="/checkout">
               <Input
                 action={{
-                  color: "teal",
-                  labelPosition: "left",
-                  icon: "cart",
-                  content: this.context.t("check-out-button")
+                  color: 'teal',
+                  labelPosition: 'left',
+                  icon: 'cart',
+                  content: this.context.t('check-out-button'),
                 }}
                 actionPosition="left"
-                defaultValue={total.toFixed(2) + " €"}
+                defaultValue={total.toFixed(2) + ' €'}
               />
-              {total.toFixed(2) + " €"}
+              {total.toFixed(2) + ' €'}
             </Link>
           </div>
         </div>
@@ -111,20 +111,20 @@ class ListCart extends React.Component {
     } else {
       return (
         <div>
-          <h1>{this.context.t("empty_cart")}</h1>
+          <h1>{this.context.t('empty_cart')}</h1>
           {/** JUST FOR TESTING */}
           <AddButton
-            item={{ id: 1, price: 10, description: "esto" }}
-            text={"buy"}
+            item={{id: 1, price: 10, description: 'esto'}}
+            text={'buy'}
           />
         </div>
       );
     }
   }
 }
-const mapStateToProps = state => ({});
+const mapStateToProps = (state) => ({});
 
 ListCart.contextTypes = {
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
 };
 export default connect(mapStateToProps)(ListCart);
