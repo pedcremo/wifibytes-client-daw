@@ -79,7 +79,7 @@ export const Agent = {
     * Iterates items and checks if the key exists in the objects and checks if
     * they are full. Then if it is correct, it counts and it has to be equal
     * to the same number of items to send it to the server
-    * @param data Contains an object of objects, where in each one of them are 
+    * @param data Contains an object of objects, where in each one of them are
     * the data to send to the server
     * @param items It is an array where strictly contains items to follow
     */

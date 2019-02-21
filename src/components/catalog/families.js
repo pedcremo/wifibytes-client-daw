@@ -1,7 +1,7 @@
 
 /** @module ComponentsApp */
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import {PropTypes} from 'prop-types';
 
 /**
  * @class
@@ -12,14 +12,14 @@ class Families extends React.Component {
   render() {
     return (
       <section>
-        <div className="families pt-4 pb-4 pr-0 pl-0 m-0 text-white" 
+        <div className="families pt-4 pb-4 pr-0 pl-0 m-0 text-white"
           style={{background: this.props.familia[0].color.hexadecimal}}>
           <img className="float-left" src={this.props.familia[0].imagen_cabecera} />
           <h3>{this.props.familia[0].pretitulo}</h3>
           <h1 className="display-1">{this.props.familia[0].titulo}</h1><br /><br />
-          <h3 dangerouslySetInnerHTML={{ __html: this.props.familia[0].texto_cabecera }} className="families-text"></h3>
+          <h3 dangerouslySetInnerHTML={{__html: this.props.familia[0].texto_cabecera}} className="families-text"></h3>
           <h1 className="display-3">{this.props.familia[0].precio_cabecera} € IVA Inc.</h1>
-          <h3 dangerouslySetInnerHTML={{ __html: this.props.familia[0].subtexto_cabecera }}></h3>
+          <h3 dangerouslySetInnerHTML={{__html: this.props.familia[0].subtexto_cabecera}}></h3>
         </div>
         <div className="grid row">
           <div className="col">
@@ -38,7 +38,7 @@ class Families extends React.Component {
         </ul>
 
       </section>
-    )
+    );
   }
 }
 
