@@ -4,9 +4,12 @@ import {connect} from 'react-redux';
 
 /**
  * @class
- * Draw Contracts text information
+ * @desc Draw Contracts text information
  */
 class SignPad extends React.Component {
+  /**
+   * @param {*} props
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +17,8 @@ class SignPad extends React.Component {
     };
   }
 
+  /**
+   */
   componentDidMount() {
     const canvas = document.getElementById('paint');
     const ctx = canvas.getContext('2d');
@@ -63,7 +68,8 @@ class SignPad extends React.Component {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  /** Checking if the user sign the contract, converting the paint in svg and sending to the father */
+  /** Checking if the user sign the contract, converting
+   *  the paint in svg and sending to the father */
   handleSave() {
     const can = document.getElementById('paint');
     const img = new Image();
@@ -76,9 +82,12 @@ class SignPad extends React.Component {
     }
   }
 
-  /** Render */
+  /**
+   * @desc The canvas where the useres sign
+   * @return {DOMElement} The canvas where the useres sign
+   */
   render() {
-    const style={
+    const style = {
       border: '1px solid #969696',
       background: '#BFBFBF',
       marginLeft: 'auto',
@@ -93,8 +102,12 @@ class SignPad extends React.Component {
             <canvas id="paint" style={style}></canvas>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>{this.props.translate.t('btn-clear')}</button>
-            <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>{this.props.translate.t('btn-save')}</button>
+            <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>
+              {this.props.translate.t('btn-clear')}
+            </button>
+            <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>
+              {this.props.translate.t('btn-save')}
+            </button>
           </div>
         </div>
       </section>
