@@ -4,6 +4,7 @@ export const PREVIOUS_STEP = 'PREVIOUS_STEP';
 export const UPDATE_STEP = 'UPDATE_STEP';
 export const SET_COMPLETED = 'SET_COMPLETED';
 export const SET_UNCOMPLETED = 'SET_UNCOMPLETED';
+export const EMPTY_CHILD = 'EMPTY_CHILD';
 export const UPDATE_DATA = 'UPDATE_DATA';
 export const DISABLE_BUTTON = 'DISABLE_BUTTON';
 export const ACTIVATE_BUTTON = 'ACTIVATE_BUTTON';
