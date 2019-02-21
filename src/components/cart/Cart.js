@@ -1,9 +1,9 @@
 /** @module Component Cart
  */
-import React from "react";
-import { connect } from "react-redux";
-import { getItems, delete_item, quantityItem } from "./cartActions";
-import ListCart from "./ListCart";
+import React from 'react';
+import {connect} from 'react-redux';
+import {getItems, delete_item, quantityItem} from './cartActions';
+import ListCart from './ListCart';
 
 /** @class
  * Component Container inside is ListCart and another components
@@ -12,7 +12,7 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      canAdd: true
+      canAdd: true,
     };
     this.quantityItem_ = this.quantityItem_.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -48,7 +48,7 @@ class Cart extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  cartItems: state.cartReducer
+const mapStateToProps = (state) => ({
+  cartItems: state.cartReducer,
 });
 export default connect(mapStateToProps)(Cart);

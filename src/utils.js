@@ -8,7 +8,7 @@ import valencia from './i18n/valencia.json';
 /**
  * Map to cache JSON already got from server.
  * TODO: Try to improve it. It is very basic at the moment
- * We catch every new json get from server and only expires 
+ * We catch every new json get from server and only expires
  * when we close web tab or we change user language
 */
 const CACHE_TEMPLATES = new Map();
@@ -17,7 +17,7 @@ let userLanguage = english;
 
 const Utils = {
 
-  /**  We set a language for user and store the same as a cookie afterwards 
+  /**  We set a language for user and store the same as a cookie afterwards
    * we reload the page to apply changes
    * If there is no lang we set english as the default language for user
    * @param {string} lang - Choosen language.
@@ -67,7 +67,7 @@ const Utils = {
         userLanguage = english;
     }
   },
-  
+
   /**
    * Post ajax call
    */
@@ -197,7 +197,7 @@ const Utils = {
   /**
    * Get key from userLanguage imported language selected taking into account user choosen lang
    * @param {string} key
-   * @returns {string} translated key
+   * @return {string} translated key
    */
   translate: function(key) {
     if (userLanguage[key]) return userLanguage[key];

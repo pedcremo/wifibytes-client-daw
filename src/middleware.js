@@ -1,6 +1,6 @@
 import {Utils} from './utils';
-import {REGISTER, LOGOUT, LOGIN, ASYNC_START, ASYNC_END, AUTH_SET, NOT_AUTH} 
-from './constants/actionTypes';
+import {REGISTER, LOGOUT, LOGIN, ASYNC_START, ASYNC_END, AUTH_SET, NOT_AUTH}
+  from './constants/actionTypes';
 
 const localStorage = (store) => (next) => (action) => {
   if (action.localStorageSave) {
