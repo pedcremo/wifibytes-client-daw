@@ -720,15 +720,9 @@ p.login-recuperar:hover {
 }
 
 .payment-method {
-<<<<<<< HEAD
     display: grid;
     grid-template-columns: 24% 24% 24%;
     justify-content: space-evenly;
-=======
-	display: grid;
-	grid-template-columns: 24% 24% 24%;
-	justify-content: center;
->>>>>>> personalData
 }
 
 .cart-resume button {

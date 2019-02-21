@@ -66,14 +66,16 @@ export default function personalDataFormReducer(state = initialState, action) {
                     item[action.field] = action.data
                 return item
             })  
+            let formsValidados = (state.validDatosProductos && state.validDatosPersonales) ? true : false;
+            
             return {
                 ...state,
                 datosProductos : newObject,
                 validDatosProductos : validDatosServicios(newObject),
-                validForms: state.validDatosProductos && state.validDatosPersonales?true:false
+                validForms: formsValidados
                 
             };
-       
+            
 
         case INIT_DATA_SERVICES:
             console.warn("REDUCER INIT_DATA_SERVICES", action.data);
@@ -167,12 +169,14 @@ export default function personalDataFormReducer(state = initialState, action) {
              */
             //localStorage.setItem('personalDataInfo', JSON.stringify(state));
             //state.validDatosProductos && state.validDatosPersonales ? (state.validForms = true) : ""
+            let formsValidados2 = (state.validDatosProductos && state.validDatosPersonales) ? true : false;
+            console.warn("formsValidados----------", validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr), "----------", formsValidados2)
             return {
                 ...state,
                 validDatosPersonales: errdatosPersonalesOb.valid,
                 datosPersonales: copiaDatosPersonales,
                 erroresDatosPersonales: copiaDatosPersonalesErr,
-                validForms: state.validDatosProductos && state.validDatosPersonales ? true : false
+                validForms: formsValidados2
             };
 
 
