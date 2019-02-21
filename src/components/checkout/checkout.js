@@ -78,7 +78,7 @@ class Checkout extends React.Component {
    * the steps to achieve the needed ones
    */
   componentDidMount() {
-    if (this.props.items) {
+    if (this.props.items.length !==0) {
       console.log(this.props.items);
       const stepsRates = Agent.objectsToArray(this.props.items, library);
       const filteredSteps = Agent.filterArray(steps, stepsRates);

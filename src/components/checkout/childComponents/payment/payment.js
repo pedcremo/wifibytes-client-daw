@@ -8,7 +8,8 @@ import {
   updateData,
   fieldUpdate,
 } from '../../../../actions/paymentActions';
-import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
+import MastercardVisaAmericanExpressForm
+  from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import EfectivoForm from './paymentTypes/Efectivo';
 import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
@@ -17,7 +18,8 @@ import {PropTypes} from 'prop-types';
 import Cart from '../../../cart/Cart';
 import {Validations} from '../../../../validators/paymentFormValidators';
 import {Agent} from '../../agent';
-import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
+import CheckIfThereIsAtLeastOneItem
+  from '../../libraries/validate_based_library.json';
 
 const mapStateToProps = (state) => ({...state.payment, ...state.cartReducer});
 
