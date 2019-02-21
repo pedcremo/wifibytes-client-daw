@@ -6,11 +6,6 @@ const mapStateToProps = state => ({ ...state });
 
 class Summary extends React.Component {
 
-
-  componentDidMount() {
-    //this.props.dispatch(getPaymentTypes());
-  }
-
   render() {
     return (
       <div className="resume">
