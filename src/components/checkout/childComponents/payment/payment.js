@@ -23,13 +23,20 @@ import CheckIfThereIsAtLeastOneItem
 
 const mapStateToProps = (state) => ({...state.payment, ...state.cartReducer});
 
-
+/**
+ * Payment main component, this is the father of all payment components
+ */
 class Payment extends React.Component {
+  /**
+   * The constructor here we have all onchange that call to the actions
+   * and we put them in "this"
+   */
   constructor() {
     super();
     /**
-     * Here we have all dispatch, the dispatch are used to update in reducer the data
-     * that we sent to them
+     * Here we have all dispatch, the dispatch are used to update
+     * in reducer the data that we sent to them
+     * @return {void}
      */
     this.changePaymentMethod = () => (ev) => {
       ev.preventDefault();
@@ -55,34 +62,46 @@ class Payment extends React.Component {
     };
   }
   /**
-   * Is valid is a function that use all validations to verify that all component is valid
+   * Is valid is a function that use all validations to verify that 
+   * all component is valid
+   * @return {booldean}
    */
   isValid() {
-    return Validations.cvvIsValid(this.props.cvv) && Validations.cardOwnerIsValid(this.props.cardOwner) && Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear) && Validations.cardNumberIsValid(this.props.cardNumber);
+    return Validations.cvvIsValid(this.props.cvv) &&
+    Validations.cardOwnerIsValid(this.props.cardOwner) &&
+    Validations.expirationDateIsValid(this.props.expirationMonth,
+        this.props.expirationYear) &&
+        Validations.cardNumberIsValid(this.props.cardNumber);
   }
 
   /**
-   * In componentDidMount we get all payment types from server and save it in the reducer
+   * In componentDidMount we get all payment types from server and
+   * save it in the reducer
    */
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
   }
 
-
+  /**
+   * When the component is updated it check out if it must to make valid the
+   * component depending if we don't need credit card or if it is valid
+   */
   componentDidUpdate() {
-    this.props.paymentMethod !== 1 || this.isValid() || !this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
-    this.props.paymentMethod === 1 ?
-      this.props.dispatch(updateData('payment', {
-        cardOwner: this.props.cardOwner,
-        cardNumber: this.props.cardNumber, expirationMonth: this.props.expirationMonth,
-        expirationYear: this.props.expirationYear, cvv: this.props.cvv,
-      })) :
-      this.props.dispatch(updateData('payment', {codpago: this.props.paymentMethod}));
+    this.props.paymentMethod !== 1 || this.isValid() ||
+    !this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
+    this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+    this.props.paymentMethod === 1 ? this.props.dispatch(updateData('payment', {
+      cardOwner: this.props.cardOwner, cardNumber: this.props.cardNumber,
+      expirationMonth: this.props.expirationMonth,
+      expirationYear: this.props.expirationYear, cvv: this.props.cvv,
+    })) :
+      this.props.dispatch(updateData('payment',
+          {codpago: this.props.paymentMethod}));
   }
 
   /**
    *
-   * @param {*} codPago
+   * @param {number} codPago
    * In paymentForm we pass him a @param codPago  and return the component choosed by user,
    * by default in reducer we put MastercardVisaAmericanExpressForm
    */
