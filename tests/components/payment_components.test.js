@@ -5,15 +5,20 @@ import PaymentOptions from '../../src/components/checkout/childComponents/paymen
 import Efectivo from '../../src/components/checkout/childComponents/payment/paymentTypes/Efectivo';
 import Summary from '../../src/components/checkout/childComponents/payment/paymentTypes/Summary';
 import React from 'react';
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
-import { Provider } from "react-redux";
-import idioma from "../../src/i18n/spanish.json";
+import {Provider} from 'react-redux';
+import idioma from '../../src/i18n/spanish.json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const mockStore = configureStore();
+const translate = {
+    t : value => {
+        return idioma[value]
+    }
+}
 const initialState = {
     paymentMethod:3,
     paymentMethods:[],
@@ -29,15 +34,12 @@ const initialState = {
             codpostal:"prueba",
             direccion:"prueba"
         }
-    }
+    },
+    translate
 };
 
 const store = mockStore(initialState);
-const translate = {
-    t : value => {
-        return idioma[value]
-    }
-}
+
 const state = {
     translate
 }
@@ -108,17 +110,16 @@ describe('<Payment />', () => {
 
     it("Summary function", () => {
         //console.log(Summaryc.props());
-        console.log(idioma);
-        console.log('/***************************/')
-        console.log(Summaryc.props());
-        console.log('/*****************************/')
-        
+        //console.log(idioma);
+        console.log('/***************************/');
+        //console.log(Summaryc.props());
+        console.log('/*****************************/');
+        console.log(payment.props().children.props.translate.t('btn-save'));
         // console.log('/***************************/')
-
         // console.log(Summaryc.props().children);
         // console.log('/***************************/')
         // console.log(Summaryc.props().children.type.WrappedComponent);
-        console.log(Summaryc.render());
-        expect(Summaryc.render());
+        //console.log(Summaryc.render());
+        expect(Summaryc.render()).toBeDefined();
     });
 });
