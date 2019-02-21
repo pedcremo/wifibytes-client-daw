@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 import { Step } from 'semantic-ui-react'
 import { Agent } from './agent';
 import PropTypes from 'prop-types'
-
 import steps from "./libraries/steps";
 import library from "./libraries/rule_based_library.json";
 
@@ -71,7 +70,7 @@ class Checkout extends React.Component {
          * @return @true object - Filtered library Steps.js
          * @return @false redirected to home
          */
-        if (this.props.items != null || JSON.parse(localStorage.getItem('cartReducer')) != null) {
+        if (this.props.items || JSON.parse(localStorage.getItem('cartReducer')) != null) {
             let stepsRates;
             this.props.items.length !== 0 ?
                 stepsRates = Agent.objectsToArray(this.props.items, library) :
@@ -162,7 +161,7 @@ class Checkout extends React.Component {
                                         onClick={() => this.sendOrder()}
                                         className="btn btn-secondary">
                                         <i className="fa fa-shopping-cart"/>
-                                        {` `+this.context.t('checkout-submit')}
+                                        {this.context.t('checkout-submit')}
                                     </button>
 
                                 )

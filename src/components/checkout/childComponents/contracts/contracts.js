@@ -47,7 +47,9 @@ const mapStateToProps = state => ({
     /* Check to see if we have the personal data info to paint or not contracts */
     personalData: state.currentCheckout.data.personalData ? state.currentCheckout.data.personalData.datosPersonales : false,
     /* */
-    ratesCart: state.cartReducer.items
+    ratesCart: state.cartReducer.items,
+    /* */
+    dataPersonalCompleted: state.currentCheckout.steps[0].completed,
 });
 
 /**
@@ -62,7 +64,8 @@ class Contracts extends React.Component {
          * Then if subtarifas.length previously saved in the props is different to the new count of subtarifas, 
          * the contracts are declared empty otherwise used the contracts saved in props
          */
-        if(this.props.infoContracts) {
+        
+        if(this.props.infoContracts.contractsHTML) {
             this.state = {
                 data: this.props.infoContracts.data,
                 showModal: this.props.infoContracts.showModal,
@@ -161,6 +164,9 @@ class Contracts extends React.Component {
      * @param sign sign image
      */
     reciveSign(sign) {
+        /* We inform contracts have been correctly performed */
+        this.props.setCompleted();
+
         this.getPosition({ enableHighAccuracy: true })
             .then((pos) => {
                 this.setState({
@@ -178,8 +184,6 @@ class Contracts extends React.Component {
                 this.mountContracts();
                 /* Save new data of the contracts in checkout reducer */
                 this.updateData("contracts", this.state);
-                /* We inform contracts have been correctly performed */
-                this.props.setCompleted();
             });
     }
 
@@ -264,7 +268,7 @@ class Contracts extends React.Component {
         if (error) return (<p className="mt-5 text-danger">Error to load the contracts! </p>);
         if (loading) return (<div>Loading...</div>);
         
-        if(items.length > 0 && this.props.personalData){
+        if(items.length > 0 && this.props.dataPersonalCompleted){
             return (
                 <div className="d-flex flex-column align-items-center">
                     {
