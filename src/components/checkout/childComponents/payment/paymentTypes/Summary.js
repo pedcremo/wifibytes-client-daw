@@ -4,7 +4,11 @@ import {PropTypes} from 'prop-types';
 
 const mapStateToProps = (state) => ({...state});
 
+/** Summary Component */
 class Summary extends React.Component {
+  /** Render method that
+   * @return {JSX}
+   */
   render() {
     return (
       <div className="resume">
