@@ -1,25 +1,25 @@
-import React from 'react'
-import { connect } from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux';
 import {
   paymentUpdate,
   getPaymentTypes,
   setUncompleted,
   setCompleted,
   updateData,
-  fieldUpdate
+  fieldUpdate,
 } from '../../../../actions/paymentActions';
 import MastercardVisaAmericanExpressForm from './paymentTypes/MastercardVisaAmericanExpress';
 import DirectDebitForm from './paymentTypes/DirectDebit';
 import EfectivoForm from './paymentTypes/Efectivo';
-import { PaymentOptionsRadioButton } from './paymentTypes/paymentOptions';
+import {PaymentOptionsRadioButton} from './paymentTypes/paymentOptions';
 import Summary from './paymentTypes/Summary';
-import { PropTypes } from 'prop-types';
+import {PropTypes} from 'prop-types';
 import Cart from '../../../cart/Cart';
-import { Validations } from '../../../../validators/paymentFormValidators';
-import { Agent } from '../../agent';
+import {Validations} from '../../../../validators/paymentFormValidators';
+import {Agent} from '../../agent';
 import CheckIfThereIsAtLeastOneItem from '../../libraries/validate_based_library.json';
 
-const mapStateToProps = state => ({ ...state.payment, ...state.cartReducer });
+const mapStateToProps = (state) => ({...state.payment, ...state.cartReducer});
 
 
 class Payment extends React.Component {
@@ -29,28 +29,28 @@ class Payment extends React.Component {
      * Here we have all dispatch, the dispatch are used to update in reducer the data
      * that we sent to them
      */
-    this.changePaymentMethod = () => ev => {
+    this.changePaymentMethod = () => (ev) => {
       ev.preventDefault();
       this.props.dispatch(paymentUpdate(parseInt(ev.target.value)));
-    }
+    };
     this.onChangeField = (field, value) => {
       this.props.dispatch(fieldUpdate(field, value));
-    }
-    this.onChangeCvv = () => ev => {
-      this.onChangeField("cvv", parseInt(ev.target.value))
-    }
-    this.onChangeExpirationYear = () => ev => {
-      this.onChangeField("expirationYear", parseInt(ev.target.value))
-    }
-    this.onChangeExpirationMonth = () => ev => {
-      this.onChangeField("expirationMonth", parseInt(ev.target.value))
-    }
-    this.onChangeCardNumber = () => ev => {
-      this.onChangeField("cardNumber", ev.target.value)
-    }
-    this.onChangeCardOwner = () => ev => {
-      this.onChangeField("cardOwner", ev.target.value)
-    }
+    };
+    this.onChangeCvv = () => (ev) => {
+      this.onChangeField('cvv', parseInt(ev.target.value));
+    };
+    this.onChangeExpirationYear = () => (ev) => {
+      this.onChangeField('expirationYear', parseInt(ev.target.value));
+    };
+    this.onChangeExpirationMonth = () => (ev) => {
+      this.onChangeField('expirationMonth', parseInt(ev.target.value));
+    };
+    this.onChangeCardNumber = () => (ev) => {
+      this.onChangeField('cardNumber', ev.target.value);
+    };
+    this.onChangeCardOwner = () => (ev) => {
+      this.onChangeField('cardOwner', ev.target.value);
+    };
   }
   /**
    * Is valid is a function that use all validations to verify that all component is valid
@@ -73,13 +73,13 @@ class Payment extends React.Component {
       this.props.dispatch(updateData('payment', {
         cardOwner: this.props.cardOwner,
         cardNumber: this.props.cardNumber, expirationMonth: this.props.expirationMonth,
-        expirationYear: this.props.expirationYear, cvv: this.props.cvv
+        expirationYear: this.props.expirationYear, cvv: this.props.cvv,
       })) :
-      this.props.dispatch(updateData('payment', { codpago: this.props.paymentMethod }));
+      this.props.dispatch(updateData('payment', {codpago: this.props.paymentMethod}));
   }
 
   /**
-   * 
+   *
    * @param {*} codPago
    * In paymentForm we pass him a @param codPago  and return the component choosed by user,
    * by default in reducer we put MastercardVisaAmericanExpressForm
@@ -155,13 +155,13 @@ class Payment extends React.Component {
         {this.paymentForm(this.props.paymentMethod)}
       </div> : null;
   }
-  /**Gets the cartItems and checks if there is at least one product and returns an array with
+  /** Gets the cartItems and checks if there is at least one product and returns an array with
    * that information
    */
   getCartItemsAndIfThereIsAtLeastOneProduct() {
     const cartItems = this.props.items;
     let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems, CheckIfThereIsAtLeastOneItem);
-    thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter(thing => thing === "productos");
+    thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter((thing) => thing === 'productos');
     return [cartItems, thereIsAtLeastOneProduct.length > 0];
   }
 
@@ -177,12 +177,11 @@ class Payment extends React.Component {
         </div>
       </div>
     );
-
   }
 }
 
 Payment.contextTypes = {
-  t: PropTypes.func.isRequired
-}
+  t: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps)(Payment);

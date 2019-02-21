@@ -1,83 +1,81 @@
 /** @module ComponentsApp */
 import React from 'react';
-import UserChoice from "./userChoice"
-import PersonalDataForm from "./personalDataForm";
-import SignIn from "../../../login/signIn";
-import PortabilidadForm from "./portabilidadForm";
-import { connect } from "react-redux";
+import UserChoice from './userChoice';
+import PersonalDataForm from './personalDataForm';
+import SignIn from '../../../login/signIn';
+import PortabilidadForm from './portabilidadForm';
+import {connect} from 'react-redux';
 
-import {getItems} from "../../../cart/cartActions";
+import {getItems} from '../../../cart/cartActions';
 
-import { EMPTY_CHILD } from '../../../../constants/actionTypes';
+import {EMPTY_CHILD} from '../../../../constants/actionTypes';
 import {
-    setCompleted,
-    setUncompleted,
-    updateData
-} from "../../../../actions/personalDataFormActions";
+  setCompleted,
+  setUncompleted,
+  updateData,
+} from '../../../../actions/personalDataFormActions';
 
 const mapDispatchToProps = (dispatch) => ({
-    setCompleted: () => dispatch(setCompleted()),
-    setUncompleted: () => dispatch(setUncompleted()),
-    updateData: (key, data) => dispatch(updateData(key, data)),
-    empty_child: (key) => dispatch({ type: EMPTY_CHILD, payload: { key } }),
+  setCompleted: () => dispatch(setCompleted()),
+  setUncompleted: () => dispatch(setUncompleted()),
+  updateData: (key, data) => dispatch(updateData(key, data)),
+  empty_child: (key) => dispatch({type: EMPTY_CHILD, payload: {key}}),
 });
 
-const mapStateToProps = state => ({
-    ...state.personalDataForm,
+const mapStateToProps = (state) => ({
+  ...state.personalDataForm,
 });
 
-let mockClientes=[0, 5, 1, 2]
-let mockCompanies=["orange", "vodafone", "jazztel", "yoigo", "pepephone"]
+const mockClientes=[0, 5, 1, 2];
+const mockCompanies=['orange', 'vodafone', 'jazztel', 'yoigo', 'pepephone'];
 
 /**
  * @class
  * Draw Login. A form to login
  */
-class Personal extends React.Component  {
-    /**
+class Personal extends React.Component {
+  /**
      * @constructor
      */
-    constructor(props) {
-        super(props);
-        this.empty_child = (key) => this.props.empty_child(key);
-    }
+  constructor(props) {
+    super(props);
+    this.empty_child = (key) => this.props.empty_child(key);
+  }
 
-    componentDidUpdate(){
-        const {
-            validDatosProductos,
-            setCompleted,
-            setUncompleted,
-            datosPersonales,
-            datosProductos,
-            updateData
-        } = this.props
+  componentDidUpdate() {
+    const {
+      validDatosProductos,
+      setCompleted,
+      setUncompleted,
+      datosPersonales,
+      datosProductos,
+      updateData,
+    } = this.props;
 
-        if (validDatosProductos) {
-            updateData("personalData", {
-                datosPersonales,
-                datosProductos
-            })
-            setCompleted()
+    if (validDatosProductos) {
+      updateData('personalData', {
+        datosPersonales,
+        datosProductos,
+      });
+      setCompleted();
+    } else {
+      setUncompleted();
+      this.empty_child('contracts');
+    }
+  }
 
-        }else{
-            setUncompleted()
-            this.empty_child('contracts');
-        }
-    }
-    
-    
-    render() {
-        
-        return (
-            <div>
-                <PersonalDataForm tipCliente={mockClientes}/>
-                
-                <PortabilidadForm companies={mockCompanies}/>                    
-            </div>
-        );
-    }
+
+  render() {
+    return (
+      <div>
+        <PersonalDataForm tipCliente={mockClientes}/>
+
+        <PortabilidadForm companies={mockCompanies}/>
+      </div>
+    );
+  }
 }
 
 
-//export default Personal;
+// export default Personal;
 export default connect(mapStateToProps, mapDispatchToProps)(Personal);
