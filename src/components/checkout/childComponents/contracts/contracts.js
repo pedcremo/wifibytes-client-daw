@@ -64,7 +64,8 @@ class Contracts extends React.Component {
          * Then if subtarifas.length previously saved in the props is different to the new count of subtarifas, 
          * the contracts are declared empty otherwise used the contracts saved in props
          */
-        if(this.props.infoContracts) {
+        
+        if(this.props.infoContracts.contractsHTML) {
             this.state = {
                 data: this.props.infoContracts.data,
                 showModal: this.props.infoContracts.showModal,
