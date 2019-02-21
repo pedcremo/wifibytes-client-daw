@@ -28,7 +28,7 @@ class Catalog extends React.Component {
       if (datosArticulos.length > 0) {
         return (
           <span className="catalog">
-            <Families familia={datosArticulos[0]} />
+            <Families familia={datosArticulos[0].results} />
             <Filters filters={datosArticulos[1]} />
             <Articles articles={datosArticulos[2].results} />
           </span>
