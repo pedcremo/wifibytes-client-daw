@@ -20,12 +20,18 @@ const initialState = {
 };
 
 let steps;
-
+/**
+ * @param {Object} state Checkout redux state
+ * @param {Object} action Action to execute
+ * @return {Object}
+ */
 export default function currentCheckout(state = initialState, action) {
   switch (action.type) {
     case ADD_STEPS:
 
-      if (state.currentStep === 0 || state.currentStep >= state.steps.length + 1 || state.steps.length != action.payload.steps.length) {
+      if (state.currentStep === 0 ||
+        state.currentStep >= state.steps.length + 1 ||
+        state.steps.length != action.payload.steps.length) {
         action.payload.steps.map(function(step) {
           return step.active = false;
         });
