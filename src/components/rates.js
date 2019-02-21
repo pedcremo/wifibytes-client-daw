@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import {Utils} from "../utils";
 import RateBoxSubComponent from "./rateBoxSubcomponent";
 import VegasCarousel from './vegasCarousel';
-import { getDatosEmpresa } from "../actions/datosEmpresaActions";
 import { getRates } from "../actions/datosRatesActions";
 
 /**
@@ -30,21 +28,21 @@ class Rates extends React.Component {
         });
     }
 
-    handleFamilyPicker(event){
+    handleFamilyPicker(event) {
         let tipo_tarifa = event.target.value
         //1 Movil, 2 Fijo,3 Fibra, 4 wifi, 5 TV
-        if (tipo_tarifa>0){
-            let filteredRates= this.props.tarifas.filter((item)=>{
-                let subs=item.subtarifas.filter((subItem) => {
-                    if (subItem.tipo_tarifa==tipo_tarifa) return subItem;
+        if (tipo_tarifa > 0) {
+            let filteredRates = this.props.tarifas.filter((item) => {
+                let subs = item.subtarifas.filter((subItem) => {
+                    if (subItem.tipo_tarifa == tipo_tarifa) return subItem;
                 });
-                if (subs.length>0) return item;
+                if (subs.length > 0) return item;
             });
             this.setState({
-                rates:filteredRates,
-                ratesDescription:this.props.cajitas
+                rates: filteredRates,
+                ratesDescription: this.props.cajitas
             });
-        }else {
+        } else {
             this.setState({
                 rates: this.props.tarifas,
                 ratesDescription: this.props.cajitas
@@ -52,31 +50,31 @@ class Rates extends React.Component {
         }
         for (const iterator of document.getElementsByClassName("nav-item nav-link"))
             $(`#${iterator.id}`).removeClass("active");
-        
+
         $(`#${event.target.id}`).addClass("active");
     }
 
     render() {
         const { error, datosEmpresa } = this.props;
-        const { ratesDescription, rates }= this.state;
+        const { ratesDescription, rates } = this.state;
 
 
         if (error) return (<div>Error! </div>);
 
         if (Object.keys(datosEmpresa).length > 0 && ratesDescription && ratesDescription.length > 0 && rates.length > 0) {
             /* console.warn("this.state", this.state) */
-            console.log("RATES",rates)
+            console.log("RATES", rates)
             let boxTextsArray = [];
             for (let [key, value] of Object.entries(ratesDescription[0])) {
                 if (key.startsWith("caja")) {
-                    let groups=key.match(/caja_([\d]*)_([\w]*)/)
-                    if (!boxTextsArray[groups[1]]) boxTextsArray[groups[1]]={};
-                    boxTextsArray[groups[1]][groups[2]]=value;
+                    let groups = key.match(/caja_([\d]*)_([\w]*)/)
+                    if (!boxTextsArray[groups[1]]) boxTextsArray[groups[1]] = {};
+                    boxTextsArray[groups[1]][groups[2]] = value;
                 }
             }
             //Filter empty element and construct cards with rates additional information
-            boxTextsArray = boxTextsArray.filter((item)=>{
-                return (item!=null || item!=undefined);
+            boxTextsArray = boxTextsArray.filter((item) => {
+                return (item != null || item != undefined);
             }).map((item) => {
                 return (
                     <div className="card" key={item.titulo}>
@@ -84,8 +82,8 @@ class Rates extends React.Component {
                             <img src={item.icono} />
                         </div>
                         <div className="card-body">
-                            <h5 className="card-title font-weight-bold text-uppercase" dangerouslySetInnerHTML={{__html: item.titulo}}></h5>
-                            <p className="card-text" dangerouslySetInnerHTML={{__html: item.texto}}></p>
+                            <h5 className="card-title font-weight-bold text-uppercase" dangerouslySetInnerHTML={{ __html: item.titulo }}></h5>
+                            <p className="card-text" dangerouslySetInnerHTML={{ __html: item.texto }}></p>
                         </div>
                     </div>);
             });
@@ -112,7 +110,7 @@ class Rates extends React.Component {
             )
 
 
-        }else
+        } else
             return (<div>Loading...</div>)
 
     }

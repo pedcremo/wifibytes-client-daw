@@ -28,6 +28,6 @@ export let Validations = {
         cardNumberArray.map(number => {
             sum += number;
         });
-        return (sum % 10 === 0 && (cardNumber.toString().match(Regex.mastercard) || cardNumber.toString().match(Regex.visa))) || cardNumber.toString().match(Regex.americanExpress);
+        return ((sum % 10 === 0 && (cardNumber.toString().match(Regex.mastercard) || cardNumber.toString().match(Regex.visa))) || cardNumber.toString().match(Regex.americanExpress)) ? true:false;
     }
 }

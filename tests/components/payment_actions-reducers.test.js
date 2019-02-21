@@ -18,20 +18,42 @@ const initialState = {
 
 const store = mockStore(initialState);
 
-describe('<Payment />', () => {
+describe('<Payment />', () => { 
 
-    it('Dispatches the correct action', () => {
+    it('Dispatches action, test set Completed', () => {
+        const selectedActions = [
+          {
+            'type': 'SET_COMPLETED',
+          },
+        ];
+        store.clearActions()
+        store.dispatch(paymentActions.setCompleted());
+        expect(store.getActions()).toEqual(selectedActions);
+    }); 
+
+    it('Dispatches action, test set Uncompleted', () => {
+        const selectedActions = [
+          {
+            'type': 'SET_UNCOMPLETED',
+          },
+        ];
+        store.clearActions()
+        store.dispatch(paymentActions.setUncompleted());
+        expect(store.getActions()).toEqual(selectedActions);
+    });
+
+    it('Dispatches action, test get payments BEGIN', () => {
         const selectedActions = [
           {
             'type': 'GET_PAYMENTS_BEGIN'
           },
         ];
-    
+        store.clearActions()
         store.dispatch(paymentActions.getPaymentsBegin());
         expect(store.getActions()).toEqual(selectedActions);
     });  
 
-    it('Dispatches the correct action and payload', () => {
+    it('Dispatches action, test payment SUCCESS', () => {
         const selectedActions = [
           {
             'type': 'GET_PAYMENTS_SUCCESS',
@@ -43,6 +65,58 @@ describe('<Payment />', () => {
         expect(store.getActions()).toEqual(selectedActions);
     });  
 
+    it('Dispatches action, test payment FAILURE', () => {
+        const selectedActions = [
+          {
+            'type': 'GET_PAYMENTS_FAILURE',
+            'payload': {'error': "This is an error"}
+          },
+        ];
+        store.clearActions()
+        store.dispatch(paymentActions.getPaymentsFailure('This is an error'));
+        expect(store.getActions()).toEqual(selectedActions);
+    });  
+    
+    it('Test reducer default method payment', () => {
+        const store = mockStore(initialState);
+        expect(
+            reducerPayment(store.getState(), 
+            {
+                'type': '',
+            })
+        ).toEqual(
+            {  
+                'form':[],
+                'submittedAtLeastOnce':false,
+                "paymentMethod": 3, 
+                "paymentMethods": [], 
+                "showModal": false, 
+                "submittedAtLeastOnce": false
+            }
+        )
+    })
+
+    it('Update field test payment', () => {
+        const store = mockStore(initialState);
+        expect(
+            reducerPayment(store.getState(), 
+            {
+                'type': 'UPDATE_FIELD',
+                'value': 'This is a test',
+                'field': 'Testing'
+            })
+        ).toEqual(
+            {  
+                'form':[],
+                'submittedAtLeastOnce':false,
+                "paymentMethod": 3, 
+                "paymentMethods": [], 
+                "showModal": false, 
+                "submittedAtLeastOnce": false,
+                'Testing': 'This is a test'
+            }
+        )
+    })
 
     it('Update reducer method payment', () => {
         const store = mockStore(initialState);

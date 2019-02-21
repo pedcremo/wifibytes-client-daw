@@ -66,13 +66,17 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
+        
         /**
          * @desc Agent filters cart items and returns an array used to filter the steps to achieve the needed ones
          * @return @true object - Filtered library Steps.js
          * @return @false redirected to home
          */
-        if (JSON.parse(localStorage.getItem('cartReducer')) != null) {
-            let stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
+        if (this.props.items != null || JSON.parse(localStorage.getItem('cartReducer')) != null) {
+            let stepsRates;
+            this.props.items.length !== 0 ?
+                stepsRates = Agent.objectsToArray(this.props.items, library) :
+                stepsRates = Agent.objectsToArray(JSON.parse(localStorage.getItem('cartReducer')).items, library);
             let filteredSteps = Agent.filterArray(steps, stepsRates);
             this.addSteps(1, filteredSteps);
         } else {
@@ -87,41 +91,43 @@ class Checkout extends React.Component {
      * containing a dispatched action from redux to allow a step to load if its pressed
      */
 
-    componentDidUpdate() {
-        const self = this;
-        /**
-         * @param item It is taken from the current dom element in the forEach function
-         * @param index It is taken from the forEach function and specifies the current loop
-         */
-        const setID = (item, index) => {
-            item.id = index + 1;
-        };
-        /**
-         * @param item It is taken from the current dom element in the forEach function
-         * @param index It is taken from the forEach function and specifies the current loop
-         */
-        const addClickEvent = (item, index) => item.addEventListener("click", function () {
-            self.setStep(index + 1);
-        });
-        /**
-         * @param item It is taken from the current dom element in the forEach function
-         * @param index It is taken from the forEach function and specifies the current loop
-         */
-        document.querySelectorAll("div.step").forEach((item, index) => {
-            setID(item, index);
-            addClickEvent(item, index);
-        });
-        /**
-         * @desc Each time the component is updated steps are checked
-         * Then the button is activated or deactivated in case all steps are completed
-         */
-        steps.filter(step => step.completed===true).length !== steps.length?
-        this.props.disableButton():
-        this.props.activateButton();
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props) {
+            const self = this;
+            /**
+             * @param item It is taken from the current dom element in the forEach function
+             * @param index It is taken from the forEach function and specifies the current loop
+             */
+            const setID = (item, index) => {
+                item.id = index + 1;
+            };
+            /**
+             * @param item It is taken from the current dom element in the forEach function
+             * @param index It is taken from the forEach function and specifies the current loop
+             */
+            const addClickEvent = (item, index) => item.addEventListener("click", function () {
+                self.setStep(index + 1);
+            });
+            /**
+             * @param item It is taken from the current dom element in the forEach function
+             * @param index It is taken from the forEach function and specifies the current loop
+             */
+            document.querySelectorAll("div.step").forEach((item, index) => {
+                setID(item, index);
+                addClickEvent(item, index);
+            });
+            /**
+             * @desc Each time the component is updated steps are checked
+             * Then the button is activated or deactivated in case all steps are completed
+             */
+            steps.filter(step => step.completed === true).length !== steps.length ?
+                this.props.disableButton() :
+                this.props.activateButton();
+        }
     }
 
     sendOrder() {
-        console.log("sendOrder",this.props.data);
+        console.log("sendOrder", this.props.data);
         /**
          * @desc Agent retrieves data from props into an object for the /checkout endpoint
          * @param props Contains data from all the child components
@@ -141,33 +147,25 @@ class Checkout extends React.Component {
             return (
                 <div>
                     <Step.Group items={steps} attached='top' ordered />
-                    
-                    {steps[currentStep-1].component}
+
+                    {steps[currentStep - 1].component}
                     <div className="container">
                         <div className="row justify-content-md-center p-5">
-                            {steps.length > currentStep?
-                                (<button 
-                                    onClick={nextStep} 
+                            {steps.length > currentStep ?
+                                (<button
+                                    onClick={nextStep}
                                     className="ui right big black labeled icon button">
                                     <i className="right arrow icon"></i>
                                     {this.context.t('checkout-next')}
-                                </button>):(
-                                    (disabled)?
-                                    (
-                                        <button 
-                                                disabled  
-                                                className="massive ui labeled icon black button">
-                                                <i className="icon truck"></i> 
-                                                {this.context.t('checkout-submit')}
-                                        </button>
-                                        ) : (
-                                        <button 
-                                            onClick={() => this.sendOrder()}
-                                            className="massive ui labeled icon black button">
-                                            <i className="icon truck"></i> 
-                                            {this.context.t('checkout-submit')}
-                                        </button>
-                                    )
+                                </button>) : (
+                                    <button
+                                        disabled={disabled}
+                                        onClick={() => this.sendOrder()}
+                                        className="massive ui labeled icon black button">
+                                        <i className="icon truck"></i>
+                                        {this.context.t('checkout-submit')}
+                                    </button>
+
                                 )
                             }
                         </div>
@@ -187,7 +185,8 @@ const mapStateToProps = state => ({
     steps: state.currentCheckout.steps,
     data: state.currentCheckout.data,
     loading: state.currentCheckout.loading,
-    disabled: state.currentCheckout.disabled
+    disabled: state.currentCheckout.disabled,
+    items: state.cartReducer.items
 });
 
 Checkout.contextTypes = {

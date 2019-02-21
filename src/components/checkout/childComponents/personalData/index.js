@@ -7,6 +7,8 @@ import PortabilidadForm from "./portabilidadForm";
 import { connect } from "react-redux";
 
 import {getItems} from "../../../cart/cartActions";
+
+import { EMPTY_CHILD } from '../../../../constants/actionTypes';
 import {
     setCompleted,
     setUncompleted,
@@ -17,6 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
     setCompleted: () => dispatch(setCompleted()),
     setUncompleted: () => dispatch(setUncompleted()),
     updateData: (key, data) => dispatch(updateData(key, data)),
+    empty_child: (key) => dispatch({ type: EMPTY_CHILD, payload: { key } }),
 });
 
 const mapStateToProps = state => ({
@@ -36,7 +39,7 @@ class Personal extends React.Component  {
      */
     constructor(props) {
         super(props);
-       
+        this.empty_child = (key) => this.props.empty_child(key);
     }
 
     componentDidUpdate(){
@@ -57,6 +60,7 @@ class Personal extends React.Component  {
 
         }else{
             setUncompleted()
+            this.empty_child('contracts');
         }
     }
     

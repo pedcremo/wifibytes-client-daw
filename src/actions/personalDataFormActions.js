@@ -3,7 +3,7 @@ import {
     SET_COMPLETED,
     SET_UNCOMPLETED,
     GET_ITEMS,
-    SET_LOCALSTORAGE
+    SET_LOCALSTORAGE,
 } from '../constants/actionTypes';
 
 /**

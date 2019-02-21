@@ -15,16 +15,27 @@ import {
 } from '../../../../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
-    /* Change data contracts in Checkout reducer */
+    /**
+     * @desc Change data contracts in Checkout reducer
+     * @param key contains the key contracts
+     * @param data contains the data of contracts
+     */
     updateData: (key, data) =>
         dispatch({ type: UPDATE_DATA , payload: {key, data}}),
-    /* Change state contracts to completed */
+    /**
+     * @desc Change state contracts to completed
+     */
     setCompleted: () =>
         dispatch({ type: SET_COMPLETED }),
-    /* Change state contracts to uncompleted */
+    /**
+     * @desc Change state contracts to uncompleted
+     */
     setUncompleted: () =>
         dispatch({ type: SET_UNCOMPLETED }),
-    /* Get contracts from django server and save in contracts reducer */
+    /**
+     * @desc Get contracts from django server and save in contracts reducer
+     * @param response answer that comes from the server
+     */
     getContracts: response => dispatch({ type: GET_CONTRACTS,  response}),
 });
 
@@ -34,19 +45,23 @@ const mapStateToProps = state => ({
     /* We obtain our information if it is saved to paint what we already had and to see if they have added or removed contracts */
     infoContracts: state.currentCheckout.data.contracts,
     /* Check to see if we have the personal data info to paint or not contracts */
-    personalData: state.currentCheckout.data.personalData ? state.currentCheckout.data.personalData.datosPersonales : false
+    personalData: state.currentCheckout.data.personalData ? state.currentCheckout.data.personalData.datosPersonales : false,
+    /* */
+    ratesCart: state.cartReducer.items
 });
 
 /**
- * @class
- * Read and accept the terms and conditions text information
+ * @class 
+ * @desc Read and accept the terms and conditions text information
  */
 class Contracts extends React.Component {
     constructor(props) {
         super(props);
-        /**If this.props.infoContracts have info. is saved in the state, else the state is declared empty. 
+        /**
+         * If this.props.infoContracts have info. is saved in the state, else the state is declared empty. 
          * Then if subtarifas.length previously saved in the props is different to the new count of subtarifas, 
-         * the contracts are declared empty otherwise used the contracts saved in props*/
+         * the contracts are declared empty otherwise used the contracts saved in props
+         */
         if(this.props.infoContracts) {
             this.state = {
                 data: this.props.infoContracts.data,
@@ -77,20 +92,34 @@ class Contracts extends React.Component {
         this.reciveSign = this.reciveSign.bind(this);
         this.stateModal = this.stateModal.bind(this);
         
-        /* Call django server and return a Promise to use .then in componentDidMount and call this.mountContracts() to load the contracts */ 
+        /**
+         * Call django server and return a Promise to use .then in componentDidMount
+         * and call this.mountContracts() to load the contracts 
+         */ 
         this.getDatosContracts = () => {
             return Utils.get("/textos_contratos")
             .then(response => {this.props.getContracts({contracts: response}); return response;})
             .catch(error => this.props.getContracts({error: error}));  
         }
-        /* Call function in mapDispatchToProps setCompleted */
+        /**
+         * Call function in mapDispatchToProps setCompleted 
+         */
         this.setCompleted = () => this.props.setCompleted();
-        /* Call function in mapDispatchToProps setUncompleted */
+        /**
+         * Call function in mapDispatchToProps setUncompleted 
+         */
         this.setUncompleted = () => this.props.setUncompleted();
-        /* Call function in mapDispatchToProps updateData */
+        /**
+         * Call function in mapDispatchToProps updateData
+         */
         this.updateData = (key,data) => this.props.updateData(key,data);
     }
-    /**Set the state of the component to true and get the contracts, if the personalData is null the contracts aren't mounted */
+
+    /**
+     * @function componentDidMount
+     * @desc Set the state of the component to true and get the contracts, 
+     * if the personalData is null the contracts aren't mounted 
+     */
     componentDidMount(){
         this.setState({ mounted: true });
         this.getDatosContracts().then(() => {
@@ -99,23 +128,38 @@ class Contracts extends React.Component {
         });
     }
 
-    /**If this.state.next is false it doesn't run setUncompleted */
+    /** 
+     * @function componentDidUpdate
+     * @desc If this.state.next is false it doesn't run setUncompleted 
+     */
     componentDidUpdate(){
         if(!this.state.next)
             this.props.setUncompleted();
     }
 
-    /**Set mounted to false */
+    /**
+     * @function componentWillUnmount
+     * @desc Set mounted to false 
+     */
     componentWillUnmount() {
         this.setState({ mounted: false });
     }
 
-    /** Change the state to show or hide the modal of signing*/
+    /** 
+     * @function stateModal
+     * @desc Change the state to show or hide the modal of signing
+     * @param state modal state to show or hidden
+     */
     stateModal(state) {
         this.setState({ showModal: state });
     }
 
-    /**Recive sign from the child */
+    /**
+     * @function reciveSign
+     * @desc Recive sign from the child, call mountContracts, 
+     * save in checkout reducer and setCompleted the state
+     * @param sign sign image
+     */
     reciveSign(sign) {
         this.getPosition({ enableHighAccuracy: true })
             .then((pos) => {
@@ -139,7 +183,11 @@ class Contracts extends React.Component {
             });
     }
 
-    /**Get the user position */
+    /** 
+     * @function getPosition
+     * @desc Get the user position 
+     * @param settings
+     */
     getPosition(settings) {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
@@ -156,7 +204,10 @@ class Contracts extends React.Component {
         }); 
     }
 
-    /* Mount the contract HTML */
+    /**
+     * @function mountContracts
+     * @desc Mount the contract HTML
+     */
     mountContracts() {
         /* Call function subTarifas */
         let subTarifasCon = this.subTarifas();
@@ -185,15 +236,17 @@ class Contracts extends React.Component {
         }     
     }
 
-    /* Get subtarifas from local storage and it will be we returned in a array */
+    /**
+     * @function subTarifas
+     * @desc Get subtarifas from local storage and it will be we returned in a array 
+     */
     subTarifas(){
         /* Declare cartReducer */
         let cartReducer = [];
         /* Parse JSON gotten from local storage, 
         make map to items to traverse all the array and get the subrates for the each tariffs, 
         traverse again the new array and if rates not exists include in the final array */
-        JSON.parse(localStorage.getItem('cartReducer'))
-        .items.map(item => {return item.subtarifas ? item.subtarifas : []})
+        this.props.ratesCart.map(item => {return item.subtarifas ? item.subtarifas : []})
         .map(item => {return item.map(item => {
             if(cartReducer.indexOf(item.id) < 0)
                 cartReducer.push(item.id);
@@ -202,7 +255,10 @@ class Contracts extends React.Component {
         return cartReducer;
     }
 
-    /** render  */
+    /** 
+     * @function render  
+     * @desc render
+     */
     render() {
         const { error, loading, items} = this.props;
         if (error) return (<p className="mt-5 text-danger">Error to load the contracts! </p>);
