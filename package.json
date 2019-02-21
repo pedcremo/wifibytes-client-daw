@@ -13,11 +13,7 @@
     "doc": "jsdoc -c jsdoc.json README.md src/*",
     "test": "jest --verbose -u --env=jsdom",
     "coverage": "jest --coverage --env=jsdom",
-<<<<<<< HEAD
     "precompilation": "eslint --fix --ignore-path .gitignore src/**"
-=======
-    "pretest": "eslint --fix --ignore-path .gitignore src/**"
->>>>>>> bf07d11104423d063942d9d62040990cc55ad44f
   },
   "author": "",
   "license": "ISC",
