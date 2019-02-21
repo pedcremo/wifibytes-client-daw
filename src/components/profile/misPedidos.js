@@ -23,16 +23,12 @@ const mapStateToProps = (state) => ({
 	...state.profile
 });
 class MisPedidos extends React.Component {
-	constructor(props) {
-		super(props);
-		this.props.onLoad(this.props.user.id_consumer);
-	}
 	render() {
 		const { loading, pedidoFactura } = this.props;
 		if (loading || !pedidoFactura) return <h1>Loading...</h1>;
 		return (
 			<main className="misPedidos">
-				<h1>INICIO</h1>
+				<h1>MIS PEDIDOS</h1>
 				<div>
 					{pedidoFactura.length > 0 ? (
 						<div className="pedidos">
@@ -50,14 +46,14 @@ class MisPedidos extends React.Component {
 									{pedidoFactura.map((pedido) => {
 										console.log(pedido);
 										return (
-											<tr key={pedido.idpedido}>
+											<tr key={pedido.idpedido} className="border-bottom-1">
 												<th>{pedido.idpedido}</th>
 												<th>{pedido.fecha}</th>
 												<th>{pedido.totalLineas}</th>
 												<th>{pedido.estadoText}</th>
 												<th>{pedido.total.toFixed(2)}€</th>
 												<th>
-													<Modal size={'fullscreen'} trigger={<Button>Show Modal</Button>}>
+													<Modal size={'fullscreen'} trigger={<Button>DETALLE</Button>}>
 														<Modal.Header>{pedido.idpedido}</Modal.Header>
 														<Modal.Content>
 															<Modal.Description className="mispedidosModal">

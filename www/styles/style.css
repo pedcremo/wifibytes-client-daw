@@ -675,7 +675,7 @@ body.dimmed.dimmable {
 }
 
 .profile {
-	background-image: linear-gradient(to right, rgba(46, 91, 189, 0.8), rgba(23, 175, 142, 0.8));
+	/* background-image: linear-gradient(to right, rgba(46, 91, 189, 0.8), rgba(23, 175, 142, 0.8)); */
 	background-size: 400% 400%;
 	animation: moveTo 10s infinite;
 	min-height: 800px;
@@ -851,4 +851,8 @@ body.dimmed.dimmable {
 .mispedidosModal h2 {
 	font-weight: 100;
 	margin: 1px;
+}
+
+.pedidos tr {
+	border-bottom: 1px solid gray;
 }

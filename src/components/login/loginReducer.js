@@ -25,7 +25,7 @@ export default function login(state = initialState, action) {
 				...state,
 				loading: false,
 				error: action.error,
-				loginData: action.payload.loginData
+				user: action.payload
 			};
 		case RECOVER:
 			return {

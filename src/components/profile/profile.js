@@ -78,6 +78,7 @@ class Profile extends React.Component {
 		const { profile, loading, error, isAuth } = this.props;
 		if ((loading && !profile) || !isAuth) return <img className="loading" src="/styles/image/loading.svg" />;
 		if (!loading && error) return <Redirect to={'/'} />;
+		// return <h1>asd</h1>;
 		return (
 			<main className="profile">
 				<section>
