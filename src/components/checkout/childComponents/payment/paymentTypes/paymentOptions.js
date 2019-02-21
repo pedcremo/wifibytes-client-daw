@@ -19,7 +19,7 @@ export function PaymentOptionsRadioButton(props) {
   const options = props.paymentOptions.map((option, i) => {
     return (
       <label key={i}>
-        <button onClick={props.changePaymentMethod()} value={option.codpago}positive={props.paymentMethod === option.codpago}>{option.nombre}</button>
+        <button onClick={props.changePaymentMethod()} value={option.codpago} positive={props.paymentMethod===option.codpago}>{option.nombre}</button>
       </label>
     );
   });

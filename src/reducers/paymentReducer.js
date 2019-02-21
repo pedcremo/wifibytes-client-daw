@@ -9,9 +9,11 @@ import {
 const thisDate = new Date();
 
 const initialState = {
-  paymentMethod: 1, /** codpago de backend, visa/mastercard/american express por defecto */
+  paymentMethod: 1, /** codpago de backend,
+  visa/mastercard/american express por defecto */
   paymentMethods: [],
-  /** Get the month we are, thisDate.getMonth() is an array so january is month 0, we have to add 1 */
+  /** Get the month we are, thisDate.getMonth() is an array so
+   * january is month 0, we have to add 1 */
   expirationMonth: thisDate.getMonth() + 1,
   /** Get the year we are */
   expirationYear: thisDate.getFullYear(),
@@ -20,6 +22,12 @@ const initialState = {
   cvv: '',
 };
 
+/** This is a reducer that gets the
+ * @param {Object} state and an
+ * @param {Object} action that gets the action from
+ * payment actions and
+ * @return {Object} that is a new state
+ */
 export default function checkoutReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_FIELD:
