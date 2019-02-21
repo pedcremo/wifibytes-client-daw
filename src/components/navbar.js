@@ -1,13 +1,13 @@
-import React from "react";
-import { Utils } from "../utils";
-import { connect } from "react-redux";
-import { getDatosEmpresa } from "../actions/datosEmpresaActions";
-import { Link } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
-import { setLanguage } from "redux-i18n";
-import { PropTypes } from "prop-types";
-import IsAuth from "./isAuth";
-import { getItems } from "./cart/cartActions";
+import React from 'react';
+import {Utils} from '../utils';
+import {connect} from 'react-redux';
+import {getDatosEmpresa} from '../actions/datosEmpresaActions';
+import {Link} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
+import {setLanguage} from 'redux-i18n';
+import {PropTypes} from 'prop-types';
+import IsAuth from './isAuth';
+import {getItems} from './cart/cartActions';
 
 /**
  * Draw top menu navbar
@@ -33,15 +33,15 @@ class Navbar extends React.Component {
     // console.log(event.target.value);
     this.props.dispatch(setLanguage(event.target.value));
     Utils.setUserLanguage(event.target.value);
-    //var a = document.getElementById("langPicker");
-    //a.addEventListener("change", this.handleLangPicker.bind(this), false);
+    // var a = document.getElementById("langPicker");
+    // a.addEventListener("change", this.handleLangPicker.bind(this), false);
   }
   showCheckoutOption() {
     return (this.props.cartItems.items.length > 0 || JSON.parse(localStorage.getItem('cartReducer')).items.length > 0) ?
       <li className="nav-item">
         <Link to="/checkout" className="nav-link text-dark pt-3">
-          <span className="text-success">::</span>{" "}
-          {this.context.t("menu-checkout")}
+          <span className="text-success">::</span>{' '}
+          {this.context.t('menu-checkout')}
         </Link>
       </li> : null;
   }
@@ -59,12 +59,11 @@ class Navbar extends React.Component {
       datosEmpresa,
       value,
       cartItems,
-      isAuth
+      isAuth,
     } = this.props;
     if (error) return <div>Error! </div>;
     if (loading) return <div>Loading...</div>;
     if (datosEmpresa) {
-
       return (
         <HashRouter>
           <div className="navRender">
@@ -93,26 +92,26 @@ class Navbar extends React.Component {
                 </li>
                 <li className="nav-item">
                   <Link to="/catalog" className="nav-link text-dark pt-3">
-                    <span className="text-success">::</span>{" "}
-                    {this.context.t("menu-catalog")}
+                    <span className="text-success">::</span>{' '}
+                    {this.context.t('menu-catalog')}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/rates" className="nav-link text-dark pt-3">
-                    <span className="text-success">::</span>{" "}
-                    {this.context.t("menu-rates")}
+                    <span className="text-success">::</span>{' '}
+                    {this.context.t('menu-rates')}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/company" className="nav-link text-dark pt-3">
-                    <span className="text-success">::</span>{" "}
-                    {this.context.t("menu-company")}
+                    <span className="text-success">::</span>{' '}
+                    {this.context.t('menu-company')}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/contacte" className="nav-link text-dark pt-3">
-                    <span className="text-success">::</span>{" "}
-                    {this.context.t("menu-contact")}
+                    <span className="text-success">::</span>{' '}
+                    {this.context.t('menu-contact')}
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -130,14 +129,14 @@ class Navbar extends React.Component {
                 <li className="nav-item">
                   {!isAuth ? (
                     <Link to="/login" className="nav-link disabled pt-3">
-                      {this.context.t("menu-sign-in")}{" "}
+                      {this.context.t('menu-sign-in')}{' '}
                       <i className="fas fa-sign-in-alt"> </i>
                     </Link>
                   ) : (
                       <Link to="/profile" className="nav-link disabled pt-3">
                         <span>
                           Profile
-                        <i className="fas fa-sign-in-alt" />{" "}
+                          <i className="fas fa-sign-in-alt" />{' '}
                         </span>
                       </Link>
                     )}
@@ -182,16 +181,16 @@ class Navbar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ...state.isAuth,
   cartItems: state.cartReducer,
   datosEmpresa: state.datosEmpresa.items,
   loading: state.datosEmpresa.loading,
   error: state.datosEmpresa.error,
-  value: Utils.getCookie("language")
+  value: Utils.getCookie('language'),
 });
 Navbar.contextTypes = {
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Navbar);
