@@ -11,7 +11,7 @@ import { Utils } from '../../utils';
  */
 
 const mapDispatchToProps = (dispatch) => ({
-	onLoad: (id) => {
+	onLoadPedidos: (id) => {
 		dispatch({
 			type: GET_INICIO,
 			payload: Utils.get(`/pedidoscli/?codcliente=${id}`)
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 class InicioProfile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.props.onLoad(this.props.user.id_consumer);
+		this.props.onLoadPedidos(this.props.user.id_consumer);
 	}
 	render() {
 		const { loading, pedidoFactura, changeView } = this.props;

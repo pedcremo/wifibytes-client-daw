@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import IsAuth from '../isAuth';
 import { Utils } from '../../utils';
 import { Redirect } from 'react-router-dom';
+import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
+
 import InicioProfile from './inicioProfile';
 import MisPedidos from './misPedidos';
-import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
+import MisLineas from './misLineas';
 
 const mapDispatchToProps = (dispatch) => ({
 	/**
@@ -41,6 +43,12 @@ class Profile extends React.Component {
 				this.state = {
 					...this.state,
 					view: <MisPedidos />
+				};
+				break;
+			case 'mislineas':
+				this.state = {
+					...this.state,
+					view: <MisLineas />
 				};
 				break;
 			default:
@@ -96,7 +104,7 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView('view', <MisPedidos />, ev)}>MIS PEDIDOS</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView('view', <div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
+							<a onClick={(ev) => this.changeView('view', <MisLineas />, ev)}>MIS LÍNEAS</a>
 						</li>
 						<li>
 							<a onClick={(ev) => this.changeView('view', <div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>

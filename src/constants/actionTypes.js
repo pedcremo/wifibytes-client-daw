@@ -21,3 +21,4 @@ export const AUTH_SET = 'AUTH_SET';
 export const NOT_AUTH = 'NOT_AUTH';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_INICIO = 'GET_INICIO';
+export const GET_LINEAS = 'GET_LINEAS';

@@ -23,8 +23,13 @@ const mapStateToProps = (state) => ({
 	...state.profile
 });
 class MisPedidos extends React.Component {
+	constructor(props) {
+		super(props);
+		if (!this.props.pedidoFactura) this.props.onLoad(this.props.user.id_consumer);
+	}
 	render() {
 		const { loading, pedidoFactura } = this.props;
+		console.log('entra');
 		if (loading || !pedidoFactura) return <h1>Loading...</h1>;
 		return (
 			<main className="misPedidos">

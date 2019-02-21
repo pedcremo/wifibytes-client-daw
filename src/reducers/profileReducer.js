@@ -1,4 +1,4 @@
-import { GET_INICIO, GET_PROFILE, ASYNC_START } from '../constants/actionTypes';
+import { GET_INICIO, GET_PROFILE, ASYNC_START, GET_LINEAS } from '../constants/actionTypes';
 
 const initialState = {};
 
@@ -16,6 +16,13 @@ export default function datosHomeReducer(state = initialState, action) {
 				...state,
 				pedidoFactura: action.payload,
 				loading: false
+			};
+		case GET_LINEAS:
+			return {
+				...state,
+				loading: false,
+				lineas: action.payload.results,
+				lineasCount: action.payload.count
 			};
 		case ASYNC_START:
 			if (action.subtype === GET_PROFILE || action.subtype === GET_INICIO) {
