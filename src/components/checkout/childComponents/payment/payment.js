@@ -62,7 +62,7 @@ class Payment extends React.Component {
     };
   }
   /**
-   * Is valid is a function that use all validations to verify that 
+   * Is valid is a function that use all validations to verify that
    * all component is valid
    * @return {booldean}
    */
@@ -102,8 +102,10 @@ class Payment extends React.Component {
   /**
    *
    * @param {number} codPago
-   * In paymentForm we pass him a @param codPago  and return the component choosed by user,
+   * In paymentForm we pass him a @param codPago
+   * and return the component choosed by user,
    * by default in reducer we put MastercardVisaAmericanExpressForm
+   * @return {JSX} that is a form
    */
   paymentForm(codPago = 1) {
     switch (codPago) {
@@ -150,17 +152,23 @@ class Payment extends React.Component {
            * Validations, to validate that data is the right
            */
           cardOwnerIsValid={Validations.cardOwnerIsValid(this.props.cardOwner)}
-          cardNumberIsValid={Validations.cardNumberIsValid(this.props.cardNumber)}
-          expirationDateIsValid={Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear)}
+          cardNumberIsValid={Validations.
+              cardNumberIsValid(this.props.cardNumber)}
+          expirationDateIsValid=
+            {Validations.expirationDateIsValid(this.props.expirationMonth,
+                this.props.expirationYear)}
           cvvIsValid={Validations.cvvIsValid(this.props.cvv)}
         />;
     }
   }
 
   /**
-   * showPaymentOptionsRadioButton is a function that returns the payment options component,
-   * we pass to him all payment methots from server, current payment method and the methot to
+   * showPaymentOptionsRadioButton is a function
+   * that returns the payment options component,
+   * we pass to him all payment methots from server,
+   * current payment method and the methot to
    * update it
+   * @return {JSX} that is a component with buttons
    */
   showPaymentOptionsRadioButton() {
     return <PaymentOptionsRadioButton
@@ -168,7 +176,11 @@ class Payment extends React.Component {
       paymentOptions={this.props.paymentMethods}
       paymentMethod={this.props.paymentMethod} />;
   }
-
+  /**
+   * @return {JSX | null} if there are products
+   * it returns the different payment options
+   * and if there are not it shows nothing
+   */
   showPaymentOptions() {
     return this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
       <div className="payment-components">
@@ -176,16 +188,26 @@ class Payment extends React.Component {
         {this.paymentForm(this.props.paymentMethod)}
       </div> : null;
   }
-  /** Gets the cartItems and checks if there is at least one product and returns an array with
+  /** Gets the cartItems and checks if there is
+   * at least one product and returns an array with
    * that information
+   * @return {Array} that contains
+   * cart items and if there are
+   * any products
    */
   getCartItemsAndIfThereIsAtLeastOneProduct() {
     const cartItems = this.props.items;
-    let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems, CheckIfThereIsAtLeastOneItem);
-    thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter((thing) => thing === 'productos');
+    let thereIsAtLeastOneProduct =
+    Agent.objectsToArray(cartItems, CheckIfThereIsAtLeastOneItem);
+    thereIsAtLeastOneProduct =
+    thereIsAtLeastOneProduct.filter((thing) => thing === 'productos');
     return [cartItems, thereIsAtLeastOneProduct.length > 0];
   }
 
+  /**
+   * render method that
+   * @return {JSX} payment component
+   */
   render() {
     return (
       <div className="payment-container">
@@ -194,7 +216,8 @@ class Payment extends React.Component {
           {<Summary
             translate={this.context}
           />}
-          {<Cart cartItems={this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
+          {<Cart cartItems=
+            {this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
         </div>
       </div>
     );
