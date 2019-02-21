@@ -26,10 +26,7 @@ class Subscripcion extends React.Component {
                     <Icon name="newspaper" size="large" />
                     <Card.Content>
                         <Card.Header>Estado hoja informativa</Card.Header>
-                        {/*TODO LIST DIRECTIONS */}
-                        <Button
-                            onClick={e => (e.preventDefault(), this.setInfo)}
-                        >Subscribe</Button>
+                        {this.props.profile.newsletter? <p>Estas subscrito a las noticias</p>: <button>Subscribirse</button>}
                     </Card.Content>
                 </Card>
             )

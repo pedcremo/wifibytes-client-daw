@@ -1,4 +1,4 @@
-import { GET_INICIO, GET_PROFILE, ASYNC_START } from '../constants/actionTypes';
+import { GET_INICIO, GET_PROFILE, ASYNC_START, GET_PROVINCES } from '../constants/actionTypes';
 
 const initialState = {};
 
@@ -17,6 +17,11 @@ export default function datosHomeReducer(state = initialState, action) {
 				pedidoFactura: action.payload,
 				loading: false
 			};
+		case GET_PROVINCES:
+			return{
+				...state,
+				provinces: action.payload.results
+			}
 		case ASYNC_START:
 			if (action.subtype === GET_PROFILE || action.subtype === GET_INICIO) {
 				return { ...state, loading: true };

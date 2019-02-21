@@ -30,9 +30,10 @@ class ChangePassword extends React.Component {
                             <Input type="password"/>
                             <label>Repita contraseña:</label>
                             <Input type="password"/>
+                            <br /><br />
                         <Button
                             onClick={e => (e.preventDefault(), this.setInfo)}
-                        >Añadir dirección de facturación</Button>
+                        >Cambiar contraseña</Button>
                     </Card.Content>
                 </Card>
             )

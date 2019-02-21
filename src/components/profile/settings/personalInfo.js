@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Button } from 'semantic-ui-react';
+import { Card, Icon, Button, Input } from 'semantic-ui-react';
 
 class PersonalInfo extends React.Component{
   constructor(props){
@@ -7,8 +7,10 @@ class PersonalInfo extends React.Component{
     this.state={
       personalData: false
     }
+    this.setInfo = this.setInfo.bind(this);
   }
-  setInfo(){
+  setInfo(e){
+    e.preventDefault();
     if(this.state.personalData){
       this.setState({
         personalData: false
@@ -18,27 +20,43 @@ class PersonalInfo extends React.Component{
         personalData: true
       });
     }
+    console.log(this.state)
   }
   render(){
+    console.log(this.props.profile)
     if(!this.state.personalData){
       return(
         <Card>
           <Icon name="user circle" size="large" />
           <Card.Content>
             <Card.Header>Tus datos</Card.Header>
-            <Card.Description>Nombre: <strong>[User information]</strong></Card.Description>
-            <Card.Description>Apellidos: <strong>[User surname]</strong></Card.Description>
-            <Card.Description>Email: <strong>[User email]</strong></Card.Description>
-            <Card.Description>Telefono: <strong>[User telephone]</strong></Card.Description>
+            <Card.Description>Nombre: <strong>{this.props.profile.nombre}</strong></Card.Description>
+            <Card.Description>Apellidos: <strong>{this.props.profile.apellido}</strong></Card.Description>
+            <Card.Description>Email: <strong>{this.props.profile.email}</strong></Card.Description>
+            <Card.Description>Telefono: <strong>{this.props.profile.telefono}</strong></Card.Description>
+            <br /> <br />
             <Button
-              onClick={e => (e.preventDefault(), this.setInfo)}
+              onClick={this.setInfo}
             >Modificar Datos</Button>
           </Card.Content>
         </Card>
       )
     }else {
       return (
-        null
+        <Card>
+          <Icon name="user circle" size="large" />
+          <Card.Content>
+            <Card.Header>Tus datos</Card.Header>
+            <Card.Description>Nombre: <Input value={this.props.profile.nombre}></Input></Card.Description>
+            <Card.Description>Apellidos: <Input value={this.props.profile.apellido}></Input></Card.Description>
+            <Card.Description>Email: <Input value={this.props.profile.email}></Input></Card.Description>
+            <Card.Description>Telefono: <Input value={this.props.profile.telefono}></Input></Card.Description>
+            <br /> <br />
+            <Button
+              onClick={this.setInfo}
+            >Confirmar Datos</Button>
+          </Card.Content>
+        </Card>
       )
     }
   }

@@ -8,7 +8,7 @@ import InicioProfile from './inicioProfile';
 import Settings from './settings';
 import MisPedidos from './misPedidos';
 
-import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
+import { GET_PROFILE, GET_PROVINCES } from '../../constants/actionTypes';
 
 /**
  * @class
@@ -16,11 +16,16 @@ import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
  */
 
 const mapDispatchToProps = (dispatch) => ({
-	onLoad: (id) =>
+	onLoad: (id) =>{
 		dispatch({
 			type: GET_PROFILE,
 			payload: Utils.get(`/cliente/${Utils.getCookie('id_consumer')}`)
+		}),
+		dispatch({
+			type: GET_PROVINCES,
+			payload: Utils.get(`/provincias/`)
 		})
+	}
 });
 const mapStateToProps = (state) => ({
 	...state.isAuth,
@@ -33,7 +38,6 @@ class Profile extends React.Component {
 		this.state = {
 			view: <InicioProfile />
 		};
-		console.log(this);
 		this.changeView = this.changeView.bind(this);
 		this.props.onLoad();
 	}
@@ -52,6 +56,7 @@ class Profile extends React.Component {
 
 	render() {
 		const { profile, loading, error, isAuth } = this.props;
+		console.log(this.props)
 		if ((loading && !profile) || !isAuth) return <img className="loading" src="/styles/image/loading.svg" />;
 		if (!loading && error) return <Redirect to={'/'} />;
 		return (
@@ -69,7 +74,7 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView(<div>MIS LÍNEAS</div>, ev)}>MIS LÍNEAS</a>
 						</li>
 						<li>
-								<a onClick={(ev) => this.changeView(<Settings />, ev)}>AJUSTES DE CUENTAS</a>
+								<a onClick={(ev) => this.changeView(<Settings profile={profile} provinces={this.props.provinces} />, ev)}>AJUSTES DE CUENTAS</a>
 						</li>
 						<li>
 							<a onClick={(ev) => this.changeView(<div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>

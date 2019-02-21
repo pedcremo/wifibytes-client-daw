@@ -792,3 +792,15 @@ p.login-recuperar:hover {
 	border-bottom: 1px solid gray;
 	margin-bottom: 1vh;
 }
+
+body.dimmed.dimmable {
+    overflow-y: scroll !important;
+}
+ 
+.modal {
+    margin: auto;
+    height: 80vh;
+    top: 5vh !important;
+    left: 17vw !important;
+    min-height: 200px;
+}
