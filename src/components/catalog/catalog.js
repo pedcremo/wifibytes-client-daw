@@ -3,24 +3,31 @@ import React from 'react';
 import Articles from './articles';
 import Families from '../catalog/families';
 import Filters from './filters';
-import { connect } from 'react-redux';
-import { getDatosArticulos } from '../../actions/datosArticulosActions';
+import {connect} from 'react-redux';
+import {getDatosArticulos} from '../../actions/datosArticulosActions';
 
 const mapDispatchToProps = (dispatch) => ({
-  getDatos: () => { dispatch(getDatosArticulos()); },
+  getDatos: ()=> {
+    dispatch(getDatosArticulos());
+  },
 });
 
 /**
- * @class
- * Draw article catalog that could be filtered by article family
+ * @desc Component Catalog is the father who is responsible
+ * for painting families, filters and articles
  */
 class Catalog extends React.Component {
-  
-  componentDidMount(){
+  /**
+   * When the component has been loaded, it obtains the data
+   */
+  componentDidMount() {
     this.props.getDatos();
   }
 
-  /** render  */
+  /**
+   * @desc Render paints the three children components
+   * @return {DOMElement}
+   */
   render() {
     const {error, loading, datosArticulos} = this.props;
 
@@ -37,10 +44,11 @@ class Catalog extends React.Component {
           <Families familia={datosArticulos[0].results} />
           <Filters filters={datosArticulos[1]} />
           <Articles
-            articles={ 
+            articles={
               this.props.datosFilter.length > 0 ?
-              this.props.datosArticulos[2].results.filter(el => el.codfamilia == this.props.datosFilter) :
-                datosArticulos[2].results
+              this.props.datosArticulos[2].results.filter(
+                  (el) =>el.codfamilia == this.props.datosFilter) :
+                  datosArticulos[2].results
             }/>
         </span>
       );
