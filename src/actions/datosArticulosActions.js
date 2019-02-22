@@ -3,6 +3,7 @@ import {Utils} from '../utils';
 export const GET_DATOS_ARTICULOS_BEGIN = 'GET_DATOS_ARTICULOS_BEGIN';
 export const GET_DATOS_ARTICULOS_SUCCESS = 'GET_DATOS_ARTICULOS_SUCCESS';
 export const GET_DATOS_ARTICULOS_FAILURE = 'GET_DATOS_ARTICULOS_FAILURE';
+export const FILTER_FAMILY = 'FILTER_FAMILY';
 
 export function getDatosArticulos() {
   return (dispatch) => {

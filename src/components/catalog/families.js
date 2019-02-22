@@ -2,13 +2,24 @@
 /** @module ComponentsApp */
 import React from 'react';
 import {PropTypes} from 'prop-types';
+import {connect} from 'react-redux';
+import {
+  FILTER_FAMILY,
+} from '../../actions/datosArticulosActions';
 
-/**
- * @class
- * Draw families on catalog
- */
+const mapDispatchToProps = (dispatch) => ({
+  addFilter: (filter) => {
+    dispatch({type: FILTER_FAMILY, payload: {filter}});
+  },
+});
+
+
 class Families extends React.Component {
-  /** render */
+  
+  componentWillMount(){
+    this.filter = ev => { this.props.addFilter(ev) };
+  }
+  
   render() {
     return (
       <section>
@@ -31,7 +42,9 @@ class Families extends React.Component {
           {
             this.props.familia.map((itemFamily, index) => {
               return <li className="nav-item" key={itemFamily.codfamilia}>
-                <a id="change-family" className='nav-link {index==0?"active":""}' data-toggle="pill" href={'#catalog/' + itemFamily.codfamilia}><img width="32px" height="32px" src={itemFamily.icono} />{itemFamily.nombre}</a>
+                <a id="change-family" onClick={() =>this.filter(itemFamily.codfamilia)} className='nav-link {index==0?"active":""}' data-toggle="pill" href="#">
+                  <img width="32px" height="32px" src={itemFamily.icono} />{itemFamily.nombre}
+                </a>
               </li>;
             })
           }
@@ -42,8 +55,17 @@ class Families extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  currentStep: state.currentCheckout.currentStep,
+  steps: state.currentCheckout.steps,
+  data: state.currentCheckout.data,
+  loading: state.currentCheckout.loading,
+  disabled: state.currentCheckout.disabled,
+  items: state.cartReducer.items,
+});
+
 Families.contextTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default Families;
+export default connect( mapStateToProps, mapDispatchToProps )(Families);

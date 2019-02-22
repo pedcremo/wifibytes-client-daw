@@ -1,6 +1,5 @@
 import React from 'react';
 import AddButton from '../cart/AddButton';
-import {Utils} from '../../utils';
 import {PropTypes} from 'prop-types';
 /**
  * Draw legal texts
@@ -8,12 +7,11 @@ import {PropTypes} from 'prop-types';
 class Articles extends React.Component {
   /** render  */
   render() {
-    console.log(this.props.articles);
     return (
       <div className="card-columns m-5">
         {this.props.articles.map((itemArticle) => (
           <div className="card text-center" key={itemArticle.referencia} style={{backgroundColor: `rgba(255, 255, 255, 0.8)`}}>
-            <img className="card-img-top" src={itemArticle.imagen} />
+            <img className="card-img-top" src={itemArticle.imagen}/>
             <div className="card-body">
               <p className="card-text">{itemArticle.descripcion_breve}</p>
               <p className="card-text"><span className="display-4">{itemArticle.pvp}€</span> IVA Incl.</p>

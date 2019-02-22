@@ -2,10 +2,12 @@ import {
   GET_DATOS_ARTICULOS_BEGIN,
   GET_DATOS_ARTICULOS_SUCCESS,
   GET_DATOS_ARTICULOS_FAILURE,
+  FILTER_FAMILY,
 } from '../actions/datosArticulosActions';
 
 const initialState = {
   items: [],
+  filter: [],
   loading: false,
   error: null,
 };
@@ -42,7 +44,14 @@ export default function datosArticulosReducer(state = initialState, action) {
         error: action.payload,
         items: [],
       };
-
+      case FILTER_FAMILY:
+      // Mark the state as "loading" so we can show a spinner or something
+      // Also, reset any errors. We're starting fresh.
+      return {
+        ...state,
+        loading: false,
+        filter:action.payload.filter,
+      };
     default:
       // ALWAYS have a default case in a reducer
       return state;
