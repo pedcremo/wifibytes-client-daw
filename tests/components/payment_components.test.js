@@ -1,7 +1,7 @@
 import Payment from '../../src/components/checkout/childComponents/payment/payment';
 import DirectDebitForm from '../../src/components/checkout/childComponents/payment/paymentTypes/DirectDebit';
 import MastercardVisaAmericanExpressForm from '../../src/components/checkout/childComponents/payment/paymentTypes/MastercardVisaAmericanExpress';
-import PaymentOptions from '../../src/components/checkout/childComponents/payment/paymentTypes/paymentOptions';
+import PaymentOptionsRadioButton from '../../src/components/checkout/childComponents/payment/paymentTypes/paymentOptions';
 import Efectivo from '../../src/components/checkout/childComponents/payment/paymentTypes/Efectivo';
 import Summary from '../../src/components/checkout/childComponents/payment/paymentTypes/Summary';
 import React from 'react';
@@ -35,18 +35,29 @@ const initialState = {
       direccion:"prueba"
     },
   },
-  translate,
 };
 
 const store = mockStore(initialState);
 
 const state = {
   translate,
+  onChangeField: (field, value) => {
+  },
+  onChangeCvv: (ev) => {
+  },
+  onChangeExpirationYear: (ev) => {
+  },
+  onChangeExpirationMonth: (ev) => {
+  },
+  onChangeCardNumber: (ev) => {
+  },
+  onChangeCardOwner: (ev) => {
+  },
 };
 const payment = Enzyme.shallow(<Provider store={store}><Payment {...state}/></Provider>);
 const DirectDebit = Enzyme.shallow(<Provider store={store}><DirectDebitForm {...state}/></Provider>);
 const MastercardVisaAmericanExpress = Enzyme.shallow(<Provider store={store}><MastercardVisaAmericanExpressForm {...state}/></Provider>);
-const PaymentOptionsC = Enzyme.shallow(<Provider store={store}><PaymentOptions {...state}/></Provider>);
+const PaymentOptionsRadioButtonC = Enzyme.shallow(<Provider store={store}><PaymentOptionsRadioButton {...store}/></Provider>);
 const Efectivoc = Enzyme.shallow(<Provider store={store}><Efectivo {...state}/></Provider>);
 const Summaryc = Enzyme.shallow(<Provider store={store}><Summary {...state} /></Provider>);
 
@@ -65,7 +76,7 @@ describe('<Payment />', () => {
     });
     
     it("Payment render", () => {
-        payment.render();
+        payment.render;
     });
 
     it("Store snapshot is done", () => {
@@ -96,20 +107,20 @@ describe('<Payment />', () => {
         MastercardVisaAmericanExpress.render();
     });
 
-    it("PaymentOptions snapshot is done", () => {
-        expect(PaymentOptionsC).toMatchSnapshot(); 
+    it("PaymentOptionsRadioButton snapshot is done", () => {
+        expect(PaymentOptionsRadioButtonC).toMatchSnapshot(); 
     });
 
     it("PaymentOptions render must be called and it works properly", () => {
-        expect(PaymentOptionsC).toHaveLength(1);
+        expect(PaymentOptionsRadioButtonC).toHaveLength(1);
     });
 
-    // it("PaymentOptions render", () => {
-    //     PaymentOptionsC.PaymentOptionsRadioButton(initialState);
-    // });
+    it("PaymentOptionsRadioButton render", () => {
+        PaymentOptionsRadioButtonC.render;
+    });
 
     it("Efectivo snapshot is done", () => {
-        expect(Efectivoc).toMatchSnapshot(); 
+        expect(Efectivoc).toMatchSnapshot();
     });
 
     it("Efectivo render must be called and it works properly", () => {
