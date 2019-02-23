@@ -10,18 +10,15 @@ import IsAuth from './isAuth';
 import {getItems} from './cart/cartActions';
 
 /**
- * Draw top menu navbar
+ * @desc Component navbar
  */
-
 class Navbar extends React.Component {
   /**
-   * Constructor
+   * @desc componentDidMount method
    */
-
   componentDidMount() {
-    this.props.dispatch(getItems());
     this.props.dispatch(getDatosEmpresa());
-    // this.props.dispatch(getItems());
+    this.props.dispatch(getItems());
     this.handleLangPicker = this.handleLangPicker.bind(this);
   }
 
@@ -30,14 +27,15 @@ class Navbar extends React.Component {
    * @param {element} event
    */
   handleLangPicker(event) {
-    // console.log(event.target.value);
     this.props.dispatch(setLanguage(event.target.value));
     Utils.setUserLanguage(event.target.value);
-    // var a = document.getElementById("langPicker");
-    // a.addEventListener("change", this.handleLangPicker.bind(this), false);
   }
+  /**
+   * @desc showCheckoutOption method
+   * @return {DOMElement}
+   */
   showCheckoutOption() {
-    return (this.props.cartItems.items.length > 0 || JSON.parse(localStorage.getItem('cartReducer')).items.length > 0) ?
+    return (this.props.cartItems.items.length > 0) ?
       <li className="nav-item">
         <Link to="/checkout" className="nav-link text-dark pt-3">
           <span className="text-success">::</span>{' '}
@@ -45,20 +43,26 @@ class Navbar extends React.Component {
         </Link>
       </li> : null;
   }
+
+  /**
+   * @desc showItemsOnCart method
+   * @return {Int}
+   */
   showItemsOnCart() {
     return this.props.cartItems.items.reduce((cnt, o) => {
       return o.quantity ? cnt + o.quantity : cnt + 0;
     }, 0);
   }
-
-  /** render  */
+  /**
+   * @desc render method
+   * @return {DOMElement}
+   */
   render() {
     const {
       error,
       loading,
       datosEmpresa,
       value,
-      cartItems,
       isAuth,
     } = this.props;
     if (error) return <div>Error! </div>;
