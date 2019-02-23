@@ -3,13 +3,18 @@ import {Settings} from '../settings';
 
 import fetch from 'cross-fetch';
 
+/**
+ * @desc getDatosHome function
+ * @return {Array}
+ */
 export function getDatosHome() {
-  // console.warn("getDatosHome")
   return (dispatch) => {
     dispatch(getDatosHomeBegin());
     return fetch(`${Settings.baseURL}/home`)
         .then((response) => response.json())
-        .then((data) => dispatch(getDatosHomeSuccess(Utils.filterPruneArrayByLang(data, 'lang'))))
+        .then((data) => dispatch(
+            getDatosHomeSuccess(Utils.filterPruneArrayByLang(data, 'lang'))
+        ))
         .catch((error) => dispatch(getDatosHomeFailure(error)));
   };
 }

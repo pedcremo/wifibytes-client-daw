@@ -1,5 +1,6 @@
-import {Utils} from '../utils';
+import {Settings} from '../settings';
 
+import fetch from 'cross-fetch';
 
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
@@ -54,7 +55,8 @@ export const setUncompleted = () => ({
 export function getPaymentTypes() {
   return (dispatch) => {
     dispatch(getPaymentsBegin());
-    return Utils.get('/formaspago')
+    return fetch(`${Settings.baseURL}/formaspago`)
+        .then((response) => response.json())
         .then((response) => dispatch(getPaymentsSuccess(response)))
         .catch((error) => dispatch(getPaymentsFailure(error)));
   };

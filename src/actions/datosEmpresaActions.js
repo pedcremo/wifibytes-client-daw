@@ -2,8 +2,11 @@ import {Settings} from '../settings';
 
 import fetch from 'cross-fetch';
 
+/**
+ * @desc getDatosEmpresa function
+ * @return {Array}
+ */
 export function getDatosEmpresa() {
-  // console.warn("getDatosEmpresa")
   return (dispatch) => {
     dispatch(getDatosEmpresaBegin());
     return fetch(`${Settings.baseURL}/datos_empresa`)
