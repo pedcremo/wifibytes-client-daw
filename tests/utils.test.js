@@ -168,7 +168,6 @@ describe('Testing utils functions', () => {
     Utils.deleteCookie('prova');
     expect(Utils.getCookie('prova')).toBeUndefined();
 
-    expect(Utils.getCookie()).toBeUndefined();
   });
 
   test('randomAnimation', () => {
@@ -182,6 +181,28 @@ describe('Testing utils functions', () => {
 
     expect(translate).toBe('PASSWORD');
     expect(translate2).toBe('va-a-fallar');
+  });
+
+  test('getUserlang cookies empty', () => {
+    const lang = Utils.getUserLang();
+    expect(lang).toBe('es');
+  });
+
+  test('getUserlang cookies filled', () => {
+    Utils.setCookie('language', 'es');
+    const langEs = Utils.getUserLang();
+    expect(langEs).toBe('es');
+    Utils.deleteCookie('language');
+
+    Utils.setCookie('language', 'ca');
+    const langVa = Utils.getUserLang();
+    expect(langVa).toBe('va');
+    Utils.deleteCookie('language');
+
+    Utils.setCookie('language', 'en');
+    const langEn = Utils.getUserLang();
+    expect(langEn).toBe('en');
+    Utils.deleteCookie('language');
   });
 });
 

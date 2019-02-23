@@ -7,11 +7,11 @@ import {Provider} from 'react-redux';
 import * as checkoutActions from '../../src/constants/actionTypes';
 import currentCheckout from '../../src/reducers/checkoutReducer';
 // import jsdom from 'jsdom'
-import I18n from 'redux-i18n';
+// import I18n from 'redux-i18n';
 import {i18nState} from 'redux-i18n';
-import {Utils} from '../../src/utils';
-import {translations} from '../../src/i18n/translations';
-// import PropTypes from 'prop-types';
+// import {Utils} from '../../src/utils';
+// import {translations} from '../../src/i18n/translations';
+import PropTypes from 'prop-types';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -224,8 +224,39 @@ describe('<Checkout />', () => {
         </Provider>);
   });
 
+  // it('render > if(steps.length > 0 && currentStep', () => {
+  //   const store = mockStore(initialState4);
+  //   const state = {
+  //     currentCheckout: {
+  //       currentStep: 1,
+  //       steps: ['personalData', 'contracts', 'payment'],
+  //       data: [],
+  //       loading: false,
+  //       disabled: false,
+  //     },
+  //     cartReducer: {
+  //       items: [
+  //         {id: '0cab50a1-ea99-4aa4-9a49-1983f06a5614'},
+  //         {id: '5'},
+  //         {id: '0cab70a1-ea99-4aa4-9a49-1983f06a5614'},
+  //       ],
+  //     },
+  //     i18nState,
+  //   };
+
+  //   checkout = Enzyme.render(
+  //       <Provider store={store}>
+  //         <I18n translations={translations}
+  //           initialLang={Utils.getCookie('language')}
+  //           fallbackLang={Utils.getUserLang()}>
+  //           <Checkout {...state}/>
+  //         </I18n>
+  //       </Provider>);
+  // });
+
   it('render > if(steps.length > 0 && currentStep', () => {
     const store = mockStore(initialState4);
+
     const state = {
       currentCheckout: {
         currentStep: 1,
@@ -241,47 +272,22 @@ describe('<Checkout />', () => {
           {id: '0cab70a1-ea99-4aa4-9a49-1983f06a5614'},
         ],
       },
-      i18nState,
+    };
+
+    const context = {
+      t: PropTypes.func.isRequired,
+      router: PropTypes.object,
     };
 
     checkout = Enzyme.render(
         <Provider store={store}>
-          <I18n translations={translations}
-            initialLang={Utils.getCookie('language')}
-            fallbackLang={Utils.getUserLang()}>
-            <Checkout {...state}/>
-          </I18n>
-        </Provider>);
+          <Checkout {...state}/>
+        </Provider>, {context});
+
+    // checkout.find('button').simulate('click');
+    // checkout.update();
+    // expect(checkout).toBe(2);
   });
-
-  /* it('render > if(steps.length > 0 && currentStep', () => {
-        const store = mockStore(initialState4);
-        const state = {
-            currentCheckout: {
-                currentStep: 1,
-                steps: ['personalData','contracts','payment'],
-                data: [],
-                loading: false,
-                disabled: false
-            },
-            cartReducer: {
-                items: [
-                    {id: "0cab50a1-ea99-4aa4-9a49-1983f06a5614"},
-                    {id: "5"},
-                    {id: "0cab70a1-ea99-4aa4-9a49-1983f06a5614"}
-                ]
-            }
-        };
-        const context = {
-            t: PropTypes.func.isRequired,
-            router: PropTypes.object
-        }
-
-        checkout = Enzyme.render(
-            <Provider store={store}>
-              <Checkout {...state}/>
-            </Provider>, {context});
-    });*/
 
   /* it('sendOrder', () => {
         const checkout = Enzyme.shallow(
