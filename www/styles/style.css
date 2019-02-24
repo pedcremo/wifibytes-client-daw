@@ -948,9 +948,15 @@ body.dimmed.dimmable {
 }
 
 .payment-method {
+<<<<<<< HEAD
 	display: grid;
 	grid-template-columns: 24% 24% 24%;
 	justify-content: center;
+=======
+    display: grid;
+    grid-template-columns: 24% 24% 24%;
+    justify-content: space-evenly;
+>>>>>>> 702c4c8516ea7672d9aed50a9d032a8110bf19e9
 }
 
 .cart-resume button {

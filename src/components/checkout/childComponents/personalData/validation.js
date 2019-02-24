@@ -14,7 +14,7 @@ export function validator(value, name) {
   /**
      * If a field does not have value go this first conditional
      */
-  // console.log(value, name)
+  console.log("validator..............",value, name)
   if (value != null) {
     if (value.length<1) {
       return 'Este campo es requerido';
@@ -24,7 +24,8 @@ export function validator(value, name) {
       return 'Este campo necessita minimo 3 caracteres';
     }
 
-    if (name === 'DNIparticular' && !Regex.regexDni.test(value)) {
+    if (name === 'DNIparticular' && !nif(value)) {
+      alert("entra")
       return 'Este no es un DNI valido';
     }
 
@@ -106,4 +107,28 @@ function modulo97(iban) {
 function getnumIBAN(letra) {
   ls_letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return ls_letras.search(letra) + 10;
+}
+
+function nif(dni) {
+  var numero
+  var letr
+  var letra
+  var expresion_regular_dni
+
+  expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+
+  if (expresion_regular_dni.test(dni) == true) {
+    numero = dni.substr(0, dni.length - 1);
+    letr = dni.substr(dni.length - 1, 1);
+    numero = numero % 23;
+    letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    letra = letra.substring(numero, numero + 1);
+    if (letra != letr.toUpperCase()) {
+      return false
+    } else {
+      return true
+    }
+  } else {
+    return true
+  }
 }

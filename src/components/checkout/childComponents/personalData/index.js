@@ -44,7 +44,7 @@ class Personal extends React.Component {
 
   componentDidUpdate() {
     const {
-      validDatosProductos,
+      validForms,
       setCompleted,
       setUncompleted,
       datosPersonales,
@@ -52,7 +52,7 @@ class Personal extends React.Component {
       updateData,
     } = this.props;
 
-    if (validDatosProductos) {
+    if (validForms) {
       updateData('personalData', {
         datosPersonales,
         datosProductos,
@@ -63,7 +63,6 @@ class Personal extends React.Component {
       this.empty_child('contracts');
     }
   }
-
 
   render() {
     return (
