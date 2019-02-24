@@ -51,11 +51,6 @@ const initialState = {
   loaded: false,
 };
 
-/* localStorage.setItem('myData', data);
-
-// getter
-localStorage.getItem('myData'); */
-
 export default function personalDataFormReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_DATOS_SERVICES:

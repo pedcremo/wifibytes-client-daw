@@ -1,8 +1,4 @@
 import {
-  Utils,
-} from '../utils';
-
-import {
   UPDATE_DATA,
   SET_COMPLETED,
   SET_UNCOMPLETED,
@@ -10,9 +6,10 @@ import {
   SET_LOCALSTORAGE,
 } from '../constants/actionTypes';
 
-/**
- * CHECKOUT ACTIONS
+/*
+ * CHECKOUT ACTIONS @return
  */
+
 export const setCompleted = () => ({
   type: SET_COMPLETED,
 });
