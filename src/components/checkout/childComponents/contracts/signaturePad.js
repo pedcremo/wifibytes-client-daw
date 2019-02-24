@@ -12,17 +12,25 @@ class SignPad extends React.Component {
    */
   constructor(props) {
     super(props);
+    /**
+     * Set the default state from the canvas to check is
+     * the canvas is empty
+     */
     this.state = {
       defaultCanvas: '',
     };
   }
 
   /**
+   * After the component is mounted set all the properties
+   * for the canvas to draw
    */
   componentDidMount() {
     const canvas = document.getElementById('paint');
     const ctx = canvas.getContext('2d');
-
+    /**
+     * Set the width and the height for the canvas
+     */
     canvas.width = 500;
     canvas.height = 250;
 
@@ -56,6 +64,9 @@ class SignPad extends React.Component {
       ctx.stroke();
     };
 
+    /**
+     * Set the state of the canvas to check after if is empty
+     */
     this.setState({
       defaultCanvas: canvas.toDataURL(),
     });
@@ -69,11 +80,16 @@ class SignPad extends React.Component {
   }
 
   /** Checking if the user sign the contract, converting
-   *  the paint in svg and sending to the father */
+   *  the paint in png and sending to the father */
   handleSave() {
     const can = document.getElementById('paint');
     const img = new Image();
 
+    /**
+     * If the state of the default canvas is the same that
+     * the canvas after click on save we show an error instead
+     * send the image in png to the father component
+     */
     if (can.toDataURL() === this.state.defaultCanvas) {
       alert('Canvas is blank');
     } else {
@@ -84,7 +100,7 @@ class SignPad extends React.Component {
 
   /**
    * @desc The canvas where the useres sign
-   * @return {DOMElement} The canvas where the useres sign
+   * @return {DOMElement}
    */
   render() {
     const style = {
@@ -102,10 +118,12 @@ class SignPad extends React.Component {
             <canvas id="paint" style={style}></canvas>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-danger" onClick={() => this.handleClear()}>
+            <button type="button" className="btn btn-danger"
+              onClick={() => this.handleClear()}>
               {this.props.translate.t('btn-clear')}
             </button>
-            <button type="button" className="btn btn-primary" onClick={() => this.handleSave()}>
+            <button type="button" className="btn btn-primary"
+              onClick={() => this.handleSave()}>
               {this.props.translate.t('btn-save')}
             </button>
           </div>
