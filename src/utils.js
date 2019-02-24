@@ -1,5 +1,6 @@
 /** @module Utils */
 
+import fetch from 'cross-fetch';
 import {Settings} from './settings';
 import english from './i18n/english.json';
 import spanish from './i18n/spanish.json';
@@ -130,6 +131,43 @@ const Utils = {
 
         // Make the request
         req.send();
+      }
+    });
+  },
+
+  fetch: function(url, filterFunction = null, header = false) {
+    const jwt = this.getCookie('jwt');
+    // Return a new promise.
+    return new Promise(function(resolve, reject) {
+      if (CACHE_TEMPLATES.has(url)) {
+        resolve(CACHE_TEMPLATES.get(url));
+      } else {
+        // Do the usual XHR stuff
+        fetch(Settings.baseURL + url)
+            .then((req) => {
+              if (header) req.setRequestHeader('Authorization', 'JWT ' + jwt);
+
+              // This is called even on 404 etc
+              // so check the status
+              if (req.status == 200) {
+                // Resolve the promise with the response text
+                CACHE_TEMPLATES.set(url, JSON.parse(req.json()));
+                if (filterFunction) {
+                  const fFilter = filterFunction[0];
+                  // resolve(fFilter(req.response));
+                  resolve(fFilter(req.json(), filterFunction[1]));
+                } else {
+                  resolve(req.json());
+                }
+              } else {
+                // Otherwise reject with the status text
+                // which will hopefully be a meaningful error
+                reject(Error(req.statusText));
+              }
+            })
+            .catch((err) => {
+              reject(Error(err));
+            });
       }
     });
   },
