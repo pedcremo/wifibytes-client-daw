@@ -1,151 +1,160 @@
 /** @module ComponentsApp */
 import React from 'react';
-import { Button } from 'semantic-ui-react'
-import {
-    updateContactDataFormServices
-} from "../../../../actions/personalDataFormActions";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
+import { connect } from 'react-redux';
 
-import {validator}  from "./validation";
-let po={
-    1:"eeee",
-    2:"000"
-}
+import { Button } from 'semantic-ui-react';
+import { getItems, initDataServices, updateFieldDatosProd } from '../../../../actions/personalDataFormActions';
+import { validator } from './validation';
+
+const mapDispatchToProps = (dispatch) => ({
+	getItems: () => dispatch(getItems()),
+	initDataServices: (data) => dispatch(initDataServices(data)),
+	updateFieldDatosProd: (data, field, err, itemKey) => dispatch(updateFieldDatosProd(data, field, err, itemKey))
+});
+
+const mapStateToProps = (state) => ({
+	...state.cartReducer,
+	...state.personalDataForm
+});
+
 /**
  * @class
  * This component contain the Portabilidad Data Form
  */
-class PortabilidadForm extends React.Component  {
+class PortabilidadForm extends React.Component {
+	constructor(props) {
+		super(props);
 
-    constructor(props) {
-        super(props);
-         const conten = {
-             value: "",
-         }
-         this.state = {
-         };
-         this.handleInputChange = this.handleInputChange.bind(this);
-         this.handleClick = this.handleClick.bind(this);
-         this.companies=[]
-         this.myRef = React.createRef();
-    }
+		console.log(this.props);
+		// alert("cts")
+	}
 
-    /** 
-     * This method is listening changes of each form element 
-     * The redux state of this form also change 
-     */
-    handleInputChange(event) {
-        const target = event.target;
-        // = target.type === 'checkbox' ? target.checked : target.value;
-        let value;
-        const name = target.name;
+	componentDidMount() {
+		// const {items, initDataServices} = this.props;
+		const { getItems } = this.props;
+		new Promise((resolve, reject) => resolve(getItems())).then(() => {
+			const { items, initDataServices } = this.props;
+			console.log('this.props)', items);
+			initDataServices(items);
+		});
+	}
 
-        /** 
-         * Check what kind of type is each element and transform them
-         */
-        if (target.type === "number")
-            value = Number(target.value)
-        else if (target.type === 'checkbox')
-            value = target.checked
-        else
-            value = target.value
+	render() {
+		const { datosProductos, updateFieldDatosProd, companies } = this.props;
 
-        /** 
-         * Return a error if a field is incorrect 
-         */
-        const error = validator(value, name, target.type)
+		if (datosProductos.length == 0) {
+			return 'Loading..........';
+		}
+		console.log(datosProductos);
+		return (
+			<div>
+				{datosProductos.map((item, key) => {
+					return (
+						<div>
+							<h2 className="services-data">
+								{key + 1} Telefono {item.tipoTlf} / Tarifa {item.description}
+							</h2>
+							<div key={key} className="grid-data-form">
+								<Button.Group size="large" className="centrar">
+									<Button
+										positive={item.tipo == 'portabilidad' ? true : false}
+										onClick={() =>
+											updateFieldDatosProd(
+												'portabilidad',
+												'tipo',
+												validator('ev.target.value', 'portabilidad'),
+												item.key
+											)}
+									>
+										Portabilidad
+									</Button>
+									<Button.Or />
+									<Button
+										positive={item.tipo == 'alta' ? true : false}
+										onClick={() =>
+											updateFieldDatosProd(
+												'alta',
+												'tipo',
+												validator('ev.target.value', 'alta'),
+												item.key
+											)}
+									>
+										Alta
+									</Button>
+								</Button.Group>
+								{item.tipo == 'alta' && item.tipoTlf == 'fijo' ? (
+									'Nuestro tecnico se pondra en contacto con usted el los proximos dias'
+								) : item.tipo == 'alta' && item.tipoTlf == 'movil' ? (
+									'Le asignaremos un numero de telefono nuevo y se lo enviremos a la direccion indicada'
+								) : (
+									<form>
+										<div className="grid-data-form__fields">
+											<div>
+												<select
+													className="form-control form-control-lg mio"
+													onChange={(ev) =>
+														updateFieldDatosProd(
+															ev.target.value,
+															ev.target.name,
+															validator(ev.target.value, 'compania'),
+															item.key
+														)}
+													value={item.compania}
+													name="compania"
+												>
+													<option value="" />
 
-        /** 
-         * The component change its own state and send a dispatch to redux
-         * this.props.updateField "updateField" is a function which come from its father
-         */
-        console.log("event", this.state)
-        return new Promise((resolve, reject) =>
-            resolve(this.setState({
-                
-                    [name]: value,
-                    key: this.props.id
-                
-            }))
-        )
-        .then(() => this.props.updateField(updateContactDataFormServices(this.state)))
-        
+													{companies.map((item) => <option value={item}>{item}</option>)}
+												</select>
+											</div>
 
-        
-    }
+											<div style={{ display: `${item['tipoTlf'] == 'fijo' ? 'none' : 'block'}` }}>
+												<input
+													className="form-control form-control-lg mio"
+													placeholder={item.sim}
+													name="sim"
+													value={item.sim == null ? '' : item.sim}
+													type="text"
+													onChange={(ev) =>
+														updateFieldDatosProd(
+															ev.target.value,
+															ev.target.name,
+															validator(ev.target.value, 'sim'),
+															item.key
+														)}
+												/>
+												{/* <span className="text-danger">{(!this.state.error||this.state.error==undefined)? "":this.state.error}</span> */}
+											</div>
 
-    componentWillReceiveProps(newProps) {
-        
-        if (newProps.companies.length > 0)
-            this.companies = newProps.companies
-    }
-
-    handleClick(e){
-        return new Promise((resolve, reject) =>
-            resolve(this.setState({
-                tipo: e,
-            }))
-        ).then(() => console.log(this.state))
-        
-    }
-
-    render() {
-        let form;
-        if (this.state.tipo!="portabilidad") {
-            form=(<form>
-                    <div className="grid-data-form__fields">
-                        <div>
-                            <select
-                            className = "form-control form-control-lg mio" 
-                            onChange={this.handleInputChange} 
-                            name="company">
-                                <option value=""></option>         
-                                {
-                                    this.companies.map((item, i) => {
-                                        return <option key={i} value={item}>{item}</option>         
-                                    })
-                                }                   
-                            </select>
-                            
-                        </div>
-
-                       <div>
-                            <input
-                            className="form-control form-control-lg mio"
-                            placeholder="Numeros de la sim"
-                            name = "sim"
-                            type = "number"
-                            onChange={this.handleInputChange} />
-                        </div>
-
-                        <div>
-                            <input
-                            className="form-control form-control-lg mio"
-                            placeholder="movil"
-                            name = "phone"
-                            type = "number"
-                            onChange={this.handleInputChange} />
-                        </div> 
-                    </div>
-                </form>)
-        }else{
-            form=(<p>Se le asignara un telefono y se lo enviaremos a la direccion indicada</p>)
-        }
-
-        console.log(this.state,this.props.id)
-        return (
-            <div id={this.props.id}>
-                <Button.Group size='large' className="centrar">
-                    <Button onClick={() => this.handleClick("portabilidad")}>Portabilidad</Button>
-                    <Button.Or />
-                    <Button onClick={() => this.handleClick("alta")}>Alta</Button>
-                </Button.Group>
-                
-                {form}
-            </div>
-            
-        );
-    }
-
-
+											<div>
+												<input
+													className="form-control form-control-lg mio"
+													placeholder="Numero de telefono"
+													name="numTlf"
+													value={item.numTlf == null ? '' : item.numTlf}
+													onChange={(ev) =>
+														updateFieldDatosProd(
+															ev.target.value,
+															ev.target.name,
+															validator(ev.target.value, 'numTlf'),
+															item.key
+														)}
+													type="number"
+													/* onChange={this.handleInputChange} */
+												/>
+											</div>
+										</div>
+									</form>
+								)}
+							</div>
+						</div>
+					);
+				})}
+			</div>
+		);
+	}
 }
-export default PortabilidadForm;
+export default connect(mapStateToProps, mapDispatchToProps)(PortabilidadForm);

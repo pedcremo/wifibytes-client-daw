@@ -1,4 +1,4 @@
-import SignaturePad from '../../src/components/contracts/signaturePad';
+import SignaturePad from '../../src/components/checkout/childComponents/contracts/signaturePad';
 import React from 'react';
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const mockStore = configureStore();
 const initialState = {
-    showPad: false
+    defaultCanvas: ""
 };
 
 const store = mockStore(initialState);
@@ -26,7 +26,7 @@ describe('<SignaturePad />', () => {
     });
     
     it("ShowPad must be false", () => {
-        expect(signaturePad.props().value.storeState.showPad).toBe(false);
+        expect(signaturePad.props().value.storeState.defaultCanvas).toBe("");
     });
 
 });

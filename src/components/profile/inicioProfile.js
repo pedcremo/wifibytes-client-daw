@@ -25,11 +25,16 @@ const mapStateToProps = (state) => ({
 class InicioProfile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.props.onLoadPedidos(this.props.user.id_consumer);
+		if (!this.props.pedidoFactura) {
+			console.log('entra');
+			this.props.onLoadPedidos(this.props.user.id_consumer);
+		}
 	}
 	render() {
 		const { loading, pedidoFactura, changeView } = this.props;
-		if (loading || !pedidoFactura) return <h1>Loading...</h1>;
+		console.log(loading);
+		console.log(pedidoFactura);
+		if (loading || !pedidoFactura) return <img className="loading" src="/styles/image/loading.svg" />;
 		return (
 			<main className="inicioProfile">
 				<h1>INICIO</h1>

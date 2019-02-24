@@ -92,7 +92,7 @@ class Login extends React.Component {
 						</span>
 						{/* INPUT PASSWORD */}
 						<span>
-							<i className="fas fa-lock fa-2x	" />
+							<i className={password ? 'fas fa-lock-open fa-2x' : 'fas fa-lock fa-2x'} />
 							<label
 								className={!this.state.isclickedPassword & !password ? 'down' : null}
 								onMouseEnter={(ev) => (

@@ -1,44 +1,142 @@
+import PersonalDataForm from '../../src/components/checkout/childComponents/personalData/personalDataForm.js';
+import PersonalReducer from '../../src/reducers/personalDataFormReducer';
+import * as actionTypes from '../../src/actions/personalDataFormActions';
 import React from 'react';
-import PersonalDataForm from '../../src/components/personalData/personalDataForm';
-
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
-import { Provider } from "react-redux";
-import { shallow, mount, configure } from "enzyme";
+import {Provider} from 'react-redux';
+import {shallow, configure} from 'enzyme';
+
 /* import { connect } from 'react-redux';
 import { shallowWithState } from 'enzyme-redux';
  */
+
 configure({
-    adapter: new Adapter()
+  adapter: new Adapter(),
 });
+
 const mockStore = configureStore();
+
 const initialState = {
-    personalDataForm:
-    {
-        fields: [],
-        loaded: false,
-        error: []
-    }
+  datosPersonales: {
+    apellido: 'Goya',
+    birthday_omv: '1999-01-10',
+    cifnif: '52226723W',
+    ciudad: 'Ontinyent',
+    codcliente: '47003',
+    codpostal: '46870',
+    cuenta: 'ES601210041840123456789',
+    direccion: 'Gaspar Blai Arbuixec',
+    dniFile: 'image/base64:simulandoserunaimagen',
+    email: 'example@gmail.com',
+    nombre: 'example',
+    provincia: 'Ontinyent',
+    telefono: '633799372',
+    tipo_cliente: '0',
+  },
+  datosProductos: [],
+  erroresDatosPersonales: {
+    apellido: null,
+    birthday_omv: null,
+    cifnif: null,
+    ciudad: null,
+    codcliente: null,
+    codpostal: null,
+    cuenta: null,
+    direccion: null,
+    email: null,
+    nombre: null,
+    provincia: null,
+    telefono: null,
+    tipo_cliente: null,
+  },
+  loaded: false,
+  validDatosPersonales: true,
+  validDatosProductos: false,
+  validForms: false,
 };
+
+
 const store = mockStore(initialState);
-
 const component = shallow(<Provider store={store}><PersonalDataForm/></Provider>);
-/* https: //airbnb.io/enzyme/docs/api/ */
-describe('<PersonalDataForm>', () => {
-    
-   
-    it('PersonalDataForm has been rendered correctly', () => {
-        expect(component).toHaveLength(1);
-    });
-    
-    it('We can check if PersonalDataForm component called to its constructor', () => {
-        expect(component).toMatchSnapshot();
-    });
 
-    it('renders three <PersonalDataForm /> components', () => {
-        expect(component.find('#name')).to.have.lengthOf(1);
+describe('PersonalDataForm and store', () => {
+  it('PersonalDataForm has been rendered correctly', () => {
+    expect(component).toHaveLength(1);
+  });
+
+  it('We can check if PersonalDataForm component called to its constructor', () =>{
+    expect(component).toMatchSnapshot();
+  });
+
+  it('Store snapshot is done', () => {
+    expect(store.getActions()).toMatchSnapshot();
+  });
+
+  it('Store must contain a validForms', () => {
+    expect(component.props().value.storeState.validForms).toBe(false);
+  });
+
+  it('ValidDatosPersonales must be true', () => {
+    expect(component.props().value.storeState.validDatosPersonales).toBe(true);
+  });
+
+  it('Store must be initialState', () => {
+    expect(component.props().value.storeState).toBe(initialState);
+  });
+  it('ValidDatosProductos must be false', () => {
+    expect(component.props().value.storeState.validDatosProductos).toBe(false);
+  });
+});
+
+describe('Reducer', () => {
+  it('Should return the initial state', () => {
+    expect(PersonalReducer(store.getState(), {})).toBe(initialState);
+  });
+
+  it('Update state for name', () => {
+    expect(PersonalReducer(store.getState(), {
+      type: actionTypes.UPDATE_DATOS_PERSONALES,
+      field: 'nombre',
+      data: 'cesar',
+    })).toEqual({
+      datosPersonales:
+      {
+        apellido: 'Goya',
+        birthday_omv: '1999-01-10',
+        cifnif: '52226723W',
+        ciudad: 'Ontinyent',
+        codcliente: '47003',
+        codpostal: '46870',
+        cuenta: 'ES601210041840123456789',
+        direccion: 'Gaspar Blai Arbuixec',
+        dniFile: 'image/base64:simulandoserunaimagen',
+        email: 'example@gmail.com',
+        nombre: 'cesar',
+        provincia: 'Ontinyent',
+        telefono: '633799372',
+        tipo_cliente: '0',
+      },
+      datosProductos: [],
+      erroresDatosPersonales: {
+        apellido: null,
+        birthday_omv: null,
+        cifnif: null,
+        ciudad: null,
+        codcliente: null,
+        codpostal: null,
+        cuenta: null,
+        direccion: null,
+        email: null,
+        nombre: null,
+        provincia: null,
+        telefono: null,
+        tipo_cliente: null,
+      },
+      loaded: false,
+      validDatosPersonales: true,
+      validDatosProductos: false,
+      validForms: false,
     });
-   
-})
-
-
+  });
+});

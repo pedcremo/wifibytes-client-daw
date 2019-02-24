@@ -1,76 +1,79 @@
 import {
-    Utils
-} from "../utils";
+  UPDATE_DATA,
+  SET_COMPLETED,
+  SET_UNCOMPLETED,
+  GET_ITEMS,
+  SET_LOCALSTORAGE,
+} from '../constants/actionTypes';
 
-export function getContactDataForm() {
-    console.warn("getContactDataForm")
-    return dispatch => {
-        dispatch(getContactDataFormBegin());
-        return Utils.get("/tarifa/?destacado=true")
-            .then(function (response) {
-                dispatch(getContactDataFormSuccess(response));
-                return response;
-            })
-            .catch(error => dispatch(getContactDataFormFailure(error)));
-    };
-}
+/*
+ * CHECKOUT ACTIONS @return
+ */
 
-export function updateContactDataForm(newData) {
-    console.log("updateContactDataFormDatosPersonales", newData)
-    return dispatch => dispatch(updateContactDataFormSuccess(newData));
-}
-
-export function updateContactDataFormServices(newData) {
-    console.log("updateContactDataFormServices-----", newData)
-    return dispatch => dispatch(updateServices(newData));
-}
-
-export function getCurrentContactDataForm() {
-    return dispatch => dispatch(getCurrentContactDataFormSuccess());
+export const setCompleted = () => ({
+  type: SET_COMPLETED,
+});
+export const setUncompleted = () => ({
+  type: SET_UNCOMPLETED,
+});
+export function updateData(key, data) {
+  return (dispatch) => {
+    return dispatch({
+      type: UPDATE_DATA,
+      payload: {key, data},
+    });
+  };
 }
 
 
-export const GET_CONTACT_DATA_FORM_BEGIN = 'GET_CONTACT_DATA_FORM_BEGIN';
-export const GET_CONTACT_DATA_FORM_SUCCESS = 'GET_CONTACT_DATA_FORM_SUCCESS';
-export const GET_CONTACT_DATA_FORM_FAILURE = 'GET_CONTACT_DATA_FORM_FAILURE';
-export const GET_CURRENT_CONTACT_DATA_FORM = 'GET_CURRENT_CONTACT_DATA_FORM';
-export const GET_CONTACT_DATA_FORM_UPDATE = 'GET_CONTACT_DATA_FORM_UPDATE';
-export const UPDATE_CONTACT_DATA_FORM_SERVICES = 'UPDATE_CONTACT_DATA_FORM_SERVICES';
-
-
-export const updateServices = productos => ({
-    type: UPDATE_CONTACT_DATA_FORM_SERVICES,
-    payload: productos
-    
+export const getItems = () => ({
+  type: GET_ITEMS,
+  reducer: 'cartReducer',
+  localStorageGet: true,
+  action: SET_LOCALSTORAGE,
 });
 
 
-export const updateContactDataFormSuccess = contactDataForm => ({
-    type: GET_CONTACT_DATA_FORM_UPDATE,
-    payload: {
-        contactDataForm
-    }
-});
+export const UPDATE_DATOS_PERSONALES = 'UPDATE_DATOS_PERSONALES';
+export const updateField = (data, field, error) => {
+  // console.log("ACTION UPDATE_DATOS_PERSONALES", data, field, error);
+  return ({
+    type: UPDATE_DATOS_PERSONALES,
+    data,
+    field,
+    error,
+  });
+};
 
-export const getContactDataFormBegin = () => ({
-    type: GET_CONTACT_DATA_FORM_BEGIN
-});
 
-export const getContactDataFormSuccess = contactDataForm => ({
-    type: GET_CONTACT_DATA_FORM_SUCCESS,
-    payload: {
-        contactDataForm
-    }
-});
+export const INITIALIZE_DATOS_PERSONALES = 'INITIALIZE_DATOS_PERSONALES';
+export const initDatosPersonales = (data) => {
+  // console.log("ACTION INITIALIZE_DATOS_PERSONALES", data);
+  return ({
+    type: INITIALIZE_DATOS_PERSONALES,
+    data,
+  });
+};
 
-export const getContactDataFormFailure = error => ({
-    type: GET_CONTACT_DATA_FORM_FAILURE,
-    payload: {
-        error
-    }
-});
 
-export const getCurrentContactDataFormSuccess = () => ({
-    type: GET_CURRENT_CONTACT_DATA_FORM,
-    payload
-});
+export const INIT_DATA_SERVICES = 'INIT_DATA_SERVICES';
+export const initDataServices = (data) => {
+  console.log('ACTION INIT_DATA_SERVICES', data);
+  return ({
+    type: INIT_DATA_SERVICES,
+    data,
+  });
+};
+
+export const UPDATE_DATOS_SERVICES = 'UPDATE_DATOS_SERVICES';
+export const updateFieldDatosProd = (data, field, error, itemKey) => {
+  // console.log("ACTION UPDATE_DATOS_SERVICES", data, field, error);
+  return ({
+    type: UPDATE_DATOS_SERVICES,
+    data,
+    field,
+    error,
+    itemKey,
+  });
+};
+

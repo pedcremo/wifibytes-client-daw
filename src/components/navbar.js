@@ -11,9 +11,8 @@ import { SSL_OP_NO_QUERY_MTU } from 'constants';
 import { getItems } from './cart/cartActions';
 
 /**
- * Draw top menu navbar
+ * @desc Component navbar
  */
-
 class Navbar extends React.Component {
 	constructor(props) {
 		super(props);

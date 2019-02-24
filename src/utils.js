@@ -4,15 +4,14 @@ import { Settings } from './settings';
 import english from './i18n/english.json';
 import spanish from './i18n/spanish.json';
 import valencia from './i18n/valencia.json';
-import PaymentMethod from '../tests/json_endpoints/checkout_payment.json';
 
 /**
  * Map to cache JSON already got from server.
  * TODO: Try to improve it. It is very basic at the moment
- * We catch every new json get from server and only expires when we close web tab or
- * we change user language
- */
-let CACHE_TEMPLATES = new Map();
+ * We catch every new json get from server and only expires
+ * when we close web tab or we change user language
+*/
+const CACHE_TEMPLATES = new Map();
 let userLanguage = english;
 
 let Utils = {
@@ -132,22 +131,26 @@ let Utils = {
 	},
 
 	/** When we get a json array we only keep the ones that match user language
-   * TODO: At the moment we only check that a 'lang' property from a gotten JSON
-   * matchs current user language. Quite HARDWIRED.
-   */
+     * TODO: At the moment we only check that a 'lang' property from a gotten JSON
+     * matchs current user language. Quite HARDWIRED.
+    */
 	filterPruneArrayByLang: function(jsonArray, langPropName) {
-		let lang = that.getUserLang();
+		const lang = that.getUserLang();
 		if (typeof jsonArray === 'string') {
 			jsonArray = JSON.parse(jsonArray);
 		}
-		let aux = jsonArray.filter((item) => {
+		const aux = jsonArray.filter((item) => {
 			return item[langPropName] == lang;
 		});
-		return aux;
+		return aux.length === 0
+			? jsonArray.filter((item) => {
+					return item[langPropName] == Settings.defaultLanguage;
+				})
+			: aux;
 	},
 	/** At the moment some endpoints on server side only have valencian and spanish content. And moreover it's
-   * quite hardwired code to allow adding new languages. A really pain in the neck
-   */
+     * quite hardwired code to allow adding new languages. A really pain in the neck
+     */
 	getUserLang: function() {
 		switch (this.getCookie('language')) {
 			case 'en':
@@ -161,36 +164,38 @@ let Utils = {
 		}
 	},
 	/**
-   * Get cookie by name
-   * @param {string} cname
-   */
+     * Get cookie by name
+     * @param {string} cname
+     */
 	getCookie: function(name) {
 		try {
-			var value = '; ' + document.cookie;
-			var parts = value.split('; ' + name + '=');
+			const value = '; ' + document.cookie;
+			const parts = value.split('; ' + name + '=');
 			if (parts.length == 2) return parts.pop().split(';').shift();
 		} catch (e) {
 			return '';
 		}
 	},
 	/**
-   * Create new cookie
-   * @param {string} cname  Cookie name
-   * @param {string} cvalue  Cookie value
-   * @param {number} exdays Cookie expiration in days
-   */
+     * Create new cookie
+     * @param {string} cname  Cookie name
+     * @param {string} cvalue  Cookie value
+     * @param {number} exdays Cookie expiration in days
+     */
 	setCookie: function(cname, cvalue, exdays) {
-		var d = new Date();
+		const d = new Date();
 		d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-		var expires = 'expires=' + d.toUTCString();
+		const expires = 'expires=' + d.toUTCString();
 		document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
 	},
 	deleteCookie: function(name) {
 		document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	},
+
 	/**
    * Get key from userLanguage imported language selected taking into account user choosen lang
    * @param {string} key
+   * @return {string} translated key
    */
 	translate: function(key) {
 		if (userLanguage[key]) return userLanguage[key];

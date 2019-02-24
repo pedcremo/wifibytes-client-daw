@@ -1,85 +1,92 @@
-import {Utils} from "../utils";
+import {Settings} from '../settings';
 
+import fetch from 'cross-fetch';
 
-export const PAYMENT_SUBMIT_BEGIN = 'PAYMENT_SUBMIT_BEGIN';
-export const PAYMENT_SUBMIT_SUCCESS = 'PAYMENT_SUBMIT_SUCCESS';
-export const PAYMENT_SUBMIT_FAILURE = 'PAYMENT_SUBMIT_FAILURE';
-export const FORM_UPDATE = 'FORM_UPDATE';
 export const GET_PAYMENTS_BEGIN = 'GET_PAYMENTS_BEGIN';
 export const GET_PAYMENTS_SUCCESS = 'GET_PAYMENTS_SUCCESS';
 export const GET_PAYMENTS_FAILURE = 'GET_PAYMENTS_FAILURE';
-export const SET_EXPIRATION_DATE = 'SET_EXPIRATION_DATE';
+export const PAYMENT_METHOD_UPDATE = 'PAYMENT_METHOD_UPDATE';
+export const UPDATE_FIELD = 'UPDATE_FIELD';
 
+import {UPDATE_DATA, SET_COMPLETED, SET_UNCOMPLETED}
+  from '../constants/actionTypes';
+
+/** Exported function to payment that has
+   * @param {string} key is 'payment' in order to checkout detect that
+   * is from payment component
+   * @param {Object} data is the data from payment
+   * @return {Object} a dispatch to the reducer
+   */
+export function updateData(key, data) {
+  return (dispatch) => {
+    return dispatch({
+      type: UPDATE_DATA,
+      payload: {key, data},
+    });
+  };
+}
+/** Exported function to payment that has
+   * @param {string} field is the field to be updated
+   * @param {string} value is the value that will fit in that field
+   * @return {Object} a dispatch to the reducer
+   */
+export function fieldUpdate(field, value) {
+  return (dispatch) => {
+    return dispatch({
+      type: UPDATE_FIELD,
+      field: field,
+      value: value,
+    });
+  };
+}
+
+export const setCompleted = () => ({
+  type: SET_COMPLETED,
+});
+
+export const setUncompleted = () => ({
+  type: SET_UNCOMPLETED,
+});
+
+/** Exported function to payment that
+ * @return {Object} a dispatch to the reducer
+ * in order to obtain paymentMethods from backend
+  */
 export function getPaymentTypes() {
-    return dispatch => {
-        try {
-            dispatch(getPaymentsBegin());
-            return Utils.get("/formaspago", function(response) {
-                dispatch(getPaymentsSuccess(response));
-            });
-        } catch (e){
-            dispatch(getPaymentsFailure(e));
-        }
-    };
+  return (dispatch) => {
+    dispatch(getPaymentsBegin());
+    return fetch(`${Settings.baseURL}/formaspago`)
+        .then((response) => response.json())
+        .then((response) => dispatch(getPaymentsSuccess(response)))
+        .catch((error) => dispatch(getPaymentsFailure(error)));
+  };
 }
 
-export function setExpirationDate(year, month) {
-    return dispatch => {
-        return dispatch({
-            type: SET_EXPIRATION_DATE,
-            year: year,
-            month:month
-        });
-    };
+/** Exported function to payment that has
+ * @param {string} value that is the value that will be updated
+ * @return {Object} a dispatch to the reducer
+  */
+export function paymentUpdate(value) {
+  return (dispatch) => {
+    return dispatch({
+      type: PAYMENT_METHOD_UPDATE,
+      value: value,
+    });
+  };
 }
 
-export function paymentUpdate(key, value) {
-    return dispatch => {
-        return dispatch({
-            type: FORM_UPDATE, 
-            key: key,
-            value: value
-        });
-    };
-} 
-
-export function paymentsubmit(payload) {
-    return dispatch => {
-        try {
-            dispatch(paymentSubmitBegin());
-            return Utils.post();
-        } catch (e){
-            dispatch(paymentSubmitFailure(e));
-        }
-    };
-}
-
-/* SUBMIT TYPES ACTIONS */
-    export const paymentSubmitBegin = () => ({
-        type: PAYMENT_SUBMIT_SUCCESS
-    });
-
-    export const paymentSubmitSuccess = formasdepago => ({
-        type: GET_PAYMENTS_SUCCESS,
-        payload: { formasdepago }
-    });
-
-    export const paymentSubmitFailure = error => ({
-        type: PAYMENT_SUBMIT_FAILURE,
-        payload: { error }
-    });
 
 /* GET PAYMENTS TYPES ACTIONS */
-    export const getPaymentsBegin = () => ({
-        type: PAYMENT_SUBMIT_BEGIN
-    });
+export const getPaymentsBegin = () => ({
+  type: GET_PAYMENTS_BEGIN,
+});
 
-    export const getPaymentsSuccess = formasdepago => ({
-        type: GET_PAYMENTS_SUCCESS,
-        payload: { formasdepago }
-    });
+export const getPaymentsSuccess = (formasdepago) => ({
+  type: GET_PAYMENTS_SUCCESS,
+  payload: {formasdepago},
+});
 
-    export const getPaymentsFailure = error => ({
-        type: GET_PAYMENTS_FAILURE,
-        payload: { error }
-    });
+export const getPaymentsFailure = (error) => ({
+  type: GET_PAYMENTS_FAILURE,
+  payload: {error},
+});

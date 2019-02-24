@@ -4,6 +4,7 @@
     "menu-company": "Our company",
     "menu-contact": "Contact",
     "menu-sign-in": "Sign in",
+    "menu-checkout": "Checkout",
 
     "footer-menu": "menu",
     "footer-catalog": "Catalog",
@@ -74,11 +75,21 @@
     "register-error-emailExist": "The email is already in use",
     "register-error-cifnifExist": "The CIF/NIF is alredy in use",
 
+    "payment-method0": "Direct bank transfer",
+
+    "personalData-notifyModal-title": "We have detected that you are not logged in, please choose an option:",
+    "personalData-notifyModal-choiceLogin":"Log in",
+    "personalData-notifyModal-choiceRegister":"Register",
+    "personalData-notifyModal-choiceNone":"Continue anyway",
+    "personalData-notifyError-bigImage":"Excessive size, check that it is an image with the front and back of the DNI",
+
+    
     "checkout-personal-data": "Personal Data",
     "checkout-contract": "Contract",
-    "checkout-confirm": "Confirm Payment",
-
-    "payment-method0": "Direct debit",
+    "checkout-confirm": "Confirm Order",
+    "checkout-next": "Next Step",
+    "checkout-submit": "Confirm Payment",
+    
     "payment-method1": "Credit card",
     "payment-owner": "Credit card owner",
     "payment-numberCard": "Credit number card",
@@ -90,6 +101,17 @@
     "payment-address2-debit": "Madrid /Example Street Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
+    "error-payment-owner": "The owner needs a name and surname",
+    "error-payment-credit-card": "The credit card is not valid",
+    "error-payment-expiration-month": "The expiration month is not valid",
+    "error-payment-expiration-year": "The expiration year is not valid",
+    "error-payment-cvv": "The cvv is not valid",
+
+    "resume": "Resume",
+    "resume-name": "Name",
+    "resume-email": "Email",
+    "resume-address": "Address",
+    "efectivo": "Cash",
 
     "cart-button": "Cart",
     "description": "Description",
@@ -98,5 +120,15 @@
     "check-out-button": "Go Checkout",
     "buy": "Buy",
     "empty_cart": "Empty cart...",
-    "hire": "Contract"
+    "hire": "Hire",
+
+    "sign-validation": "*Contracts must be signed",
+    "btn-seeContracts": "See Contracts",
+    "btn-accept": "Accept and Sign",
+    "btn-next": "Next",
+    "btn-signContracts": "Sign Contracts",
+    "validation-personalData": "* Personal Data is required",
+    "btn-disabled": "Disabled",
+    "btn-clear": "Clear",
+    "btn-save": "Save"
 }

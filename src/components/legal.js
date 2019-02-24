@@ -1,7 +1,7 @@
-import React from "react";
-import { Utils } from "../utils";
-import { connect } from "react-redux";
-import { getDatosEmpresa } from "../actions/datosEmpresaActions";
+import React from 'react';
+import {Utils} from '../utils';
+import {connect} from 'react-redux';
+import {getDatosEmpresa} from '../actions/datosEmpresaActions';
 
 /**
  * Draw legal texts
@@ -12,7 +12,7 @@ class Legal extends React.Component {
   }
   /** render  */
   render() {
-    const { error, loading, datosEmpresa } = this.props;
+    const {error, loading, datosEmpresa} = this.props;
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -25,27 +25,27 @@ class Legal extends React.Component {
       let legalTexts;
       if (Object.keys(datosEmpresa).length > 0) {
         legalTexts = datosEmpresa.textos
-          .filter(itemText => {
-            return (
-              itemText.key.match(/legal/i) &&
+            .filter((itemText) => {
+              return (
+                itemText.key.match(/legal/i) &&
               itemText.lang == Utils.getUserLang()
-            );
-          })
-          .map(item => {
-            return item.content;
-          });
+              );
+            })
+            .map((item) => {
+              return item.content;
+            });
       }
       return (
-        <div className="p-5" dangerouslySetInnerHTML={{ __html: legalTexts }} />
+        <div className="p-5" dangerouslySetInnerHTML={{__html: legalTexts}} />
       );
     }
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   datosEmpresa: state.datosEmpresa.items,
   loading: state.datosEmpresa.loading,
-  error: state.datosEmpresa.error
+  error: state.datosEmpresa.error,
 });
 
 export default connect(mapStateToProps)(Legal);

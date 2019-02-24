@@ -1,7 +1,7 @@
-//Dependencies
+// Dependencies
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-//Components
+// Components
 import Home from './components/home';
 import Legal from './components/legal';
 import Catalog from './components/catalog/catalog';

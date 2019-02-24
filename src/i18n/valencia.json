@@ -4,6 +4,7 @@
     "menu-company": "L'empresa",
     "menu-contact": "Contacte",
     "menu-sign-in": "Entrar-hi",
+    "menu-checkout": "Procés de compra",
 
     "footer-menu": "menú",
     "footer-catalog": "Catàleg",
@@ -74,10 +75,19 @@
     "register-error-emailExist": "El correu ja esta en us",
     "register-error-cifnifExist": "El CIF/NIF ja esta en us",
 
+    "personalData-notifyModal-title": "Hem detectat que no esta loguejat, perfavor, escollixca una opcio:",
+    "personalData-notifyModal-choiceLogin":"Loguejarse",
+    "personalData-notifyModal-choiceRegister":"Registrarse",
+    "personalData-notifyModal-choiceNone":"Continuar igualment",
+    "personalData-notifyError-bigImage":"Tamany excesiu, comproba que siga una image amb la part delantera i trasera del DNI",
+
+
     "checkout-personal-data": "Dades Personals",
     "checkout-contract": "Contracte",
     "checkout-confirm": "Confirmar Comanda",
-
+    "checkout-next": "Següent Pas",
+    "checkout-submit": "Confirmar Pagament",
+    
     "payment-method0": "Domiciliació bancaria",
     "payment-method1": "Tarjeta de credit",
     "payment-owner": "Propietari de la tarjeta",
@@ -90,6 +100,17 @@
     "payment-address2-debit": "Madrid /Carrer de example Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
+    "error-payment-owner": "El propietari necesita nom y cognoms",
+    "error-payment-credit-card": "La tarjeta de credit no es valida",
+    "error-payment-expiration-month": "El mes no es valid",
+    "error-payment-expiration-year": "El año no es valid",
+    "error-payment-cvv": "El cvv no es valid",
+
+    "resume": "Resumen",
+    "resume-name": "Nom",
+    "resume-email": "Correu",
+    "resume-address": "Direcció",
+    "efectivo": "Efectiu",
 
     "cart-button": "Carret",
     "description": "Descripció",
@@ -98,5 +119,15 @@
     "check-out-button": "Procés de compra",
     "buy": "Comprar",
     "empty_cart": "Carret buit...",
-    "hire": "Contractar"
+    "hire": "Contactar",
+
+    "sign-validation": "*Els contractes tenen que ser firmats",
+    "btn-seeContracts": "Veure contractes",
+    "btn-accept": "Acceptar i firmar",
+    "btn-next": "Següent",
+    "btn-signContracts": "Firmar Contractes",
+    "validation-personalData": "* La informació personal es necessaria",
+    "btn-disabled": "Deshabilitat",
+    "btn-clear": "Netejar",
+    "btn-save": "Guardar"
 }

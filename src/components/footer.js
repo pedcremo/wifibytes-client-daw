@@ -1,19 +1,18 @@
 /** @module ComponentsApp */
 import React from 'react';
-import { Utils } from "../utils";
-import { connect } from "react-redux";
-import { getDatosEmpresa } from "../actions/datosEmpresaActions2";
-import { getDatosHome } from "../actions/datosHomeActions";
-import { Link } from 'react-router-dom';
-import { HashRouter } from 'react-router-dom';
-import {PropTypes} from 'prop-types'
+import {Utils} from '../utils';
+import {connect} from 'react-redux';
+import {getDatosEmpresa} from '../actions/datosEmpresaActions';
+import {getDatosHome} from '../actions/datosHomeActions';
+import {Link} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
+import {PropTypes} from 'prop-types';
 
 /**
  * @class
  * Draw cookies text information
  */
 class Footer extends React.Component {
-
   componentDidMount() {
     this.props.dispatch(getDatosEmpresa());
     this.props.dispatch(getDatosHome());
@@ -22,13 +21,15 @@ class Footer extends React.Component {
   /** render  */
   render() {
     /* const isLoading = this.state.isLoading; */
-    const { error, loading, datosEmpresa, datosHome } = this.props;
+    const {error, loading, datosEmpresa, datosHome} = this.props;
 
-    if (error)
+    if (error) {
       return (<div>Error! </div>);
+    }
 
-    if (loading)
+    if (loading) {
       return (<div>Loading...</div>);
+    }
 
     if (datosHome.length > 0 && datosEmpresa) {
       return (
@@ -37,43 +38,43 @@ class Footer extends React.Component {
             <div className="container-fluid text-center text-md-left " >
               <div className="row">
                 <div className="col-md-6 mt-md-0 mt-3" >
-                  <h5 className="text-uppercase" >{datosHome[0].caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{ __html: datosHome[0].caja_izquierda_texto }}></label>
+                  <h5 className="text-uppercase" >{datosHome[0].caja_izquierda_titulo}</h5><label className="left_box" dangerouslySetInnerHTML={{__html: datosHome[0].caja_izquierda_texto}}></label>
                 </div>
 
                 <hr className="clearfix w-100 d-md-none pb-3"></hr>
 
                 <div className="col-md-3 mb-md-0 mb-3">
-                  <h5 className="text-uppercase">{this.context.t("footer-menu")}</h5>
+                  <h5 className="text-uppercase">{this.context.t('footer-menu')}</h5>
 
                   <ul className="list-unstyled">
                     <li>
-                      <Link to="/catalog">{this.context.t("footer-catalog")}</Link>
+                      <Link to="/catalog">{this.context.t('footer-catalog')}</Link>
                     </li>
                     <li>
-                      <Link to="/rates">{this.context.t("footer-rates")}</Link>
+                      <Link to="/rates">{this.context.t('footer-rates')}</Link>
                     </li>
                     <li>
-                      <Link to="/company">{this.context.t("footer-company")}</Link>
+                      <Link to="/company">{this.context.t('footer-company')}</Link>
                     </li>
                     <li>
-                      <Link to="/contacte">{this.context.t("footer-contact")}</Link>
+                      <Link to="/contacte">{this.context.t('footer-contact')}</Link>
                     </li>
                   </ul>
 
                 </div>
 
                 <div className="col-md-3 mb-md-0 mb-3">
-                  <h5 className="text-uppercase">{this.context.t("footer-hints")}</h5>
+                  <h5 className="text-uppercase">{this.context.t('footer-hints')}</h5>
 
                   <ul className="list-unstyled">
                     <li>
                       <Link to="/legal">
-                        {this.context.t("footer-legal-advice")}
+                        {this.context.t('footer-legal-advice')}
                       </Link>
                     </li>
-                      <Link to="/cookies">
-                        {this.context.t("footer-cookies")}
-                      </Link>
+                    <Link to="/cookies">
+                      {this.context.t('footer-cookies')}
+                    </Link>
                     <li>
                       <a href={Utils.checkURL(datosEmpresa.twitter)}><i className="fab  fa-twitter"></i></a>
                     </li>
@@ -99,19 +100,18 @@ class Footer extends React.Component {
         <span>LOADING!</span>
       );
     }
-
   }
 }
 
 Footer.contextTypes = {
-  t: PropTypes.func.isRequired
-}
+  t: PropTypes.func.isRequired,
+};
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   datosEmpresa: state.datosEmpresa.items,
   datosHome: state.datosHome.items,
   loading: state.datosEmpresa.loading,
-  error: state.datosEmpresa.error
+  error: state.datosEmpresa.error,
 });
 
 export default connect(mapStateToProps)(Footer);

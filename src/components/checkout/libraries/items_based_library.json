@@ -1,0 +1,9 @@
+{
+    "fieldsToValidate":[
+        {
+            "field": "tarifas",
+            "regexp": "^([0-9]{1,})$"
+        }
+    ],
+    "requiredFields":""
+}

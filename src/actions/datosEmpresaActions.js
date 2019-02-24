@@ -1,14 +1,17 @@
-import { Utils } from '../utils';
+import { Settings } from '../settings';
 
+import fetch from 'cross-fetch';
+
+/**
+ * @desc getDatosEmpresa function
+ * @return {Array}
+ */
 export function getDatosEmpresa() {
-	// console.warn('getDatosEmpresa');
 	return (dispatch) => {
 		dispatch(getDatosEmpresaBegin());
-		Utils.get('/datos_empresa')
-			.then(function(response) {
-				dispatch(getDatosEmpresaSuccess(response));
-				return response;
-			})
+		return fetch(`${Settings.baseURL}/datos_empresa`)
+			.then((response) => response.json())
+			.then((data) => dispatch(getDatosEmpresaSuccess(data)))
 			.catch((error) => dispatch(getDatosEmpresaFailure(error)));
 	};
 }
@@ -23,10 +26,14 @@ export const getDatosEmpresaBegin = () => ({
 
 export const getDatosEmpresaSuccess = (datosEmpresa) => ({
 	type: GET_DATOS_EMPRESA_SUCCESS,
-	payload: { datosEmpresa }
+	payload: {
+		datosEmpresa
+	}
 });
 
 export const getDatosEmpresaFailure = (error) => ({
 	type: GET_DATOS_EMPRESA_FAILURE,
-	payload: { error }
+	payload: {
+		error
+	}
 });

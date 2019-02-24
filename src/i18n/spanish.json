@@ -4,6 +4,7 @@
     "menu-company": "La empresa",
     "menu-contact": "Contacto",
     "menu-sign-in": "Entrar",
+    "menu-checkout": "Proceso de compra",
 
     "footer-menu": "menú",
     "footer-catalog": "Catálogo",
@@ -74,10 +75,19 @@
     "register-error-emailExist": "El correo ya está en uso",
     "register-error-cifnifExist": "El CIF/NIF ya está en uso",
 
+    "personalData-notifyModal-title": "Hemos detectado que no esta logueado, porfavor elija una opción:",
+    "personalData-notifyModal-choiceLogin":"Loguearse",
+    "personalData-notifyModal-choiceRegister":"Registrarse",
+    "personalData-notifyModal-choiceNone":"Continuar igualmente",
+    "personalData-notifyError-bigImage":"Tamaño excesivo, comprueba que sea una imagen con la parte delantera y trasera del DNI",
+
+
     "checkout-personal-data": "Datos Personales",
     "checkout-contract": "Contrato",
     "checkout-confirm": "Confirmar Pedido",
-
+    "checkout-next": "Siguiente Paso",
+    "checkout-submit": "Confirmar Pago",
+    
     "payment-method0": "Domiciliación bancaria",
     "payment-method1": "Tarjeta de credito",
     "payment-owner": "Propietario de la tarjeta",
@@ -90,6 +100,17 @@
     "payment-address2-debit": "Madrid /Calle de ejemplo Nº2 p2",
     "payment-iban-debit": "IBAN",
     "payment-iban2-debit": "ES9820385778983000760236",
+    "error-payment-owner": "El propietario necesita nombre y apellidos",
+    "error-payment-credit-card": "La tarjeta de credito no es valida",
+    "error-payment-expiration-month": "El mes no es valido",
+    "error-payment-expiration-year": "El año no es valido",
+    "error-payment-cvv": "El cvv no es valido",
+
+    "resume": "Resumen",
+    "resume-name": "Nombre",
+    "resume-email": "Correo",
+    "resume-address": "Dirección",
+    "efectivo": "Efectivo",
 
     "cart-button": "Carrito",
     "description": "Descripción",
@@ -98,5 +119,15 @@
     "check-out-button": "Proceso de compra",
     "buy": "Comprar",
     "empty_cart": "Carrito vacio...",
-    "hire": "Contratar"
+    "hire": "Contratar",
+
+    "sign-validation": "*Los contratos tienen que ser firmados",
+    "btn-seeContracts": "Ver contratos",
+    "btn-accept": "Aceptar y firmar",
+    "btn-next": "Siguiente",
+    "btn-signContracts": "Firmar Contratos",
+    "validation-personalData": "* La información personal es necesaria",
+    "btn-disabled": "Deshabilitado",
+    "btn-clear": "Limpiar",
+    "btn-save": "Guardar"
 }
