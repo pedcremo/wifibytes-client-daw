@@ -67,11 +67,12 @@ export default function personalDataFormReducer(state = initialState, action) {
                 return item
             })  
             let formsValidados = (state.validDatosProductos && state.validDatosPersonales) ? true : false;
+            let newvalidDatosProductos = validDatosServicios(newObject);
             
             return {
                 ...state,
                 datosProductos : newObject,
-                validDatosProductos : validDatosServicios(newObject),
+                validDatosProductos: newvalidDatosProductos,
                 validForms: formsValidados
                 
             };
