@@ -191,7 +191,8 @@ const Utils = {
     document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
   },
   deleteCookie: function(name) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie =
+    name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   },
 
   /**
@@ -206,8 +207,22 @@ const Utils = {
   /** CSS Animation used in the app
     */
   randomAnimation() {
-    const animations = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'headShake', 'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight', 'jackInTheBox', 'rollIn', 'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp'];
-    return 'animated ' + animations[Math.floor(Math.random() * (animations.length + 1))];
+    const animations = [
+      'bounce', 'flash', 'pulse', 'rubberBand', 'shake',
+      'headShake', 'swing', 'tada', 'wobble', 'jello',
+      'bounceIn', 'bounceInDown', 'bounceInLeft',
+      'bounceInRight', 'bounceInUp', 'fadeIn',
+      'fadeInDown', 'fadeInDownBig', 'fadeInLeft',
+      'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig',
+      'fadeInUp', 'fadeInUpBig', 'rotateIn', 'rotateInDownLeft',
+      'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
+      'jackInTheBox', 'rollIn', 'zoomIn', 'zoomInDown', 'zoomInLeft',
+      'zoomInRight', 'zoomInUp', 'slideInDown', 'slideInLeft', 'slideInRight',
+      'slideInUp',
+    ];
+    return 'animated ' + animations[
+        Math.floor(Math.random() * (animations.length + 1))
+    ];
   },
 
   checkURL: function(hrefText) {
@@ -221,7 +236,8 @@ const Utils = {
     }
   },
   deleteCookie: function(name) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie =
+    name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   },
 }; // END Utils object
 const that = Utils;

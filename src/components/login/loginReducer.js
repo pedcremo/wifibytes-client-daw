@@ -4,45 +4,45 @@ import {
   LOGIN,
   RECOVER,
   CHANGE_VALUE,
-  ASYNC_END
-} from "../../constants/actionTypes";
+  ASYNC_END,
+} from '../../constants/actionTypes';
 
 const initialState = {
-  view: window.location.href.split("/")[4],
-  username: "",
-  password: "",
-  email: "",
-  errorCaptcha: "",
-  captcha: false
+  view: window.location.href.split('/')[4],
+  username: '',
+  password: '',
+  email: '',
+  errorCaptcha: '',
+  captcha: false,
 };
 export default function login(state = initialState, action) {
   switch (action.type) {
     case CHANGE_VIEW:
       return {
         ...state,
-        view: action.view
+        view: action.view,
       };
     case CHANGE_VALUE:
       state[action.target] = action.value;
       return {
-        ...state
+        ...state,
       };
     case ASYNC_START:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case ASYNC_END:
       return {
         ...state,
-        loading: false
+        loading: false,
       };
     case LOGIN:
       return {
         ...state,
         loading: false,
         error: action.error,
-        loginData: action.payload.loginData
+        loginData: action.payload.loginData,
       };
     case RECOVER:
       return {
@@ -51,7 +51,7 @@ export default function login(state = initialState, action) {
         messageRecover: action.payload.error
           ? action.payload.error.message
           : action.payload.message,
-        recoverData: action.payload.recoverData
+        recoverData: action.payload.recoverData,
       };
     default:
       return state;
