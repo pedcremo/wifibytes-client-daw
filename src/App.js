@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import AppRoutes from "./routes";
-import { HashRouter } from "react-router-dom";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import AppRoutes from './routes';
+import {HashRouter} from 'react-router-dom';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
 /**
  * @class
  * It defines the webpage structure.
@@ -32,8 +32,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  cartItems: state.cartReducer
+const mapStateToProps = (state) => ({
+  cartItems: state.cartReducer,
 });
 
 export default connect(mapStateToProps)(App);

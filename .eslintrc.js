@@ -3,24 +3,16 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+   
+    "extends": [
+        "google",
+        "plugin:react/recommended"
+    ],
     "parserOptions": {
         "ecmaVersion": 2015,
         "sourceType": "module"
     },
-    "rules": {
+    "rules": {        
         
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
     }
 };

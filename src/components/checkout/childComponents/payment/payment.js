@@ -166,7 +166,6 @@ class Payment extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="payment-container">
         {this.showPaymentOptions()}
