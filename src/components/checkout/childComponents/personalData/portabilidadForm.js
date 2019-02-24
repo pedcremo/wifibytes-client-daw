@@ -65,6 +65,13 @@ class PortabilidadForm extends React.Component {
         {datosProductos.map((item, key)=>{
           return <div>
             <h2 className="services-data">{key+1} Telefono {item.tipoTlf} / Tarifa {item.description}</h2>
+            
+            {/* <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary">Left</button>
+              <button type="button" class="btn btn-secondary">Middle</button>
+              <button type="button" class="btn btn-secondary">Right</button>
+            </div> */}
+
             <div key={key} className="grid-data-form" >
               <Button.Group size='large' className="centrar">
                 <Button positive={item.tipo=='portabilidad'?true:false} onClick={() => updateFieldDatosProd('portabilidad', 'tipo', validator('ev.target.value', 'portabilidad'), item.key)}>Portabilidad</Button>

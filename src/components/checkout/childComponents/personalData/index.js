@@ -60,7 +60,7 @@ class Personal extends React.Component {
       setCompleted();
     } else {
       setUncompleted();
-      //this.empty_child('contracts');
+      this.empty_child('contracts');
     }
   }
 
