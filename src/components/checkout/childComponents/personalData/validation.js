@@ -43,7 +43,7 @@ export function validator(value, name) {
     }
 
 
-    if (name === 'telefono' && !Regex.regexPhone.test(value)) {
+    if (name === 'numTlf' && !Regex.regexPhone.test(value)) {
       return 'No es un telefono valido';
     }
 

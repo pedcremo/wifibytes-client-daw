@@ -124,11 +124,11 @@ class PersonalForm extends React.Component {
           { /** 
             PERSONAL DATA COLUMN
           */}
-          <div class="row">
-            <div class="col-md-6 col-lg-6">
-              <h2>Datos personales</h2>
+          <div className="row">
+            <div className="col-md-6 col-lg-6">
+              <h3>Datos personales</h3>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={nombre!=""?(validator(nombre, 'nombre')?"text-danger":"text-success"):""}
                   htmlFor="nombre">
@@ -147,7 +147,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={apellido!=""?(validator(apellido, 'apellido')?"text-danger":"text-success"):""}
                   htmlFor="apellido">
@@ -166,7 +166,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={tipo_cliente!=""?(validator(tipo_cliente, 'tipo_cliente')?"text-danger":"text-success"):""}
                   htmlFor = "tipo_cliente" >
@@ -185,7 +185,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={cifnif!=""?(validator(cifnif, `DNI${TIPO_CLIENTE_VALUE[tipo_cliente]}`)?"text-danger":"text-success"):""}
                   htmlFor="cifnif">
@@ -204,7 +204,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
               
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={email!=""?(validator(email, 'email')?"text-danger":"text-success"):""}
                   htmlFor="email">
@@ -228,10 +228,10 @@ class PersonalForm extends React.Component {
 
             </div>
 
-            <div class="col-md-6 col-lg-6">
-              <h2>Direccion</h2>            
+            <div className="col-md-6 col-lg-6">
+              <h3>Direccion</h3>            
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={direccion!=""?(validator(direccion, 'direccion')?"text-danger":"text-success"):""}
                   htmlFor="direccion">
@@ -250,7 +250,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={codpostal!=""?(validator(codpostal, 'codpostal')?"text-danger":"text-success"):""}
                   htmlFor="codpostal">
@@ -269,7 +269,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={ciudad!=""?(validator(ciudad, 'ciudad')?"text-danger":"text-success"):""}
                   htmlFor="ciudad">
@@ -288,7 +288,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={provincia!=""?(validator(provincia, 'provincia')?"text-danger":"text-success"):""}
                   htmlFor="provincia">
@@ -307,7 +307,7 @@ class PersonalForm extends React.Component {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label 
                   className={cuenta!=""?(validator(cuenta, 'cuenta')?"text-danger":"text-success"):""}
                   htmlFor="cuenta">
