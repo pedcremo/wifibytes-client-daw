@@ -61,7 +61,7 @@ const initialState = {
 };
 
 export default function personalDataFormReducer(state = initialState, action) {
-	console.log('--------------------------personalDataFormReducer', state.datosPersonales);
+	// console.log('--------------------------personalDataFormReducer', state.datosPersonales);
 	switch (action.type) {
 		case UPDATE_DATOS_SERVICES:
 			/**
@@ -249,7 +249,7 @@ export default function personalDataFormReducer(state = initialState, action) {
 			};
 
 		default:
-			console.log('REDUCER default', action.data);
+			// console.log('REDUCER default', action.data);
 			return state;
 	}
 }
