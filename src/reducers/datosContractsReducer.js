@@ -7,7 +7,12 @@ const initialState = {
   loading: false,
   error: null,
 };
-
+/**
+  * @desc asdasdasd
+  * @param {Object} state
+  * @param {Object} action
+  * @return {*}
+  */
 export default function datosContractsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CONTRACTS:
