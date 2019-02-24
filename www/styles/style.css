@@ -838,6 +838,17 @@ body.dimmed.dimmable {
 	margin-bottom: 1vh;
 }
 
+body.dimmed.dimmable {
+    overflow-y: scroll !important;
+}
+ 
+.modal {
+    margin: auto;
+    height: 80vh;
+    top: 5vh !important;
+    left: 17vw !important;
+    min-height: 200px;
+}
 .linea {
 	display: grid;
 	grid-template-columns: auto 1fr;

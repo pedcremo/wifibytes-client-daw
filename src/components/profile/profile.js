@@ -1,24 +1,28 @@
 /** @module ComponentsApp */
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import IsAuth from '../isAuth';
-import { Utils } from '../../utils';
-import { Redirect } from 'react-router-dom';
-import { LOGOUT, GET_PROFILE } from '../../constants/actionTypes';
-
+import {Utils} from '../../utils';
+import {Redirect} from 'react-router-dom';
 import InicioProfile from './inicioProfile';
+import Settings from './settings';
 import MisPedidos from './misPedidos';
+
+import {GET_PROFILE, GET_PROVINCES} from '../../constants/actionTypes';
+
 import MisLineas from './misLineas';
 
 const mapDispatchToProps = (dispatch) => ({
-	/**
-	 * Function to get all the client profile
-	 */
-	onLoad: (id) =>
+	onLoad: (id) =>{
 		dispatch({
 			type: GET_PROFILE,
 			payload: Utils.get(`/cliente/${Utils.getCookie('id_consumer')}`)
+		}),
+		dispatch({
+			type: GET_PROVINCES,
+			payload: Utils.get(`/provincias/`)
 		})
+	}
 });
 /**
  * This component is using the isAuth and profile state
@@ -33,6 +37,9 @@ const mapStateToProps = (state) => ({
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			view: <InicioProfile />
+		};
 		this.changeView = this.changeView.bind(this);
 		//Load the Client Profile
 		this.props.onLoad();
@@ -86,7 +93,6 @@ class Profile extends React.Component {
 		const { profile, loading, error, isAuth } = this.props;
 		if ((loading && !profile) || !isAuth) return <img className="loading" src="/styles/image/loading.svg" />;
 		if (!loading && error) return <Redirect to={'/'} />;
-		// return <h1>asd</h1>;
 		return (
 			<main className="profile">
 				<section>
@@ -107,7 +113,7 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView('view', <MisLineas />, ev)}>MIS LÍNEAS</a>
 						</li>
 						<li>
-							<a onClick={(ev) => this.changeView('view', <div>MYRATES</div>, ev)}>AJUSTES DE CUENTAS</a>
+								<a onClick={(ev) => this.changeView('view', <Settings profile={profile} provinces={this.props.provinces} />, ev)}>AJUSTES DE CUENTAS</a>
 						</li>
 						<li>
 							<a onClick={(ev) => this.changeView('view', <div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>

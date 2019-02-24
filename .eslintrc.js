@@ -3,7 +3,7 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-   
+
     "extends": [
         "google",
         "plugin:react/recommended"
@@ -16,7 +16,7 @@ module.exports = {
             "experimentalObjectRestSpread": true
         }
     },
-    "rules": {        
+    "rules": {
         "react/prop-types": 0
     }
 };

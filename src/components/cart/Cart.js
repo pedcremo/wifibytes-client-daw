@@ -24,31 +24,33 @@ class Cart extends React.Component {
    * @param {int} quantity take the quantity of the object and modify it
    */
 	quantityItem_(item, quantity) {
-		this.props.dispatch(quantityItem(item, quantity));
+		this.props.quantityItem(item, quantity);
 	}
 	/**
    * Triggered when user click on trash icon
    * @param {id} item item's id to remove from cartList
    */
 	deleteItem(item) {
-		this.props.dispatch(delete_item(item));
+		this.props.deleteItem(item);
 	}
 
-	/** render */
-	render() {
-		return (
-			<ListCart
-				cartItems={this.props.cartItems}
-				canAdd={this.state.canAdd}
-				quantityItem={this.quantityItem_}
-				function={this.deleteItem}
-			/>
-		);
-	}
+  /** render */
+  render() {
+    return (
+      <ListCart
+        cartItems={this.props.cartItems}
+        canAdd={this.state.canAdd}
+        quantityItem={this.quantityItem_}
+        function={this.deleteItem}
+      />
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	onLoad: () => dispatch(getItems())
+	onLoad: () => dispatch(getItems()),
+	quantityItem: (item, quantity) => dispatch(quantityItem(item, quantity)),
+	deleteItem: (item) => dispatch(delete_item(item))
 });
 const mapStateToProps = (state) => ({
 	cartItems: state.cartReducer

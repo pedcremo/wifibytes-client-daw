@@ -47,7 +47,7 @@ class MisLineas extends React.Component {
 		const { loading, lineas, lineasCount } = this.props;
 		const { selected } = this.state;
 		if (loading || !lineas) return <img className="loading" src="/styles/image/loading.svg" />;
-		console.log(lineas[0]);
+		console.log('LINEAS', lineas.length);
 		return (
 			<main className="MisLineas">
 				<h1>Mis Lineas</h1>
@@ -72,6 +72,7 @@ class MisLineas extends React.Component {
 }
 
 const Tarifa = (props) => {
+	if (!props.linea) return null;
 	return (
 		<div className="tarifaselected">
 			<h1>{props.linea.codtarifa.nombretarifa}</h1>
@@ -89,9 +90,10 @@ const Tarifa = (props) => {
 };
 
 const Linea = (props) => {
+	if (!props.linea) return <h1>No tienes lineas</h1>;
 	return (
 		<div className="lineaselected">
-			<span>Tu Numero : {props.linea.mobil}</span>
+			<span>Tu Numero : {props.linea.mobil ? props.linea.mobil : ''}</span>
 			<span>
 				Itinerancia :
 				<span>
