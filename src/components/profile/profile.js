@@ -1,14 +1,14 @@
 /** @module ComponentsApp */
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import IsAuth from '../isAuth';
-import { Utils } from '../../utils';
-import { Redirect } from 'react-router-dom';
+import {Utils} from '../../utils';
+import {Redirect} from 'react-router-dom';
 import InicioProfile from './inicioProfile';
 import Settings from './settings';
 import MisPedidos from './misPedidos';
 
-import { GET_PROFILE, GET_PROVINCES } from '../../constants/actionTypes';
+import {GET_PROFILE, GET_PROVINCES} from '../../constants/actionTypes';
 
 import MisLineas from './misLineas';
 
@@ -91,10 +91,8 @@ class Profile extends React.Component {
 	 */
 	render() {
 		const { profile, loading, error, isAuth } = this.props;
-		console.log(this.props)
 		if ((loading && !profile) || !isAuth) return <img className="loading" src="/styles/image/loading.svg" />;
 		if (!loading && error) return <Redirect to={'/'} />;
-		// return <h1>asd</h1>;
 		return (
 			<main className="profile">
 				<section>
@@ -115,7 +113,7 @@ class Profile extends React.Component {
 							<a onClick={(ev) => this.changeView('view', <MisLineas />, ev)}>MIS LÍNEAS</a>
 						</li>
 						<li>
-								<a onClick={(ev) => this.changeView(<Settings profile={profile} provinces={this.props.provinces} />, ev)}>AJUSTES DE CUENTAS</a>
+								<a onClick={(ev) => this.changeView('view', <Settings profile={profile} provinces={this.props.provinces} />, ev)}>AJUSTES DE CUENTAS</a>
 						</li>
 						<li>
 							<a onClick={(ev) => this.changeView('view', <div>MIS FACTURAS</div>, ev)}>MIS FACTURAS</a>
