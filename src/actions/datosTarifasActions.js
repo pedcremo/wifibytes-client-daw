@@ -1,10 +1,15 @@
-import {Utils} from '../utils';
+import {Settings} from '../settings';
+import fetch from 'cross-fetch';
 
+/**
+ * @desc getDatosTarifas function
+ * @return {Array}
+ */
 export function getDatosTarifas() {
-  console.warn('getDatosTarifas');
   return (dispatch) => {
     dispatch(getDatosTarifaBegin());
-    return Utils.get('/tarifa/?destacado=true')
+    return fetch(`${Settings.baseURL}/tarifa/?destacado=true`)
+        .then((response) => response.json())
         .then(function(response) {
           dispatch(getDatosTarifaSuccess(response));
           return response;

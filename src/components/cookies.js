@@ -31,14 +31,17 @@ class Cookies extends React.Component {
       let cookiesTexts;
       if (Object.keys(datosEmpresa).length > 0) {
         cookiesTexts = datosEmpresa.textos.filter((itemText) => {
-          return itemText.key.match(/cookies/i) && itemText.lang == Utils.getUserLang();
+          return itemText.key.match(/cookies/i) &&
+          itemText.lang == Utils.getUserLang();
         }).map((item) => {
           return item.content;
         });
       }
 
       return (
-        <div className="p-5" dangerouslySetInnerHTML={{__html: cookiesTexts}}></div>
+        <div className="p-5"
+          dangerouslySetInnerHTML={{__html: cookiesTexts}}>
+        </div>
       );
     }
   }

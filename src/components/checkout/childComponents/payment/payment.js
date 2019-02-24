@@ -23,13 +23,20 @@ import CheckIfThereIsAtLeastOneItem
 
 const mapStateToProps = (state) => ({...state.payment, ...state.cartReducer});
 
-
+/**
+ * Payment main component, this is the father of all payment components
+ */
 class Payment extends React.Component {
+  /**
+   * The constructor here we have all onchange that call to the actions
+   * and we put them in "this"
+   */
   constructor() {
     super();
     /**
-     * Here we have all dispatch, the dispatch are used to update in reducer the data
-     * that we sent to them
+     * Here we have all dispatch, the dispatch are used to update
+     * in reducer the data that we sent to them
+     * @return {void}
      */
     this.changePaymentMethod = () => (ev) => {
       ev.preventDefault();
@@ -55,36 +62,50 @@ class Payment extends React.Component {
     };
   }
   /**
-   * Is valid is a function that use all validations to verify that all component is valid
+   * Is valid is a function that use all validations to verify that
+   * all component is valid
+   * @return {booldean}
    */
   isValid() {
-    return Validations.cvvIsValid(this.props.cvv) && Validations.cardOwnerIsValid(this.props.cardOwner) && Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear) && Validations.cardNumberIsValid(this.props.cardNumber);
+    return Validations.cvvIsValid(this.props.cvv) &&
+    Validations.cardOwnerIsValid(this.props.cardOwner) &&
+    Validations.expirationDateIsValid(this.props.expirationMonth,
+        this.props.expirationYear) &&
+        Validations.cardNumberIsValid(this.props.cardNumber);
   }
 
   /**
-   * In componentDidMount we get all payment types from server and save it in the reducer
+   * In componentDidMount we get all payment types from server and
+   * save it in the reducer
    */
   componentDidMount() {
     this.props.dispatch(getPaymentTypes());
   }
 
-
+  /**
+   * When the component is updated it check out if it must to make valid the
+   * component depending if we don't need credit card or if it is valid
+   */
   componentDidUpdate() {
-    this.props.paymentMethod !== 1 || this.isValid() || !this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ? this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
-    this.props.paymentMethod === 1 ?
-      this.props.dispatch(updateData('payment', {
-        cardOwner: this.props.cardOwner,
-        cardNumber: this.props.cardNumber, expirationMonth: this.props.expirationMonth,
-        expirationYear: this.props.expirationYear, cvv: this.props.cvv,
-      })) :
-      this.props.dispatch(updateData('payment', {codpago: this.props.paymentMethod}));
+    this.props.paymentMethod !== 1 || this.isValid() ||
+    !this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
+    this.props.dispatch(setCompleted()) : this.props.dispatch(setUncompleted());
+    this.props.paymentMethod === 1 ? this.props.dispatch(updateData('payment', {
+      cardOwner: this.props.cardOwner, cardNumber: this.props.cardNumber,
+      expirationMonth: this.props.expirationMonth,
+      expirationYear: this.props.expirationYear, cvv: this.props.cvv,
+    })) :
+      this.props.dispatch(updateData('payment',
+          {codpago: this.props.paymentMethod}));
   }
 
   /**
    *
-   * @param {*} codPago
-   * In paymentForm we pass him a @param codPago  and return the component choosed by user,
+   * @param {number} codPago
+   * In paymentForm we pass him a @param codPago
+   * and return the component choosed by user,
    * by default in reducer we put MastercardVisaAmericanExpressForm
+   * @return {JSX} that is a form
    */
   paymentForm(codPago = 1) {
     switch (codPago) {
@@ -131,17 +152,23 @@ class Payment extends React.Component {
            * Validations, to validate that data is the right
            */
           cardOwnerIsValid={Validations.cardOwnerIsValid(this.props.cardOwner)}
-          cardNumberIsValid={Validations.cardNumberIsValid(this.props.cardNumber)}
-          expirationDateIsValid={Validations.expirationDateIsValid(this.props.expirationMonth, this.props.expirationYear)}
+          cardNumberIsValid={Validations.
+              cardNumberIsValid(this.props.cardNumber)}
+          expirationDateIsValid=
+            {Validations.expirationDateIsValid(this.props.expirationMonth,
+                this.props.expirationYear)}
           cvvIsValid={Validations.cvvIsValid(this.props.cvv)}
         />;
     }
   }
 
   /**
-   * showPaymentOptionsRadioButton is a function that returns the payment options component,
-   * we pass to him all payment methots from server, current payment method and the methot to
+   * showPaymentOptionsRadioButton is a function
+   * that returns the payment options component,
+   * we pass to him all payment methots from server,
+   * current payment method and the methot to
    * update it
+   * @return {JSX} that is a component with buttons
    */
   showPaymentOptionsRadioButton() {
     return <PaymentOptionsRadioButton
@@ -149,7 +176,11 @@ class Payment extends React.Component {
       paymentOptions={this.props.paymentMethods}
       paymentMethod={this.props.paymentMethod} />;
   }
-
+  /**
+   * @return {JSX | null} if there are products
+   * it returns the different payment options
+   * and if there are not it shows nothing
+   */
   showPaymentOptions() {
     return this.getCartItemsAndIfThereIsAtLeastOneProduct()[1] ?
       <div className="payment-components">
@@ -157,16 +188,26 @@ class Payment extends React.Component {
         {this.paymentForm(this.props.paymentMethod)}
       </div> : null;
   }
-  /** Gets the cartItems and checks if there is at least one product and returns an array with
+  /** Gets the cartItems and checks if there is
+   * at least one product and returns an array with
    * that information
+   * @return {Array} that contains
+   * cart items and if there are
+   * any products
    */
   getCartItemsAndIfThereIsAtLeastOneProduct() {
     const cartItems = this.props.items;
-    let thereIsAtLeastOneProduct = Agent.objectsToArray(cartItems, CheckIfThereIsAtLeastOneItem);
-    thereIsAtLeastOneProduct = thereIsAtLeastOneProduct.filter((thing) => thing === 'productos');
+    let thereIsAtLeastOneProduct =
+    Agent.objectsToArray(cartItems, CheckIfThereIsAtLeastOneItem);
+    thereIsAtLeastOneProduct =
+    thereIsAtLeastOneProduct.filter((thing) => thing === 'productos');
     return [cartItems, thereIsAtLeastOneProduct.length > 0];
   }
 
+  /**
+   * render method that
+   * @return {JSX} payment component
+   */
   render() {
     return (
       <div className="payment-container">
@@ -175,7 +216,8 @@ class Payment extends React.Component {
           {<Summary
             translate={this.context}
           />}
-          {<Cart cartItems={this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
+          {<Cart cartItems=
+            {this.getCartItemsAndIfThereIsAtLeastOneProduct()[0]} />}
         </div>
       </div>
     );
