@@ -2,12 +2,12 @@ import {
   AUTH_SET,
   NOT_AUTH,
   LOGOUT,
-  GET_PROFILE
-} from "../constants/actionTypes";
+  GET_PROFILE,
+} from '../constants/actionTypes';
 
 const initialState = {
   isAuth: false,
-  user: null
+  user: null,
 };
 
 export default function isAuth(state = initialState, action) {
@@ -16,24 +16,24 @@ export default function isAuth(state = initialState, action) {
       return {
         ...state,
         isAuth: true,
-        user: action.user
+        user: action.user,
       };
     case NOT_AUTH:
       return {
         ...state,
         isAuth: false,
-        user: undefined
+        user: undefined,
       };
     case LOGOUT:
       return {
         ...state,
         isAuth: false,
-        user: undefined
+        user: undefined,
       };
     case GET_PROFILE:
       return {
         ...state,
-        profile: action.payload
+        profile: action.payload,
       };
     default:
       return state;

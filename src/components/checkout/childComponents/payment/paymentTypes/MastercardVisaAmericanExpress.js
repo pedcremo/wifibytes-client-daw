@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * Recive all methods that we use in this component an return the form form
+ * that the user must to fill
+ * @param {*} props
+ * @return {jsx}
+ */
 export default function MastercardVisaAmericanExpressForm(props) {
   const cardOwner = props.cardOwner;
   const cardNumber = props.cardNumber;
@@ -9,13 +15,16 @@ export default function MastercardVisaAmericanExpressForm(props) {
 
   /**
    * Generate the expiration year to the credit card
+   * @return {array}
    */
   function createExpirationYears() {
     const options = [];
     const today = new Date();
     for (let i = 0; i <= 20; i++) {
       options.push(
-          <option key={i} value={today.getFullYear() + i}>{today.getFullYear() + i}</option>
+          <option key={i} value={today.getFullYear() + i}>
+            {today.getFullYear() + i}
+          </option>
       );
     }
     return options;
@@ -24,12 +33,14 @@ export default function MastercardVisaAmericanExpressForm(props) {
   /**
    * Here we have the form
    *
-   * hidden={props.cardOwnerIsValid} we used this method to show an error if the data is not valid
+   * hidden={props.cardOwnerIsValid} we used this method to show an error
+   * if the data is not valid
    *
-   * onChange={props.onChangeCardOwner()} it is used to update the reducer with new data
+   * onChange={props.onChangeCardOwner()} it is used to update the reducer
+   * with new data
    *
-   * value={cardOwner} when we render again, it will put the value, if we don't do that
-   * the data will not be updated in the view
+   * value={cardOwner} when we render again, it will put the value, if we
+   * don't do that the data will not be updated in the view
    */
   return (
     <fieldset>

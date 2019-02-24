@@ -1,19 +1,22 @@
-import React from 'react';
 import PersonalDataForm from '../../src/components/checkout/childComponents/personalData/personalDataForm.js';
 import PersonalReducer from '../../src/reducers/personalDataFormReducer';
+import * as actionTypes from '../../src/actions/personalDataFormActions';
+import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
-import * as actionTypes from '../../src/actions/personalDataFormActions';
-import Provider from 'react-redux';
+import {Provider} from 'react-redux';
 import {shallow, configure} from 'enzyme';
 
 /* import { connect } from 'react-redux';
 import { shallowWithState } from 'enzyme-redux';
  */
+
 configure({
   adapter: new Adapter(),
 });
+
 const mockStore = configureStore();
+
 const initialState = {
   datosPersonales: {
     apellido: 'Goya',
@@ -52,6 +55,7 @@ const initialState = {
   validDatosProductos: false,
   validForms: false,
 };
+
 
 const store = mockStore(initialState);
 const component = shallow(<Provider store={store}><PersonalDataForm/></Provider>);
