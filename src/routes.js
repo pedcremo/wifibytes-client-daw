@@ -34,8 +34,7 @@ const AppRoutes = (props) => (
 		<Route exact path="/register" render={() => <SingIn type="register" />} />
 		<Route exact path="/checkout" render={() => <Checkout />} />
 		<Route exact path="/cart" render={() => <Cart />} />
-		<Route exact path="/profile" render={() => <Profile />} />
-		<Route exact path="/profile/:view" render={() => <Profile key={props.match.params.view || 'empty'} />} />
+		<Route exact path="/profile/:key?" render={(props) => <Profile keyParam={props.match.params.key} />} />
 	</Switch>
 );
 

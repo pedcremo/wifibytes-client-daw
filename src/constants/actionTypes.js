@@ -22,3 +22,4 @@ export const NOT_AUTH = 'NOT_AUTH';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_INICIO = 'GET_INICIO';
 export const GET_PROVINCES = 'GET_PROVINCES';
+export const GET_LINEAS = 'GET_LINEAS';

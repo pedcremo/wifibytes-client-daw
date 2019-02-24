@@ -1,4 +1,5 @@
 /** @module ComponentsApp */
+import MisPedidos from './misPedidos';
 import React from 'react';
 import { connect } from 'react-redux';
 import { GET_INICIO } from '../../constants/actionTypes';
@@ -10,7 +11,7 @@ import { Utils } from '../../utils';
  */
 
 const mapDispatchToProps = (dispatch) => ({
-	onLoad: (id) => {
+	onLoadPedidos: (id) => {
 		dispatch({
 			type: GET_INICIO,
 			payload: Utils.get(`/pedidoscli/?codcliente=${id}`)
@@ -24,10 +25,10 @@ const mapStateToProps = (state) => ({
 class InicioProfile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.props.onLoad(this.props.user.id_consumer);
+		this.props.onLoadPedidos(this.props.user.id_consumer);
 	}
 	render() {
-		const { loading, pedidoFactura } = this.props;
+		const { loading, pedidoFactura, changeView } = this.props;
 		if (loading || !pedidoFactura) return <h1>Loading...</h1>;
 		return (
 			<main className="inicioProfile">
@@ -53,15 +54,25 @@ class InicioProfile extends React.Component {
 								<label>ESTADO:</label>
 								<p>{pedidoFactura[0].estadoText}</p>
 							</span>
-							<a href="#/profile/mispedidos" className="btn btn-primary">
+							<a
+								href="#/profile/mispedidos"
+								className="btn btn-primary"
+								onClick={(ev) => changeView('view', <MisPedidos />, ev)}
+							>
 								VER TODOS LOS PRODUCTOS
 							</a>
 						</div>
 					) : (
-						<p>No tienes ningún pedido HACER UN PEDIDO</p>
+						<div>
+							<h1>No tienes ningún pedido</h1>
+							<button className="btn btn-primary">HACER UN PEDIDO</button>
+						</div>
 					)}
 				</div>
-				<div>No tienes facturas HACER UNA FACTURA</div>
+				<div>
+					<h1>No tienes facturas</h1>
+					<button className="btn btn-primary">HACER UNA FACTURA</button>
+				</div>
 			</main>
 		);
 	}
