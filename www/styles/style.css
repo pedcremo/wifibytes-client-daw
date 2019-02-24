@@ -333,10 +333,10 @@ nav {
 }
 
 .login-acces > form {
-	padding: 0 50px;
+	padding: 0 30px;
 	display: grid;
 	width: 500px;
-	height: 600px;
+	height: 450px;
 	grid-template-columns: 1fr;
 	background-color: rgba(255, 255, 255, 0.9);
 }
@@ -347,6 +347,7 @@ nav {
 	justify-content: center;
 	align-content: center;
 	grid-gap: 10%;
+	height: 80%;
 	border-bottom: solid 1px black;
 }
 .login-acces > form > p {
@@ -368,7 +369,7 @@ nav {
 }
 
 .login-acces > form > span > label.down {
-	transform: translate(30px, 66px);
+	transform: translate(30px, 60px);
 }
 
 .login-acces > form > span > label {
@@ -379,11 +380,11 @@ nav {
 .login-acces > form > span > input {
 	letter-spacing: 0.1rem;
 	width: 350px;
+	text-align: center;
 	grid-area: in;
 	background-color: white !important;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
-
 .loginInput {
 	letter-spacing: 0.1rem;
 	width: 240px;
@@ -855,4 +856,42 @@ body.dimmed.dimmable {
 
 .pedidos tr {
 	border-bottom: 1px solid gray;
+}
+
+.MisLineas {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.MisLineas > h1 {
+	grid-column: 1 /s2;
+}
+.MisLineas .elegirLinea {
+}
+.lineaselected {
+	display: grid;
+}
+.lineaselected span {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.lineaselected button {
+	background: #055ecb !important;
+	color: #fff;
+	float: right;
+	padding: 5px;
+	width: 100px;
+}
+
+.activarlinea {
+	background: #fff;
+	border: 1px solid #f5a11d;
+	padding: 10px;
+	width: 200px;
+	cursor: pointer;
+	margin: auto;
+}
+
+.activarlinea:hover {
+	transform: scale(1.1);
 }
