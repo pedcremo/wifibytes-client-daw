@@ -136,7 +136,7 @@ export default function personalDataFormReducer(state = initialState, action) {
 							key: `${i}_${k}_${j}`,
 							idTarifa: productosEnCarritoActual[i]['id'],
 							idSubtarifa: productosEnCarritoActual[i]['subtarifas'][j]['id'],
-							tipo: 'alta',
+							tipo: 'portabilidad',
 							tipoTlf: typeOfService(productosEnCarritoActual[i]['subtarifas'][j]['id']),
 							numTlf: '',
 							sim: '',
@@ -176,8 +176,12 @@ export default function personalDataFormReducer(state = initialState, action) {
                     datosProductos: newDatosProductos,
                 };
             }else{
+                let newvalidDatosProductos_ = validDatosServicios(newDatosProductos);
+                let formsValidados_ = (newvalidDatosProductos_ && state.validDatosPersonales) ? true : false;
                 return {
                     ...state,
+                    validDatosProductos: newvalidDatosProductos_,
+                    validForms: formsValidados_,
                     datosProductos: newDatosProductos,
                 };
             }
