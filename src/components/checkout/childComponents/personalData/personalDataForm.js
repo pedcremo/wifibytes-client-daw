@@ -124,9 +124,11 @@ class PersonalForm extends React.Component {
           { /** 
             PERSONAL DATA COLUMN
           */}
-          <div className="row">
+          <h2 className="text-center" style={{marginTop:"50px"}}>Datos comprador</h2>
+
+          <div className="row" style={{marginTop:"50px"}}>
             <div className="col-md-6 col-lg-6">
-              <h3>Datos personales</h3>
+              <h3 className="text-center">Datos personales</h3>
 
               <div className="form-group">
                 <label 
@@ -230,7 +232,7 @@ class PersonalForm extends React.Component {
             </div>
 
             <div className="col-md-6 col-lg-6">
-              <h3>Direccion</h3>            
+              <h3 className="text-center">Direccion</h3>            
 
               <div className="form-group">
                 <label 

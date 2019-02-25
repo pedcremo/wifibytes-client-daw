@@ -1,68 +1,64 @@
 import {
-    INITIALIZE_DATOS_PERSONALES,
-    UPDATE_DATOS_PERSONALES,
-    INIT_DATA_SERVICES,
-    UPDATE_DATOS_SERVICES,
+	INITIALIZE_DATOS_PERSONALES,
+	UPDATE_DATOS_PERSONALES,
+	INIT_DATA_SERVICES,
+	UPDATE_DATOS_SERVICES
 } from '../actions/personalDataFormActions';
-import {
-    validator
-} from '../components/checkout/childComponents/personalData/validation';
+import { validator } from '../components/checkout/childComponents/personalData/validation';
 
 const DATOS_PORTABILIDAD_MOVIL = {
-    numTlf: '',
-    sim: '',
-    compania: '',
-    tipo: 'portabilidad'
+	numTlf: '',
+	sim: '',
+	compania: '',
+	tipo: 'portabilidad'
 };
 const DATOS_PORTABILIDAD_FIJO = {
-    numTlf: '',
-    compania: '',
-    tipo: 'portabilidad'
+	numTlf: '',
+	compania: '',
+	tipo: 'portabilidad'
 };
-const TIPOS_TARIFAS = [1, 2];
+const TIPOS_TARIFAS = [ 1, 2 ];
 const initialState = {
-    datosPersonales: {
-        apellido: '',
-        //birthday_omv: '',
-        cifnif: '',
-        //codcliente: '',
-        email: '',
-        nombre: '',
-        //telefono: '',
-        tipo_cliente: '',
-        direccion: '',
-        codpostal: '',
-        ciudad: '',
-        cuenta: '',
-        provincia: '',
-        //dniFile: '',
-    },
-    erroresDatosPersonales: {
-        apellido: '',
-        //birthday_omv: '',
-        cifnif: '',
-        //codcliente: '',
-        email: '',
-        nombre: '',
-        //telefono: '',
-        tipo_cliente: '',
-        direccion: '',
-        codpostal: '',
-        ciudad: '',
-        cuenta: '',
-        provincia: '',
-        /* dniFile:"", */
-    },
-    validDatosPersonales: false,
+	datosPersonales: {
+		apellido: '',
+		//birthday_omv: '',
+		cifnif: '',
+		//codcliente: '',
+		email: '',
+		nombre: '',
+		//telefono: '',
+		tipo_cliente: '',
+		direccion: '',
+		codpostal: '',
+		ciudad: '',
+		cuenta: '',
+		provincia: ''
+		//dniFile: '',
+	},
+	erroresDatosPersonales: {
+		apellido: '',
+		//birthday_omv: '',
+		cifnif: '',
+		//codcliente: '',
+		email: '',
+		nombre: '',
+		//telefono: '',
+		tipo_cliente: '',
+		direccion: '',
+		codpostal: '',
+		ciudad: '',
+		cuenta: '',
+		provincia: ''
+		/* dniFile:"", */
+	},
+	validDatosPersonales: false,
 
-    datosProductos: [],
-    validDatosProductos: false,
+	datosProductos: [],
+	validDatosProductos: false,
 
-    validForms: false,
-    loaded: false,
+	validForms: false,
+	loaded: false
 };
-
-
 
 export default function personalDataFormReducer(state = initialState, action) {
     switch (action.type) {
@@ -72,12 +68,11 @@ export default function personalDataFormReducer(state = initialState, action) {
              * Entra los datos del input que va a cambiar a travez del action.
              * Hacemos una copia del state datosProductos para poder trabajar con el y seguir teniendo el state inmutable.
              */
-            let newObject = state.datosProductos.map(item => {
-                if (item.key === action.itemKey)
-                    item[action.field] = action.data
-                return item
-            })
-            /**
+			let newObject = state.datosProductos.map((item) => {
+				if (item.key === action.itemKey) item[action.field] = action.data;
+				return item;
+			});
+			/**
              * Validamos el objeto datosProductos del state y comprobamos si el state DatosPersonales tambien esta validado
              */
             let newvalidDatosProductos = validDatosServicios(newObject);
@@ -91,6 +86,12 @@ export default function personalDataFormReducer(state = initialState, action) {
             };
 
 
+			return {
+				...state,
+				datosProductos: newObject,
+				validDatosProductos: newvalidDatosProductos,
+				validForms: formsValidados
+			};
 
         case INIT_DATA_SERVICES:
             //console.warn('REDUCER INIT_DATA_SERVICES', action.data);
@@ -101,45 +102,52 @@ export default function personalDataFormReducer(state = initialState, action) {
              * Este objeto filtra todos los productos que hay en el carrito y que necesiten un formulario.
              * Busca que el id de la subtarifa este contenido en el array TIPOS_TARIFAS. Esto nos da la ventaja de que en el futuro basta agregar un codigo nuevo en el array para que lo incluya en el filtrado.
              */
-            const productosEnCarritoActual = action.data.length === 0 ? [] : action.data.filter((item) => {
-                if (item.subtarifas) {
-                    item.subtarifas = item.subtarifas.filter((el) => {
-                        if (TIPOS_TARIFAS.includes(el.id)) {
-                            return el;
-                        }
-                    });
-                    return item;
-                }
-            });
-            /**
+			const productosEnCarritoActual =
+				action.data.length === 0
+					? []
+					: action.data.filter((item) => {
+							if (item.subtarifas) {
+								item.subtarifas = item.subtarifas.filter((el) => {
+									if (TIPOS_TARIFAS.includes(el.id)) {
+										return el;
+									}
+								});
+								return item;
+							}
+						});
+			/**
              * Comprueba si redux tiene datos guardados de los formularios
              */
-            if ((datos && typeof (datos) === 'object' && datos != null && datos.length > 0) || state.datosProductos.length > 0) {
-                datosProductosAlmacenados = state.datosProductos.length > 0 ? state.datosProductos : datos.datosProductos;
-            }
+			if (
+				(datos && typeof datos === 'object' && datos != null && datos.length > 0) ||
+				state.datosProductos.length > 0
+			) {
+				datosProductosAlmacenados =
+					state.datosProductos.length > 0 ? state.datosProductos : datos.datosProductos;
+			}
 
             /**
              * Creamos on array de objectos a partir del carrito actual, para luego poder saber si hay mas o menos productos que en el estado actual.
              */
-            for (let i = 0; i < productosEnCarritoActual.length; i++) {
-                for (let k = 0; k < productosEnCarritoActual[i]['quantity']; k++) {
-                    for (let j = 0; j < productosEnCarritoActual[i]['subtarifas'].length; j++) {
-                        newDatosProductos.push({
-                            key: `${i}_${k}_${j}`,
-                            idTarifa: productosEnCarritoActual[i]['id'],
-                            idSubtarifa: productosEnCarritoActual[i]['subtarifas'][j]['id'],
-                            tipo: 'portabilidad',
-                            tipoTlf: typeOfService(productosEnCarritoActual[i]['subtarifas'][j]['id']),
-                            numTlf: '',
-                            sim: '',
-                            compania: '',
-                            description: productosEnCarritoActual[i]['description'],
-                        });
-                    }
-                }
-            }
+			for (let i = 0; i < productosEnCarritoActual.length; i++) {
+				for (let k = 0; k < productosEnCarritoActual[i]['quantity']; k++) {
+					for (let j = 0; j < productosEnCarritoActual[i]['subtarifas'].length; j++) {
+						newDatosProductos.push({
+							key: `${i}_${k}_${j}`,
+							idTarifa: productosEnCarritoActual[i]['id'],
+							idSubtarifa: productosEnCarritoActual[i]['subtarifas'][j]['id'],
+							tipo: 'alta',
+							tipoTlf: typeOfService(productosEnCarritoActual[i]['subtarifas'][j]['id']),
+							numTlf: '',
+							sim: '',
+							compania: '',
+							description: productosEnCarritoActual[i]['description']
+						});
+					}
+				}
+			}
 
-            /**
+			/**
              * Compara el objeto de servicios guardado en redux y el que viene del carrito, si hubiese diferencia, se crea un array nuevo y lo igualamos al estado de redux
              */
             if (datosProductosAlmacenados.length != newDatosProductos.length) {
@@ -183,9 +191,9 @@ export default function personalDataFormReducer(state = initialState, action) {
             const copiaDatosPersonales = state['datosPersonales'];
             const copiaDatosPersonalesErr = state['erroresDatosPersonales'];
 
-            copiaDatosPersonales[action.field] = action.data;
-            copiaDatosPersonalesErr[action.field] = action.error;
-            /**
+			copiaDatosPersonales[action.field] = action.data;
+			copiaDatosPersonalesErr[action.field] = action.error;
+			/**
              * Verificamos si el formulario ya es valido y de ser asi le cambiaremos a true validDatosPersonales reux state
              */
             //console.log("UPDATE_DATOS_PERSONALES2", copiaDatosPersonales, validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr))
@@ -224,12 +232,11 @@ export default function personalDataFormReducer(state = initialState, action) {
             /**
              * Valida si el form esta completo correctamente y cambia el objeto de errores de datos personales del state REDUX
              */
-            errdatosPersonalesObject = validDatosPersonalesFun(datosPersonalesObject, state.erroresDatosPersonales);
-            erroresDatosPersonales = errdatosPersonalesObject.err;
-            validDatosPersonales = errdatosPersonalesObject.valid;
+			errdatosPersonalesObject = validDatosPersonalesFun(datosPersonalesObject, state.erroresDatosPersonales);
+			erroresDatosPersonales = errdatosPersonalesObject.err;
+			validDatosPersonales = errdatosPersonalesObject.valid;
 
-            
-            /**
+			/**
              * Cambia el valora algunos parametros de datosPersonalesObject para luego igualarlo al estado principal
              */
             for (const key in state.datosPersonales) {
@@ -251,11 +258,10 @@ export default function personalDataFormReducer(state = initialState, action) {
                 datosPersonales: newObjDatosPersonales,
             };
 
-
-        default:
-            console.log('REDUCER default', action.data);
-            return state;
-    }
+		default:
+			// console.log('REDUCER default', action.data);
+			return state;
+	}
 }
 
 /**
@@ -264,52 +270,50 @@ export default function personalDataFormReducer(state = initialState, action) {
  * @param {} objectErr Trae consigo el objeto de redux a rellenar
  */
 function validDatosPersonalesFun(object, objectErr) {
-    // console.log("validDatosPersonalesFun",object)
-    let validador = true;
-    let resValidation;
-    /**
+	// console.log("validDatosPersonalesFun",object)
+	let validador = true;
+	let resValidation;
+	/**
      * Realiza un bucle para rellenar el objeto de errores y para verificar si el form esta lleno correctamente
      */
-    for (const key in object) {
-        if (objectErr.hasOwnProperty(key)) {
-            resValidation = validator(object[key], key);
-            objectErr[key] = resValidation;
-            if (object[key] == null || resValidation != null) {
-                validador = false;
-            }
-            
-        }
-    }
-    /**
+	for (const key in object) {
+		if (objectErr.hasOwnProperty(key)) {
+			resValidation = validator(object[key], key);
+			objectErr[key] = resValidation;
+			if (object[key] == null || resValidation != null) {
+				validador = false;
+			}
+		}
+	}
+	/**
      * Retorna el objeto de errores a guardar en redux
      * Devuelve el resultado de si el formulario ya esta relleno correctamente o no true/false
      */
-    return {
-        err: objectErr,
-        valid: validador,
-    };
+	return {
+		err: objectErr,
+		valid: validador
+	};
 }
 
-
 function typeOfService(idService) {
-    switch (idService) {
-        case 1:
-            return 'movil';
-            break;
+	switch (idService) {
+		case 1:
+			return 'movil';
+			break;
 
-        case 2:
-            return 'fijo';
-            break;
+		case 2:
+			return 'fijo';
+			break;
 
-        default:
-            break;
-    }
+		default:
+			break;
+	}
 }
 
 function validDatosServicios(currentState) {
-    // console.log("validDatosPersonalesFun",object)
-    let resValidation;
-    /**
+	// console.log("validDatosPersonalesFun",object)
+	let resValidation;
+	/**
      * Realiza un bucle para buscar errores en el form
      */
     const datosValidados = currentState.map((object) => {

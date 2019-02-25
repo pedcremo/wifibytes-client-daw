@@ -3,15 +3,11 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {Button} from 'semantic-ui-react';
-import {
-  getItems,
-  initDataServices,
-  updateFieldDatosProd,
-} from '../../../../actions/personalDataFormActions';
-import {validator} from './validation';
+import { Button } from 'semantic-ui-react';
+import { getItems, initDataServices, updateFieldDatosProd } from '../../../../actions/personalDataFormActions';
+import { validator } from './validation';
 
 /**
  * 
@@ -20,14 +16,14 @@ import {validator} from './validation';
  * @param {updateFieldDatosProd} {data, field, err, itemKey} Con esta funcion hacemos actualizaciones de un input concreto
  */
 const mapDispatchToProps = (dispatch) => ({
-  getItems: () => dispatch(getItems()),
-  initDataServices: (data) => dispatch(initDataServices(data)),
-  updateFieldDatosProd: (data, field, err, itemKey) => dispatch(updateFieldDatosProd(data, field, err, itemKey)),
+	getItems: () => dispatch(getItems()),
+	initDataServices: (data) => dispatch(initDataServices(data)),
+	updateFieldDatosProd: (data, field, err, itemKey) => dispatch(updateFieldDatosProd(data, field, err, itemKey))
 });
 
 const mapStateToProps = (state) => ({
-  ...state.cartReducer,
-  ...state.personalDataForm,
+	...state.cartReducer,
+	...state.personalDataForm
 });
 
 /**
@@ -168,4 +164,3 @@ class PortabilidadForm extends React.Component {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PortabilidadForm);
-
