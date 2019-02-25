@@ -65,13 +65,12 @@ const initialState = {
 
 
 export default function personalDataFormReducer(state = initialState, action) {
-    console.log("--------------------------personalDataFormReducer", state.datosPersonales)
     switch (action.type) {
 
         case UPDATE_DATOS_SERVICES:
             /**
              * Entra los datos del input que va a cambiar a travez del action.
-             * Hacemos una copia del state datosProductos y poder trabajar con el y seguir teniendo el state inmutable.
+             * Hacemos una copia del state datosProductos para poder trabajar con el y seguir teniendo el state inmutable.
              */
             let newObject = state.datosProductos.map(item => {
                 if (item.key === action.itemKey)
@@ -83,7 +82,7 @@ export default function personalDataFormReducer(state = initialState, action) {
              */
             let newvalidDatosProductos = validDatosServicios(newObject);
             let formsValidados = (newvalidDatosProductos && state.validDatosPersonales) ? true : false;
-
+            
             return {
                 ...state,
                 datosProductos: newObject,
@@ -120,7 +119,7 @@ export default function personalDataFormReducer(state = initialState, action) {
             }
 
             /**
-             * Creamos on array de objectos a partir del carrito actual, para luego poder saber si hay mas o menos productos en el el.
+             * Creamos on array de objectos a partir del carrito actual, para luego poder saber si hay mas o menos productos que en el estado actual.
              */
             for (let i = 0; i < productosEnCarritoActual.length; i++) {
                 for (let k = 0; k < productosEnCarritoActual[i]['quantity']; k++) {
@@ -157,34 +156,38 @@ export default function personalDataFormReducer(state = initialState, action) {
             } else {
                 newDatosProductos = datosProductosAlmacenados;
             }
+            /**
+             * Comprobamos el estado de  DatosProductos ya que si no tiene nada su validacion debe estar como correcta
+             * */
+            let validadorFormServices = newDatosProductos.length==0?true:false;
+            let formsValidadosC = (validadorFormServices && state.validDatosPersonales) ? true : false;
 
             return {
                 ...state,
                 datosProductos: newDatosProductos,
+                validDatosProductos: validadorFormServices,
+                validForms: formsValidadosC
             };
 
         case UPDATE_DATOS_PERSONALES:
-            console.warn('UPDATE_DATOS_PERSONALES', action.field, action.data, action.error);
+           // console.warn('UPDATE_DATOS_PERSONALES', action.field, action.data, action.error);
             /**
              * Actualiza los campos dentro del datosPersonales y erroresDatosPersonales en el storage de redux
              */
             const copiaDatosPersonales = state['datosPersonales'];
             const copiaDatosPersonalesErr = state['erroresDatosPersonales'];
-            // state["datosPersonales"][action.field] = action.data;
-            // state["erroresDatosPersonales"][action.field] = action.error;
 
             copiaDatosPersonales[action.field] = action.data;
             copiaDatosPersonalesErr[action.field] = action.error;
             /**
              * Verificamos si el formulario ya es valido y de ser asi le cambiaremos a true validDatosPersonales reux state
              */
-            console.log("yessssssss", copiaDatosPersonales, validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr))
+            //console.log("UPDATE_DATOS_PERSONALES2", copiaDatosPersonales, validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr))
             const errdatosPersonalesOb = validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr);
             /**
              * Hacemos una comprobacion de los estados para saber si tenemos que cambiar el estado principal validForms.
              */
             let formsValidados2 = (state.validDatosProductos && errdatosPersonalesOb.valid) ? true : false;
-            console.warn("formsValidados----------", validDatosPersonalesFun(copiaDatosPersonales, copiaDatosPersonalesErr), "----------", formsValidados2)
             return {
                 ...state,
                 validDatosPersonales: errdatosPersonalesOb.valid,
@@ -197,9 +200,8 @@ export default function personalDataFormReducer(state = initialState, action) {
 
         case INITIALIZE_DATOS_PERSONALES:
 
-            // const info = JSON.parse(localStorage.getItem('personalDataInfo'));
             const info = action.data;
-            console.warn('REDUCER ppppppp', info, action.data);
+            //console.warn('REDUCER INITIALIZE_DATOS_PERSONALES', info, action.data);
             const infoInitial = initialState.datosPersonales;
             let datosPersonalesObject;
             let errdatosPersonalesObject;
@@ -236,7 +238,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                 }
             }
             //debugger
-            console.error('REDUCER INITIALIZE_DATOS_PERSONALES', newObjDatosPersonales, datosPersonalesObject);
+            //console.error('REDUCER INITIALIZE_DATOS_PERSONALES', newObjDatosPersonales, datosPersonalesObject);
 
             return {
                 ...state,
@@ -304,7 +306,7 @@ function validDatosServicios(currentState) {
     /**
      * Realiza un bucle para buscar errores en el form
      */
-    const p = currentState.map((object) => {
+    const datosValidados = currentState.map((object) => {
         for (const key in object) {
             if (object.tipo != 'alta') {
                 if (object.tipoTlf=="fijo") 
@@ -318,6 +320,6 @@ function validDatosServicios(currentState) {
             }
         }
     });
-    console.error("p.includes(false) ? false : true", p, "---------",resValidation, "-----", p.includes(false) ? false : true)
-    return p.includes(false) ? false : true;
+    //console.error("p.includes(false) ? false : true", p, "---------",resValidation, "-----", p.includes(false) ? false : true)
+    return datosValidados.includes(false) ? false : true;
 }

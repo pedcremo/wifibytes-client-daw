@@ -13,6 +13,12 @@ import {
 } from '../../../../actions/personalDataFormActions';
 import {validator} from './validation';
 
+/**
+ * 
+ * @param {getItems} dispatch Con esta funcion traemos los items de carrito
+ * @param {initDataServices} data Con esta funcion inicializamos el estado de datosProductos, data es el carrito
+ * @param {updateFieldDatosProd} {data, field, err, itemKey} Con esta funcion hacemos actualizaciones de un input concreto
+ */
 const mapDispatchToProps = (dispatch) => ({
   getItems: () => dispatch(getItems()),
   initDataServices: (data) => dispatch(initDataServices(data)),
@@ -31,14 +37,10 @@ const mapStateToProps = (state) => ({
 class PortabilidadForm extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props);
-    // alert("cts")
   }
 
 
   componentDidMount() {
-    // const {items, initDataServices} = this.props;
     const {getItems} = this.props;
     new Promise((resolve, reject) => resolve(getItems()))
         .then( () => {
@@ -59,7 +61,7 @@ class PortabilidadForm extends React.Component {
     if (datosProductos.length ==0) {
       return '';
     }
-    console.log(datosProductos);
+    
     return (
       <div className="container">
 

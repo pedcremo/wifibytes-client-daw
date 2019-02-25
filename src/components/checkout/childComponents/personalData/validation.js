@@ -14,7 +14,7 @@ export function validator(value, name) {
   /**
      * If a field does not have value go this first conditional
      */
-  console.log("validator..............",value, name)
+  //console.log("validator..............",value, name)
   if (value != null) {
     if (value.length<1) {
       return 'Este campo es requerido';
@@ -25,7 +25,6 @@ export function validator(value, name) {
     }
 
     if (name === 'DNIparticular' && !nif(value)) {
-      alert("entra")
       return 'Este no es un DNI valido';
     }
 
@@ -34,7 +33,7 @@ export function validator(value, name) {
     }
 
     // if (fn_ValidateIBAN(IBAN) && name === "cuenta")
-    if (value.length < 7 && name === 'cuenta') {
+    if (value.length < 24 && name === 'cuenta') {
       return 'Esta cuenta no es valida';
     }
 
@@ -110,10 +109,10 @@ function getnumIBAN(letra) {
 }
 
 function nif(dni) {
-  var numero
-  var letr
-  var letra
-  var expresion_regular_dni
+  let numero
+  let letr
+  let letra
+  let expresion_regular_dni
 
   expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
 
@@ -129,6 +128,6 @@ function nif(dni) {
       return true
     }
   } else {
-    return true
+    return false
   }
 }

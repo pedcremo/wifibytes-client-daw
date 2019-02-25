@@ -199,6 +199,7 @@ class PersonalForm extends React.Component {
                   value={cifnif}
                   onChange={(ev) => updateField(ev.target.value, ev.target.name, validator(ev.target.value, `DNI${TIPO_CLIENTE_VALUE[tipo_cliente]}`))}
                 />
+                {/* <span className="text-seconday">Letra en mayuscula</span> */}
                 <div className={validator(cifnif, 'cifnif')?"invalid-feedback":"valid-feedback"}>
                   {cifnif!=""?(validator(cifnif, `DNI${TIPO_CLIENTE_VALUE[tipo_cliente]}`)):""}
                 </div>
