@@ -67,7 +67,7 @@ class RateBoxSubComponent extends React.Component {
       });
       return (
 
-        <div key={index} className={`card rounded border text-center border-dark text-center zoom-rates  `}/** ${Utils.randomAnimation()} */ style={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
+        <div key={index} className={`card rounded border text-center border-dark text-center zoom-rates`}/** ${Utils.randomAnimation()} */ style={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
           <div className="card-header  bg-dark text-light font-weight-bold">
             <h3>
               <img width="32px" height="32px" src={itemFiltered['logo']}/>&nbsp;{itemFiltered.nombretarifa.toUpperCase()}
@@ -95,7 +95,9 @@ class RateBoxSubComponent extends React.Component {
 
 
     return (
-      <div className="grid-container--fit">
+
+      //<div className="grid-container--fit">
+      <div className="card-deck mt-2 mb-5">
         {highlitedRates}
       </div>
     );

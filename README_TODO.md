@@ -2,6 +2,30 @@ This comments comes from the inspection of the current master branch 19/02/2019
 
 # TO FIX
 
+* Login -> When I click recover password I don't get any notification about the action. I don't know if has arriveed to server none if the server has sent the email. As a user I would demand more awareness of what is happenig
+
+* Profile -> I can't create a new address
+
+* Profile -> Changing password doesn't work too 
+
+* Cart -> total price appears twice times
+
+* Contracts -> When I see contracts close button in modal is misaligned and there's no enough padding in all margins
+
+* Contracts -> Some contract fields are not filled automatically: Provincia, DNI , bank account....
+
+* Contracts -> I can't see how two or more contracts are handled
+
+* Payment -> Confirm payment screen a little bit caotic look and feel . 
+
+* Safari and firefox show ratesboxes sticked together
+
+* Checkout shortcut has disapeared. When I've initiated the checkout I want a direct access in navbar
+
+* Tests fails 
+
+* Some i18n translations are bad and/or incomplete
+
 * I don't want to see commented code not used anymore.
 
 * I want code perfectly indented.
