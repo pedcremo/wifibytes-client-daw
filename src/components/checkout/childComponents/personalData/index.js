@@ -1,12 +1,8 @@
 /** @module ComponentsApp */
 import React from 'react';
-import UserChoice from './userChoice';
 import PersonalDataForm from './personalDataForm';
-import SignIn from '../../../login/signIn';
 import PortabilidadForm from './portabilidadForm';
 import {connect} from 'react-redux';
-
-import {getItems} from '../../../cart/cartActions';
 
 import {EMPTY_CHILD} from '../../../../constants/actionTypes';
 import {
@@ -44,7 +40,7 @@ class Personal extends React.Component {
 
   componentDidUpdate() {
     const {
-      validDatosProductos,
+      validForms,
       setCompleted,
       setUncompleted,
       datosPersonales,
@@ -52,7 +48,7 @@ class Personal extends React.Component {
       updateData,
     } = this.props;
 
-    if (validDatosProductos) {
+    if (validForms) {
       updateData('personalData', {
         datosPersonales,
         datosProductos,
@@ -63,7 +59,6 @@ class Personal extends React.Component {
       this.empty_child('contracts');
     }
   }
-
 
   render() {
     return (

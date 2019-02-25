@@ -340,26 +340,27 @@ nav {
 	grid-gap: 25px;
 }
 
-.login-acces>form {
-	padding: 0 50px;
+.login-acces > form {
+	padding: 0 30px;
 	display: grid;
 	width: 500px;
-	height: 600px;
+	height: 450px;
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr 1fr 20px 0.4fr;
 	background-color: rgba(255, 255, 255, 0.9);
 }
 
-.login-acces>form>span {
+.login-acces > form > span {
 	display: grid;
 	grid-template-areas: "k l " "i in ";
 	justify-content: center;
 	align-content: center;
 	grid-gap: 10%;
+	height: 80%;
 	border-bottom: solid 1px black;
 }
 
-.login-acces>form>p {
+.login-acces > form > p {
 	letter-spacing: 0.1rem;
 	position: relative;
 	top: 15px;
@@ -368,36 +369,36 @@ nav {
 	text-align: center;
 }
 
-.login-acces>form>span>i {
+.login-acces > form > span > i {
 	grid-area: i;
 	letter-spacing: 0.1rem;
 	margin: auto;
 }
 
-.login-acces>form>button {
+.login-acces > form > button {
 	position: relative;
 	letter-spacing: 0.1rem;
 	top: 25px;
 }
 
-.login-acces>form>span>label.down {
-	transform: translate(19px, 72px);
+.login-acces > form > span > label.down {
+	transform: translate(30px, 60px);
 }
 
-.login-acces>form>span>label {
+.login-acces > form > span > label {
 	grid-area: l;
 	transform: translate(0, 0);
 	transition-duration: 0.5s;
 }
 
-.login-acces>form>span>input {
+.login-acces > form > span > input {
 	letter-spacing: 0.1rem;
 	width: 350px;
+	text-align: center;
 	grid-area: in;
 	background-color: white !important;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
-
 .loginInput {
 	letter-spacing: 0.1rem;
 	width: 240px;
@@ -572,6 +573,18 @@ p.login-recuperar:hover {
 
 /* The Close Button */
 
+body.dimmed.dimmable {
+	overflow-y: scroll !important;
+}
+
+.modal {
+	margin: auto;
+	height: 80vh;
+	top: 5vh !important;
+	left: 0;
+	min-height: 200px;
+}
+
 .close {
 	color: rgb(0, 0, 0);
 	float: right;
@@ -582,7 +595,8 @@ p.login-recuperar:hover {
 	margin-top: -10px;
 }
 
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
 	color: rgb(78, 78, 78);
 	text-decoration: none;
 	cursor: pointer;
@@ -630,7 +644,7 @@ p.login-recuperar:hover {
 	z-index: 2;
 }
 
-.buttonAdd button:focus-within+.suma {
+.buttonAdd button:focus-within + .suma {
 	animation-name: go_up;
 	animation-duration: 2s;
 }
@@ -644,7 +658,7 @@ p.login-recuperar:hover {
 	z-index: 1;
 }
 
-.buttonAdd button:focus-within+.suma+.cart {
+.buttonAdd button:focus-within + .suma + .cart {
 	animation-name: hiImthere;
 	animation-duration: 2.2s;
 	transform: translate(20px, -20px);
@@ -695,9 +709,234 @@ p.login-recuperar:hover {
 }
 
 .profile {
-	background-image: linear-gradient(to right, rgb(46, 91, 189), rgb(23, 175, 142));
-	height: 100%;
+	/* background-image: linear-gradient(to right, rgba(46, 91, 189, 0.8), rgba(23, 175, 142, 0.8)); */
+	background-size: 400% 400%;
+	animation: moveTo 10s infinite;
+	min-height: 800px;
 	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	padding: 0 5vw;
+	padding-top: 5vw;
+}
+
+.profile table {
+	width: 100%;
+	text-align: center;
+}
+
+@keyframes moveTo {
+	from {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	to {
+		background-position: 0% 50%;
+	}
+}
+
+.profile > div > .inicioProfile {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.profile .category {
+	list-style: none;
+	display: grid;
+	grid-gap: 1vh;
+	justify-content: left;
+	align-content: center;
+}
+.profile > section {
+}
+
+.profile .category a {
+	cursor: pointer;
+	transition: all 1s ease-out;
+}
+
+.profile .category a:hover {
+	transform: scale(1.1);
+	font-weight: bold;
+}
+
+.profile section + * {
+	transform: translate(0, 0);
+	transition: all 3s ease-out;
+	animation: comeIn 1s;
+}
+
+.profile h1 {
+	text-align: center;
+	letter-spacing: 0.1rem;
+	animation: colorIn 10s infinite;
+}
+@keyframes colorIn {
+	from {
+		color: rgb(42, 138, 13);
+	}
+	50% {
+		color: rgb(34, 129, 8);
+	}
+	to {
+		color: rgb(42, 138, 13);
+	}
+}
+
+.profile li {
+	transform: translate(0, 0);
+	animation: comeIn ease-in-out;
+	animation-duration: 1s;
+}
+.profile li:nth-child(1) {
+	animation-duration: 1s;
+}
+.profile li:nth-child(2) {
+	animation-duration: 1.2s;
+}
+.profile li:nth-child(3) {
+	animation-duration: 1.4s;
+}
+.profile li:nth-child(4) {
+	animation-duration: 1.6s;
+}
+.profile li:nth-child(5) {
+	animation-duration: 1.8s;
+}
+
+.logoutButton:hover {
+	transform: scale(1.05);
+}
+
+@keyframes comeIn {
+	from {
+		opacity: 0;
+		transform: translate(600px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}
+
+.profile > div > .inicioProfile > h1 {
+	grid-column: 1 /s2;
+}
+
+.loading {
+}
+
+.inicioProfile .pedidos > p {
+	text-align: center;
+}
+.inicioProfile .pedidos span {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border-bottom: 1px solid gray;
+	margin-bottom: 1vh;
+}
+
+body.dimmed.dimmable {
+    overflow-y: scroll !important;
+}
+ 
+.modal {
+    margin: auto;
+    height: 80vh;
+    top: 5vh !important;
+    left: 17vw !important;
+    min-height: 200px;
+}
+.linea {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	justify-content: center;
+	align-content: center;
+	grid-column-gap: 5vw;
+	border-bottom: 1px solid gray;
+}
+
+.linea img {
+	margin: auto;
+}
+
+.linea span * {
+	margin: 0;
+}
+
+.modal .mispedidosModal .total {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-content: center;
+	align-content: center;
+}
+.modal .mispedidosModal .total * {
+	margin: 0;
+}
+.mispedidosModal {
+	display: grid !important;
+	grid-template-columns: 2fr 1fr !important;
+	font-weight: 200;
+}
+
+.mispedidosModal .ubicacion {
+	display: grid;
+	grid-row-gap: 25px;
+}
+
+.mispedidosModal .ubicacion div {
+	background: #e4e4e4;
+	padding: 5px;
+}
+
+.mispedidosModal h1,
+.mispedidosModal h2 {
+	font-weight: 100;
+	margin: 1px;
+}
+
+.pedidos tr {
+	border-bottom: 1px solid gray;
+}
+
+.MisLineas {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.MisLineas > h1 {
+	grid-column: 1 /s2;
+}
+.MisLineas .elegirLinea {
+}
+.lineaselected {
+	display: grid;
+}
+.lineaselected span {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.lineaselected button {
+	background: #055ecb !important;
+	color: #fff;
+	float: right;
+	padding: 5px;
+	width: 100px;
+}
+
+.activarlinea {
+	background: #fff;
+	border: 1px solid #f5a11d;
+	padding: 10px;
+	width: 200px;
+	cursor: pointer;
+	margin: auto;
+}
+
+.activarlinea:hover {
+	transform: scale(1.1);
 }
 
 /*************PAYMENT**************/
@@ -721,40 +960,36 @@ p.login-recuperar:hover {
 
 .payment-method {
 <<<<<<< HEAD
-    display: grid;
-    grid-template-columns: 24% 24% 24%;
-    justify-content: space-evenly;
-=======
 	display: grid;
 	grid-template-columns: 24% 24% 24%;
 	justify-content: center;
->>>>>>> personalData
+=======
+    display: grid;
+    grid-template-columns: 24% 24% 24%;
+    justify-content: space-evenly;
+>>>>>>> 702c4c8516ea7672d9aed50a9d032a8110bf19e9
 }
 
 .cart-resume button {
-	display: none!important;
+	display: none !important;
 }
 
-input, select {
-    border-left-color: 0!important;
+input,
+select {
+	border-left-color: 0 !important;
 }
 
 .payment-method button {
 	border-radius: 4px;
-    background-color: #318609;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 20px;
-    width: 137px;
-    transition: all 0.5s;
-    cursor: pointer;
-    height: 100px;
-  }
-  
-
-  
-	border-left-color: 0!important;
+	background-color: #318609;
+	border: none;
+	color: #ffffff;
+	text-align: center;
+	font-size: 20px;
+	width: 137px;
+	transition: all 0.5s;
+	cursor: pointer;
+	height: 100px;
 }
 
 /**
@@ -765,4 +1000,10 @@ input, select {
 	margin-left: auto;
 	margin-right: auto;
 	width: 600px;
+}
+
+.content {
+	display: grid;
+	justify-content: center;
+	align-content: baseline;
 }

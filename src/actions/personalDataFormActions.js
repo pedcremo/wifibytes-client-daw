@@ -58,7 +58,7 @@ export const initDatosPersonales = (data) => {
 
 export const INIT_DATA_SERVICES = 'INIT_DATA_SERVICES';
 export const initDataServices = (data) => {
-  console.log('ACTION INIT_DATA_SERVICES', data);
+  //console.log('ACTION INIT_DATA_SERVICES', data);
   return ({
     type: INIT_DATA_SERVICES,
     data,
