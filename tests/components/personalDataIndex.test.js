@@ -19,7 +19,7 @@ const initialState = {
       ciudad: 'Ontinyent',
       codcliente: '47003',
       codpostal: '46870',
-      cuenta: 'ES601210041840123456789',
+      cuenta: 'ES6621000418401234567891',
       direccion: 'Gaspar Blai Arbuixec',
       dniFile: 'image/base64:simulandoserunaimagen',
       email: 'example@gmail.com',
