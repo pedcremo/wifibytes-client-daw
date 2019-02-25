@@ -93,7 +93,7 @@ export default function personalDataFormReducer(state = initialState, action) {
 
 
         case INIT_DATA_SERVICES:
-            console.warn('REDUCER INIT_DATA_SERVICES', action.data);
+            //console.warn('REDUCER INIT_DATA_SERVICES', action.data);
             const datos = state.datosProductos;
             let newDatosProductos = [];
             let datosProductosAlmacenados = [];
@@ -149,7 +149,7 @@ export default function personalDataFormReducer(state = initialState, action) {
                             for (const key in newDatosProductos[i]) {
                                 newDatosProductos[i][key] = datosProductosAlmacenados[j][key];
                             }
-                            console.warn('newDatosProductos[i]', newDatosProductos[i]);
+                            //console.warn('newDatosProductos[i]', newDatosProductos[i]);
                         }
                     }
                 }
@@ -159,15 +159,21 @@ export default function personalDataFormReducer(state = initialState, action) {
             /**
              * Comprobamos el estado de  DatosProductos ya que si no tiene nada su validacion debe estar como correcta
              * */
-            let validadorFormServices = newDatosProductos.length==0?true:false;
-            let formsValidadosC = (validadorFormServices && state.validDatosPersonales) ? true : false;
+            if (newDatosProductos.length == 0) {
+                let formsValidadosC = (true && state.validDatosPersonales) ? true : false;
+                return {
+                    ...state,
+                    validDatosProductos: true,
+                    validForms: formsValidadosC,
+                    datosProductos: newDatosProductos,
+                };
+            }else{
+                return {
+                    ...state,
+                    datosProductos: newDatosProductos,
+                };
+            }
 
-            return {
-                ...state,
-                datosProductos: newDatosProductos,
-                validDatosProductos: validadorFormServices,
-                validForms: formsValidadosC
-            };
 
         case UPDATE_DATOS_PERSONALES:
            // console.warn('UPDATE_DATOS_PERSONALES', action.field, action.data, action.error);
@@ -212,9 +218,9 @@ export default function personalDataFormReducer(state = initialState, action) {
              * Comprueba si hay info (datos del usuario provinientes del backend)
              */
             //datosPersonalesObject = (typeof(info)==='object'&&Object.keys(info).length>1) ? info : initialState.datosPersonales;
-            console.warn('datosPersonalesObject', state.datosPersonales);
+            //console.warn('datosPersonalesObject', state.datosPersonales);
             datosPersonalesObject = (initialState.datosPersonales == state.datosPersonales) ? info : state.datosPersonales;
-            console.warn('datosPersonalesObject', datosPersonalesObject);
+            //console.warn('datosPersonalesObject', datosPersonalesObject);
             /**
              * Valida si el form esta completo correctamente y cambia el objeto de errores de datos personales del state REDUX
              */
@@ -239,7 +245,7 @@ export default function personalDataFormReducer(state = initialState, action) {
             }
             //debugger
             //console.error('REDUCER INITIALIZE_DATOS_PERSONALES', newObjDatosPersonales, datosPersonalesObject);
-
+            
             return {
                 ...state,
                 datosPersonales: newObjDatosPersonales,
@@ -313,7 +319,7 @@ function validDatosServicios(currentState) {
                     delete object["sim"];
                 
                 resValidation = validator(object[key], key);
-                console.error("validator", object, object[key], key, resValidation)
+                //console.error("validator", object, object[key], key, resValidation)
                 if (resValidation != null) {
                     return false;
                 }
