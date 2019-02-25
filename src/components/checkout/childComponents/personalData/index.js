@@ -1,12 +1,8 @@
 /** @module ComponentsApp */
 import React from 'react';
-import UserChoice from './userChoice';
 import PersonalDataForm from './personalDataForm';
-import SignIn from '../../../login/signIn';
 import PortabilidadForm from './portabilidadForm';
 import {connect} from 'react-redux';
-
-import {getItems} from '../../../cart/cartActions';
 
 import {EMPTY_CHILD} from '../../../../constants/actionTypes';
 import {

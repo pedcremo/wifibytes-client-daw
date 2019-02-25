@@ -41,7 +41,7 @@ class PortabilidadForm extends React.Component {
     new Promise((resolve, reject) => resolve(getItems()))
         .then( () => {
           const {items, initDataServices} = this.props;
-          console.log('this.props)', items);
+          //console.log('this.props)', items);
           initDataServices(items);
         });
   }
